@@ -1,0 +1,45 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/phiers_nextjs/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Signature {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  zipCode   String
+  district  String?  @default("")
+  createdAt DateTime @default(now())
+  survey    Survey?
+
+  @@index([zipCode])
+  @@index([createdAt])
+}
+
+model Survey {
+  id             String   @id @default(cuid())
+  signatureId    String   @unique
+  signature      Signature @relation(fields: [signatureId], references: [id])
+  topConcerns    String[]  @default([])
+  endWar         String   @default("")
+  article25      String   @default("")
+  investigations String   @default("")
+  solutions      String[]  @default([])
+  willOrganize   Boolean  @default(false)
+  canContact     Boolean  @default(false)
+  createdAt      DateTime @default(now())
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
