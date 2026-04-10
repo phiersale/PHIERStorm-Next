@@ -1,132 +1,162 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { AnimatedSection } from '@/components/animated-section'
-import { CountUp } from '@/components/count-up'
-import {
-  Zap, AlertTriangle, Shield, Heart, ShoppingCart, Briefcase,
-  Wheat, Home, Globe, ChevronRight, Users, Target, Scale, FileText
-} from 'lucide-react'
+import { AlertTriangle, ChevronRight, Sparkles } from 'lucide-react'
 
-const solutions = [
-  { icon: Heart, title: 'TeleCARE', desc: '$600/year healthcare for every American', href: '/telecare', color: 'text-red-400' },
-  { icon: ShoppingCart, title: 'PHIERSale', desc: 'Cooperative marketplace cutting out middlemen', href: '/phiersale', color: 'text-blue-400' },
-  { icon: Briefcase, title: 'PHIERWorks', desc: '2.3 million jobs rebuilding America', href: '/phierworks', color: 'text-yellow-400' },
-  { icon: Wheat, title: 'Food Security', desc: 'Buy failed farms. Fertile soil. Feed people.', href: '/solutions#food', color: 'text-green-400' },
-  { icon: Home, title: 'Housing', desc: 'Low-cost pre-fab housing at scale', href: '/solutions#housing', color: 'text-purple-400' },
-  { icon: Globe, title: 'International Trade', desc: 'Fair trade that works for workers', href: '/solutions#trade', color: 'text-cyan-400' },
+const evolutionTimeline = [
+  {
+    year: '2009',
+    title: 'Public Health Information Exchange & Reporting System',
+    body: 'Backbone infrastructure to coordinate care, reduce waste, and protect communities the system abandoned.',
+  },
+  {
+    year: 'Phase 2',
+    title: "People's Health Insurance Endowment & Referral Service",
+    body: 'Healthcare access and affordability at scale using legal authority that already exists.',
+  },
+  {
+    year: 'Phase 3',
+    title: 'Safety net for the safety net',
+    body: 'Built to stabilize jobs, supply chains, food, housing, and healthcare when they break together.',
+  },
+  {
+    year: 'Now',
+    title: "Power Held In Every Representative's Seat",
+    body: 'A constitutional mechanism that gives organized people leverage over Congress and the market.',
+  },
 ]
 
-const exploreLinks = [
-  { icon: AlertTriangle, title: 'The Crisis', desc: 'Why this moment matters', href: '/crisis' },
-  { icon: Target, title: 'Leverage', desc: 'The key to everything', href: '/leverage' },
-  { icon: Scale, title: 'The Teeth', desc: 'How we force action', href: '/the-teeth' },
-  { icon: FileText, title: 'Simple Math', desc: '$2.73 trillion in savings', href: '/simple-math' },
-  { icon: Shield, title: 'No War', desc: 'End it now', href: '/no-war' },
-  { icon: Users, title: 'Organize', desc: 'Find your role', href: '/organizers' },
+const spiralItems = [
+  'Military escalation drives oil shocks and tighter supply chains.',
+  'Healthcare costs surge as medicine and equipment costs rise.',
+  'Workers get sicker, poorer, and easier to push to the edge.',
+  'Economic pressure grows while wages stall and instability spreads.',
+  'Political extremism grows in the vacuum, raising escalation risk again.',
+  'Loop repeats — each cycle harder to break than the last.',
+]
+
+const powerBlocks = [
+  {
+    title: 'Political Power',
+    body: '1,500 organized constituents triggers a mandatory public town hall. If they refuse, they get a primary challenge. Documented. Coordinated. Real.',
+  },
+  {
+    title: 'Economic Power',
+    body: '$2.73 trillion in annual waste can be redirected from insurance overhead to people. The money already exists. We force the pivot.',
+  },
+  {
+    title: 'Consumer Power',
+    body: 'PHIERSale cuts out middlemen and sends savings back to members. No extraction model. No profit skimming. No fake reform.',
+  },
 ]
 
 export function HomeClient() {
   return (
-    <div className="min-h-screen">
-      {/* HERO */}
-      <section className="relative pt-20 pb-16 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#3ddc84]/5 via-transparent to-transparent" />
+    <div className="min-h-screen pt-14">
+      <section className="px-4 py-4 bg-red-500/10 border-y border-red-500/30">
+        <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+          <p className="text-sm md:text-base text-red-100">
+            <span className="font-semibold">⚠️ Congress is home through April 14.</span>{' '}
+            A president who threatened to destroy a civilization has no authorization for this war.
+            Your name in your district is the leverage that changes that.
+          </p>
+          <Link href="/petition" className="inline-flex items-center gap-2 text-sm font-semibold text-red-50 hover:text-white">
+            Be Counted Now <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="relative px-4 pt-14 pb-12 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#3ddc84]/10 via-transparent to-transparent" />
         <div className="max-w-[1200px] mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center pt-8"
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl"
           >
-            <Image src="/images/PHIERS_Logo.png" alt="PHIERS — Power Held In Every Representative's Seat" width={80} height={80} className="mx-auto mb-6" priority />
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full mb-6">
-              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-red-400">URGENT: Congress is home until April 14th</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
-              <span className="text-white">Demand Town Halls.</span>
-              <br />
-              <span className="text-[#3ddc84] text-glow">April 15th.</span>
+            <p className="text-[#3ddc84] uppercase text-xs tracking-[0.24em] mb-4">PHIERStorm</p>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold leading-[1.08]">
+              Everyone knows the nation is in free fall. Tariffs, war, broken healthcare, a Congress that won't act.
+              <br className="hidden md:block" />
+              The only question is: do you have a plan that works when everything else fails?
+              <br className="hidden md:block" />
+              We do. We built it over 16 years. It's shovel-ready. And it starts with your name in your district.
             </h1>
-
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-4">
-              1,500 signatures per district. That&apos;s all it takes to force every member of Congress
-              to face their constituents. End the war. Invoke Article 25. Launch investigations.
-            </p>
-
-            <p className="text-sm text-gray-500 mb-8">
-              This is America&apos;s <span className="text-[#3ddc84] font-semibold">250th year</span>. Replace Congress before July 4th if they won&apos;t act.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/petition"
-                className="px-8 py-4 bg-[#3ddc84] text-[#080d1a] font-bold text-lg rounded-xl hover:bg-[#34c474] hover:scale-105 transition-all shadow-lg shadow-[#3ddc84]/20"
-              >
-                Sign the Petition
-              </Link>
-              <Link
-                href="/leverage"
-                className="px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold text-lg rounded-xl hover:bg-white/10 transition-all"
-              >
-                How This Works
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
-          >
-            {[
-              { label: 'Signatures Needed', value: 1500, suffix: '/district' },
-              { label: 'Congressional Districts', value: 435, suffix: '' },
-              { label: 'Savings Identified', value: 2730, prefix: '$', suffix: 'B' },
-              { label: 'Jobs Created', value: 2300000, suffix: '' },
-            ].map((stat: any, i: number) => (
-              <div key={i} className="bg-white/5 rounded-xl p-5 text-center border border-white/5">
-                <div className="text-2xl md:text-3xl font-bold text-[#3ddc84]">
-                  <CountUp end={stat?.value ?? 0} prefix={stat?.prefix ?? ''} suffix={stat?.suffix ?? ''} />
-                </div>
-                <div className="text-xs text-gray-500 mt-1">{stat?.label ?? ''}</div>
-              </div>
-            ))}
           </motion.div>
         </div>
       </section>
 
-      {/* LEVERAGE FIRST */}
-      <section className="py-20 px-4 bg-[#0a1020]">
-        <div className="max-w-[1200px] mx-auto">
-          <AnimatedSection className="text-center mb-12">
-            <Zap className="w-8 h-8 text-[#3ddc84] mx-auto mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Leverage <span className="text-[#3ddc84]">First</span></h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
-              Without leverage over Congress, nothing changes. With it, everything becomes possible.
-              Healthcare. Jobs. Food security. Housing. Trade. All of it flows from one thing:
-              making Congress do their job.
+      <section className="px-4 pb-14">
+        <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-4">
+          <Link href="/petition" className="rounded-2xl border border-[#3ddc84]/40 bg-[#3ddc84]/15 p-6 hover:bg-[#3ddc84]/20 transition-colors">
+            <p className="text-xl font-bold">✍ I&apos;m ready to be counted — add my name</p>
+            <p className="text-sm text-gray-300 mt-2">30 seconds · name, email, zip · counted in your district</p>
+          </Link>
+          <Link href="/organizers" className="rounded-2xl border border-amber-400/50 bg-amber-500/10 p-6 hover:bg-amber-500/15 transition-colors">
+            <p className="text-xl font-bold">✊ I bring people — show me what PHIERS does for them</p>
+            <p className="text-sm text-gray-300 mt-2">Organizers · unions · coalitions · movement builders</p>
+          </Link>
+        </div>
+        <p className="text-center text-gray-500 text-sm mt-4">or scroll to understand the full picture ↓</p>
+      </section>
+
+      <section className="px-4 py-16 bg-[#0a1020]">
+        <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-8 items-start">
+          <AnimatedSection>
+            <p className="text-red-300 text-sm uppercase tracking-[0.18em] mb-3">This Is Not a Foreign Policy Story</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">This Is Your Kitchen Table. Your Medicine Cabinet. Your Kids.</h2>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              There is no part of your life that doesn&apos;t run on oil. Food, medicine, transport, hospital supplies — all of it.
+              When the Strait of Hormuz is threatened, inflation doesn&apos;t inch up. It detonates across every chain at once.
+            </p>
+            <p className="text-gray-300 leading-relaxed">
+              Congress never authorized this war. No vote. No debate. No exit strategy.
+              Congress won&apos;t fix this. The corporations won&apos;t fix this. You will. We can. PHIERS gives us the mechanism.
             </p>
           </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-6 space-y-3">
+              {[
+                'Military escalation threatens the most critical oil chokepoint on earth.',
+                'Energy prices spike across every sector tied to fuel.',
+                'Food and medicine costs climb at the same time.',
+                'Healthcare spikes on top of already broken healthcare costs.',
+                'Supply chains fracture exactly where families are most exposed.',
+                'People least able to absorb the shock get hit first and hardest.',
+              ].map((item) => (
+                <div key={item} className="flex gap-3 text-sm text-red-50">
+                  <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+            <Link href="/no-war" className="inline-flex items-center gap-2 mt-5 text-sm font-semibold text-[#3ddc84] hover:text-[#63e29c]">
+              End the Unauthorized War — see how PHIERS forces Congress to act <ChevronRight className="w-4 h-4" />
+            </Link>
+          </AnimatedSection>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { step: '01', title: 'Sign & Survey', desc: '1,500 per district. We map the pressure.' },
-              { step: '02', title: 'Force Town Halls', desc: 'April 15th. Every district. No hiding.' },
-              { step: '03', title: 'Replace or Reform', desc: 'July 4th deadline. Act or be replaced.' },
-            ].map((item: any, i: number) => (
-              <AnimatedSection key={i} delay={i * 0.15}>
-                <div className="bg-white/5 rounded-xl p-6 border border-white/5 hover:border-[#3ddc84]/30 hover:shadow-lg hover:shadow-[#3ddc84]/5 transition-all duration-300">
-                  <span className="text-[#3ddc84] font-mono text-sm">{item?.step}</span>
-                  <h3 className="text-xl font-bold mt-2 mb-2">{item?.title}</h3>
-                  <p className="text-gray-400 text-sm">{item?.desc}</p>
+      <section className="px-4 py-16">
+        <div className="max-w-[1200px] mx-auto">
+          <AnimatedSection>
+            <p className="text-[#3ddc84] text-sm uppercase tracking-[0.18em] mb-3">Sixteen Years in the Making</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">It Didn&apos;t Start Here. But It Was Always Heading Here.</h2>
+            <p className="text-gray-300 max-w-3xl">
+              This isn&apos;t a reaction. It&apos;s a system built for this moment. Legal. Funded. Ready.
+              We use the ACA&apos;s own authority against the people who gutted it.
+            </p>
+          </AnimatedSection>
+          <div className="mt-8 grid md:grid-cols-2 gap-4">
+            {evolutionTimeline.map((step, i) => (
+              <AnimatedSection key={step.title} delay={i * 0.07}>
+                <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p className="text-xs uppercase tracking-[0.18em] text-gray-400">{step.year}</p>
+                  <h3 className="font-semibold text-lg mt-1">{step.title}</h3>
+                  <p className="text-sm text-gray-400 mt-2">{step.body}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -134,120 +164,115 @@ export function HomeClient() {
         </div>
       </section>
 
-      {/* YOU ARE NOT POWERLESS */}
-      <section className="py-12 px-4">
-        <div className="max-w-[800px] mx-auto">
+      <section className="px-4 py-16 bg-[#0a1020]">
+        <div className="max-w-[1200px] mx-auto">
+          <AnimatedSection className="rounded-2xl border border-blue-400/30 bg-blue-500/10 p-7">
+            <p className="text-blue-200 uppercase text-sm tracking-[0.18em] mb-2">Global Union Block</p>
+            <h2 className="text-3xl font-bold mb-3">Workers Built This Country. Workers Will Rebuild It.</h2>
+            <p className="text-gray-200 leading-relaxed">
+              Broken supply chains didn&apos;t happen by accident. They were built on workers being undercut, outsourced, and burned out.
+              PHIERS connects labor, mutual aid, cooperative marketplaces, and district-level pressure so recovery is coordinated — not chaotic.
+              The system is designed to bleed you dry. PHIERS cuts out middlemen and puts the savings back in your pocket.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      <section className="px-4 py-16">
+        <div className="max-w-[1200px] mx-auto">
           <AnimatedSection>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10">
-              <Image src="/images/YOU_ARE_NOT_POWERLESS.jpg" alt="You are not powerless — the 3.5% rule proves it" fill className="object-cover" />
+            <p className="text-amber-300 text-sm uppercase tracking-[0.18em] mb-3">Why This Is Credible</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Not Theory. Already Proven at Scale.</h2>
+          </AnimatedSection>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+            {[
+              'Mark Cuban\'s Cost Plus Drugs proved direct buying can slash costs 80–90%.',
+              'Harvard Kennedy School (Chenoweth): sustained 3.5% participation drives systemic change.',
+              'A Fortune 500 PR firm reviewed PHIERS and confirmed the mechanism is viable.',
+              'Congressional support letters date back to 2009 — this is documented, not improvised.',
+              'ACA authority already exists. Congress can act now without new legislation.',
+              '16 years of prior art across healthcare, logistics, and district-level accountability.',
+            ].map((point, i) => (
+              <AnimatedSection key={point} delay={i * 0.06}>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm text-gray-300 h-full">
+                  {point}
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-16 bg-[#0a1020]">
+        <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-8">
+          <AnimatedSection>
+            <p className="text-[#3ddc84] text-sm uppercase tracking-[0.18em] mb-2">The 5D System</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Five Crises. One Spiral. One Way Out.</h2>
+            <p className="text-gray-300 mb-4">
+              We were taught to fight separate battles. That fragmentation is why nothing gets fixed.
+              PHIERStorm is the pattern interrupt.
+            </p>
+            <Link href="/crisis" className="inline-flex items-center gap-2 text-sm font-semibold text-[#3ddc84] hover:text-[#63e29c]">
+              See the full 5D crisis breakdown <ChevronRight className="w-4 h-4" />
+            </Link>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 space-y-3">
+              {spiralItems.map((item) => (
+                <div key={item} className="flex gap-3 text-sm text-gray-300">
+                  <Sparkles className="w-4 h-4 mt-0.5 text-[#3ddc84] shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* REAL PURPOSE */}
-      <section className="py-20 px-4">
+      <section className="px-4 py-16">
         <div className="max-w-[1200px] mx-auto">
-          <AnimatedSection className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">The Real <span className="text-[#3ddc84]">Purpose</span></h2>
-            <p className="text-gray-400 text-lg leading-relaxed mb-4">
-              PHIERS has spent 16 years building a solutions engine. Not to save America from decline —
-              that ship has sailed — but to <span className="text-white font-medium">manage the decline and make it better</span>.
-            </p>
-            <p className="text-gray-500">
-              $600/year healthcare. 2.3 million jobs. Cooperative marketplaces. Food security.
-              Affordable housing. Fair trade. These aren&apos;t dreams. They&apos;re math. And the math works.
-            </p>
-          </AnimatedSection>
-
-          {/* Key graphics */}
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            <AnimatedSection delay={0.1}>
-              <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-[#0d1525]">
-                <Image src="/images/Guaranteed_Change_THUMBNAIL.jpg" alt="Guaranteed Change — 3.5% = 11.6M signatures" fill className="object-cover" />
-              </div>
-            </AnimatedSection>
-            <AnimatedSection delay={0.2}>
-              <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-[#0d1525]">
-                <Image src="/images/Congress_Dont_Work_4U-WEre_changing_that-BIG.jpg" alt="Congress doesn't work for you — we're changing that" fill className="object-cover" />
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* SOLUTIONS GRID */}
-      <section className="py-20 px-4 bg-[#0a1020]">
-        <div className="max-w-[1200px] mx-auto">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">The <span className="text-[#3ddc84]">Solutions</span></h2>
-            <p className="text-gray-500 mt-2">Once we have leverage, everything else becomes possible.</p>
-          </AnimatedSection>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {solutions?.map((s: any, i: number) => {
-              const Icon = s?.icon
-              return (
-                <AnimatedSection key={i} delay={i * 0.1}>
-                  <Link href={s?.href ?? '#'} className="block group">
-                    <div className="bg-white/5 rounded-xl p-6 border border-white/5 hover:border-[#3ddc84]/30 hover:bg-white/[0.07] transition-all duration-300 h-full">
-                      {Icon && <Icon className={`w-8 h-8 mb-3 ${s?.color ?? 'text-white'}`} />}
-                      <h3 className="text-lg font-bold mb-1 group-hover:text-[#3ddc84] transition-colors">{s?.title ?? ''}</h3>
-                      <p className="text-sm text-gray-400">{s?.desc ?? ''}</p>
-                    </div>
-                  </Link>
-                </AnimatedSection>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* EMBEDDED PETITION CTA */}
-      <section className="py-20 px-4">
-        <div className="max-w-[800px] mx-auto text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to <span className="text-[#3ddc84]">Act</span>?</h2>
-            <p className="text-gray-400 mb-8">
-              Sign the petition. Take the survey. Tell us what matters to you.
-              1,500 signatures per district changes everything.
-            </p>
-            <Link
-              href="/petition"
-              className="inline-block px-10 py-4 bg-[#3ddc84] text-[#080d1a] font-bold text-lg rounded-xl hover:bg-[#34c474] hover:scale-105 transition-all shadow-lg shadow-[#3ddc84]/20"
-            >
-              Sign the Petition & Take the Survey
-            </Link>
+            <p className="text-[#3ddc84] text-sm uppercase tracking-[0.18em] mb-2">Three Kinds of Power</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Most Movements Only Have One. PHIERS Gives You All Three.</h2>
           </AnimatedSection>
+          <div className="grid md:grid-cols-3 gap-4 mt-6">
+            {powerBlocks.map((block, i) => (
+              <AnimatedSection key={block.title} delay={i * 0.08}>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 h-full">
+                  <h3 className="text-xl font-semibold mb-2">{block.title}</h3>
+                  <p className="text-sm text-gray-300">{block.body}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* EXPLORE DEEPER */}
-      <section className="py-20 px-4 bg-[#0a1020]">
-        <div className="max-w-[1200px] mx-auto">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Explore <span className="text-[#3ddc84]">Deeper</span></h2>
+      <section className="px-4 py-16 bg-[#0a1020]">
+        <div className="max-w-[900px] mx-auto text-center">
+          <AnimatedSection>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Five Crises. One Lever. Your Name Starts It.</h2>
+            <p className="text-gray-300 leading-relaxed mb-7">
+              This is your name, your district, your demand — on the record.
+              Counted. Delivered. Impossible to ignore.
+              Built for the hard years. Ready for the crisis.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/petition" className="px-6 py-3 rounded-xl bg-amber-400 text-[#080d1a] font-bold hover:bg-amber-300 transition-colors">
+                ✍ BE COUNTED — 30 SECONDS
+              </Link>
+              <Link href="/organizers" className="px-6 py-3 rounded-xl bg-[#3ddc84] text-[#080d1a] font-bold hover:bg-[#63e29c] transition-colors">
+                ✊ I Bring People — Show Me the Mechanism
+              </Link>
+            </div>
+            <div className="flex flex-wrap gap-3 justify-center mt-3">
+              <Link href="/no-war" className="px-5 py-2 rounded-lg border border-white/20 text-sm hover:bg-white/10 transition-colors">⚠️ End the Unauthorized War</Link>
+              <Link href="/leverage" className="px-5 py-2 rounded-lg border border-white/20 text-sm hover:bg-white/10 transition-colors">⚡ See How the Leverage Works</Link>
+            </div>
+            <p className="text-sm text-gray-500 mt-6">
+              We built this before the crisis hit. The crisis is here. Now we use it. The only thing missing is you.
+            </p>
           </AnimatedSection>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {exploreLinks?.map((link: any, i: number) => {
-              const Icon = link?.icon
-              return (
-                <AnimatedSection key={i} delay={i * 0.1}>
-                  <Link href={link?.href ?? '#'} className="block group">
-                    <div className="flex items-start gap-4 bg-white/5 rounded-xl p-5 border border-white/5 hover:border-[#3ddc84]/30 transition-all duration-300">
-                      {Icon && <Icon className="w-6 h-6 text-[#3ddc84] mt-0.5 flex-shrink-0" />}
-                      <div>
-                        <h3 className="font-bold group-hover:text-[#3ddc84] transition-colors">{link?.title ?? ''}</h3>
-                        <p className="text-sm text-gray-500">{link?.desc ?? ''}</p>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-gray-600 mt-1 ml-auto flex-shrink-0 group-hover:text-[#3ddc84] transition-colors" />
-                    </div>
-                  </Link>
-                </AnimatedSection>
-              )
-            })}
-          </div>
         </div>
       </section>
     </div>
