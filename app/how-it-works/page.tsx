@@ -104,4 +104,27 @@ export default function HowItWorksPage() {
         {/* GO DEEPER */}
         <section className="py-16 px-6 max-w-[640px] mx-auto"><p className="font-condensed font-bold text-[#3ddc84] text-lg tracking-wide mb-2">Go Deeper</p><p className="text-gray-500 mb-8">Choose the path you want to understand first.</p><div className="mb-8"><p className="font-condensed font-bold text-xl text-white mb-2">⚡ The Leverage</p><p className="text-gray-500 mb-3">How organized people become impossible to ignore — and why Congress has no choice once the pressure is real.</p><Link href="/leverage" className="font-condensed font-bold text-[#3ddc84] border-b border-[#3ddc84]/30 pb-0.5">Show me the Leverage →</Link></div><div><p className="font-condensed font-bold text-xl text-white mb-2">📖 The Healthcare Proof</p><p className="text-gray-500 mb-3">Why fixing healthcare is the first domino — and the evidence that makes the leverage unavoidable.</p><Link href="/telecare" className="font-condensed font-bold text-[#3ddc84] border-b border-[#3ddc84]/30 pb-0.5">Explore the Deep Dive →</Link></div></section>
 
-        <hr className="border-[#
+        <hr className="border-[#3ddc84]/20" />
+
+        <div className="text-center py-12 px-6 max-w-[640px] mx-auto"><p className="font-condensed font-bold text-lg text-gray-500 leading-relaxed">PHIERS is built for one purpose:<br />giving the public the leverage we've always deserved.</p><p className="font-condensed font-bold text-white text-lg mt-2">Now it's organized.</p></div>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="text-center py-12 px-6 border-t border-[#3ddc84]/10"><Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={80} height={80} className="mx-auto mb-4 opacity-70" /><div className="font-condensed font-bold text-gray-400 mb-1">PHIERS is the system that gives every union — and everyone without one — the leverage to win.<br />Owned by the people. Built by the people.</div><div className="text-xs text-gray-600 mt-6 leading-relaxed">Not built for profit. Not built for power. Built for We the People — by people who refused to stop.<br />📧 <a href="mailto:info@phiers.org" className="text-[#3ddc84]">info@phiers.org</a> · 📞 (916) 306-8967<br />© PHIERS.org — Original Concept Since 2009. All Rights Reserved.<br /><span className="text-[0.7rem]">PHIERS™ · PHIERSale™ · PHIERWorks™ · PHIERPlace™ — Protected marks established 2009–2025.</span></div></footer>
+
+      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+
+      {/* Will Price Modal */}
+      <AnimatePresence>{willModalOpen && (<motion.div className="fixed inset-0 bg-black/90 z-[99998] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setWillModalOpen(false)}><div className="relative max-w-[720px] w-full bg-[#080d1a]/97 border-2 border-[#3ddc84]/35 rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh]" onClick={(e) => e.stopPropagation()}><button onClick={() => setWillModalOpen(false)} className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#111d35] text-[#3ddc84] border-2 border-[#3ddc84] flex items-center justify-center text-xl hover:bg-[#3ddc84] hover:text-[#111d35] transition-all z-10">✕</button><div className="flex flex-wrap"><div className="w-full md:w-[240px] min-h-[280px] overflow-hidden"><img src="/images/Will_Price.png" alt="Will Price" className="w-full h-full min-h-[260px] object-cover object-[55%_top]" /></div><div className="flex-1 min-w-[240px] p-7 flex flex-col justify-center"><p className="font-condensed text-xs text-[#3ddc84] uppercase tracking-[3px] mb-2">The Architect</p><h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-1">Will Price</h3><p className="font-condensed text-sm text-[#ffd60a] font-bold mb-4">Founder &amp; Chief Solutions Architect, PHIERS</p><p className="font-body text-sm text-[#c8d8c8] leading-relaxed">Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009.</p></div></div></div></motion.div>)}</AnimatePresence>
+
+      <style jsx global>{`
+        @keyframes firePulse { 0%,100% { box-shadow: 0 0 40px rgba(230,57,70,0.25), inset 0 0 40px rgba(230,57,70,0.08); } 50% { box-shadow: 0 0 70px rgba(230,57,70,0.45), inset 0 0 60px rgba(230,57,70,0.15); } }
+        .font-display { font-family: 'Bebas Neue', sans-serif; }
+        .font-condensed { font-family: 'Barlow Condensed', sans-serif; }
+        .font-body { font-family: 'Barlow', sans-serif; }
+        details summary { list-style: none; }
+        details summary::-webkit-details-marker { display: none; }
+      `}</style>
+    </>
+  )
+}
