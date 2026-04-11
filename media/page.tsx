@@ -8,22 +8,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function MediaPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [imageModalOpen, setImageModalOpen] = useState(false)
-  const [modalImageSrc, setModalImageSrc] = useState('')
   const [willModalOpen, setWillModalOpen] = useState(false)
 
   const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen)
-
-  const openModal = (src: string) => {
-    setModalImageSrc(src)
-    setImageModalOpen(true)
-    document.body.style.overflow = 'hidden'
-  }
-
-  const closeModal = () => {
-    setImageModalOpen(false)
-    document.body.style.overflow = ''
-  }
 
   const videos = [
     { title: 'The Bipartisan Solution', duration: '11:11', url: 'https://youtu.be/bEUyDVAYwpk', desc: 'Complete framework' },
@@ -74,7 +61,7 @@ export default function MediaPage() {
                 <div className="space-y-2 pl-4 mt-2"><Link href="/crisis" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🚨 The Crisis</Link><Link href="/simple-math" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📊 Simple Math</Link><Link href="/how-it-works" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>⚡ The Leverage</Link><Link href="/solutions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🔬 5D Solutions</Link><Link href="/telecare" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💡 TeleCARE</Link></div>
               </details>
               <details className="border-b border-white/10 pb-2"><summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Who We're For</summary>
-                <div className="space-y-2 pl-4 mt-2"><Link href="/organizers" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>✊ For Organizers</Link><Link href="/veterans" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🎖 Veterans</Link><Link href="/no-war" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🕊 No War / No Draft</Link><Link href="/unions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💪 Union Strategy</Link></div>
+                <div className="space-y-2 pl-4 mt-2"><Link href="/organizers" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>✊ For Organizers</Link><Link href="/veterans" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🎖 Veterans</Link><Link href="/unions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💪 Union Strategy</Link></div>
               </details>
               <details className="border-b border-white/10 pb-2"><summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Resources</summary>
                 <div className="space-y-2 pl-4 mt-2"><Link href="/resources" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📚 Resource Hub</Link><Link href="/real-stories" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💬 Real Stories</Link><Link href="/media" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📺 Media</Link><Link href="/faq" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>❓ FAQ</Link><Link href="/about" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📖 About</Link></div>
@@ -110,7 +97,10 @@ export default function MediaPage() {
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">Core Videos</h2>
           <div className="space-y-3">
             {videos.map((video, i) => (
-              <div key={i} className="border-b border-white/10 pb-2 last:border-0"><a href={video.url} target="_blank" rel="noopener noreferrer" className="text-[#3ddc84] hover:underline font-semibold">{video.title} ({video.duration})</a><p className="text-gray-400 text-sm">{video.desc}</p></div>
+              <div key={i} className="border-b border-white/10 pb-2 last:border-0">
+                <a href={video.url} target="_blank" rel="noopener noreferrer" className="text-[#3ddc84] hover:underline font-semibold">{video.title} ({video.duration})</a>
+                <p className="text-gray-400 text-sm">{video.desc}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -120,7 +110,9 @@ export default function MediaPage() {
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">Key Infographics</h2>
           <p className="text-gray-400 mb-4">All graphics available in project repository. Links to full collection:</p>
           <ul className="space-y-2">
-            {infographics.map((item, i) => (<li key={i} className="text-gray-300 text-sm before:content-['•'] before:text-[#3ddc84] before:mr-2">{item}</li>))}
+            {infographics.map((item, i) => (
+              <li key={i} className="text-gray-300 text-sm before:content-['•'] before:text-[#3ddc84] before:mr-2">{item}</li>
+            ))}
           </ul>
         </div>
 
@@ -128,7 +120,9 @@ export default function MediaPage() {
         <div className="bg-[#111d35]/90 border-l-4 border-[#3ddc84] rounded-r-lg p-6 md:p-8 my-6">
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">State Implementation Guides</h2>
           <ul className="space-y-2 mb-4">
-            {guides.map((guide, i) => (<li key={i} className="text-gray-300"><strong className="text-white">{guide.title}</strong> — {guide.desc}</li>))}
+            {guides.map((guide, i) => (
+              <li key={i} className="text-gray-300"><strong className="text-white">{guide.title}</strong> — {guide.desc}</li>
+            ))}
           </ul>
           <Link href="/resources" className="text-[#3ddc84] hover:underline">→ Access all white papers</Link>
         </div>
@@ -159,16 +153,6 @@ export default function MediaPage() {
       </footer>
 
       <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
-
-      {/* Image Modal */}
-      <AnimatePresence>
-        {imageModalOpen && (
-          <motion.div className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeModal}>
-            <button className="absolute top-5 right-7 text-white text-3xl cursor-pointer bg-black/50 border border-white/20 w-10 h-10 rounded-full" onClick={closeModal}>✕</button>
-            <img src={modalImageSrc} alt="" className="max-w-[90vw] max-h-[90vh] rounded-lg border-2 border-[#3ddc84]" />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Will Price Modal */}
       <AnimatePresence>
