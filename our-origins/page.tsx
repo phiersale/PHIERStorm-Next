@@ -46,7 +46,7 @@ export default function OurOriginsPage() {
                 <div className="space-y-2 pl-4 mt-2"><Link href="/crisis" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🚨 The Crisis</Link><Link href="/simple-math" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📊 Simple Math</Link><Link href="/how-it-works" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>⚡ The Leverage</Link><Link href="/solutions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🔬 5D Solutions</Link><Link href="/telecare" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💡 TeleCARE</Link></div>
               </details>
               <details className="border-b border-white/10 pb-2"><summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Who We're For</summary>
-                <div className="space-y-2 pl-4 mt-2"><Link href="/organizers" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>✊ For Organizers</Link><Link href="/veterans" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🎖 Veterans</Link><Link href="/no-war" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🕊 No War / No Draft</Link><Link href="/unions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💪 Union Strategy</Link></div>
+                <div className="space-y-2 pl-4 mt-2"><Link href="/organizers" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>✊ For Organizers</Link><Link href="/veterans" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🎖 Veterans</Link><Link href="/unions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💪 Union Strategy</Link></div>
               </details>
               <details className="border-b border-white/10 pb-2"><summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Resources</summary>
                 <div className="space-y-2 pl-4 mt-2"><Link href="/resources" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📚 Resource Hub</Link><Link href="/real-stories" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💬 Real Stories</Link><Link href="/faq" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>❓ FAQ</Link><Link href="/about" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📖 About</Link></div>
@@ -74,45 +74,90 @@ export default function OurOriginsPage() {
         <div className="bg-[#111d35]/90 border-l-4 border-[#3ddc84] rounded-r-lg p-6 md:p-8 my-6">
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">⚡ We Are "Intelligent Glue" — Not Another Healthcare Startup</h2>
           <p className="text-gray-300 mb-4">PHIERS isn't here to compete with ZORTT, Mark Cuban's Cost Plus Drugs, or anyone else building healthcare solutions.</p>
-          <div className="bg-[#3ddc84]/10 border-2 border-[#3ddc84] rounded-lg p-5 text-center"><p className="text-white text-lg font-bold">We're the connective infrastructure that makes existing solutions work better together.</p></div>
+          <div className="bg-[#3ddc84]/10 border-2 border-[#3ddc84] rounded-lg p-5 text-center">
+            <p className="text-white text-lg font-bold">We're the connective infrastructure that makes existing solutions work better together.</p>
+          </div>
           <p className="text-white font-bold mt-5">What "Intelligent Glue" means:</p>
-          <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-1"><li>We connect telehealth platforms → more patients reach them</li><li>We amplify Cost Plus Drugs → 234M people get their pricing</li><li>We organize worker power → unions get healthcare leverage</li><li>We build political pressure → Congress forced to implement solutions</li><li>We create economic cascade → savings fund jobs, UBI, and universal coverage</li></ul>
+          <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-1">
+            <li>We connect telehealth platforms → more patients reach them</li>
+            <li>We amplify Cost Plus Drugs → 234M people get their pricing</li>
+            <li>We organize worker power → unions get healthcare leverage</li>
+            <li>We build political pressure → Congress forced to implement solutions</li>
+            <li>We create economic cascade → savings fund jobs, UBI, and universal coverage</li>
+          </ul>
           <p className="text-[#3ddc84] font-bold mt-5">Everything we build is 100% owned, operated by, and accountable to We the People — not corporations, not shareholders, not founders.</p>
         </div>
 
         {/* 16 Years Journey */}
         <div className="bg-[#111d35]/90 border-l-4 border-[#3ddc84] rounded-r-lg p-6 md:p-8 my-6">
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">🔍 16 Years of Pioneering (2009-2025)</h2>
-          <h3 className="font-condensed text-lg text-[#3ddc84] mt-3 mb-2">The Beginning</h3><p className="text-gray-300 mb-2">The name came later — once the system was clear.</p><p className="text-gray-300 mb-3">PHIERS — Power Held In Every Representative's Seat — is what the system became.</p><p className="text-gray-300 mb-3">PHIERS emerged from a real crisis: healthcare workers without access to healthcare. Al Wilson and Bill Wiggins founded SureSafe Pharma (2007), pioneering pharmaceutical distribution WITHOUT markups or middlemen. This wasn't theoretical — it proved cost reduction works at scale.</p>
-          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">The Threats & Pivots</h3><p className="text-gray-300 mb-3">We faced opposition. Legal threats from established pharmaceutical interests. Market disruptions from the Panama Free Trade Agreement (signed 2007, implemented 2012). Blacklisting. Sabotage. We had to pause, reassess, and wait for the right moment.</p>
-          <p className="text-white font-bold mb-2">Why we waited 16 years:</p><p className="text-gray-300 mb-3">Timing matters. We could have launched in 2015. But:</p><ul className="list-disc pl-5 text-gray-300 mb-3"><li>Congress didn't recognize healthcare as a national crisis yet</li><li>Telehealth wasn't proven or accessible</li><li>No one had validated our pharmaceutical model</li><li>The political moment hadn't arrived</li></ul>
-          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">What Happened While We Waited</h3><p className="text-gray-300 mb-2">Others succeeded with concepts we pioneered — and we celebrated them:</p><ul className="list-disc pl-5 text-gray-300 mb-3"><li><strong className="text-white">Mark Cuban (2022):</strong> Cost Plus Drugs validates our pharmaceutical model. 7 million customers. 80-90% savings.</li><li><strong className="text-white">ZORTT Elite Medical:</strong> Cooperative telemedicine marketplace proves our delivery model works.</li><li><strong className="text-white">Telehealth expansion:</strong> Became mainstream during COVID, proving our vision correct.</li></ul>
-          <div className="bg-[#3ddc84]/10 border border-[#3ddc84] rounded-lg p-5"><p className="text-white font-bold">These weren't competitors. They were PROOF our concepts worked.</p><p className="text-gray-300 mt-2">We're not upset about that — we're grateful. Their success validates 16 years of work and gives us the foundation to build on.</p></div>
+          <h3 className="font-condensed text-lg text-[#3ddc84] mt-3 mb-2">The Beginning</h3>
+          <p className="text-gray-300 mb-2">The name came later — once the system was clear.</p>
+          <p className="text-gray-300 mb-3">PHIERS — Power Held In Every Representative's Seat — is what the system became.</p>
+          <p className="text-gray-300 mb-3">PHIERS emerged from a real crisis: healthcare workers without access to healthcare. Al Wilson and Bill Wiggins founded SureSafe Pharma (2007), pioneering pharmaceutical distribution WITHOUT markups or middlemen. This wasn't theoretical — it proved cost reduction works at scale.</p>
+
+          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">The Threats & Pivots</h3>
+          <p className="text-gray-300 mb-3">We faced opposition. Legal threats from established pharmaceutical interests. Market disruptions from the Panama Free Trade Agreement (signed 2007, implemented 2012). Blacklisting. Sabotage. We had to pause, reassess, and wait for the right moment.</p>
+          <p className="text-white font-bold mb-2">Why we waited 16 years:</p>
+          <p className="text-gray-300 mb-3">Timing matters. We could have launched in 2015. But:</p>
+          <ul className="list-disc pl-5 text-gray-300 mb-3">
+            <li>Congress didn't recognize healthcare as a national crisis yet</li>
+            <li>Telehealth wasn't proven or accessible</li>
+            <li>No one had validated our pharmaceutical model</li>
+            <li>The political moment hadn't arrived</li>
+          </ul>
+
+          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">What Happened While We Waited</h3>
+          <p className="text-gray-300 mb-2">Others succeeded with concepts we pioneered — and we celebrated them:</p>
+          <ul className="list-disc pl-5 text-gray-300 mb-3">
+            <li><strong className="text-white">Mark Cuban (2022):</strong> Cost Plus Drugs validates our pharmaceutical model. 7 million customers. 80-90% savings.</li>
+            <li><strong className="text-white">ZORTT Elite Medical:</strong> Cooperative telemedicine marketplace proves our delivery model works.</li>
+            <li><strong className="text-white">Telehealth expansion:</strong> Became mainstream during COVID, proving our vision correct.</li>
+          </ul>
+          <div className="bg-[#3ddc84]/10 border border-[#3ddc84] rounded-lg p-5">
+            <p className="text-white font-bold">These weren't competitors. They were PROOF our concepts worked.</p>
+            <p className="text-gray-300 mt-2">We're not upset about that — we're grateful. Their success validates 16 years of work and gives us the foundation to build on.</p>
+          </div>
         </div>
 
         {/* Honoring Partners */}
         <div className="bg-[#111d35]/90 border-l-4 border-[#3ddc84] rounded-r-lg p-6 md:p-8 my-6">
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">🤝 How We Honor Our Partners</h2>
-          <h3 className="font-condensed text-lg text-[#3ddc84] mt-3 mb-2">ZORTT (Healthcare Innovation Leaders)</h3><p className="text-gray-300 mb-3">ZORTT pioneered cooperative healthcare delivery. We don't compete — we amplify their reach by funneling members to their platform through our cooperative structure.</p>
-          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">Mark Cuban & Cost Plus Drugs</h3><p className="text-gray-300 mb-3">Mark proved pharmaceutical cost reduction works in practice. We integrate his model into a federal system covering 234 million people. His work becomes the RX backbone of PHIERS.</p>
-          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">Al Wilson & The Co-Architecture</h3><p className="text-gray-300 mb-3">Al originated the pharmaceutical cost-reduction model 16 years ago. He proved it works. He fought through every threat and pivot. PHIERS succeeds because Al's vision stood the test of time.</p>
-          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">Congressional Partners</h3><p className="text-gray-300">When Congress implements PHIERS, they become the partners who deliver healthcare to 234 million Americans. We're not replacing them — we're giving them the framework to finally solve the crisis.</p>
+          <h3 className="font-condensed text-lg text-[#3ddc84] mt-3 mb-2">ZORTT (Healthcare Innovation Leaders)</h3>
+          <p className="text-gray-300 mb-3">ZORTT pioneered cooperative healthcare delivery. We don't compete — we amplify their reach by funneling members to their platform through our cooperative structure.</p>
+          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">Mark Cuban & Cost Plus Drugs</h3>
+          <p className="text-gray-300 mb-3">Mark proved pharmaceutical cost reduction works in practice. We integrate his model into a federal system covering 234 million people. His work becomes the RX backbone of PHIERS.</p>
+          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">Al Wilson & The Co-Architecture</h3>
+          <p className="text-gray-300 mb-3">Al originated the pharmaceutical cost-reduction model 16 years ago. He proved it works. He fought through every threat and pivot. PHIERS succeeds because Al's vision stood the test of time.</p>
+          <h3 className="font-condensed text-lg text-[#3ddc84] mt-4 mb-2">Congressional Partners</h3>
+          <p className="text-gray-300">When Congress implements PHIERS, they become the partners who deliver healthcare to 234 million Americans. We're not replacing them — we're giving them the framework to finally solve the crisis.</p>
         </div>
 
         {/* Why Now */}
         <div className="bg-[#111d35]/90 border-l-4 border-[#3ddc84] rounded-r-lg p-6 md:p-8 my-6">
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">🔥 Why Now (February 2025)</h2>
           <p className="text-white font-bold mb-3">Everything is aligned:</p>
-          <ul className="list-disc pl-5 text-gray-300 mb-4 space-y-1"><li><strong className="text-white">Congress recognizes the crisis:</strong> Healthcare spending is unsustainable, 22M losing coverage</li><li><strong className="text-white">Proof points exist:</strong> Telehealth works. Cost Plus Drugs works. Cooperative models scale.</li><li><strong className="text-white">Workers are demanding it:</strong> Union strikes demand healthcare + wages + dignity (PHIERS delivers all three)</li><li><strong className="text-white">The math is irrefutable:</strong> $2.73 trillion in annual savings too big to ignore</li><li><strong className="text-white">Political leverage:</strong> March 28, 2026 — we control the narrative with 3.5% organized</li><li><strong className="text-white">Democratic power mobilizing:</strong> 16M+ union workers. 50M+ union voters. 100M+ affected by healthcare crisis.</li></ul>
-          <div className="bg-[#3ddc84]/10 border-2 border-[#3ddc84] rounded-lg p-5 text-center"><p className="text-white text-xl font-bold">We waited because timing matters. The time is now.</p></div>
+          <ul className="list-disc pl-5 text-gray-300 mb-4 space-y-1">
+            <li><strong className="text-white">Congress recognizes the crisis:</strong> Healthcare spending is unsustainable, 22M losing coverage</li>
+            <li><strong className="text-white">Proof points exist:</strong> Telehealth works. Cost Plus Drugs works. Cooperative models scale.</li>
+            <li><strong className="text-white">Workers are demanding it:</strong> Union strikes demand healthcare + wages + dignity (PHIERS delivers all three)</li>
+            <li><strong className="text-white">The math is irrefutable:</strong> $2.73 trillion in annual savings too big to ignore</li>
+            <li><strong className="text-white">Political leverage:</strong> March 28, 2026 — we control the narrative with 3.5% organized</li>
+            <li><strong className="text-white">Democratic power mobilizing:</strong> 16M+ union workers. 50M+ union voters. 100M+ affected by healthcare crisis.</li>
+          </ul>
+          <div className="bg-[#3ddc84]/10 border-2 border-[#3ddc84] rounded-lg p-5 text-center">
+            <p className="text-white text-xl font-bold">We waited because timing matters. The time is now.</p>
+          </div>
         </div>
 
         {/* The Power of 3.5% */}
         <div className="bg-[#111d35]/90 border-l-4 border-[#3ddc84] rounded-r-lg p-6 md:p-8 my-6">
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">💪 The Power of 3.5%: Democratic Leverage</h2>
-          <p className="text-gray-300 mb-4">Harvard researcher Erica Chenoweth analyzed 323 social movements and found one undeniable truth:</p>
-          <div className="bg-[#3ddc84]/10 border-2 border-[#3ddc84] rounded-lg p-5 text-center"><p className="text-white text-lg font-bold">When 3.5% of the population is actively organized, systemic change becomes mathematically inevitable.</p></div>
-          <p className="text-gray-300 mt-4">That's 11.6 million Americans. We have 100M+ affected by healthcare crisis. <strong className="text-white">We exceed the 3.5% threshold by 9x.</strong></p>
+          <p className="text-gray-300 mb-4">Harvard researcher Erica Chenoweth studied 323 social movements across a century and found one undeniable truth:</p>
+          <div className="bg-[#3ddc84]/10 border-2 border-[#3ddc84] rounded-lg p-5 text-center">
+            <p className="text-white text-lg font-bold">When 3.5% of the population is actively organized, systemic change becomes mathematically inevitable.</p>
+          </div>
+          <p className="text-gray-300 mt-4">That's 11.6 million people. We have 100M+ affected by healthcare crisis. <strong className="text-white">We exceed the 3.5% threshold by 9x.</strong></p>
           <p className="text-gray-300 mt-2">This isn't about begging Congress. It's about <strong className="text-white">forcing them</strong> through organized constituent power. That's what democracy looks like when it actually works.</p>
         </div>
 
@@ -121,8 +166,28 @@ export default function OurOriginsPage() {
           <h2 className="font-display text-2xl md:text-3xl text-[#3ddc84] mb-4">⚔️ Movement, Not Startup</h2>
           <p className="text-gray-300 mb-3">PHIERS isn't a company trying to make a profit. It's a movement building democratic power to force systemic change.</p>
           <p className="text-gray-300 mb-3"><strong className="text-white">We're funded by solidarity, not venture capital.</strong> Our success is measured in laws passed, not valuations. Our competitors are the forces resisting change, not healthcare innovators.</p>
-          <div className="bg-[#3ddc84]/10 border-2 border-[#3ddc84] rounded-lg p-5"><p className="text-white font-bold">When Congress implements PHIERS, we win.</p><p className="text-gray-300 mt-2">When workers get healthcare, we win.</p><p className="text-gray-300 mt-2">When the savings cascade reaches every American, we win.</p></div>
+          <div className="bg-[#3ddc84]/10 border-2 border-[#3ddc84] rounded-lg p-5">
+            <p className="text-white font-bold">When Congress implements PHIERS, we win.</p>
+            <p className="text-gray-300 mt-2">When workers get healthcare, we win.</p>
+            <p className="text-gray-300 mt-2">When the savings cascade reaches every American, we win.</p>
+          </div>
           <p className="text-gray-300 mt-4">That's why we honor our partners instead of competing with them. That's why we waited 16 years. That's why now is the moment.</p>
+        </div>
+
+        {/* FBA Men Bonding Image */}
+        <div className="text-center my-6">
+          <button onClick={() => openModal('/images/fba_men_bonding.webp')} className="cursor-pointer">
+            <Image src="/images/fba_men_bonding.webp" alt="FBA men — brotherhood, strength, purpose" width={220} height={200} className="max-w-[220px] h-auto mx-auto rounded-lg border border-[#3ddc84]/30 hover:scale-[1.01] transition-transform" />
+          </button>
+          <p className="text-gray-500 text-xs italic mt-2">Brotherhood. Strength. Purpose. Built under pressure.</p>
+        </div>
+
+        {/* I AM A MAN Image */}
+        <div className="text-center my-6">
+          <button onClick={() => openModal('/images/i_am_a_man.jpg')} className="cursor-pointer">
+            <Image src="/images/i_am_a_man.jpg" alt="I AM A MAN — Memphis, 1968" width={260} height={200} className="max-w-[260px] h-auto mx-auto rounded-lg border border-[#3ddc84]/30 hover:scale-[1.01] transition-transform" />
+          </button>
+          <p className="text-gray-500 text-xs italic mt-2">"I AM A MAN" — Memphis, 1968. They marched for dignity then. We build it now.</p>
         </div>
 
         {/* Origins Image */}
