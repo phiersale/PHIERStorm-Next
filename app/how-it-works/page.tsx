@@ -143,33 +143,27 @@ export default function HowItWorksPage() {
 
           {/* Rings Container */}
           <div className="relative w-[min(520px,92vw)] aspect-square mx-auto mb-8">
-            {/* Ring 0 */}
             <button
               onClick={() => setActiveRing(activeRing === 0 ? null : 0)}
               className={`absolute inset-0 rounded-full border-2 border-red-500/70 transition-all duration-300 hover:scale-105 ${activeRing === 0 ? 'scale-105 brightness-125' : ''}`}
               style={{ animation: 'firePulse 2.5s ease-in-out infinite' }}
             />
-            {/* Ring 1 */}
             <button
               onClick={() => setActiveRing(activeRing === 1 ? null : 1)}
               className={`absolute inset-[10%] rounded-full border-2 border-red-500/50 transition-all duration-300 hover:scale-105 ${activeRing === 1 ? 'scale-105 brightness-125' : ''}`}
             />
-            {/* Ring 2 */}
             <button
               onClick={() => setActiveRing(activeRing === 2 ? null : 2)}
               className={`absolute inset-[22%] rounded-full border-2 border-yellow-500/50 transition-all duration-300 hover:scale-105 ${activeRing === 2 ? 'scale-105 brightness-125' : ''}`}
             />
-            {/* Ring 3 */}
             <button
               onClick={() => setActiveRing(activeRing === 3 ? null : 3)}
               className={`absolute inset-[34%] rounded-full border-2 border-[#3ddc84]/50 transition-all duration-300 hover:scale-105 ${activeRing === 3 ? 'scale-105 brightness-125' : ''}`}
             />
-            {/* Ring 4 */}
             <button
               onClick={() => setActiveRing(activeRing === 4 ? null : 4)}
               className={`absolute inset-[46%] rounded-full border-2 border-[#3ddc84]/70 transition-all duration-300 hover:scale-105 ${activeRing === 4 ? 'scale-105 brightness-125' : ''}`}
             />
-            {/* Center */}
             <button
               onClick={() => setActiveRing(activeRing === 5 ? null : 5)}
               className={`absolute inset-[58%] rounded-full border-2 border-[#3ddc84] bg-[#3ddc84]/15 shadow-[0_0_20px_rgba(61,220,132,0.4)] transition-all duration-300 hover:scale-105 ${activeRing === 5 ? 'scale-105 brightness-125' : ''}`}
@@ -350,7 +344,6 @@ export default function HowItWorksPage() {
             <p className="font-condensed text-gray-500 text-sm mt-1">This is how action starts — right now.</p>
           </div>
 
-          {/* Video */}
           <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20 mt-6">
             <div id="wrap-cascade" className="relative w-full h-full">
               <div
@@ -390,4 +383,119 @@ export default function HowItWorksPage() {
 
         <hr className="border-[#3ddc84]/20" />
 
-        {/* TRANSITION TO THE-TEETH
+        {/* TRANSITION TO THE-TEETH */}
+        <section className="py-16 px-6 text-center">
+          <div className="max-w-[560px] mx-auto">
+            <p className="font-condensed font-bold text-2xl text-white mb-3">You understand the problem. Now see the power.</p>
+            <p className="text-gray-500 mb-6">The energy is real. The anger is justified. Here's what we do with it.</p>
+            <Link href="/the-teeth" className="inline-block bg-transparent text-[#3ddc84] border border-[#3ddc84]/50 px-9 py-4 rounded-full font-condensed font-bold text-lg hover:bg-[#3ddc84]/10 transition-all tracking-wide">See What Makes This Unavoidable →</Link>
+          </div>
+        </section>
+
+        <hr className="border-[#3ddc84]/20" />
+
+        {/* GO DEEPER */}
+        <section className="py-16 px-6 max-w-[640px] mx-auto">
+          <p className="font-condensed font-bold text-[#3ddc84] text-lg tracking-wide mb-2">Go Deeper</p>
+          <p className="text-gray-500 mb-8">Choose the path you want to understand first.</p>
+          <div className="mb-8">
+            <p className="font-condensed font-bold text-xl text-white mb-2">⚡ The Leverage</p>
+            <p className="text-gray-500 mb-3">How organized people become impossible to ignore — and why Congress has no choice once the pressure is real.</p>
+            <Link href="/leverage" className="font-condensed font-bold text-[#3ddc84] border-b border-[#3ddc84]/30 pb-0.5">Show me the Leverage →</Link>
+          </div>
+          <div>
+            <p className="font-condensed font-bold text-xl text-white mb-2">📖 The Healthcare Proof</p>
+            <p className="text-gray-500 mb-3">Why fixing healthcare is the first domino — and the evidence that makes the leverage unavoidable.</p>
+            <Link href="/telecare" className="font-condensed font-bold text-[#3ddc84] border-b border-[#3ddc84]/30 pb-0.5">Explore the Deep Dive →</Link>
+          </div>
+        </section>
+
+        <hr className="border-[#3ddc84]/20" />
+
+        {/* FINAL STATEMENT */}
+        <div className="text-center py-12 px-6 max-w-[640px] mx-auto">
+          <p className="font-condensed font-bold text-lg text-gray-500 leading-relaxed">PHIERS is built for one purpose:<br />giving the public the leverage we've always deserved.</p>
+          <p className="font-condensed font-bold text-white text-lg mt-2">Now it's organized.</p>
+        </div>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="text-center py-12 px-6 border-t border-[#3ddc84]/10 bg-[#0d1525]">
+        <Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={80} height={80} className="mx-auto mb-4 opacity-70" />
+        <div className="font-condensed font-bold text-gray-400 mb-1">PHIERS is a people's movement — not a company, not a product.</div>
+        <div className="text-sm text-gray-500 mb-4">Built by regular people who are done waiting.</div>
+        <div className="max-w-[500px] mx-auto mb-6">
+          <p className="font-condensed text-gray-400">Energy without power fails.<br />PHIERStorm is the power.<br /><span className="text-gray-500">PHIERS.org — a catalyst for the change we've been waiting for.</span><br /><span className="text-gray-500">The only thing missing is you.</span></p>
+        </div>
+        <div className="max-w-[560px] mx-auto p-5 border border-[#3ddc84]/15 rounded-lg mb-6">
+          <p className="font-condensed text-gray-500 text-xs uppercase tracking-wide mb-2">Built by</p>
+          <p className="font-condensed font-bold text-white">Will Price | Founder &amp; Chief Solutions Architect</p>
+          <p className="font-condensed text-gray-400 text-sm mb-3">Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending and built the lever to fix it. Building this since 2009.</p>
+          <button onClick={() => setWillModalOpen(true)} className="font-condensed text-[#3ddc84] text-sm border-b border-[#3ddc84]/30">👤 Meet the Architect →</button>
+        </div>
+        <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto mb-6">
+          <Link href="/crisis" className="text-gray-500 text-sm hover:text-[#3ddc84]">The Crisis</Link>
+          <Link href="/simple-math" className="text-gray-500 text-sm hover:text-[#3ddc84]">Simple Math</Link>
+          <Link href="/solutions" className="text-gray-500 text-sm hover:text-[#3ddc84]">5D Solutions</Link>
+          <Link href="/telecare" className="text-gray-500 text-sm hover:text-[#3ddc84]">Telehealth</Link>
+          <Link href="/no-war" className="text-gray-500 text-sm hover:text-[#3ddc84]">No War / No Draft</Link>
+          <Link href="/organizers" className="text-gray-500 text-sm hover:text-[#3ddc84]">Organizers</Link>
+          <Link href="/unions" className="text-gray-500 text-sm hover:text-[#3ddc84]">Unions</Link>
+          <Link href="/donate" className="text-gray-500 text-sm hover:text-[#3ddc84]">Donate</Link>
+          <Link href="/faq" className="text-gray-500 text-sm hover:text-[#3ddc84]">FAQ</Link>
+          <Link href="/about" className="text-gray-500 text-sm hover:text-[#3ddc84]">About</Link>
+        </div>
+        <div className="text-xs text-gray-600">
+          Not built for profit. Not built for power. Built for We the People — by people who refused to stop.<br />
+          📧 <a href="mailto:info@phiers.org" className="text-[#3ddc84]">info@phiers.org</a> · 📞 (916) 306-8967<br />
+          © PHIERS.org — Original Concept Since 2009. All Rights Reserved.<br />
+          <span className="text-[0.7rem]">PHIERS™ · PHIERSale™ · PHIERWorks™ · PHIERPlace™ — Protected marks established 2009–2025.</span>
+        </div>
+      </footer>
+
+      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {imageModalOpen && (
+          <motion.div className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeModal}>
+            <button className="absolute top-5 right-7 text-white text-3xl cursor-pointer bg-black/50 border border-white/20 w-10 h-10 rounded-full" onClick={closeModal}>✕</button>
+            <img src={modalImageSrc} alt="" className="max-w-[90vw] max-h-[90vh] rounded-lg border-2 border-[#3ddc84]" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Will Price Modal */}
+      <AnimatePresence>
+        {willModalOpen && (
+          <motion.div className="fixed inset-0 bg-black/90 z-[99998] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setWillModalOpen(false)}>
+            <div className="relative max-w-[720px] w-full bg-[#080d1a]/97 border-2 border-[#3ddc84]/35 rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+              <button onClick={() => setWillModalOpen(false)} className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#111d35] text-[#3ddc84] border-2 border-[#3ddc84] flex items-center justify-center text-xl hover:bg-[#3ddc84] hover:text-[#111d35] transition-all z-10">✕</button>
+              <div className="flex flex-wrap">
+                <div className="w-full md:w-[240px] min-h-[280px] overflow-hidden"><img src="/images/Will_Price.png" alt="Will Price" className="w-full h-full min-h-[260px] object-cover object-[55%_top]" /></div>
+                <div className="flex-1 min-w-[240px] p-7 flex flex-col justify-center">
+                  <p className="font-condensed text-xs text-[#3ddc84] uppercase tracking-[3px] mb-2">The Architect</p>
+                  <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-1">Will Price</h3>
+                  <p className="font-condensed text-sm text-[#ffd60a] font-bold mb-4">Founder &amp; Chief Solutions Architect, PHIERS</p>
+                  <p className="font-body text-sm text-[#c8d8c8] leading-relaxed">Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009.</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style jsx global>{`
+        @keyframes firePulse {
+          0%,100% { box-shadow: 0 0 40px rgba(230,57,70,0.25), inset 0 0 40px rgba(230,57,70,0.08); }
+          50% { box-shadow: 0 0 70px rgba(230,57,70,0.45), inset 0 0 60px rgba(230,57,70,0.15); }
+        }
+        .font-display { font-family: 'Bebas Neue', sans-serif; }
+        .font-condensed { font-family: 'Barlow Condensed', sans-serif; }
+        .font-body { font-family: 'Barlow', sans-serif; }
+        details summary { list-style: none; }
+        details summary::-webkit-details-marker { display: none; }
+      `}</style>
+    </>
+  )
+}
