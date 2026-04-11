@@ -154,7 +154,7 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
             >
               <div className="flex justify-center mb-6">
-                <Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={130} height={130} className="opacity-85" />
+                <Image src="/images/PHIERS_Logo.jpg" alt="PHIERS.org" width={130} height={130} className="opacity-85" />
               </div>
 
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full mb-6">
@@ -381,7 +381,7 @@ export default function HomePage() {
         <section className="px-4 py-16 text-center">
           <div className="max-w-[680px] mx-auto">
             <Image
-              src="/images/PHIERStorm_the_Movement.png"
+              src="/images/PHIERStorm_the_Movement.jpg"
               alt="PHIERStorm — The Movement"
               width={200}
               height={120}
