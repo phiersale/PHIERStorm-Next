@@ -1,4 +1,5 @@
-import { UnionsClient } from './_components/unions-client'
+// app/unions/page.tsx
+import { UnionsClient } from '../_components/unions-client'
 
 export default function UnionsPage() {
   return <UnionsClient />
