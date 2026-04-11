@@ -163,4 +163,17 @@ export default function HomePage() {
       </main>
 
       {/* FOOTER */}
-      <footer className="text-center py-12 px-6 border-t border-[#3ddc84]/10"><Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={80} height={80} className="mx-auto mb-4 opacity-70" /><div className="font-condensed font-bold text-gray-400 mb-1">PHIERS is a people's movement — not a company, not a product.</div><div className="text-sm text-gray-500 mb-4">Built by regular people who are done waiting.</div><div className="max-w-[500px] mx-auto mb-6"><p className="font-condensed text-gray-400">Energy without power fails.<br />PHIERStorm is the power.<br /><span className="text-gray-500">
+      <footer className="text-center py-12 px-6 border-t border-[#3ddc84]/10"><Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={80} height={80} className="mx-auto mb-4 opacity-70" /><div className="font-condensed font-bold text-gray-400 mb-1">PHIERS is a people's movement — not a company, not a product.</div><div className="text-sm text-gray-500 mb-4">Built by regular people who are done waiting.</div><div className="max-w-[500px] mx-auto mb-6"><p className="font-condensed text-gray-400">Energy without power fails.<br />PHIERStorm is the power.<br /><span className="text-gray-500">PHIERS.org — a catalyst for the change we've been waiting for.</span><br /><span className="text-gray-500">The only thing missing is you.</span></p></div><div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto mb-6"><Link href="/crisis" className="text-gray-500 text-sm hover:text-[#3ddc84]">The Crisis</Link><Link href="/simple-math" className="text-gray-500 text-sm hover:text-[#3ddc84]">Simple Math</Link><Link href="/solutions" className="text-gray-500 text-sm hover:text-[#3ddc84]">5D Solutions</Link><Link href="/telecare" className="text-gray-500 text-sm hover:text-[#3ddc84]">Telehealth</Link><Link href="/no-war" className="text-gray-500 text-sm hover:text-[#3ddc84]">No War / No Draft</Link><Link href="/organizers" className="text-gray-500 text-sm hover:text-[#3ddc84]">Organizers</Link><Link href="/unions" className="text-gray-500 text-sm hover:text-[#3ddc84]">Unions</Link><Link href="/donate" className="text-gray-500 text-sm hover:text-[#3ddc84]">Donate</Link><Link href="/faq" className="text-gray-500 text-sm hover:text-[#3ddc84]">FAQ</Link><Link href="/about" className="text-gray-500 text-sm hover:text-[#3ddc84]">About</Link></div><div className="text-xs text-gray-600">Not built for profit. Not built for power. Built for We the People — by people who refused to stop.<br />📧 <a href="mailto:info@phiers.org" className="text-[#3ddc84]">info@phiers.org</a> · 📞 (916) 306-8967<br />© PHIERS.org — Original Concept Since 2009. All Rights Reserved.<br /><span className="text-[0.7rem]">PHIERS™ · PHIERSale™ · PHIERWorks™ · PHIERPlace™ — Protected marks established 2009–2025.</span></div></footer>
+
+      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+
+      <style jsx global>{`
+        .font-display { font-family: 'Bebas Neue', sans-serif; }
+        .font-condensed { font-family: 'Barlow Condensed', sans-serif; }
+        .font-body { font-family: 'Barlow', sans-serif; }
+        details summary { list-style: none; }
+        details summary::-webkit-details-marker { display: none; }
+      `}</style>
+    </>
+  )
+}
