@@ -114,15 +114,6 @@ export default function HomePage() {
                 </div>
               </details>
               <details className="border-b border-white/10 pb-2">
-                <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Resources</summary>
-                <div className="space-y-2 pl-4 mt-2">
-                  <Link href="/resources" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📚 Resource Hub</Link>
-                  <Link href="/real-stories" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💬 Real Stories</Link>
-                  <Link href="/faq" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>❓ FAQ</Link>
-                  <Link href="/about" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📖 About</Link>
-                </div>
-              </details>
-              <details className="border-b border-white/10 pb-2">
                 <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Take Action</summary>
                 <div className="space-y-2 pl-4 mt-2">
                   <Link href="/petition" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📋 Sign the Petition</Link>
