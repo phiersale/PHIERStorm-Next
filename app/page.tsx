@@ -371,6 +371,8 @@ export default function HomePage() {
           </div>
         </section>
 
+        <ValidatedBy defaultExpanded={true} />
+        
         <section className="px-4 py-16 text-center">
           <div className="max-w-[600px] mx-auto bg-[#3ddc84]/5 border border-[#3ddc84]/20 rounded-xl p-6">
             <p className="font-condensed font-bold text-[#3ddc84] text-lg mb-2">What signing does</p>
