@@ -24,11 +24,55 @@ export default function OrganizersPage() {
       </div>
 
       {/* ── SIMPLE NAV ── */}
-      <nav className="sticky top-0 z-50 bg-[#080d1a]/97 backdrop-blur-md border-b border-[#3ddc84]/20 px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-condensed font-bold text-xl text-white tracking-wide">PHIERS.org</Link>
+     <nav className="sticky top-0 z-50 bg-[#080d1a]/97 backdrop-blur-md border-b border-[#3ddc84]/20 px-6 h-16 flex items-center justify-between">
+      <Link href="/" className="font-condensed font-bold text-xl text-white tracking-wide">PHIERS.org</Link>
+      <div className="flex items-center gap-4">
+        <Link href="/videos" className="hidden md:inline-block text-gray-400 text-sm hover:text-[#3ddc84] transition-colors">Videos</Link>
         <Link href="/petition" className="px-5 py-2 bg-red-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-red-700 transition-all">✍ Be Counted</Link>
-      </nav>
-
+        <button onClick={toggleMenu} className="md:hidden text-white text-2xl p-2 border border-white/20 rounded-lg">{mobileMenuOpen ? '✕' : '☰'}</button>
+      </div>
+    </nav>
+    <AnimatePresence>
+      {mobileMenuOpen && (
+        <motion.div
+          className="fixed top-16 left-0 right-0 bg-[#0d1525] border-b border-[#3ddc84]/20 z-40 p-5 max-h-[calc(100vh-64px)] overflow-y-auto"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+        >
+          <div className="space-y-4">
+            <Link href="/no-war" className="block p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 font-condensed font-bold text-center" onClick={() => setMobileMenuOpen(false)}>🕊 END THE WAR / NO DRAFT</Link>
+            <details className="border-b border-white/10 pb-2">
+              <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Resources</summary>
+              <div className="space-y-2 pl-4 mt-2">
+                <Link href="/videos" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🎥 Videos</Link>
+                <Link href="/resources" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📚 Resource Hub</Link>
+                <Link href="/real-stories" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💬 Real Stories</Link>
+                <Link href="/faq" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>❓ FAQ</Link>
+                <Link href="/about" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📖 About</Link>
+              </div>
+            </details>
+            <details className="border-b border-white/10 pb-2">
+              <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Who We're For</summary>
+              <div className="space-y-2 pl-4 mt-2">
+                <Link href="/organizers" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>✊ For Organizers</Link>
+                <Link href="/veterans" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🎖 Veterans</Link>
+                <Link href="/unions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💪 Union Strategy</Link>
+              </div>
+            </details>
+            <details className="border-b border-white/10 pb-2">
+              <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Take Action</summary>
+              <div className="space-y-2 pl-4 mt-2">
+                <Link href="/petition" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📋 Sign the Petition</Link>
+                <Link href="/donate" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💚 Donate</Link>
+                <Link href="/action" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📣 Take Action</Link>
+              </div>
+            </details>
+            <Link href="/petition" className="block w-full py-3 bg-[#3ddc84] text-[#080d1a] font-condensed font-bold text-center rounded-lg mt-4" onClick={() => setMobileMenuOpen(false)}>✍ Sign Now</Link>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
       <main>
         {/* ── PEER OPENER HERO ── */}
         <div className="pt-20 pb-8 px-6 max-w-[760px] mx-auto">
