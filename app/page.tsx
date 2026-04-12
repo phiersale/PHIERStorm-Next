@@ -1,4 +1,3 @@
-// app/page.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -9,13 +8,19 @@ import ValidatedBy from '@/components/validated-by'
 
 export default function HomePage() {
   const [modalOpen, setModalOpen] = useState(false)
+  const [congressModalOpen, setCongressModalOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [willModalOpen, setWillModalOpen] = useState(false)
 
   useEffect(() => {
-    const hasSeen = sessionStorage.getItem('entryModalShown')
-    if (!hasSeen) {
+    const hasSeenFirst = sessionStorage.getItem('entryModalShown')
+    const hasSeenCongress = sessionStorage.getItem('congressModalShown')
+    
+    if (!hasSeenFirst) {
       setModalOpen(true)
+      document.body.style.overflow = 'hidden'
+    } else if (!hasSeenCongress) {
+      setCongressModalOpen(true)
       document.body.style.overflow = 'hidden'
     }
   }, [])
@@ -24,6 +29,19 @@ export default function HomePage() {
     setModalOpen(false)
     document.body.style.overflow = ''
     sessionStorage.setItem('entryModalShown', '1')
+    
+    // Show Congress modal immediately after first modal closes
+    const hasSeenCongress = sessionStorage.getItem('congressModalShown')
+    if (!hasSeenCongress) {
+      setCongressModalOpen(true)
+      document.body.style.overflow = 'hidden'
+    }
+  }
+
+  const closeCongressModal = () => {
+    setCongressModalOpen(false)
+    document.body.style.overflow = ''
+    sessionStorage.setItem('congressModalShown', '1')
   }
 
   const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen)
@@ -38,6 +56,7 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Modal 1 - First in sequence */}
       <AnimatePresence>
         {modalOpen && (
           <motion.div
@@ -64,6 +83,42 @@ export default function HomePage() {
               </div>
               <button
                 onClick={closeEntryModal}
+                className="inline-block mt-4 px-7 py-2 bg-transparent text-[#3ddc84] border border-[#3ddc84]/70 rounded-full font-condensed font-semibold text-base tracking-wide hover:border-[#3ddc84] hover:bg-[#3ddc84]/10 transition-all"
+              >
+                Be Heard →
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal 2 - Congress Modal (Second in sequence) */}
+      <AnimatePresence>
+        {congressModalOpen && (
+          <motion.div
+            className="fixed inset-0 bg-[#080d1a] z-[99999] flex items-center justify-center p-5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeCongressModal}
+          >
+            <motion.div
+              className="max-w-[1000px] w-full text-center"
+              initial={{ scale: 0.98, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.98, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10">
+                <Image
+                  src="/images/Congress_Doesnt_Listen_to_You-3-Backpack.jpg"
+                  alt="Congress doesn't have to listen to you. This is how you make them."
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <button
+                onClick={closeCongressModal}
                 className="inline-block mt-4 px-7 py-2 bg-transparent text-[#3ddc84] border border-[#3ddc84]/70 rounded-full font-condensed font-semibold text-base tracking-wide hover:border-[#3ddc84] hover:bg-[#3ddc84]/10 transition-all"
               >
                 Be Heard →
