@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import ValidatedBy from '@/components/validated-by'
 
 export default function OrganizersPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -254,16 +255,8 @@ export default function OrganizersPage() {
             <h2 className="font-display text-3xl md:text-4xl text-white mt-2 mb-4">Not a New Idea.<br /><span className="text-[#ffd60a]">A 16-Year Plan That Waited for This Moment.</span></h2>
             <p className="text-gray-400 mb-6">Every element of the PHIERS model has been documented, validated, and executed at scale — not by PHIERS alone, but by the businesses and institutions that prove the model works.</p>
 
-            <div className="border-l-4 border-[#ffd60a] bg-[#0a1628] rounded-r-lg p-6 mb-6">
-              <span className="font-condensed font-bold text-xs text-[#ffd60a] uppercase tracking-wide block mb-3">Validated By</span>
-              <ul className="space-y-3 text-gray-400 text-sm">
-                <li><strong className="text-white">Mark Cuban's Cost Plus Drugs</strong> — proved that buying medications direct from manufacturers, cutting out insurance middlemen, reduces drug costs by 80–90%. That's the PHIERSale model, executed at scale, right now.</li>
-                <li><strong className="text-white">Harvard Kennedy School Research (Erica Chenoweth)</strong> — 3.5% organized participation has never failed to produce systemic change. The math is academic consensus, not optimism.</li>
-                <li><strong className="text-white">Pathos Communications</strong> — a Fortune 500 PR firm listed on the London Stock Exchange publicly staked their reputation on PHIERS. That's not a pitch. That's a verdict from people who vet movements for a living.</li>
-                <li><strong className="text-white">The ACA itself</strong> — the legal authority to expand telehealth through the Exchange already exists. Congress doesn't need to pass new legislation. They need to use what's already there. That's the demand. It's already legal.</li>
-                <li><strong className="text-white">VistA / VA Health System</strong> — the federal health IT infrastructure that proves coordinated, low-cost care at scale is not theory. It's been running for decades for veterans. We scale it to everyone.</li>
-              </ul>
-            </div>
+        <ValidatedBy defaultExpanded={false} />
+            
             <p className="text-gray-400">The country finally caught up to the crisis this plan was built for. The model was ready. The moment is now.</p>
           </div>
         </section>
@@ -357,7 +350,7 @@ export default function OrganizersPage() {
       {/* Will Price Modal */}
       <AnimatePresence>
         {willModalOpen && (
-          <motion.div className="fixed inset-0 bg-black/90 z-[99998] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setWillModalOpen(false)}>
+         <motion.div className="fixed inset-0 bg-[#080d1a] z-[99998] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setWillModalOpen(false)}>
             <div className="relative max-w-[720px] w-full bg-[#080d1a]/97 border-2 border-[#3ddc84]/35 rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
               <button onClick={() => setWillModalOpen(false)} className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#111d35] text-[#3ddc84] border-2 border-[#3ddc84] flex items-center justify-center text-xl hover:bg-[#3ddc84] hover:text-[#111d35] transition-all z-10">✕</button>
               <div className="flex flex-wrap">
