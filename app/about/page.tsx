@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import ValidatedBy from '@/components/validated-by'
 
 export default function AboutPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -219,6 +220,9 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Integrated Credibility Block */}
+         <ValidatedBy defaultExpanded={true} />
+
         <hr className="border-[#3ddc84]/20 my-8" />
 
         {/* WHAT MAKES PHIERS DIFFERENT */}
@@ -319,7 +323,7 @@ export default function AboutPage() {
       {/* Will Price Modal */}
       <AnimatePresence>
         {willModalOpen && (
-          <motion.div className="fixed inset-0 bg-black/90 z-[99998] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setWillModalOpen(false)}>
+         <motion.div className="fixed inset-0 bg-[#080d1a] z-[99998] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setWillModalOpen(false)}>
             <div className="relative max-w-[720px] w-full bg-[#080d1a]/97 border-2 border-[#3ddc84]/35 rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
               <button onClick={() => setWillModalOpen(false)} className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#111d35] text-[#3ddc84] border-2 border-[#3ddc84] flex items-center justify-center text-xl hover:bg-[#3ddc84] hover:text-[#111d35] transition-all z-10">✕</button>
               <div className="flex flex-wrap">
