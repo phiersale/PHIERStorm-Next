@@ -78,10 +78,11 @@ export default function HomePage() {
           <Link href="/" className="font-condensed font-bold text-xl text-white tracking-wide">PHIERS.org</Link>
           <div className="hidden md:block text-xs text-[#3ddc84] italic">When Americans coordinate, Congress has no choice.</div>
         </div>
-        <div className="flex items-center gap-4">
-          <Link href="/petition" className="hidden md:inline-block px-5 py-2 bg-red-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-red-700 transition-all">✍ Sign the Petition</Link>
-          <button onClick={toggleMenu} className="md:hidden text-white text-2xl p-2 border border-white/20 rounded-lg">{mobileMenuOpen ? '✕' : '☰'}</button>
-        </div>
+       <div className="flex items-center gap-4">
+        <Link href="/videos" className="hidden md:inline-block text-gray-400 text-sm hover:text-[#3ddc84] transition-colors">Videos</Link>
+        <Link href="/petition" className="hidden md:inline-block px-5 py-2 bg-red-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-red-700 transition-all">✍ Sign the Petition</Link>
+        <button onClick={toggleMenu} className="md:hidden text-white text-2xl p-2 border border-white/20 rounded-lg">{mobileMenuOpen ? '✕' : '☰'}</button>
+      </div>
       </nav>
 
       <AnimatePresence>
@@ -94,16 +95,16 @@ export default function HomePage() {
           >
             <div className="space-y-4">
               <Link href="/no-war" className="block p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 font-condensed font-bold text-center" onClick={() => setMobileMenuOpen(false)}>🕊 END THE WAR / NO DRAFT</Link>
-              <details className="border-b border-white/10 pb-2">
-                <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Understand the Fight</summary>
-                <div className="space-y-2 pl-4 mt-2">
-                  <Link href="/crisis" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🚨 The Crisis</Link>
-                  <Link href="/simple-math" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📊 Simple Math</Link>
-                  <Link href="/how-it-works" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>⚡ The Leverage</Link>
-                  <Link href="/solutions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🔬 5D Solutions</Link>
-                  <Link href="/telecare" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💡 TeleCARE</Link>
-                </div>
-              </details>
+             <details className="border-b border-white/10 pb-2">
+              <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Resources</summary>
+              <div className="space-y-2 pl-4 mt-2">
+                <Link href="/videos" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>🎥 Videos</Link>
+                <Link href="/resources" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📚 Resource Hub</Link>
+                <Link href="/real-stories" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>💬 Real Stories</Link>
+                <Link href="/faq" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>❓ FAQ</Link>
+                <Link href="/about" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>📖 About</Link>
+              </div>
+            </details>
               <details className="border-b border-white/10 pb-2">
                 <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Who We're For</summary>
                 <div className="space-y-2 pl-4 mt-2">
