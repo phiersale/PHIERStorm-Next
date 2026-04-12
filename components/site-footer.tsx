@@ -58,7 +58,7 @@ export function SiteFooter() {
         </div>
 
         <div className="pt-6 border-t border-white/5 text-center text-xs text-gray-600">
-          © {new Date().getFullYear()} PHIERS.org — Founded by Will Price
+          © {new Date().getFullYear()} PHIERS.org — Prior Art since 2009
         </div>
       </div>
     </footer>
