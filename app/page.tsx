@@ -40,7 +40,7 @@ export default function HomePage() {
       <AnimatePresence>
         {modalOpen && (
           <motion.div
-            className="fixed inset-0 bg-black/92 z-[99999] flex items-center justify-center p-5"
+            className="fixed inset-0 bg-[#080d1a] z-[99999] flex items-center justify-center p-5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -352,6 +352,25 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Pathos Endorsement Video - Restored */}
+        <section className="px-4 py-16 max-w-[800px] mx-auto">
+          <div className="text-center mb-8">
+            <span className="font-condensed font-bold text-[#3ddc84] text-sm uppercase tracking-wide">Watch This</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Why This Movement Matters</h2>
+          </div>
+          <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
+            <div className="video-wrap" id="wrap-pathos" style={{ position: 'relative', width: '100%', height: '100%' }}>
+              <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg')" }} onClick={() => playVideo('pathos', 'https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0')}>
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#0a1020] p-5 border-x border-b border-[#3ddc84]/20 rounded-b-xl text-center">
+            <div className="font-display text-xl text-[#3ddc84] mb-1">🎥 Pathos — "This changes everything"</div>
+            <div className="font-condensed text-gray-400">The endorsement that proves PHIERS is the real deal.</div>
+          </div>
+        </section>
+
         <section className="px-4 py-16 text-center">
           <div className="max-w-[600px] mx-auto bg-[#3ddc84]/5 border border-[#3ddc84]/20 rounded-xl p-6">
             <p className="font-condensed font-bold text-[#3ddc84] text-lg mb-2">What signing does</p>
@@ -457,11 +476,20 @@ export default function HomePage() {
 
       <AnimatePresence>
         {willModalOpen && (
-          <motion.div className="fixed inset-0 bg-black/90 z-[99998] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setWillModalOpen(false)}>
+          <motion.div className="fixed inset-0 bg-[#080d1a] z-[99998] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setWillModalOpen(false)}>
             <div className="relative max-w-[720px] w-full bg-[#080d1a]/97 border-2 border-[#3ddc84]/35 rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
               <button onClick={() => setWillModalOpen(false)} className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#111d35] text-[#3ddc84] border-2 border-[#3ddc84] flex items-center justify-center text-xl hover:bg-[#3ddc84] hover:text-[#111d35] transition-all z-10">✕</button>
               <div className="flex flex-wrap">
-                <div className="w-full md:w-[240px] min-h-[280px] overflow-hidden"><img src="/images/Will_Price.jpg" alt="Will Price" className="w-full h-full min-h-[260px] object-cover object-[55%_top]" /></div>
+
+            <div className="w-full md:w-[240px] min-h-[280px] overflow-hidden">
+              <Image
+                src="/images/Will_Price.jpg"
+                alt="Will Price"
+                width={240}
+                height={280}
+                className="w-full h-full min-h-[260px] object-cover object-[55%_top]"
+              />
+            </div>
                 <div className="flex-1 min-w-[240px] p-7 flex flex-col justify-center">
                   <p className="font-condensed text-xs text-[#3ddc84] uppercase tracking-[3px] mb-2">The Architect</p>
                   <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-1">Will Price</h3>
