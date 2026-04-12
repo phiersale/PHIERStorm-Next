@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import ValidatedBy from './validated-by'
 
 const footerLinks = [
   { href: '/simple-math', label: 'Simple Math' },
@@ -42,21 +43,8 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-          <h3 className="text-sm font-semibold text-[#3ddc84] mb-2">Validated by</h3>
-          <p className="text-sm text-gray-300 leading-relaxed">
-            Harvard Kennedy School (Chenoweth research) · Mark Cuban&apos;s Cost Plus Drugs · Fortune 500 PR firm
-            (London Stock Exchange listed) · Telehealth platforms (Zortt, Elite Medical) · 16 years of documented prior art
-            · ACA existing legal authority
-          </p>
-          <p className="text-sm text-gray-400 leading-relaxed mt-3">
-            <span className="text-gray-200 font-medium">The PHIERS difference:</span> Once we save CMS enough to sponsor mass
-            enrollment, we pay for beneficiaries to join the telehealth plan of their choice. PHIERS — our Public Health Information
-            Exchange and Reporting System — serves as the intelligent glue, the single source of record that all EHRs share data with.
-            No more fragmented care. No more lost records. One system. Your data. Your control.
-          </p>
-        </div>
-
+       <ValidatedBy defaultExpanded={false} />
+        
         <div className="pt-6 border-t border-white/5 text-center text-xs text-gray-600">
           © {new Date().getFullYear()} PHIERS.org — Prior Art since 2009
         </div>
