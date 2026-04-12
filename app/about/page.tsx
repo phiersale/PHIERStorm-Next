@@ -29,17 +29,17 @@ export default function AboutPage() {
   return (
     <>
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#080d1a]/95 backdrop-blur-md border-b border-[#3ddc84]/20 px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Link href="/" className="font-condensed font-bold text-xl text-white tracking-wide">PHIERS.org</Link>
-          <div className="hidden md:block text-xs text-[#3ddc84] italic">MABAH — Making America Better And Healthier<br />Sounds like MAGA. But a lot bettah.</div>
-        </div>
-        <div className="flex items-center gap-4">
-          <a href="https://forms.gle/euJkZxjUserFVCPK8" target="_blank" rel="noopener noreferrer" className="hidden md:inline-block px-4 py-1.5 text-sm text-[#3ddc84] border border-[#3ddc84]/30 rounded-full font-condensed font-semibold hover:bg-[#3ddc84]/10 transition-all">JOIN FIRST WAVE</a>
-          <button onClick={toggleMenu} className="md:hidden text-white text-2xl p-2 border border-white/20 rounded-lg">{mobileMenuOpen ? '✕' : '☰'}</button>
-        </div>
-      </nav>
-
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#080d1a]/95 backdrop-blur-md border-b border-[#3ddc84]/20 px-6 h-16 flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        <Link href="/" className="font-condensed font-bold text-xl text-white tracking-wide">PHIERS.org</Link>
+        <div className="hidden md:block text-xs text-[#3ddc84] italic">MABAH — Making America Better And Healthier<br />Sounds like MAGA. But a lot bettah.</div>
+      </div>
+      <div className="flex items-center gap-4">
+        <Link href="/videos" className="hidden md:inline-block text-gray-400 text-sm hover:text-[#3ddc84] transition-colors">Videos</Link>
+        <a href="https://forms.gle/euJkZxjUserFVCPK8" target="_blank" rel="noopener noreferrer" className="hidden md:inline-block px-4 py-1.5 text-sm text-[#3ddc84] border border-[#3ddc84]/30 rounded-full font-condensed font-semibold hover:bg-[#3ddc84]/10 transition-all">JOIN FIRST WAVE</a>
+        <button onClick={toggleMenu} className="md:hidden text-white text-2xl p-2 border border-white/20 rounded-lg">{mobileMenuOpen ? '✕' : '☰'}</button>
+      </div>
+    </nav>
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
