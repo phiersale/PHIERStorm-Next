@@ -71,8 +71,8 @@ export default function HomePage() {
             >
               <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10">
                 <Image
-                  src="/images/Congress_Doesnt_Listen_to_You-3-Backpack.jpg"
-                  alt="Congress doesn't have to listen to you. This is how you make them."
+                  src="/images/You_Are_Not_Powerless.jpg"
+                  alt="You Are Not Powerless"
                   fill
                   className="object-cover"
                 />
@@ -131,7 +131,7 @@ export default function HomePage() {
         {/* HERO IMAGE - Full width */}
         <div className="relative w-full h-[60vh] md:h-[70vh]">
           <Image
-            src="/images/homepage-hero.jpg"
+            src="/images/PHIERS-Power_Held_In_Every_Reps_Seat.jpg"
             alt="PHIERS — Power Held In Every Representative's Seat"
             fill
             priority
@@ -210,19 +210,17 @@ export default function HomePage() {
           <p className="text-gray-400 mb-3">Proven math.</p>
           <p className="text-gray-400 mb-8">Zero ideology.</p>
           
-          {/* VIDEO: How Pressure Builds */}
-          <div className="my-8">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
-              <div className="video-wrap" id="wrap-pressure" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/C2mMIx5yoyw/hqdefault.jpg')" }} onClick={() => playVideo('pressure', 'https://www.youtube.com/embed/C2mMIx5yoyw?autoplay=1&rel=0')}>
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
+         {/* VIDEO: LEVERAGE is Power Held In Every Representative's Seat */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20 cursor-pointer group" onClick={() => playVideo('leverage-id', 'https://www.youtube.com/embed/wnSy5jjxAac?autoplay=1&rel=0')}>
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/wnSy5jjxAac/hqdefault.jpg')" }}>
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
+                  <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
                 </div>
               </div>
             </div>
-            <div className="bg-[#0a1020] p-5 border-x border-b border-[#3ddc84]/20 rounded-b-xl text-center">
-              <div className="font-display text-xl text-[#3ddc84] mb-1">🎥 How Pressure Builds — And Why Congress Can't Ignore It</div>
-              <div className="font-condensed text-gray-400">Why Congress can't ignore organized people — and what happens when pressure builds in one place.</div>
-            </div>
+            <p className="font-condensed text-[#3ddc84] text-sm text-center mt-2">LEVERAGE is Power Held In Every Representative's Seat (PHIERS)</p>
+            <p className="text-gray-500 text-xs text-center mt-1">You're not powerless. 1,500 people per district forces Congress to respond. Add your name.</p>
           </div>
           
           <div className="border-t border-[#3ddc84]/20 my-8 pt-8 space-y-6">
