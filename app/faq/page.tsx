@@ -1,9 +1,14 @@
+// FILE: app/faq/page.tsx
+// FAQ PAGE - Complete with design system
+
 'use client'
 
 import Link from 'next/link'
 import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
+import Button from '@/components/Button'
+import StatBlock from '@/components/StatBlock'
 
 export default function FAQPage() {
   const faqs = [
@@ -23,13 +28,18 @@ export default function FAQPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24 pb-16">
-        <section className="max-w-[760px] mx-auto px-6 py-12">
-          <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">Questions people ask.<br /><span className="text-[#3ddc84]">Answers that matter.</span></h1>
-          
-          {/* MATH VIDEO */}
-          <div className="my-8">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
+      <main>
+        {/* Hero Content */}
+        <section className="container section text-center">
+          <h1 className="font-display text-4xl md:text-5xl text-white mb-3">Questions people ask.<br /><span className="text-green">Answers that matter.</span></h1>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Math Video */}
+        <section className="container section text-center">
+          <div className="video-container mx-auto">
+            <div className="video-wrapper">
               <iframe
                 src="https://www.youtube.com/embed/jMU6LKEBzbs?rel=0"
                 title="The Math Behind the Answers — Cascade Mechanism"
@@ -38,23 +48,32 @@ export default function FAQPage() {
                 className="absolute inset-0 w-full h-full"
               />
             </div>
-            <div className="bg-[#0a1020] p-5 border-x border-b border-[#3ddc84]/20 rounded-b-xl text-center">
-              <div className="font-display text-xl text-[#3ddc84] mb-1">🎥 The Math Behind the Answers</div>
-              <div className="font-condensed text-gray-400">Why Congress can't ignore organized people — and what happens when pressure builds.</div>
+            <div className="bg-bg-card p-4 border-x border-b border-green/20 rounded-b-xl text-center">
+              <div className="font-display text-xl text-green mb-1">🎥 The Math Behind the Answers</div>
+              <div className="font-condensed text-gray-400 text-sm">Why Congress can't ignore organized people — and what happens when pressure builds.</div>
             </div>
           </div>
-          
-          <div className="space-y-8 mt-12">
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* FAQ List */}
+        <section className="container section">
+          <div className="space-y-6 max-w-[700px] mx-auto">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="border-b border-[#3ddc84]/20 pb-6">
-                <p className="font-condensed font-bold text-white text-lg mb-3">Q: {faq.q}</p>
-                <p className="text-gray-400">{faq.a}</p>
+              <div key={idx} className="border-b border-green/20 pb-5">
+                <p className="font-condensed font-bold text-white text-lg mb-2">Q: {faq.q}</p>
+                <p className="text-body">{faq.a}</p>
               </div>
             ))}
           </div>
-          
-          {/* 3.5% DIAGRAM */}
-          <div className="my-8 max-w-[300px] mx-auto">
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* 3.5% Diagram */}
+        <section className="container section text-center">
+          <div className="max-w-[300px] mx-auto">
             <Image
               src="/images/3.5pct_Erica_Chenoweth.jpg"
               alt="3.5% — Chenoweth Research"
@@ -64,30 +83,59 @@ export default function FAQPage() {
             />
           </div>
           
-          {/* TeleCARE PAYS FOR ITSELF DIAGRAM */}
-          <div className="my-8 max-w-[500px] mx-auto">
+          <div className="max-w-[500px] mx-auto my-4">
             <Image
               src="/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg"
               alt="TeleCARE pays for itself — PHIERS vs Insurance Cost"
               width={500}
               height={300}
-              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+              className="w-full h-auto rounded-lg border border-green/20"
             />
           </div>
-          
-          <div className="bg-[#0a1628] border-l-4 border-[#3ddc84] p-6 my-12 text-center">
-            <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-2">3.5% organized = unstoppable change.</p>
-            <p className="text-gray-400 mb-4">12 million Americans. That's the line.</p>
-            <p className="font-condensed text-lg text-[#3ddc84] font-bold mb-4">Energy without power fails. PHIERStorm is the power.</p>
-            <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
-              <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">🌊 ORGANIZE YOUR DISTRICT</Link>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Final CTA */}
+        <section className="container section text-center">
+          <div className="bg-bg-dark border-l-4 border-green p-6 max-w-[600px] mx-auto">
+            <p className="font-condensed text-lg text-gold font-bold mb-2">3.5% organized = unstoppable change.</p>
+            <p className="text-body mb-3">12 million Americans. That's the line.</p>
+            <p className="font-condensed text-lg text-green font-bold mb-4">Energy without power fails. PHIERStorm is the power.</p>
+            
+            <div className="flex flex-col gap-3 max-w-md mx-auto">
+              <Button href="/petition" variant="primary" fullWidth>✍ ADD MY NAME</Button>
+              <Button href="/organizers" variant="secondary" fullWidth>🌊 ORGANIZE YOUR DISTRICT</Button>
             </div>
           </div>
         </section>
       </main>
+
       <Footer />
-      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+
+      <button 
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="back-to-top"
+        id="back-to-top"
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
+
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          window.addEventListener('scroll', function() {
+            var btt = document.getElementById('back-to-top');
+            if (btt) {
+              if (window.scrollY > 400) {
+                btt.classList.add('visible');
+              } else {
+                btt.classList.remove('visible');
+              }
+            }
+          });
+        `
+      }} />
     </>
   )
 }
