@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
@@ -10,6 +11,17 @@ export default function UnionsPage() {
       <Navigation />
       <main className="pt-24 pb-16">
         <section className="max-w-[760px] mx-auto px-6 py-12">
+          
+          {/* HERO IMAGE */}
+          <div className="relative w-full h-[250px] md:h-[300px] mb-8 rounded-xl overflow-hidden">
+            <Image
+              src="/images/0123_Strong_Union_Nurses_Veterans_hero.jpg"
+              alt="Strong Union — Nurses and Veterans"
+              fill
+              className="object-cover"
+            />
+          </div>
+          
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">Unions built the middle class.<br /><span className="text-[#3ddc84]">PHIERS gives unions the leverage to rebuild it.</span></h1>
           
           <p className="text-gray-400 mb-8">Unions know how to organize. PHIERS gives that organizing district-level political power Congress cannot ignore. This is not a petition. This is a pressure system.</p>
@@ -24,13 +36,36 @@ export default function UnionsPage() {
           <p className="text-gray-400 mb-3">The crisis is national, structural, and political.</p>
           <p className="font-condensed text-xl text-[#3ddc84] font-bold mb-8">PHIERS is the mechanism that makes it national.</p>
           
+          {/* WHEN UNIONS ARE STRONG IMAGE */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/When Unions are Strong, America is Strong.jpg"
+              alt="When Unions are Strong, America is Strong"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Math That Ends the Argument</h2>
           <p className="text-gray-400 mb-3">Average family insurance premium: $24,000+</p>
           <p className="text-gray-400 mb-3">Per-worker burden: $12,000+</p>
           <p className="text-gray-400 mb-3">PHIERS telehealth cost: $600/year</p>
-          <p className="font-display text-3xl text-[#ffd60a] font-bold my-4">$9,400+ freed per worker</p>
-          <p className="text-gray-400 mb-6">$37,600+ per family of four</p>
-          <p className="font-condensed text-lg text-white font-bold mb-3">What $9,400 per worker buys for a 10,000-person hospital system:</p>
+          <p className="font-display text-3xl text-[#ffd60a] font-bold my-4">$11,400+ freed per worker</p>
+          <p className="text-gray-400 mb-6">$45,600+ per family of four</p>
+          
+          {/* SAVINGS INFOGRAPHIC */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/99_to_1_-_Great_Odds.jpg"
+              alt="Union savings — 99 to 1 odds"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
+          <p className="font-condensed text-lg text-white font-bold mb-3">What $11,400 per worker buys for a 10,000-person hospital system:</p>
           <p className="text-gray-400 mb-2">✓ $35,000+ raise for every nurse</p>
           <p className="text-gray-400 mb-2">✓ 800 additional nurses hired</p>
           <p className="text-gray-400 mb-2">✓ Safe staffing restored</p>
@@ -54,6 +89,17 @@ export default function UnionsPage() {
           <p className="text-gray-400 mb-6">100M+ — Affected by the healthcare crisis</p>
           <p className="font-condensed text-xl text-[#3ddc84] font-bold mb-8">Unions already exceed the threshold. PHIERS gives them the mechanism to use it.</p>
           
+          {/* 3-PHASE VICTORY DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/3.5pct_Means_Change.jpg"
+              alt="3.5% Means Change — Three phases to victory"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           <h2 className="font-display text-3xl text-white mt-8 mb-4">Three Phases to Victory</h2>
           <div className="space-y-4 mb-8">
             <div><p className="font-condensed font-bold text-white">Phase 1 — Mobilize</p><p className="text-gray-400 text-sm">Send every member the petition link. Issue the primary threat publicly: any representative who refuses faces a union-backed challenger.</p></div>
@@ -69,7 +115,7 @@ export default function UnionsPage() {
           </div>
           
           <div className="text-center mt-8">
-            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ ADD MY NAME</Link>
+            <Link href="/petition" className="inline-block px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
             <Link href="/leverage" className="block text-[#3ddc84] text-sm font-condensed font-bold hover:underline mt-4">→ See How Leverage Works</Link>
             <Link href="/organizers" className="block text-[#3ddc84] text-sm font-condensed font-bold hover:underline mt-2">→ For Organizers</Link>
           </div>
