@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -11,13 +11,26 @@ export default function PetitionPage() {
     email: '',
     zip: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    
     // Handle form submission - integrate with your backend
     console.log('Form submitted:', formData)
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
     alert('Thank you! Your name has been counted in your district.')
+    setFormData({ name: '', email: '', zip: '' })
+    setIsSubmitting(false)
   }
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <>
@@ -39,6 +52,7 @@ export default function PetitionPage() {
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                   className="w-full p-3 rounded-lg bg-[#111d35] border border-[#3ddc84]/30 text-white focus:outline-none focus:border-[#3ddc84]"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -49,6 +63,7 @@ export default function PetitionPage() {
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                   className="w-full p-3 rounded-lg bg-[#111d35] border border-[#3ddc84]/30 text-white focus:outline-none focus:border-[#3ddc84]"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -59,9 +74,18 @@ export default function PetitionPage() {
                   onChange={(e) => setFormData({...formData, zip: e.target.value})}
                   className="w-full p-3 rounded-lg bg-[#111d35] border border-[#3ddc84]/30 text-white focus:outline-none focus:border-[#3ddc84]"
                   required
+                  disabled={isSubmitting}
+                  pattern="[0-9]{5}"
+                  title="Please enter a 5-digit ZIP code"
                 />
               </div>
-              <button type="submit" className="w-full py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME — 30 SECONDS</button>
+              <button 
+                type="submit" 
+                className="w-full px-8 py-4 bg-[#3ddc84] text-[#080d1a] rounded-lg font-condensed font-bold text-center hover:bg-[#2ab568] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'SUBMITTING...' : '✍ ADD MY NAME — 30 SECONDS'}
+              </button>
             </form>
             
             <p className="text-gray-500 text-sm text-center mt-6">Your information is used only to count you in your congressional district. Nothing else. No spam. No selling. Ever.</p>
@@ -74,7 +98,13 @@ export default function PetitionPage() {
         </section>
       </main>
       <Footer />
-      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+      <button 
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40"
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
     </>
   )
 }
