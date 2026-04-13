@@ -72,7 +72,11 @@ export default function TelecarePage() {
           <p className="text-gray-400 mb-3">$10,000 per person today.</p>
           <p className="text-gray-400 mb-3">$600 per person with TeleCARE.</p>
           <p className="font-display text-3xl text-[#ffd60a] font-bold my-4">$2.73 trillion in annual savings.</p>
-          <p className="font-condensed text-xl text-[#3ddc84] font-bold mb-8">That's not a projection. That's arithmetic.</p>
+         <p className="font-condensed text-xl mb-8">
+            <span className="text-[#3ddc84]">That's not a projection.</span>
+            <span className="text-white"> That's not a campaign promise.</span>
+            <span className="text-[#3ddc84]"> That's arithmetic.</span>
+          </p>
           
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8 text-center">
             <p className="text-gray-400 mb-4">Congress could authorize this tomorrow. They just haven't had to — until now.</p>
