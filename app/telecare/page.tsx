@@ -115,4 +115,55 @@ export default function TelecarePage() {
           <h2 className="font-display text-3xl text-white mt-8 mb-4">What Insurance Becomes</h2>
           <p className="text-gray-400 mb-6">Insurance goes back to what it was always meant to be: Protection — not the front door. It covers hospitalizations, surgeries, catastrophic events, high-cost specialty care. Rare. But necessary.</p>
           
-          <h2
+          <h2 className="font-display text-3xl text-white mt-8 mb-4">Why It Works Financially</h2>
+          <p className="text-gray-400 mb-3">When TeleCARE handles everyday care, the entire system gets cheaper.</p>
+          <p className="font-condensed text-lg text-white font-bold mb-3">What drops:</p>
+          <div className="grid grid-cols-2 gap-2 mb-4">
+            <p className="text-gray-400 text-sm">→ ER visits</p>
+            <p className="text-gray-400 text-sm">→ Hospitalizations</p>
+            <p className="text-gray-400 text-sm">→ Insurance claims</p>
+            <p className="text-gray-400 text-sm">→ Premiums</p>
+            <p className="text-gray-400 text-sm">→ Medicaid costs</p>
+          </div>
+          <p className="font-condensed text-lg text-white font-bold mb-3">What stabilizes:</p>
+          <div className="grid grid-cols-2 gap-2 mb-6">
+            <p className="text-gray-400 text-sm">→ Private insurance</p>
+            <p className="text-gray-400 text-sm">→ Public budgets</p>
+            <p className="text-gray-400 text-sm">→ Employer costs</p>
+          </div>
+          <p className="font-condensed text-xl text-[#3ddc84] font-bold mb-8">Telehealth shrinks the cost of the entire system.</p>
+          
+          {/* FINANCIAL MECHANISM DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/80-20_TeleCARE_EXPLAINER.jpg"
+              alt="Financial mechanism — how savings are generated"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
+          <h2 className="font-display text-3xl text-white mt-8 mb-4">The Math</h2>
+          <p className="text-gray-400 mb-3">$10,000 per person today.</p>
+          <p className="text-gray-400 mb-3">$600 per person with TeleCARE.</p>
+          <p className="font-display text-3xl text-[#ffd60a] font-bold my-4">$2.73 trillion in annual savings.</p>
+          <p className="font-condensed text-xl text-[#3ddc84] font-bold mb-4">That's not a projection. That's arithmetic.</p>
+          <p className="font-condensed text-lg text-white font-bold mb-8">That's not a campaign promise. That's arithmetic.</p>
+          
+          <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8 text-center">
+            <p className="text-gray-400 mb-4">Congress could authorize this tomorrow. They just haven't had to — until now.</p>
+            <p className="text-gray-400 mb-6">The war is making everything more expensive. Healthcare inputs. Pharmaceutical supply chains. Medical equipment. All of it.</p>
+            <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-6">The case for TeleCARE gets stronger every week the war continues.</p>
+            <div className="flex flex-col gap-4 max-w-md mx-auto">
+              <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
+              <Link href="/simple-math" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">📊 SEE THE MATH</Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+    </>
+  )
+}
