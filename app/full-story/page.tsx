@@ -76,7 +76,7 @@ export default function FullStoryPage() {
           
           <div className="bg-[#0a1628] border-2 border-[#3ddc84] rounded-xl p-8 text-center">
             <p className="font-condensed text-xl text-[#ffd60a] font-bold mb-4">You've seen the receipts. Now be counted.</p>
-            <Link href="/petition" className="inline-block px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
+            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ ADD MY NAME</Link>
           </div>
         </section>
       </main>
