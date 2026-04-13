@@ -143,8 +143,8 @@ export default function ActionPage() {
             <p className="text-white text-lg mb-6">On the record.</p>
             <p className="text-gray-400 mb-6">Counted. Delivered. Impossible to ignore.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ BE COUNTED</Link>
-              <Link href="/organizers" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I ORGANIZE</Link>
+              <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ BE COUNTED</Link>
+              <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I ORGANIZE</Link>
             </div>
           </div>
         </section>
