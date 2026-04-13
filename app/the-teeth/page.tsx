@@ -1,5 +1,4 @@
-// FILE: app/the-teeth/page.tsx
-// THE TEETH PAGE - Complete with design system
+// FILE: app/the-teeth/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -47,16 +46,10 @@ export default function TheTeethPage() {
         <section className="bg-bg-dark section">
           <div className="container text-center">
             <div className="relative h-[80px] w-auto mx-auto mb-4">
-              <Image
-                src="/images/PHIERS_Logo.png"
-                alt="PHIERS.org"
-                width={80}
-                height={80}
-                className="opacity-90 mx-auto"
-              />
+              <Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={80} height={80} className="opacity-90 mx-auto" />
             </div>
             <p className="font-condensed text-green text-lg mt-2">PHIERS — Power Held In Every Representative's Seat.</p>
-            <p className="font-condensed text-gray-500 text-sm mt-1">16 years in the making. This is the moment it was built for.</p>
+            <p className="font-condensed text-gray-500 text-sm mt-1">Since 2009. This is the moment it was built for.</p>
 
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight my-6 max-w-[700px] mx-auto">
               Power concedes nothing without a demand —<br />a demand that has <span className="text-red-500">teeth.</span>
@@ -74,18 +67,23 @@ export default function TheTeethPage() {
             <div className="max-w-[420px] mx-auto mt-6">
               <button onClick={() => setTeethModalOpen(true)} className="cursor-pointer w-full">
                 <div className="relative w-full aspect-[4/3]">
-                  <Image
-                    src="/images/We_Gotz_Teeth_for_No_Kings.jpg"
-                    alt="Power concedes nothing without a demand that has teeth"
-                    fill
-                    className="object-contain rounded-xl border border-green/20 hover:scale-[1.02] transition-transform"
-                  />
+                  <Image src="/images/We_Gotz_Teeth_for_No_Kings.jpg" alt="Power concedes nothing without a demand that has teeth" fill className="object-contain rounded-xl border border-green/20 hover:scale-[1.02] transition-transform" />
                 </div>
               </button>
               <p className="text-xs text-gray-500 mt-2">click to enlarge</p>
             </div>
           </div>
         </section>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
 
         <hr className="border-green/20" />
 
@@ -104,35 +102,21 @@ export default function TheTeethPage() {
           <div className="bg-bg-card/60 rounded-2xl p-6 md:p-8 border border-green/15 max-w-[800px] mx-auto">
             <div className="text-center">
               <p className="font-condensed text-xs text-green uppercase tracking-wider mb-2">Independent Validation</p>
-              <div className="font-condensed text-xl md:text-2xl font-bold text-white leading-relaxed mb-2">
-                "If you weren't legit, we wouldn't risk putting our name behind yours."
-              </div>
-              <div className="font-condensed text-sm text-gray-500 mb-3">
-                — <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline hover:text-green transition-colors">Pathos Communications</a> · Global PR firm (London Stock Exchange)
-              </div>
+              <div className="font-condensed text-xl md:text-2xl font-bold text-white leading-relaxed mb-2">"If you weren't legit, we wouldn't risk putting our name behind yours."</div>
+              <div className="font-condensed text-sm text-gray-500 mb-3">— <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline hover:text-green transition-colors">Pathos Communications</a> · Global PR firm (London Stock Exchange)</div>
               <div className="font-condensed text-sm text-green font-bold mb-4">We passed their test — and chose to stay grassroots.</div>
-
               <p className="font-condensed font-bold text-gray-500 text-sm uppercase tracking-wide mb-3">Watch how this works in real life.</p>
 
               {/* Pathos Video */}
-              <div
-                id="pathos-video-container"
-                className="relative w-full max-w-[560px] mx-auto aspect-video cursor-pointer rounded-xl overflow-hidden"
-                onClick={loadPathosVideo}
-              >
+              <div id="pathos-video-container" className="relative w-full max-w-[560px] mx-auto aspect-video cursor-pointer rounded-xl overflow-hidden" onClick={loadPathosVideo}>
                 {!pathosVideoLoaded ? (
-                  <>
-                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/UD8svoGU7ZU/hqdefault.jpg')" }}>
-                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white text-3xl hover:bg-red-700 transition-colors">
-                          ▶
-                        </div>
-                      </div>
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/UD8svoGU7ZU/hqdefault.jpg')" }}>
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white text-3xl hover:bg-red-700 transition-colors">▶</div>
                     </div>
-                  </>
+                  </div>
                 ) : null}
               </div>
-
               <p className="font-condensed text-xs text-gray-500 uppercase tracking-wide mt-3">Watch the Validation</p>
               <p className="text-body text-xs text-gray-500 mt-1">Click to play — video loads here</p>
             </div>
@@ -170,9 +154,7 @@ export default function TheTeethPage() {
               That's pressure they can't outlast.
             </p>
             <p className="font-condensed font-bold text-green text-lg mt-3">This is how we make it impossible for them not to respond.</p>
-            <div className="mt-6">
-              <Button href="/petition" variant="secondary">✍ Sign the Petition →</Button>
-            </div>
+            <div className="mt-6"><Button href="/petition" variant="secondary">✍ Sign the Petition →</Button></div>
           </div>
         </section>
 
@@ -181,9 +163,7 @@ export default function TheTeethPage() {
         {/* Continue to How It Works */}
         <section className="container section-sm text-center pb-12">
           <p className="font-condensed text-sm text-gray-500 mb-3">Want the full breakdown?</p>
-          <Link href="/leverage" className="font-condensed font-bold text-green text-base border-b border-green/30 pb-0.5 hover:border-green transition-all">
-            See How It Works →
-          </Link>
+          <Link href="/leverage" className="font-condensed font-bold text-green text-base border-b border-green/30 pb-0.5 hover:border-green transition-all">See How It Works →</Link>
         </section>
       </main>
 
@@ -192,105 +172,28 @@ export default function TheTeethPage() {
       {/* Teeth Image Lightbox */}
       <AnimatePresence>
         {teethModalOpen && (
-          <motion.div
-            className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setTeethModalOpen(false)}
-          >
-            <div className="relative max-w-[90vw] max-h-[85vh] w-auto h-auto" onClick={(e) => e.stopPropagation()}>
-              <button
-                onClick={() => setTeethModalOpen(false)}
-                className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors"
-              >
-                ✕
-              </button>
-              <Image
-                src="/images/We_Gotz_Teeth_for_No_Kings.jpg"
-                alt="Power concedes nothing without a demand that has teeth"
-                width={800}
-                height={600}
-                className="rounded-xl"
-              />
+          <motion.div className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setTeethModalOpen(false)}>
+            <div className="relative max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
+              <button onClick={() => setTeethModalOpen(false)} className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors">✕</button>
+              <Image src="/images/We_Gotz_Teeth_for_No_Kings.jpg" alt="Power concedes nothing without a demand that has teeth" width={800} height={600} className="rounded-xl" />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="back-to-top"
-        id="back-to-top"
-        aria-label="Back to top"
-      >
-        ↑
-      </button>
+      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
       <style jsx global>{`
-        .video-container {
-          position: relative;
-          padding-bottom: 56.25%;
-          height: 0;
-          overflow: hidden;
-          border-radius: 12px;
-          border: 2px solid rgba(61, 220, 132, 0.2);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-        }
-        .video-wrapper {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          cursor: pointer;
-        }
-        .back-to-top {
-          position: fixed;
-          bottom: 24px;
-          right: 24px;
-          background: var(--green);
-          color: var(--bg-deep);
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 24px;
-          cursor: pointer;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 150ms ease;
-          z-index: 999;
-          border: none;
-        }
-        .back-to-top.visible {
-          opacity: 1;
-          visibility: visible;
-        }
-        .back-to-top:hover {
-          background: #2ab568;
-          transform: translateY(-2px);
-        }
+        .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--green); color: var(--bg-deep); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; opacity: 0; visibility: hidden; transition: all 150ms ease; z-index: 999; border: none; }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: #2ab568; transform: translateY(-2px); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 2px solid rgba(61, 220, 132, 0.2); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
+        .video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
       `}</style>
 
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          window.addEventListener('scroll', function() {
-            var btt = document.getElementById('back-to-top');
-            if (btt) {
-              if (window.scrollY > 400) {
-                btt.classList.add('visible');
-              } else {
-                btt.classList.remove('visible');
-              }
-            }
-          });
-        `
-      }} />
+      <script dangerouslySetInnerHTML={{ __html: `window.addEventListener('scroll', function() { var btt = document.getElementById('back-to-top'); if (btt) { if (window.scrollY > 400) { btt.classList.add('visible'); } else { btt.classList.remove('visible'); } } });` }} />
     </>
   )
 }
 
-// END FILE: app/the-teeth/page.tsx
+// END FILE: app/the-teeth/page.tsx - TIERS 1-7 COMPLETE
