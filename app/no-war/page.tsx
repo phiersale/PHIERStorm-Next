@@ -1,5 +1,4 @@
-// FILE: app/no-war/page.tsx
-// NO WAR PAGE - End the Unauthorized War, Stop the Draft
+// FILE: app/no-war/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -24,9 +23,17 @@ export default function NoWarPage() {
     document.body.style.overflow = ''
   }
 
+  const playVideo = (videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  }
+
   return (
     <>
-      {/* Emergency Banner */}
+      {/* Emergency Banner - UPDATED */}
       <div className="bg-red-600 text-white text-center py-3 px-4 font-condensed font-bold text-sm z-50 relative">
         <span className="inline-block bg-black/25 rounded px-2 py-0.5 mr-2 text-xs tracking-wide">URGENT</span>
         Congress is home right now. A president who threatened to destroy a civilization has no congressional authorization for this war.
@@ -62,6 +69,11 @@ export default function NoWarPage() {
               Not later. Not separately. The same pressure forces both.
             </p>
           </div>
+        </div>
+
+        {/* District Count Line - NEW */}
+        <div className="container text-center my-4">
+          <p className="font-condensed text-gold text-sm font-bold">District counts begin compiling immediately. 1,500 in your district triggers a mandatory town hall.</p>
         </div>
 
         {/* Context: Who's Responsible */}
@@ -108,7 +120,7 @@ export default function NoWarPage() {
           </div>
           <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center">
             <div className="font-display text-4xl text-gold">5,000+</div>
-            <p className="text-body text-sm mt-2">U.S. troops deployed to the Middle East as of March 2026 — with more on the way. None of them sent there by a vote of Congress. All of them someone's kid.</p>
+            <p className="text-body text-sm mt-2">U.S. troops deployed to the Middle East as of 2026 — with more on the way. None of them sent there by a vote of Congress. All of them someone's kid.</p>
           </div>
         </div>
 
@@ -215,6 +227,16 @@ export default function NoWarPage() {
 
         <div className="text-right max-w-[800px] mx-auto px-4 mb-4">
           <Link href="/solutions" className="font-condensed font-bold text-green text-sm hover:text-green-dim">→ See how this fixes wages, jobs, and stability: 5D Solutions</Link>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
         </div>
 
         <hr className="border-green/20" />
@@ -454,4 +476,4 @@ export default function NoWarPage() {
   )
 }
 
-// END FILE: app/no-war/page.tsx
+// END FILE: app/no-war/page.tsx - TIERS 1-7 COMPLETE
