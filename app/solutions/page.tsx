@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Navigation from '@/components/navigation'
@@ -13,6 +14,10 @@ export default function SolutionsPage() {
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
   }
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <>
@@ -33,6 +38,19 @@ export default function SolutionsPage() {
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">Five systems.<br /><span className="text-[#3ddc84]">One mechanism.</span><br />A country that works.</h1>
           <p className="text-gray-400 text-center mb-12">Congress keeps patching symptoms. PHIERS fixes the system that creates them.</p>
           
+          {/* VIDEO: Prelude to COMPLETE Gubment Solution – RAW/Unedited */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <div id="wrap-blueprint" className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20 cursor-pointer group" onClick={() => playVideo('blueprint', 'https://www.youtube.com/embed/xEA5zVium58?autoplay=1&rel=0')}>
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/xEA5zVium58/hqdefault.jpg')" }}>
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
+                  <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
+                </div>
+              </div>
+            </div>
+            <p className="font-condensed text-[#3ddc84] text-sm text-center mt-2">Prelude to COMPLETE Gubment Solution – RAW/Unedited</p>
+            <p className="text-gray-500 text-xs text-center mt-1">A deep-dive into leverage, war powers, healthcare savings, and long-term structural fixes</p>
+          </div>
+          
           <p className="text-gray-400 mb-8">Five crises. One interconnected solution. Each dimension unlocking the next. This isn't a policy list. It's survival architecture.</p>
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Philosophy</h2>
@@ -40,32 +58,17 @@ export default function SolutionsPage() {
           <p className="text-gray-400 mb-3">Healthcare crisis → unlocks jobs → unlocks safety net → unlocks opportunity → unlocks guardrails</p>
           <p className="font-condensed text-lg text-[#3ddc84] font-bold mb-8">Each dimension reinforces the others.</p>
           
-          {/* CASCADE VIDEO */}
-          <div className="my-8">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
-              <div className="video-wrap" id="wrap-cascade" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/jMU6LKEBzbs/hqdefault.jpg')" }} onClick={() => playVideo('cascade', 'https://www.youtube.com/embed/jMU6LKEBzbs?autoplay=1&rel=0')}>
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[#0a1020] p-5 border-x border-b border-[#3ddc84]/20 rounded-b-xl text-center">
-              <div className="font-display text-xl text-[#3ddc84] mb-1">🎥 The Cascade Mechanism — How One Becomes Twelve</div>
-              <div className="font-condensed text-gray-400">Why Congress can't ignore PHIERS. One person saves $50 → funds 148 → $1.1B cascade.</div>
-            </div>
-          </div>
-          
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The First Domino</h2>
           <p className="text-gray-400 mb-6">Telehealth is the first domino — the one Congress refuses to touch. Because once telehealth falls, everything else becomes possible. That's what they know. That's why they've ignored it. Until now.</p>
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">DIMENSION 1 — TELECARE FOR EVERYONE</h2>
           <p className="text-gray-400 mb-6">Congress must authorize $600 of telehealth coverage for every American, immediately. Cheaper. Faster. More accessible. Already working. No new legislation required. This is the entry point to universal care — not in theory, but in practice. Once telehealth is authorized, the entire 5D cascade becomes possible. This is the lever.</p>
           
-          {/* 5D LOOP DIAGRAM */}
+          {/* 5D LOOP DIAGRAM - PHIERS Tablet Firewall */}
           <div className="my-8 max-w-[500px] mx-auto">
             <Image
-              src="/images/5D_Solutions_Rubiks_Cube.png"
-              alt="5D Loop Diagram — Demand / Delivery / Distribution / Displacement / Democracy"
+              src="/images/PHIERS_Tablet__Firewall.png"
+              alt="PHIERS Tablet — Firewall to Dysfunction"
               width={500}
               height={400}
               className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
@@ -125,7 +128,13 @@ export default function SolutionsPage() {
         </section>
       </main>
       <Footer />
-      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+      <button 
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40"
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
     </>
   )
 }
