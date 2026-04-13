@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
@@ -37,11 +38,33 @@ export default function PetitionPage() {
       <Navigation />
       <main className="pt-24 pb-16">
         <section className="max-w-[760px] mx-auto px-6 py-12">
+          
+          {/* SUBTLE HERO IMAGE */}
+          <div className="relative w-full h-[200px] md:h-[250px] mb-8 rounded-xl overflow-hidden opacity-70">
+            <Image
+              src="/images/Online_Petition.jpg"
+              alt="Online Petition — Add your name"
+              fill
+              className="object-cover"
+            />
+          </div>
+          
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">Your Name. Your District. On the Record.</h1>
           <p className="font-condensed text-xl text-gray-400 text-center mb-8">1,500 people in your district forces a mandatory public town hall.<br />Your representative answers on the record — before the next election.</p>
           
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8">
             <p className="font-condensed text-lg text-[#ffd60a] font-bold text-center mb-6">District counts begin compiling immediately.</p>
+            
+            {/* DISTRICT COUNT VISUAL */}
+            <div className="my-6 max-w-[300px] mx-auto">
+              <Image
+                src="/images/99_to_1_-_Great_Odds.jpg"
+                alt="District counts — 1,500 people per district"
+                width={300}
+                height={200}
+                className="w-full h-auto rounded-lg border border-[#3ddc84]/20 opacity-60"
+              />
+            </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
