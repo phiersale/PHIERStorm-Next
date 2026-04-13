@@ -70,7 +70,7 @@ export default function VeteransPage() {
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8 text-center">
             <p className="font-condensed text-lg text-white font-bold mb-6">Your service built this country. Your leverage can fix it.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ SIGN FOR EVERY VETERAN</Link>
+              <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ SIGN FOR EVERY VETERAN</Link>
               <Link href="/leverage" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">→ See How It Works</Link>
             </div>
           </div>
