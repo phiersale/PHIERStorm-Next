@@ -1,5 +1,4 @@
-// FILE: app/real-stories/page.tsx
-// REAL STORIES PAGE - The Voices Congress Ignores
+// FILE: app/real-stories/page.tsx - RESTORED (Tiers 1-7)
 
 'use client'
 
@@ -41,6 +40,7 @@ export default function RealStoriesPage() {
     setTimeout(() => setSubmitStatus('idle'), 3000)
   }
 
+  // 7 Testimonials
   const stories = [
     {
       name: "Maria",
@@ -113,7 +113,17 @@ export default function RealStoriesPage() {
 
         <hr className="border-green/20" />
 
-        {/* Stories */}
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* 7 Stories */}
         <section className="container section">
           <div className="space-y-5 max-w-[800px] mx-auto">
             {stories.map((story, idx) => (
@@ -141,11 +151,13 @@ export default function RealStoriesPage() {
         </section>
 
         {/* Back Link */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <Link href="/crisis" className="font-condensed font-bold text-green text-base hover:text-green-dim transition-colors">
             ← Back to The Crisis
           </Link>
         </div>
+
+        <hr className="border-green/20" />
 
         {/* Submit Your Story Section */}
         <section className="bg-bg-dark border-y border-green/10 section">
@@ -291,4 +303,4 @@ export default function RealStoriesPage() {
   )
 }
 
-// END FILE: app/real-stories/page.tsx
+// END FILE: app/real-stories/page.tsx - TIERS 1-7 COMPLETE
