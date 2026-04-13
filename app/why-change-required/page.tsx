@@ -1,5 +1,4 @@
-// FILE: app/why-change-required/page.tsx
-// WHY CHANGE IS REQUIRED PAGE - The Case for Systemic Replacement
+// FILE: app/why-change-required/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -64,6 +63,16 @@ export default function WhyChangeRequiredPage() {
 
         <hr className="border-green/20" />
 
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
+
+        <hr className="border-green/20" />
+
         {/* The Design Failure */}
         <section className="container section">
           <p className="text-body text-lg mb-4">America isn't suffering from a series of isolated crises. We're suffering from a systemic design failure — a structure that produces:</p>
@@ -118,8 +127,8 @@ export default function WhyChangeRequiredPage() {
 
         {/* When Congress Failed */}
         <section className="container section">
-          <h2 className="font-display text-3xl text-white mb-4">When Congress Failed in December <span className="text-red-500">Wasn't the Cause — It Was the Reveal</span></h2>
-          <p className="text-body mb-4">When Congress let healthcare subsidies expire in December, it didn't "cause" the crisis. It <strong className="text-white">exposed</strong> it.</p>
+          <h2 className="font-display text-3xl text-white mb-4">When Congress Failed Wasn't the Cause — It Was the Reveal</h2>
+          <p className="text-body mb-4">When Congress let healthcare subsidies expire, it didn't "cause" the crisis. It <strong className="text-white">exposed</strong> it.</p>
           <p className="text-body mb-3">It showed the country that:</p>
           <ul className="list-disc list-inside text-body space-y-2 mb-6">
             <li>The safety net is fragile</li>
@@ -129,7 +138,7 @@ export default function WhyChangeRequiredPage() {
           </ul>
 
           <div className="bg-green-glow border-l-4 border-l-green rounded-r-lg p-5">
-            <p className="text-body">The December failure was the moment the mask slipped. The crisis we're solving is the one unfolding now.</p>
+            <p className="text-body">The failure was the moment the mask slipped. The crisis we're solving is the one unfolding now.</p>
           </div>
         </section>
 
@@ -139,7 +148,7 @@ export default function WhyChangeRequiredPage() {
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container">
             <h2 className="font-display text-3xl text-white mb-4">The Real Problem: <span className="text-red-500">A One-Dimensional Government</span> in a Multi-Dimensional World</h2>
-            <p className="text-body mb-3">Congress still tries to solve 2026 problems with 1950 tools:</p>
+            <p className="text-body mb-3">Congress still tries to solve today's problems with outdated tools:</p>
             <ul className="list-disc list-inside text-body space-y-2 mb-4">
               <li>One bill for one issue</li>
               <li>One committee for one crisis</li>
@@ -388,4 +397,4 @@ export default function WhyChangeRequiredPage() {
   )
 }
 
-// END FILE: app/why-change-required/page.tsx
+// END FILE: app/why-change-required/page.tsx - TIERS 1-7 COMPLETE
