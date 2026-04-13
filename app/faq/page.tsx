@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
@@ -26,6 +27,23 @@ export default function FAQPage() {
         <section className="max-w-[760px] mx-auto px-6 py-12">
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">Questions people ask.<br /><span className="text-[#3ddc84]">Answers that matter.</span></h1>
           
+          {/* MATH VIDEO */}
+          <div className="my-8">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
+              <iframe
+                src="https://www.youtube.com/embed/jMU6LKEBzbs?rel=0"
+                title="The Math Behind the Answers — Cascade Mechanism"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+            <div className="bg-[#0a1020] p-5 border-x border-b border-[#3ddc84]/20 rounded-b-xl text-center">
+              <div className="font-display text-xl text-[#3ddc84] mb-1">🎥 The Math Behind the Answers</div>
+              <div className="font-condensed text-gray-400">Why Congress can't ignore organized people — and what happens when pressure builds.</div>
+            </div>
+          </div>
+          
           <div className="space-y-8 mt-12">
             {faqs.map((faq, idx) => (
               <div key={idx} className="border-b border-[#3ddc84]/20 pb-6">
@@ -35,13 +53,35 @@ export default function FAQPage() {
             ))}
           </div>
           
+          {/* 3.5% DIAGRAM */}
+          <div className="my-8 max-w-[300px] mx-auto">
+            <Image
+              src="/images/3.5pct_Erica_Chenoweth.jpg"
+              alt="3.5% — Chenoweth Research"
+              width={300}
+              height={200}
+              className="w-full h-auto rounded-lg border border-white/10"
+            />
+          </div>
+          
+          {/* TeleCARE PAYS FOR ITSELF DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg"
+              alt="TeleCARE pays for itself — PHIERS vs Insurance Cost"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           <div className="bg-[#0a1628] border-l-4 border-[#3ddc84] p-6 my-12 text-center">
             <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-2">3.5% organized = unstoppable change.</p>
-            <p className="text-gray-400 mb-4">11 million Americans. That's the line.</p>
+            <p className="text-gray-400 mb-4">12 million Americans. That's the line.</p>
             <p className="font-condensed text-lg text-[#3ddc84] font-bold mb-4">Energy without power fails. PHIERStorm is the power.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
-              <Link href="/organizers" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">🌊 ORGANIZE YOUR DISTRICT</Link>
+              <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
+              <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">🌊 ORGANIZE YOUR DISTRICT</Link>
             </div>
           </div>
         </section>
