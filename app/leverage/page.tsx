@@ -1,5 +1,4 @@
-// FILE: app/leverage/page.tsx
-// LEVERAGE PAGE - How It Works / Congressional Leverage
+// FILE: app/leverage/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -14,6 +13,16 @@ import Button from '@/components/Button'
 export default function LeveragePage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
+
+  const openModal = (src: string) => {
+    setModalImage(src)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeModal = () => {
+    setModalImage(null)
+    document.body.style.overflow = ''
+  }
 
   const playVideo = (videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
@@ -30,16 +39,6 @@ export default function LeveragePage() {
       container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/xy3F9ZWbgS8?autoplay=1&rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
       setVideoLoaded(true)
     }
-  }
-
-  const openModal = (src: string) => {
-    setModalImage(src)
-    document.body.style.overflow = 'hidden'
-  }
-
-  const closeModal = () => {
-    setModalImage(null)
-    document.body.style.overflow = ''
   }
 
   return (
@@ -113,7 +112,7 @@ export default function LeveragePage() {
                 alt="Power concedes nothing without a demand that has teeth"
                 width={500}
                 height={400}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
             <p className="text-sm text-gray-500 mt-2">Power concedes nothing without a demand that has teeth.</p>
@@ -182,7 +181,7 @@ export default function LeveragePage() {
                 alt="Harvard researcher Erica Chenoweth"
                 width={400}
                 height={300}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
             <p className="text-center text-xs text-gray-500 mt-2">Harvard researcher Erica Chenoweth. 323 campaigns studied. The data is ironclad. Click to enlarge.</p>
@@ -219,6 +218,16 @@ export default function LeveragePage() {
 
         <hr className="border-green/20" />
 
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
+
+        <hr className="border-green/20" />
+
         {/* 230:1 Advantage */}
         <section className="container section">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3 text-center">The Advantage</span>
@@ -236,7 +245,7 @@ export default function LeveragePage() {
                 alt="Power of the People — 100M+ organized constituents"
                 width={500}
                 height={400}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
             <p className="text-center text-xs text-gray-500 mt-2">Power of the People — what 100M+ organized constituents looks like against corporate lobbying.</p>
@@ -343,7 +352,7 @@ export default function LeveragePage() {
           transform: translateY(-2px);
         }
         .bg-green-glow {
-          background: rgba(61, 220, 132, 0.08);
+          background: rgba(61, 220, 132, 0.06);
         }
       `}</style>
 
@@ -365,4 +374,4 @@ export default function LeveragePage() {
   )
 }
 
-// END FILE: app/leverage/page.tsx
+// END FILE: app/leverage/page.tsx - TIERS 1-7 COMPLETE
