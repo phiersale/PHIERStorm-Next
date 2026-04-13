@@ -1,5 +1,4 @@
-// FILE: app/quickstart/page.tsx
-// QUICKSTART PAGE - 30 Seconds to Understand
+// FILE: app/quickstart/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -50,9 +49,11 @@ export default function QuickstartPage() {
           </div>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-green mb-4">Quick Start: 30 Seconds to Understand</h1>
           <p className="font-condensed text-lg text-gray-400 mb-3">New here? This is everything you need to know in under a minute.</p>
-          <div className="inline-block bg-gradient-to-r from-green to-green-dim text-bg-deep px-5 py-2 rounded-full font-condensed font-bold text-sm mb-4">30 seconds to join. 90 days to win.</div>
+          <div className="inline-block bg-gradient-to-r from-green to-green-dim text-bg-deep px-5 py-2 rounded-full font-condensed font-bold text-sm mb-4">30 seconds to join.</div>
           <p className="text-white text-lg">This isn't a protest — it's a cooperative intelligence project.</p>
         </div>
+
+        <hr className="border-green/20" />
 
         {/* Video Section */}
         <section className="container section">
@@ -70,6 +71,16 @@ export default function QuickstartPage() {
             <p className="text-center text-blue-400 font-bold text-sm mt-3">1 minute 11 seconds. This is why they're terrified.</p>
           </div>
         </section>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
 
         <hr className="border-green/20" />
 
@@ -122,7 +133,7 @@ export default function QuickstartPage() {
 
           <div className="bg-green-glow border-2 border-green rounded-xl p-6 text-center mt-6">
             <p className="text-white text-lg font-bold mb-3">If Congress authorizes telehealth through the ACA, one conversion funds 12 more. Those 12 fund 148.</p>
-            <p className="text-green text-2xl font-bold">Exponential. Unstoppable. Universal healthcare in 90 days to critical mass.</p>
+            <p className="text-green text-2xl font-bold">Exponential. Unstoppable. Universal healthcare achievable.</p>
           </div>
         </section>
 
@@ -163,7 +174,7 @@ export default function QuickstartPage() {
                 </div>
                 <p className="text-gray-300 pl-11">Add your name to force Congress to hold mandatory town halls. 1,500 signatures per district = they must face you.</p>
                 <div className="pl-11 mt-3">
-                  <Button href="https://forms.gle/euJkZxjUserFVCPK8" variant="primary">⚡ JOIN FIRST WAVE</Button>
+                  <Button href="/petition" variant="primary">✍ SIGN THE PETITION</Button>
                 </div>
               </div>
 
@@ -347,4 +358,4 @@ export default function QuickstartPage() {
   )
 }
 
-// END FILE: app/quickstart/page.tsx
+// END FILE: app/quickstart/page.tsx - TIERS 1-7 COMPLETE
