@@ -47,21 +47,30 @@ export default function DonatePage() {
             </div>
           </div>
           
-          <div className="bg-[#0a1628] border-2 border-[#3ddc84] rounded-xl p-8 text-center">
+              <div className="mt-6 mb-8">
+                <p className="text-gray-400 text-sm mb-2 text-center">Other amount</p>
+                <input 
+                  type="number" 
+                  placeholder="$"
+                  className="w-full max-w-[200px] mx-auto block p-3 rounded-lg bg-[#111d35] border border-[#3ddc84]/30 text-white text-center focus:outline-none focus:border-[#3ddc84]"
+                />
+              </div>
+              
+              <div className="bg-[#0a1628] border-2 border-[#3ddc84] rounded-xl p-8 text-center">
             <h2 className="font-display text-3xl text-[#3ddc84] mb-6">DONATE NOW</h2>
             <div className="space-y-3 text-gray-400">
               <p><strong className="text-white">Venmo:</strong> @Will4PHIERS</p>
               <p><strong className="text-white">PayPal:</strong> will@phiers.org</p>
-              <p><strong className="text-white">Zelle:</strong> (301) 919-0970 <span className="text-xs text-gray-500">[Zelle only]</span></p>
-              <p className="mt-4"><Link href="#" className="text-[#3ddc84] font-condensed font-bold hover:underline">GoFundMe Campaign →</Link></p>
+              <p><strong className="text-white">Zelle:</strong> <a href="tel:3019190970" className="hover:text-[#3ddc84] transition-colors">(301) 919-0970</a> <span className="text-xs text-gray-500">[Zelle only]</span></p>
+              <p className="mt-4"><Link href="https://gofund.me/9361cad3d" className="text-[#3ddc84] font-condensed font-bold hover:underline">GoFundMe Campaign →</Link></p>
             </div>
           </div>
           
           <div className="text-center mt-8">
             <p className="text-gray-400 mb-4">Can't donate right now? Your name matters as much as your dollar.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ SIGN THE PETITION</Link>
-              <Link href="/action" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">📣 SHARE THE MESSAGE</Link>
+              <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ SIGN THE PETITION</Link>
+              <Link href="/action" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">📣 SHARE THE MESSAGE</Link>
             </div>
           </div>
         </section>
