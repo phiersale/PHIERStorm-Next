@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
@@ -37,6 +38,17 @@ export default function ActionPage() {
       <Navigation />
       <main className="pt-24 pb-16">
         <section className="max-w-[760px] mx-auto px-6 py-12">
+          
+          {/* HERO IMAGE */}
+          <div className="relative w-full h-[250px] md:h-[300px] mb-8 rounded-xl overflow-hidden">
+            <Image
+              src="/images/Congress_Dont_Work_4U-WEre_changing_that-BIG.jpg"
+              alt="Congress doesn't work for you. We're changing that."
+              fill
+              className="object-cover"
+            />
+          </div>
+          
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">Your Name Is Leverage.<br /><span className="text-[#3ddc84]">Here's What To Do With It.</span></h1>
           
           <p className="text-gray-400 text-center mb-6">Not everyone organizes. Not everyone donates.</p>
@@ -51,6 +63,17 @@ export default function ActionPage() {
             <p className="font-condensed text-2xl text-[#3ddc84] font-bold">This is how you raise that cost.</p>
           </div>
           
+          {/* CASCADE DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/Cascade_Math.jpg"
+              alt="The Cascade — One becomes twelve"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           {/* STEP 1 — BE COUNTED */}
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8 my-8">
             <div className="flex items-center gap-3 mb-4">
@@ -60,7 +83,7 @@ export default function ActionPage() {
             <p className="text-gray-400 mb-3">Add your name to your district.</p>
             <p className="text-gray-400 mb-3">Not symbolic. Not a comment.</p>
             <p className="text-gray-400 mb-6">A number tied to your representative. That's where pressure starts.</p>
-            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ ADD MY NAME</Link>
+            <Link href="/petition" className="inline-block px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
           </div>
           
           {/* STEP 2 — MULTIPLY THE COUNT */}
@@ -111,7 +134,7 @@ export default function ActionPage() {
             <p className="text-gray-400 mb-3">Sharing builds momentum. Organization converts it into pressure.</p>
             <p className="text-gray-400 mb-6">Every district needs people turning names into accountability. That's how 1,500 happens. That's how representatives are forced to respond.</p>
             <p className="font-condensed text-lg text-[#3ddc84] font-bold mb-4">If you're willing to step up — we'll connect you directly.</p>
-            <Link href="/organizers" className="inline-block px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ ORGANIZE YOUR DISTRICT</Link>
+            <Link href="/organizers" className="inline-block px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ ORGANIZE YOUR DISTRICT</Link>
           </div>
           
           {/* WHAT HAPPENS NEXT */}
@@ -123,6 +146,17 @@ export default function ActionPage() {
             <p className="text-gray-400 mb-2">→ Public accountability events get triggered</p>
             <p className="text-gray-400 mb-4">→ Pressure becomes unavoidable</p>
             <p className="font-condensed text-lg text-[#3ddc84] font-bold">This is not awareness. This is coordination.</p>
+          </div>
+          
+          {/* OPTIONAL DISTRICT MAP */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/99_to_1_-_Great_Odds.jpg"
+              alt="District pressure map"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20 opacity-70"
+            />
           </div>
           
           {/* THE CASCADE */}
@@ -143,7 +177,7 @@ export default function ActionPage() {
             <p className="text-white text-lg mb-6">On the record.</p>
             <p className="text-gray-400 mb-6">Counted. Delivered. Impossible to ignore.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ BE COUNTED</Link>
+              <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ BE COUNTED</Link>
               <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I ORGANIZE</Link>
             </div>
           </div>
