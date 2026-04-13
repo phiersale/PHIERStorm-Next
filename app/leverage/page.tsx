@@ -65,7 +65,7 @@ export default function LeveragePage() {
             <p className="text-gray-400 mb-4">When enough districts organize simultaneously, the pressure becomes impossible to outlast.</p>
             <p className="font-condensed text-lg text-white font-bold mb-6">Peaceful. Democratic. Immediate. We are not waiting for November.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME — 30 SECONDS</Link>
+              <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ ADD MY NAME — 30 SECONDS</Link>
               <Link href="/organizers" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ ORGANIZE YOUR DISTRICT</Link>
             </div>
           </div>
