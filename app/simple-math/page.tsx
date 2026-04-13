@@ -30,7 +30,18 @@ export default function SimpleMathPage() {
           <p className="text-gray-400 mb-6">→ Massive system-wide savings</p>
           <p className="font-condensed text-lg text-[#3ddc84] font-bold">All using existing law. No new taxes. No new bureaucracy. Just math.</p>
           
-          <h2 className="font-display text-3xl text-white mt-12 mb-4">The Cascade</h2>
+          {/* COST COMPARISON DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg"
+              alt="PHIERS vs Insurance Cost Comparison"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
+          <h2 className="font-display text-3xl text-white mt-8 mb-4">The Cascade</h2>
           <p className="text-gray-400 mb-3">One conversion funds twelve more.</p>
           <p className="text-gray-400 mb-3">Twelve fund 148.</p>
           <p className="text-gray-400 mb-6">148 fund 1,825.</p>
@@ -41,6 +52,17 @@ export default function SimpleMathPage() {
           <p className="text-gray-400 mb-3">In nine iterations: 234 million Americans covered.</p>
           <p className="text-gray-400 mb-6">In 8–13 months.</p>
           <p className="font-condensed text-xl text-[#ffd60a] font-bold mb-8">That's not a campaign promise. That's arithmetic.</p>
+          
+          {/* CASCADE DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/Cascade_Math.jpg"
+              alt="Cascade Math — One becomes twelve"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">Why We Start with Medicaid</h2>
           <p className="text-gray-400 mb-3">Medicaid is the ignition point.</p>
@@ -60,7 +82,13 @@ export default function SimpleMathPage() {
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The 3.5% Factor</h2>
           <div className="max-w-[380px] mx-auto mb-6">
-            <Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% — Chenoweth Research" width={380} height={250} className="rounded-lg border border-white/10 mx-auto" />
+            <Image
+              src="/images/3.5pct_Erica_Chenoweth.jpg"
+              alt="3.5% — Chenoweth Research"
+              width={380}
+              height={250}
+              className="rounded-lg border border-white/10 mx-auto"
+            />
           </div>
           <p className="text-gray-400 mb-3">Harvard researcher Erica Chenoweth studied 323 campaigns from 1900–2006.</p>
           <p className="font-condensed text-lg text-white font-bold mb-4">Finding: NO campaign where 3.5% participated in sustained organized action ever failed.</p>
@@ -74,7 +102,7 @@ export default function SimpleMathPage() {
           </div>
           
           <div className="text-center mt-8">
-            <Link href="/petition" className="inline-block px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
+            <Link href="/petition" className="inline-block px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
             <Link href="/solutions" className="block text-[#3ddc84] text-sm font-condensed font-bold hover:underline mt-4">→ See 5D Solutions</Link>
           </div>
         </section>
