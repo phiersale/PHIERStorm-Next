@@ -84,7 +84,7 @@ export default function OrganizersPage() {
           
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8 text-center">
             <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-4">District counts begin compiling immediately.</p>
-            <Link href="/petition" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">ADD MY NAME + VOLUNTEER</Link>
+            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">ADD MY NAME + VOLUNTEER</Link>
             <p className="text-gray-500 text-sm mt-4">📧 info@phiers.org · 📞 (916) 306-8967<br />We respond to every organizer inquiry.</p>
           </div>
         </section>
