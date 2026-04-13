@@ -1,5 +1,4 @@
-// FILE: app/unions/page.tsx
-// UNIONS PAGE - Collective Power Strategy
+// FILE: app/unions/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -22,6 +21,14 @@ export default function UnionsPage() {
   const closeModal = () => {
     setModalImage(null)
     document.body.style.overflow = ''
+  }
+
+  const playVideo = (videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
   }
 
   return (
@@ -59,18 +66,15 @@ export default function UnionsPage() {
         {/* Video Section - Mamdani */}
         <section className="container section text-center">
           <div className="bg-bg-card border border-green/20 rounded-xl p-6 max-w-[800px] mx-auto">
-            <h2 className="font-display text-2xl text-gold mb-3">🎥 Funding Mamdani's Agenda: Why Unions Will Win This Fight (5:55)</h2>
-            <p className="text-gray-400 text-sm mb-4">Watch NYC Mayor Zohran Mamdani explain how organized workers force systemic change — and why PHIERS amplifies what unions already do.</p>
+            <h2 className="font-display text-2xl text-gold mb-3">🎥 Why Unions Will Win This Fight (5:55)</h2>
+            <p className="text-gray-400 text-sm mb-4">Watch how organized workers force systemic change — and why PHIERS amplifies what unions already do.</p>
             <div className="video-container max-w-[640px] mx-auto">
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-green/20">
-                <iframe
-                  src="https://player.vimeo.com/video/1157760069"
-                  className="absolute top-0 left-0 w-full h-full"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                  title="Why PHIERS-Powered Unions Will Win"
-                />
+              <div id="wrap-unions" className="video-wrapper cursor-pointer group" onClick={() => playVideo('unions', 'https://player.vimeo.com/video/1157760069?autoplay=1')}>
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://i.vimeocdn.com/video/thumb.jpg')" }}>
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
+                    <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
+                  </div>
+                </div>
               </div>
             </div>
             <p className="text-green text-sm mt-3">Understanding union power, collective organizing, and why PHIERS solves what workers are striking for.</p>
@@ -215,7 +219,7 @@ export default function UnionsPage() {
               <p className="text-body text-xs">PHIERS telehealth cost</p>
             </div>
             <div className="bg-bg-card border border-green/20 rounded-lg p-3 text-center">
-              <div className="font-display text-xl text-green">$11,400+</div>
+              <div className="font-display text-xl text-green">$9,400+</div>
               <p className="text-body text-xs">Freed per worker</p>
             </div>
           </div>
@@ -235,7 +239,7 @@ export default function UnionsPage() {
             </button>
           </div>
 
-          <p className="font-condensed text-lg text-white font-bold text-center mb-3">What $11,400 per worker buys for a 10,000-person hospital system:</p>
+          <p className="font-condensed text-lg text-white font-bold text-center mb-3">What $9,400 per worker buys for a 10,000-person hospital system:</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-[500px] mx-auto mb-6">
             <div className="bg-green-glow border border-green/20 rounded-lg p-2 text-center text-body text-sm">✓ $35,000+ raise for every nurse</div>
             <div className="bg-green-glow border border-green/20 rounded-lg p-2 text-center text-body text-sm">✓ 800 additional nurses hired</div>
@@ -473,10 +477,20 @@ export default function UnionsPage() {
         }
         .video-container {
           position: relative;
-          width: 100%;
-          aspect-ratio: 16 / 9;
+          padding-bottom: 56.25%;
+          height: 0;
           overflow: hidden;
           border-radius: 12px;
+          border: 2px solid rgba(61, 220, 132, 0.2);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+        .video-wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
         }
       `}</style>
 
@@ -498,4 +512,4 @@ export default function UnionsPage() {
   )
 }
 
-// END FILE: app/unions/page.tsx
+// END FILE: app/unions/page.tsx - TIERS 1-7 COMPLETE
