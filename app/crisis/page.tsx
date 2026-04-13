@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
@@ -10,6 +11,17 @@ export default function CrisisPage() {
       <Navigation />
       <main className="pt-24 pb-16">
         <section className="max-w-[760px] mx-auto px-6 py-12">
+          
+          {/* HERO IMAGE */}
+          <div className="relative w-full h-[300px] md:h-[400px] mb-8 rounded-xl overflow-hidden">
+            <Image
+              src="/images/Congress_Dont_Work_4U-WEre_changing_that-BIG.jpg"
+              alt="Congress doesn't work for you. We're changing that."
+              fill
+              className="object-cover"
+            />
+          </div>
+          
           <span className="font-condensed font-bold text-[#3ddc84] text-sm uppercase tracking-wider block text-center mb-4">This Is What Existential Looks Like</span>
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-6">Five crises. One system.<br /><span className="text-[#3ddc84]">Every piece feeding the others — each failure making the next one worse.</span></h1>
           <p className="text-gray-400 text-center mb-12">That's why nothing ever gets fixed. And that's exactly what PHIERS was built to interrupt.</p>
@@ -32,6 +44,18 @@ export default function CrisisPage() {
           <p className="text-gray-400 mb-3">$8,000 — what we pay</p>
           <p className="text-gray-400 mb-3">$600 — what we need</p>
           <p className="text-gray-400 mb-6">$7,400 — freed per person, per year</p>
+          
+          {/* 80/20 DIAGRAM */}
+          <div className="my-6 max-w-[500px] mx-auto">
+            <Image
+              src="/images/80-20_Truth_About_Healthcare.jpg"
+              alt="80/20 Truth About Healthcare"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           <p className="text-gray-400 mb-6">Multiplied across the population: $2.73 trillion annually. Not profit from care. Overhead, admin cost, and margin extracted by a system designed around payment processing, not health outcomes.</p>
           <p className="font-condensed text-lg text-white font-bold mb-6">The healthcare crisis and the war aren't parallel emergencies. They're the same emergency feeding each other.</p>
           <Link href="/simple-math" className="text-[#3ddc84] text-sm font-condensed font-bold hover:underline">→ See the math</Link>
@@ -47,6 +71,18 @@ export default function CrisisPage() {
           <p className="text-gray-400 mb-3">12% — Congressional approval rating</p>
           <p className="text-gray-400 mb-3">92% — Congressional reelection rate</p>
           <p className="text-gray-400 mb-6">3.5% — Participation threshold that forces change</p>
+          
+          {/* 3.5% DIAGRAM */}
+          <div className="my-6 max-w-[300px] mx-auto">
+            <Image
+              src="/images/3.5pct_Erica_Chenoweth.jpg"
+              alt="3.5% — Chenoweth Research"
+              width={300}
+              height={200}
+              className="w-full h-auto rounded-lg border border-white/10"
+            />
+          </div>
+          
           <p className="text-gray-400 mb-6">That 12% vs 92% gap isn't dysfunction. It's a system working exactly as designed — for the people inside it, not the people it's supposed to represent.</p>
           <p className="font-condensed text-lg text-white font-bold mb-6">The only thing that reliably changes a politician's behavior is organized people in their specific district — names on the record, with documented electoral consequences.</p>
           <Link href="/leverage" className="text-[#3ddc84] text-sm font-condensed font-bold hover:underline">→ See the leverage</Link>
@@ -63,7 +99,7 @@ export default function CrisisPage() {
           <p className="font-condensed text-xl text-[#3ddc84] font-bold my-8">PHIERStorm is the pattern interrupt. One lever. Every dimension turns.</p>
           
           <div className="text-center mt-8">
-            <Link href="/petition" className="inline-block px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
+            <Link href="/petition" className="inline-block px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
             <Link href="/simple-math" className="block text-[#3ddc84] text-sm font-condensed font-bold hover:underline mt-4">→ See the Math</Link>
           </div>
         </section>
