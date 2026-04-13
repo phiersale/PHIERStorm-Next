@@ -1,5 +1,4 @@
-// FILE: app/action/page.tsx
-// ACTION PAGE - Your Name Is Leverage
+// FILE: app/action/page.tsx - COMPLETE REWRITE (Tiers 1-7)
 
 'use client'
 
@@ -65,234 +64,165 @@ export default function ActionPage() {
               className="opacity-90"
             />
           </div>
-          <div className="font-condensed font-bold text-gold text-sm uppercase tracking-wider block mb-3">PHIERS — Your Name. Your District. On the Record.</div>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            Your Name Is<br /><span className="text-green">Leverage.</span><br />Add It.
+            Your Name Is Leverage.<br /><span className="text-green">Here's What To Do With It.</span>
           </h1>
-          <p className="font-condensed text-xl text-gold tracking-wide mb-4">One action. Three moves. Real leverage.</p>
-          <p className="text-body mb-2">This is where your signature becomes leverage.</p>
-          <p className="text-body mb-4">Everything here turns public frustration into coordinated leverage.</p>
-
-          <div className="bg-green-glow border border-green/20 rounded-lg p-4 mb-4 max-w-[600px] mx-auto">
-            <p className="font-condensed font-bold text-green text-base">
-              One coordinated action — done by millions —<br />
-              creates leverage Congress cannot ignore.
-            </p>
-          </div>
-
-          <p className="text-body mb-2">Systems don't change because people yell.<br />They change when people organize behind the same demand.</p>
-          <p className="text-body mb-4">Real people. Real districts. Names on the record — in a way elected officials cannot ignore.</p>
-
-          <div className="bg-green-glow border-l-4 border-l-green rounded-r-lg p-4 max-w-[600px] mx-auto">
-            <p className="font-condensed font-bold text-green text-base">Here's how you take part.</p>
-          </div>
+          <p className="text-gray-400 mb-3">Not everyone organizes. Not everyone donates.</p>
+          <p className="font-condensed text-xl text-green font-bold mb-4">Everyone can multiply pressure.</p>
+          <p className="text-gray-400 mb-2">You don't need millions of people.</p>
+          <p className="text-gray-400 mb-2">You need enough people — in the same place — at the same time.</p>
+          <p className="text-gray-400 mb-6">That's how pressure forms. That's how Congress responds.</p>
         </div>
 
         <hr className="border-green/20" />
 
-        {/* Section Label */}
-        <p className="font-condensed font-bold text-white text-base text-center mb-6 max-w-[760px] mx-auto px-6">
-          This is one coordinated action — done in three quick moves.
-        </p>
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
 
-        {/* Step 1 - Sign the Petition */}
-        <section className="container section">
-          <div className="bg-bg-card border border-green/20 rounded-xl p-6 relative overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-green" />
-            <div className="flex items-center gap-4 mb-4">
-              <div className="font-display text-4xl text-green">1</div>
-              <div className="font-condensed font-bold text-gray-500 text-xs uppercase tracking-wider">Step 1 — Start the Action</div>
-            </div>
-            <h2 className="font-display text-3xl text-white mb-3">Sign the Petition</h2>
-            <p className="text-body mb-3">A signature isn't symbolic — it counts. It shows exactly how many people in your district want the same fix.</p>
-            <p className="text-body mb-3">When your name is on the record, they can't pretend they didn't hear you.<br />When enough neighbors sign, the pressure becomes real.</p>
+        <hr className="border-green/20" />
 
-            <div className="bg-bg-card2 border border-green/20 rounded-lg p-4 my-4">
-              <p className="font-condensed font-bold text-white text-sm"><strong className="text-green">When 1,500 people in your district sign,</strong> a mandatory town hall is triggered — and your representative must show up, answer publicly, and respond under real electoral pressure.</p>
-            </div>
-
-            <p className="text-body mb-3">Researchers studying hundreds of movements found that when about 3.5% of a population acts together — roughly 12 million Americans — governments historically have to respond.</p>
-            <p className="text-gray-500 text-sm italic mb-4">Thirty seconds. That's where leverage begins.</p>
-
-            <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
+        {/* Cascade Diagram */}
+        <section className="container section text-center">
+          <div className="max-w-[500px] mx-auto">
+            <button onClick={() => openModal('/images/Cascade_Math.jpg')} className="cursor-pointer">
+              <Image
+                src="/images/Cascade_Math.jpg"
+                alt="The Cascade — One becomes twelve"
+                width={500}
+                height={300}
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
+              />
+            </button>
           </div>
         </section>
 
-        {/* Step 2 - Take the Survey */}
+        <hr className="border-green/20" />
+
+        {/* Step 1 - Be Counted */}
         <section className="container section">
-          <div className="bg-bg-card border border-green/20 rounded-xl p-6 relative overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-green" />
-            <div className="flex items-center gap-4 mb-4">
-              <div className="font-display text-4xl text-green">2</div>
-              <div className="font-condensed font-bold text-gray-500 text-xs uppercase tracking-wider">Step 2 — Strengthen the Signal</div>
+          <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[600px] mx-auto">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full bg-green text-bg-deep flex items-center justify-center font-condensed font-black text-lg">1</div>
+              <h2 className="font-display text-2xl text-white">BE COUNTED</h2>
             </div>
-            <h2 className="font-display text-3xl text-white mb-3">Take the Survey</h2>
-            <p className="text-body mb-2">Tell us what's hitting your family the hardest. Tell us what you want fixed first.</p>
-            <p className="font-condensed font-bold text-gray-500 text-sm mb-3">Because if it's not written down, it gets ignored.</p>
-            <p className="font-condensed font-bold text-white text-base mb-2">Healthcare. Wages. Housing. Peace. Stability.</p>
-            <p className="text-body mb-3">Your answers get compiled with everyone else in your district and delivered directly to your representative — showing them what their constituents need, not what their donors want.</p>
-
-            <div className="bg-bg-card2 border border-green/20 rounded-lg p-4 my-4">
-              <p className="text-white text-sm"><strong>When your rep walks into that town hall, they'll be holding your district's priorities. Not a talking point. Yours.</strong></p>
-            </div>
-
-            <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform?usp=header" variant="primary">📋 Tell Us What Matters →</Button>
+            <p className="text-body mb-2">Add your name to your district.</p>
+            <p className="text-body mb-2">Not symbolic. Not a comment.</p>
+            <p className="text-body mb-4">A number tied to your representative. That's where pressure starts.</p>
+            <Button href="/petition" variant="primary" fullWidth>✍ ADD MY NAME</Button>
           </div>
         </section>
 
-        {/* Step 3 - Grow the Movement */}
-        <section className="container section">
-          <div className="bg-bg-card border border-green/20 rounded-xl p-6 relative overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-green" />
-            <div className="flex items-center gap-4 mb-4">
-              <div className="font-display text-4xl text-green">3</div>
-              <div className="font-condensed font-bold text-gray-500 text-xs uppercase tracking-wider">Step 3 — Multiply the Pressure</div>
-            </div>
-            <h2 className="font-display text-3xl text-white mb-3">Grow the Movement</h2>
-            <p className="text-body mb-3">You know people who are angry and don't know where to put it. Send them here.</p>
-            <p className="text-body mb-3">Every person who signs increases the pressure in your district. Every survey adds to the evidence Congress cannot ignore. Every share brings us closer to the number history says governments have to respond to.</p>
-            <p className="text-body mb-2"><strong className="text-white">Share it with people in your district first — that's where the pressure counts.</strong></p>
-            <p className="text-gray-500 italic text-sm mb-4">This isn't about going viral. It's about coordination.</p>
+        <hr className="border-green/20" />
 
-            <div className="bg-bg-card2 border border-green/20 rounded-lg p-4 my-4">
-              <p className="text-white text-sm"><strong>Share this with five people. That's how movements grow.</strong></p>
-            </div>
-
-            {/* Share Buttons */}
-            <div className="bg-bg-dark border border-green/20 rounded-xl p-4 my-4">
-              <p className="text-gray-300 text-sm mb-2">Share this:</p>
-              <div className="bg-bg-deep p-3 rounded-lg mb-3">
-                <p className="text-gray-400 text-xs">I just added my name to PHIERS — a district-level pressure system that forces Congress to respond.</p>
-                <p className="text-green text-xs mt-1">Add your name: https://phiers.org/petition</p>
+        {/* Step 2 - Multiply the Count */}
+        <section className="bg-bg-dark border-y border-green/10 section">
+          <div className="container">
+            <div className="bg-bg-card border border-green/20 rounded-xl p-6 max-w-[600px] mx-auto">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-full bg-green text-bg-deep flex items-center justify-center font-condensed font-black text-lg">2</div>
+                <h2 className="font-display text-2xl text-white">MULTIPLY THE COUNT</h2>
               </div>
-
-              <div className="flex flex-wrap gap-2">
-                <button onClick={copyPetitionLink} className="px-3 py-2 bg-green text-bg-deep rounded-lg font-condensed font-bold text-sm hover:bg-green-dim transition-all">
-                  📣 {copySuccess ? 'Copied!' : 'Copy Link'}
-                </button>
-                <button onClick={shareOnFacebook} className="px-3 py-2 bg-[#1877f2] text-white rounded-lg font-condensed font-bold text-sm hover:opacity-90 transition-all">Facebook</button>
-                <button onClick={shareOnX} className="px-3 py-2 bg-black text-white rounded-lg font-condensed font-bold text-sm hover:bg-gray-800 transition-all">X</button>
-                <button onClick={shareViaText} className="px-3 py-2 bg-[#34b7f1] text-white rounded-lg font-condensed font-bold text-sm hover:opacity-90 transition-all">Text</button>
-                <button onClick={shareViaEmail} className="px-3 py-2 bg-gray-600 text-white rounded-lg font-condensed font-bold text-sm hover:bg-gray-500 transition-all">Email</button>
+              <p className="text-body mb-2">One person becomes twelve.</p>
+              <p className="text-body mb-4">Most people already agree. They just haven't been counted yet.</p>
+              <p className="font-condensed text-lg text-white font-bold mb-4">Every share brings your district closer to the 1,500-person tipping point Congress cannot ignore.</p>
+              
+              <div className="bg-bg-dark border border-green/20 rounded-xl p-4 my-4">
+                <p className="text-gray-300 text-sm mb-2">Share this:</p>
+                <div className="bg-bg-deep p-3 rounded-lg mb-3">
+                  <p className="text-gray-400 text-xs">I just added my name to PHIERS — a district-level pressure system that forces Congress to respond.</p>
+                  <p className="text-green text-xs mt-1">Add your name: https://phiers.org/petition</p>
+                </div>
+                
+                <div className="flex flex-wrap gap-2">
+                  <button onClick={copyPetitionLink} className="px-3 py-2 bg-green text-bg-deep rounded-lg font-condensed font-bold text-sm hover:bg-green-dim transition-all">
+                    📣 {copySuccess ? 'Copied!' : 'Copy Link'}
+                  </button>
+                  <button onClick={shareOnFacebook} className="px-3 py-2 bg-[#1877f2] text-white rounded-lg font-condensed font-bold text-sm hover:opacity-90 transition-all">Facebook</button>
+                  <button onClick={shareOnX} className="px-3 py-2 bg-black text-white rounded-lg font-condensed font-bold text-sm hover:bg-gray-800 transition-all">X</button>
+                  <button onClick={shareViaText} className="px-3 py-2 bg-[#34b7f1] text-white rounded-lg font-condensed font-bold text-sm hover:opacity-90 transition-all">Text</button>
+                  <button onClick={shareViaEmail} className="px-3 py-2 bg-gray-600 text-white rounded-lg font-condensed font-bold text-sm hover:bg-gray-500 transition-all">Email</button>
+                </div>
               </div>
-            </div>
-
-            <p className="text-body text-sm mt-3">Send to:</p>
-            <div className="flex flex-wrap gap-2 mt-2 mb-4">
-              <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Friends</span>
-              <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Family</span>
-              <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Coworkers</span>
-              <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Group chats</span>
-              <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Anyone tired of nothing changing</span>
-            </div>
-            <p className="text-gray-500 text-xs">Not to convince them. To count them.</p>
-
-            <div className="mt-4">
-              <Button href="/action" variant="secondary" fullWidth>📣 Share This With 5 People in Your District →</Button>
+              
+              <p className="text-body text-sm mt-3">Send to:</p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Friends</span>
+                <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Family</span>
+                <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Coworkers</span>
+                <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Group chats</span>
+                <span className="text-xs text-gray-500 bg-bg-card px-3 py-1 rounded-full">→ Anyone tired of nothing changing</span>
+              </div>
+              <p className="text-gray-500 text-xs mt-3">Not to convince them. To count them.</p>
             </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* Why Your Action Matters */}
-        <section className="bg-bg-dark border-y border-green/10 section">
-          <div className="container">
-            <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Why Your Action Matters</span>
-            <p className="font-condensed font-bold text-white text-lg mb-4">All of these problems persist for the same reason:<br /><span className="text-green">Congress isn't under enough pressure to act.</span></p>
-
-            <div className="space-y-3 mb-6">
-              <div className="bg-bg-card border-l-3 border-l-red-500 rounded-r-lg p-3">
-                <p className="text-body text-sm">Healthcare costs are rising. Housing costs are rising. Groceries cost more every week.</p>
-              </div>
-              <div className="bg-bg-card border-l-3 border-l-red-500 rounded-r-lg p-3">
-                <p className="text-body text-sm">Families are working harder than ever — and still falling behind.</p>
-              </div>
-              <div className="bg-bg-card border-l-3 border-l-red-500 rounded-r-lg p-3">
-                <p className="text-body text-sm">Unauthorized wars are draining over <strong className="text-white">$1 billion every single day</strong> — no vote, no mandate, no end in sight.</p>
-              </div>
+        {/* Step 3 - Organize Your District */}
+        <section className="container section">
+          <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[600px] mx-auto">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full bg-green text-bg-deep flex items-center justify-center font-condensed font-black text-lg">3</div>
+              <h2 className="font-display text-2xl text-white">ORGANIZE YOUR DISTRICT</h2>
             </div>
-
-            <p className="text-body mb-3">These problems are connected — because the cause is the same.</p>
-            <p className="text-body mb-3">And so is the solution: one coordinated public action that creates enough pressure to force Congress to act — on healthcare, war, and the cost of living — at the same time.</p>
-            <p className="text-body mb-3">Healthcare is the clearest proof the system works — and the fastest way to build the leverage that applies to everything else. The same organized pressure that forces healthcare reform forces war accountability, economic justice, and every demand that follows.</p>
-            <p className="font-condensed font-bold text-white text-lg mt-4">Moments like this go one of two ways. Systems break. Or systems realign.</p>
-            <p className="text-body">Realignment doesn't happen by itself. It takes people moving together.</p>
+            <p className="text-body mb-2">Sharing builds momentum. Organization converts it into pressure.</p>
+            <p className="text-body mb-4">Every district needs people turning names into accountability. That's how 1,500 happens. That's how representatives are forced to respond.</p>
+            <p className="font-condensed text-lg text-green font-bold mb-4">If you're willing to step up — we'll connect you directly.</p>
+            <Button href="/organizers" variant="secondary" fullWidth>✊ ORGANIZE YOUR DISTRICT</Button>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
         {/* What Happens Next */}
-        <section className="container section">
-          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">What Happens Next</span>
-          <h2 className="font-display text-3xl text-white mb-4">District by District.<br /><span className="text-gold">Step by Step.</span></h2>
-          <p className="text-body mb-6">As more people join, results are organized district by district and delivered directly to Congress.</p>
-
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="bg-bg-card border border-green/20 rounded-xl p-4">
-              <p className="font-condensed font-bold text-green text-sm mb-2">When your district hits 1,500</p>
-              <ul className="space-y-1">
-                <li className="text-body text-sm">→ A public town hall is organized</li>
-                <li className="text-body text-sm">→ Your rep gets the data and must answer publicly</li>
-                <li className="text-body text-sm">→ Local media starts asking questions</li>
-                <li className="text-body text-sm">→ Neighbors start talking</li>
-              </ul>
-            </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-4">
-              <p className="font-condensed font-bold text-green text-sm mb-2">When we reach 12 million</p>
-              <ul className="space-y-1">
-                <li className="text-body text-sm">→ Congress is forced to respond — not to one issue, but to the same organized public applying pressure across all of them</li>
-                <li className="text-body text-sm">→ That's what 3.5% does. One lever. Multiple outcomes.</li>
-              </ul>
+        <section className="bg-bg-dark border-y border-green/10 section">
+          <div className="container">
+            <div className="bg-bg-card border-l-4 border-l-green rounded-r-xl p-5 max-w-[600px] mx-auto">
+              <h2 className="font-display text-2xl text-white mb-3">What Happens Next</h2>
+              <p className="text-body mb-2">As district counts grow:</p>
+              <p className="text-body mb-1">→ Thresholds get hit</p>
+              <p className="text-body mb-1">→ Representatives get called out</p>
+              <p className="text-body mb-1">→ Public accountability events get triggered</p>
+              <p className="text-body mb-3">→ Pressure becomes unavoidable</p>
+              <p className="font-condensed text-lg text-green font-bold">This is not awareness. This is coordination.</p>
             </div>
           </div>
+        </section>
 
-          <div className="space-y-2 mb-6">
-            <div className="border-b border-green/20 py-2 font-condensed font-bold text-white">One district creates <span className="text-green">attention.</span></div>
-            <div className="border-b border-green/20 py-2 font-condensed font-bold text-white">Many districts create <span className="text-green">pressure.</span></div>
-            <div className="py-2 font-condensed font-bold text-white">Enough districts create <span className="text-green">obligation.</span></div>
-          </div>
+        <hr className="border-green/20" />
 
-          <p className="text-body"><strong className="text-white">On Election Day 2026, every voter will know exactly who showed up — and who didn't.</strong></p>
+        {/* The Cascade */}
+        <section className="container section text-center">
+          <p className="font-display text-2xl text-gold mb-2">One becomes twelve.</p>
+          <p className="font-display text-2xl text-gold mb-2">Twelve become 148.</p>
+          <p className="font-display text-2xl text-gold mb-4">148 become 1,825.</p>
+          <p className="text-body mb-2">It doesn't spread randomly. It builds where it matters.</p>
+          <p className="font-condensed text-xl text-white font-bold mb-2">District by district.</p>
+          <p className="font-condensed text-lg text-green font-bold">That's why it works.</p>
         </section>
 
         <hr className="border-green/20" />
 
         {/* Final CTA */}
-        <section className="container section">
-          <div className="bg-bg-card border border-green/20 rounded-xl p-8 text-center">
-            <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Make Your Voice Heard</span>
-            <h2 className="font-display text-3xl text-white mb-4">When enough Americans stand behind the same demand, Congress has two choices:</h2>
-
-            <div className="mb-6">
-              <div className="font-display text-5xl text-green mb-2">Act.</div>
-              <div className="font-display text-3xl text-gray-500">Or face voters who will replace them<br />with someone who will.</div>
-            </div>
-
-            <p className="font-condensed font-bold text-white text-lg mb-3">Congress won't fix itself. But we will fix it for them.</p>
-            <p className="font-condensed font-bold text-white text-base mb-6">
-              One action starts it.<br />
-              Three moves build it.<br />
-              3.5% forces it.
-            </p>
-
-            <div className="flex flex-col md:flex-row gap-3 justify-center">
-              <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
-              <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform?usp=header" variant="secondary">📋 Tell Us What Matters</Button>
+        <section className="container section text-center">
+          <div className="bg-bg-dark border-2 border-green rounded-xl p-6 max-w-[600px] mx-auto">
+            <p className="font-condensed text-lg text-gold font-bold mb-3">District counts begin compiling immediately.</p>
+            <p className="text-white text-lg mb-1">Your name.</p>
+            <p className="text-white text-lg mb-1">Your district.</p>
+            <p className="text-white text-lg mb-3">On the record.</p>
+            <p className="text-body mb-4">Counted. Delivered. Impossible to ignore.</p>
+            
+            <div className="flex flex-col gap-3 max-w-md mx-auto">
+              <Button href="/petition" variant="primary" fullWidth>✍ BE COUNTED</Button>
+              <Button href="/organizers" variant="secondary" fullWidth>✊ I ORGANIZE</Button>
             </div>
           </div>
-        </section>
-
-        {/* Closing */}
-        <section className="container section text-center">
-          <p className="font-condensed font-bold text-lg text-gray-500 leading-relaxed">
-            <span className="text-green">Direction</span> brings people together.<br />
-            People together create <span className="text-green">pressure.</span><br />
-            Pressure creates <span className="text-green">change.</span>
-          </p>
-          <p className="text-gray-500 text-sm mt-4">Your name. Your district. Your priorities.<br /><em>That's how leverage starts.</em></p>
-          <div className="font-display text-3xl text-green mt-6">#PHIERdUpNow</div>
         </section>
       </main>
 
@@ -365,9 +295,6 @@ export default function ActionPage() {
           background: #2ab568;
           transform: translateY(-2px);
         }
-        .bg-green-glow {
-          background: rgba(61, 220, 132, 0.06);
-        }
       `}</style>
 
       <script dangerouslySetInnerHTML={{
@@ -388,4 +315,4 @@ export default function ActionPage() {
   )
 }
 
-// END FILE: app/action/page.tsx
+// END FILE: app/action/page.tsx - TIERS 1-7 COMPLETE
