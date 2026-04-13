@@ -37,7 +37,7 @@ export default function FAQPage() {
           
           <div className="bg-[#0a1628] border-l-4 border-[#3ddc84] p-6 my-12 text-center">
             <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-2">3.5% organized = unstoppable change.</p>
-            <p className="text-gray-400 mb-4">12 million Americans. That's the line.</p>
+            <p className="text-gray-400 mb-4">11 million Americans. That's the line.</p>
             <p className="font-condensed text-lg text-[#3ddc84] font-bold mb-4">Energy without power fails. PHIERStorm is the power.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
               <Link href="/petition" className="px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
