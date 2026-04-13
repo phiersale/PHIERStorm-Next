@@ -1,3 +1,6 @@
+// FILE: app/page.tsx
+// HOMEPAGE - Complete with design system
+
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -245,7 +248,6 @@ export default function HomePage() {
             <p className="text-body mb-3">Just enough people in the right places at the same time.</p>
             <p className="text-body mb-6">Because it's not about size. It's about placement.</p>
             
-            {/* Diagram */}
             <div className="max-w-[500px] mx-auto my-6">
               <Image
                 src="/images/99_to_1_-_Great_Odds.jpg"
