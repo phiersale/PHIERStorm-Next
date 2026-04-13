@@ -40,19 +40,17 @@ export default function LeveragePage() {
           <p className="font-condensed text-xl text-white font-bold mb-6">Congress doesn't fear outrage. It fears organized constituents inside its own district.</p>
           <p className="font-condensed text-xl text-[#3ddc84] font-bold mb-12">That's the leverage.</p>
           
-          {/* MECHANISM VIDEO */}
-          <div className="my-8">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
-              <div className="video-wrap" id="wrap-pressure" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/C2mMIx5yoyw/hqdefault.jpg')" }} onClick={() => playVideo('pressure', 'https://www.youtube.com/embed/C2mMIx5yoyw?autoplay=1&rel=0')}>
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
+          {/* VIDEO: When Enough People Organize, Congress Must Respond */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <div id="wrap-enough-people" className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20 cursor-pointer group" onClick={() => playVideo('enough-people', 'https://www.youtube.com/embed/C2mMIx5yoyw?autoplay=1&rel=0')}>
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/C2mMIx5yoyw/hqdefault.jpg')" }}>
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
+                  <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
                 </div>
               </div>
             </div>
-            <div className="bg-[#0a1020] p-5 border-x border-b border-[#3ddc84]/20 rounded-b-xl text-center">
-              <div className="font-display text-xl text-[#3ddc84] mb-1">🎥 How Pressure Builds — And Why Congress Can't Ignore It</div>
-              <div className="font-condensed text-gray-400">Why Congress can't ignore organized people — and what happens when pressure builds in one place.</div>
-            </div>
+            <p className="font-condensed text-[#3ddc84] text-sm text-center mt-2">When Enough People Organize, Congress Must Respond</p>
+            <p className="text-gray-500 text-xs text-center mt-1">Harvard 3.5% rule · district-by-district math · coordinated pressure</p>
           </div>
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Math of Power</h2>
