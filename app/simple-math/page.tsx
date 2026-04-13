@@ -1,5 +1,4 @@
-// FILE: app/simple-math/page.tsx
-// SIMPLE MATH PAGE - Complete with design system
+// FILE: app/simple-math/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -22,6 +21,14 @@ export default function SimpleMathPage() {
   const closeModal = () => {
     setModalImage(null)
     document.body.style.overflow = ''
+  }
+
+  const playVideo = (videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
   }
 
   return (
@@ -73,7 +80,7 @@ export default function SimpleMathPage() {
         {/* The Cascade */}
         <section className="container section">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Cascade</span>
-          <h2 className="font-display text-3xl md:text-4xl text-white mb-4">One Conversion Funds <span className="text-green">12–19 More.</span></h2>
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-4">One Conversion Funds <span className="text-green">12 More.</span></h2>
 
           <div className="max-w-[500px] mx-auto my-6">
             <button onClick={() => openModal('/images/SIMPLE_MATH.png')} className="cursor-pointer">
@@ -82,7 +89,7 @@ export default function SimpleMathPage() {
                 alt="The Math: One conversion funds exponential coverage"
                 width={500}
                 height={400}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
             <p className="text-center text-xs text-gray-500 mt-2">The Exponential Foundation</p>
@@ -104,6 +111,16 @@ export default function SimpleMathPage() {
 
         <hr className="border-green/20" />
 
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
+
+        <hr className="border-green/20" />
+
         {/* Mathematical Cascade */}
         <section className="container section">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Mathematical Cascade</span>
@@ -116,7 +133,7 @@ export default function SimpleMathPage() {
                 alt="Core Math: How $600 telehealth unlocks 234 million covered"
                 width={500}
                 height={400}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
             <p className="text-center text-xs text-gray-500 mt-2">The Endpoint: Universal Coverage for 234M Americans</p>
@@ -138,7 +155,7 @@ export default function SimpleMathPage() {
               <div className="text-xs text-gray-500">Annual Savings</div>
             </div>
             <div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center">
-              <div className="font-display text-3xl text-green">15x+</div>
+              <div className="font-display text-3xl text-green">12×</div>
               <div className="text-xs text-gray-500">Growth Rate</div>
             </div>
           </div>
@@ -149,7 +166,7 @@ export default function SimpleMathPage() {
 
         <hr className="border-green/20" />
 
-        {/* Medicaid Leverage */}
+        {/* Medicaid Leverage - UPDATED */}
         <section className="container section">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Maximum Leverage</span>
           <h2 className="font-display text-3xl md:text-4xl text-white mb-4">Why We Start With <span className="text-green">Medicaid.</span></h2>
@@ -174,10 +191,10 @@ export default function SimpleMathPage() {
             <button onClick={() => openModal('/images/3.5pct_Means_Change.png')} className="cursor-pointer">
               <Image
                 src="/images/3.5pct_Means_Change.png"
-                alt="3.5% Means Guaranteed Change - March 28, 2026"
+                alt="3.5% Means Guaranteed Change"
                 width={400}
                 height={300}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
             <p className="text-center text-xs text-gray-500 mt-2">Click to enlarge</p>
@@ -283,7 +300,7 @@ export default function SimpleMathPage() {
           transform: translateY(-2px);
         }
         .bg-green-glow {
-          background: rgba(61, 220, 132, 0.08);
+          background: rgba(61, 220, 132, 0.06);
         }
       `}</style>
 
@@ -305,4 +322,4 @@ export default function SimpleMathPage() {
   )
 }
 
-// END FILE: app/simple-math/page.tsx
+// END FILE: app/simple-math/page.tsx - TIERS 1-7 COMPLETE
