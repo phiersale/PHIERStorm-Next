@@ -42,6 +42,14 @@ export default function HomePage() {
     sessionStorage.setItem('congressModalShown', '1')
   }
 
+  const playVideo = (videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  }
+
   return (
     <>
       {/* Modal 1 */}
@@ -63,8 +71,8 @@ export default function HomePage() {
             >
               <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10">
                 <Image
-                    src="/images/You_Are_Not_Powerless.jpg"
-                  alt="You are not powerless."
+                  src="/images/Congress_Doesnt_Listen_to_You-3-Backpack.jpg"
+                  alt="Congress doesn't have to listen to you. This is how you make them."
                   fill
                   className="object-cover"
                 />
@@ -73,7 +81,7 @@ export default function HomePage() {
                 onClick={closeEntryModal}
                 className="inline-block mt-4 px-7 py-2 bg-transparent text-[#3ddc84] border border-[#3ddc84]/70 rounded-full font-condensed font-semibold text-base tracking-wide hover:border-[#3ddc84] hover:bg-[#3ddc84]/10 transition-all"
               >
-                Continue →
+                Be Heard →
               </button>
             </motion.div>
           </motion.div>
@@ -119,16 +127,17 @@ export default function HomePage() {
       <Navigation />
 
       <main className="pt-24 pb-16">
-        {/* HERO IMAGE */}
-        <div className="w-full mb-8">
+        
+        {/* HERO IMAGE - Full width */}
+        <div className="relative w-full h-[60vh] md:h-[70vh]">
           <Image
-            src="/images/Congress_Doesnt_Listen_to_You-3-Backpack.jpg"
-            alt="Congress doesn't have to listen to you. This is how you make them."
-            width={1920}
-            height={800}
-            className="w-full h-auto object-cover"
+            src="/images/homepage-hero.jpg"
+            alt="PHIERS — Power Held In Every Representative's Seat"
+            fill
             priority
+            className="object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080d1a] via-transparent to-transparent" />
         </div>
 
         {/* HERO COPY */}
@@ -145,8 +154,8 @@ export default function HomePage() {
           <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-8">Not eventually. Not theoretically. Now.</p>
           
           <div className="flex flex-col md:flex-row gap-4 justify-center max-w-md mx-auto">
-            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ Be counted</Link>
-            <Link href="/organizers" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I organize</Link>
+            <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ I'm ready to be counted — add my name</Link>
+            <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I bring people — show me what PHIERS does for them</Link>
           </div>
         </section>
 
@@ -191,7 +200,7 @@ export default function HomePage() {
 
         <hr className="border-[#3ddc84]/20" />
 
-        {/* SECTION 3 — THE MECHANISM */}
+        {/* SECTION 3 — THE MECHANISM with VIDEO */}
         <section className="max-w-[760px] mx-auto px-6 py-16">
           <span className="font-condensed font-bold text-[#3ddc84] text-sm uppercase tracking-wider block mb-4">The Mechanism</span>
           <p className="font-condensed text-2xl text-[#3ddc84] font-bold mb-4">1,500 people in a district is the tipping point.</p>
@@ -200,32 +209,66 @@ export default function HomePage() {
           <p className="text-gray-400 mb-3">Proven math.</p>
           <p className="text-gray-400 mb-8">Zero ideology.</p>
           
+          {/* VIDEO: How Pressure Builds */}
+          <div className="my-8">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
+              <div className="video-wrap" id="wrap-pressure" style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/C2mMIx5yoyw/hqdefault.jpg')" }} onClick={() => playVideo('pressure', 'https://www.youtube.com/embed/C2mMIx5yoyw?autoplay=1&rel=0')}>
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-[#0a1020] p-5 border-x border-b border-[#3ddc84]/20 rounded-b-xl text-center">
+              <div className="font-display text-xl text-[#3ddc84] mb-1">🎥 How Pressure Builds — And Why Congress Can't Ignore It</div>
+              <div className="font-condensed text-gray-400">Why Congress can't ignore organized people — and what happens when pressure builds in one place.</div>
+            </div>
+          </div>
+          
           <div className="border-t border-[#3ddc84]/20 my-8 pt-8 space-y-6">
-            <p className="text-gray-300 text-lg">1. You add your name</p>
-            <p className="text-gray-400 ml-4 -mt-4 text-sm">A real number tied to your representative — verified, by district, on the record.</p>
-            <p className="text-gray-300 text-lg mt-4">2. We coordinate district by district</p>
-            <p className="text-gray-400 ml-4 -mt-4 text-sm">Real people. Real numbers. Tied to the representatives who have to respond.</p>
-            <p className="text-gray-300 text-lg mt-4">3. Pressure becomes unavoidable</p>
-            <p className="text-gray-400 ml-4 -mt-4 text-sm">When enough people act together, ignoring them becomes more dangerous than responding.</p>
-            <p className="text-gray-300 text-lg mt-4">4. Congress responds — or gets replaced</p>
-            <p className="text-gray-400 ml-4 -mt-4 text-sm">That's how leverage works. That's how it has always worked. That's how it works now.</p>
+            <div>
+              <p className="text-gray-300 text-lg">1. You add your name</p>
+              <p className="text-gray-400 ml-4 -mt-4 text-sm">A real number tied to your representative — verified, by district, on the record.</p>
+            </div>
+            <div>
+              <p className="text-gray-300 text-lg mt-4">2. We coordinate district by district</p>
+              <p className="text-gray-400 ml-4 -mt-4 text-sm">Real people. Real numbers. Tied to the representatives who have to respond.</p>
+            </div>
+            <div>
+              <p className="text-gray-300 text-lg mt-4">3. Pressure becomes unavoidable</p>
+              <p className="text-gray-400 ml-4 -mt-4 text-sm">When enough people act together, ignoring them becomes more dangerous than responding.</p>
+            </div>
+            <div>
+              <p className="text-gray-300 text-lg mt-4">4. Congress responds — or gets replaced</p>
+              <p className="text-gray-400 ml-4 -mt-4 text-sm">That's how leverage works. That's how it has always worked. That's how it works now.</p>
+            </div>
           </div>
         </section>
 
         <hr className="border-[#3ddc84]/20" />
 
-        {/* SECTION 4 — THE MATH */}
+        {/* SECTION 4 — THE MATH with DIAGRAMS */}
         <section className="bg-[#0a1628] border-y border-[#3ddc84]/10 py-16 px-6">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="font-condensed font-bold text-[#3ddc84] text-sm uppercase tracking-wider block mb-4">The Math</span>
             
-            <p className="font-display text-4xl md:text-5xl text-white mb-2">1,500 × 435 congressional districts</p>
+            <p className="font-display text-4xl md:text-5xl text-white mb-2">1,500 × 438 congressional districts</p>
             <p className="font-display text-5xl md:text-6xl text-[#3ddc84] font-bold mb-6">= ~650,000 people.</p>
             <p className="text-gray-400 text-lg mb-4">That's it.</p>
             <p className="text-gray-400 mb-3">Not the whole country.</p>
             <p className="text-gray-400 mb-3">Not a mass movement.</p>
             <p className="text-gray-400 mb-3">Just enough people in the right places at the same time.</p>
             <p className="text-gray-400 mb-6">Because it's not about size. It's about placement.</p>
+            
+            {/* DIAGRAM: Tipping Point */}
+            <div className="my-8 max-w-[500px] mx-auto">
+              <Image
+                src="/images/99_to_1_-_Great_Odds.jpg"
+                alt="99 to 1 — Great Odds"
+                width={500}
+                height={300}
+                className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+              />
+            </div>
             
             <div className="border-t border-[#3ddc84]/20 my-8 pt-8">
               <p className="text-gray-300 text-lg mb-3">One conversion funds twelve more.</p>
@@ -235,9 +278,21 @@ export default function HomePage() {
               <p className="text-gray-400 mb-3">In nine iterations: 234 million Americans covered.</p>
               <p className="text-gray-400 mb-6">In 8–13 months.</p>
               <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-8">That's not a campaign promise. That's arithmetic.</p>
+              
+              {/* DIAGRAM: Cascade Math */}
+              <div className="my-8 max-w-[500px] mx-auto">
+                <Image
+                  src="/images/Cascade_Math.jpg"
+                  alt="Cascade Math — One becomes twelve"
+                  width={500}
+                  height={300}
+                  className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+                />
+              </div>
             </div>
             
             <div className="border-t border-[#3ddc84]/20 my-8 pt-8">
+              {/* DIAGRAM: 3.5% Chenoweth */}
               <div className="max-w-[380px] mx-auto mb-6">
                 <Image
                   src="/images/3.5pct_Erica_Chenoweth.jpg"
@@ -296,7 +351,7 @@ export default function HomePage() {
 
         <hr className="border-[#3ddc84]/20" />
 
-        {/* SECTION 6 — INEVITABILITY */}
+        {/* SECTION 6 — INEVITABILITY with IDENTITY BANNER */}
         <section className="bg-[#0a1628] border-y border-[#3ddc84]/10 py-16 px-6">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="font-condensed font-bold text-[#3ddc84] text-sm uppercase tracking-wider block mb-4">Inevitability</span>
@@ -306,15 +361,34 @@ export default function HomePage() {
             <p className="font-condensed text-xl text-white font-bold mb-6">That's the only mechanism that has ever worked.</p>
             <p className="text-gray-400 mb-4">The only question is whether the pressure gets organized by accident — or on purpose.</p>
             <p className="font-display text-3xl text-[#3ddc84] font-bold">PHIERS is what organized action looks like.</p>
+            
+            {/* IDENTITY BANNER */}
+            <div className="mt-8 max-w-[500px] mx-auto">
+              <Image
+                src="/images/PHIERStorm_the_Movement.png"
+                alt="PHIERStorm — The Movement"
+                width={500}
+                height={200}
+                className="w-full h-auto opacity-90"
+              />
+            </div>
           </div>
         </section>
 
         <hr className="border-[#3ddc84]/20" />
 
-        {/* CREDIBILITY SNAPSHOT */}
+        {/* CREDIBILITY SNAPSHOT with LOGOS */}
         <section className="max-w-[760px] mx-auto px-6 py-16">
           <span className="font-condensed font-bold text-[#3ddc84] text-sm uppercase tracking-wider block mb-4">Credibility</span>
           <p className="text-gray-400 italic mb-8">Each of the following independently validates a different part of the system.</p>
+          
+          {/* CREDIBILITY LOGOS ROW */}
+          <div className="flex flex-wrap justify-center gap-6 mb-8">
+            <Image src="/images/Harvard_logo.png" alt="Harvard Kennedy School" width={80} height={40} className="opacity-70" />
+            <Image src="/images/Pathos_logo.png" alt="Pathos Communications" width={80} height={40} className="opacity-70" />
+            <Image src="/images/DotCom_logo.png" alt="DotCom Magazine" width={80} height={40} className="opacity-70" />
+            <Image src="/images/Cost_Plus_Drugs_logo.png" alt="Cost Plus Drugs" width={80} height={40} className="opacity-70" />
+          </div>
           
           <div className="space-y-6">
             <div className="border-l-4 border-[#ffd60a] pl-5">
@@ -350,8 +424,18 @@ export default function HomePage() {
 
         <hr className="border-[#3ddc84]/20" />
 
-        {/* FINAL CTA */}
+        {/* FINAL CTA with IDENTITY BANNER */}
         <section className="max-w-[600px] mx-auto px-6 py-16 text-center">
+          <div className="mb-8 max-w-[400px] mx-auto">
+            <Image
+              src="/images/PHIERS-Power_Held_In_Every_Reps_Seat.jpg"
+              alt="Power Held In Every Representative's Seat"
+              width={400}
+              height={100}
+              className="w-full h-auto opacity-90"
+            />
+          </div>
+          
           <p className="font-condensed text-xl text-[#ffd60a] font-bold mb-4">District counts begin compiling immediately.</p>
           
           <p className="text-white text-lg mb-2">Your name.</p>
@@ -367,7 +451,7 @@ export default function HomePage() {
           <p className="font-condensed text-white text-lg mb-6">Be part of the first coordinated pressure group Congress can't wait out.</p>
           
           <div className="flex flex-col gap-4 max-w-md mx-auto">
-            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ BE COUNTED</Link>
+            <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ BE COUNTED</Link>
             <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I ORGANIZE</Link>
           </div>
         </section>
