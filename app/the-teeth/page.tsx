@@ -13,7 +13,7 @@ import Button from '@/components/Button'
 
 export default function TheTeethPage() {
   const [teethModalOpen, setTeethModalOpen] = useState(false)
-  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [pathosVideoLoaded, setPathosVideoLoaded] = useState(false)
 
   const playVideo = (videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
@@ -24,11 +24,11 @@ export default function TheTeethPage() {
   }
 
   const loadPathosVideo = () => {
-    if (videoLoaded) return
+    if (pathosVideoLoaded) return
     const container = document.getElementById('pathos-video-container')
     if (container) {
-      container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-      setVideoLoaded(true)
+      container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/UD8svoGU7ZU?autoplay=1&rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+      setPathosVideoLoaded(true)
     }
   }
 
@@ -37,7 +37,7 @@ export default function TheTeethPage() {
       {/* Step indicator */}
       <div className="pt-4 pb-2 text-center">
         <span className="font-condensed text-sm text-gray-500 tracking-wide uppercase">Step 3 of 3 — The Teeth Behind the Demands</span>
-        <p className="font-condensed text-xs text-gray-600 opacity-65 mt-1">Three short pages. Enough to understand the whole system.</p>
+        <p className="font-condensed text-xs text-gray-500 opacity-65 mt-1">Three short pages. Enough to understand the whole system.</p>
       </div>
 
       <Navigation />
@@ -46,7 +46,15 @@ export default function TheTeethPage() {
         {/* Hero Section */}
         <section className="bg-bg-dark section">
           <div className="container text-center">
-            <Image src="/images/PHIERS_Logo.jpg" alt="PHIERS.org" width={80} height={80} className="mx-auto mb-4 opacity-90" />
+            <div className="relative h-[80px] w-auto mx-auto mb-4">
+              <Image
+                src="/images/PHIERS_Logo.png"
+                alt="PHIERS.org"
+                width={80}
+                height={80}
+                className="opacity-90 mx-auto"
+              />
+            </div>
             <p className="font-condensed text-green text-lg mt-2">PHIERS — Power Held In Every Representative's Seat.</p>
             <p className="font-condensed text-gray-500 text-sm mt-1">16 years in the making. This is the moment it was built for.</p>
 
@@ -62,15 +70,17 @@ export default function TheTeethPage() {
             <p className="font-display text-2xl md:text-3xl text-green my-4">PHIERS gives real bite to the demands people are already making.</p>
             <p className="font-condensed font-bold text-green text-lg">Not for a moment. For as long as it takes.</p>
 
+            {/* Teeth Image */}
             <div className="max-w-[420px] mx-auto mt-6">
-              <button onClick={() => setTeethModalOpen(true)} className="cursor-pointer">
-                <Image
-                  src="/images/We_Gotz_Teeth_for_No_Kings.jpg"
-                  alt="Power concedes nothing without a demand that has teeth"
-                  width={420}
-                  height={300}
-                  className="w-full h-auto rounded-xl border border-green/20 hover:scale-[1.02] transition-transform"
-                />
+              <button onClick={() => setTeethModalOpen(true)} className="cursor-pointer w-full">
+                <div className="relative w-full aspect-[4/3]">
+                  <Image
+                    src="/images/We_Gotz_Teeth_for_No_Kings.jpg"
+                    alt="Power concedes nothing without a demand that has teeth"
+                    fill
+                    className="object-contain rounded-xl border border-green/20 hover:scale-[1.02] transition-transform"
+                  />
+                </div>
               </button>
               <p className="text-xs text-gray-500 mt-2">click to enlarge</p>
             </div>
@@ -91,69 +101,68 @@ export default function TheTeethPage() {
 
         {/* Pathos Validation */}
         <section className="container section">
-          <div className="bg-bg-card/60 rounded-2xl p-6 border border-green/15 max-w-[800px] mx-auto">
+          <div className="bg-bg-card/60 rounded-2xl p-6 md:p-8 border border-green/15 max-w-[800px] mx-auto">
             <div className="text-center">
               <p className="font-condensed text-xs text-green uppercase tracking-wider mb-2">Independent Validation</p>
               <div className="font-condensed text-xl md:text-2xl font-bold text-white leading-relaxed mb-2">
                 "If you weren't legit, we wouldn't risk putting our name behind yours."
               </div>
               <div className="font-condensed text-sm text-gray-500 mb-3">
-                — <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline">Pathos Communications</a> · Global PR firm (London Stock Exchange)
+                — <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline hover:text-green transition-colors">Pathos Communications</a> · Global PR firm (London Stock Exchange)
               </div>
               <div className="font-condensed text-sm text-green font-bold mb-4">We passed their test — and chose to stay grassroots.</div>
 
-              <p className="font-condensed font-bold text-gray-500 text-sm uppercase tracking-wide mb-2">Watch how this works in real life.</p>
+              <p className="font-condensed font-bold text-gray-500 text-sm uppercase tracking-wide mb-3">Watch how this works in real life.</p>
 
+              {/* Pathos Video */}
               <div
                 id="pathos-video-container"
-                className="video-wrapper cursor-pointer max-w-[560px] mx-auto"
+                className="relative w-full max-w-[560px] mx-auto aspect-video cursor-pointer rounded-xl overflow-hidden"
                 onClick={loadPathosVideo}
               >
-                {!videoLoaded && (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg"
-                      alt="Watch the video"
-                      fill
-                      className="object-cover rounded-xl"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 rounded-xl">
-                      <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-3xl text-white">
-                        ▶
+                {!pathosVideoLoaded ? (
+                  <>
+                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/UD8svoGU7ZU/hqdefault.jpg')" }}>
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white text-3xl hover:bg-red-700 transition-colors">
+                          ▶
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  </>
+                ) : null}
               </div>
 
-              <p className="font-condensed text-xs text-gray-500 uppercase tracking-wide mt-2">Watch the Validation</p>
+              <p className="font-condensed text-xs text-gray-500 uppercase tracking-wide mt-3">Watch the Validation</p>
               <p className="text-body text-xs text-gray-500 mt-1">Click to play — video loads here</p>
             </div>
           </div>
         </section>
 
+        <hr className="border-green/20" />
+
         {/* Blueprint Video */}
         <section className="container section text-center">
-          <div className="video-container mx-auto">
-            <div id="wrap-blueprint-teeth" className="video-wrapper cursor-pointer group" onClick={() => playVideo('blueprint-teeth', 'https://www.youtube.com/embed/xEA5zVium58?autoplay=1&rel=0')}>
-              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/xEA5zVium58/hqdefault.jpg')" }}>
+          <p className="font-condensed font-bold text-green text-sm mb-2">Full system blueprint (raw/unedited)</p>
+          <div className="video-container max-w-[800px] mx-auto">
+            <div id="wrap-blueprint" className="video-wrapper cursor-pointer group" onClick={() => playVideo('blueprint', 'https://www.youtube.com/embed/UD8svoGU7ZU?autoplay=1&rel=0')}>
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/UD8svoGU7ZU/hqdefault.jpg')" }}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
                   <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
                 </div>
               </div>
             </div>
-            <p className="font-condensed text-green text-sm text-center mt-2">Full system blueprint (raw/unedited)</p>
-            <p className="text-gray-500 text-xs text-center">A deep-dive into leverage, war powers, healthcare savings, and long-term structural fixes</p>
           </div>
+          <p className="text-gray-500 text-xs text-center mt-2">A deep-dive into leverage, war powers, healthcare savings, and long-term structural fixes</p>
         </section>
 
         <hr className="border-green/20" />
 
         {/* Final CTA */}
-        <section className="container section text-center">
-          <div className="border-2 border-green rounded-xl p-8 max-w-[600px] mx-auto">
+        <section className="container section text-center" id="sign">
+          <div className="border-2 border-green rounded-xl p-6 md:p-8 max-w-[600px] mx-auto">
             <p className="text-sm text-gray-500 mb-3">If you're waiting for someone else to fix this — they won't.</p>
-            <div className="font-display text-3xl text-white mb-4">Add your name. Be counted. Make Congress do its job.</div>
+            <div className="font-display text-2xl md:text-3xl text-white mb-4">Add your name. Be counted. Make Congress do its job.</div>
             <p className="text-lg text-gray-300 leading-relaxed">
               Your name isn't just a gesture.<br />
               It goes straight to your representative.<br />
@@ -170,9 +179,9 @@ export default function TheTeethPage() {
         <hr className="border-green/20" />
 
         {/* Continue to How It Works */}
-        <section className="container section-sm text-center">
+        <section className="container section-sm text-center pb-12">
           <p className="font-condensed text-sm text-gray-500 mb-3">Want the full breakdown?</p>
-          <Link href="/leverage" className="font-condensed font-bold text-green text-base border-b border-green/30 pb-0.5">
+          <Link href="/leverage" className="font-condensed font-bold text-green text-base border-b border-green/30 pb-0.5 hover:border-green transition-all">
             See How It Works →
           </Link>
         </section>
@@ -190,13 +199,21 @@ export default function TheTeethPage() {
             exit={{ opacity: 0 }}
             onClick={() => setTeethModalOpen(false)}
           >
-            <Image
-              src="/images/We_Gotz_Teeth_for_No_Kings.jpg"
-              alt="Power concedes nothing without a demand that has teeth"
-              width={800}
-              height={600}
-              className="max-w-[90vw] max-h-[85vh] rounded-xl"
-            />
+            <div className="relative max-w-[90vw] max-h-[85vh] w-auto h-auto" onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={() => setTeethModalOpen(false)}
+                className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors"
+              >
+                ✕
+              </button>
+              <Image
+                src="/images/We_Gotz_Teeth_for_No_Kings.jpg"
+                alt="Power concedes nothing without a demand that has teeth"
+                width={800}
+                height={600}
+                className="rounded-xl"
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -209,6 +226,54 @@ export default function TheTeethPage() {
       >
         ↑
       </button>
+
+      <style jsx global>{`
+        .video-container {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: 12px;
+          border: 2px solid rgba(61, 220, 132, 0.2);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+        .video-wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
+        .back-to-top {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          background: var(--green);
+          color: var(--bg-deep);
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          cursor: pointer;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 150ms ease;
+          z-index: 999;
+          border: none;
+        }
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+        }
+        .back-to-top:hover {
+          background: #2ab568;
+          transform: translateY(-2px);
+        }
+      `}</style>
 
       <script dangerouslySetInnerHTML={{
         __html: `
@@ -227,3 +292,5 @@ export default function TheTeethPage() {
     </>
   )
 }
+
+// END FILE: app/the-teeth/page.tsx
