@@ -1,5 +1,4 @@
-// FILE: app/faq/page.tsx
-// FAQ PAGE - Frequently Asked Questions
+// FILE: app/faq/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -60,7 +59,7 @@ export default function FAQPage() {
     },
     {
       q: "3. Why 3.5%?",
-      a: "<strong style='color:var(--gold);'>Because 3.5% is the tipping point.</strong><br><br>Roughly 12 million people — about 3.5% of the U.S. population — is enough to compel Congress to show up to town halls where constituents can clearly state what must be done to avoid being primaried before 2026.<br><br>3.5% gives them the incentive.<br>PHIERS gives the people the leverage."
+      a: "<strong style='color:var(--gold);'>Because 3.5% is the tipping point.</strong><br><br>Roughly 12 million people — about 3.5% of the U.S. population — is enough to compel Congress to show up to town halls where constituents can clearly state what must be done to avoid being primaried before November 2026.<br><br>3.5% gives them the incentive.<br>PHIERS gives the people the leverage."
     },
     {
       q: "4. Why not wait for Congress?",
@@ -88,7 +87,7 @@ export default function FAQPage() {
     },
     {
       q: "10. What happens after I sign?",
-      a: "<strong style='color:var(--gold);'>Three things:</strong><br><br>1. Your signature counts toward your district's 1,500 petition signature threshold.<br>2. Your representative becomes accountable to your district's demands.<br>3. You're invited to town hall meetings and ongoing surveys to keep your voice front and center.<br><br>Once petition, marketplace and benefit thresholds are reached, you'll be notified and invited to participate as each component comes online.<br><br>We expect major milestones before July 4th — because that's when we plan to reclaim our independence from authoritarian drift and a do‑nothing Congress."
+      a: "<strong style='color:var(--gold);'>Three things:</strong><br><br>1. Your signature counts toward your district's 1,500 petition signature threshold.<br>2. Your representative becomes accountable to your district's demands.<br>3. You're invited to town hall meetings and ongoing surveys to keep your voice front and center.<br><br>Once petition, marketplace and benefit thresholds are reached, you'll be notified and invited to participate as each component comes online.<br><br>We expect major milestones before the end of the year — because that's when we plan to reclaim our independence from authoritarian drift and a do‑nothing Congress."
     },
     {
       q: "11. What if Congress still refuses?",
@@ -96,7 +95,7 @@ export default function FAQPage() {
     },
     {
       q: "12. Why now?",
-      a: "<strong style='color:var(--gold);'>Because waiting makes everything worse.</strong><br><br>• The crisis is unfolding now<br>• The system is failing now<br>• People are suffering now<br>• Jobs are disappearing now<br>• Authoritarian risk is rising now<br><br><strong>And because the math finally works.</strong><br><br>This is the first time in decades that a peaceful, scalable, intelligent solution has been possible — and delaying means losing access to fuel, fertilizer, and stability as global conditions worsen.<br><br><span style='color:var(--green);font-weight:700;'>PHIERS is inviting the public to prepare together, plan together, and build a better future while we still can.</span>"
+      a: "<strong style='color:var(--gold);'>Because waiting makes everything worse.</strong><br><br>• The crisis is unfolding now<br>• The system is failing now<br>• People are suffering now<br>• Jobs are disappearing now<br>• Authoritarian risk is rising now<br><br><strong>And because the math finally works.</strong><br><br>This is the first time in decades that a peaceful, scalable, intelligent solution has been possible — and delaying means losing access to fuel, fertilizer, and stability as global conditions worsen.<br><br><span style='color:var(--green);font-weight:700;'>PHIERS is inviting the public to prepare together, plan together, and build a better future while we still can. The window is open right now.</span>"
     }
   ]
 
@@ -200,8 +199,8 @@ export default function FAQPage() {
           <h3 className="font-display text-3xl text-white mb-3">QUESTIONS ANSWERED.<br /><span className="text-gold">NOW ACT.</span></h3>
           <p className="text-body mb-6">You've seen the answers. You've seen the math. You've seen the mechanism.<br />Now help ignite the cascade.</p>
           <div className="flex flex-col md:flex-row gap-3 justify-center">
-            <Button href="https://forms.gle/euJkZxjUserFVCPK8" variant="primary">JOIN FIRST WAVE</Button>
-            <Button href="/action" variant="secondary">🌊 JOIN THE STORM</Button>
+            <Button href="/petition" variant="primary">✍ SIGN THE PETITION</Button>
+            <Button href="/action" variant="secondary">🌊 JOIN THE MOVEMENT</Button>
           </div>
           <p className="font-condensed text-gray-500 text-sm mt-4">3.5% organized = unstoppable change. 12 million Americans. That's the line.</p>
         </div>
@@ -319,4 +318,4 @@ export default function FAQPage() {
   )
 }
 
-// END FILE: app/faq/page.tsx
+// END FILE: app/faq/page.tsx - TIERS 1-7 COMPLETE
