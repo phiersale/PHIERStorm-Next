@@ -1,5 +1,4 @@
-// FILE: app/our-origins/page.tsx
-// OUR ORIGINS PAGE - 16 Years of Pioneering
+// FILE: app/our-origins/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -43,8 +42,18 @@ export default function OurOriginsPage() {
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-green mb-4">Our Origins: The Full Story</h1>
           <p className="font-condensed text-lg text-white mb-2">PHIERS means Power Held In Every Representative's Seat.</p>
           <p className="text-gray-500 text-sm mb-2">Not a slogan. A solution. Something real.</p>
-          <p className="font-condensed text-base text-gray-400 mb-4">16 years of pioneering. Not competing, but amplifying.</p>
+          <p className="font-condensed text-base text-gray-400 mb-4">Since 2009. Not competing, but amplifying.</p>
           <p className="text-white text-base">Making America Better And Healthier</p>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
         </div>
 
         <hr className="border-green/20" />
@@ -72,10 +81,10 @@ export default function OurOriginsPage() {
 
         <hr className="border-green/20" />
 
-        {/* 16 Years Journey */}
+        {/* Since 2009 Journey - UPDATED (no 15+ years) */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container">
-            <h2 className="font-display text-3xl text-white mb-4">🔍 16 Years of Pioneering (2009-2025)</h2>
+            <h2 className="font-display text-3xl text-white mb-4">🔍 Since 2009</h2>
 
             <h3 className="font-condensed font-bold text-gold text-xl mb-2">The Beginning</h3>
             <p className="text-body mb-3">The name came later — once the system was clear.</p>
@@ -84,7 +93,7 @@ export default function OurOriginsPage() {
             <h3 className="font-condensed font-bold text-gold text-xl mb-2">The Threats & Pivots</h3>
             <p className="text-body mb-3">We faced opposition. Legal threats from established pharmaceutical interests. Market disruptions from the Panama Free Trade Agreement (signed 2007, implemented 2012). Blacklisting. Sabotage. We had to pause, reassess, and wait for the right moment.</p>
 
-            <p className="text-body mb-3"><strong className="text-white">Why we waited 16 years:</strong> Timing matters. We could have launched in 2015. But:</p>
+            <p className="text-body mb-3"><strong className="text-white">Why we waited:</strong> Timing matters. We could have launched earlier. But:</p>
             <ul className="list-disc list-inside text-body space-y-1 mb-4">
               <li>Congress didn't recognize healthcare as a national crisis yet</li>
               <li>Telehealth wasn't proven or accessible</li>
@@ -102,7 +111,7 @@ export default function OurOriginsPage() {
 
             <div className="bg-green-glow border-2 border-green rounded-xl p-5">
               <p className="text-green font-bold text-center">These weren't competitors. They were PROOF our concepts worked.</p>
-              <p className="text-body text-center mt-2">We're not upset about that — we're grateful. Their success validates 16 years of work and gives us the foundation to build on.</p>
+              <p className="text-body text-center mt-2">We're not upset about that — we're grateful. Their success validates our work and gives us the foundation to build on.</p>
             </div>
           </div>
         </section>
@@ -120,7 +129,7 @@ export default function OurOriginsPage() {
           <p className="text-body mb-4">Mark proved pharmaceutical cost reduction works in practice. We integrate his model into a federal system covering 234 million people. His work becomes the RX backbone of PHIERS.</p>
 
           <h3 className="font-condensed font-bold text-gold text-xl mb-2">Al Wilson & The Co-Architecture</h3>
-          <p className="text-body mb-4">Al originated the pharmaceutical cost-reduction model 16 years ago. He proved it works. He fought through every threat and pivot. PHIERS succeeds because Al's vision stood the test of time.</p>
+          <p className="text-body mb-4">Al originated the pharmaceutical cost-reduction model. He proved it works. He fought through every threat and pivot. PHIERS succeeds because Al's vision stood the test of time.</p>
 
           <h3 className="font-condensed font-bold text-gold text-xl mb-2">Congressional Partners</h3>
           <p className="text-body">When Congress implements PHIERS, they become the partners who deliver healthcare to 234 million Americans. We're not replacing them — we're giving them the framework to finally solve the crisis.</p>
@@ -128,10 +137,10 @@ export default function OurOriginsPage() {
 
         <hr className="border-green/20" />
 
-        {/* Why Now */}
+        {/* Why Now - UPDATED */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container">
-            <h2 className="font-display text-3xl text-white mb-4">🔥 Why Now (February 2025)</h2>
+            <h2 className="font-display text-3xl text-white mb-4">🔥 Why Now</h2>
 
             <p className="text-body mb-3"><strong className="text-white">Everything is aligned:</strong></p>
             <ul className="list-disc list-inside text-body space-y-2 mb-6">
@@ -139,7 +148,7 @@ export default function OurOriginsPage() {
               <li><strong className="text-white">Proof points exist:</strong> Telehealth works. Cost Plus Drugs works. Cooperative models scale.</li>
               <li><strong className="text-white">Workers are demanding it:</strong> Union strikes demand healthcare + wages + dignity (PHIERS delivers all three)</li>
               <li><strong className="text-white">The math is irrefutable:</strong> $2.73 trillion in annual savings too big to ignore</li>
-              <li><strong className="text-white">Political leverage:</strong> March 28, 2026 — we control the narrative with 3.5% organized</li>
+              <li><strong className="text-white">Political leverage:</strong> 3.5% organized — we control the narrative</li>
               <li><strong className="text-white">Democratic power mobilizing:</strong> 16M+ union workers. 50M+ union voters. 100M+ affected by healthcare crisis.</li>
             </ul>
 
@@ -183,7 +192,7 @@ export default function OurOriginsPage() {
               <p className="text-green font-bold mt-2">When the savings cascade reaches every American, we win.</p>
             </div>
 
-            <p className="text-body">That's why we honor our partners instead of competing with them. That's why we waited 16 years. That's why now is the moment.</p>
+            <p className="text-body">That's why we honor our partners instead of competing with them. That's why we waited. That's why now is the moment.</p>
           </div>
         </section>
 
@@ -205,13 +214,13 @@ export default function OurOriginsPage() {
 
         <hr className="border-green/20" />
 
-        {/* Join the Movement */}
+        {/* Join the Movement - UPDATED (no First Wave) */}
         <section className="container section text-center">
           <div className="bg-gradient-to-r from-green/20 to-green/10 border-l-4 border-l-green rounded-xl p-8">
             <h2 className="font-display text-3xl text-white mb-4">Join the Movement</h2>
-            <p className="text-body text-lg mb-6">16 years of preparation. The moment has arrived. The power is ours.</p>
+            <p className="text-body text-lg mb-6">Years of preparation. The moment has arrived. The power is ours.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center">
-              <Button href="https://forms.gle/euJkZxjUserFVCPK8" variant="primary">⚡ JOIN FIRST WAVE</Button>
+              <Button href="/petition" variant="primary">✍ SIGN THE PETITION</Button>
               <Button href="/" variant="secondary">Back to Homepage</Button>
             </div>
           </div>
@@ -310,4 +319,4 @@ export default function OurOriginsPage() {
   )
 }
 
-// END FILE: app/our-origins/page.tsx
+// END FILE: app/our-origins/page.tsx - TIERS 1-7 COMPLETE
