@@ -1,5 +1,4 @@
-// FILE: app/unbreakable/page.tsx
-// UNBREAKABLE PAGE - The Pattern. The Pressure. The Proof.
+// FILE: app/unbreakable/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -48,7 +47,7 @@ export default function UnbreakablePage() {
               className="opacity-70 max-w-[250px] w-full h-auto grayscale brightness-75"
             />
           </div>
-          <div className="text-gray-500 text-xs uppercase tracking-wider mb-3">MABAH — Making America Better And Healthier</div>
+          <div className="text-gray-500 text-xs uppercase tracking-wider mb-3">The Pattern. The Pressure. The Proof.</div>
           <div className="text-gray-600 text-base italic mb-4">When they dissed us, we built anyway.</div>
           <h1 className="font-display text-5xl md:text-7xl text-white tracking-[6px] mb-4">UNBREAKABLE</h1>
           <div className="text-gray-500 text-sm tracking-wide">The pattern. The pressure. The proof.</div>
@@ -57,6 +56,16 @@ export default function UnbreakablePage() {
         {/* Purpose Box */}
         <div className="bg-[#141414] border-t border-b border-[#222] py-5 px-8 text-center my-8">
           <p className="text-gray-500 text-sm italic">UNBREAKABLE exists to document the pattern, the pressure, and the proof — so the country understands what PHIERS survived to exist.</p>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
         </div>
 
         <hr className="border-green/20" />
@@ -249,8 +258,7 @@ export default function UnbreakablePage() {
           <p className="text-gray-400 mt-4 mb-3">The math didn't change. The architecture didn't change. The national impact didn't change.</p>
           <p className="text-gray-400 mb-4">What changed was their understanding of who built it — and what it was built to disrupt.</p>
           <p className="text-gray-400 mb-4">This solution was built by Black men who showed up for each other — as fathers, sons, brothers, uncles, friends, and allies — when every institution they approached either went silent or pushed back.</p>
-          <p className="text-gray-400 mb-4">That endurance is not a tragedy. It is the proof of concept.</p>
-          <p className="text-gray-400">If PHIERS could be built under those conditions — it can survive anything.</p>
+          <p className="text-gray-400">That endurance is not a tragedy. It is the proof of concept.</p>
         </section>
 
         <hr className="border-green/20" />
@@ -273,11 +281,11 @@ export default function UnbreakablePage() {
             </div>
 
             <p className="text-gray-400 mb-3">Delroy Lindo said afterward he wished "someone from BAFTA had spoken to us." No one did.</p>
-            <p className="text-gray-400 mt-4 mb-3">That same week, a UK-based PR firm traded on the London Stock Exchange shifted direction after warm, collaborative conversations about PHIERS. Will had shared the SOTU Pre-sponse — evidence that PHIERS could address the global instability driving us toward a war nobody asked for. The energy changed. They backed out of a signed contract. No questions asked.</p>
+            <p className="text-gray-400 mt-4 mb-3">That same week, a UK-based PR firm traded on the London Stock Exchange shifted direction after warm, collaborative conversations about PHIERS. The energy changed. They backed out of a signed contract. No questions asked.</p>
             <p className="text-gray-400 mb-5">The reader can connect the same dots he connected.</p>
 
             <div className="border-t border-b border-[#222] py-6 my-6 text-center">
-              <p className="text-white text-base italic mb-2">"Different institution. Same pattern. Same silence. Same discomfort with Black excellence that disrupts the status quo."</p>
+              <p className="text-white text-base italic mb-2">"Different institution. Same pattern. Same silence. Same discomfort with excellence that disrupts the status quo."</p>
               <span className="text-gray-600 text-sm">— Will Price, on what he observed</span>
             </div>
 
@@ -402,7 +410,7 @@ export default function UnbreakablePage() {
             <p className="text-gray-500 text-base mb-5">The movement needs your direction on the record.</p>
             <Button href="/action" variant="primary">✊ Take Action</Button>
             <div className="flex flex-wrap gap-3 justify-center mt-4">
-              <Button href="https://forms.gle/euJkZxjUserFVCPK8" variant="secondary">⚡ JOIN FIRST WAVE</Button>
+              <Button href="/petition" variant="secondary">✍ SIGN THE PETITION</Button>
               <Button href="/unstoppable" variant="secondary">Read UNSTOPPABLE →</Button>
             </div>
           </div>
@@ -515,4 +523,4 @@ export default function UnbreakablePage() {
   )
 }
 
-// END FILE: app/unbreakable/page.tsx
+// END FILE: app/unbreakable/page.tsx - TIERS 1-7 COMPLETE
