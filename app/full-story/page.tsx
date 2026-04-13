@@ -1,15 +1,29 @@
-// FILE: app/full-story/page.tsx
-// FULL STORY PAGE - Complete with design system
+// FILE: app/full-story/page.tsx - REBUILT (Tiers 1-7)
 
 'use client'
 
-import Link from 'next/link'
+import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
 
 export default function FullStoryPage() {
+  const [modalImage, setModalImage] = useState<string | null>(null)
+  const [willModalOpen, setWillModalOpen] = useState(false)
+
+  const openModal = (src: string) => {
+    setModalImage(src)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeModal = () => {
+    setModalImage(null)
+    document.body.style.overflow = ''
+  }
+
   const playVideo = (videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
@@ -21,177 +35,221 @@ export default function FullStoryPage() {
   return (
     <>
       <Navigation />
+
       <main>
-        {/* Hero Content */}
-        <section className="container section text-center">
-          <h1 className="font-display text-4xl md:text-5xl text-white mb-3">For anyone who needs to see<br /><span className="text-green">the receipts before they move.</span></h1>
-          <p className="text-gray-400 max-w-[700px] mx-auto">If you're the kind of person who needs the full case before you act — this is where it lives. The math. The law. The proof. The letters. The videos. The 16-year arc. Start anywhere. It all connects.</p>
-        </section>
-
-        <hr className="border-green/20" />
-
-        {/* The Problem */}
-        <section className="container section">
-          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Problem</span>
-          <p className="text-body">CMS — the federal agency that administers Medicare and Medicaid — pays roughly $8,000 per person per year under traditional insurance. 80% of everyday healthcare needs can be met through telehealth at $600 per person per year. That gap — $7,400 per person, per year — multiplied across the American population represents $2.73 trillion annually. Not profit from care. Overhead, admin cost, and margin extracted by a system designed around payment processing, not health outcomes.</p>
-          
-          <div className="max-w-[500px] mx-auto my-4">
+        {/* Hero */}
+        <div className="container section text-center pt-32">
+          <div className="relative h-[100px] w-auto mb-6 flex justify-center">
             <Image
-              src="/images/80-20_Truth_About_Healthcare.jpg"
-              alt="80/20 Truth About Healthcare"
-              width={500}
-              height={300}
-              className="w-full h-auto rounded-lg border border-green/20"
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              width={100}
+              height={100}
+              className="opacity-90"
             />
           </div>
-        </section>
+          <div className="text-green text-sm font-condensed tracking-wide mb-1">The Full Story</div>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
+            You've seen the idea.<br />This is <span className="text-green">the proof.</span>
+          </h1>
+          <p className="text-body text-base max-w-[720px] mx-auto mb-3">
+            The healthcare system isn't failing because solutions don't exist.<br />
+            It's failing because the incentives are broken — and Congress has no reason to fix them.<br />
+            PHIERS changes that by organizing people around a solution that already works today.
+          </p>
+          <p className="text-body text-base max-w-[720px] mx-auto mb-3">
+            The $600 model isn't theoretical. It's based on real telehealth systems already delivering care today — covering the majority of what people actually use, at a fraction of the cost.
+          </p>
+          <p className="text-gray-400 italic max-w-[720px] mx-auto">
+            What matters isn't just that it works. It's that it works well enough to prove we don't need Congress to fix it — and that's what creates the leverage to force them to act — whether they want to or not.
+          </p>
+        </div>
 
         <hr className="border-green/20" />
 
-        {/* The Legal Authority */}
-        <section className="bg-bg-dark border-y border-green/10 section">
-          <div className="container">
-            <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Legal Authority</span>
-            <p className="text-body">Congress doesn't need new legislation to expand telehealth through the ACA Exchange. The authority already exists. The demand is already legal. The only missing ingredient is organized people forcing them to use it.</p>
-          </div>
-        </section>
-
-        <hr className="border-green/20" />
-
-        {/* The Cascade Math */}
+        {/* Section 1: Intro Video */}
         <section className="container section">
-          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Cascade Math</span>
-          <p className="text-body mb-2">One conversion funds twelve more.</p>
-          <p className="text-body mb-2">Twelve fund 148.</p>
-          <p className="text-body mb-3">148 fund 1,825.</p>
-          <p className="text-body mb-3">In nine iterations: 234 million Americans covered. In 8–13 months.</p>
-          <p className="font-condensed text-xl text-gold font-bold mb-4">That's not a campaign promise. That's arithmetic.</p>
-          
-          <div className="max-w-[500px] mx-auto my-4">
-            <Image
-              src="/images/Cascade_Math.jpg"
-              alt="Cascade Math — One becomes twelve"
-              width={500}
-              height={300}
-              className="w-full h-auto rounded-lg border border-green/20"
-            />
-          </div>
-        </section>
-
-        <hr className="border-green/20" />
-
-        {/* The Proof Points */}
-        <section className="bg-bg-dark border-y border-green/10 section">
-          <div className="container">
-            <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Proof Points</span>
-            <div className="space-y-3">
-              <div><p className="font-condensed font-bold text-white">Mark Cuban's Cost Plus Drugs</p><p className="text-body text-sm">The PHIERSale model — running at scale. 7 million customers. 80–90% savings.</p></div>
-              <div><p className="font-condensed font-bold text-white">ZORTT Elite Medical</p><p className="text-body text-sm">Cooperative healthcare delivery. Operational. Proven.</p></div>
-              <div><p className="font-condensed font-bold text-white">Erica Chenoweth / Harvard Kennedy School</p><p className="text-body text-sm">323 campaigns. Zero failures at 3.5%.</p></div>
-            </div>
-            
-            <div className="max-w-[300px] mx-auto my-4">
-              <Image
-                src="/images/3.5pct_Erica_Chenoweth.jpg"
-                alt="3.5% — Chenoweth Research"
-                width={300}
-                height={200}
-                className="w-full h-auto rounded-lg border border-white/10"
-              />
-            </div>
-          </div>
-        </section>
-
-        <hr className="border-green/20" />
-
-        {/* The Letters */}
-        <section className="container section">
-          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Letters</span>
-          <div className="space-y-4">
-            <div className="bg-bg-card border border-green/20 rounded-xl p-4">
-              <Image src="/images/VanHollen_Letter_of_Support.png" alt="Congressman Chris Van Hollen letter" width={500} height={400} className="w-full h-auto rounded-lg mb-2" />
-              <p className="text-white italic text-sm">"PHIERS.org has the potential to become a vital part of the health care system."</p>
-              <p className="text-green text-xs mt-1">— Congressman Chris Van Hollen</p>
-            </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-4">
-              <Image src="/images/KJ_Sacramento_Support_Letter.png" alt="Mayor Kevin Johnson letter" width={500} height={400} className="w-full h-auto rounded-lg mb-2" />
-              <p className="text-white italic text-sm">"I strongly support the PHIERS approach... PHIERS could be readily adapted throughout California as a flagship community health care approach."</p>
-              <p className="text-green text-xs mt-1">— Mayor Kevin Johnson, Sacramento</p>
-            </div>
-            <p className="text-body text-sm">This support goes back to 2009. Before any of the proof points arrived. The idea was right then. The moment is now.</p>
-          </div>
-        </section>
-
-        <hr className="border-green/20" />
-
-        {/* The Validation Videos */}
-        <section className="bg-bg-dark border-y border-green/10 section">
-          <div className="container">
-            <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Validation Videos</span>
-            
-            {/* Pathos */}
-            <div className="bg-bg-card border border-green/20 rounded-xl p-4 mb-4">
-              <p className="font-condensed font-bold text-white mb-2">Pathos Communications</p>
-              <p className="text-body text-sm mb-3">Kevin Harrington — original Shark Tank investor. Fortune 500 PR firm.</p>
-              <div className="video-container mx-auto">
-                <div className="video-wrapper">
-                  <div className="video-wrap" id="wrap-pathos" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                    <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg')" }} onClick={() => playVideo('pathos', 'https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0')}>
-                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
-                    </div>
+          <div className="bg-blue-500/10 border-2 border-blue-500/30 rounded-xl p-6">
+            <h2 className="font-display text-2xl md:text-3xl text-blue-400 text-center mb-4">The 60-Second PHIERS Brief</h2>
+            <div className="video-container max-w-[800px] mx-auto">
+              <div id="wrap-intro" className="video-wrapper cursor-pointer group" onClick={() => playVideo('intro', 'https://www.youtube.com/embed/2j-dF3hgdeE?autoplay=1&rel=0')}>
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/2j-dF3hgdeE/hqdefault.jpg')" }}>
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
+                    <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
                   </div>
                 </div>
               </div>
-              <p className="text-green text-sm font-condensed mt-2">▶ Why Pathos Chose PHIERS — 7:11</p>
             </div>
-
-            {/* DotCom */}
-            <div className="bg-bg-card border border-green/20 rounded-xl p-4">
-              <p className="font-condensed font-bold text-white mb-2">DotCom Magazine</p>
-              <p className="text-body text-sm mb-3">Kevin O'Leary's platform. Interviewed Will Price in 2022.</p>
-              <div className="video-container mx-auto">
-                <div className="video-wrapper">
-                  <div className="video-wrap" id="wrap-dotcom" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                    <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/pUdlWukaLLY/hqdefault.jpg')" }} onClick={() => playVideo('dotcom', 'https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1&rel=0')}>
-                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p className="text-green text-sm font-condensed">▶ DotCom Magazine Teaser</p>
-              <Link href="https://youtu.be/FwFq87VqZys" target="_blank" className="text-green text-sm font-condensed hover:underline block mt-1">▶ Watch: Full Interview (27 mins)</Link>
+            <div className="flex flex-wrap justify-center gap-4 mt-5">
+              <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
+              <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform?usp=header" variant="secondary">📋 Take the Survey</Button>
             </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* The 16-Year Arc */}
+        {/* Section 2: What Is PHIERS */}
         <section className="container section">
-          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The 16-Year Arc</span>
-          <div className="space-y-1 text-body text-sm">
-            <p>2009 — SureSafe Pharma proves the model.</p>
-            <p>2014 — Prior art documented.</p>
-            <p>2022 — DotCom Magazine validation.</p>
-            <p>2022 — Cost Plus Drugs proves the market.</p>
-            <p>2024 — Pathos Communications validation.</p>
-            <p>2025 — Telehealth mainstream. Model confirmed.</p>
-            <p>2026 — The moment the system was built for.</p>
+          <div className="bg-blue-500/10 border-2 border-blue-500/30 border-l-4 border-l-blue-500 rounded-xl p-6">
+            <p className="font-display text-2xl md:text-3xl text-green font-bold mb-3">Politicians respond to organized power.<br />PHIERS organizes the public.</p>
+            <p className="text-body mb-3"><strong className="text-white">PHIERS isn't a policy campaign.</strong> It's a way for regular Americans to give Congress documented direction — and replace the ones who ignore it.</p>
+            <p className="text-body mb-3">When millions of people say the same thing — on the record — Congress has to act. We don't ask people to yell louder. We help them line up behind one clear demand.</p>
+            <p className="text-body">We use <strong className="text-green">math and collective power</strong> to force Congress to stabilize healthcare, protect coverage, and stop using people's lives as bargaining chips.</p>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* Final CTA */}
+        {/* Section 3: Telehealth Benefits Graphic */}
         <section className="container section text-center">
-          <div className="bg-bg-dark border-2 border-green rounded-xl p-6 max-w-[500px] mx-auto">
-            <p className="font-condensed text-xl text-gold font-bold mb-4">You've seen the receipts. Now be counted.</p>
-            <Button href="/petition" variant="primary" fullWidth>✍ ADD MY NAME</Button>
+          <button onClick={() => openModal('/images/Telehealth_Benefits.jpg')} className="cursor-pointer">
+            <Image
+              src="/images/Telehealth_Benefits.jpg"
+              alt="Telehealth Benefits: 24/7 doctors, fast prescriptions, no waiting rooms, mental health support, zero surprise bills — under $50/mo"
+              width={600}
+              height={400}
+              className="max-w-full h-auto mx-auto rounded-lg border-2 border-green/20 hover:scale-[1.01] transition-transform"
+            />
+          </button>
+          <p className="text-gray-500 text-sm italic mt-2">Everything you actually need — under $50/month. No waiting rooms. No surprise bills. No gatekeepers.</p>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Section 4: Telehealth Section */}
+        <section className="container section">
+          <div className="bg-green/10 border-2 border-green/35 border-l-4 border-l-green rounded-xl p-6">
+            <h2 className="font-display text-2xl md:text-3xl text-green mt-0 mb-4">Telehealth Is the Answer to the Affordability Crisis</h2>
+            <p className="text-white text-lg font-semibold mb-4">$600 telehealth replaces $10,000 insurance.<br />That's not a slogan — it's the math Congress doesn't want you to know.</p>
+
+            <div className="grid md:grid-cols-3 gap-4 my-6">
+              <div className="bg-bg-card border border-green/20 rounded-lg p-4 text-center">
+                <div className="text-green font-bold text-2xl">80%</div>
+                <p className="text-gray-400 text-sm">of Americans never use hospitalization. They're paying $10,000/year for protection they don't need.</p>
+              </div>
+              <div className="bg-bg-card border border-green/20 rounded-lg p-4 text-center">
+                <div className="text-green font-bold text-2xl">$600/yr</div>
+                <p className="text-gray-400 text-sm">Telehealth delivers 80% of healthcare needs — 24/7 access, no denials — at 1/14th the cost.</p>
+              </div>
+              <div className="bg-bg-card border border-green/20 rounded-lg p-4 text-center">
+                <div className="text-green font-bold text-2xl">8–13 mo.</div>
+                <p className="text-gray-400 text-sm">From Congressional authorization to universal coverage. Congress can do this tomorrow.</p>
+              </div>
+            </div>
+
+            <p className="text-body mb-3"><strong className="text-white">Telehealth is care. Insurance is protection.</strong> Most Americans are paying for catastrophic coverage they never use — while skipping routine care they can't afford. PHIERS fixes the system by separating the two: <strong className="text-green">$600 telehealth for the 80%. Insurance as the backstop for the rest.</strong></p>
+            <p className="text-body mb-4">Our one demand to Congress: <strong className="text-gold">add $600 telehealth as a covered benefit under the ACA Exchange and CMS.</strong> That single change stabilizes costs for 234 million Americans — and saves roughly $2.7 trillion a year.</p>
+
+            <Link href="/telecare" className="inline-block bg-gradient-to-r from-green to-green-dim text-bg-deep font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-all">📱 See the Full Telehealth Case →</Link>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Section 5: Bridge Section */}
+        <div className="bg-bg-card border-l-4 border-gold rounded-lg p-6 mx-auto max-w-[800px] my-8 text-center">
+          <p className="text-gold text-lg font-bold mb-2">Fixing healthcare generates the savings to solve everything else.</p>
+          <p className="text-body">$2.7 trillion a year — freed from a broken system — is the fuel for the five connected problems facing this country. PHIERS is built to solve all five. Healthcare is where we start.</p>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Section 6: Start Where You Are Grid */}
+        <section className="container section">
+          <div className="bg-green/10 border border-green/25 rounded-xl p-8 text-center">
+            <h2 className="font-display text-2xl md:text-3xl text-white mt-0 mb-4">Start Where You Are</h2>
+            <p className="text-body mb-6">Pick the page that fits your question right now.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[700px] mx-auto">
+              <Link href="/crisis" className="bg-gradient-to-r from-green to-green-dim text-bg-deep font-bold p-4 rounded-lg text-center hover:opacity-90 transition-all">🚨 The Crisis</Link>
+              <Link href="/telecare" className="bg-gradient-to-r from-[#1b5e20] to-[#2e7d32] text-white font-bold p-4 rounded-lg text-center border-2 border-gold hover:opacity-90 transition-all">📱 The Fix: Telehealth</Link>
+              <Link href="/simple-math" className="bg-gradient-to-r from-green to-green-dim text-bg-deep font-bold p-4 rounded-lg text-center hover:opacity-90 transition-all">📊 The Math</Link>
+              <Link href="/solutions" className="bg-gradient-to-r from-green to-green-dim text-bg-deep font-bold p-4 rounded-lg text-center hover:opacity-90 transition-all">🔧 The Solution</Link>
+              <Link href="/leverage" className="bg-gradient-to-r from-green to-green-dim text-bg-deep font-bold p-4 rounded-lg text-center hover:opacity-90 transition-all">⚡ The Leverage</Link>
+              <Link href="/no-war" className="bg-gradient-to-r from-red-600 to-red-800 text-white font-bold p-4 rounded-lg text-center hover:opacity-90 transition-all">⚔️ End the War</Link>
+              <Link href="/action" className="bg-gradient-to-r from-gold to-[#e0a800] text-black font-bold p-4 rounded-lg text-center hover:opacity-90 transition-all">✊ Take Action</Link>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Section 7: How PHIERS Works */}
+        <section className="container section">
+          <div className="bg-green/10 border-2 border-green border-l-4 border-l-green rounded-xl p-6">
+            <p className="text-lg font-bold text-white mb-4">Four steps. No ideology. Just your voice on record.</p>
+            <div className="space-y-4">
+              <div className="flex gap-4 items-start"><span className="text-green text-2xl font-bold min-w-[40px]">1.</span><p className="text-body"><strong className="text-green">Sign the petition + take the survey</strong> — Your name, your position, on the public record.</p></div>
+              <div className="flex gap-4 items-start"><span className="text-green text-2xl font-bold min-w-[40px]">2.</span><p className="text-body"><strong className="text-green">1,500 signatures in YOUR DISTRICT</strong> — Forces a mandatory town hall. Congress can't ignore it.</p></div>
+              <div className="flex gap-4 items-start"><span className="text-green text-2xl font-bold min-w-[40px]">3.</span><p className="text-body"><strong className="text-green">3.5% participation (11.6M people)</strong> — No campaign in history has ever failed after hitting this number.</p></div>
+              <div className="flex gap-4 items-start"><span className="text-red-500 text-2xl font-bold min-w-[40px]">4.</span><p className="text-body"><strong className="text-red-500">Replace elected officials who refuse</strong> — No exceptions.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Section 8: Research Proves 3.5% */}
+        <section className="container section">
+          <div className="bg-red-500/10 border border-red-500/25 border-l-4 border-l-red-500 rounded-xl p-6">
+            <h2 className="font-display text-2xl md:text-3xl text-red-500 mt-0 mb-4">Research Proves That Congress Can't Ignore 3.5%</h2>
+            <p className="text-body mb-4"><strong className="text-white">At that level of alignment:</strong> Every district is affected, every election becomes competitive, every party must respond.</p>
+            <div className="bg-green/15 border-2 border-green rounded-lg p-5">
+              <p className="text-green text-xl font-bold mb-2">Once we hit critical mass, universal healthcare becomes inevitable — and free.</p>
+              <p className="text-body">The savings already exist. The math already works. The only thing missing is organized public pressure. That's exactly what 3.5% delivers.</p>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Section 9: Final CTA */}
+        <section className="container section text-center">
+          <div className="bg-red-500/10 border-2 border-red-500/30 rounded-xl p-8">
+            <h2 className="font-display text-2xl md:text-3xl text-red-500 mt-0 mb-4">The Only Thing Missing Is You</h2>
+            <p className="text-body text-lg mb-6"><strong className="text-white">PHIERS is a public-interest movement</strong> — not a company, not a product. It works when people participate.</p>
+
+            <div className="flex flex-col md:flex-row gap-3 justify-center">
+              <Button href="/action" variant="primary">✊ Take Action</Button>
+              <Button href="/petition" variant="secondary">✍ Sign the Petition</Button>
+              <Button href="/donate" variant="secondary">Support the Movement</Button>
+            </div>
+
+            <div className="font-display text-2xl text-green text-center mt-6">#PHIERdUpNow</div>
           </div>
         </section>
       </main>
 
       <Footer />
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {modalImage && (
+          <motion.div
+            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={closeModal}
+                className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors"
+              >
+                ✕
+              </button>
+              <Image
+                src={modalImage}
+                alt="Enlarged view"
+                width={800}
+                height={600}
+                className="rounded-xl"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <button 
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -201,6 +259,54 @@ export default function FullStoryPage() {
       >
         ↑
       </button>
+
+      <style jsx global>{`
+        .back-to-top {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          background: var(--green);
+          color: var(--bg-deep);
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          cursor: pointer;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 150ms ease;
+          z-index: 999;
+          border: none;
+        }
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+        }
+        .back-to-top:hover {
+          background: #2ab568;
+          transform: translateY(-2px);
+        }
+        .video-container {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: 12px;
+          border: 2px solid rgba(61, 220, 132, 0.2);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+        .video-wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
+      `}</style>
 
       <script dangerouslySetInnerHTML={{
         __html: `
@@ -219,3 +325,5 @@ export default function FullStoryPage() {
     </>
   )
 }
+
+// END FILE: app/full-story/page.tsx - TIERS 1-7 COMPLETE
