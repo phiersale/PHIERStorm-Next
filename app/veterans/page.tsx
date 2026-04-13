@@ -1,5 +1,4 @@
-// FILE: app/veterans/page.tsx
-// VETERANS PAGE - For Every Veteran Who Served
+// FILE: app/veterans/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -90,6 +89,16 @@ export default function VeteransPage() {
             <strong className="text-green">PHIERS fills the gaps the VA is leaving behind</strong> — and it works regardless of your VA eligibility, your zip code, or which party controls Congress.
           </div>
         </section>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
 
         <hr className="border-green/20" />
 
@@ -272,7 +281,7 @@ export default function VeteransPage() {
             <p className="text-body mb-4">3.5% of America is 11.6 million people. Veterans alone are 20+ million — already nearly double the threshold. <strong className="text-white">Organized together, you're not a voting bloc. You're a deciding force.</strong> Add families and everyone affected by the healthcare crisis, and we're at 100+ million. We just haven't moved together yet.</p>
 
             <div className="bg-gold-glow border-l-4 border-l-gold rounded-r-lg p-5">
-              <strong className="text-gold">March 28, 2026 is the No Kings Rally.</strong> It's also the deadline for Congress to act on telehealth. If we're organized by then, they have no choice. They sent you to war. Now you send them a message.
+              <strong className="text-gold">District counts begin compiling immediately.</strong> 1,500 in your district triggers a mandatory town hall.
             </div>
           </div>
         </section>
@@ -309,7 +318,7 @@ export default function VeteransPage() {
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* Final CTA - UPDATED */}
         <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-8 max-w-[700px] mx-auto my-12 text-center">
           <h2 className="font-display text-3xl text-white mb-3">You Served.<br /><span className="text-green">Now Make Them Deliver.</span></h2>
           <p className="text-body max-w-[560px] mx-auto mb-6">Not as charity. Not as a benefit they can cut. As something you built with every day you spent away from your family. PHIERS is a people's movement — not a company, not a product. The only thing missing is you.</p>
@@ -321,7 +330,6 @@ export default function VeteransPage() {
             <Button href="/action" variant="secondary">📣 Take Action</Button>
             <Button href="/donate" variant="primary">💚 Support the Movement</Button>
           </div>
-          <p className="text-gray-500 text-xs mt-4">March 28 is the line. Everything after that is leverage.</p>
         </div>
       </main>
 
@@ -420,4 +428,4 @@ export default function VeteransPage() {
   )
 }
 
-// END FILE: app/veterans/page.tsx
+// END FILE: app/veterans/page.tsx - TIERS 1-7 COMPLETE
