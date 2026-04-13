@@ -13,7 +13,7 @@ export default function PetitionPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     
@@ -81,7 +81,7 @@ export default function PetitionPage() {
               </div>
               <button 
                 type="submit" 
-                className="w-full px-8 py-4 bg-[#3ddc84] text-[#080d1a] rounded-lg font-condensed font-bold text-center hover:bg-[#2ab568] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'SUBMITTING...' : '✍ ADD MY NAME — 30 SECONDS'}
