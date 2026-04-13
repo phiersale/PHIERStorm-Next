@@ -60,8 +60,8 @@ export default function NoWarPage() {
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8 text-center">
             <p className="text-gray-400 mb-4">Your name on the record isn't just about healthcare. It's proof you showed up. That you were counted. That when the moment came — you didn't wait for someone else to fix it.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ SIGN TO STOP THE WAR</Link>
-              <Link href="/leverage" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">→ See How It Works</Link>
+              <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ SIGN TO STOP THE WAR</Link>
+              <Link href="/leverage" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all"">→ See How It Works</Link>
               <Link href="/crisis" className="text-[#3ddc84] text-sm font-condensed font-bold hover:underline">← Back to the Crisis</Link>
             </div>
           </div>
