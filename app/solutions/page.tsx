@@ -1,5 +1,4 @@
-// FILE: app/solutions/page.tsx
-// 5D SOLUTIONS PAGE - Complete with design system
+// FILE: app/solutions/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -75,7 +74,7 @@ export default function SolutionsPage() {
                 alt="How PHIERS 5D Solutions Work"
                 width={500}
                 height={400}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
           </div>
@@ -112,7 +111,7 @@ export default function SolutionsPage() {
 
         <hr className="border-green/20" />
 
-        {/* First Domino */}
+        {/* First Domino - UPDATED */}
         <section className="container section">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The First Domino</span>
           <h2 className="font-display text-3xl md:text-4xl text-white mb-3">Telehealth for <span className="text-green">All.</span></h2>
@@ -164,7 +163,7 @@ export default function SolutionsPage() {
             <p className="text-body mt-2">Once telehealth is authorized, the entire 5D cascade becomes possible. <strong className="text-white">This is the lever.</strong></p>
           </div>
 
-          {/* Demand 2 */}
+          {/* Demand 2 - Full Coverage */}
           <div className="bg-bg-card border border-green/20 rounded-xl p-5 mb-4">
             <h3 className="font-condensed font-bold text-xl text-green mb-2">2. Full coverage — in under a year</h3>
             <p className="text-sm text-gray-400 italic mb-2">Telehealth is the on-ramp. Universal care is the destination.</p>
@@ -173,7 +172,7 @@ export default function SolutionsPage() {
             <p className="text-body mt-2">This isn't ideology. It's math. And it's the foundation for everything that comes next.</p>
           </div>
 
-          {/* Demand 3 */}
+          {/* Demand 3 - UBI - UPDATED */}
           <div className="bg-bg-card border border-green/20 rounded-xl p-5 mb-4">
             <h3 className="font-condensed font-bold text-xl text-green mb-2">3. A monthly check — funded by savings, not taxes</h3>
             <p className="text-sm text-gray-400 italic mb-2">Funded by the $2.73 trillion we're already wasting.</p>
@@ -189,7 +188,7 @@ export default function SolutionsPage() {
             <p className="text-green font-bold text-sm mt-2">This is how we stabilize people — permanently.</p>
           </div>
 
-          {/* Demand 4 */}
+          {/* Demand 4 - Jobs */}
           <div className="bg-bg-card border border-green/20 rounded-xl p-5 mb-4">
             <h3 className="font-condensed font-bold text-xl text-green mb-2">4. Millions of AI-Resistant Jobs</h3>
             <p className="text-sm text-gray-400 italic mb-2">Stability creates capacity. Capacity creates opportunity.</p>
@@ -197,7 +196,7 @@ export default function SolutionsPage() {
             <p className="text-green font-bold text-sm mt-2">This is how we create millions of jobs that automation can't erase. This is how we rebuild the middle class.</p>
           </div>
 
-          {/* Demand 5 */}
+          {/* Demand 5 - Democracy - UPDATED */}
           <div className="bg-bg-card border border-green/20 rounded-xl p-5 mb-4">
             <h3 className="font-condensed font-bold text-xl text-green mb-2">5. Stop presidents from acting like kings</h3>
             <p className="text-sm text-gray-400 italic mb-2">Economic stability is political stability.</p>
@@ -221,7 +220,7 @@ export default function SolutionsPage() {
                 alt="PHIERS 5D Solutions Framework"
                 width={500}
                 height={400}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
             <p className="text-center text-xs text-gray-500 mt-2">Fundamentals • Distribution • Digital • Demand • Direct Pay → Affordable Healthcare</p>
@@ -256,7 +255,7 @@ export default function SolutionsPage() {
                 alt="Drug Development Cost Comparison - Academic vs Big Pharma"
                 width={500}
                 height={400}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
             <p className="text-center text-xs text-gray-500 mt-2">Academic labs develop drugs at 1/24th the cost. Big Pharma just charges more.</p>
@@ -267,10 +266,10 @@ export default function SolutionsPage() {
 
         <hr className="border-green/20" />
 
-        {/* Timeline */}
+        {/* Timeline - UPDATED (no March 28/July 4) */}
         <section className="container section">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Timeline</span>
-          <h2 className="font-display text-3xl md:text-4xl text-white mb-4">From 3.5% to <span className="text-gold">July 4.</span></h2>
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-4">From 3.5% to <span className="text-gold">Victory.</span></h2>
           <p className="text-body mb-6">We're not asking for miracles. We're following the math.</p>
 
           <div className="space-y-4 mb-6">
@@ -285,9 +284,8 @@ export default function SolutionsPage() {
               <p className="text-body mt-2">This is how systems scale.</p>
             </div>
             <div className="border-l-4 border-green pl-4">
-              <p className="font-condensed font-bold text-white text-lg">Step 3 — 100 Million Members by July 4</p>
+              <p className="font-condensed font-bold text-white text-lg">Step 3 — Critical Mass Reached</p>
               <p className="text-body">Not because of hope. Because of math.</p>
-              <p className="text-green font-bold text-sm mt-2">Independence Day becomes the day America becomes independent from corporate healthcare.</p>
             </div>
           </div>
 
@@ -317,8 +315,8 @@ export default function SolutionsPage() {
           <Link href="/simple-math" className="font-condensed font-bold text-green text-sm hover:text-green-dim transition-colors">
             ← Back to Simple Math
           </Link>
-          <Link href="/telecare" className="font-condensed font-bold text-green text-sm hover:text-green-dim transition-colors">
-            Next: Telehealth & Insurance →
+          <Link href="/buying-power" className="font-condensed font-bold text-green text-sm hover:text-green-dim transition-colors">
+            Next: Buying Power →
           </Link>
         </div>
       </main>
@@ -364,23 +362,6 @@ export default function SolutionsPage() {
       </button>
 
       <style jsx global>{`
-        .video-container {
-          position: relative;
-          padding-bottom: 56.25%;
-          height: 0;
-          overflow: hidden;
-          border-radius: 12px;
-          border: 2px solid rgba(61, 220, 132, 0.2);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-        }
-        .video-wrapper {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          cursor: pointer;
-        }
         .back-to-top {
           position: fixed;
           bottom: 24px;
@@ -409,8 +390,25 @@ export default function SolutionsPage() {
           background: #2ab568;
           transform: translateY(-2px);
         }
+        .video-container {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: 12px;
+          border: 2px solid rgba(61, 220, 132, 0.2);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+        .video-wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
         .bg-green-glow {
-          background: rgba(61, 220, 132, 0.08);
+          background: rgba(61, 220, 132, 0.06);
         }
       `}</style>
 
@@ -432,4 +430,4 @@ export default function SolutionsPage() {
   )
 }
 
-// END FILE: app/solutions/page.tsx
+// END FILE: app/solutions/page.tsx - TIERS 1-7 COMPLETE
