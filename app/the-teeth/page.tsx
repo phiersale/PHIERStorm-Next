@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -11,6 +11,14 @@ export default function TheTeethPage() {
   const [teethModalOpen, setTeethModalOpen] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
 
+  const playVideo = (videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  }
+
   const loadPathosVideo = () => {
     if (videoLoaded) return
     const container = document.getElementById('pathos-video-container')
@@ -19,6 +27,10 @@ export default function TheTeethPage() {
       setVideoLoaded(true)
     }
   }
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <>
@@ -101,18 +113,19 @@ export default function TheTeethPage() {
                 onClick={loadPathosVideo}
               >
                 {!videoLoaded && (
-                  <>
-                    <img
+                  <div className="relative w-full h-full">
+                    <Image
                       src="https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg"
                       alt="Watch the video"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                       <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-3xl text-white">
                         ▶
                       </div>
                     </div>
-                  </>
+                  </div>
                 )}
               </div>
 
@@ -122,6 +135,19 @@ export default function TheTeethPage() {
           </div>
         </section>
 
+        {/* VIDEO: Blueprint (secondary) */}
+        <div className="max-w-[500px] mx-auto my-8">
+          <div id="wrap-blueprint-teeth" className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20 cursor-pointer group" onClick={() => playVideo('blueprint-teeth', 'https://www.youtube.com/embed/xEA5zVium58?autoplay=1&rel=0')}>
+            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/xEA5zVium58/hqdefault.jpg')" }}>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
+                <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
+              </div>
+            </div>
+          </div>
+          <p className="font-condensed text-[#3ddc84] text-sm text-center mt-2">Full system blueprint (raw/unedited)</p>
+          <p className="text-gray-500 text-xs text-center mt-1">A deep-dive into leverage, war powers, healthcare savings, and long-term structural fixes</p>
+        </div>
+        
         <hr className="border-[#3ddc84]/20" />
 
         {/* FINAL CTA */}
@@ -154,16 +180,6 @@ export default function TheTeethPage() {
             See How It Works →
           </Link>
         </section>
-
-        {/* CONTINUE BUTTON - ADD THIS */}
-        <div className="text-center pb-12">
-          <Link
-            href="/how-it-works"
-            className="inline-block px-8 py-4 bg-[#3ddc84] text-[#080d1a] rounded-lg font-condensed font-extrabold text-center hover:bg-[#2ab568] transition-all"
-          >
-            Continue to How It Works →
-          </Link>
-        </div>
       </main>
 
       <Footer />
@@ -178,16 +194,30 @@ export default function TheTeethPage() {
             exit={{ opacity: 0 }}
             onClick={() => setTeethModalOpen(false)}
           >
-            <img
+            <Image
               src="/images/We_Gotz_Teeth_for_No_Kings.jpg"
               alt="Power concedes nothing without a demand that has teeth"
+              width={800}
+              height={600}
               className="max-w-[90vw] max-h-[85vh] rounded-xl"
             />
           </motion.div>
         )}
       </AnimatePresence>
 
-      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+      <button 
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40"
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
+
+      <style jsx global>{`
+        .font-display { font-family: 'Bebas Neue', sans-serif; }
+        .font-condensed { font-family: 'Barlow Condensed', sans-serif; }
+        .font-body { font-family: 'Barlow', sans-serif; }
+      `}</style>
     </>
   )
 }
