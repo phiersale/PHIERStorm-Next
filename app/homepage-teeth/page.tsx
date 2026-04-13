@@ -1,6 +1,8 @@
+what page is this and is it complete/correct?
+
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Navigation from '@/components/navigation'
@@ -48,6 +50,10 @@ export default function HomepageTeethPage() {
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
   }
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <>
@@ -135,6 +141,18 @@ export default function HomepageTeethPage() {
           </div>
         </div>
 
+        {/* VIDEO: LEVERAGE is Power Held In Every Representative's Seat (secondary) */}
+        <div className="max-w-[500px] mx-auto my-8">
+          <div id="wrap-leverage-teeth" className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20 cursor-pointer group" onClick={() => playVideo('leverage-teeth', 'https://www.youtube.com/embed/wnSy5jjxAac?autoplay=1&rel=0')}>
+            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/wnSy5jjxAac/hqdefault.jpg')" }}>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
+                <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
+              </div>
+            </div>
+          </div>
+          <p className="font-condensed text-[#3ddc84] text-sm text-center mt-2">LEVERAGE is Power Held In Every Representative's Seat (PHIERS)</p>
+        </div>
+        
         <hr className="border-[#3ddc84]/20" />
 
         {/* THE PROBLEM SECTION */}
@@ -308,6 +326,10 @@ export default function HomepageTeethPage() {
                 width={380}
                 height={250}
                 className="rounded-lg border border-white/10 cursor-pointer hover:scale-[1.02] transition-transform mx-auto"
+                onClick={() => {
+                  const modal = document.getElementById('chenowethModal')
+                  if (modal) modal.classList.remove('hidden')
+                }}
               />
               <p className="text-xs text-gray-500 mt-2">Harvard researcher Erica Chenoweth. The data is ironclad. Click to enlarge.</p>
             </div>
@@ -364,7 +386,7 @@ export default function HomepageTeethPage() {
         if (modal && e.target === modal) modal.classList.add('hidden')
       }}>
         <button className="absolute top-5 right-7 text-white text-3xl cursor-pointer bg-black/50 border border-white/20 w-10 h-10 rounded-full" onClick={() => document.getElementById('chenowethModal')?.classList.add('hidden')}>✕</button>
-        <img src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% — Chenoweth Research" className="max-w-[90vw] max-h-[90vh] rounded-lg border-2 border-[#3ddc84]" />
+        <Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% — Chenoweth Research" width={800} height={600} className="max-w-[90vw] max-h-[90vh] rounded-lg border-2 border-[#3ddc84]" />
       </div>
 
       {/* Teeth Preview Modal */}
@@ -373,10 +395,16 @@ export default function HomepageTeethPage() {
         if (modal && e.target === modal) modal.classList.add('hidden')
       }}>
         <button className="absolute top-5 right-7 text-white text-3xl cursor-pointer bg-black/50 border border-white/20 w-10 h-10 rounded-full" onClick={() => document.getElementById('teethPreviewModal')?.classList.add('hidden')}>✕</button>
-        <img src="/images/We_Gotz_Teeth_for_No_Kings.jpg" alt="Power concedes nothing without a demand that has teeth" className="max-w-[90vw] max-h-[90vh] rounded-lg border-2 border-[#3ddc84]" />
+        <Image src="/images/We_Gotz_Teeth_for_No_Kings.jpg" alt="Power concedes nothing without a demand that has teeth" width={800} height={600} className="max-w-[90vw] max-h-[90vh] rounded-lg border-2 border-[#3ddc84]" />
       </div>
 
-      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40">↑</button>
+      <button 
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 bg-[#3ddc84] text-[#080d1a] w-11 h-11 rounded-full flex items-center justify-center text-xl hover:bg-[#2ab568] transition-all shadow-lg z-40"
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
 
       <style jsx global>{`
         .font-display { font-family: 'Bebas Neue', sans-serif; }
