@@ -14,7 +14,7 @@ export default function Navigation() {
         
         <div className="hidden md:flex items-center gap-6">
           <Link href="/crisis" className="text-gray-400 text-sm hover:text-[#3ddc84] transition-colors">Crisis</Link>
-          <Link href="/leverage" className="text-gray-400 text-sm hover:text-[#3ddc84] transition-colors">How It Works</Link>
+          <Link href="/homepage-teeth" className="text-gray-400 text-sm hover:text-[#3ddc84] transition-colors">How It Works</Link>
           <Link href="/solutions" className="text-gray-400 text-sm hover:text-[#3ddc84] transition-colors">Solutions</Link>
           <Link href="/organizers" className="text-gray-400 text-sm hover:text-[#3ddc84] transition-colors">Organize</Link>
           <Link href="/petition" className="px-5 py-2 bg-red-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-red-700 transition-all">✍ Sign Now</Link>
@@ -36,7 +36,7 @@ export default function Navigation() {
                 <summary className="font-condensed font-bold text-white py-2 cursor-pointer list-none">Understand the Fight</summary>
                 <div className="space-y-2 pl-4 mt-2">
                   <Link href="/crisis" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>→ The Crisis</Link>
-                  <Link href="/leverage" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>→ How It Works</Link>
+                  <Link href="/homepage-teeth" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>→ How It Works</Link>
                   <Link href="/simple-math" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>→ Simple Math</Link>
                   <Link href="/solutions" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>→ 5D Solutions</Link>
                   <Link href="/telecare" className="block text-gray-400 py-1" onClick={() => setMobileMenuOpen(false)}>→ TeleCARE</Link>
