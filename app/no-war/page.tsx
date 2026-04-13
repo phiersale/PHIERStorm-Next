@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
@@ -18,6 +19,17 @@ export default function NoWarPage() {
       <Navigation />
       <main className="pt-24 pb-16">
         <section className="max-w-[760px] mx-auto px-6 py-12">
+          
+          {/* HERO IMAGE */}
+          <div className="relative w-full h-[300px] md:h-[400px] mb-8 rounded-xl overflow-hidden">
+            <Image
+              src="/images/NoWar.jpg"
+              alt="No War — Congress must authorize"
+              fill
+              className="object-cover"
+            />
+          </div>
+          
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">War without authorization<br /><span className="text-[#3ddc84]">is not democracy.</span><br />It's danger.</h1>
           
           <p className="text-gray-400 mb-8">Congress alone has the constitutional authority to declare war. When a president threatens to destroy a civilization without that authorization, the only mechanism that can force accountability is district-level pressure. PHIERS is that mechanism.</p>
@@ -28,6 +40,17 @@ export default function NoWarPage() {
           <p className="text-gray-400 mb-3">The Strait of Hormuz carries 30% of the world's seaborne oil.</p>
           <p className="text-gray-400 mb-3">When military escalation threatens that corridor, inflation doesn't tick up — it detonates across every supply chain simultaneously.</p>
           <p className="text-gray-400 mb-6">Healthcare costs spike on top of already broken healthcare costs. Food prices climb. The economy contracts. This is not a foreign policy story. It's a kitchen table story.</p>
+          
+          {/* CONSTITUTIONAL DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/Congress_Dont_Work_4U-WEre_changing_that-sm.jpg"
+              alt="Congress vs President vs People"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Constitutional Case</h2>
           <p className="text-gray-400 mb-3">The Constitution is unambiguous. Article I, Section 8: Congress declares war.</p>
@@ -60,8 +83,8 @@ export default function NoWarPage() {
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8 text-center">
             <p className="text-gray-400 mb-4">Your name on the record isn't just about healthcare. It's proof you showed up. That you were counted. That when the moment came — you didn't wait for someone else to fix it.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ SIGN TO STOP THE WAR</Link>
-              <Link href="/leverage" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all"">→ See How It Works</Link>
+              <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ SIGN TO STOP THE WAR</Link>
+              <Link href="/leverage" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">→ See How It Works</Link>
               <Link href="/crisis" className="text-[#3ddc84] text-sm font-condensed font-bold hover:underline">← Back to the Crisis</Link>
             </div>
           </div>
