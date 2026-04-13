@@ -6,6 +6,14 @@ import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
 export default function FullStoryPage() {
+  const playVideo = (videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  }
+
   return (
     <>
       <Navigation />
@@ -17,6 +25,17 @@ export default function FullStoryPage() {
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Problem</h2>
           <p className="text-gray-400 mb-6">CMS — the federal agency that administers Medicare and Medicaid — pays roughly $8,000 per person per year under traditional insurance. 80% of everyday healthcare needs can be met through telehealth at $600 per person per year. That gap — $7,400 per person, per year — multiplied across the American population represents $2.73 trillion annually. Not profit from care. Overhead, admin cost, and margin extracted by a system designed around payment processing, not health outcomes.</p>
           
+          {/* 80/20 DIAGRAM */}
+          <div className="my-6 max-w-[500px] mx-auto">
+            <Image
+              src="/images/80-20_Truth_About_Healthcare.jpg"
+              alt="80/20 Truth About Healthcare"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Legal Authority</h2>
           <p className="text-gray-400 mb-6">Congress doesn't need new legislation to expand telehealth through the ACA Exchange. The authority already exists. The demand is already legal. The only missing ingredient is organized people forcing them to use it.</p>
           
@@ -27,11 +46,33 @@ export default function FullStoryPage() {
           <p className="text-gray-400 mb-6">In nine iterations: 234 million Americans covered. In 8–13 months.</p>
           <p className="font-condensed text-xl text-[#ffd60a] font-bold mb-8">That's not a campaign promise. That's arithmetic.</p>
           
+          {/* CASCADE DIAGRAM */}
+          <div className="my-6 max-w-[500px] mx-auto">
+            <Image
+              src="/images/Cascade_Math.jpg"
+              alt="Cascade Math — One becomes twelve"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Proof Points</h2>
           <div className="space-y-4 mb-8">
             <div><p className="font-condensed font-bold text-white">Mark Cuban's Cost Plus Drugs</p><p className="text-gray-400 text-sm">The PHIERSale model — running at scale. 7 million customers. 80–90% savings.</p></div>
             <div><p className="font-condensed font-bold text-white">ZORTT Elite Medical</p><p className="text-gray-400 text-sm">Cooperative healthcare delivery. Operational. Proven.</p></div>
             <div><p className="font-condensed font-bold text-white">Erica Chenoweth / Harvard Kennedy School</p><p className="text-gray-400 text-sm">323 campaigns. Zero failures at 3.5%.</p></div>
+          </div>
+          
+          {/* 3.5% DIAGRAM */}
+          <div className="my-6 max-w-[300px] mx-auto">
+            <Image
+              src="/images/3.5pct_Erica_Chenoweth.jpg"
+              alt="3.5% — Chenoweth Research"
+              width={300}
+              height={200}
+              className="w-full h-auto rounded-lg border border-white/10"
+            />
           </div>
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Letters</h2>
@@ -50,17 +91,34 @@ export default function FullStoryPage() {
           </div>
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Validation Videos</h2>
-          <div className="space-y-4 mb-8">
-            <div className="bg-[#111d35] border border-[#3ddc84]/20 rounded-xl p-6">
-              <p className="font-condensed font-bold text-white mb-2">Pathos Communications</p>
-              <p className="text-gray-400 text-sm mb-3">Kevin Harrington — original Shark Tank investor. Fortune 500 PR firm.</p>
-              <Link href="https://youtu.be/KLu7USN_dao" target="_blank" className="text-[#3ddc84] text-sm font-condensed font-bold hover:underline">▶ Why Pathos Chose PHIERS — 7:11</Link>
+          
+          {/* PATHOS VIDEO */}
+          <div className="bg-[#111d35] border border-[#3ddc84]/20 rounded-xl p-6 mb-6">
+            <p className="font-condensed font-bold text-white mb-2">Pathos Communications</p>
+            <p className="text-gray-400 text-sm mb-3">Kevin Harrington — original Shark Tank investor. Fortune 500 PR firm.</p>
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
+              <div className="video-wrap" id="wrap-pathos" style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg')" }} onClick={() => playVideo('pathos', 'https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0')}>
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
+                </div>
+              </div>
             </div>
-            <div className="bg-[#111d35] border border-[#3ddc84]/20 rounded-xl p-6">
-              <p className="font-condensed font-bold text-white mb-2">DotCom Magazine</p>
-              <p className="text-gray-400 text-sm mb-3">Kevin O'Leary's platform. Interviewed Will Price in 2022.</p>
-              <Link href="https://youtu.be/pUdlWukaLLY" target="_blank" className="text-[#3ddc84] text-sm font-condensed font-bold hover:underline">▶ DotCom Magazine Teaser</Link>
+            <p className="text-[#3ddc84] text-sm font-condensed mt-2">▶ Why Pathos Chose PHIERS — 7:11</p>
+          </div>
+          
+          {/* DOTCOM VIDEO */}
+          <div className="bg-[#111d35] border border-[#3ddc84]/20 rounded-xl p-6 mb-6">
+            <p className="font-condensed font-bold text-white mb-2">DotCom Magazine</p>
+            <p className="text-gray-400 text-sm mb-3">Kevin O'Leary's platform. Interviewed Will Price in 2022.</p>
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
+              <div className="video-wrap" id="wrap-dotcom" style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/pUdlWukaLLY/hqdefault.jpg')" }} onClick={() => playVideo('dotcom', 'https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1&rel=0')}>
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
+                </div>
+              </div>
             </div>
+            <p className="text-[#3ddc84] text-sm font-condensed">▶ DotCom Magazine Teaser</p>
+            <Link href="https://youtu.be/FwFq87VqZys" target="_blank" className="text-[#3ddc84] text-sm font-condensed hover:underline block mt-1">▶ Watch: Full Interview (27 mins)</Link>
           </div>
           
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The 16-Year Arc</h2>
@@ -76,7 +134,7 @@ export default function FullStoryPage() {
           
           <div className="bg-[#0a1628] border-2 border-[#3ddc84] rounded-xl p-8 text-center">
             <p className="font-condensed text-xl text-[#ffd60a] font-bold mb-4">You've seen the receipts. Now be counted.</p>
-            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ ADD MY NAME</Link>
+            <Link href="/petition" className="inline-block px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
           </div>
         </section>
       </main>
