@@ -69,7 +69,7 @@ export default function UnionsPage() {
           </div>
           
           <div className="text-center mt-8">
-            <Link href="/petition" className="inline-block px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
+            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ ADD MY NAME</Link>
             <Link href="/leverage" className="block text-[#3ddc84] text-sm font-condensed font-bold hover:underline mt-4">→ See How Leverage Works</Link>
             <Link href="/organizers" className="block text-[#3ddc84] text-sm font-condensed font-bold hover:underline mt-2">→ For Organizers</Link>
           </div>
