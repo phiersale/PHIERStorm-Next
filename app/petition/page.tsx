@@ -1,11 +1,10 @@
-// FILE: app/petition/page.tsx
-// PETITION PAGE - Complete with design system
+// FILE: app/petition/page.tsx - NEW (Tiers 1-7 applied)
 
 'use client'
 
-import { useState, useCallback } from 'react'
-import Link from 'next/link'
+import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
@@ -16,93 +15,72 @@ export default function PetitionPage() {
     email: '',
     zip: ''
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
+    setSubmitStatus('idle')
     
-    console.log('Form submitted:', formData)
-    await new Promise(resolve => setTimeout(resolve, 500))
-    
-    alert('Thank you! Your name has been counted in your district.')
+    // In production, this would send to a backend
+    console.log('Petition signed:', formData)
+    setSubmitStatus('success')
     setFormData({ name: '', email: '', zip: '' })
-    setIsSubmitting(false)
-  }
-
-  const playVideo = (videoId: string, src: string) => {
-    const wrap = document.getElementById('wrap-' + videoId)
-    if (!wrap) return
-    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
-      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
-      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+    setTimeout(() => setSubmitStatus('idle'), 3000)
   }
 
   return (
     <>
       <Navigation />
+
       <main>
-        <section className="container section">
-          {/* Hero Image */}
-          <div className="relative w-full h-[200px] md:h-[250px] mb-6 rounded-xl overflow-hidden opacity-70">
+        {/* Hero */}
+        <div className="container section text-center pt-32">
+          <div className="relative h-[80px] w-auto mb-6 flex justify-center">
             <Image
-              src="/images/Online_Petition.jpg"
-              alt="Online Petition — Add your name"
-              fill
-              className="object-cover"
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS.org"
+              width={80}
+              height={80}
+              className="opacity-90"
             />
           </div>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
+            Your Name. <span className="text-green">Your District.</span><br />On the Record.
+          </h1>
+          <p className="font-condensed text-lg text-gray-400 max-w-[700px] mx-auto mb-6">
+            Power Held In Every Representative's Seat. When 1,500 people in your district sign, a mandatory town hall is triggered — and your representative must show up, answer publicly, and respond under real electoral pressure.
+          </p>
           
-          <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-3">Your Name. Your District. On the Record.</h1>
-          <p className="font-condensed text-xl text-gray-400 text-center mb-6">1,500 people in your district forces a mandatory public town hall.<br />Your representative answers on the record — before the next election.</p>
-
-          {/* Video */}
-          <div className="max-w-[500px] mx-auto mb-6">
-            <div id="wrap-signature-matters" className="video-wrapper cursor-pointer group" onClick={() => playVideo('signature-matters', 'https://www.youtube.com/embed/C2mMIx5yoyw?autoplay=1&rel=0')}>
-              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/C2mMIx5yoyw/hqdefault.jpg')" }}>
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
-                  <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
-                </div>
-              </div>
-            </div>
-            <p className="font-condensed text-green text-xs text-center mt-2">See why your signature matters</p>
+          {/* District counts note */}
+          <div className="bg-green-glow border-l-4 border-l-green rounded-r-lg p-4 max-w-[600px] mx-auto mb-6">
+            <p className="text-green font-bold text-sm">District counts begin compiling immediately.</p>
           </div>
-          
-          {/* Form */}
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Petition Form */}
+        <section className="container section">
           <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[500px] mx-auto">
-            <p className="font-condensed text-lg text-gold font-bold text-center mb-4">District counts begin compiling immediately.</p>
-            
-            <div className="max-w-[300px] mx-auto my-4">
-              <Image
-                src="/images/99_to_1_-_Great_Odds.jpg"
-                alt="District counts — 1,500 people per district"
-                width={300}
-                height={200}
-                className="w-full h-auto rounded-lg border border-green/20 opacity-60"
-              />
-            </div>
-            
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-white font-condensed mb-1">Full Name</label>
                 <input
                   type="text"
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white focus:outline-none focus:border-green"
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white focus:outline-none focus:border-green transition-all"
                   required
-                  disabled={isSubmitting}
                 />
               </div>
               <div>
-                <label className="block text-white font-condensed mb-1">Email</label>
+                <label className="block text-white font-condensed mb-1">Email Address</label>
                 <input
                   type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white focus:outline-none focus:border-green"
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white focus:outline-none focus:border-green transition-all"
                   required
-                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -110,44 +88,91 @@ export default function PetitionPage() {
                 <input
                   type="text"
                   value={formData.zip}
-                  onChange={(e) => setFormData({...formData, zip: e.target.value})}
-                  className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white focus:outline-none focus:border-green"
+                  onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
+                  className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white focus:outline-none focus:border-green transition-all"
                   required
-                  disabled={isSubmitting}
-                  pattern="[0-9]{5}"
-                  title="Please enter a 5-digit ZIP code"
                 />
               </div>
-              <Button 
-                type="submit" 
-                variant="primary" 
-                fullWidth
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'SUBMITTING...' : '✍ ADD MY NAME — 30 SECONDS'}
+              <Button type="submit" variant="primary" fullWidth>
+                {submitStatus === 'success' ? '✓ SIGNATURE COUNTED' : '✍ ADD MY NAME'}
               </Button>
             </form>
             
-            <p className="text-gray-500 text-xs text-center mt-4">Your information is used only to count you in your congressional district. Nothing else. No spam. No selling. Ever.</p>
+            {/* Privacy note */}
+            <p className="text-gray-500 text-xs text-center mt-4">Used only to count you in your district. No spam. No selling. Your information is never shared.</p>
           </div>
-          
-          <div className="text-center mt-6">
-            <p className="text-gray-500 text-sm">Not ready to sign?</p>
-            <Link href="/leverage" className="text-green text-sm font-condensed font-bold hover:underline">📘 See how it works →</Link>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Final CTA */}
+        <section className="container section text-center">
+          <div className="bg-bg-card border border-green/20 rounded-xl p-6 max-w-[600px] mx-auto">
+            <p className="font-condensed text-lg text-white font-bold mb-3">Already signed?</p>
+            <p className="text-body mb-4">Share this with 5 people in your district.</p>
+            <div className="flex flex-col gap-3 max-w-md mx-auto">
+              <Button href="/action" variant="secondary" fullWidth>📣 SHARE THE MOVEMENT</Button>
+              <Button href="/organizers" variant="secondary" fullWidth>✊ I WANT TO ORGANIZE</Button>
+            </div>
           </div>
         </section>
       </main>
+
       <Footer />
-      
+
       <button 
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className="back-to-top"
         id="back-to-top"
-        aria-label="Scroll to top"
+        aria-label="Back to top"
       >
         ↑
       </button>
-      
+
+      <style jsx global>{`
+        .back-to-top {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          background: var(--green);
+          color: var(--bg-deep);
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          cursor: pointer;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 150ms ease;
+          z-index: 999;
+          border: none;
+        }
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+        }
+        .back-to-top:hover {
+          background: #2ab568;
+          transform: translateY(-2px);
+        }
+        .bg-green-glow {
+          background: rgba(61, 220, 132, 0.06);
+        }
+      `}</style>
+
       <script dangerouslySetInnerHTML={{
         __html: `
           window.addEventListener('scroll', function() {
@@ -165,3 +190,5 @@ export default function PetitionPage() {
     </>
   )
 }
+
+// END FILE: app/petition/page.tsx - TIERS 1-7 COMPLETE
