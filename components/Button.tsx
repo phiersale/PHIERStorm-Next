@@ -1,30 +1,27 @@
-'use client'
+// FILE: components/Button.tsx - UPDATED
 
 import Link from 'next/link'
-import { ReactNode } from 'react'
 
 interface ButtonProps {
-  children: ReactNode
+  children: React.ReactNode
   href?: string
   onClick?: () => void
-  variant?: 'primary' | 'secondary' | 'outline'
+  variant?: 'primary' | 'secondary'
   type?: 'button' | 'submit' | 'reset'
-  className?: string
-  disabled?: boolean
   fullWidth?: boolean
+  className?: string
 }
 
 export default function Button({ 
   children, 
   href, 
   onClick, 
-  variant = 'primary', 
+  variant = 'primary',
   type = 'button',
-  className = '',
-  disabled = false,
-  fullWidth = false
+  fullWidth = false,
+  className = ''
 }: ButtonProps) {
-  const baseClasses = `btn btn-${variant} ${fullWidth ? 'w-full' : ''} ${className}`
+  const baseClasses = `btn-${variant} ${fullWidth ? 'w-full' : ''} ${className}`
   
   if (href) {
     return (
@@ -35,12 +32,7 @@ export default function Button({
   }
   
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={baseClasses}
-      disabled={disabled}
-    >
+    <button type={type} onClick={onClick} className={baseClasses}>
       {children}
     </button>
   )
