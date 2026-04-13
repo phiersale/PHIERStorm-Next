@@ -166,8 +166,8 @@ export default function HomePage() {
         {/* SECTION 1 — THE REALITY */}
         <section className="container section">
           <h2 className="mb-6">
-            <span className="block text-white text-3xl md:text-4xl font-black">Healthcare. Cost of living. Wages. Endless gridlock.</span>
-            <span className="block text-green text-2xl md:text-3xl font-extrabold mt-3">These aren't unsolvable problems.</span>
+            <span className="section-white">Healthcare. Cost of living. Wages. Endless gridlock.</span>
+            <span className="section-green">These aren't unsolvable problems.</span>
           </h2>
           
           <div className="max-w-[760px] mx-auto">
