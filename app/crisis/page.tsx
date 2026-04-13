@@ -1,5 +1,4 @@
-// FILE: app/crisis/page.tsx
-// CRISIS PAGE - The 5D Crisis
+// FILE: app/crisis/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -56,6 +55,20 @@ export default function CrisisPage() {
 
         <hr className="border-green/20" />
 
+        {/* Jump Navigation - NEW */}
+        <div className="container py-4 my-2">
+          <div className="flex flex-wrap gap-2 justify-center">
+            <Link href="#war" className="px-3 py-1.5 bg-bg-card border border-red-500/30 rounded-full text-red-400 text-xs font-condensed font-bold hover:bg-red-500/20 transition-all">🔥 War</Link>
+            <Link href="#healthcare" className="px-3 py-1.5 bg-bg-card border border-green/30 rounded-full text-green text-xs font-condensed font-bold hover:bg-green/10 transition-all">💊 Healthcare</Link>
+            <Link href="#economy" className="px-3 py-1.5 bg-bg-card border border-gold/30 rounded-full text-gold text-xs font-condensed font-bold hover:bg-gold/10 transition-all">🔨 Economy</Link>
+            <Link href="#politics" className="px-3 py-1.5 bg-bg-card border border-green/30 rounded-full text-green text-xs font-condensed font-bold hover:bg-green/10 transition-all">⚖️ Politics</Link>
+            <Link href="#peace" className="px-3 py-1.5 bg-bg-card border border-green/30 rounded-full text-green text-xs font-condensed font-bold hover:bg-green/10 transition-all">✊ Peace</Link>
+            <Link href="#spiral" className="px-3 py-1.5 bg-bg-card border border-red-500/30 rounded-full text-red-400 text-xs font-condensed font-bold hover:bg-red-500/20 transition-all">🌀 The Spiral</Link>
+          </div>
+        </div>
+
+        <hr className="border-green/20" />
+
         {/* Intro */}
         <section className="container section">
           <p className="text-body text-lg max-w-[720px] mx-auto">
@@ -75,7 +88,7 @@ export default function CrisisPage() {
         <hr className="border-green/20" />
 
         {/* DIMENSION 1: WAR */}
-        <section className="container section">
+        <section id="war" className="container section scroll-mt-24">
           <span className="font-condensed font-bold text-red-500 text-sm uppercase tracking-wider block mb-3">Dimension 1</span>
           <h2 className="font-display text-3xl md:text-4xl text-white mb-2">🔥 War — <span className="text-red-500">The Front Edge</span></h2>
           <p className="font-condensed text-sm text-gray-500 mb-6">What has to stop first</p>
@@ -111,7 +124,7 @@ export default function CrisisPage() {
         <hr className="border-green/20" />
 
         {/* DIMENSION 2: HEALTHCARE */}
-        <section className="container section">
+        <section id="healthcare" className="container section scroll-mt-24">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Dimension 2</span>
           <h2 className="font-display text-3xl md:text-4xl text-white mb-4">💊 Healthcare — <span className="text-red-500">The Largest Structural Inefficiency in the American Economy</span></h2>
 
@@ -144,7 +157,7 @@ export default function CrisisPage() {
         <hr className="border-green/20" />
 
         {/* DIMENSION 3: ECONOMY */}
-        <section className="container section">
+        <section id="economy" className="container section scroll-mt-24">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Dimension 3</span>
           <h2 className="font-display text-3xl md:text-4xl text-white mb-4">🔨 Economy &amp; Jobs — <span className="text-red-500">The Floor Is Gone</span></h2>
 
@@ -166,7 +179,7 @@ export default function CrisisPage() {
         <hr className="border-green/20" />
 
         {/* DIMENSION 4: POLITICS */}
-        <section className="container section">
+        <section id="politics" className="container section scroll-mt-24">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Dimension 4</span>
           <h2 className="font-display text-3xl md:text-4xl text-white mb-4">⚖️ Politics — <span className="text-red-500">They Ignore You Because They Can</span></h2>
 
@@ -198,7 +211,7 @@ export default function CrisisPage() {
         <hr className="border-green/20" />
 
         {/* DIMENSION 5: PEACE */}
-        <section className="container section">
+        <section id="peace" className="container section scroll-mt-24">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Dimension 5</span>
           <h2 className="font-display text-3xl md:text-4xl text-white mb-4">✊ Peace — <span className="text-green">Not a Position. A Prerequisite.</span></h2>
 
@@ -215,8 +228,8 @@ export default function CrisisPage() {
 
         <hr className="border-green/20" />
 
-        {/* THE SPIRAL */}
-        <section className="container section text-center">
+        {/* THE SPIRAL - Visual */}
+        <section id="spiral" className="container section text-center scroll-mt-24">
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Pattern</span>
           <h2 className="font-display text-3xl md:text-4xl text-white mb-6">The Spiral — <span className="text-red-500">How They Feed Each Other Right Now</span></h2>
 
@@ -345,4 +358,4 @@ export default function CrisisPage() {
   )
 }
 
-// END FILE: app/crisis/page.tsx
+// END FILE: app/crisis/page.tsx - TIERS 1-7 COMPLETE
