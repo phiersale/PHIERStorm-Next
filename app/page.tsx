@@ -63,8 +63,8 @@ export default function HomePage() {
             >
               <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10">
                 <Image
-                  src="/images/You_Are_Not_Powerless.jpg"
-                  alt="Congress doesn't have to listen to you. This is how you make them."
+                    src="/images/You_Are_Not_Powerless.jpg"
+                  alt="You are not powerless."
                   fill
                   className="object-cover"
                 />
@@ -73,7 +73,7 @@ export default function HomePage() {
                 onClick={closeEntryModal}
                 className="inline-block mt-4 px-7 py-2 bg-transparent text-[#3ddc84] border border-[#3ddc84]/70 rounded-full font-condensed font-semibold text-base tracking-wide hover:border-[#3ddc84] hover:bg-[#3ddc84]/10 transition-all"
               >
-                Be Heard →
+                Continue →
               </button>
             </motion.div>
           </motion.div>
@@ -367,8 +367,8 @@ export default function HomePage() {
           <p className="font-condensed text-white text-lg mb-6">Be part of the first coordinated pressure group Congress can't wait out.</p>
           
           <div className="flex flex-col gap-4 max-w-md mx-auto">
-            <Link href="/petition" className="px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ BE COUNTED</Link>
-            <Link href="/organizers" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I ORGANIZE</Link>
+            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ BE COUNTED</Link>
+            <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I ORGANIZE</Link>
           </div>
         </section>
       </main>
