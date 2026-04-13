@@ -134,9 +134,9 @@ export default function HomePage() {
 
         {/* Hero Content - Two-tone rhythm */}
         <section className="container section text-center">
-          <h1 className="mb-4">
-            <span className="block text-white text-4xl md:text-5xl lg:text-6xl font-black">Congress has the power to fix most of what's broken.</span>
-            <span className="block text-green text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4">It just doesn't have the pressure to do it.</span>
+         <h1 className="mb-4">
+            <span className="hero-white">Congress has the power to fix most of what's broken.</span>
+            <span className="hero-green">It just doesn't have the pressure to do it.</span>
           </h1>
           
           <div className="max-w-[760px] mx-auto mt-8">
