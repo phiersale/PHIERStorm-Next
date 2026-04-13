@@ -1,5 +1,4 @@
-// FILE: app/media/page.tsx
-// MEDIA LIBRARY PAGE - All Resources in One Place
+// FILE: app/media/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -52,6 +51,18 @@ export default function MediaPage() {
           <p className="font-condensed text-lg text-gray-400">Videos, infographics, state guides, and validation documents</p>
         </div>
 
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
+
+        <hr className="border-green/20" />
+
         {/* Constitutional Video Block */}
         <section className="container section">
           <div className="bg-blue-500/10 border-2 border-blue-500/30 rounded-xl p-6">
@@ -82,7 +93,7 @@ export default function MediaPage() {
               <li><Link href="https://youtu.be/eE-TxvI0d4Q" target="_blank" className="text-green hover:underline"><strong>The Moment (2:22)</strong></Link> — Why Congress created this crisis</li>
               <li><Link href="https://youtu.be/xy3F9ZWbgS8" target="_blank" className="text-green hover:underline"><strong>The Vision (4:44)</strong></Link> — What happens after we win</li>
               <li><Link href="https://vimeo.com/1157760069" target="_blank" className="text-green hover:underline"><strong>Union Power - Mamdani Strategy (9:15)</strong></Link> — Why unions will win this fight</li>
-              <li><Link href="https://youtu.be/KLu7USN_dao" target="_blank" className="text-green hover:underline"><strong>Pathos Communications Validation (DRAFT)</strong></Link> — Why major media outlets want this story</li>
+              <li><Link href="https://youtu.be/KLu7USN_dao" target="_blank" className="text-green hover:underline"><strong>Pathos Communications Validation</strong></Link> — Why major media outlets want this story</li>
             </ul>
           </div>
         </section>
@@ -246,4 +257,4 @@ export default function MediaPage() {
   )
 }
 
-// END FILE: app/media/page.tsx
+// END FILE: app/media/page.tsx - TIERS 1-7 COMPLETE
