@@ -381,12 +381,13 @@ export default function HomePage() {
           <span className="font-condensed font-bold text-[#3ddc84] text-sm uppercase tracking-wider block mb-4">Credibility</span>
           <p className="text-gray-400 italic mb-8">Each of the following independently validates a different part of the system.</p>
           
-          {/* CREDIBILITY LOGOS ROW */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8">
-            <Image src="/images/Harvard_logo.png" alt="Harvard Kennedy School" width={80} height={40} className="opacity-70" />
-            <Image src="/images/Pathos_logo.png" alt="Pathos Communications" width={80} height={40} className="opacity-70" />
-            <Image src="/images/DotCom_logo.png" alt="DotCom Magazine" width={80} height={40} className="opacity-70" />
-            <Image src="/images/Cost_Plus_Drugs_logo.png" alt="Cost Plus Drugs" width={80} height={40} className="opacity-70" />
+        {/* CREDIBILITY LOGOS ROW - Small, all on one row */}
+          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-5 mb-8">
+            <Image src="/images/DotComMag_Logo.png" alt="DotCom Magazine" width={55} height={28} className="opacity-70 hover:opacity-100 transition-opacity" />
+            <Image src="/images/Pathos_Comms_Logo.png" alt="Pathos Communications" width={55} height={28} className="opacity-70 hover:opacity-100 transition-opacity" />
+            <Image src="/images/HarvardKennedySchool_Logo.jpg" alt="Harvard Kennedy School" width={55} height={28} className="opacity-70 hover:opacity-100 transition-opacity" />
+            <Image src="/images/Harvard_Logo.png" alt="Harvard University" width={45} height={22} className="opacity-70 hover:opacity-100 transition-opacity" />
+            <Image src="/images/Cost_Plus_Drugs_logo.png" alt="Cost Plus Drugs" width={55} height={28} className="opacity-70 hover:opacity-100 transition-opacity" />
           </div>
           
           <div className="space-y-6">
