@@ -1,5 +1,4 @@
-// FILE: app/unstoppable/page.tsx
-// UNSTOPPABLE PAGE - The Movement We Build Together
+// FILE: app/unstoppable/page.tsx - UPDATED (Tiers 1-7)
 
 'use client'
 
@@ -44,10 +43,20 @@ export default function UnstoppablePage() {
           <h1 className="font-display text-5xl md:text-7xl text-white tracking-[6px] mb-4">UNSTOPPABLE</h1>
           <div className="text-gray-500 text-sm tracking-wide mb-4">The movement we build together.</div>
           <p className="font-condensed text-lg text-green font-bold max-w-[700px] mx-auto">
-            Black men built this.<br />
+            Built by people who refused to stop.<br />
             Millions of us make it unstoppable.
           </p>
           <p className="text-gray-600 text-xs italic mt-4">This page is not persuasion. It is measurement.</p>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
         </div>
 
         <hr className="border-green/20" />
@@ -165,18 +174,18 @@ export default function UnstoppablePage() {
             <h2 className="font-display text-3xl md:text-4xl text-white mb-4">Three Acts. One Story. One Outcome.</h2>
 
             <div className="bg-green-glow border border-green/20 rounded-lg p-5 mb-4">
-              <h3 className="font-condensed font-bold text-green text-xl mb-2">Act One — 3.5% Before March 28, 2026</h3>
-              <p className="text-body">March 28 is the No Kings Rally. If we reach 3.5% before that date, the rally becomes a reckoning — not just a demonstration, but documented, measurable, organized proof that the people are ahead of their government.</p>
+              <h3 className="font-condensed font-bold text-green text-xl mb-2">Act One — 3.5% Critical Mass</h3>
+              <p className="text-body">When we reach 3.5%, the movement becomes a reckoning — not just a demonstration, but documented, measurable, organized proof that the people are ahead of their government.</p>
             </div>
 
             <div className="bg-green-glow border border-green/20 rounded-lg p-5 mb-4">
-              <h3 className="font-condensed font-bold text-green text-xl mb-2">Act Two — 100 Million Before July 4, 2026</h3>
-              <p className="text-body">July 4, 2026 is the 250th anniversary of America's founding documents. One hundred million signatures is not rebellion. It is patriotism — peaceful, organized, undeniable.</p>
+              <h3 className="font-condensed font-bold text-green text-xl mb-2">Act Two — 100 Million Strong</h3>
+              <p className="text-body">One hundred million signatures is not rebellion. It is patriotism — peaceful, organized, undeniable.</p>
             </div>
 
             <div className="bg-gold-glow border border-gold/30 rounded-lg p-5 mb-6">
-              <h3 className="font-condensed font-bold text-gold text-xl mb-2">⭐ Act Three — November 2026: The Midterm Realignment</h3>
-              <p className="text-body">By November 2026, all 435 congressional districts will have candidates seeking PHIERS endorsement — not because of party loyalty, but because the people in their district have spoken.</p>
+              <h3 className="font-condensed font-bold text-gold text-xl mb-2">⭐ Act Three — The Midterm Realignment</h3>
+              <p className="text-body">All 435 congressional districts will have candidates seeking PHIERS endorsement — not because of party loyalty, but because the people in their district have spoken.</p>
             </div>
 
             <div className="text-center mt-4">
@@ -222,7 +231,7 @@ export default function UnstoppablePage() {
             <div className="border-t border-b border-green/30 py-6 my-6 text-center">
               <p className="text-white text-xl italic mb-2">"Different institution.<br />
               Same pattern. Same silence.<br />
-              Same discomfort with Black excellence<br />
+              Same discomfort with excellence<br />
               that disrupts the status quo."</p>
               <span className="text-gray-500 text-sm">— Will Price, PHIERS Founders</span>
             </div>
@@ -332,7 +341,7 @@ export default function UnstoppablePage() {
                 className="w-full h-auto rounded-lg border-2 border-green/20 hover:scale-[1.01] transition-transform"
               />
             </button>
-            <p className="text-center text-gray-500 text-xs italic mt-2">100 million Americans.<br />July 4, 2026.<br />The destination.</p>
+            <p className="text-center text-gray-500 text-xs italic mt-2">100 million Americans.<br />The destination.</p>
           </div>
 
           <div className="text-center pt-6">
@@ -446,4 +455,4 @@ export default function UnstoppablePage() {
   )
 }
 
-// END FILE: app/unstoppable/page.tsx
+// END FILE: app/unstoppable/page.tsx - TIERS 1-7 COMPLETE
