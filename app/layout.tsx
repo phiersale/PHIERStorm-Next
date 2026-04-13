@@ -1,29 +1,13 @@
-import { Barlow } from 'next/font/google'
+// FILE: app/layout.tsx
+
+import type { Metadata } from 'next'
 import './globals.css'
-import { Toaster } from '@/components/ui/sonner'
-import { SiteHeader } from '@/components/site-header'
-import { SiteFooter } from '@/components/site-footer'
 
-export const dynamic = 'force-dynamic'
-
-const barlow = Barlow({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-sans',
-})
-
-export const metadata = {
-  metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
-  title: 'PHIERS.org — Leverage Over Congress',
-  description: 'A 16-year solutions engine. Get leverage over Congress to make them do their job. 1,500 signatures per district to force town halls April 15th.',
-  openGraph: {
-    title: 'PHIERS.org — Leverage Over Congress',
-    description: 'A 16-year solutions engine. 1,500 signatures per district. Force town halls April 15th.',
-    images: ['/og-image.png'],
-  },
+export const metadata: Metadata = {
+  title: 'PHIERS.org — The Leverage Congress Can\'t Ignore',
+  description: 'Organized people, by district, with real consequences. That\'s how change actually happens.',
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
+    icon: '/images/PHIERS_Logo.png',
   },
 }
 
@@ -33,18 +17,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        <script src="https://apps.abacus.ai/chatllm/appllm-lib.js" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet" />
       </head>
-      <body className={`${barlow.variable} font-sans bg-[#080d1a] text-gray-100 min-h-screen`}>
-        <SiteHeader />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <SiteFooter />
-        <Toaster />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
