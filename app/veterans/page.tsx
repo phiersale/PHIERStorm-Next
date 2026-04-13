@@ -1,15 +1,35 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 
 export default function VeteransPage() {
+  const playVideo = (videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  }
+
   return (
     <>
       <Navigation />
       <main className="pt-24 pb-16">
         <section className="max-w-[760px] mx-auto px-6 py-12">
+          
+          {/* HERO IMAGE */}
+          <div className="relative w-full h-[300px] md:h-[400px] mb-8 rounded-xl overflow-hidden">
+            <Image
+              src="/images/Veterans_Deserve_Better_NOW.jpg"
+              alt="Veterans Deserve Better NOW"
+              fill
+              className="object-cover"
+            />
+          </div>
+          
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">You served the country.<br /><span className="text-[#3ddc84]">Now the country needs your leverage.</span></h1>
           
           <p className="text-gray-400 mb-8">Veterans know something most Americans don't: Systems don't change because people complain. They change because people organize. PHIERS gives veterans the mechanism to force Congress to act — district by district, on the record, with consequences they cannot ignore.</p>
@@ -43,15 +63,53 @@ export default function VeteransPage() {
           <p className="text-gray-400 mb-6">→ Political promises with no follow-through</p>
           <p className="font-condensed text-lg text-white font-bold mb-6">Not because solutions don't exist — but because Congress doesn't feel pressure from the people who earned the right to demand better.</p>
           
+          {/* VA COLLAPSE DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/veterans_from_back.jpg"
+              alt="Veterans — from behind"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           <h2 className="font-display text-3xl text-white mt-8 mb-4">The Betrayal by the Numbers</h2>
           <p className="font-condensed text-lg text-white font-bold mb-3">What they say vs. what the numbers show:</p>
           <p className="text-gray-400 mb-3"><strong className="text-white">"The VA serves veterans."</strong> The VA serves fewer than 9 million of 20+ million. If you're not in that 9 million, you get nothing.</p>
           <p className="text-gray-400 mb-3"><strong className="text-white">"No cuts to veteran benefits."</strong> They already tried to cut disability benefits for veterans whose medication was working. They backed off. The rule is still on the books.</p>
           <p className="text-gray-400 mb-6"><strong className="text-white">"We're making the VA more efficient."</strong> Cutting 30,000 staff to pre-PACT Act levels means longer waits, denied claims, veterans falling through the cracks.</p>
           
+          {/* MEDICATION TRAP DIAGRAM */}
+          <div className="my-8 max-w-[500px] mx-auto">
+            <Image
+              src="/images/Veterans_for_Peace.jpg"
+              alt="Veterans for Peace"
+              width={500}
+              height={300}
+              className="w-full h-auto rounded-lg border border-[#3ddc84]/20"
+            />
+          </div>
+          
           <h2 className="font-display text-3xl text-white mt-8 mb-4">Why Will Price Quit the VA</h2>
           <p className="text-gray-400 mb-3">20+ years inside the VA system. Senior Analyst, Electronic Health Records. Registration, Eligibility, and Enrollment. One of five civilians in the VA's first enterprise-wide reengineering initiative.</p>
           <p className="text-gray-400 mb-6">He saw how the system actually worked. And who it left behind. He quit to build the alternative.</p>
+          
+          {/* FOUNDER VIDEO */}
+          <div className="my-8">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20">
+              <div className="video-wrap" id="wrap-founder" style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <div className="absolute inset-0 bg-cover bg-center cursor-pointer flex items-center justify-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg')" }} onClick={() => playVideo('founder', 'https://www.youtube.com/embed/VIDEO_ID?autoplay=1&rel=0')}>
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-5xl text-white/90 cursor-pointer">▶</div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-[#0a1020] p-5 border-x border-b border-[#3ddc84]/20 rounded-b-xl text-center">
+              <div className="font-display text-xl text-[#3ddc84] mb-1">🎥 Why the Founder Left the VA</div>
+              <div className="font-condensed text-gray-400">The inside story of a system designed to serve a fraction of veterans — and the architecture that serves all of them.</div>
+            </div>
+          </div>
+          
           <div className="bg-[#0a1628] border-l-4 border-[#3ddc84] p-6 my-8 italic">
             <p className="text-gray-300">"The VA was designed to serve a fraction of veterans. Even at its best, it leaves more than half behind. I didn't leave because the VA was being cut — I left because the architecture was never built to serve all veterans in the first place. PHIERS is the architecture that does."</p>
             <p className="text-[#3ddc84] text-sm mt-3">— Will Price, Chief Solutions Architect</p>
@@ -70,7 +128,7 @@ export default function VeteransPage() {
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8 text-center">
             <p className="font-condensed text-lg text-white font-bold mb-6">Your service built this country. Your leverage can fix it.</p>
             <div className="flex flex-col gap-4 max-w-md mx-auto">
-              <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ SIGN FOR EVERY VETERAN</Link>
+              <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ SIGN FOR EVERY VETERAN</Link>
               <Link href="/leverage" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">→ See How It Works</Link>
             </div>
           </div>
