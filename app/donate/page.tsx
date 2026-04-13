@@ -1,5 +1,4 @@
-// FILE: app/donate/page.tsx
-// DONATE PAGE - Support the Movement
+// FILE: app/donate/page.tsx - COMPLETE (Tiers 1-7 applied)
 
 'use client'
 
@@ -13,7 +12,6 @@ import Button from '@/components/Button'
 
 export default function DonatePage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
-  const [copySuccess, setCopySuccess] = useState(false)
 
   const openModal = (src: string) => {
     setModalImage(src)
@@ -23,21 +21,6 @@ export default function DonatePage() {
   const closeModal = () => {
     setModalImage(null)
     document.body.style.overflow = ''
-  }
-
-  const forwardToChapter = () => {
-    const subject = encodeURIComponent("A solution your chapter needs to see — PHIERS.org")
-    const body = encodeURIComponent(
-      "Hi,\n\nI just signed the PHIERS petition and wanted to share it with your chapter.\n\nPHIERS is organizing Americans district by district around one clear demand — $600 telehealth through the ACA Exchange — saving $2.7 trillion and covering 234 million Americans. The same organized leverage ends the unauthorized wars and stops the draft.\n\n1,500 signatures in a district triggers a mandatory town hall. July 4, 2026 is our north star.\n\nLearn more and sign: https://phiers.org\n\nThis is the teeth behind every demand being made in the streets. Worth sharing with your members."
-    )
-    window.location.href = `mailto:?subject=${subject}&body=${body}`
-  }
-
-  const copyEmailText = () => {
-    const text = "Hi,\n\nI just signed the PHIERS petition and wanted to share it with your chapter.\n\nPHIERS is organizing Americans district by district around one clear demand — $600 telehealth through the ACA Exchange — saving $2.7 trillion and covering 234 million Americans. The same organized leverage ends the unauthorized wars and stops the draft.\n\n1,500 signatures in a district triggers a mandatory town hall. July 4, 2026 is our north star.\n\nLearn more and sign: https://phiers.org\n\nThis is the teeth behind every demand being made in the streets. Worth sharing with your members."
-    navigator.clipboard.writeText(text)
-    setCopySuccess(true)
-    setTimeout(() => setCopySuccess(false), 2000)
   }
 
   return (
@@ -64,138 +47,63 @@ export default function DonatePage() {
             A movement funded by the people belongs to the people. One dollar from a million people is a million dollars.
           </p>
 
-          {/* Urgency Banner */}
-          <div className="bg-red-500/10 border-l-4 border-l-red-500 rounded-r-lg p-5 max-w-[700px] mx-auto text-left mb-6">
-            <p className="text-white font-bold mb-2">CRITICAL WINDOW: Build Leverage Before March 28 No Kings Rally</p>
-            <p className="text-body text-sm mb-2">Every dollar strengthens the organized, district-level pressure that gives the March 28 No Kings rally real TEETH — transforming it from symbolic gathering into a force Congress cannot ignore.</p>
-            <p className="text-white font-bold text-sm mt-2">Your support helps millions stand together with power, not just presence.</p>
+          {/* Updated banner - No March 28 reference */}
+          <div className="bg-red-500/10 border-l-4 border-l-red-500 rounded-r-lg p-5 max-w-[700px] mx-auto text-left mb-8">
+            <p className="text-white font-bold mb-2">The window is open right now.</p>
+            <p className="text-body text-sm">Every dollar builds district-level pressure in Congress. Your support funds organizing, outreach, media, and district coordination — the infrastructure that turns online signatures into town halls and town halls into accountability and accountability into positive change.</p>
           </div>
         </div>
 
         <hr className="border-green/20" />
 
-        {/* Donate Now Section */}
+        {/* Donation Tiers */}
         <section className="container section">
-          <h2 className="font-display text-3xl text-white text-center mb-4">Donate <span className="text-green">Now</span></h2>
-          <p className="text-center text-gray-400 mb-8">Every dollar builds leverage before March 28.</p>
-
-          {/* Venmo */}
-          <div className="bg-bg-card border-l-4 border-l-green rounded-r-lg p-6 mb-4 max-w-[500px] mx-auto">
-            <div className="font-display text-2xl text-green mb-2">Venmo</div>
-            <div className="text-body">
-              <p><strong className="text-white">@Will4PHIERS</strong></p>
-              <div className="flex justify-center my-3">
-                <button onClick={() => openModal('/images/Venmo.png')} className="cursor-pointer">
-                  <Image
-                    src="/images/Venmo.png"
-                    alt="Venmo QR Code"
-                    width={180}
-                    height={180}
-                    className="rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
-                  />
-                </button>
-              </div>
+          <h2 className="font-display text-3xl text-white text-center mb-6">Donate <span className="text-green">Now</span></h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[800px] mx-auto mb-8">
+            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
+              <div className="font-display text-3xl text-green">$25</div>
+              <p className="text-body text-sm mt-2">Outreach to 100 people in your district</p>
+            </div>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
+              <div className="font-display text-3xl text-green">$50</div>
+              <p className="text-body text-sm mt-2">Funds a district team for a week</p>
+            </div>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
+              <div className="font-display text-3xl text-green">$100</div>
+              <p className="text-body text-sm mt-2">Reaches an organizer network in your state</p>
+            </div>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
+              <div className="font-display text-3xl text-green">$500</div>
+              <p className="text-body text-sm mt-2">Funds media reaching 10,000+ people</p>
             </div>
           </div>
 
-          {/* PayPal */}
-          <div className="bg-bg-card border-l-4 border-l-green rounded-r-lg p-6 mb-4 max-w-[500px] mx-auto">
-            <div className="font-display text-2xl text-green mb-2">PayPal</div>
-            <div className="text-body">
-              <p><strong className="text-white"><Link href="mailto:will@phiers.org" className="text-white hover:text-green">will@phiers.org</Link></strong></p>
-              <div className="flex justify-center my-3">
-                <button onClick={() => openModal('/images/PayPal.png')} className="cursor-pointer">
-                  <Image
-                    src="/images/PayPal.png"
-                    alt="PayPal QR Code"
-                    width={180}
-                    height={180}
-                    className="rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
+          <p className="text-center text-gray-400 text-sm italic mb-8">A movement funded by the people belongs to the people.</p>
 
-          {/* Zelle */}
-          <div className="bg-bg-card border-l-4 border-l-green rounded-r-lg p-6 mb-4 max-w-[500px] mx-auto">
-            <div className="font-display text-2xl text-green mb-2">Zelle</div>
-            <div className="text-body">
-              <p><strong className="text-white">(301) 919-0970</strong></p>
-              <div className="flex justify-center my-3">
-                <button onClick={() => openModal('/images/Zelle.png')} className="cursor-pointer">
-                  <Image
-                    src="/images/Zelle.png"
-                    alt="Zelle QR Code"
-                    width={180}
-                    height={180}
-                    className="rounded-lg border border-green/20 hover:scale-[1.02] transition-transform"
-                  />
-                </button>
-              </div>
+          {/* Donation Methods */}
+          <div className="bg-bg-dark border-2 border-green rounded-xl p-6 max-w-[500px] mx-auto">
+            <div className="space-y-3 text-left max-w-[300px] mx-auto">
+              <p><strong className="text-white">Venmo:</strong> @Will4PHIERS</p>
+              <p><strong className="text-white">PayPal:</strong> will@phiers.org</p>
+              <p><strong className="text-white">Zelle:</strong> (301) 919-0970 <span className="text-xs text-gray-500">[Zelle only]</span></p>
+              <p className="mt-3"><Link href="https://www.gofundme.com/f/homeless-but-hopeful-affordable-healthcare-good-jobs-ubi" target="_blank" rel="noopener noreferrer" className="text-green font-condensed font-bold hover:underline">GoFundMe Campaign →</Link></p>
             </div>
-          </div>
-
-          {/* GoFundMe */}
-          <div className="text-center mt-6">
-            <Link
-              href="https://www.gofundme.com/f/homeless-but-hopeful-affordable-healthcare-good-jobs-ubi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-transparent border-2 border-green text-green font-condensed font-bold text-lg px-6 py-3 rounded-lg hover:bg-green/10 transition-all"
-            >
-              GoFundMe Campaign →
-            </Link>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* Can't Donate Section */}
+        {/* Can't Donate Section - Updated */}
         <section className="bg-bg-dark border-y border-green/10 section">
-          <div className="container">
-            <h2 className="font-display text-3xl text-white text-center mb-4">Can't Donate? <span className="text-green">Other Ways to Build Leverage</span></h2>
-            <p className="text-center text-gray-400 mb-6">Can't contribute financially right now? You can still build leverage before March 28:</p>
-
-            <div className="flex flex-col md:flex-row gap-3 justify-center mb-6">
-              <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
-              <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform?usp=header" variant="secondary">📋 Fill Survey</Button>
-              <Button href="/action" variant="secondary">See All Actions</Button>
-            </div>
-
-            <p className="text-center text-gray-400 text-sm mb-6">Every signature, every survey response, every share builds the 3.5% threshold that forces change.</p>
-
-            {/* Forward to Chapter */}
-            <div className="bg-green-glow border border-green/20 rounded-xl p-5 max-w-[600px] mx-auto text-center">
-              <p className="font-condensed text-base text-gray-400 mb-3">Part of an Indivisible chapter or local group? Forward this site to them.</p>
-              <div className="flex flex-col md:flex-row gap-3 justify-center">
-                <button
-                  onClick={forwardToChapter}
-                  className="bg-green text-bg-deep font-condensed font-bold text-sm px-6 py-3 rounded-lg hover:bg-green-dim transition-all"
-                >
-                  ✉ Forward to Your Chapter →
-                </button>
-                <button
-                  onClick={copyEmailText}
-                  className="bg-transparent border border-green text-green font-condensed font-bold text-sm px-6 py-3 rounded-lg hover:bg-green/10 transition-all"
-                >
-                  {copySuccess ? '✓ Copied!' : '📋 Copy Email Text'}
-                </button>
-              </div>
-              <p className="text-gray-500 text-xs mt-3">Opens a pre-written email — you decide whether to send it.</p>
+          <div className="container text-center">
+            <p className="text-gray-400 mb-4">Your name matters as much as your dollar.</p>
+            <div className="flex flex-col md:flex-row gap-3 justify-center">
+              <Button href="/petition" variant="primary">✍ SIGN THE PETITION</Button>
+              <Button href="/action" variant="secondary">📣 SHARE THE MESSAGE</Button>
             </div>
           </div>
         </section>
-
-        {/* Page Navigation */}
-        <div className="container flex justify-between items-center py-6 border-t border-green/20 mt-8">
-          <Link href="/action" className="font-condensed font-bold text-green text-sm hover:text-green-dim transition-colors">
-            ← Back to Take Action
-          </Link>
-          <Link href="/resources" className="font-condensed font-bold text-green text-sm hover:text-green-dim transition-colors">
-            Resource Hub →
-          </Link>
-        </div>
       </main>
 
       <Footer />
@@ -267,9 +175,6 @@ export default function DonatePage() {
           background: #2ab568;
           transform: translateY(-2px);
         }
-        .bg-green-glow {
-          background: rgba(61, 220, 132, 0.06);
-        }
       `}</style>
 
       <script dangerouslySetInnerHTML={{
@@ -290,4 +195,4 @@ export default function DonatePage() {
   )
 }
 
-// END FILE: app/donate/page.tsx
+// END FILE: app/donate/page.tsx - TIERS 1-7 COMPLETE
