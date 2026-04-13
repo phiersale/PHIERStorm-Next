@@ -153,10 +153,11 @@ export default function HomePage() {
           <p className="font-condensed text-lg text-white font-bold mb-2">This only works if enough people act together.</p>
           <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-8">Not eventually. Not theoretically. Now.</p>
           
-          <div className="flex flex-col md:flex-row gap-4 justify-center max-w-md mx-auto">
-            <Link href="/petition" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ I'm ready to be counted — add my name</Link>
-            <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I bring people — show me what PHIERS does for them</Link>
-          </div>
+       <div className="flex flex-col md:flex-row gap-4 justify-center max-w-md mx-auto">
+          <Link href="/homepage-teeth" className="px-6 py-3 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">→ Start Here — How Leverage Works</Link>
+          <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ I'm ready to be counted</Link>
+          <Link href="/organizers" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I bring people</Link>
+        </div>
         </section>
 
         <hr className="border-[#3ddc84]/20" />
