@@ -60,7 +60,7 @@ export default function ActionPage() {
             <p className="text-gray-400 mb-3">Add your name to your district.</p>
             <p className="text-gray-400 mb-3">Not symbolic. Not a comment.</p>
             <p className="text-gray-400 mb-6">A number tied to your representative. That's where pressure starts.</p>
-            <Link href="/petition" className="inline-block px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ ADD MY NAME</Link>
+            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ ADD MY NAME</Link>
           </div>
           
           {/* STEP 2 — MULTIPLY THE COUNT */}
