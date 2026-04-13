@@ -63,7 +63,7 @@ export default function HomePage() {
             >
               <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10">
                 <Image
-                  src="/images/Congress_Doesnt_Listen_to_You-3-Backpack.jpg"
+                  src="/images/You_Are_Not_Powerless.jpg"
                   alt="Congress doesn't have to listen to you. This is how you make them."
                   fill
                   className="object-cover"
@@ -145,7 +145,7 @@ export default function HomePage() {
           <p className="font-condensed text-lg text-[#ffd60a] font-bold mb-8">Not eventually. Not theoretically. Now.</p>
           
           <div className="flex flex-col md:flex-row gap-4 justify-center max-w-md mx-auto">
-            <Link href="/petition" className="px-8 py-4 bg-white text-[#0a5c2e] rounded-lg font-condensed font-extrabold text-center hover:bg-gray-100 transition-all">✍ Be counted</Link>
+            <Link href="/petition" className="px-6 py-3 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✍ Be counted</Link>
             <Link href="/organizers" className="px-8 py-4 bg-transparent text-[#3ddc84] border-2 border-[#3ddc84] rounded-lg font-condensed font-bold text-center hover:bg-[#3ddc84]/10 transition-all">✊ I organize</Link>
           </div>
         </section>
