@@ -250,7 +250,7 @@ export default function HomePage() {
           <div className="max-w-[760px] mx-auto text-center">
             <span className="font-condensed font-bold text-[#3ddc84] text-sm uppercase tracking-wider block mb-4">The Math</span>
             
-            <p className="font-display text-4xl md:text-5xl text-white mb-2">1,500 × 438 congressional districts</p>
+            <p className="font-display text-4xl md:text-5xl text-white mb-2">1,500 × 435 congressional districts</p>
             <p className="font-display text-5xl md:text-6xl text-[#3ddc84] font-bold mb-6">= ~650,000 people.</p>
             <p className="text-gray-400 text-lg mb-4">That's it.</p>
             <p className="text-gray-400 mb-3">Not the whole country.</p>
