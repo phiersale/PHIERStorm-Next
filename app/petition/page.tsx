@@ -33,6 +33,14 @@ export default function PetitionPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
+  const playVideo = (videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  }
+
   return (
     <>
       <Navigation />
@@ -51,6 +59,18 @@ export default function PetitionPage() {
           
           <h1 className="font-display text-4xl md:text-5xl text-white text-center mb-4">Your Name. Your District. On the Record.</h1>
           <p className="font-condensed text-xl text-gray-400 text-center mb-8">1,500 people in your district forces a mandatory public town hall.<br />Your representative answers on the record — before the next election.</p>
+
+          {/* VIDEO: See why your signature matters */}
+          <div className="max-w-[500px] mx-auto mb-6">
+            <div id="wrap-signature-matters" className="relative aspect-video rounded-xl overflow-hidden border border-[#3ddc84]/20 cursor-pointer group" onClick={() => playVideo('signature-matters', 'https://www.youtube.com/embed/C2mMIx5yoyw?autoplay=1&rel=0')}>
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/C2mMIx5yoyw/hqdefault.jpg')" }}>
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
+                  <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
+                </div>
+              </div>
+            </div>
+            <p className="font-condensed text-[#3ddc84] text-xs text-center mt-2">See why your signature matters</p>
+          </div>
           
           <div className="bg-[#0a1628] border border-[#3ddc84]/20 rounded-xl p-8">
             <p className="font-condensed text-lg text-[#ffd60a] font-bold text-center mb-6">District counts begin compiling immediately.</p>
