@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'  // ✓ Added useCallback
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -14,6 +14,11 @@ export default function FAQPage() {
   const [openItems, setOpenItems] = useState<number[]>([])
   const [modalImage, setModalImage] = useState<string | null>(null)
 
+  // ✓ Added scrollToTop function
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   const openModal = (src: string) => {
     setModalImage(src)
     document.body.style.overflow = 'hidden'
@@ -24,29 +29,33 @@ export default function FAQPage() {
     document.body.style.overflow = ''
   }
 
-  const toggleFAQ = (index: number) => {
+  // ✓ Wrapped toggleFAQ in useCallback
+  const toggleFAQ = useCallback((index: number) => {
     if (openItems.includes(index)) {
       setOpenItems(openItems.filter(i => i !== index))
     } else {
       setOpenItems([...openItems, index])
     }
-  }
+  }, [openItems])
 
-  const expandAll = () => {
+  // ✓ Wrapped expandAll in useCallback
+  const expandAll = useCallback(() => {
     setOpenItems([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
-  }
+  }, [])
 
-  const collapseAll = () => {
+  // ✓ Wrapped collapseAll in useCallback
+  const collapseAll = useCallback(() => {
     setOpenItems([])
-  }
+  }, [])
 
-  const playVideo = (videoId: string, src: string) => {
+  // ✓ Wrapped playVideo in useCallback
+  const playVideo = useCallback((videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
     wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-  }
+  }, [])
 
   const faqs = [
     {
@@ -116,11 +125,22 @@ export default function FAQPage() {
             />
           </div>
           <div className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">❓ QUESTIONS & ANSWERS</div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-3">
-            FREQUENTLY ASKED<br /><span className="text-gold">QUESTIONS</span>
+          {/* ✓ Fixed two-tone H1 */}
+          <h1 className="mb-4">
+            <span className="hero-white">FREQUENTLY ASKED</span>
+            <br />
+            <span className="hero-green">QUESTIONS</span>
           </h1>
           <p className="font-condensed text-lg text-gray-400 max-w-[750px] mx-auto">
             Honest answers. Clear explanations. No political jargon.
+          </p>
+        </div>
+
+        {/* ✓ Anchor line added after Hero section */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
           </p>
         </div>
 
@@ -237,8 +257,9 @@ export default function FAQPage() {
         )}
       </AnimatePresence>
 
+      {/* ✓ Updated back-to-top button to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
