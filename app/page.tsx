@@ -149,16 +149,21 @@ export default function HomePage() {
 
       <main>
         {/* Hero Image */}
-        <div className="relative w-full h-[50vh] md:h-[60vh]">
-          <Image
-            src="/images/PHIERS-Power_Held_In_Every_Reps_Seat.jpg"
-            alt="PHIERS — Power Held In Every Representative's Seat"
-            fill
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080d1a] via-transparent to-transparent" />
-        </div>
+        <section className="relative bg-[#050b19] pt-8 md:pt-12 pb-4">
+          <div className="container">
+            <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-green/30 shadow-[0_16px_60px_rgba(0,0,0,0.55)]">
+              <Image
+                src="/images/PHIERS-Power_Held_In_Every_Reps_Seat.jpg"
+                alt="PHIERS acronym image — Power Held In Every Rep's Seat"
+                width={954}
+                height={648}
+                priority
+                className="w-full h-auto object-contain"
+              />
+            </div>
+          </div>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#080d1a] to-transparent" />
+        </section>
 
         {/* Hero Content - Two-tone rhythm */}
         <section className="container section text-center">
