@@ -1,8 +1,8 @@
-// FILE: app/organizers/page.tsx - COMPLETE REWRITE (Tiers 1-7)
+// FILE: app/organizers/page.tsx - START
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -23,6 +23,11 @@ export default function OrganizersPage() {
     document.body.style.overflow = ''
   }
 
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
     <>
       <Navigation />
@@ -39,8 +44,11 @@ export default function OrganizersPage() {
               className="opacity-90"
             />
           </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            You built the movement.<br /><span className="text-green">PHIERS gives it teeth.</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">You built the movement.</span>
+            <br />
+            <span className="hero-green">PHIERS gives it teeth.</span>
           </h1>
           <div className="max-w-[700px] mx-auto space-y-4">
             <p className="text-gray-400">Every movement needs people on the ground — not as volunteers. As partners in a district-level pressure system Congress cannot ignore.</p>
@@ -63,7 +71,7 @@ export default function OrganizersPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line */}
+        {/* Anchor Line - ADDED after Hero */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -206,8 +214,9 @@ export default function OrganizersPage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -264,4 +273,4 @@ export default function OrganizersPage() {
   )
 }
 
-// END FILE: app/organizers/page.tsx - TIERS 1-7 COMPLETE
+// END FILE: app/organizers/page.tsx
