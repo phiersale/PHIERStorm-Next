@@ -1,8 +1,8 @@
-// FILE: app/leverage/page.tsx - UPDATED (Tiers 1-7)
+// FILE: app/leverage/page.tsx - START
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -14,6 +14,11 @@ export default function LeveragePage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
 
+  // Scroll to top function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   const openModal = (src: string) => {
     setModalImage(src)
     document.body.style.overflow = 'hidden'
@@ -24,13 +29,14 @@ export default function LeveragePage() {
     document.body.style.overflow = ''
   }
 
-  const playVideo = (videoId: string, src: string) => {
+  // playVideo wrapped in useCallback
+  const playVideo = useCallback((videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
     wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-  }
+  }, [])
 
   const loadVideo = (videoId: string) => {
     if (videoLoaded) return
@@ -58,8 +64,11 @@ export default function LeveragePage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Congressional Leverage</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            When People Organize,<br /><span className="text-green">Congress Has No Choice.</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">When People Organize,</span>
+            <br />
+            <span className="hero-green">Congress Has No Choice.</span>
           </h1>
           <p className="font-condensed text-lg text-gray-400 max-w-[680px] mx-auto">
             The anger is justified. This is what you do with it.<br />
@@ -313,8 +322,9 @@ export default function LeveragePage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -374,4 +384,4 @@ export default function LeveragePage() {
   )
 }
 
-// END FILE: app/leverage/page.tsx - TIERS 1-7 COMPLETE
+// END FILE: app/leverage/page.tsx
