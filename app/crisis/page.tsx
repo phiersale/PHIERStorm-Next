@@ -1,8 +1,8 @@
-// FILE: app/crisis/page.tsx - UPDATED (Tiers 1-7)
+// FILE: app/crisis/page.tsx - START
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -23,6 +23,11 @@ export default function CrisisPage() {
     document.body.style.overflow = ''
   }
 
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
     <>
       <Navigation />
@@ -40,8 +45,11 @@ export default function CrisisPage() {
             />
           </div>
           <span className="font-condensed font-bold text-red-500 text-sm uppercase tracking-wider block mb-3">This Is What Existential Looks Like</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            The 5D Crisis.<br /><span className="text-red-500">One Spiral.</span> <span className="text-green">One Way Out.</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">The 5D Crisis.</span>
+            <br />
+            <span className="hero-green">One Spiral. One Way Out.</span>
           </h1>
           <p className="font-condensed text-lg text-gray-400 max-w-[680px] mx-auto mb-6">
             Five dimensions. One system. Every piece feeding the others — each failure making the next one worse.
@@ -51,6 +59,16 @@ export default function CrisisPage() {
             <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
             <Button href="/simple-math" variant="secondary">→ See the Math</Button>
           </div>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line - ADDED after Hero */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
         </div>
 
         <hr className="border-green/20" />
@@ -297,8 +315,9 @@ export default function CrisisPage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -358,4 +377,4 @@ export default function CrisisPage() {
   )
 }
 
-// END FILE: app/crisis/page.tsx - TIERS 1-7 COMPLETE
+// END FILE: app/crisis/page.tsx
