@@ -1,8 +1,8 @@
-// FILE: app/real-stories/page.tsx - RESTORED (Tiers 1-7)
+// FILE: app/real-stories/page.tsx - START
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -29,7 +29,13 @@ export default function RealStoriesPage() {
     document.body.style.overflow = ''
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  // handleSubmit wrapped in useCallback
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitStatus('idle')
     
@@ -38,7 +44,7 @@ export default function RealStoriesPage() {
     setSubmitStatus('success')
     setFormData({ name: '', state: '', story: '' })
     setTimeout(() => setSubmitStatus('idle'), 3000)
-  }
+  }, [formData])
 
   // 7 Testimonials
   const stories = [
@@ -103,8 +109,11 @@ export default function RealStoriesPage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Voices Congress Ignores</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            Real Stories.<br /><span className="text-green">Real People.</span> <span className="text-red-500">Real Stakes.</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">Real Stories. Real People.</span>
+            <br />
+            <span className="hero-green">Real Stakes.</span>
           </h1>
           <p className="font-condensed text-lg text-gray-400 max-w-[700px] mx-auto">
             These aren't anecdotes. They're evidence. Insurance failed. Telehealth saved. This is why we fight.
@@ -113,7 +122,7 @@ export default function RealStoriesPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line */}
+        {/* Anchor Line - ADDED after Hero */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -242,8 +251,9 @@ export default function RealStoriesPage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -303,4 +313,4 @@ export default function RealStoriesPage() {
   )
 }
 
-// END FILE: app/real-stories/page.tsx - TIERS 1-7 COMPLETE
+// END FILE: app/real-stories/page.tsx
