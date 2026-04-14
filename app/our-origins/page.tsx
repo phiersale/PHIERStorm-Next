@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'  // ✓ Added useCallback
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -12,6 +12,11 @@ import Button from '@/components/Button'
 
 export default function OurOriginsPage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
+
+  // ✓ Added scrollToTop function
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const openModal = (src: string) => {
     setModalImage(src)
@@ -39,7 +44,12 @@ export default function OurOriginsPage() {
               className="opacity-90"
             />
           </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-green mb-4">Our Origins: The Full Story</h1>
+          {/* ✓ Fixed two-tone H1 */}
+          <h1 className="mb-4">
+            <span className="hero-white">Our Origins:</span>
+            <br />
+            <span className="hero-green">The Full Story</span>
+          </h1>
           <p className="font-condensed text-lg text-white mb-2">PHIERS means Power Held In Every Representative's Seat.</p>
           <p className="text-gray-500 text-sm mb-2">Not a slogan. A solution. Something real.</p>
           <p className="font-condensed text-base text-gray-400 mb-4">Since 2009. Not competing, but amplifying.</p>
@@ -48,7 +58,7 @@ export default function OurOriginsPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line */}
+        {/* ✓ Anchor line already present - keeping as is */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -258,8 +268,9 @@ export default function OurOriginsPage() {
         )}
       </AnimatePresence>
 
+      {/* ✓ Updated back-to-top button to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
