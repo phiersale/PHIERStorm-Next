@@ -1,8 +1,8 @@
-// FILE: app/why-change-required/page.tsx - UPDATED (Tiers 1-7)
+// FILE: app/why-change-required/page.tsx - START
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -23,6 +23,11 @@ export default function WhyChangeRequiredPage() {
     document.body.style.overflow = ''
   }
 
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
     <>
       <Navigation />
@@ -40,8 +45,11 @@ export default function WhyChangeRequiredPage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Case for Systemic Replacement</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            Why Change <span className="text-red-500">Is Required</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">Why Change</span>
+            <br />
+            <span className="hero-green">Is Required</span>
           </h1>
           <p className="font-condensed text-lg text-gray-400 max-w-[700px] mx-auto">
             The system isn't "broken." It's working exactly as designed — and that design is failing us.
@@ -63,7 +71,7 @@ export default function WhyChangeRequiredPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line */}
+        {/* Anchor Line - ADDED after Hero */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -200,7 +208,7 @@ export default function WhyChangeRequiredPage() {
 
         <hr className="border-green/20" />
 
-        {/* Can't Wait for Politics as Usual */}
+        {/* Why We Can't Wait for Politics as Usual */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container">
             <h2 className="font-display text-3xl text-white mb-4">Why We Can't Wait for <span className="text-red-500">"Politics as Usual"</span></h2>
@@ -336,8 +344,9 @@ export default function WhyChangeRequiredPage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -397,4 +406,4 @@ export default function WhyChangeRequiredPage() {
   )
 }
 
-// END FILE: app/why-change-required/page.tsx - TIERS 1-7 COMPLETE
+// END FILE: app/why-change-required/page.tsx
