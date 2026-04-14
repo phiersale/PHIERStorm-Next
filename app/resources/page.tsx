@@ -1,9 +1,9 @@
-// FILE: app/resources/page.tsx
+// FILE: app/resources/page.tsx - START
 // RESOURCES PAGE - Resource Hub
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -13,6 +13,11 @@ import Button from '@/components/Button'
 
 export default function ResourcesPage() {
   const [willModalOpen, setWillModalOpen] = useState(false)
+
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   // Video data
   const videos = [
@@ -84,11 +89,24 @@ export default function ResourcesPage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">One place. Everything you need.</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            PHIERS <span className="text-green">Resource Hub</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">PHIERS</span>
+            <br />
+            <span className="hero-green">Resource Hub</span>
           </h1>
           <p className="font-condensed text-lg text-gray-400 max-w-[700px] mx-auto">
             State guides, audience letters, videos, infographics, FAQ — all in one place. Download, share, organize.
+          </p>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line - ADDED after Hero */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
           </p>
         </div>
 
@@ -290,8 +308,9 @@ export default function ResourcesPage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
