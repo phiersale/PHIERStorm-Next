@@ -1,8 +1,8 @@
-// FILE: app/veterans/page.tsx - UPDATED (Tiers 1-7)
+// FILE: app/veterans/page.tsx - START
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -22,6 +22,11 @@ export default function VeteransPage() {
     setModalImage(null)
     document.body.style.overflow = ''
   }
+
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <>
@@ -57,8 +62,11 @@ export default function VeteransPage() {
           </div>
 
           <span className="font-condensed font-bold text-gold text-xs uppercase tracking-wider block mb-3">For Every Veteran Who Served — Then Got Left Behind</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            You Served.<br />You Were Promised Care.<br /><span className="text-red-500">The System Doesn't Deliver It.</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">You Served. You Were Promised Care.</span>
+            <br />
+            <span className="hero-green">The System Doesn't Deliver It.</span>
           </h1>
           <p className="font-condensed text-lg text-white max-w-[680px] mx-auto mb-3">
             More than half of America's 20+ million veterans receive limited or inconsistent support from the VA system they were promised. PHIERS is built to fix that — regardless of eligibility, location, or politics.
@@ -92,7 +100,7 @@ export default function VeteransPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line */}
+        {/* Anchor Line - ADDED */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -364,8 +372,9 @@ export default function VeteransPage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -428,4 +437,4 @@ export default function VeteransPage() {
   )
 }
 
-// END FILE: app/veterans/page.tsx - TIERS 1-7 COMPLETE
+// END FILE: app/veterans/page.tsx
