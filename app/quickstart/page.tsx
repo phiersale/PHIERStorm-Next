@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'  // ✓ Added useCallback
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -12,6 +12,11 @@ import Button from '@/components/Button'
 
 export default function QuickstartPage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
+
+  // ✓ Added scrollToTop function
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const openModal = (src: string) => {
     setModalImage(src)
@@ -23,13 +28,14 @@ export default function QuickstartPage() {
     document.body.style.overflow = ''
   }
 
-  const playVideo = (videoId: string, src: string) => {
+  // ✓ Wrapped playVideo in useCallback
+  const playVideo = useCallback((videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
     wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-  }
+  }, [])
 
   return (
     <>
@@ -47,7 +53,12 @@ export default function QuickstartPage() {
               className="opacity-90"
             />
           </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-green mb-4">Quick Start: 30 Seconds to Understand</h1>
+          {/* ✓ Fixed two-tone H1 */}
+          <h1 className="mb-4">
+            <span className="hero-white">Quick Start:</span>
+            <br />
+            <span className="hero-green">30 Seconds to Understand</span>
+          </h1>
           <p className="font-condensed text-lg text-gray-400 mb-3">New here? This is everything you need to know in under a minute.</p>
           <div className="inline-block bg-gradient-to-r from-green to-green-dim text-bg-deep px-5 py-2 rounded-full font-condensed font-bold text-sm mb-4">30 seconds to join.</div>
           <p className="text-white text-lg">This isn't a protest — it's a cooperative intelligence project.</p>
@@ -74,7 +85,7 @@ export default function QuickstartPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line */}
+        {/* ✓ Anchor line added after Video section */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -280,8 +291,9 @@ export default function QuickstartPage() {
         )}
       </AnimatePresence>
 
+      {/* ✓ Updated back-to-top button to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
