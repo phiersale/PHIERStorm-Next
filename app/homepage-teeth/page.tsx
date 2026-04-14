@@ -1,8 +1,6 @@
-// FILE: app/homepage-teeth/page.tsx - UPDATED (Tiers 1-7)
-
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Navigation from '@/components/navigation'
@@ -32,11 +30,17 @@ export default function HomepageTeethPage() {
     else { setActiveRing(index); setDetailVisible(true) }
   }
 
-  const playVideo = (which: string, src: string) => {
+  // playVideo wrapped in useCallback
+  const playVideo = useCallback((which: string, src: string) => {
     const wrap = document.getElementById('wrap-' + which)
     if (!wrap) return
     wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src + '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-  }
+  }, [])
+
+  // Scroll to top function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <>
@@ -52,7 +56,11 @@ export default function HomepageTeethPage() {
           <div className="relative h-[90px] w-auto mb-4 flex justify-center">
             <Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={90} height={90} className="opacity-85" />
           </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">Movements Without Leverage Don't Win.</h1>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">Movements Without Leverage Don't Win.</span>
+            <span className="hero-green">Here's what that looks like in practice.</span>
+          </h1>
           <div className="max-w-[720px] mx-auto">
             <p className="font-condensed text-lg text-gray-400 mb-3">Protests create attention. Petitions create signals. Viral moments create headlines.</p>
             <p className="font-condensed text-lg text-gray-400 mb-5">None of them create consequences.</p>
@@ -235,7 +243,7 @@ export default function HomepageTeethPage() {
 
       {chenowethModalOpen && (<div className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4" onClick={() => setChenowethModalOpen(false)}><div className="relative max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}><button onClick={() => setChenowethModalOpen(false)} className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors">✕</button><Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% — Chenoweth Research" width={800} height={600} className="rounded-xl" /></div></div>)}
 
-      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+      <button onClick={scrollToTop} className="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
       <style jsx global>{`
         .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--green); color: var(--bg-deep); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; opacity: 0; visibility: hidden; transition: all 150ms ease; z-index: 999; border: none; }
@@ -251,5 +259,3 @@ export default function HomepageTeethPage() {
     </>
   )
 }
-
-// END FILE: app/homepage-teeth/page.tsx - TIERS 1-7 COMPLETE
