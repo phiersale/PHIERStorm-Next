@@ -1,8 +1,8 @@
-// FILE: app/full-story/page.tsx - REBUILT (Tiers 1-7)
+// FILE: app/full-story/page.tsx - START
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -24,13 +24,19 @@ export default function FullStoryPage() {
     document.body.style.overflow = ''
   }
 
-  const playVideo = (videoId: string, src: string) => {
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  // playVideo wrapped in useCallback
+  const playVideo = useCallback((videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
     wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-  }
+  }, [])
 
   return (
     <>
@@ -49,8 +55,11 @@ export default function FullStoryPage() {
             />
           </div>
           <div className="text-green text-sm font-condensed tracking-wide mb-1">The Full Story</div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            You've seen the idea.<br />This is <span className="text-green">the proof.</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">You've seen the idea.</span>
+            <br />
+            <span className="hero-green">This is the proof.</span>
           </h1>
           <p className="text-body text-base max-w-[720px] mx-auto mb-3">
             The healthcare system isn't failing because solutions don't exist.<br />
@@ -98,6 +107,16 @@ export default function FullStoryPage() {
             <p className="text-body">We use <strong className="text-green">math and collective power</strong> to force Congress to stabilize healthcare, protect coverage, and stop using people's lives as bargaining chips.</p>
           </div>
         </section>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line - ADDED after What Is PHIERS section */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
 
         <hr className="border-green/20" />
 
@@ -251,8 +270,9 @@ export default function FullStoryPage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -326,4 +346,4 @@ export default function FullStoryPage() {
   )
 }
 
-// END FILE: app/full-story/page.tsx - TIERS 1-7 COMPLETE
+// END FILE: app/full-story/page.tsx
