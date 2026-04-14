@@ -1,8 +1,8 @@
-// FILE: app/donate/page.tsx - COMPLETE (Tiers 1-7 applied)
+// FILE: app/donate/page.tsx - START
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -23,6 +23,20 @@ export default function DonatePage() {
     document.body.style.overflow = ''
   }
 
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  // forwardToChapter wrapped in useCallback
+  const forwardToChapter = useCallback(() => {
+    const subject = encodeURIComponent("A solution your chapter needs to see — PHIERS.org")
+    const body = encodeURIComponent(
+      "Hi,\n\nI just signed the PHIERS petition and wanted to share it with your chapter.\n\nPHIERS is organizing Americans district by district around one clear demand — $600 telehealth through the ACA Exchange — saving $2.7 trillion and covering 234 million Americans. The same organized leverage ends the unauthorized wars and stops the draft.\n\n1,500 signatures in a district triggers a mandatory town hall.\n\nLearn more and sign: https://phiers.org\n\nThis is the teeth behind every demand being made in the streets. Worth sharing with your members."
+    )
+    window.location.href = `mailto:?subject=${subject}&body=${body}`
+  }, [])
+
   return (
     <>
       <Navigation />
@@ -40,8 +54,11 @@ export default function DonatePage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Fuel the Movement</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            Your Dollar Is <span className="text-green">Leverage.</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">Your Dollar Is</span>
+            <br />
+            <span className="hero-green">Leverage.</span>
           </h1>
           <p className="font-condensed text-lg text-gray-400 max-w-[700px] mx-auto mb-6">
             A movement funded by the people belongs to the people. One dollar from a million people is a million dollars.
@@ -52,6 +69,16 @@ export default function DonatePage() {
             <p className="text-white font-bold mb-2">The window is open right now.</p>
             <p className="text-body text-sm">Every dollar builds district-level pressure in Congress. Your support funds organizing, outreach, media, and district coordination — the infrastructure that turns online signatures into town halls and town halls into accountability and accountability into positive change.</p>
           </div>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line - ADDED after Hero */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
         </div>
 
         <hr className="border-green/20" />
@@ -137,8 +164,9 @@ export default function DonatePage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -195,4 +223,4 @@ export default function DonatePage() {
   )
 }
 
-// END FILE: app/donate/page.tsx - TIERS 1-7 COMPLETE
+// END FILE: app/donate/page.tsx
