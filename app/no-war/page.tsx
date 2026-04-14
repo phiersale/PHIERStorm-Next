@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'  // ✓ Added useCallback
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -12,6 +12,11 @@ import Button from '@/components/Button'
 
 export default function NoWarPage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
+
+  // ✓ Added scrollToTop function
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const openModal = (src: string) => {
     setModalImage(src)
@@ -23,13 +28,14 @@ export default function NoWarPage() {
     document.body.style.overflow = ''
   }
 
-  const playVideo = (videoId: string, src: string) => {
+  // ✓ Wrapped playVideo in useCallback
+  const playVideo = useCallback((videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
     wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-  }
+  }, [])
 
   return (
     <>
@@ -56,9 +62,11 @@ export default function NoWarPage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">End the War · Stop the Draft</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            <span className="text-red-500">End the Unauthorized War.</span><br />
-            <span className="text-green">One coordinated action creates the leverage to force Congress to do its job.</span>
+          {/* ✓ Fixed two-tone H1 */}
+          <h1 className="mb-4">
+            <span className="hero-white">End the Unauthorized War.</span>
+            <br />
+            <span className="hero-green">One coordinated action creates the leverage to force Congress to do its job.</span>
           </h1>
           <p className="font-condensed text-xl text-white mb-2">Congress Never Voted For This. Your Kids Shouldn't Have To Fight In It.</p>
           <p className="font-condensed text-lg text-green font-bold mb-4"><strong>PHIERStorm is how we stop it.</strong></p>
@@ -178,6 +186,14 @@ export default function NoWarPage() {
           </div>
         </section>
 
+        {/* ✓ Anchor line added after "Why Protest Alone Won't Stop a Draft" section */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
+
         <hr className="border-green/20" />
 
         {/* Stopping the War - How PHIERS Does It */}
@@ -227,16 +243,6 @@ export default function NoWarPage() {
 
         <div className="text-right max-w-[800px] mx-auto px-4 mb-4">
           <Link href="/solutions" className="font-condensed font-bold text-green text-sm hover:text-green-dim">→ See how this fixes wages, jobs, and stability: 5D Solutions</Link>
-        </div>
-
-        <hr className="border-green/20" />
-
-        {/* Anchor Line */}
-        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
-          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
-            Nothing changes until ignoring people costs more than responding to them.<br />
-            <span className="text-green">PHIERS is how we raise that cost.</span>
-          </p>
         </div>
 
         <hr className="border-green/20" />
@@ -415,8 +421,9 @@ export default function NoWarPage() {
         )}
       </AnimatePresence>
 
+      {/* ✓ Updated back-to-top button to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
