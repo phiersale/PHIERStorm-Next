@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'  // ✓ Added useCallback
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -14,22 +14,29 @@ export default function TheTeethPage() {
   const [teethModalOpen, setTeethModalOpen] = useState(false)
   const [pathosVideoLoaded, setPathosVideoLoaded] = useState(false)
 
-  const playVideo = (videoId: string, src: string) => {
+  // ✓ Added scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  // ✓ Wrapped playVideo in useCallback
+  const playVideo = useCallback((videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
     wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-  }
+  }, [])
 
-  const loadPathosVideo = () => {
+  // ✓ Wrapped loadPathosVideo in useCallback
+  const loadPathosVideo = useCallback(() => {
     if (pathosVideoLoaded) return
     const container = document.getElementById('pathos-video-container')
     if (container) {
       container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/UD8svoGU7ZU?autoplay=1&rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
       setPathosVideoLoaded(true)
     }
-  }
+  }, [pathosVideoLoaded])
 
   return (
     <>
@@ -51,8 +58,11 @@ export default function TheTeethPage() {
             <p className="font-condensed text-green text-lg mt-2">PHIERS — Power Held In Every Representative's Seat.</p>
             <p className="font-condensed text-gray-500 text-sm mt-1">Since 2009. This is the moment it was built for.</p>
 
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight my-6 max-w-[700px] mx-auto">
-              Power concedes nothing without a demand —<br />a demand that has <span className="text-red-500">teeth.</span>
+            {/* ✓ Fixed two-tone typography */}
+            <h1 className="mb-6 max-w-[700px] mx-auto">
+              <span className="hero-white">Power concedes nothing without a demand —</span>
+              <br />
+              <span className="hero-green">a demand that has teeth.</span>
             </h1>
 
             <p className="text-gray-400 mb-3">Leaders can fire people up.<br />Movements can bring people together.</p>
@@ -77,7 +87,7 @@ export default function TheTeethPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line */}
+        {/* ✓ Anchor line present */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -181,7 +191,8 @@ export default function TheTeethPage() {
         )}
       </AnimatePresence>
 
-      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+      {/* ✓ Updated back-to-top button to use scrollToTop */}
+      <button onClick={scrollToTop} className="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
       <style jsx global>{`
         .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--green); color: var(--bg-deep); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; opacity: 0; visibility: hidden; transition: all 150ms ease; z-index: 999; border: none; }
