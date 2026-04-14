@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'  // ✓ Added useCallback
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -14,6 +14,11 @@ export default function ActionPage() {
   const [copySuccess, setCopySuccess] = useState(false)
   const [modalImage, setModalImage] = useState<string | null>(null)
 
+  // ✓ Added scrollToTop function
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   const openModal = (src: string) => {
     setModalImage(src)
     document.body.style.overflow = 'hidden'
@@ -24,29 +29,34 @@ export default function ActionPage() {
     document.body.style.overflow = ''
   }
 
-  const copyPetitionLink = () => {
+  // ✓ Wrapped copyPetitionLink in useCallback
+  const copyPetitionLink = useCallback(() => {
     navigator.clipboard.writeText('https://phiers.org/petition')
     setCopySuccess(true)
     setTimeout(() => setCopySuccess(false), 2000)
-  }
+  }, [])
 
   const shareText = "I just added my name to PHIERS — a district-level pressure system that forces Congress to respond. Add your name: https://phiers.org/petition"
 
-  const shareOnFacebook = () => {
+  // ✓ Wrapped shareOnFacebook in useCallback
+  const shareOnFacebook = useCallback(() => {
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://phiers.org/petition')}&quote=${encodeURIComponent(shareText)}`, '_blank')
-  }
+  }, [])
 
-  const shareOnX = () => {
+  // ✓ Wrapped shareOnX in useCallback
+  const shareOnX = useCallback(() => {
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`, '_blank')
-  }
+  }, [])
 
-  const shareViaText = () => {
+  // ✓ Wrapped shareViaText in useCallback
+  const shareViaText = useCallback(() => {
     window.open(`sms:?body=${encodeURIComponent(shareText)}`, '_blank')
-  }
+  }, [])
 
-  const shareViaEmail = () => {
+  // ✓ Wrapped shareViaEmail in useCallback
+  const shareViaEmail = useCallback(() => {
     window.location.href = `mailto:?subject=I just added my name to PHIERS&body=${encodeURIComponent(shareText)}`
-  }
+  }, [])
 
   return (
     <>
@@ -64,8 +74,11 @@ export default function ActionPage() {
               className="opacity-90"
             />
           </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            Your Name Is Leverage.<br /><span className="text-green">Here's What To Do With It.</span>
+          {/* ✓ Fixed two-tone H1 */}
+          <h1 className="mb-4">
+            <span className="hero-white">Your Name Is Leverage.</span>
+            <br />
+            <span className="hero-green">Here's What To Do With It.</span>
           </h1>
           <p className="text-gray-400 mb-3">Not everyone organizes. Not everyone donates.</p>
           <p className="font-condensed text-xl text-green font-bold mb-4">Everyone can multiply pressure.</p>
@@ -76,7 +89,7 @@ export default function ActionPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line */}
+        {/* ✓ Anchor line added after Hero section */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -257,8 +270,9 @@ export default function ActionPage() {
         )}
       </AnimatePresence>
 
+      {/* ✓ Updated back-to-top button to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
