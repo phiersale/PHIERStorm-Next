@@ -3,7 +3,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'  // ✓ Added useCallback
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -13,6 +13,11 @@ import Button from '@/components/Button'
 
 export default function TelecarePage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
+
+  // ✓ Added scrollToTop function
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const openModal = (src: string) => {
     setModalImage(src)
@@ -41,8 +46,11 @@ export default function TelecarePage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">⚕️ T E L E C A R E ⚕️</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-2">
-            THE SYSTEM IS RIGGED.<br /><span className="text-green">THE FIX IS SIMPLE.</span>
+          {/* ✓ Fixed two-tone H1 */}
+          <h1 className="mb-4">
+            <span className="hero-white">THE SYSTEM IS RIGGED.</span>
+            <br />
+            <span className="hero-green">THE FIX IS SIMPLE.</span>
           </h1>
           <p className="font-condensed text-xl md:text-2xl text-white max-w-[700px] mx-auto mt-4">
             Built for the people who've been paying too much for too little — for far too long.
@@ -89,6 +97,16 @@ export default function TelecarePage() {
           <p className="text-body mb-3"><strong className="text-white">This system wasn't built for you.<br />It was built to protect profits.</strong></p>
           <p className="font-display text-3xl text-green mt-6">TeleCARE is the alternative.</p>
         </section>
+
+        <hr className="border-green/20" />
+
+        {/* ✓ Anchor line added */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
 
         <hr className="border-green/20" />
 
@@ -489,8 +507,9 @@ export default function TelecarePage() {
         )}
       </AnimatePresence>
 
+      {/* ✓ Updated back-to-top button to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
