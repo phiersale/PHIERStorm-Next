@@ -1,8 +1,6 @@
-// FILE: app/page.tsx - COMPLETE A+++ REWRITE (Tiers 1-7 applied)
-
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -45,6 +43,24 @@ export default function HomePage() {
     sessionStorage.setItem('congressModalShown', '1')
   }
 
+  // Scroll to top function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  // useEffect for Modal 2 button delay
+  useEffect(() => {
+    if (congressModalOpen) {
+      const timer = setTimeout(() => {
+        const container = document.getElementById('modal2-button-container');
+        if (container) {
+          container.style.opacity = '1';
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [congressModalOpen])
+
   const playVideo = (videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
@@ -80,7 +96,12 @@ export default function HomePage() {
                   className="object-cover"
                 />
               </div>
-              <Button onClick={closeEntryModal}>Be Heard →</Button>
+              <button 
+                onClick={closeEntryModal}
+                className="modal1-link"
+              >
+                Continue
+              </button>
             </motion.div>
           </motion.div>
         )}
@@ -111,7 +132,14 @@ export default function HomePage() {
                   className="object-cover"
                 />
               </div>
-              <Button onClick={closeCongressModal}>Be Heard →</Button>
+              <div id="modal2-button-container" className="modal2-button-container" style={{ opacity: 0 }}>
+                <button 
+                  onClick={closeCongressModal}
+                  className="modal2-link"
+                >
+                  Enter →
+                </button>
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -489,7 +517,7 @@ export default function HomePage() {
       <Footer />
 
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
@@ -498,6 +526,48 @@ export default function HomePage() {
       </button>
 
       <style jsx global>{`
+        .modal1-link {
+          background: none;
+          border: none;
+          color: rgba(255,255,255,0.55);
+          font-size: 0.9rem;
+          font-weight: 400;
+          text-decoration: underline;
+          cursor: pointer;
+          padding: 0;
+          margin-top: 32px;
+          display: inline-block;
+        }
+
+        .modal1-link:hover {
+          color: rgba(255,255,255,0.75);
+        }
+
+        .modal2-link {
+          background: rgba(61,220,132,0.85);
+          color: #080d1a;
+          font-family: var(--font-condensed);
+          font-weight: 700;
+          font-size: 1.1rem;
+          letter-spacing: 0.05em;
+          padding: 12px 28px;
+          border-radius: 6px;
+          border: none;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .modal2-link:hover {
+          background: rgba(61,220,132,1);
+          transform: translateY(-2px);
+        }
+
+        .modal2-button-container {
+          text-align: center;
+          transition: opacity 0.3s ease;
+          margin-top: 24px;
+        }
+
         .back-to-top {
           position: fixed;
           bottom: 24px;
@@ -562,5 +632,3 @@ export default function HomePage() {
     </>
   )
 }
-
-// END FILE: app/page.tsx - TIERS 1-7 COMPLETE
