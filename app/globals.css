@@ -1,42 +1,106 @@
-:root {
-  /* Backgrounds */
-  --bg-deep: #080d1a;
-  --bg-dark: #0a1628;
-  --bg-card: #111d35;
-  --bg-card2: #0a1628;
-  
-  /* Colors */
-  --green: #3ddc84;
-  --green-dim: #2ab568;
-  --red: #e63946;
-  --gold: #ffd60a;
-  
-  /* Text */
-  --text-bright: #f0f4ff;
-  --text-body: #b8c8e8;
-  --text-dim: #7a94b8;
-  
-  /* Borders */
-  --border: rgba(61, 220, 132, 0.2);
-  
-  /* Fonts */
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-condensed: 'Barlow Condensed', sans-serif;
-  --font-body: 'Barlow', sans-serif;
-  
-  /* Typography Sizes */
-  --text-hero-white: clamp(2.8rem, 6vw, 3.8rem);
-  --text-hero-green: clamp(2.5rem, 5.4vw, 3.4rem);
-  --text-h2-white: clamp(2rem, 4vw, 2.8rem);
-  --text-h2-green: clamp(1.8rem, 3.6vw, 2.5rem);
-  --text-h3: clamp(1.4rem, 3vw, 1.8rem);
-  --text-body: clamp(1rem, 2vw, 1.15rem);
-  
-  /* Spacing */
-  --section-padding-desktop: 80px 24px;
-  --section-padding-mobile: 48px 20px;
-  --text-max-width: 760px;
-  --wide-max-width: 1100px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* shadcn/tailwind semantic tokens */
+    --background: 222 47% 7%;
+    --foreground: 0 0% 95%;
+    --card: 222 40% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 222 40% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 145 65% 55%;
+    --primary-foreground: 222 47% 7%;
+    --secondary: 222 30% 16%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 222 30% 14%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 145 65% 55%;
+    --accent-foreground: 222 47% 7%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 20% 18%;
+    --input: 222 20% 18%;
+    --ring: 145 65% 55%;
+    --radius: 0.5rem;
+    --chart-1: 145 65% 55%;
+    --chart-2: 200 60% 50%;
+    --chart-3: 0 84% 60%;
+    --chart-4: 40 80% 55%;
+    --chart-5: 280 60% 55%;
+
+    /* PHIERS theme tokens */
+    --bg-deep: #080d1a;
+    --bg-dark: #0a1628;
+    --bg-card: #111d35;
+    --bg-card2: #0a1628;
+
+    --green: #3ddc84;
+    --green-dim: #2ab568;
+    --red: #e63946;
+    --gold: #ffd60a;
+
+    --text-bright: #f0f4ff;
+    --text-body: #b8c8e8;
+    --text-dim: #7a94b8;
+
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+
+    --text-hero-white: clamp(2.8rem, 6vw, 3.8rem);
+    --text-hero-green: clamp(2.5rem, 5.4vw, 3.4rem);
+    --text-h2-white: clamp(2rem, 4vw, 2.8rem);
+    --text-h2-green: clamp(1.8rem, 3.6vw, 2.5rem);
+    --text-h3: clamp(1.4rem, 3vw, 1.8rem);
+    --text-body-size: clamp(1rem, 2vw, 1.15rem);
+
+    --section-padding-desktop: 80px 24px;
+    --section-padding-mobile: 48px 20px;
+    --text-max-width: 760px;
+    --wide-max-width: 1100px;
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 0 0% 95%;
+    --card: 222 40% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 222 40% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 145 65% 55%;
+    --primary-foreground: 222 47% 7%;
+    --secondary: 222 30% 16%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 222 30% 14%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 145 65% 55%;
+    --accent-foreground: 222 47% 7%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 20% 18%;
+    --input: 222 20% 18%;
+    --ring: 145 65% 55%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    margin: 0;
+  }
+
+  [data-hydration-error] {
+    display: none !important;
+  }
 }
 
 /* Two-tone typography classes */
