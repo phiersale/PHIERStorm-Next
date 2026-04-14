@@ -1,9 +1,9 @@
-// FILE: app/about/page.tsx
+// FILE: app/about/page.tsx - START
 // ABOUT PAGE - The Origin Story
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -25,13 +25,19 @@ export default function AboutPage() {
     document.body.style.overflow = ''
   }
 
-  const playVideo = (videoId: string, src: string) => {
+  // scrollToTop function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  // playVideo wrapped in useCallback
+  const playVideo = useCallback((videoId: string, src: string) => {
     const wrap = document.getElementById('wrap-' + videoId)
     if (!wrap) return
     wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
       '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
       'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-  }
+  }, [])
 
   return (
     <>
@@ -50,8 +56,11 @@ export default function AboutPage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Origin Story</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            About PHIERS:<br /><span className="text-green">Built from Lived Experience</span>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white">About PHIERS:</span>
+            <br />
+            <span className="hero-green">Built from Lived Experience</span>
           </h1>
           <p className="font-condensed text-lg text-gray-400 max-w-[700px] mx-auto">
             This wasn't designed in a boardroom. It was built by people who refused to stop.
@@ -90,6 +99,16 @@ export default function AboutPage() {
             <p className="text-body"><strong className="text-white">Contact:</strong> (916) 306-8967 | <Link href="mailto:info@phiers.org" className="text-green">info@phiers.org</Link></p>
           </div>
         </section>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line - ADDED after Who Built This section */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
 
         <hr className="border-green/20" />
 
@@ -405,8 +424,9 @@ export default function AboutPage() {
         )}
       </AnimatePresence>
 
+      {/* Back-to-top button - FIXED to use scrollToTop */}
       <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
         aria-label="Back to top"
