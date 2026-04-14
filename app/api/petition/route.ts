@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { lookupDistrictByZip } from '@/lib/district-lookup'
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,12 +17,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Name, email, and zip code are required' }, { status: 400 })
     }
 
+    const normalizedZipCode = String(zipCode ?? '').trim().slice(0, 5)
+    if (!/^\d{5}$/.test(normalizedZipCode)) {
+      return NextResponse.json({ error: 'Please enter a valid 5-digit zip code' }, { status: 400 })
+    }
+    const districtLookup = await lookupDistrictByZip(normalizedZipCode)
+
     const signature = await prisma.signature.create({
       data: {
         name: String(name ?? ''),
         email: String(email ?? ''),
-        zipCode: String(zipCode ?? ''),
-        district: '',
+        zipCode: normalizedZipCode,
+        district: districtLookup?.district || '',
         survey: {
           create: {
             topConcerns: Array.isArray(topConcerns) ? topConcerns : [],
@@ -47,7 +54,8 @@ export async function POST(req: NextRequest) {
           <div style="background: #0f1729; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 8px 0;"><strong style="color:#3ddc84;">Name:</strong> ${String(name ?? '')}</p>
             <p style="margin: 8px 0;"><strong style="color:#3ddc84;">Email:</strong> ${String(email ?? '')}</p>
-            <p style="margin: 8px 0;"><strong style="color:#3ddc84;">Zip:</strong> ${String(zipCode ?? '')}</p>
+            <p style="margin: 8px 0;"><strong style="color:#3ddc84;">Zip:</strong> ${normalizedZipCode}</p>
+            <p style="margin: 8px 0;"><strong style="color:#3ddc84;">District:</strong> ${districtLookup?.district || 'Not resolved'}</p>
             <p style="margin: 8px 0;"><strong style="color:#3ddc84;">Top Concerns:</strong> ${(Array.isArray(topConcerns) ? topConcerns : [])?.join(', ') || 'None'}</p>
             <p style="margin: 8px 0;"><strong style="color:#3ddc84;">End War:</strong> ${String(endWar ?? 'N/A')}</p>
             <p style="margin: 8px 0;"><strong style="color:#3ddc84;">Article 25:</strong> ${String(article25 ?? 'N/A')}</p>
@@ -63,7 +71,7 @@ export async function POST(req: NextRequest) {
           deployment_token: process.env.ABACUSAI_API_KEY,
           app_id: process.env.WEB_APP_ID,
           notification_id: process.env.NOTIF_ID_PETITION_CONFIRMATION,
-          subject: `New Petition: ${String(name ?? 'Unknown')} (${String(zipCode ?? '')})`,
+          subject: `New Petition: ${String(name ?? 'Unknown')} (${normalizedZipCode}${districtLookup?.district ? ` • ${districtLookup.district}` : ''})`,
           body: htmlBody,
           is_html: true,
           recipient_email: 'will@phiers.org',
@@ -74,7 +82,12 @@ export async function POST(req: NextRequest) {
       console.error('Email notification error:', emailErr)
     }
 
-    return NextResponse.json({ success: true, id: signature?.id })
+    return NextResponse.json({
+      success: true,
+      id: signature?.id,
+      district: signature?.district || districtLookup?.district || '',
+      representative: districtLookup?.representative || null,
+    })
   } catch (error: any) {
     console.error('Petition API error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })

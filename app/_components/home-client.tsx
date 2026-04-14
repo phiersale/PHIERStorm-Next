@@ -83,7 +83,7 @@ export function HomeClient() {
               <br className="hidden md:block" />
               The only question is: do you have a plan that works when everything else fails?
               <br className="hidden md:block" />
-              We do. We built it over 16 years. It's shovel-ready. And it starts with your name in your district.
+              We do. We&apos;ve built it since 2009. It&apos;s shovel-ready. And it starts with your name in your district.
             </h1>
           </motion.div>
         </div>
@@ -103,11 +103,46 @@ export function HomeClient() {
         <p className="text-center text-gray-500 text-sm mt-4">or scroll to understand the full picture ↓</p>
       </section>
 
+      <section className="px-4 py-14">
+        <div className="max-w-[1200px] mx-auto grid md:grid-cols-3 gap-4">
+          <AnimatedSection>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 h-full">
+              <h2>
+                <span className="section-white">Reality</span>
+                <span className="section-green">The system is failing in public.</span>
+              </h2>
+              <p className="text-gray-300 mt-3 text-sm">Healthcare costs, war pressure, and supply shocks are colliding now — not in theory, in households.</p>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.08}>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 h-full">
+              <h2>
+                <span className="section-white">Failure</span>
+                <span className="section-green">Scattered outrage changes nothing.</span>
+              </h2>
+              <p className="text-gray-300 mt-3 text-sm">Noise without district-level coordination gets ignored. Pressure must be organized where votes are counted.</p>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.16}>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 h-full">
+              <h2>
+                <span className="section-white">Inevitability</span>
+                <span className="section-green">Organized people always force response.</span>
+              </h2>
+              <p className="text-gray-300 mt-3 text-sm">When enough constituents align in-district, representatives move or get replaced. That pattern is historical, not hypothetical.</p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       <section className="px-4 py-16 bg-[#0a1020]">
         <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-8 items-start">
           <AnimatedSection>
             <p className="text-red-300 text-sm uppercase tracking-[0.18em] mb-3">This Is Not a Foreign Policy Story</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">This Is Your Kitchen Table. Your Medicine Cabinet. Your Kids.</h2>
+            <h2 className="mb-4">
+              <span className="section-white">This Is Your Kitchen Table. Your Medicine Cabinet.</span>
+              <span className="section-green">Your Kids.</span>
+            </h2>
             <p className="text-gray-300 leading-relaxed mb-4">
               There is no part of your life that doesn&apos;t run on oil. Food, medicine, transport, hospital supplies — all of it.
               When the Strait of Hormuz is threatened, inflation doesn&apos;t inch up. It detonates across every chain at once.
@@ -143,8 +178,11 @@ export function HomeClient() {
       <section className="px-4 py-16">
         <div className="max-w-[1200px] mx-auto">
           <AnimatedSection>
-            <p className="text-[#3ddc84] text-sm uppercase tracking-[0.18em] mb-3">Sixteen Years in the Making</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">It Didn&apos;t Start Here. But It Was Always Heading Here.</h2>
+            <p className="text-[#3ddc84] text-sm uppercase tracking-[0.18em] mb-3">Built Since 2009</p>
+            <h2 className="mb-4">
+              <span className="section-white">It Didn&apos;t Start Here.</span>
+              <span className="section-green">But It Was Always Heading Here.</span>
+            </h2>
             <p className="text-gray-300 max-w-3xl">
               This isn&apos;t a reaction. It&apos;s a system built for this moment. Legal. Funded. Ready.
               We use the ACA&apos;s own authority against the people who gutted it.
@@ -168,7 +206,10 @@ export function HomeClient() {
         <div className="max-w-[1200px] mx-auto">
           <AnimatedSection className="rounded-2xl border border-blue-400/30 bg-blue-500/10 p-7">
             <p className="text-blue-200 uppercase text-sm tracking-[0.18em] mb-2">Global Union Block</p>
-            <h2 className="text-3xl font-bold mb-3">Workers Built This Country. Workers Will Rebuild It.</h2>
+            <h2 className="mb-3">
+              <span className="section-white">Workers Built This Country.</span>
+              <span className="section-green">Workers Will Rebuild It.</span>
+            </h2>
             <p className="text-gray-200 leading-relaxed">
               Broken supply chains didn&apos;t happen by accident. They were built on workers being undercut, outsourced, and burned out.
               PHIERS connects labor, mutual aid, cooperative marketplaces, and district-level pressure so recovery is coordinated — not chaotic.
@@ -182,7 +223,10 @@ export function HomeClient() {
         <div className="max-w-[1200px] mx-auto">
           <AnimatedSection>
             <p className="text-amber-300 text-sm uppercase tracking-[0.18em] mb-3">Why This Is Credible</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Not Theory. Already Proven at Scale.</h2>
+            <h2 className="mb-4">
+              <span className="section-white">Not Theory.</span>
+              <span className="section-green">Already Proven at Scale.</span>
+            </h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             {[
@@ -191,7 +235,7 @@ export function HomeClient() {
               'A Fortune 500 PR firm reviewed PHIERS and confirmed the mechanism is viable.',
               'Congressional support letters date back to 2009 — this is documented, not improvised.',
               'ACA authority already exists. Congress can act now without new legislation.',
-              '16 years of prior art across healthcare, logistics, and district-level accountability.',
+              'Prior art since 2009 across healthcare, logistics, and district-level accountability.',
             ].map((point, i) => (
               <AnimatedSection key={point} delay={i * 0.06}>
                 <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm text-gray-300 h-full">
@@ -207,7 +251,10 @@ export function HomeClient() {
         <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-8">
           <AnimatedSection>
             <p className="text-[#3ddc84] text-sm uppercase tracking-[0.18em] mb-2">The 5D System</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Five Crises. One Spiral. One Way Out.</h2>
+            <h2 className="mb-4">
+              <span className="section-white">Five Crises. One Spiral.</span>
+              <span className="section-green">One Way Out.</span>
+            </h2>
             <p className="text-gray-300 mb-4">
               We were taught to fight separate battles. That fragmentation is why nothing gets fixed.
               PHIERStorm is the pattern interrupt.
@@ -233,7 +280,10 @@ export function HomeClient() {
         <div className="max-w-[1200px] mx-auto">
           <AnimatedSection>
             <p className="text-[#3ddc84] text-sm uppercase tracking-[0.18em] mb-2">Three Kinds of Power</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Most Movements Only Have One. PHIERS Gives You All Three.</h2>
+            <h2 className="mb-4">
+              <span className="section-white">Most Movements Only Have One.</span>
+              <span className="section-green">PHIERS Gives You All Three.</span>
+            </h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-4 mt-6">
             {powerBlocks.map((block, i) => (
@@ -251,7 +301,10 @@ export function HomeClient() {
       <section className="px-4 py-16 bg-[#0a1020]">
         <div className="max-w-[900px] mx-auto text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Five Crises. One Lever. Your Name Starts It.</h2>
+            <h2 className="mb-4">
+              <span className="section-white">Five Crises. One Lever.</span>
+              <span className="section-green">Your Name Starts It.</span>
+            </h2>
             <p className="text-gray-300 leading-relaxed mb-7">
               This is your name, your district, your demand — on the record.
               Counted. Delivered. Impossible to ignore.

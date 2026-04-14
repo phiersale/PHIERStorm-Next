@@ -216,8 +216,8 @@ export default function HomePage() {
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <h2 className="mb-6">
-              <span className="block text-white text-3xl md:text-4xl font-black">Elected officials respond to one thing:</span>
-              <span className="block text-green text-2xl md:text-3xl font-extrabold mt-3">Concentrated, unavoidable pressure inside their own district.</span>
+              <span className="section-white">Elected officials respond to one thing:</span>
+              <span className="section-green">Concentrated, unavoidable pressure inside their own district.</span>
             </h2>
             
             <div className="max-w-[760px] mx-auto">
@@ -247,8 +247,8 @@ export default function HomePage() {
         {/* SECTION 3 — THE MECHANISM */}
         <section className="container section text-center">
           <h2 className="mb-6">
-            <span className="block text-white text-3xl md:text-4xl font-black">1,500 people in a district is the tipping point.</span>
-            <span className="block text-green text-2xl md:text-3xl font-extrabold mt-3">Not a national percentage — a district-level pressure block Congress cannot ignore.</span>
+            <span className="section-white">1,500 people in a district is the tipping point.</span>
+            <span className="section-green">Not a national percentage — a district-level pressure block Congress cannot ignore.</span>
           </h2>
           
           <div className="max-w-[760px] mx-auto">
@@ -295,8 +295,8 @@ export default function HomePage() {
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <h2 className="mb-6">
-              <span className="block text-white text-3xl md:text-4xl font-black">1,500 × 435 congressional districts</span>
-              <span className="block text-green text-4xl md:text-5xl font-extrabold mt-2">= ~650,000 people.</span>
+              <span className="section-white">1,500 × 435 congressional districts</span>
+              <span className="section-green">= ~650,000 people.</span>
             </h2>
             
             <div className="max-w-[760px] mx-auto">
@@ -365,7 +365,10 @@ export default function HomePage() {
         <section className="container section">
           <div className="text-center mb-6">
             <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Three Kinds of Power</span>
-            <h2 className="font-display text-4xl md:text-5xl text-white mb-2">Three kinds of power.<br /><span className="text-green">One movement.</span></h2>
+            <h2 className="mb-2">
+              <span className="section-white">Three kinds of power.</span>
+              <span className="section-green">One movement.</span>
+            </h2>
           </div>
           
           <div className="grid md:grid-cols-3 gap-5 mb-6">
@@ -401,8 +404,8 @@ export default function HomePage() {
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <h2 className="mb-6">
-              <span className="block text-white text-3xl md:text-4xl font-black">When people are organized, systems respond.</span>
-              <span className="block text-green text-2xl md:text-3xl font-extrabold mt-3">They always have.</span>
+              <span className="section-white">When people are organized, systems respond.</span>
+              <span className="section-green">They always have.</span>
             </h2>
             
             <div className="max-w-[760px] mx-auto">
