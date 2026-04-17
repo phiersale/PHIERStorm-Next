@@ -1,8 +1,7 @@
-// FILE: app/full-story/page.tsx - START
-
+// app/full-story/page.tsx
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -12,7 +11,7 @@ import Button from '@/components/Button'
 
 export default function FullStoryPage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
-  const [willModalOpen, setWillModalOpen] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(false)
 
   const openModal = (src: string) => {
     setModalImage(src)
@@ -24,19 +23,28 @@ export default function FullStoryPage() {
     document.body.style.overflow = ''
   }
 
-  // scrollToTop function with useCallback
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
-  // playVideo wrapped in useCallback
-  const playVideo = useCallback((videoId: string, src: string) => {
-    const wrap = document.getElementById('wrap-' + videoId)
-    if (!wrap) return
-    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
-      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
-      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  // Back-to-top visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const btt = document.getElementById('back-to-top')
+      if (btt) {
+        if (window.scrollY > 400) btt.classList.add('visible')
+        else btt.classList.remove('visible')
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Video thumbnail + embed
+  const videoThumbnail = 'https://img.youtube.com/vi/2j-dF3hgdeE/hqdefault.jpg'
+  const videoEmbedSrc = 'https://www.youtube.com/embed/2j-dF3hgdeE?autoplay=1&rel=0'
+
+  const handlePlayVideo = () => setVideoPlaying(true)
 
   return (
     <>
@@ -55,7 +63,6 @@ export default function FullStoryPage() {
             />
           </div>
           <div className="text-green text-sm font-condensed tracking-wide mb-1">The Full Story</div>
-          {/* Two-tone H1 - FIXED */}
           <h1 className="mb-4">
             <span className="hero-white">You've seen the idea.</span>
             <br />
@@ -76,18 +83,36 @@ export default function FullStoryPage() {
 
         <hr className="border-green/20" />
 
-        {/* Section 1: Intro Video */}
+        {/* Section 1: Intro Video (React-friendly) */}
         <section className="container section">
           <div className="bg-blue-500/10 border-2 border-blue-500/30 rounded-xl p-6">
             <h2 className="font-display text-2xl md:text-3xl text-blue-400 text-center mb-4">The 60-Second PHIERS Brief</h2>
             <div className="video-container max-w-[800px] mx-auto">
-              <div id="wrap-intro" className="video-wrapper cursor-pointer group" onClick={() => playVideo('intro', 'https://www.youtube.com/embed/2j-dF3hgdeE?autoplay=1&rel=0')}>
-                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/2j-dF3hgdeE/hqdefault.jpg')" }}>
+              {!videoPlaying ? (
+                <div
+                  className="video-wrapper cursor-pointer group"
+                  onClick={handlePlayVideo}
+                  style={{
+                    backgroundImage: `url(${videoThumbnail})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                >
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
                     <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={videoEmbedSrc}
+                  frameBorder="0"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '12px' }}
+                />
+              )}
             </div>
             <div className="flex flex-wrap justify-center gap-4 mt-5">
               <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
@@ -110,7 +135,7 @@ export default function FullStoryPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line - ADDED after What Is PHIERS section */}
+        {/* Anchor Line */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -270,8 +295,8 @@ export default function FullStoryPage() {
         )}
       </AnimatePresence>
 
-      {/* Back-to-top button - FIXED to use scrollToTop */}
-      <button 
+      {/* Back-to-top button */}
+      <button
         onClick={scrollToTop}
         className="back-to-top"
         id="back-to-top"
@@ -325,25 +350,10 @@ export default function FullStoryPage() {
           width: 100%;
           height: 100%;
           cursor: pointer;
+          background-size: cover;
+          background-position: center;
         }
       `}</style>
-
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          window.addEventListener('scroll', function() {
-            var btt = document.getElementById('back-to-top');
-            if (btt) {
-              if (window.scrollY > 400) {
-                btt.classList.add('visible');
-              } else {
-                btt.classList.remove('visible');
-              }
-            }
-          });
-        `
-      }} />
     </>
   )
 }
-
-// END FILE: app/full-story/page.tsx

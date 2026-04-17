@@ -1,3 +1,4 @@
+// app/petition/page.tsx (same as previous, but I'll re‑paste for completeness)
 'use client'
 
 import { useState } from 'react'
@@ -5,6 +6,9 @@ import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
+import PressureForm from '@/components/PressureForm'
+import WhyNow from '@/components/WhyNow'
+import SectionImage from '@/components/SectionImage'
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -35,24 +39,20 @@ export default function PetitionPage() {
         }),
       })
 
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}))
-    throw new Error(errorData.error || 'Unable to submit petition right now.')
-  }
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || 'Unable to submit petition right now.')
+      }
 
-  const data = await response.json()
-  
-  console.log('API Response:', data) // Debug: see what's returned
+      const data = await response.json()
+      console.log('API Response:', data)
 
-  // Check if id exists
-  if (!data.id) {
-    console.error('No id in response:', data)
-    throw new Error('Server did not return a signature ID')
-  }
+      if (!data.id) {
+        console.error('No id in response:', data)
+        throw new Error('Server did not return a signature ID')
+      }
 
-  // Redirect with signatureId
-  window.location.href = `/thank-you?signatureId=${data.id}`
-      
+      window.location.href = `/thank-you?signatureId=${data.id}`
     } catch (error: any) {
       setSubmitState('error')
       setErrorMessage(error?.message || 'Something went wrong. Please try again.')
@@ -64,7 +64,11 @@ export default function PetitionPage() {
       <Navigation />
 
       <main>
-        <div className="container section text-center pt-32">
+        <div className="container pt-8">
+          <SectionImage src="/images/petition-header.jpg" alt="People signing the petition" priority />
+        </div>
+
+        <div className="container section text-center pt-8">
           <div className="relative h-[80px] w-auto mb-6 flex justify-center">
             <Image
               src="/images/PHIERS_Logo.png"
@@ -90,7 +94,23 @@ export default function PetitionPage() {
 
         <hr className="border-green/20" />
 
+        {/* QUICK PRESSURE FORM */}
+        <section className="container py-6">
+          <div className="text-center mb-4">
+            <p className="text-white text-lg font-semibold">Before I sign — add my name + ZIP</p>
+            <p className="text-gray-400 text-sm">No email required. Just your district on the record.</p>
+          </div>
+          <PressureForm />
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* FULL PETITION FORM */}
         <section className="container section">
+          <div className="text-center mb-4">
+            <p className="text-white text-lg font-semibold">Or commit fully — add my name, email, and ZIP</p>
+            <p className="text-gray-400 text-sm">We’ll email you when your district reaches 500, 1,000, and 1,500.</p>
+          </div>
           <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[500px] mx-auto">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -152,6 +172,10 @@ export default function PetitionPage() {
           </div>
         </section>
 
+        <div className="container py-6">
+          <SectionImage src="/images/1_500_tipping_point.jpg" alt="1,500 people = tipping point" />
+        </div>
+
         <hr className="border-green/20" />
 
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
@@ -162,6 +186,8 @@ export default function PetitionPage() {
         </div>
 
         <hr className="border-green/20" />
+
+        <WhyNow />
 
         <section className="container section text-center">
           <div className="bg-bg-card border border-green/20 rounded-xl p-6 max-w-[600px] mx-auto">

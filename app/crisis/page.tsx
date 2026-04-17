@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -12,6 +12,7 @@ import Button from '@/components/Button'
 
 export default function CrisisPage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
+  const [videoPlaying, setVideoPlaying] = useState(false)
 
   const openModal = (src: string) => {
     setModalImage(src)
@@ -23,10 +24,37 @@ export default function CrisisPage() {
     document.body.style.overflow = ''
   }
 
-  // scrollToTop function with useCallback
+  // Cleanup modal overflow on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [])
+
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
+
+  // Scroll listener for back-to-top button (React-friendly)
+  useEffect(() => {
+    const handleScroll = () => {
+      const btt = document.getElementById('back-to-top')
+      if (btt) {
+        if (window.scrollY > 400) btt.classList.add('visible')
+        else btt.classList.remove('visible')
+      }
+    }
+    // Initial check in case page loads scrolled down
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Video thumbnail and embed
+  const videoThumbnail = 'https://img.youtube.com/vi/wnSy5jjxAac/hqdefault.jpg'
+  const videoEmbedSrc = 'https://www.youtube.com/embed/wnSy5jjxAac?autoplay=1&rel=0'
+
+  const handlePlayVideo = () => setVideoPlaying(true)
 
   return (
     <>
@@ -42,10 +70,10 @@ export default function CrisisPage() {
               width={80}
               height={80}
               className="opacity-90"
+              sizes="80px"
             />
           </div>
           <span className="font-condensed font-bold text-red-500 text-sm uppercase tracking-wider block mb-3">This Is What Existential Looks Like</span>
-          {/* Two-tone H1 - FIXED */}
           <h1 className="mb-4">
             <span className="hero-white">The 5D Crisis.</span>
             <br />
@@ -63,7 +91,7 @@ export default function CrisisPage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line - ADDED after Hero */}
+        {/* Anchor Line */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -73,7 +101,7 @@ export default function CrisisPage() {
 
         <hr className="border-green/20" />
 
-        {/* Jump Navigation - NEW */}
+        {/* Jump Navigation */}
         <div className="container py-4 my-2">
           <div className="flex flex-wrap gap-2 justify-center">
             <Link href="#war" className="px-3 py-1.5 bg-bg-card border border-red-500/30 rounded-full text-red-400 text-xs font-condensed font-bold hover:bg-red-500/20 transition-all">🔥 War</Link>
@@ -300,22 +328,25 @@ export default function CrisisPage() {
               <button
                 onClick={closeModal}
                 className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors"
+                aria-label="Close"
               >
                 ✕
               </button>
-              <Image
-                src={modalImage}
-                alt="Enlarged view"
-                width={800}
-                height={600}
-                className="rounded-xl"
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={modalImage}
+                  alt="Enlarged view"
+                  fill
+                  className="object-contain rounded-xl"
+                  sizes="90vw"
+                />
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Back-to-top button - FIXED to use scrollToTop */}
+      {/* Back-to-top button */}
       <button 
         onClick={scrollToTop}
         className="back-to-top"
@@ -358,21 +389,6 @@ export default function CrisisPage() {
           background: rgba(61, 220, 132, 0.06);
         }
       `}</style>
-
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          window.addEventListener('scroll', function() {
-            var btt = document.getElementById('back-to-top');
-            if (btt) {
-              if (window.scrollY > 400) {
-                btt.classList.add('visible');
-              } else {
-                btt.classList.remove('visible');
-              }
-            }
-          });
-        `
-      }} />
     </>
   )
 }

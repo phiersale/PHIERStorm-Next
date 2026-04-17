@@ -25,14 +25,35 @@ model Survey {
   id             String   @id @default(cuid())
   signatureId    String   @unique
   signature      Signature @relation(fields: [signatureId], references: [id])
+  
+  // Existing fields (keeping these)
   topConcerns    String[]  @default([])
-  endWar         String   @default("")
-  article25      String   @default("")
-  investigations String   @default("")
+  endWar         String    @default("")
+  article25      String    @default("")
+  investigations String    @default("")
   solutions      String[]  @default([])
-  willOrganize   Boolean  @default(false)
-  canContact     Boolean  @default(false)
-  createdAt      DateTime @default(now())
+  willOrganize   Boolean   @default(false)
+  canContact     Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  
+  // NEW FIELDS TO ADD:
+  otherIssues    String?   // For "Other" text input
+  
+  // New Yes/No/Unsure questions
+  endUnauthorizedConflicts  String?  // 'yes', 'no', 'unsure'
+  authoritarianGuardrails   String?  // 'yes', 'no', 'unsure'
+  prosecuteCorruption       String?  // 'yes', 'no', 'unsure'
+  affordableHealthcare      String?  // 'yes', 'no', 'unsure'
+  housingStability          String?  // 'yes', 'no', 'unsure'
+  foodSecurity              String?  // 'yes', 'no', 'unsure'
+  tradeStability            String?  // 'yes', 'no', 'unsure'
+  
+  // Demographics (optional)
+  ageRange         String?  // 'Under 18', '18-29', etc.
+  politicalIdentity String? // 'Democrat', 'Republican', etc.
+  
+  // Timestamp for updates
+  updatedAt      DateTime  @updatedAt
 }
 
 model ContactSubmission {
