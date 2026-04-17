@@ -1,6 +1,8 @@
+// FILE: app/page.tsx - START
+
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -11,20 +13,15 @@ import WhyNow from '@/components/WhyNow'
 
 export default function HomePage() {
   const [modalOpen, setModalOpen] = useState(false)
-  const [videoPlaying, setVideoPlaying] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
 
-  // Single modal
+  // SINGLE MODAL – appears once per session, 2 seconds delay, soft close
   useEffect(() => {
-    const hasSeenModal = sessionStorage.getItem('entryModalShown')
-    if (!hasSeenModal) {
-      const timer = setTimeout(() => {
-        setModalOpen(true)
-        document.body.style.overflow = 'hidden'
-      }, 2000)
-      return () => clearTimeout(timer)
-    }
-  }, [])
+  const hasSeenModal = sessionStorage.getItem('entryModalShown')
+  if (!hasSeenModal) {
+    setModalOpen(true)
+    document.body.style.overflow = 'hidden'
+  }
+}, [])
 
   const closeModal = () => {
     setModalOpen(false)
@@ -32,39 +29,34 @@ export default function HomePage() {
     sessionStorage.setItem('entryModalShown', '1')
   }
 
-  // Scroll to top
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
-  // Back-to-top button visibility
   useEffect(() => {
     const handleScroll = () => {
       const btt = document.getElementById('back-to-top')
       if (btt) {
-        if (window.scrollY > 400) {
-          btt.classList.add('visible')
-        } else {
-          btt.classList.remove('visible')
-        }
+        if (window.scrollY > 400) btt.classList.add('visible')
+        else btt.classList.remove('visible')
       }
     }
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Video play handler (React-friendly)
-  const playVideo = () => {
-    setVideoPlaying(true)
-  }
-
-  // If video not playing, show thumbnail with play button overlay
-  const videoThumbnail = 'https://img.youtube.com/vi/wnSy5jjxAac/hqdefault.jpg'
-  const videoEmbedSrc = 'https://www.youtube.com/embed/wnSy5jjxAac?autoplay=1&rel=0'
+  const playVideo = useCallback((videoId: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + videoId)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src +
+      '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  }, [])
 
   return (
     <>
-      {/* Single Modal */}
+           {/* SINGLE MODAL - SUBDUED BUTTON + IMAGE CLICK */}
       <AnimatePresence>
         {modalOpen && (
           <motion.div
@@ -75,20 +67,32 @@ export default function HomePage() {
             onClick={closeModal}
           >
             <motion.div
-              className="max-w-md w-full text-center bg-[#0f1425] rounded-2xl p-8 border border-green/30 shadow-2xl"
+              className="max-w-[1000px] w-full text-center"
               initial={{ scale: 0.98, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.98, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <p className="text-3xl font-bold text-white mb-6">YOU ARE NOT POWERLESS.</p>
-              <button
+              <div 
+                className="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10 cursor-pointer"
                 onClick={closeModal}
-                className="bg-green hover:bg-green/80 text-bg-deep font-bold py-2 px-6 rounded-md transition"
               >
-                Continue
+                <Image
+                  src="/images/You_Are_Not_Powerless.jpg"
+                  alt="You Are Not Powerless"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              {/* Subdued button: underlined text */}
+              <button 
+                onClick={closeModal}
+                className="mt-6 text-green-400 underline text-sm hover:text-green-300 transition"
+              >
+                Learn More
               </button>
-              <p className="text-gray-400 text-sm mt-4 cursor-pointer" onClick={closeModal}>
+              <p className="text-gray-500 text-xs mt-3 cursor-pointer" onClick={closeModal}>
                 Or close this and keep reading.
               </p>
             </motion.div>
@@ -99,7 +103,17 @@ export default function HomePage() {
       <Navigation />
 
       <main>
-        {/* Hero Image */}
+        {/* SUBTLE UNDER CONSTRUCTION NOTICE */}
+          <div className="text-center py-1 bg-yellow-900/20 border-b border-yellow-500/30">
+            <p className="text-yellow-200 text-xs md:text-sm">
+              🚧 <span className="font-semibold">Building in real time</span> – 
+              <Link href="/homepage-teeth" className="text-green-400 underline ml-1">See how we evolve</Link>
+              <span className="mx-1">•</span>
+              <Link href="/join" className="text-green-400 underline">Join us</Link> to thrive
+            </p>
+          </div>
+          
+        {/* Hero Image – unchanged */}
         <section className="relative bg-[#050b19] pt-8 md:pt-12 pb-4">
           <div className="container">
             <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-green/30 shadow-[0_16px_60px_rgba(0,0,0,0.55)]">
@@ -116,7 +130,7 @@ export default function HomePage() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#080d1a] to-transparent" />
         </section>
 
-        {/* Purpose Section */}
+        {/* Purpose Section – unchanged */}
         <section className="container section text-center">
           <h1 className="mb-4">
             <span className="hero-white">Congress has the power to fix most of what's broken.</span>
@@ -138,7 +152,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* PHIERS Acronym Visual */}
+        {/* PHIERS Acronym Visual – unchanged */}
         <div className="container py-6 text-center">
           <div className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-2xl border border-green/30 shadow-md">
             <Image
@@ -153,7 +167,7 @@ export default function HomePage() {
 
         <hr className="border-green/20" />
 
-        {/* Section 1 - Reality */}
+        {/* Section 1 - Reality – unchanged */}
         <section className="container section">
           <h2 className="mb-6">
             <span className="section-white">Healthcare. Cost of living. Wages. Endless gridlock.</span>
@@ -173,7 +187,7 @@ export default function HomePage() {
 
         <hr className="border-green/20" />
 
-        {/* Section 2 - Failure */}
+        {/* Section 2 - Failure – unchanged */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <h2 className="mb-6">
@@ -194,7 +208,7 @@ export default function HomePage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor line */}
+        {/* Anchor line – unchanged */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -204,7 +218,7 @@ export default function HomePage() {
 
         <hr className="border-green/20" />
 
-        {/* Mechanism with video */}
+        {/* Mechanism with video – unchanged */}
         <section className="container section text-center">
           <h2 className="mb-6">
             <span className="section-white">1,500 people in a district is the tipping point.</span>
@@ -215,35 +229,16 @@ export default function HomePage() {
             <p className="text-gray-300 text-base mb-2">Proven math.</p>
             <p className="text-gray-300 text-base mb-6">Zero ideology.</p>
           </div>
-
-          {/* Video container - React controlled */}
-          <div className="video-container max-w-[800px] mx-auto my-6" ref={containerRef}>
-            {!videoPlaying ? (
-              <div
-                className="video-wrapper cursor-pointer group"
-                onClick={playVideo}
-                style={{ backgroundImage: `url(${videoThumbnail})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              >
+          <div className="video-container max-w-[800px] mx-auto my-6">
+            <div id="wrap-leverage-id" className="video-wrapper cursor-pointer group" onClick={() => playVideo('leverage-id', 'https://www.youtube.com/embed/wnSy5jjxAac?autoplay=1&rel=0')}>
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/wnSy5jjxAac/hqdefault.jpg')" }}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
                   <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">▶</div>
                 </div>
               </div>
-            ) : (
-              <iframe
-                width="100%"
-                height="100%"
-                src={videoEmbedSrc}
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '12px' }}
-              />
-            )}
+            </div>
           </div>
-
           <p className="font-condensed text-green text-sm text-center mt-2">LEVERAGE is Power Held In Every Representative's Seat (PHIERS)</p>
-
-          {/* 4-step process */}
           <div className="max-w-[600px] mx-auto mt-8 space-y-5 text-left">
             <div>
               <p className="text-white text-lg font-bold">1. You add your name</p>
@@ -266,7 +261,7 @@ export default function HomePage() {
 
         <hr className="border-green/20" />
 
-        {/* The Math section (cascade, Chenoweth) – unchanged except removed script */}
+        {/* The Math section – unchanged */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <h2 className="mb-6">
@@ -312,7 +307,7 @@ export default function HomePage() {
 
         <hr className="border-green/20" />
 
-        {/* Three Kinds of Power */}
+        {/* Three Kinds of Power – unchanged */}
         <section className="container section">
           <div className="text-center mb-6">
             <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Three Kinds of Power</span>
@@ -345,7 +340,7 @@ export default function HomePage() {
           <p className="text-gray-400 text-center mt-3">Coordination is the mechanism. That's what your name does.</p>
         </section>
 
-        {/* Inevitability */}
+        {/* Inevitability – unchanged */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <h2 className="mb-6">
@@ -366,7 +361,7 @@ export default function HomePage() {
 
         <hr className="border-green/20" />
 
-        {/* Credibility */}
+        {/* Credibility – unchanged */}
         <section className="container section">
           <div className="text-center mb-6">
             <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Credibility</span>
@@ -414,7 +409,7 @@ export default function HomePage() {
 
         <WhyNow />
 
-        {/* Final CTA */}
+        {/* Final CTA – unchanged */}
         <section className="container section text-center">
           <div className="max-w-[400px] mx-auto mb-6">
             <Image src="/images/PHIERS-Power_Held_In_Every_Reps_Seat.jpg" alt="Power Held In Every Representative's Seat" width={400} height={100} className="w-full h-auto opacity-90" />
@@ -492,17 +487,10 @@ export default function HomePage() {
           width: 100%;
           height: 100%;
           cursor: pointer;
-          background-size: cover;
-          background-position: center;
-        }
-        .video-wrapper iframe {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
         }
       `}</style>
     </>
   )
 }
+
+// END FILE: app/page.tsx

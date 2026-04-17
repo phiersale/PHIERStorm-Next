@@ -8,7 +8,12 @@ import Link from 'next/link'
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen)
+  const toggleMenu = () => {
+    // Close the homepage modal if it exists (it will be defined in page, not here)
+    // Instead, we'll just rely on the modal's own close button.
+    // The overlap issue is actually CSS: ensure mobile menu has higher z-index than content but lower than modal.
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
 
   return (
     <>
@@ -19,6 +24,7 @@ export default function Navigation() {
         </div>
         <div className="flex items-center gap-4">
           <Link href="/petition" className="hidden md:inline-block px-5 py-2 bg-red-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-red-700 transition-all">✍ Sign the Petition</Link>
+          <Link href="/join" className="hidden md:inline-block px-5 py-2 bg-green-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-green-700 transition-all ml-2">🤝 Join</Link>
           <button onClick={toggleMenu} className="md:hidden text-white text-2xl p-2 border border-white/20 rounded-lg">{mobileMenuOpen ? '✕' : '☰'}</button>
         </div>
       </nav>
@@ -70,6 +76,7 @@ export default function Navigation() {
             </details>
             
             <Link href="/petition" className="block w-full py-3 bg-[#3ddc84] text-[#080d1a] font-condensed font-bold text-center rounded-lg mt-4" onClick={() => setMobileMenuOpen(false)}>✍ Sign Now</Link>
+            <Link href="/join" className="block w-full py-3 bg-green-600 text-white font-condensed font-bold text-center rounded-lg mt-2" onClick={() => setMobileMenuOpen(false)}>🤝 Join the Movement</Link>
           </div>
         </div>
       )}

@@ -9,10 +9,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
+import SectionImage from '@/components/SectionImage'
+import SpiralViewer from '@/components/SpiralViewer'
 
 export default function CrisisPage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
-  const [videoPlaying, setVideoPlaying] = useState(false)
 
   const openModal = (src: string) => {
     setModalImage(src)
@@ -24,7 +25,6 @@ export default function CrisisPage() {
     document.body.style.overflow = ''
   }
 
-  // Cleanup modal overflow on unmount
   useEffect(() => {
     return () => {
       document.body.style.overflow = ''
@@ -35,7 +35,6 @@ export default function CrisisPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
-  // Scroll listener for back-to-top button (React-friendly)
   useEffect(() => {
     const handleScroll = () => {
       const btt = document.getElementById('back-to-top')
@@ -44,25 +43,27 @@ export default function CrisisPage() {
         else btt.classList.remove('visible')
       }
     }
-    // Initial check in case page loads scrolled down
     handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // Video thumbnail and embed
-  const videoThumbnail = 'https://img.youtube.com/vi/wnSy5jjxAac/hqdefault.jpg'
-  const videoEmbedSrc = 'https://www.youtube.com/embed/wnSy5jjxAac?autoplay=1&rel=0'
-
-  const handlePlayVideo = () => setVideoPlaying(true)
 
   return (
     <>
       <Navigation />
 
       <main>
+        {/* HEADER IMAGE - ADDED */}
+        <div className="container pt-8">
+          <SectionImage 
+           src="/images/5D_Solutions_Rubiks_Cube_sm.png" 
+           alt="5D Solutions Cube – The interconnected crisis" 
+           priority 
+         />
+        </div>
+
         {/* Hero */}
-        <div className="container section text-center pt-32">
+        <div className="container section text-center pt-8">
           <div className="relative h-[80px] w-auto mb-6 flex justify-center">
             <Image
               src="/images/PHIERS_Logo.png"
@@ -101,7 +102,7 @@ export default function CrisisPage() {
 
         <hr className="border-green/20" />
 
-        {/* Jump Navigation */}
+        {/* Jump Navigation - keep as is */}
         <div className="container py-4 my-2">
           <div className="flex flex-wrap gap-2 justify-center">
             <Link href="#war" className="px-3 py-1.5 bg-bg-card border border-red-500/30 rounded-full text-red-400 text-xs font-condensed font-bold hover:bg-red-500/20 transition-all">🔥 War</Link>
@@ -199,6 +200,13 @@ export default function CrisisPage() {
             <Link href="/simple-math" className="font-condensed font-bold text-green text-sm hover:text-green-dim transition-colors">→ See the Simple Math</Link>
           </div>
         </section>
+
+        <hr className="border-green/20" />
+
+        {/* SPIRAL VIEWER (toggle between text and diagram) */}
+          <div className="container py-6">
+            <SpiralViewer />
+          </div>
 
         <hr className="border-green/20" />
 

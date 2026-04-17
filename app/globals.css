@@ -311,3 +311,13 @@
   border-top: 2px solid rgba(61, 220, 132, 0.3);
   border-bottom: 2px solid rgba(61, 220, 132, 0.3);
 }
+
+/* Ensure mobile menu sits above content but below modal */
+.fixed.top-16 {
+  z-index: 40;
+}
+
+/* Push main content down when menu is open – optional */
+.menu-open main {
+  margin-top: 0; /* already fine */
+}

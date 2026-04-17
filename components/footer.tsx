@@ -21,6 +21,7 @@ export default function Footer() {
         <Link href="/faq" className="text-gray-500 text-sm hover:text-[#3ddc84]">FAQ</Link>
         <Link href="/about" className="text-gray-500 text-sm hover:text-[#3ddc84]">About</Link>
         <Link href="/donate" className="text-gray-500 text-sm hover:text-[#3ddc84]">Donate</Link>
+        <Link href="/join" className="text-gray-500 text-sm hover:text-[#3ddc84]">Join</Link>
         <a href="mailto:info@phiers.org" className="text-gray-500 text-sm hover:text-[#3ddc84]">Contact</a>
       </div>
       
