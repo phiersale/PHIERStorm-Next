@@ -17,13 +17,11 @@ export default function PetitionPage() {
 
   const [submitState, setSubmitState] = useState<SubmitState>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-  const [districtResult, setDistrictResult] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitState('submitting')
     setErrorMessage('')
-    setDistrictResult('')
 
     try {
       const response = await fetch('/api/petition', {
@@ -33,25 +31,28 @@ export default function PetitionPage() {
           name: formData.name,
           email: formData.email,
           zipCode: formData.zip,
-          topConcerns: [],
-          endWar: '',
-          article25: '',
-          investigations: '',
-          solutions: [],
-          willOrganize: false,
           canContact: true,
         }),
       })
 
-      const data = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}))
+    throw new Error(errorData.error || 'Unable to submit petition right now.')
+  }
 
-      if (!response.ok || !data?.success) {
-        throw new Error(data?.error || 'Unable to submit petition right now.')
-      }
+  const data = await response.json()
+  
+  console.log('API Response:', data) // Debug: see what's returned
 
-      setSubmitState('success')
-      setDistrictResult(data?.district || '')
-      setFormData({ name: '', email: '', zip: '' })
+  // Check if id exists
+  if (!data.id) {
+    console.error('No id in response:', data)
+    throw new Error('Server did not return a signature ID')
+  }
+
+  // Redirect with signatureId
+  window.location.href = `/thank-you?signatureId=${data.id}`
+      
     } catch (error: any) {
       setSubmitState('error')
       setErrorMessage(error?.message || 'Something went wrong. Please try again.')
@@ -67,15 +68,17 @@ export default function PetitionPage() {
           <div className="relative h-[80px] w-auto mb-6 flex justify-center">
             <Image
               src="/images/PHIERS_Logo.png"
-              alt="PHIERS.org"
+              alt="PHIERS.org logo"
               width={80}
               height={80}
               className="opacity-90"
             />
           </div>
+
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
             Your Name. <span className="text-green">Your District.</span><br />On the Record.
           </h1>
+
           <p className="font-condensed text-lg text-gray-400 max-w-[700px] mx-auto mb-6">
             Power Held In Every Representative&apos;s Seat. When 1,500 people in your district sign, a mandatory town hall is triggered — and your representative must show up, answer publicly, and respond under real electoral pressure.
           </p>
@@ -100,6 +103,7 @@ export default function PetitionPage() {
                   required
                 />
               </div>
+
               <div>
                 <label className="block text-white font-condensed mb-1">Email Address</label>
                 <input
@@ -110,12 +114,18 @@ export default function PetitionPage() {
                   required
                 />
               </div>
+
               <div>
                 <label className="block text-white font-condensed mb-1">ZIP Code</label>
                 <input
                   type="text"
                   value={formData.zip}
-                  onChange={(e) => setFormData({ ...formData, zip: e.target.value.replace(/[^0-9]/g, '').slice(0, 5) })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      zip: e.target.value.replace(/[^0-9]/g, '').slice(0, 5),
+                    })
+                  }
                   className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white focus:outline-none focus:border-green transition-all"
                   pattern="[0-9]{5}"
                   maxLength={5}
@@ -127,19 +137,18 @@ export default function PetitionPage() {
                 <p className="text-red-400 text-sm">{errorMessage}</p>
               )}
 
-              {submitState === 'success' && (
-                <div className="bg-green/10 border border-green/40 rounded-lg p-3">
-                  <p className="text-green font-bold text-sm">✓ Signature counted successfully.</p>
-                  {districtResult && <p className="text-green/90 text-xs mt-1">District detected: {districtResult}</p>}
-                </div>
-              )}
-
-              <Button type="submit" variant="primary" fullWidth>
-                {submitState === 'submitting' ? 'Submitting...' : '✍ ADD MY NAME'}
-              </Button>
+              <button
+                type="submit"
+                disabled={submitState === 'submitting'}
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {submitState === 'submitting' ? 'Submitting…' : '✍ ADD MY NAME'}
+              </button>
             </form>
 
-            <p className="text-gray-500 text-xs text-center mt-4">Used only to count you in your district. No spam. No selling. Your information is never shared.</p>
+            <p className="text-gray-500 text-xs text-center mt-4">
+              Used only to count you in your district. No spam. No selling. Your information is never shared.
+            </p>
           </div>
         </section>
 
@@ -159,8 +168,12 @@ export default function PetitionPage() {
             <p className="font-condensed text-lg text-white font-bold mb-3">Already signed?</p>
             <p className="text-body mb-4">Share this with 5 people in your district.</p>
             <div className="flex flex-col gap-3 max-w-md mx-auto">
-              <Button href="/action" variant="secondary" fullWidth>📣 SHARE THE MOVEMENT</Button>
-              <Button href="/organizers" variant="secondary" fullWidth>✊ I WANT TO ORGANIZE</Button>
+              <Button href="/action" variant="secondary" fullWidth>
+                📣 SHARE THE MOVEMENT
+              </Button>
+              <Button href="/organizers" variant="secondary" fullWidth>
+                ✊ I WANT TO ORGANIZE
+              </Button>
             </div>
           </div>
         </section>

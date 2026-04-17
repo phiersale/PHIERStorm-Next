@@ -1,5 +1,10 @@
-import { ThankYouClient } from './_components/thank-you-client'
+import { Suspense } from "react";
+import ThankYouInner from "./ThankYouInner";
 
 export default function ThankYouPage() {
-  return <ThankYouClient />
+  return (
+    <Suspense fallback={<div className="text-center p-8 text-white">Loading...</div>}>
+      <ThankYouInner />
+    </Suspense>
+  );
 }
