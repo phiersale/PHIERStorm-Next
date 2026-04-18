@@ -1,18 +1,16 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
-import WhyNow from '@/components/WhyNow'
 
-export default function HomePage() {
+export default function MainHomePage() {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
-  const [videoPlaying, setVideoPlaying] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [showBackToTop, setShowBackToTop] = useState(false)
 
   // Open modal with any image
   const openModal = (src: string) => {
@@ -25,7 +23,7 @@ export default function HomePage() {
     document.body.style.overflow = ''
   }
 
-  // Show entry modal immediately on page load (only once per browser session)
+  // Show entry modal immediately (only once per browser session)
   useEffect(() => {
     const hasSeenModal = sessionStorage.getItem('entryModalShown')
     if (!hasSeenModal) {
@@ -34,34 +32,25 @@ export default function HomePage() {
     }
   }, [])
 
-  // Auto-close modal after 5 seconds and close on Enter key
+  // Modal keyboard handler (Enter/Escape) – no auto‑close timer
   useEffect(() => {
     if (!modalImageSrc) return
 
-    const autoTimer = setTimeout(() => {
-      closeModal()
-    }, 5000)
-
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') {
+      if (e.key === 'Enter' || e.key === 'Escape') {
         closeModal()
       }
     }
     window.addEventListener('keydown', handleKeyDown)
 
-    return () => {
-      clearTimeout(autoTimer)
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [modalImageSrc])
+    // Focus modal container for accessibility
+    const modalContainer = document.getElementById('modal-container')
+    if (modalContainer) modalContainer.focus()
 
-  // Escape key also closes
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && modalImageSrc) closeModal()
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
     }
-    window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
   }, [modalImageSrc])
 
   // Scroll to top
@@ -69,25 +58,15 @@ export default function HomePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
-  // Back-to-top button visibility
+  // Back-to-top visibility using React state
   useEffect(() => {
     const handleScroll = () => {
-      const btt = document.getElementById('back-to-top')
-      if (btt) {
-        if (window.scrollY > 400) btt.classList.add('visible')
-        else btt.classList.remove('visible')
-      }
+      setShowBackToTop(window.scrollY > 400)
     }
     handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // New video (cascade / zoom)
-  const videoThumbnail = 'https://img.youtube.com/vi/C2mMIx5yoyw/hqdefault.jpg'
-  const videoEmbedSrc = 'https://www.youtube.com/embed/C2mMIx5yoyw?autoplay=1&rel=0'
-
-  const playVideo = () => setVideoPlaying(true)
 
   return (
     <>
@@ -96,28 +75,32 @@ export default function HomePage() {
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
-      {/* Unified Modal – full screen width */}
+      {/* Unified Modal – full screen, accessible, closes on background or image click */}
       <AnimatePresence>
         {modalImageSrc && (
           <motion.div
-            className="fixed inset-0 bg-black z-[99999] flex items-center justify-center"
+            id="modal-container"
+            className="fixed inset-0 bg-black z-[99999] flex items-center justify-center outline-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
+            tabIndex={-1}
+            aria-modal="true"
+            role="dialog"
           >
-            <div
-              className="relative w-screen h-screen flex items-center justify-center cursor-pointer"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="relative w-screen h-screen flex items-center justify-center cursor-pointer">
               <Image
                 src={modalImageSrc}
                 alt="Enlarged view"
                 width={1920}
                 height={1080}
                 className="w-full h-auto max-h-screen object-contain"
+                onError={(e) => console.error('Modal image failed to load:', modalImageSrc)}
               />
-              <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">Tap anywhere or press Enter to close</p>
+              <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">
+                Tap anywhere or press Enter to close
+              </p>
             </div>
           </motion.div>
         )}
@@ -126,31 +109,30 @@ export default function HomePage() {
       <Navigation />
 
       <main>
-        {/* Hero Image - centered, 45% width, clickable */}
+        {/* Hero Image - full page width, no cropping */}
         <section className="relative bg-[#050b19] pt-8 md:pt-12 pb-4">
-          <div className="container">
-            <div className="flex justify-center">
-              <div
-                className="w-[45%] cursor-pointer"
-                onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
-              >
-                <div className="overflow-hidden rounded-2xl border border-green/30 shadow-[0_16px_60px_rgba(0,0,0,0.55)]">
-                  <Image
-                    src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
-                    alt="Congress Ignores You"
-                    width={954}
-                    height={648}
-                    priority
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+          <div className="w-full px-0">
+            <div
+              className="cursor-pointer w-full"
+              onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
+            >
+              <div className="overflow-hidden rounded-none md:rounded-2xl border-x-0 md:border-x border-green/30 shadow-none md:shadow-[0_16px_60px_rgba(0,0,0,0.55)]">
+                <Image
+                  src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
+                  alt="Congress Ignores You"
+                  width={1920}
+                  height={1080}
+                  priority
+                  className="w-full h-auto object-contain"
+                  onError={(e) => console.error('Hero image failed to load')}
+                />
               </div>
             </div>
           </div>
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#080d1a] to-transparent" />
         </section>
 
-        {/* Purpose Section with final copy */}
+        {/* Purpose Section */}
         <section className="container section text-center">
           <h1 className="mb-4">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
@@ -180,6 +162,7 @@ export default function HomePage() {
                   width={800}
                   height={500}
                   className="w-full h-auto object-contain"
+                  onError={(e) => console.error('Fish image failed to load')}
                 />
               </div>
               <p className="text-center text-gray-400 text-sm italic mt-2">This is what leverage looks like</p>
@@ -210,6 +193,7 @@ export default function HomePage() {
                   width={800}
                   height={400}
                   className="w-full h-auto object-contain"
+                  onError={(e) => console.error('PHIERS acronym image failed to load')}
                 />
               </div>
             </div>
@@ -245,14 +229,14 @@ export default function HomePage() {
             </h2>
             <div className="max-w-[760px] mx-auto">
               <p className="text-white text-xl font-bold mb-4">THIS IS WHAT ACTUALLY WORKS.</p>
-              <p className="text-gray-300 text-base mb-3">A representative responds to one thing — organized people inside their own district.</p>
-              <p className="text-gray-300 text-base mb-2">Not noise. Not posts. Not opinions.</p>
-              <p className="text-green text-2xl font-extrabold my-4">Just pressure.</p>
+              <p className="text-gray-300 text-base mb-3">Representatives don't respond to noise. They respond to risk.</p>
+              <p className="text-gray-300 text-base mb-3">And risk only appears when enough people in their district move together.</p>
               <p className="text-gray-300 text-base mb-2">Not millions. Not someday.</p>
-              <p className="text-white text-lg font-semibold mb-2">1,500 people in one district — organized and consistent — is enough to force a response.</p>
+              <p className="text-white text-lg font-semibold mb-2">1,500 people — organized and consistent — creates consequences.</p>
               <p className="text-green text-xl font-bold my-4">That's the tipping point.</p>
               <p className="text-gray-300 text-base mb-4">Because this isn't about size. It's about placement.</p>
-              <p className="text-white text-lg font-semibold">PHIERS creates consequences. It turns attention into leverage.</p>
+              <p className="text-gray-300 text-base mb-3">When pressure is coordinated locally, ignoring it becomes dangerous.</p>
+              <p className="text-white text-lg font-semibold">That's leverage.</p>
             </div>
           </div>
         </section>
@@ -279,6 +263,13 @@ export default function HomePage() {
               <p className="text-white text-lg font-bold mt-3">4. Congress responds — or gets replaced</p>
               <p className="text-gray-400 text-sm">That's how this has always worked.</p>
             </div>
+          </div>
+          <div className="max-w-[600px] mx-auto mt-8 text-center">
+            <p className="text-gray-400 text-sm italic border-t border-green/20 pt-6">
+              This is already happening — district by district.
+              <br />
+              You're not joining an idea. You're joining momentum.
+            </p>
           </div>
         </section>
 
@@ -352,6 +343,7 @@ export default function HomePage() {
                 width={500}
                 height={400}
                 className="mx-auto rounded-lg border border-green/20"
+                onError={(e) => console.error('Tablet image failed to load')}
               />
               <div className="mt-4 space-y-1 text-gray-400 text-sm font-light text-center">
                 <div>Funded by TeleCARE</div>
@@ -362,14 +354,14 @@ export default function HomePage() {
 
           <div className="max-w-[760px] mx-auto mt-8">
             <h3 className="text-2xl font-bold text-white mb-3">THE CASCADE</h3>
-            <p className="text-gray-300 text-base mb-2">One person switching saves enough to cover 12 more.</p>
-            <p className="text-gray-300 text-base mb-2">12 become 148. 148 become 1,825.</p>
-            <p className="text-gray-300 text-base mb-3">The system scales itself forward.</p>
+            <p className="text-gray-300 text-base mb-2">One person switching creates enough savings to cover 12 more.</p>
+            <p className="text-gray-300 text-base mb-2">Then it compounds:</p>
+            <p className="text-white text-lg font-mono font-bold mb-3">1 → 12 → 148 → 1,825</p>
+            <p className="text-gray-300 text-base mb-3">Each layer funds the next. No outside funding. No slowdown. Growth fuels itself.</p>
             <div className="bg-bg-card border border-green/20 rounded-xl p-4 my-4 text-center">
               <p className="text-white font-mono text-lg">In nine rounds: • 234 million people covered • 8–13 months</p>
             </div>
-            <p className="text-green text-lg font-bold mb-3">Not a promise. Arithmetic.</p>
-            <p className="text-gray-300 text-base">It works because savings fund the next layer. The same system that lowers costs is what funds continued growth and coordination.</p>
+            <p className="text-green text-lg font-bold mb-3">Not a projection. Arithmetic.</p>
           </div>
 
           <div className="max-w-[760px] mx-auto mt-8">
@@ -391,13 +383,14 @@ export default function HomePage() {
           <div className="container text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHY IT BECOMES SELF‑SUSTAINING</h2>
             <div className="max-w-[760px] mx-auto">
-              <p className="text-gray-300 text-base mb-3">This system is designed to fund itself.</p>
-              <p className="text-gray-300 text-base mb-2">The savings created in the first wave fund the next.</p>
-              <p className="text-gray-300 text-base mb-2">Each wave funds the next.</p>
-              <p className="text-gray-300 text-base mb-3">The system accelerates instead of slowing.</p>
-              <p className="text-gray-300 text-base mb-3">At scale, growth and coordination are supported by the same savings the system creates.</p>
-              <p className="text-green text-xl font-bold my-4">No donations. No grants. No dependence on outside funding.</p>
-              <p className="text-gray-300 text-base">The math that reduces costs is the same math that keeps the system running.</p>
+              <p className="text-green text-2xl font-extrabold my-4">This system doesn't need funding. It creates its own.</p>
+              <p className="text-gray-300 text-base mb-3">The savings generated in each wave fund the next.</p>
+              <p className="text-gray-300 text-base mb-2">That means:</p>
+              <p className="text-gray-300 text-base mb-2">• No donations</p>
+              <p className="text-gray-300 text-base mb-2">• No grants</p>
+              <p className="text-gray-300 text-base mb-3">• No dependence</p>
+              <p className="text-gray-300 text-base mb-3">Scale increases capacity. It doesn't strain it.</p>
+              <p className="text-white text-lg font-semibold mt-4">The same math that lowers costs is what keeps the system running.</p>
             </div>
           </div>
         </section>
@@ -418,7 +411,9 @@ export default function HomePage() {
             <p className="text-gray-300 text-base mb-3">And when people stay engaged together — by district — pressure doesn't fade. It builds.</p>
             <p className="text-gray-300 text-base mb-3">That's what changes outcomes. Not attention. Not awareness.</p>
             <p className="text-white text-lg font-bold mb-2">Sustained, organized pressure from people who can't be ignored.</p>
-            <p className="text-green text-xl font-bold my-4">Affordability → capacity → sustained pressure → response. That's what leverage is.</p>
+            <p className="text-green text-xl font-bold my-4">
+              When people can afford to stay engaged, pressure doesn't fade. It compounds.
+            </p>
           </div>
         </section>
 
@@ -481,12 +476,12 @@ export default function HomePage() {
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <p className="text-white text-xl font-bold mb-4">Nothing changes until ignoring people costs more than responding.</p>
-            <p className="text-gray-300 text-base mb-3">That's what this does.</p>
+            <p className="text-gray-300 text-base mb-3">This is how you change that equation.</p>
             <p className="text-green text-2xl font-bold mb-4">Your name. Your district. Counted.</p>
-            <p className="text-gray-300 text-base mb-2">Affordability gives this movement its fuel.</p>
-            <p className="text-gray-300 text-base mb-2">Organization gives it structure.</p>
-            <p className="text-gray-300 text-base mb-4">Sustained pressure gives it results.</p>
-            <p className="text-white text-lg font-bold mb-6">And at scale, it keeps going on its own.</p>
+            <p className="text-gray-300 text-base mb-2">This system funds itself.</p>
+            <p className="text-gray-300 text-base mb-2">It organizes itself.</p>
+            <p className="text-gray-300 text-base mb-4">And once it reaches scale — it sustains itself.</p>
+            <p className="text-white text-lg font-bold mb-6">The only variable is participation.</p>
             <div className="flex flex-col gap-3 max-w-md mx-auto">
               <Button href="/petition" variant="primary" fullWidth>✍ BE COUNTED</Button>
               <Button href="/organizers" variant="secondary" fullWidth>🤝 GET CONNECTED</Button>
@@ -499,8 +494,7 @@ export default function HomePage() {
 
       <button
         onClick={scrollToTop}
-        className="back-to-top"
-        id="back-to-top"
+        className={`back-to-top ${showBackToTop ? 'visible' : ''}`}
         aria-label="Back to top"
       >
         ↑
@@ -535,40 +529,8 @@ export default function HomePage() {
           background: #2ab568;
           transform: translateY(-2px);
         }
-        .video-container {
-          position: relative;
-          padding-bottom: 56.25%;
-          height: 0;
-          overflow: hidden;
-          border-radius: 12px;
-          border: 2px solid rgba(61, 220, 132, 0.2);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-        }
-        .video-wrapper {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          cursor: pointer;
-          background-size: cover;
-          background-position: center;
-        }
-        .video-wrapper iframe {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
         .bg-green-glow {
           background: rgba(61, 220, 132, 0.06);
-        }
-        @media (max-width: 768px) {
-          nav .menu-items {
-            flex-direction: column;
-            gap: 0.5rem;
-          }
         }
       `}</style>
     </>
