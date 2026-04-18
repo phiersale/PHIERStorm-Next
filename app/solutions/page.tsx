@@ -235,7 +235,7 @@ export default function SolutionsPage() {
           <div className="max-w-[500px] mx-auto my-6">
             <button onClick={() => openModal('/images/PHIERS_5D_Solutions.png')} className="cursor-pointer">
               <Image
-                src="/images/PHIERS_5D_Solutions.png"
+                src="/images/5D_Solutions_Rubiks_Cube_sm.png"
                 alt="PHIERS 5D Solutions Framework"
                 width={500}
                 height={400}

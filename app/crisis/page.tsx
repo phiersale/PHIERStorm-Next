@@ -10,7 +10,6 @@ import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
 import SectionImage from '@/components/SectionImage'
-import SpiralViewer from '@/components/SpiralViewer'
 
 export default function CrisisPage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
@@ -56,10 +55,10 @@ export default function CrisisPage() {
         {/* HEADER IMAGE - ADDED */}
         <div className="container pt-8">
           <SectionImage 
-           src="/images/5D_Solutions_Rubiks_Cube_sm.png" 
-           alt="5D Solutions Cube – The interconnected crisis" 
-           priority 
-         />
+            src="/images/5D_Solutions_Rubiks_Cube.png"  
+            alt="5D Solutions Cube – The interconnected crisis" 
+            priority 
+          />
         </div>
 
         {/* Hero */}
@@ -203,10 +202,23 @@ export default function CrisisPage() {
 
         <hr className="border-green/20" />
 
-        {/* SPIRAL VIEWER (toggle between text and diagram) */}
-          <div className="container py-6">
-            <SpiralViewer />
+      {/* MID-PAGE VISUAL - Clickable thumbnail for hi-res spiral diagram */}
+        <div className="container py-6">
+          <div 
+            className="max-w-[500px] mx-auto cursor-pointer"
+            onClick={() => openModal('/images/crisis-spiral.png')}
+          >
+            <Image
+              src="/images/crisis-spiral.jpg"
+              alt="Detailed crisis spiral diagram – click to enlarge"
+              width={500}
+              height={400}
+              className="w-full h-auto rounded-lg border border-green/20 hover:opacity-90 transition-opacity"
+              sizes="(max-width: 500px) 100vw, 500px"
+            />
+            <p className="text-center text-xs text-gray-500 mt-2">Click image to enlarge</p>
           </div>
+        </div>
 
         <hr className="border-green/20" />
 
