@@ -27,19 +27,41 @@ export default function HomePage() {
   }, [])
 
   // Close modal and allow escape key
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setModalOpen(false)
     document.body.style.overflow = ''
     sessionStorage.setItem('entryModalShown', '1')
-  }
+  }, [])
 
+  // Auto-close after 5 seconds and close on Enter key
+  useEffect(() => {
+    if (!modalOpen) return
+
+    const autoTimer = setTimeout(() => {
+      closeModal()
+    }, 5000)
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        closeModal()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      clearTimeout(autoTimer)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [modalOpen, closeModal])
+
+  // Escape key also closes
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && modalOpen) closeModal()
     }
     window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
-  }, [modalOpen])
+  }, [modalOpen, closeModal])
 
   // Scroll to top
   const scrollToTop = useCallback(() => {
@@ -73,31 +95,30 @@ export default function HomePage() {
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
-      {/* Single Modal – no extra text */}
+      {/* Modal with "You Are Not Powerless" image – black background, auto-advance, tap/Enter to close */}
       <AnimatePresence>
         {modalOpen && (
           <motion.div
-            className="fixed inset-0 bg-[#080d1a] z-[99999] flex items-center justify-center p-5"
+            className="fixed inset-0 bg-black z-[99999] flex items-center justify-center p-5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
           >
-            <motion.div
-              className="max-w-md w-full text-center bg-[#0f1425] rounded-2xl p-8 border border-green/30 shadow-2xl"
-              initial={{ scale: 0.98, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.98, opacity: 0 }}
+            <div
+              className="relative max-w-[90vw] max-h-[90vh] cursor-pointer"
               onClick={(e) => e.stopPropagation()}
             >
-              <p className="text-3xl font-bold text-white mb-6">YOU ARE NOT POWERLESS.</p>
-              <button
-                onClick={closeModal}
-                className="bg-green hover:bg-green/80 text-bg-deep font-bold py-2 px-6 rounded-md transition"
-              >
-                Continue
-              </button>
-            </motion.div>
+              <Image
+                src="/images/you-are-not-powerless.png"
+                alt="YOU ARE NOT POWERLESS"
+                width={800}
+                height={600}
+                className="w-auto h-auto max-w-full max-h-[90vh] object-contain"
+                priority
+              />
+              <p className="text-center text-gray-400 text-sm mt-4">Tap anywhere or press Enter to continue</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -110,7 +131,7 @@ export default function HomePage() {
           <div className="container">
             <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-green/30 shadow-[0_16px_60px_rgba(0,0,0,0.55)]">
               <Image
-                src="/images/Hero_Congress_Ignores_You.jpg"
+                src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
                 alt="Congress Ignores You"
                 width={954}
                 height={648}
@@ -132,15 +153,33 @@ export default function HomePage() {
           <div className="max-w-[760px] mx-auto mt-8">
             <p className="text-white text-lg md:text-xl font-semibold mb-2">Your name. Your district.</p>
             <p className="text-green text-base md:text-lg font-medium mb-6">That's the leverage that changes that.</p>
-            <p className="text-gray-300 text-base mb-4">Adding your name isn't symbolic — it's how scattered people become coordinated pressure Congress can't ignore, and is what they fear most: accountability.</p>
-            <p className="text-white text-base font-bold mb-2">This only works if enough people act together.</p>
-            <p className="text-gold text-base font-bold mb-8">Not eventually. Not theoretically. Now.</p>
           </div>
           <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
             <Button href="/petition" variant="primary" fullWidth>✍ BE COUNTED</Button>
             <Button href="/organizers" variant="secondary" fullWidth>🤝 GET CONNECTED</Button>
           </div>
+
+          {/* Organized Fish Image - "This is what leverage looks like" */}
+          <div className="mt-8 max-w-3xl mx-auto">
+            <div className="relative overflow-hidden rounded-2xl border border-green/30 shadow-md">
+              <Image
+                src="/images/This_is_what_leverage_looks_like.jpg"
+                alt="This is what leverage looks like - organized fish"
+                width={800}
+                height={500}
+                className="w-full h-auto object-contain"
+                sizes="(max-width: 800px) 100vw, 800px"
+              />
+            </div>
+            <p className="text-center text-gray-400 text-sm italic mt-2">This is what leverage looks like</p>
+          </div>
+
           <div className="mt-8 max-w-[600px] mx-auto">
+            <p className="text-gray-300 text-base mb-4">Adding your name isn't symbolic — it's how scattered people become coordinated pressure Congress can't ignore, and is what they fear most: accountability.</p>
+            <p className="text-white text-base font-bold mb-2">This only works if enough people act together.</p>
+            <p className="text-gold text-base font-bold mb-8">Not eventually. Not theoretically. Now.</p>
+          </div>
+          <div className="mt-4 max-w-[600px] mx-auto">
             <p className="text-gray-500 text-sm italic">By adding your name, you help us hold Congress accountable for better decisions long before the upcoming election.</p>
           </div>
         </section>
@@ -164,18 +203,19 @@ export default function HomePage() {
         {/* Section 1 - Reality */}
         <section className="container section">
           <h2 className="mb-6">
-            <span className="section-white">Healthcare. Cost of living. Wages. End the war. Endless gridlock.</span>
+            <span className="section-white">Healthcare. Cost of living. Wages. Endless wars. Fascist rule. Treason?</span>
             <span className="section-green">These aren't unsolvable problems.</span>
           </h2>
           <div className="max-w-[760px] mx-auto">
-            <p className="text-gray-300 text-base mb-3">They're problems that aren't being forced to resolution.</p>
+            <p className="text-gray-300 text-base mb-3">They're problems Congress hasn't been forced to resolve.</p>
             <p className="text-white text-base font-semibold mb-2">We've tried voting.</p>
-            <p className="text-white text-base font-semibold mb-2">We've tried awareness.</p>
+            <p className="text-white text-base font-semibold mb-2">We've tried outreach.</p>
             <p className="text-white text-base font-semibold mb-2">We've tried outrage.</p>
             <p className="text-white text-base font-semibold mb-2">We've tried waiting.</p>
+            <p className="text-white text-base font-semibold mb-2">We've tried hoping.</p>
             <p className="text-gray-300 text-base mb-3">And every cycle, the same outcome repeats.</p>
-            <p className="text-red-500 text-3xl md:text-4xl font-black my-6">Nothing structural changes.</p>
-            <p className="text-gray-300 text-base">Not because people don't care.<br />Because pressure isn't coordinated.</p>
+            <p className="text-red-500 text-3xl md:text-4xl font-black my-6">Nothing changes for the common man.</p>
+            <p className="text-gray-300 text-base">Not because people don't care.<br />Because pressure isn't focused enough to make representatives fear being replaced.</p>
           </div>
         </section>
 
@@ -289,7 +329,6 @@ export default function HomePage() {
               className="mx-auto rounded-lg border border-green/20"
               sizes="(max-width: 600px) 100vw, 500px"
             />
-            {/* Badges - clean text only */}
             <div className="mt-4 space-y-1 text-gray-400 text-sm font-light">
               <div>Funded by TeleCARE</div>
               <div>Sponsored Telehealth Placement</div>
@@ -546,7 +585,6 @@ export default function HomePage() {
           width: 100%;
           height: 100%;
         }
-        /* Fix mobile menu overlap – will be applied globally, but Navigation component must also be updated */
         @media (max-width: 768px) {
           nav .menu-items {
             flex-direction: column;
