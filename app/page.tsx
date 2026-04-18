@@ -10,29 +10,33 @@ import Button from '@/components/Button'
 import WhyNow from '@/components/WhyNow'
 
 export default function HomePage() {
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
   const [videoPlaying, setVideoPlaying] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Show modal immediately on page load (only once per browser session)
+  // Open modal with any image
+  const openModal = (src: string) => {
+    setModalImageSrc(src)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeModal = () => {
+    setModalImageSrc(null)
+    document.body.style.overflow = ''
+  }
+
+  // Show entry modal immediately on page load (only once per browser session)
   useEffect(() => {
     const hasSeenModal = sessionStorage.getItem('entryModalShown')
     if (!hasSeenModal) {
-      setModalOpen(true)
-      document.body.style.overflow = 'hidden'
+      openModal('/images/You_Are_Not_Powerless.jpg')
+      sessionStorage.setItem('entryModalShown', '1')
     }
   }, [])
 
-  // Close modal and allow escape key
-  const closeModal = useCallback(() => {
-    setModalOpen(false)
-    document.body.style.overflow = ''
-    sessionStorage.setItem('entryModalShown', '1')
-  }, [])
-
-  // Auto-close after 5 seconds and close on Enter key
+  // Auto-close modal after 5 seconds and close on Enter key
   useEffect(() => {
-    if (!modalOpen) return
+    if (!modalImageSrc) return
 
     const autoTimer = setTimeout(() => {
       closeModal()
@@ -49,16 +53,16 @@ export default function HomePage() {
       clearTimeout(autoTimer)
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [modalOpen, closeModal])
+  }, [modalImageSrc])
 
   // Escape key also closes
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && modalOpen) closeModal()
+      if (e.key === 'Escape' && modalImageSrc) closeModal()
     }
     window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
-  }, [modalOpen, closeModal])
+  }, [modalImageSrc])
 
   // Scroll to top
   const scrollToTop = useCallback(() => {
@@ -92,29 +96,28 @@ export default function HomePage() {
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
-      {/* Modal with "You Are Not Powerless" image */}
+      {/* Unified Modal – full screen width */}
       <AnimatePresence>
-        {modalOpen && (
+        {modalImageSrc && (
           <motion.div
-            className="fixed inset-0 bg-black z-[99999] flex items-center justify-center p-5"
+            className="fixed inset-0 bg-black z-[99999] flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
           >
             <div
-              className="relative max-w-[90vw] max-h-[90vh] cursor-pointer"
+              className="relative w-screen h-screen flex items-center justify-center cursor-pointer"
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src="/images/You_Are_Not_Powerless.jpg"
-                alt="YOU ARE NOT POWERLESS"
-                width={800}
-                height={600}
-                className="w-auto h-auto max-w-full max-h-[90vh] object-contain"
-                priority
+                src={modalImageSrc}
+                alt="Enlarged view"
+                width={1920}
+                height={1080}
+                className="w-full h-auto max-h-screen object-contain"
               />
-              <p className="text-center text-gray-400 text-sm mt-4">[Enter →]</p>
+              <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">Tap anywhere or press Enter to close</p>
             </div>
           </motion.div>
         )}
@@ -123,11 +126,14 @@ export default function HomePage() {
       <Navigation />
 
       <main>
-        {/* Hero Image - centered, 45% width */}
+        {/* Hero Image - centered, 45% width, clickable */}
         <section className="relative bg-[#050b19] pt-8 md:pt-12 pb-4">
           <div className="container">
             <div className="flex justify-center">
-              <div className="w-[45%]">
+              <div
+                className="w-[45%] cursor-pointer"
+                onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
+              >
                 <div className="overflow-hidden rounded-2xl border border-green/30 shadow-[0_16px_60px_rgba(0,0,0,0.55)]">
                   <Image
                     src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
@@ -161,9 +167,12 @@ export default function HomePage() {
             <Button href="/organizers" variant="secondary" fullWidth>🤝 GET CONNECTED</Button>
           </div>
 
-          {/* Organized Fish Image - centered, 50% width */}
+          {/* Organized Fish Image - centered, 50% width, clickable */}
           <div className="flex justify-center mt-8">
-            <div className="w-[50%]">
+            <div
+              className="w-[50%] cursor-pointer"
+              onClick={() => openModal('/images/This_is_what_leverage_looks_like.jpg')}
+            >
               <div className="overflow-hidden rounded-2xl border border-green/30 shadow-md">
                 <Image
                   src="/images/This_is_what_leverage_looks_like.jpg"
@@ -187,10 +196,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* PHIERS Acronym Visual - centered, 45% width */}
+        {/* PHIERS Acronym Visual - centered, 45% width, clickable */}
         <div className="container py-6">
           <div className="flex justify-center">
-            <div className="w-[45%]">
+            <div
+              className="w-[45%] cursor-pointer"
+              onClick={() => openModal('/images/PHIERS-Power_Held_In_Every_Reps_Seat.jpg')}
+            >
               <div className="overflow-hidden rounded-2xl border border-green/30 shadow-md">
                 <Image
                   src="/images/PHIERS-Power_Held_In_Every_Reps_Seat.jpg"
@@ -328,9 +340,12 @@ export default function HomePage() {
             <p className="text-green text-xl font-bold my-4">That's not a theory. That's math.</p>
           </div>
 
-          {/* Tablet image - centered, 50% width */}
+          {/* Tablet image - centered, 50% width, clickable */}
           <div className="flex justify-center mt-8">
-            <div className="w-[50%]">
+            <div
+              className="w-[50%] cursor-pointer"
+              onClick={() => openModal('/images/PHIERS_Tablet__Firewall.png')}
+            >
               <Image
                 src="/images/PHIERS_Tablet__Firewall.png"
                 alt="Telehealth tablet - PHIERS powered solutions"
