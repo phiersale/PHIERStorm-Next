@@ -336,7 +336,7 @@ export default function HomePage() {
                 <Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% — Chenoweth Research" width={380} height={250} className="rounded-lg border border-white/10 mx-auto" sizes="380px" />
               </div>
               <p className="text-gray-300 text-sm mb-3">Harvard researcher Erica Chenoweth studied 323 campaigns across a century of political history.</p>
-              <p className="text-white text-lg font-bold mb-3">Finding: when people act together in a coordinated, sustained way — systems respond — and overthrow totalitarian governments every time.</p>
+              <p className="text-white text-lg font-bold mb-3">Finding: when people act together in a coordinated, sustained way — systems respond — and overthrow dictators and tyrants using peaceful means, every time.</p>
               <p className="text-gray-300 text-base mb-2">Every time.</p>
               <p className="text-gray-300 text-base mb-2">Without exception.</p>
               <p className="text-gray-300 text-base mb-2">In 323 campaigns.</p>
