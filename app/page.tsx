@@ -1,6 +1,5 @@
-// FILE: app/page.tsx
-// VERSION: 1.0.0
-// PURPOSE: Entry modal (take a breath + YOU ARE NOT POWERLESS) then routes to PreHomepage or MainHomePage
+// FILE: app/page.tsx (START)
+// VERSION: 1.2.0 (mobile scroll fix - logo and skip intro visible)
 
 'use client'
 
@@ -54,35 +53,38 @@ export default function Page() {
       <AnimatePresence>
         {showEntryModal && (
           <motion.div
-            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 cursor-pointer"
+            className="fixed inset-0 bg-black/95 z-[99999] flex flex-col overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            <div className="text-center max-w-xl">
-              <Image src="/images/PHIERS_Logo.png" alt="PHIERS" width={80} height={80} className="mx-auto mb-8" />
+            {/* Content container with min-height to ensure scrolling if needed */}
+            <div className="flex-grow flex flex-col justify-center min-h-screen py-8 px-4">
+              <div className="text-center max-w-xl mx-auto w-full">
+                <Image src="/images/PHIERS_Logo.png" alt="PHIERS" width={80} height={80} className="mx-auto mb-6" />
 
-              <h2 className="text-white text-5xl font-light mb-6">Take a breath.</h2>
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-4">Take a breath.</h2>
 
-              <p className="text-gray-300 text-xl mb-2">What you’re about to see is simple.</p>
-              <p className="text-gray-300 text-xl mb-6">But it changes how power actually works.</p>
+                <p className="text-gray-300 text-lg md:text-xl mb-2">What you’re about to see is simple.</p>
+                <p className="text-gray-300 text-lg md:text-xl mb-6">But it changes how power actually works.</p>
 
-              <p className="text-gray-400 mb-6">Most people haven’t seen the mechanism yet.</p>
+                <p className="text-gray-400 text-base md:text-lg mb-8">Most people haven’t seen the mechanism yet.</p>
 
-              <div className="border-t border-green/20 pt-6">
-                <p className="text-green text-3xl font-bold">YOU ARE NOT POWERLESS</p>
-                <p className="text-gray-300 text-lg mt-2">That’s the first thing to remember.</p>
+                <div className="border-t border-green/20 pt-6">
+                  <p className="text-green text-2xl md:text-3xl font-bold mb-2">YOU ARE NOT POWERLESS</p>
+                  <p className="text-gray-300 text-base md:text-lg">That’s the first thing to remember.</p>
+                </div>
+
+                <p className="text-gray-500 text-sm mt-8">Click anywhere to continue</p>
+
+                <button
+                  onClick={(e) => { e.stopPropagation(); skipIntro(); }}
+                  className="text-gray-500 text-sm underline mt-4 hover:text-gray-300"
+                >
+                  Skip intro
+                </button>
               </div>
-
-              <p className="text-gray-500 text-sm mt-6">Click anywhere to continue</p>
-
-              <button
-                onClick={(e) => { e.stopPropagation(); skipIntro(); }}
-                className="text-gray-500 text-sm underline mt-2 hover:text-gray-300"
-              >
-                Skip intro
-              </button>
             </div>
           </motion.div>
         )}
@@ -101,4 +103,4 @@ export default function Page() {
 
   return <MainHomePage />
 }
-// END FILE: app/page.tsx
+// FILE: app/page.tsx (END)
