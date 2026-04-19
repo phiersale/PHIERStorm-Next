@@ -66,6 +66,17 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
     <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-6 pt-16">
       {/* Logo – not clickable, centered with top spacing */}
       <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none">
+   
+    {/* SKIP BUTTON - always visible */}
+      <div className="absolute top-6 right-6 z-10">
+        <button
+          onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
+          className="text-gray-500 text-sm underline hover:text-gray-300"
+        >
+          Skip to homepage →
+        </button>
+      </div>
+      
         <Image src="/images/PHIERS_Logo.png" alt="logo" width={50} height={50} className="opacity-80" />
       </div>
 
