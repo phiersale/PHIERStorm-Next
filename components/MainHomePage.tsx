@@ -1,5 +1,3 @@
-// FILE: components/MainHomePage.tsx - START
-
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
@@ -37,34 +35,11 @@ export default function MainHomePage() {
     document.body.style.overflow = ''
   }
 
-  // Entry modal: contemplative opening + image modal combined
-  const [showBreathModal, setShowBreathModal] = useState(false)
-  const [showImageModal, setShowImageModal] = useState(false)
-
-  useEffect(() => {
-    const hasSeenEntry = sessionStorage.getItem('entrySequence')
-    if (!hasSeenEntry) {
-      setShowBreathModal(true)
-      sessionStorage.setItem('entrySequence', '1')
-    }
-  }, [])
-
-  const advanceToImageModal = () => {
-    setShowBreathModal(false)
-    setShowImageModal(true)
-    document.body.style.overflow = 'hidden'
-  }
-
-  const closeImageModal = () => {
-    setShowImageModal(false)
-    document.body.style.overflow = ''
-  }
-
   // Keyboard handler for image modal
   useEffect(() => {
-    if (!showImageModal) return
+    if (!modalImageSrc) return
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === 'Escape') closeImageModal()
+      if (e.key === 'Enter' || e.key === 'Escape') closeModal()
     }
     window.addEventListener('keydown', handleKeyDown)
     const modalContainer = document.getElementById('image-modal-container')
@@ -73,7 +48,7 @@ export default function MainHomePage() {
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [showImageModal])
+  }, [modalImageSrc])
 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -89,9 +64,6 @@ export default function MainHomePage() {
   const scrollToMechanism = () => {
     document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
   }
-  const scrollToHowItWorks = () => {
-    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })
-  }
 
   return (
     <>
@@ -100,61 +72,28 @@ export default function MainHomePage() {
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
-      {/* Contemplative opening modal with logo */}
+      {/* Image modal (for all clickable images) */}
       <AnimatePresence>
-        {showBreathModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={advanceToImageModal}
-          >
-            <div className="text-center max-w-xl px-6 cursor-pointer">
-              {/* PHIERS Logo */}
-              <div className="flex justify-center mb-6">
-                <Image
-                  src="/images/PHIERS_Logo.png"
-                  alt="PHIERS"
-                  width={80}
-                  height={80}
-                  className="opacity-90"
-                />
-              </div>
-              <h2 className="text-white text-3xl md:text-4xl font-light mb-4 tracking-wide">Take a breath.</h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                What you’re about to see is simple.<br />
-                But it changes how power actually works.
-              </p>
-              <p className="text-gray-500 text-sm mt-8">Click to continue</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Image modal (You Are Not Powerless) */}
-      <AnimatePresence>
-        {showImageModal && (
+        {modalImageSrc && (
           <motion.div
             id="image-modal-container"
             className="fixed inset-0 bg-black z-[99999] flex items-center justify-center outline-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={closeImageModal}
+            onClick={closeModal}
             tabIndex={-1}
             aria-modal="true"
             role="dialog"
           >
             <div className="relative w-screen h-screen flex items-center justify-center cursor-pointer">
               <Image
-                src="/images/You_Are_Not_Powerless.jpg"
-                alt="YOU ARE NOT POWERLESS"
+                src={modalImageSrc}
+                alt="Enlarged view"
                 width={1920}
                 height={1080}
                 className="w-full h-auto max-h-screen object-contain"
-                priority
-                onError={(e) => console.error('Modal image failed to load')}
+                onError={(e) => console.error('Modal image failed to load:', modalImageSrc)}
               />
               <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">
                 Tap anywhere or press Enter to close
@@ -186,7 +125,7 @@ export default function MainHomePage() {
 
           {/* Hero Image – 45% desktop, 70% mobile */}
           <div className="flex justify-center mt-8 mb-8">
-            <div className="w-[45%] md:w-[45%] w-[70%] max-w-[600px] cursor-pointer"
+            <div className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer"
                  onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}>
               <Image
                 src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
@@ -520,5 +459,3 @@ export default function MainHomePage() {
     </>
   )
 }
-
-// END FILE: components/MainHomePage.tsx
