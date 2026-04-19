@@ -1,6 +1,5 @@
-// FILE: components/PreHomepage.tsx
-// VERSION: 1.2.0 (FINAL TUNING)
-// PURPOSE: 16-slide sequence with tuned copy, keyboard nav, skip button, proper font
+// FILE: components/PreHomepage.tsx (START)
+// VERSION: 1.3.0 (mobile: content above bottom nav, SKIP button top-right, no overlap)
 
 'use client'
 
@@ -82,47 +81,51 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [index])
 
-  return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-6 pt-16 font-sans">
-      {/* Logo */}
-      <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none">
-        <Image src="/images/PHIERS_Logo.png" alt="logo" width={50} height={50} className="opacity-80" />
-      </div>
+  const isLastSlide = index === slides.length - 1
 
-      {/* Skip button */}
-      <div className="absolute top-6 right-6 z-10">
+  return (
+    <div className="min-h-screen bg-[#050b19] text-white flex flex-col font-sans">
+      {/* Top bar: logo + SKIP button */}
+      <div className="relative pt-4 px-4 flex justify-between items-center">
+        {/* Logo - left */}
+        <div className="w-10 h-10">
+          <Image src="/images/PHIERS_Logo.png" alt="logo" width={40} height={40} className="opacity-80" />
+        </div>
+        {/* SKIP button - right */}
         <button
           onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
           className="text-gray-500 text-sm underline hover:text-gray-300"
         >
-          Skip to homepage →
+          SKIP
         </button>
       </div>
 
-      {/* Clickable content */}
-      <div onClick={next} className="cursor-pointer text-center max-w-2xl w-full">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-light mb-6">{slide.title}</h1>
-            <div className="space-y-3">
-              {slide.body.map((line, idx) => (
-                <p key={idx} className="text-lg md:text-xl text-gray-300">
-                  {line}
-                </p>
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+      {/* Main content - pushed up, with flex-grow to take remaining space, but content stays above bottom nav */}
+      <div className="flex-grow flex flex-col justify-center px-6 py-8">
+        <div onClick={next} className="cursor-pointer text-center max-w-2xl mx-auto w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h1 className="text-3xl md:text-5xl font-light mb-6">{slide.title}</h1>
+              <div className="space-y-3">
+                {slide.body.map((line, idx) => (
+                  <p key={idx} className="text-base md:text-xl text-gray-300">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
 
-      {/* Navigation controls + hint for first slide */}
-      <div className="absolute bottom-6 flex flex-col items-center gap-3">
+      {/* Bottom navigation - fixed at bottom, no overlap because content area has flex-grow and padding */}
+      <div className="pb-6 pt-2 flex flex-col items-center gap-2">
         <p className="text-gray-500 text-sm">
           {index + 1} / {slides.length}
         </p>
@@ -135,7 +138,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
               ← Back
             </button>
           )}
-          {index === slides.length - 1 && (
+          {isLastSlide && (
             <div className="flex gap-3">
               <button
                 onClick={(e) => { e.stopPropagation(); onGoToPetition(); }}
@@ -152,13 +155,14 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
             </div>
           )}
         </div>
-        {/* Micro‑UX hint (only on first slide) */}
+        {/* Optional hint for first slide */}
         {index === 0 && (
-          <p className="text-gray-600 text-xs mt-4">
-            Use ← → keys or click to continue
+          <p className="text-gray-600 text-xs mt-2">
+            ← → keys or click to continue
           </p>
         )}
       </div>
     </div>
   )
 }
+// FILE: components/PreHomepage.tsx (END)

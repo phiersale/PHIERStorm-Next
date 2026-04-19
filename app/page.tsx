@@ -1,5 +1,5 @@
 // FILE: app/page.tsx (START)
-// VERSION: 1.2.0 (mobile scroll fix - logo and skip intro visible)
+// VERSION: 1.3.0 (mobile: "SKIP" button top-right, content centered, no scroll needed)
 
 'use client'
 
@@ -53,37 +53,40 @@ export default function Page() {
       <AnimatePresence>
         {showEntryModal && (
           <motion.div
-            className="fixed inset-0 bg-black/95 z-[99999] flex flex-col overflow-y-auto"
+            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            {/* Content container with min-height to ensure scrolling if needed */}
-            <div className="flex-grow flex flex-col justify-center min-h-screen py-8 px-4">
-              <div className="text-center max-w-xl mx-auto w-full">
-                <Image src="/images/PHIERS_Logo.png" alt="PHIERS" width={80} height={80} className="mx-auto mb-6" />
+            {/* Container with auto margins to center vertically */}
+            <div className="relative w-full max-w-xl mx-auto">
+              {/* Logo - centered at top */}
+              <div className="flex justify-center mb-6">
+                <Image src="/images/PHIERS_Logo.png" alt="PHIERS" width={60} height={60} className="opacity-90" />
+              </div>
 
+              {/* SKIP button - top right, no overlap */}
+              <div className="absolute top-0 right-0">
+                <button
+                  onClick={(e) => { e.stopPropagation(); skipIntro(); }}
+                  className="text-gray-500 text-sm underline hover:text-gray-300"
+                >
+                  SKIP
+                </button>
+              </div>
+
+              {/* Content */}
+              <div className="text-center mt-8">
                 <h2 className="text-white text-4xl md:text-5xl font-light mb-4">Take a breath.</h2>
-
                 <p className="text-gray-300 text-lg md:text-xl mb-2">What you’re about to see is simple.</p>
                 <p className="text-gray-300 text-lg md:text-xl mb-6">But it changes how power actually works.</p>
-
                 <p className="text-gray-400 text-base md:text-lg mb-8">Most people haven’t seen the mechanism yet.</p>
-
                 <div className="border-t border-green/20 pt-6">
                   <p className="text-green text-2xl md:text-3xl font-bold mb-2">YOU ARE NOT POWERLESS</p>
                   <p className="text-gray-300 text-base md:text-lg">That’s the first thing to remember.</p>
                 </div>
-
                 <p className="text-gray-500 text-sm mt-8">Click anywhere to continue</p>
-
-                <button
-                  onClick={(e) => { e.stopPropagation(); skipIntro(); }}
-                  className="text-gray-500 text-sm underline mt-4 hover:text-gray-300"
-                >
-                  Skip intro
-                </button>
               </div>
             </div>
           </motion.div>
