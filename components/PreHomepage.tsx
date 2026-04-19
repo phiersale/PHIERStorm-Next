@@ -1,10 +1,10 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 1.0.0
-// PURPOSE: 18-slide sequence teaching the mechanism (split economic engine, back button, grounding stat)
+// VERSION: 1.2.0 (FINAL TUNING)
+// PURPOSE: 16-slide sequence with tuned copy, keyboard nav, skip button, proper font
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
@@ -13,25 +13,35 @@ const slides = [
   { title: "Not because they can't.", body: ["Because nothing forces them to."] },
   { title: "Opinions don't force action.", body: ["Outrage doesn't force action.", "Noise doesn't force action."] },
   { title: "Only pressure works.", body: ["But only if it's organized in the right place."] },
-  { title: "We track how many people in each congressional district", body: ["have gone on record."] },
+  { 
+    title: "We track how many people in each congressional district", 
+    body: [
+      "have gone on record.",
+      "Not opinions — real people, counted."
+    ] 
+  },
   { title: "Alone, you're easy to ignore.", body: ["1,500 people in your district are not."] },
   { title: "That's the tipping point.", body: ["Just enough people — in the right place."] },
   {
     title: "1,500 people per district.",
-    body: ["Across 435 districts, that's about 650,000 people.", "That's enough to force response nationwide."]
+    body: [
+      "Across 435 districts, that's about 650,000 people.",
+      "That's all it takes to force response nationwide."
+    ]
   },
   {
     title: "When 1,500 people are on record,",
-    body: ["representatives must respond in public.", "Or they get replaced."]
+    body: [
+      "representatives are forced to respond in public.",
+      "Or they risk being replaced."
+    ]
   },
   { title: "That's leverage.", body: ["Not opinion.", "Not noise.", "Consequence that can't be ignored."] },
   { title: "PHIERS", body: ["Power Held In Every Representative's Seat"] },
-  // SPLIT: concrete healthcare savings
   {
     title: "When people stop overpaying for healthcare,",
     body: ["the savings don't disappear.", "They fund more people.", "And the system grows on its own."]
   },
-  // SPLIT: abstract mechanism
   {
     title: "That's how this works.",
     body: ["Savings create growth.", "Growth creates pressure.", "Pressure creates results."]
@@ -42,7 +52,7 @@ const slides = [
   },
   {
     title: "If enough people move from",
-    body: ["“I agree”", "to", "“I’m on record”", "", "Congress has to act.", "Or gets replaced."]
+    body: ["“I agree”", "to", "“I’m on record”", "", "Congress acts.", "Or gets replaced."]
   }
 ]
 
@@ -62,12 +72,24 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
     if (index > 0) setIndex(index - 1)
   }
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === 'Enter') next()
+      if (e.key === 'ArrowLeft') prev()
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [index])
+
   return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-6 pt-16">
-      {/* Logo – not clickable, centered with top spacing */}
+    <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-6 pt-16 font-sans">
+      {/* Logo */}
       <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none">
-   
-    {/* SKIP BUTTON - always visible */}
+        <Image src="/images/PHIERS_Logo.png" alt="logo" width={50} height={50} className="opacity-80" />
+      </div>
+
+      {/* Skip button */}
       <div className="absolute top-6 right-6 z-10">
         <button
           onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
@@ -76,11 +98,8 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
           Skip to homepage →
         </button>
       </div>
-      
-        <Image src="/images/PHIERS_Logo.png" alt="logo" width={50} height={50} className="opacity-80" />
-      </div>
 
-      {/* Clickable content area only */}
+      {/* Clickable content */}
       <div onClick={next} className="cursor-pointer text-center max-w-2xl w-full">
         <AnimatePresence mode="wait">
           <motion.div
@@ -102,7 +121,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
         </AnimatePresence>
       </div>
 
-      {/* Navigation controls */}
+      {/* Navigation controls + hint for first slide */}
       <div className="absolute bottom-6 flex flex-col items-center gap-3">
         <p className="text-gray-500 text-sm">
           {index + 1} / {slides.length}
@@ -133,8 +152,13 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
             </div>
           )}
         </div>
+        {/* Micro‑UX hint (only on first slide) */}
+        {index === 0 && (
+          <p className="text-gray-600 text-xs mt-4">
+            Use ← → keys or click to continue
+          </p>
+        )}
       </div>
     </div>
   )
 }
-// END FILE: components/PreHomepage.tsx
