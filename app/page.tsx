@@ -12,7 +12,6 @@ export default function Page() {
   const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
 
-  // Check if entry sequence already seen in this session
   useEffect(() => {
     const hasSeenEntry = sessionStorage.getItem('entrySequence')
     if (hasSeenEntry) {
@@ -28,7 +27,13 @@ export default function Page() {
     setStage('prehome')
   }
 
-  // Keyboard handler
+  const skipIntro = () => {
+    setShowEntryModal(false)
+    document.body.style.overflow = ''
+    sessionStorage.setItem('entrySequence', '1')
+    setStage('prehome')
+  }
+
   useEffect(() => {
     if (!showEntryModal) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,7 +55,7 @@ export default function Page() {
         {showEntryModal && (
           <motion.div
             id="entry-modal"
-            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 cursor-pointer"
+            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 cursor-pointer font-sans"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -72,11 +77,14 @@ export default function Page() {
               <h2 className="text-white text-4xl md:text-5xl font-light mb-6 tracking-wide">
                 Take a breath.
               </h2>
-              <p className="text-gray-300 text-xl md:text-2xl leading-relaxed mb-8">
+              <p className="text-gray-300 text-xl md:text-2xl leading-relaxed mb-6">
                 What you’re about to see is simple.<br />
                 But it changes how power actually works.
               </p>
-              <div className="border-t border-green/20 pt-8">
+              <p className="text-gray-400 text-lg mb-6">
+                Most people haven’t seen the mechanism yet.
+              </p>
+              <div className="border-t border-green/20 pt-6">
                 <p className="text-green text-3xl md:text-4xl font-bold mb-3">
                   YOU ARE NOT POWERLESS
                 </p>
@@ -84,7 +92,15 @@ export default function Page() {
                   That’s the first thing to remember.
                 </p>
               </div>
-              <p className="text-gray-500 text-sm mt-12">Tap anywhere to continue</p>
+              <p className="text-gray-500 text-sm mt-8">
+                Click anywhere to continue — or press Enter
+              </p>
+              <button
+                onClick={(e) => { e.stopPropagation(); skipIntro(); }}
+                className="text-gray-500 text-sm underline mt-2 hover:text-gray-300"
+              >
+                Skip intro
+              </button>
             </div>
           </motion.div>
         )}

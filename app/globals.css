@@ -321,3 +321,8 @@
 .menu-open main {
   margin-top: 0; /* already fine */
 }
+
+/* Use Bahnschrift or fallback to sans */
+body, button, input, textarea, .font-sans {
+  font-family: 'Bahnschrift', 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
