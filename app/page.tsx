@@ -11,45 +11,44 @@ export default function Page() {
   const router = useRouter()
   const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
   const [showBreathModal, setShowBreathModal] = useState(true)
-  const [showImageModal, setShowImageModal] = useState(false)
+  const [showTextModal, setShowTextModal] = useState(false)
 
   // Check if entry sequence already seen in this session
   useEffect(() => {
     const hasSeenEntry = sessionStorage.getItem('entrySequence')
     if (hasSeenEntry) {
-      // Skip entry modals and go directly to PreHomepage
       setShowBreathModal(false)
       setStage('prehome')
     }
   }, [])
 
-  const advanceToImageModal = () => {
+  const advanceToTextModal = () => {
     setShowBreathModal(false)
-    setShowImageModal(true)
+    setShowTextModal(true)
     document.body.style.overflow = 'hidden'
   }
 
-  const closeImageModal = () => {
-    setShowImageModal(false)
+  const closeTextModal = () => {
+    setShowTextModal(false)
     document.body.style.overflow = ''
     sessionStorage.setItem('entrySequence', '1')
     setStage('prehome')
   }
 
-  // Keyboard handler for image modal
+  // Keyboard handler for text modal
   useEffect(() => {
-    if (!showImageModal) return
+    if (!showTextModal) return
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === 'Escape') closeImageModal()
+      if (e.key === 'Enter' || e.key === 'Escape') closeTextModal()
     }
     window.addEventListener('keydown', handleKeyDown)
-    const modalContainer = document.getElementById('entry-image-modal')
+    const modalContainer = document.getElementById('entry-text-modal')
     if (modalContainer) modalContainer.focus()
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [showImageModal])
+  }, [showTextModal])
 
   if (stage === 'entry') {
     return (
@@ -57,14 +56,14 @@ export default function Page() {
         <AnimatePresence>
           {showBreathModal && (
             <motion.div
-              className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 cursor-pointer"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={advanceToImageModal}
+              onClick={advanceToTextModal}
             >
-              <div className="text-center max-w-xl px-6 cursor-pointer">
-                <div className="flex justify-center mb-6">
+              <div className="text-center max-w-2xl">
+                <div className="flex justify-center mb-8">
                   <Image
                     src="/images/PHIERS_Logo.png"
                     alt="PHIERS"
@@ -73,42 +72,40 @@ export default function Page() {
                     className="opacity-90"
                   />
                 </div>
-                <h2 className="text-white text-3xl md:text-4xl font-light mb-4 tracking-wide">Take a breath.</h2>
-                <p className="text-gray-300 text-lg leading-relaxed">
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-6 tracking-wide">
+                  Take a breath.
+                </h2>
+                <p className="text-gray-300 text-xl md:text-2xl leading-relaxed">
                   What you’re about to see is simple.<br />
                   But it changes how power actually works.
                 </p>
-                <p className="text-gray-500 text-sm mt-8">Click to continue</p>
+                <p className="text-gray-500 text-sm mt-12">Tap anywhere to continue</p>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
         <AnimatePresence>
-          {showImageModal && (
+          {showTextModal && (
             <motion.div
-              id="entry-image-modal"
-              className="fixed inset-0 bg-black z-[99999] flex items-center justify-center outline-none"
+              id="entry-text-modal"
+              className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 cursor-pointer"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={closeImageModal}
+              onClick={closeTextModal}
               tabIndex={-1}
               aria-modal="true"
               role="dialog"
             >
-              <div className="relative w-screen h-screen flex items-center justify-center cursor-pointer">
-                <Image
-                  src="/images/You_Are_Not_Powerless.jpg"
-                  alt="YOU ARE NOT POWERLESS"
-                  width={1920}
-                  height={1080}
-                  className="w-full h-auto max-h-screen object-contain"
-                  priority
-                />
-                <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">
-                  Tap anywhere or press Enter to continue
+              <div className="text-center max-w-2xl">
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-6 tracking-wide">
+                  YOU ARE NOT POWERLESS
+                </h2>
+                <p className="text-gray-300 text-xl md:text-2xl leading-relaxed">
+                  That’s the first thing to remember.
                 </p>
+                <p className="text-gray-500 text-sm mt-12">Tap anywhere to continue</p>
               </div>
             </motion.div>
           )}
