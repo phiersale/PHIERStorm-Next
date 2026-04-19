@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx (START)
-// VERSION: 1.3.0 (mobile: content above bottom nav, SKIP button top-right, no overlap)
+// VERSION: 1.4.0 (whole-screen flash on click/keyboard)
 
 'use client'
 
@@ -57,6 +57,7 @@ const slides = [
 
 export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
   const [index, setIndex] = useState(0)
+  const [flash, setFlash] = useState(false)
   const slide = slides[index]
 
   const next = () => {
@@ -65,17 +66,30 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
     } else {
       onGoToHomepage()
     }
+    triggerFlash()
   }
 
   const prev = () => {
     if (index > 0) setIndex(index - 1)
+    triggerFlash()
+  }
+
+  const triggerFlash = () => {
+    setFlash(true)
+    setTimeout(() => setFlash(false), 150)
   }
 
   // Keyboard navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight' || e.key === 'Enter') next()
-      if (e.key === 'ArrowLeft') prev()
+      if (e.key === 'ArrowRight' || e.key === 'Enter') {
+        next()
+        triggerFlash()
+      }
+      if (e.key === 'ArrowLeft') {
+        prev()
+        triggerFlash()
+      }
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
@@ -84,14 +98,25 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
   const isLastSlide = index === slides.length - 1
 
   return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col font-sans">
+    <div className="relative min-h-screen bg-[#050b19] text-white flex flex-col font-sans overflow-hidden">
+      {/* Whole‑screen flash overlay */}
+      <AnimatePresence>
+        {flash && (
+          <motion.div
+            className="fixed inset-0 bg-white/20 pointer-events-none z-[99998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Top bar: logo + SKIP button */}
-      <div className="relative pt-4 px-4 flex justify-between items-center">
-        {/* Logo - left */}
+      <div className="relative pt-4 px-4 flex justify-between items-center z-10">
         <div className="w-10 h-10">
           <Image src="/images/PHIERS_Logo.png" alt="logo" width={40} height={40} className="opacity-80" />
         </div>
-        {/* SKIP button - right */}
         <button
           onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
           className="text-gray-500 text-sm underline hover:text-gray-300"
@@ -100,9 +125,12 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
         </button>
       </div>
 
-      {/* Main content - pushed up, with flex-grow to take remaining space, but content stays above bottom nav */}
-      <div className="flex-grow flex flex-col justify-center px-6 py-8">
-        <div onClick={next} className="cursor-pointer text-center max-w-2xl mx-auto w-full">
+      {/* Main content – clickable area for next */}
+      <div
+        onClick={next}
+        className="flex-grow flex flex-col justify-center px-6 py-8 cursor-pointer z-10"
+      >
+        <div className="text-center max-w-2xl mx-auto w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -124,8 +152,8 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
         </div>
       </div>
 
-      {/* Bottom navigation - fixed at bottom, no overlap because content area has flex-grow and padding */}
-      <div className="pb-6 pt-2 flex flex-col items-center gap-2">
+      {/* Bottom navigation */}
+      <div className="pb-6 pt-2 flex flex-col items-center gap-2 z-10">
         <p className="text-gray-500 text-sm">
           {index + 1} / {slides.length}
         </p>
@@ -155,7 +183,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
             </div>
           )}
         </div>
-        {/* Optional hint for first slide */}
         {index === 0 && (
           <p className="text-gray-600 text-xs mt-2">
             ← → keys or click to continue
