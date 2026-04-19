@@ -1,3 +1,5 @@
+// FILE: components/MainHomePage.tsx - START
+
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
@@ -98,7 +100,7 @@ export default function MainHomePage() {
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
-      {/* Contemplative opening modal (Take a breath) */}
+      {/* Contemplative opening modal with logo */}
       <AnimatePresence>
         {showBreathModal && (
           <motion.div
@@ -109,6 +111,16 @@ export default function MainHomePage() {
             onClick={advanceToImageModal}
           >
             <div className="text-center max-w-xl px-6 cursor-pointer">
+              {/* PHIERS Logo */}
+              <div className="flex justify-center mb-6">
+                <Image
+                  src="/images/PHIERS_Logo.png"
+                  alt="PHIERS"
+                  width={80}
+                  height={80}
+                  className="opacity-90"
+                />
+              </div>
               <h2 className="text-white text-3xl md:text-4xl font-light mb-4 tracking-wide">Take a breath.</h2>
               <p className="text-gray-300 text-lg leading-relaxed">
                 What you’re about to see is simple.<br />
@@ -508,3 +520,5 @@ export default function MainHomePage() {
     </>
   )
 }
+
+// END FILE: components/MainHomePage.tsx
