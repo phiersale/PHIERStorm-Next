@@ -116,7 +116,7 @@ export default function FullStoryPage() {
             </div>
             <div className="flex flex-wrap justify-center gap-4 mt-5">
               <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
-              <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform?usp=header" variant="secondary">📋 Take the Survey</Button>
+              <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform?usp=header" variant="primary">📋 Take the Survey</Button>
             </div>
           </div>
         </section>
