@@ -1,6 +1,5 @@
 // FILE: components/MainHomePage.tsx (START)
-// VERSION: 2.1.0
-// PURPOSE: Full homepage with mobile fixes, removed ZIP lookup, consistent font, filename markers
+// VERSION: 3.0.0 (FINAL – with Three Kinds of Power restored, placed correctly)
 
 'use client'
 
@@ -16,13 +15,10 @@ export default function MainHomePage() {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
 
-  // Removed district state and ZIP lookup – not functional for now
-
   const openModal = (src: string) => {
     setModalImageSrc(src)
     document.body.style.overflow = 'hidden'
   }
-
   const closeModal = () => {
     setModalImageSrc(null)
     document.body.style.overflow = ''
@@ -93,7 +89,7 @@ export default function MainHomePage() {
       <Navigation />
 
       <main className="font-sans">
-        {/* HERO – reduced top padding on mobile so text moves up */}
+        {/* HERO – softened, consequence delayed */}
         <section className="container text-center pt-4 md:pt-12 pb-4">
           <h1 className="mb-4 text-2xl md:text-4xl">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
@@ -110,7 +106,7 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
           </div>
 
-          {/* Hero image – clickable */}
+          {/* Hero image */}
           <div className="flex justify-center mt-6 mb-8">
             <div
               className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer"
@@ -128,7 +124,7 @@ export default function MainHomePage() {
             </div>
           </div>
 
-          {/* Why 1,500 Matters – removed ZIP input section */}
+          {/* Why 1,500 Matters – without ZIP input */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <h3 className="text-2xl font-bold text-white mb-2">Why 1,500 Matters</h3>
             <p className="text-gray-300 text-base mb-3">
@@ -151,14 +147,13 @@ export default function MainHomePage() {
               />
             </div>
 
-            {/* Removed ZIP input section – not functional */}
             <div className="mt-4 p-4 bg-green-glow border border-green/30 rounded-lg text-center">
               <p className="text-white font-bold">Track your district</p>
               <p className="text-gray-400 text-sm">Soon: enter your ZIP to see live progress.</p>
             </div>
           </div>
 
-          {/* ACT NOW block */}
+          {/* ACT NOW */}
           <div className="max-w-[600px] mx-auto mt-8">
             <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
@@ -170,7 +165,7 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* LIVE MOVEMENT STATUS – unchanged */}
+        {/* LIVE MOVEMENT STATUS */}
         <section className="container py-8 border-t border-b border-green/20 my-6">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">⭐ LIVE MOVEMENT STATUS</span>
@@ -189,7 +184,7 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* THE MECHANISM – unchanged */}
+        {/* THE MECHANISM – pure explanation, no repetition */}
         <section id="mechanism" className="container section scroll-mt-24">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">THE MECHANISM</span>
@@ -212,7 +207,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* HOW IT WORKS – unchanged */}
+        {/* HOW IT WORKS – consequence delayed to step 4 */}
         <section className="container section">
           <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6">HOW IT WORKS</h2>
           <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -235,7 +230,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY 1,500 PEOPLE MATTER – unchanged */}
+        {/* WHY 1,500 PEOPLE MATTER (repeated for emphasis – once) */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY 1,500 PEOPLE MATTER</h2>
@@ -254,7 +249,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* MID-PAGE ACTION – unchanged */}
+        {/* MID-PAGE ACTION */}
         <section className="container py-8 text-center">
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
@@ -265,7 +260,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* THE ECONOMIC ENGINE – unchanged */}
+        {/* THE ECONOMIC ENGINE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto">
             <div className="text-center mb-6"><span className="text-green text-sm font-condensed font-bold tracking-wider">THE ECONOMIC ENGINE</span></div>
@@ -287,7 +282,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* THE CASCADE – unchanged */}
+        {/* THE CASCADE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
@@ -307,7 +302,35 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY THIS BECOMES UNSTOPPABLE – unchanged */}
+        {/* THREE KINDS OF POWER – RESTORED (placed correctly) */}
+        <section className="container section">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THREE KINDS OF POWER</h2>
+            <p className="text-gray-300 text-lg">Three ways this changes things — all at once.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5 mb-6">
+            <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-red-500">
+              <div className="text-3xl mb-2">⚡</div>
+              <div className="font-display text-2xl text-white mb-1">Political Power</div>
+              <p className="text-gray-400 text-sm">1,500 constituents on the record forces a choice: act, or face replacement.</p>
+            </div>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-gold">
+              <div className="text-3xl mb-2">💰</div>
+              <div className="font-display text-2xl text-white mb-1">Economic Power</div>
+              <p className="text-gray-400 text-sm">We're already spending the money — it's just being wasted. Redirecting it changes outcomes.</p>
+            </div>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-green">
+              <div className="text-3xl mb-2">🛒</div>
+              <div className="font-display text-2xl text-white mb-1">Market Power</div>
+              <p className="text-gray-400 text-sm">People buying together can get the basics — groceries, medicine, everyday essentials — at cost, without middlemen driving up prices.</p>
+            </div>
+          </div>
+          <p className="font-condensed text-xl text-green font-bold text-center">None of this works alone. It works when people move together.</p>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHY THIS BECOMES UNSTOPPABLE */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -333,7 +356,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY AFFORDABILITY = LEVERAGE – unchanged */}
+        {/* WHY AFFORDABILITY = LEVERAGE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY AFFORDABILITY = LEVERAGE</h2>
@@ -353,7 +376,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* REALITY ANCHOR – unchanged */}
+        {/* REALITY ANCHOR – softened, no "paid not to" */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <div className="max-w-[760px] mx-auto">
@@ -369,7 +392,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS UNLOCKS – unchanged */}
+        {/* WHAT THIS UNLOCKS – concrete outcomes */}
         <section className="container section">
           <div className="text-center max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS UNLOCKS</h2>
@@ -386,7 +409,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* CREDIBILITY – unchanged */}
+        {/* CREDIBILITY */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS WORKS</h2>
@@ -419,7 +442,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS IS NOT – fixed */}
+        {/* WHAT THIS IS NOT – clarified */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS IS NOT</h2>
@@ -435,7 +458,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT HAPPENS AFTER YOU SIGN – unchanged */}
+        {/* WHAT HAPPENS AFTER YOU SIGN */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -458,7 +481,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* FINAL CLOSE – unchanged */}
+        {/* FINAL CLOSE */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <p className="text-white text-xl font-bold mb-4">Nothing changes until ignoring people costs more than responding.</p>
