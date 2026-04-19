@@ -1,6 +1,6 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 1.0.0
-// PURPOSE: Full detailed homepage (after slides) – no entry modals
+// VERSION: 2.0.0 (FINAL COPY)
+// PURPOSE: Full homepage with optimized copy – softer hero, reduced repetition, concrete unlocks
 
 'use client'
 
@@ -18,11 +18,12 @@ export default function MainHomePage() {
   const [userDistrict, setUserDistrict] = useState<string | null>(null)
   const [districtCount, setDistrictCount] = useState<number | null>(null)
 
+  // Simulate district detection (replace with real API)
   useEffect(() => {
     const storedDistrict = sessionStorage.getItem('userDistrict')
     if (storedDistrict) {
       setUserDistrict(storedDistrict)
-      setDistrictCount(342)
+      setDistrictCount(342) // placeholder
     }
   }, [])
 
@@ -30,6 +31,7 @@ export default function MainHomePage() {
     setModalImageSrc(src)
     document.body.style.overflow = 'hidden'
   }
+
   const closeModal = () => {
     setModalImageSrc(null)
     document.body.style.overflow = ''
@@ -61,10 +63,12 @@ export default function MainHomePage() {
 
   return (
     <>
+      {/* Under construction banner */}
       <div className="bg-amber-600 text-black text-center py-2 text-sm font-bold">
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
+      {/* Image modal for all clickable images */}
       <AnimatePresence>
         {modalImageSrc && (
           <motion.div
@@ -97,8 +101,8 @@ export default function MainHomePage() {
 
       <Navigation />
 
-      <main>
-        {/* HERO SECTION */}
+      <main className="font-sans">
+        {/* HERO – softened: "politically costly" instead of "being replaced" */}
         <section className="container text-center pt-8 md:pt-12 pb-4">
           <h1 className="mb-4">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
@@ -109,28 +113,55 @@ export default function MainHomePage() {
             <p className="text-white text-lg md:text-xl font-semibold mb-2">Alone, you're easy to ignore.</p>
             <p className="text-green text-base md:text-lg font-medium mb-4">1,500 people in your congressional district are not.</p>
             <p className="text-gray-300 text-base mb-2">
-              Representatives respond to organized pressure inside their own district — not opinions, not outrage, not noise.
+              We don't ask Congress to care.
             </p>
-            <p className="text-white text-lg font-bold mt-4">That's the leverage.</p>
+            <p className="text-gray-300 text-base mb-4">
+              We make ignoring constituents <span className="text-green font-semibold">politically costly</span>.
+            </p>
+            <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
           </div>
 
+          {/* Hero image – clickable */}
           <div className="flex justify-center mt-8 mb-8">
-            <div className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer"
-                 onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}>
-              <Image src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg" alt="Congress Ignores You" width={954} height={648} priority className="w-full h-auto object-contain" onError={(e) => console.error('Hero image failed to load')} />
+            <div
+              className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer"
+              onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
+            >
+              <Image
+                src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
+                alt="Congress Ignores You"
+                width={954}
+                height={648}
+                priority
+                className="w-full h-auto object-contain"
+                onError={(e) => console.error('Hero image failed to load')}
+              />
             </div>
           </div>
 
+          {/* Why 1,500 Matters + district counter */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <h3 className="text-2xl font-bold text-white mb-2">Why 1,500 Matters</h3>
             <p className="text-gray-300 text-base mb-3">
-              Congress doesn't respond to national percentages — it responds to pressure inside each district.<br />
-              When 1,500 people in a district go on record with the same demand, the representative must respond or face replacement.<br />
-              That's the leverage PHIERS organizes.
+              Congress doesn't respond to national percentages — it responds to pressure inside each district.
             </p>
+            <p className="text-gray-300 text-base mb-3">
+              When 1,500 people in a district go on record with the same demand,
+              the representative is <span className="text-green font-semibold">forced to respond publicly</span> — or <span className="text-green font-semibold">risks losing their seat</span>.
+            </p>
+            <p className="text-gray-300 text-base">That's the leverage PHIERS organizes.</p>
+
             <div className="my-4 cursor-pointer" onClick={() => openModal('/images/District_Accountability_Dashboard.jpg')}>
-              <Image src="/images/District_Accountability_Dashboard.jpg" alt="District Accountability Dashboard" width={600} height={400} className="mx-auto rounded-lg border border-green/20" onError={(e) => console.error('Dashboard image missing')} />
+              <Image
+                src="/images/District_Accountability_Dashboard.jpg"
+                alt="District Accountability Dashboard"
+                width={600}
+                height={400}
+                className="mx-auto rounded-lg border border-green/20"
+                onError={(e) => console.error('Dashboard image missing')}
+              />
             </div>
+
             <div className="mt-4 p-4 bg-green-glow border border-green/30 rounded-lg">
               {userDistrict ? (
                 <>
@@ -152,6 +183,7 @@ export default function MainHomePage() {
             </div>
           </div>
 
+          {/* ACT NOW block */}
           <div className="max-w-[600px] mx-auto mt-8">
             <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
@@ -168,7 +200,10 @@ export default function MainHomePage() {
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">⭐ LIVE MOVEMENT STATUS</span>
             <h2 className="text-2xl md:text-3xl font-bold text-white mt-2 mb-4">THIS IS ALREADY IN MOTION</h2>
-            <p className="text-gray-300 text-base mb-4">We track how many people in each congressional district have gone on record and completed the survey. People aren't waiting. They're organizing — district by district.</p>
+            <p className="text-gray-300 text-base mb-4">
+              We track how many people in each congressional district have gone on record and completed the survey.
+              Organization is already happening — district by district.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-bg-card rounded-xl p-6 border border-green/20">
               <div><p className="text-gray-400 text-sm">Districts Activated</p><p className="text-green text-3xl font-bold">12</p></div>
               <div><p className="text-gray-400 text-sm">People Counted</p><p className="text-green text-3xl font-bold">4,382</p></div>
@@ -179,14 +214,13 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* THE MECHANISM */}
+        {/* THE MECHANISM – pure explanation, no repetition of "we don't ask Congress" */}
         <section id="mechanism" className="container section scroll-mt-24">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">THE MECHANISM</span>
             <p className="text-gray-300 text-base mb-3">Congress doesn't respond to opinion.</p>
             <p className="text-gray-300 text-base mb-4">Congress responds to pressure it can't ignore.</p>
-            <p className="text-white text-lg font-semibold mb-3">We don't ask Congress to care. We make it impossible to ignore constituents without being replaced.</p>
-            <p className="text-white text-lg font-semibold mb-2">And pressure becomes unavoidable when:</p>
+            <p className="text-white text-lg font-semibold mb-3">Pressure becomes unavoidable when:</p>
             <div className="bg-green-glow border border-green/20 rounded-xl p-6 my-4">
               <p className="text-green text-xl font-bold">Savings create growth.</p>
               <p className="text-green text-xl font-bold my-2">Growth creates pressure.</p>
@@ -204,13 +238,13 @@ export default function MainHomePage() {
         <hr className="border-green/20" />
 
         {/* HOW IT WORKS */}
-        <section id="how-it-works" className="container section scroll-mt-24">
+        <section className="container section">
           <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6">HOW IT WORKS</h2>
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div className="space-y-5">
               <div><p className="text-white text-lg font-bold">1. You go on record</p><p className="text-gray-400 text-sm">Not "I agree." You're counted.</p></div>
               <div><p className="text-white text-lg font-bold mt-3">2. We organize by congressional district</p><p className="text-gray-400 text-sm">Not noise — numbers. Not vibes — leverage.</p></div>
-              <div><p className="text-white text-lg font-bold mt-3">3. Representatives are forced to respond publicly</p><p className="text-gray-400 text-sm">Or face recall, replacement, or primary challenge.</p></div>
+              <div><p className="text-white text-lg font-bold mt-3">3. Representatives are forced to respond publicly</p><p className="text-gray-400 text-sm">Or face primary challenge or replacement.</p></div>
               <div><p className="text-white text-lg font-bold mt-3">4. Congress acts — or gets replaced</p><p className="text-gray-400 text-sm">Not eventually. Before it's too late.</p></div>
             </div>
             <div className="flex justify-center md:justify-end">
@@ -226,7 +260,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY 1,500 PEOPLE MATTER */}
+        {/* WHY 1,500 PEOPLE MATTER (repeated for emphasis) */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY 1,500 PEOPLE MATTER</h2>
@@ -264,7 +298,7 @@ export default function MainHomePage() {
               <div>
                 <p className="text-gray-300 text-base mb-3">Right now, the country spends $8,000–$10,000 per person each year on healthcare.</p>
                 <p className="text-gray-300 text-base mb-3">But most of the care people actually use — at a fraction of the cost — can be delivered for about $600 through telehealth.</p>
-                <p className="text-gray-300 text-base mb-3">That gap is trillions in wasted money.</p>
+                <p className="text-gray-300 text-base mb-3">That gap represents <span className="text-green font-semibold">trillions in potential savings</span>.</p>
                 <p className="text-green text-xl font-bold mt-2">That's not a theory. That's math.</p>
               </div>
               <div className="flex justify-center">
@@ -304,7 +338,12 @@ export default function MainHomePage() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS BECOMES UNSTOPPABLE</h2>
               <p className="text-gray-300 text-base mb-3">Once ~12 million people (~3.5%) are organized by congressional district:</p>
-              <ul className="list-disc list-inside text-gray-300 space-y-1 mb-4"><li>The system funds itself</li><li>Growth accelerates</li><li>Pressure compounds</li><li>Excuses disappear</li></ul>
+              <ul className="list-disc list-inside text-gray-300 space-y-1 mb-4">
+                <li>The system funds itself</li>
+                <li>Growth accelerates</li>
+                <li>Pressure compounds</li>
+                <li><span className="text-green font-semibold">Political resistance becomes harder to sustain</span></li>
+              </ul>
               <p className="text-gray-300 text-base mb-2">No donations. No wealthy backers. No corporate strings.</p>
               <p className="text-green text-lg font-bold">Just math.</p>
               <p className="text-gray-300 text-base mt-2">The same math that reduces costs is what powers the system.</p>
@@ -339,29 +378,32 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* REALITY ANCHOR */}
+        {/* REALITY ANCHOR – softened, no "paid not to" */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <div className="max-w-[760px] mx-auto">
               <span className="text-green text-sm font-condensed font-bold tracking-wider">🧠 REALITY ANCHOR</span>
               <p className="text-white text-xl font-bold mt-2">This isn't hypothetical.</p>
-              <p className="text-gray-300 text-base mt-2">Congress already has the power to fix most of what's broken. They are paid not to. That changes when enough people move from "I agree" → "I'm on record."</p>
+              <p className="text-gray-300 text-base mt-2">
+                Congress already has the power to fix most of what's broken.
+                That changes when enough people move from <span className="text-green font-semibold">"I agree"</span> → <span className="text-green font-semibold">"I'm on record."</span>
+              </p>
             </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS UNLOCKS */}
+        {/* WHAT THIS UNLOCKS – concrete outcomes */}
         <section className="container section">
           <div className="text-center max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS UNLOCKS</h2>
             <p className="text-gray-300 text-base mb-4">The same leverage that can end a war can also be used to:</p>
-            <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
-              <li>Defend democratic processes</li>
-              <li>Block authoritarian power grabs</li>
-              <li>Force real oversight and reform</li>
-              <li>Solve the affordability crisis</li>
+            <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6 text-left max-w-md mx-auto">
+              <li>End policies people never voted for</li>
+              <li>Force public accountability from representatives</li>
+              <li>Protect access to healthcare and basic needs</li>
+              <li>Ensure decisions reflect the people they represent</li>
             </ul>
             <p className="text-green text-xl font-bold">Power Held In Every Representative's Seat.</p>
           </div>
@@ -371,27 +413,71 @@ export default function MainHomePage() {
 
         {/* CREDIBILITY */}
         <section className="container section">
-          <div className="text-center mb-6"><h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS WORKS</h2><p className="text-gray-300 text-base max-w-[760px] mx-auto">Research on civic movements — including work by Erica Chenoweth — shows: When participation reaches a critical threshold, systems respond.</p></div>
-          <div className="max-w-[900px] mx-auto"><div className="grid md:grid-cols-3 gap-4 mb-6"><div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center"><p className="text-white font-bold">Telehealth cost models</p><p className="text-gray-400 text-sm">Operating today</p></div><div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center"><p className="text-white font-bold">Direct-to-consumer pharma</p><p className="text-gray-400 text-sm">No middlemen</p></div><div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center"><p className="text-white font-bold">Coordinated civic pressure</p><p className="text-gray-400 text-sm">Documented responses</p></div></div><p className="text-gray-300 text-base text-center italic">They weren't built together. They arrived at the same conclusions independently. That's what makes this credible.</p></div>
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS WORKS</h2>
+            <p className="text-gray-300 text-base max-w-[760px] mx-auto">
+              Research on civic movements — including work by Erica Chenoweth — shows: When participation reaches a critical threshold, systems respond.
+            </p>
+          </div>
+          <div className="max-w-[900px] mx-auto">
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center"><p className="text-white font-bold">Telehealth cost models</p><p className="text-gray-400 text-sm">Operating today</p></div>
+              <div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center"><p className="text-white font-bold">Direct‑to‑consumer pharma</p><p className="text-gray-400 text-sm">No middlemen</p></div>
+              <div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center"><p className="text-white font-bold">Coordinated civic pressure</p><p className="text-gray-400 text-sm">Documented responses</p></div>
+            </div>
+            <p className="text-gray-300 text-base text-center italic">
+              They weren't built together. They arrived at the same conclusions independently. That's what makes this credible.
+            </p>
+          </div>
           <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
-            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Harvard_Logo.png')}><Image src="/images/Harvard_Logo.png" alt="Harvard" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} /></div>
-            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Mark_Cuban_Cost_Plus_Drug.png')}><Image src="/images/Mark_Cuban_Cost_Plus_Drug.png" alt="Cost Plus Drugs" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} /></div>
-            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/DotComMag_Logo.png')}><Image src="/images/DotComMag_Logo.png" alt="DotCom Magazine" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} /></div>
+            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Harvard_Logo.png')}>
+              <Image src="/images/Harvard_Logo.png" alt="Harvard" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
+            </div>
+            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Mark_Cuban_Cost_Plus_Drug.png')}>
+              <Image src="/images/Mark_Cuban_Cost_Plus_Drug.png" alt="Cost Plus Drugs" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
+            </div>
+            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/DotComMag_Logo.png')}>
+              <Image src="/images/DotComMag_Logo.png" alt="DotCom Magazine" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
+            </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS IS NOT */}
-        <section className="container section text-center"><div className="max-w-[760px] mx-auto"><h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS IS NOT</h2><p className="text-gray-300 text-base mb-2">This isn't a protest.</p><p className="text-gray-300 text-base mb-2">This isn't a petition.</p><p className="text-gray-300 text-base mb-4">This isn't a campaign.</p><p className="text-green text-xl font-bold">This is coordinated civic leverage — district by district.</p></div></section>
+        {/* WHAT THIS IS NOT – fixed cognitive dissonance */}
+        <section className="container section text-center">
+          <div className="max-w-[760px] mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS IS NOT</h2>
+            <p className="text-gray-300 text-base mb-2">This isn't a protest.</p>
+            <p className="text-gray-300 text-base mb-2">This isn't a petition that disappears into a database.</p>
+            <p className="text-gray-300 text-base mb-4">This isn't a campaign.</p>
+            <p className="text-green text-xl font-bold">
+              This is coordinated civic leverage — district by district.<br />
+              A counted signal tied to your specific representative.
+            </p>
+          </div>
+        </section>
 
         <hr className="border-green/20" />
 
         {/* WHAT HAPPENS AFTER YOU SIGN */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div><h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHAT HAPPENS AFTER YOU SIGN</h2><ul className="list-disc list-inside text-gray-300 space-y-2"><li>You're counted in your district</li><li>You see your district total grow</li><li>You see when it reaches the tipping point</li><li>You see when your representative is notified</li></ul><p className="text-white text-lg font-bold mt-6">This isn't abstract. It's visible.</p></div>
-            <div className="flex justify-center"><div className="w-[80%] cursor-pointer" onClick={() => openModal('/images/PHIERS_Logo.png')}><Image src="/images/PHIERS_Logo.png" alt="Movement visual" width={400} height={300} className="w-full h-auto border border-green/20 rounded-lg" onError={(e) => console.error('Visual missing')} /></div></div>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHAT HAPPENS AFTER YOU SIGN</h2>
+              <ul className="list-disc list-inside text-gray-300 space-y-2">
+                <li>You're counted in your district</li>
+                <li>You see your district total grow</li>
+                <li>You see when it reaches the tipping point</li>
+                <li>You see when your representative is notified</li>
+              </ul>
+              <p className="text-white text-lg font-bold mt-6">This isn't abstract. It's visible.</p>
+            </div>
+            <div className="flex justify-center">
+              <div className="w-[80%] cursor-pointer" onClick={() => openModal('/images/PHIERS_Logo.png')}>
+                <Image src="/images/PHIERS_Logo.png" alt="Movement visual" width={400} height={300} className="w-full h-auto border border-green/20 rounded-lg" onError={(e) => console.error('Visual missing')} />
+              </div>
+            </div>
           </div>
         </section>
 
@@ -422,12 +508,38 @@ export default function MainHomePage() {
       <button onClick={scrollToTop} className={`back-to-top ${showBackToTop ? 'visible' : ''}`} aria-label="Back to top">↑</button>
 
       <style jsx global>{`
-        .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--green); color: var(--bg-deep); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; opacity: 0; visibility: hidden; transition: all 150ms ease; z-index: 999; border: none; }
-        .back-to-top.visible { opacity: 1; visibility: visible; }
-        .back-to-top:hover { background: #2ab568; transform: translateY(-2px); }
-        .bg-green-glow { background: rgba(61, 220, 132, 0.06); }
+        .back-to-top {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          background: var(--green);
+          color: var(--bg-deep);
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          cursor: pointer;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 150ms ease;
+          z-index: 999;
+          border: none;
+        }
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+        }
+        .back-to-top:hover {
+          background: #2ab568;
+          transform: translateY(-2px);
+        }
+        .bg-green-glow {
+          background: rgba(61, 220, 132, 0.06);
+        }
       `}</style>
     </>
   )
 }
-// END FILE: components/MainHomePage.tsx
