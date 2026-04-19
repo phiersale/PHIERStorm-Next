@@ -1,11 +1,14 @@
 // FILE: components/PreHomepage.tsx (START)
-// VERSION: 1.4.0 (whole-screen flash on click/keyboard)
+// VERSION: 1.5.0 (PHIERS slide with large logo + optional modal)
 
 'use client'
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+
+// Add a modal for the PHIERS acronym image (reuse existing modal logic)
+// I'll integrate it simply: when logo is clicked, open modal.
 
 const slides = [
   { title: "Congress can fix most of what's broken.", body: ["It just doesn't have to."] },
@@ -36,7 +39,12 @@ const slides = [
     ]
   },
   { title: "That's leverage.", body: ["Not opinion.", "Not noise.", "Consequence that can't be ignored."] },
-  { title: "PHIERS", body: ["Power Held In Every Representative's Seat"] },
+  // SLIDE 11 – PHIERS with large logo
+  { 
+    title: "PHIERS", 
+    body: ["Power Held In Every Representative's Seat"],
+    showLogo: true  // new flag
+  },
   {
     title: "When people stop overpaying for healthcare,",
     body: ["the savings don't disappear.", "They fund more people.", "And the system grows on its own."]
@@ -58,6 +66,7 @@ const slides = [
 export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
   const [index, setIndex] = useState(0)
   const [flash, setFlash] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)  // for acronym image modal
   const slide = slides[index]
 
   const next = () => {
@@ -112,6 +121,31 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
         )}
       </AnimatePresence>
 
+      {/* Modal for acronym image (full screen) */}
+      <AnimatePresence>
+        {modalOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black z-[99999] flex items-center justify-center cursor-pointer"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setModalOpen(false)}
+          >
+            <div className="relative max-w-4xl max-h-full p-4">
+              <Image
+                src="/images/PHIERS-Power_Held_In_Every_Reps_Seat.jpg"
+                alt="PHIERS acronym explanation"
+                width={800}
+                height={600}
+                className="w-full h-auto object-contain"
+                onError={(e) => console.error('Acronym image failed to load')}
+              />
+              <p className="text-gray-400 text-sm text-center mt-4">Tap anywhere to close</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Top bar: logo + SKIP button */}
       <div className="relative pt-4 px-4 flex justify-between items-center z-10">
         <div className="w-10 h-10">
@@ -139,6 +173,21 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
+              {/* Show large logo if slide has showLogo flag */}
+              {slide.showLogo && (
+                <div 
+                  className="flex justify-center mb-6 cursor-pointer"
+                  onClick={(e) => { e.stopPropagation(); setModalOpen(true); }}
+                >
+                  <Image
+                    src="/images/PHIERS_Logo.png"
+                    alt="PHIERS Logo"
+                    width={100}
+                    height={100}
+                    className="opacity-90 hover:opacity-100 transition"
+                  />
+                </div>
+              )}
               <h1 className="text-3xl md:text-5xl font-light mb-6">{slide.title}</h1>
               <div className="space-y-3">
                 {slide.body.map((line, idx) => (
@@ -147,6 +196,10 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: any) {
                   </p>
                 ))}
               </div>
+              {/* Optional hint to click logo for more info */}
+              {slide.showLogo && (
+                <p className="text-gray-500 text-xs mt-4">(Click logo to see full acronym explanation)</p>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
