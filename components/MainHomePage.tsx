@@ -1,3 +1,7 @@
+// FILE: components/MainHomePage.tsx
+// VERSION: 1.0.0
+// PURPOSE: Full detailed homepage (after slides) – no entry modals
+
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
@@ -14,14 +18,11 @@ export default function MainHomePage() {
   const [userDistrict, setUserDistrict] = useState<string | null>(null)
   const [districtCount, setDistrictCount] = useState<number | null>(null)
 
-  // Simulate district detection (replace with actual API)
   useEffect(() => {
     const storedDistrict = sessionStorage.getItem('userDistrict')
     if (storedDistrict) {
       setUserDistrict(storedDistrict)
-      setDistrictCount(342) // placeholder
-    } else {
-      setUserDistrict(null)
+      setDistrictCount(342)
     }
   }, [])
 
@@ -29,13 +30,11 @@ export default function MainHomePage() {
     setModalImageSrc(src)
     document.body.style.overflow = 'hidden'
   }
-
   const closeModal = () => {
     setModalImageSrc(null)
     document.body.style.overflow = ''
   }
 
-  // Keyboard handler for image modal
   useEffect(() => {
     if (!modalImageSrc) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,10 +49,7 @@ export default function MainHomePage() {
     }
   }, [modalImageSrc])
 
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [])
-
+  const scrollToTop = useCallback(() => window.scrollTo({ top: 0, behavior: 'smooth' }), [])
   useEffect(() => {
     const handleScroll = () => setShowBackToTop(window.scrollY > 400)
     handleScroll()
@@ -61,18 +57,14 @@ export default function MainHomePage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToMechanism = () => {
-    document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const scrollToMechanism = () => document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
 
   return (
     <>
-      {/* Under construction banner */}
       <div className="bg-amber-600 text-black text-center py-2 text-sm font-bold">
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
-      {/* Image modal (for all clickable images) */}
       <AnimatePresence>
         {modalImageSrc && (
           <motion.div
@@ -109,37 +101,26 @@ export default function MainHomePage() {
         {/* HERO SECTION */}
         <section className="container text-center pt-8 md:pt-12 pb-4">
           <h1 className="mb-4">
-            <span className="hero-white">CONGRESS CAN END THE WAR NOW.</span>
+            <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
             <br />
-            <span className="hero-green">THEY WON'T — unless We the People can make them.</span>
+            <span className="hero-green">IT JUST DOESN'T HAVE TO.</span>
           </h1>
           <div className="max-w-[760px] mx-auto mt-4">
             <p className="text-white text-lg md:text-xl font-semibold mb-2">Alone, you're easy to ignore.</p>
             <p className="text-green text-base md:text-lg font-medium mb-4">1,500 people in your congressional district are not.</p>
             <p className="text-gray-300 text-base mb-2">
-              Representatives respond to organized pressure inside their own district —
-              not opinions, not outrage, not noise.
+              Representatives respond to organized pressure inside their own district — not opinions, not outrage, not noise.
             </p>
             <p className="text-white text-lg font-bold mt-4">That's the leverage.</p>
           </div>
 
-          {/* Hero Image – 45% desktop, 70% mobile */}
           <div className="flex justify-center mt-8 mb-8">
             <div className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer"
                  onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}>
-              <Image
-                src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
-                alt="Congress Ignores You"
-                width={954}
-                height={648}
-                priority
-                className="w-full h-auto object-contain"
-                onError={(e) => console.error('Hero image failed to load')}
-              />
+              <Image src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg" alt="Congress Ignores You" width={954} height={648} priority className="w-full h-auto object-contain" onError={(e) => console.error('Hero image failed to load')} />
             </div>
           </div>
 
-          {/* Why 1,500 Matters + District Counter + Dashboard Image */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <h3 className="text-2xl font-bold text-white mb-2">Why 1,500 Matters</h3>
             <p className="text-gray-300 text-base mb-3">
@@ -148,14 +129,7 @@ export default function MainHomePage() {
               That's the leverage PHIERS organizes.
             </p>
             <div className="my-4 cursor-pointer" onClick={() => openModal('/images/District_Accountability_Dashboard.jpg')}>
-              <Image
-                src="/images/District_Accountability_Dashboard.jpg"
-                alt="District Accountability Dashboard"
-                width={600}
-                height={400}
-                className="mx-auto rounded-lg border border-green/20"
-                onError={(e) => console.error('Dashboard image missing')}
-              />
+              <Image src="/images/District_Accountability_Dashboard.jpg" alt="District Accountability Dashboard" width={600} height={400} className="mx-auto rounded-lg border border-green/20" onError={(e) => console.error('Dashboard image missing')} />
             </div>
             <div className="mt-4 p-4 bg-green-glow border border-green/30 rounded-lg">
               {userDistrict ? (
@@ -178,7 +152,6 @@ export default function MainHomePage() {
             </div>
           </div>
 
-          {/* ACT NOW block */}
           <div className="max-w-[600px] mx-auto mt-8">
             <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
@@ -253,7 +226,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY 1,500 PEOPLE MATTER (with leverage image) */}
+        {/* WHY 1,500 PEOPLE MATTER */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY 1,500 PEOPLE MATTER</h2>
@@ -379,7 +352,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS UNLOCKS (new section) */}
+        {/* WHAT THIS UNLOCKS */}
         <section className="container section">
           <div className="text-center max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS UNLOCKS</h2>
@@ -453,9 +426,8 @@ export default function MainHomePage() {
         .back-to-top.visible { opacity: 1; visibility: visible; }
         .back-to-top:hover { background: #2ab568; transform: translateY(-2px); }
         .bg-green-glow { background: rgba(61, 220, 132, 0.06); }
-        .btn { padding: 0.5rem 1.25rem; height: auto; line-height: 1.5; font-size: 0.9rem; }
-        @media (max-width: 640px) { .btn { padding: 0.4rem 1rem; font-size: 0.85rem; } }
       `}</style>
     </>
   )
 }
+// END FILE: components/MainHomePage.tsx
