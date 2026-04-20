@@ -79,7 +79,7 @@ export default function MainHomePage() {
 
       <main id="main-content" className="font-sans">
         {/* HERO */}
-        <section className="container text-center pt-8 pb-6">
+        <section className="container text-center pt-24 pb-6">
           <h1 className="text-2xl md:text-4xl mb-4">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
             <br />
