@@ -1,94 +1,86 @@
-// FILE: app/petition/page.tsx
-// VERSION: 1.0.0
-// PURPOSE: Petition with district feedback after submission (shows district, count, remaining)
-
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
-
-// Mock function – replace with real ZIP → district lookup + count
-function getDistrictFromZip(zip: string): { district: string; currentCount: number } {
-  const mock: Record<string, { district: string; count: number }> = {
-    '90210': { district: 'CA-33', count: 1203 },
-    '10001': { district: 'NY-12', count: 876 },
-    '60601': { district: 'IL-07', count: 1450 },
-  }
-  return mock[zip] || { district: 'Unknown', currentCount: 342 }
-}
+import Navigation from '@/components/navigation'
+import Footer from '@/components/footer'
 
 export default function PetitionPage() {
-  const [submitted, setSubmitted] = useState(false)
-  const [userDistrict, setUserDistrict] = useState<string | null>(null)
-  const [currentCount, setCurrentCount] = useState<number | null>(null)
+  const [formData, setFormData] = useState({ name: '', email: '', zip: '' })
+  const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const zip = formData.get('zip') as string
-    const { district, currentCount: count } = getDistrictFromZip(zip)
-    setUserDistrict(district)
-    setCurrentCount(count + 1)
-    setSubmitted(true)
-  }
-
-  if (submitted && userDistrict && currentCount !== null) {
-    const remaining = 1500 - currentCount
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#050b19] text-white text-center px-6">
-        <div className="max-w-md">
-          <h1 className="text-4xl mb-4">You're on record.</h1>
-          <p className="text-green text-2xl font-bold mb-2">{userDistrict}</p>
-          <p className="text-gray-300 text-lg">Current total: <span className="text-white font-bold">{currentCount}</span> / 1,500</p>
-          <p className="text-gray-400 mb-6">{remaining} more to reach the tipping point.</p>
-          <p className="text-gray-400 text-sm mb-4">You just moved your district closer.</p>
-          <Link
-            href="/"
-            className="inline-block bg-green text-black px-6 py-3 rounded-md font-bold hover:bg-green/90"
-          >
-            ← See your district progress
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
-  if (submitted) {
-    // fallback (if district lookup failed)
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#050b19] text-white text-center px-6">
-        <div>
-          <h1 className="text-4xl mb-4">You're on record.</h1>
-          <p className="text-gray-400 mb-6">Your district count just increased.</p>
-          <Link href="/" className="text-green underline">← See district progress</Link>
-        </div>
-      </div>
-    )
+    setSubmitState('submitting')
+    setErrorMessage('')
+    if (!/^\d{5}$/.test(formData.zip)) {
+      setErrorMessage('ZIP code must be 5 digits')
+      setSubmitState('error')
+      return
+    }
+    try {
+      // TODO: replace with real API
+      console.log('Signature:', formData)
+      const signatures = JSON.parse(localStorage.getItem('phiers_signatures') || '[]')
+      signatures.push({ ...formData, timestamp: new Date().toISOString() })
+      localStorage.setItem('phiers_signatures', JSON.stringify(signatures))
+      setSubmitState('success')
+      setFormData({ name: '', email: '', zip: '' })
+      setTimeout(() => setSubmitState('idle'), 3000)
+    } catch (err) {
+      setErrorMessage('Something went wrong. Please try again.')
+      setSubmitState('error')
+    }
   }
 
   return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center px-6 py-16">
-      <div className="max-w-xl w-full">
-        <h1 className="text-4xl mb-4 text-center">Be counted in your congressional district</h1>
-        <p className="text-gray-400 text-center mb-8">
-          This is not a petition that disappears.<br />
-          Your name is counted toward your district total.
-        </p>
+    <>
+      <Navigation />
+      <main id="main-content" className="container pt-24 pb-32">
+        <div className="max-w-2xl mx-auto text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Add Your Name</h1>
+          <p className="text-green text-xl font-semibold mb-2">Your name is leverage.</p>
+          <p className="text-gray-300">When 1,500 people in your district sign, your representative must respond — or face replacement.</p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input name="name" placeholder="Full Name" required className="w-full p-3 bg-black border border-gray-700 rounded" />
-          <input name="email" type="email" placeholder="Email" required className="w-full p-3 bg-black border border-gray-700 rounded" />
-          <input name="zip" placeholder="ZIP Code" required className="w-full p-3 bg-black border border-gray-700 rounded" />
-          <button type="submit" className="w-full bg-green text-black py-3 font-bold rounded">
-            Add My Name
-          </button>
-        </form>
+        <div className="text-center mb-4">
+          <p className="text-white text-lg font-semibold">Add your name, ZIP, and optional email</p>
+          <p className="text-gray-400 text-sm">Email optional – for updates, events, etc. No spam. No sharing.</p>
+        </div>
 
-        <p className="text-gray-500 text-sm mt-6 text-center">
-          Your information is only used to verify district counts.
-        </p>
+        <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[500px] mx-auto">
+          <form id="petition-form" onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-white font-condensed mb-1">Full Name *</label>
+              <input type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white" required />
+            </div>
+            <div>
+              <label className="block text-white font-condensed mb-1">Email (optional)</label>
+              <input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white" />
+              <p className="text-gray-500 text-xs mt-1">Only used for district milestone alerts. Unsubscribe anytime.</p>
+            </div>
+            <div>
+              <label className="block text-white font-condensed mb-1">ZIP Code *</label>
+              <input type="text" value={formData.zip} onChange={(e) => setFormData({ ...formData, zip: e.target.value.replace(/[^0-9]/g, '').slice(0,5) })} className="w-full p-3 rounded-lg bg-bg-card border border-green/30 text-white" pattern="[0-9]{5}" maxLength={5} required />
+            </div>
+            {submitState === 'error' && <p className="text-red-400 text-sm">{errorMessage}</p>}
+            {submitState === 'success' && <p className="text-green-400 text-sm">✓ You've been counted in your district.</p>}
+            <button type="submit" disabled={submitState === 'submitting'} className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg disabled:opacity-50">
+              {submitState === 'submitting' ? 'SUBMITTING...' : '✍ ADD MY NAME'}
+            </button>
+          </form>
+          <p className="text-gray-500 text-xs text-center mt-4">Used only to count you in your district. Your information is never shared.</p>
+        </div>
+      </main>
+
+      {/* Sticky CTA for mobile */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-bg-dark border-t border-green/20 md:hidden z-50">
+        <button form="petition-form" type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-full">
+          ✍ ADD MY NAME
+        </button>
       </div>
-    </div>
+
+      <Footer />
+    </>
   )
 }
-// END FILE: app/petition/page.tsx

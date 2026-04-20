@@ -11,21 +11,15 @@ interface PreHomepageProps {
 }
 
 export default function PreHomepage({ onGoToHomepage, onGoToPetition }: PreHomepageProps) {
-  const [currentSlide, setCurrentSlide] = useState(0) // 0 = breath, 1 = You Are Not Powerless
+  const [currentSlide, setCurrentSlide] = useState(0)
 
-  // Keyboard: left/right arrows, Enter/Space to advance
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
-        nextSlide()
-      } else if (e.key === 'ArrowLeft' && currentSlide === 1) {
-        prevSlide()
-      } else if (e.key === 'Enter' || e.key === ' ' || e.key === 'Space') {
-        if (currentSlide === 0) {
-          nextSlide()
-        } else if (currentSlide === 1) {
-          closeModalsAndContinue()
-        }
+      if (e.key === 'ArrowRight') nextSlide()
+      else if (e.key === 'ArrowLeft' && currentSlide === 1) prevSlide()
+      else if (e.key === 'Enter' || e.key === ' ') {
+        if (currentSlide === 0) nextSlide()
+        else if (currentSlide === 1) closeModalsAndContinue()
       }
     }
     window.addEventListener('keydown', handleKeyDown)
@@ -33,37 +27,27 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: PreHomep
   }, [currentSlide])
 
   const nextSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(1)
-    } else if (currentSlide === 1) {
-      closeModalsAndContinue()
-    }
+    if (currentSlide === 0) setCurrentSlide(1)
+    else if (currentSlide === 1) closeModalsAndContinue()
   }
 
   const prevSlide = () => {
-    if (currentSlide === 1) {
-      setCurrentSlide(0)
-    }
+    if (currentSlide === 1) setCurrentSlide(0)
   }
 
-  const closeModalsAndContinue = () => {
-    onGoToHomepage()
-  }
+  const closeModalsAndContinue = () => onGoToHomepage()
+  const skipToHomepage = () => onGoToHomepage()
 
-  // Skip button: go directly to homepage (no second modal)
-  const skipToHomepage = () => {
-    onGoToHomepage()
-  }
-
-  // Swipe handlers
+  // Swipe handlers – fixed to allow vertical scroll
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => nextSlide(),
     onSwipedRight: () => prevSlide(),
     trackMouse: true,
-    preventScrollOnSwipe: true,
+    preventScrollOnSwipe: false,   // ← allows vertical scroll
+    delta: 10,
+    touchEventOptions: { passive: false },
   })
 
-  // Breath modal (slide 0) with SKIP button
   const breathModal = (
     <motion.div
       key="breath"
@@ -71,42 +55,29 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: PreHomep
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
     >
-      {/* SKIP button - top right */}
       <div className="absolute top-4 right-4">
         <button
-          onClick={(e) => {
-            e.stopPropagation()
-            skipToHomepage()
-          }}
-          className="text-gray-500 text-sm underline hover:text-gray-300 transition"
+          onClick={(e) => { e.stopPropagation(); skipToHomepage() }}
+          className="text-gray-500 text-sm underline hover:text-gray-300"
+          aria-label="Skip introduction"
         >
           SKIP
         </button>
       </div>
-
       <div className="text-center max-w-xl px-6 cursor-pointer" onClick={nextSlide}>
         <div className="flex justify-center mb-6">
-          <Image
-            src="/images/PHIERS_Logo.png"
-            alt="PHIERS"
-            width={80}
-            height={80}
-            className="opacity-90"
-          />
+          <Image src="/images/PHIERS_Logo.png" alt="PHIERS logo" width={80} height={80} className="opacity-90" />
         </div>
         <h2 className="text-white text-3xl md:text-4xl font-light mb-4 tracking-wide">Take a breath.</h2>
         <p className="text-gray-300 text-lg leading-relaxed">
-          What you're about to see is simple.<br />
-          But it changes how power actually works.
+          What you're about to see is simple.<br />But it changes how power actually works.
         </p>
         <p className="text-gray-500 text-sm mt-8">Swipe left → or click/tap</p>
       </div>
     </motion.div>
   )
 
-  // "You Are Not Powerless" modal (slide 1) - no SKIP needed here
   const powerlessModal = (
     <motion.div
       key="powerless"
@@ -114,7 +85,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: PreHomep
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
     >
       <div className="relative w-screen h-screen flex items-center justify-center cursor-pointer" onClick={closeModalsAndContinue}>
         <Image
@@ -124,7 +94,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: PreHomep
           height={1080}
           className="w-full h-auto max-h-screen object-contain"
           priority
-          onError={(e) => console.error('Powerless image failed to load')}
         />
         <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">
           Swipe left → or tap anywhere to continue
@@ -134,7 +103,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: PreHomep
   )
 
   return (
-    <div {...swipeHandlers} style={{ touchAction: 'pan-y' }}>
+    <div {...swipeHandlers} style={{ touchAction: 'pan-y pinch-zoom' }} role="region" aria-label="Introduction slides. Swipe left or right to navigate.">
       <AnimatePresence mode="wait">
         {currentSlide === 0 && breathModal}
         {currentSlide === 1 && powerlessModal}
