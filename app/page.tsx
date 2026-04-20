@@ -9,9 +9,11 @@ import MainHomePage from '@/components/MainHomePage'
 
 export default function Page() {
   const router = useRouter()
+
   const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
 
+  // ✅ Check session (only once)
   useEffect(() => {
     const seen = sessionStorage.getItem('entrySequence')
     if (seen) {
@@ -32,22 +34,28 @@ export default function Page() {
     setStage('prehome')
   }
 
+  // ✅ Keyboard support for modal
   useEffect(() => {
     if (!showEntryModal) return
+
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === 'Escape') proceed()
+      if (e.key === 'Enter' || e.key === 'Escape') {
+        proceed()
+      }
     }
+
     window.addEventListener('keydown', handler)
     document.body.style.overflow = 'hidden'
+
     return () => {
       window.removeEventListener('keydown', handler)
       document.body.style.overflow = ''
     }
   }, [showEntryModal])
 
-  // ========================
+  // =========================
   // ENTRY MODAL
-  // ========================
+  // =========================
   if (stage === 'entry') {
     return (
       <AnimatePresence>
@@ -57,12 +65,11 @@ export default function Page() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
             onClick={proceed}
           >
             <div className="relative w-full max-w-xl mx-auto">
 
-              {/* Logo */}
+              {/* LOGO */}
               <div className="flex justify-center mb-6">
                 <Image
                   src="/images/PHIERS_Logo.png"
@@ -73,20 +80,22 @@ export default function Page() {
                 />
               </div>
 
-              {/* Skip Button */}
+              {/* SKIP BUTTON */}
               <div className="absolute top-0 right-0">
                 <button
-                  onClick={(e) => { e.stopPropagation(); skipIntro(); }}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    skipIntro()
+                  }}
                   className="text-gray-500 text-sm underline hover:text-gray-300"
                 >
                   SKIP
                 </button>
               </div>
 
-              {/* ✅ FINAL MODAL CONTENT */}
-              <div className="text-center mt-10">
-
-                <h2 className="text-white text-4xl md:text-5xl font-light mb-6 tracking-wide">
+              {/* CONTENT */}
+              <div className="text-center mt-8">
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-4">
                   Take a breath.
                 </h2>
 
@@ -98,12 +107,12 @@ export default function Page() {
                   But it changes how power actually works.
                 </p>
 
-                <p className="text-gray-400 text-base md:text-lg mb-10">
+                <p className="text-gray-400 text-base md:text-lg mb-8">
                   Most people haven’t seen the mechanism yet.
                 </p>
 
                 <div className="border-t border-green/20 pt-6">
-                  <p className="text-green text-3xl md:text-4xl font-bold mb-2">
+                  <p className="text-green text-2xl md:text-3xl font-bold mb-2">
                     YOU ARE NOT POWERLESS
                   </p>
                   <p className="text-gray-300 text-base md:text-lg">
@@ -111,10 +120,9 @@ export default function Page() {
                   </p>
                 </div>
 
-                <p className="text-gray-500 text-sm mt-10">
-                  Click anywhere to continue — or press Enter
+                <p className="text-gray-500 text-sm mt-8">
+                  Click anywhere to continue
                 </p>
-
               </div>
             </div>
           </motion.div>
@@ -123,9 +131,9 @@ export default function Page() {
     )
   }
 
-  // ========================
-  // PRE-HOMEPAGE
-  // ========================
+  // =========================
+  // PRE-HOMEPAGE SLIDES
+  // =========================
   if (stage === 'prehome') {
     return (
       <PreHomepage
@@ -135,8 +143,8 @@ export default function Page() {
     )
   }
 
-  // ========================
+  // =========================
   // MAIN HOMEPAGE
-  // ========================
+  // =========================
   return <MainHomePage />
 }
