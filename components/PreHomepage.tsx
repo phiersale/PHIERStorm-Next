@@ -47,28 +47,59 @@ const slides = [
 
 export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const [index, setIndex] = useState(0)
+  const [flash, setFlash] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const touchStartX = useRef<number | null>(null)
 
+  // 🔍 Debug console only in development (never production)
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      import('eruda').then(({ default: eruda }) => eruda.init())
+    }
+  }, [])
+
   const next = () => {
-    if (index < slides.length - 1) setIndex((i) => i + 1)
-    else onGoToHomepage()
+    if (isTransitioning) return
+    setIsTransitioning(true)
+
+    if (index < slides.length - 1) {
+      setIndex((i) => i + 1)
+      setTimeout(() => setIsTransitioning(false), 300)
+    } else {
+      onGoToHomepage()
+    }
   }
 
   const prev = () => {
-    if (index > 0) setIndex((i) => i - 1)
+    if (isTransitioning || index === 0) return
+    setIsTransitioning(true)
+    setIndex((i) => i - 1)
+    setTimeout(() => setIsTransitioning(false), 300)
   }
 
-  // Keyboard navigation
+  const handleTap = () => {
+    setFlash(true)
+    setTimeout(() => setFlash(false), 100)
+    next()
+  }
+
+  // Keyboard nav
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight' || e.key === 'Enter') next()
-      if (e.key === 'ArrowLeft') prev()
+      if (e.key === 'ArrowRight' || e.key === 'Enter') {
+        e.preventDefault()
+        handleTap()
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        prev()
+      }
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [index])
+  }, [index, isTransitioning])
 
-  // Swipe navigation (attached once, uses refs for current index)
+  // Swipe nav (with guard)
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.touches[0].clientX
@@ -77,28 +108,30 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     const handleTouchEnd = (e: TouchEvent) => {
       if (touchStartX.current === null) return
       const diff = touchStartX.current - e.changedTouches[0].clientX
-      if (diff > 50) next()
-      if (diff < -50) prev()
+      if (Math.abs(diff) < 50) return
+      if (diff > 0) handleTap()
+      else prev()
       touchStartX.current = null
     }
 
     window.addEventListener('touchstart', handleTouchStart)
     window.addEventListener('touchend', handleTouchEnd)
-
     return () => {
       window.removeEventListener('touchstart', handleTouchStart)
       window.removeEventListener('touchend', handleTouchEnd)
     }
-  }, []) // empty dependency – swipe works without re‑attaching
+  }, [index, isTransitioning])
 
   const slide = slides[index]
 
   return (
     <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-6 pt-20 font-sans">
+      {/* Logo */}
       <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none">
         <Image src="/images/PHIERS_Logo.png" alt="logo" width={50} height={50} className="opacity-80" />
       </div>
 
+      {/* Skip button */}
       <div className="absolute top-6 right-6 z-10">
         <button
           onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
@@ -108,7 +141,14 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </button>
       </div>
 
-      <div onClick={next} className="cursor-pointer text-center max-w-2xl w-full">
+      {/* Main slide area with flash overlay */}
+      <div
+        onClick={handleTap}
+        className="cursor-pointer text-center max-w-2xl w-full relative"
+      >
+        {flash && (
+          <div className="absolute inset-0 bg-white/30 pointer-events-none rounded-lg" style={{ animation: 'pulseFlash 0.1s ease-out' }} />
+        )}
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -120,7 +160,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             <h1 className="text-4xl md:text-5xl font-light mb-6">
               {slide.title}
             </h1>
-
             <div className="space-y-3">
               {slide.body.map((line, i) => (
                 <p key={i} className="text-lg md:text-xl text-gray-300">
@@ -144,6 +183,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         ))}
       </div>
 
+      {/* Controls and final buttons */}
       <div className="absolute bottom-6 flex flex-col items-center gap-3">
         <p className="text-gray-500 text-sm">
           {index + 1} / {slides.length}
@@ -167,7 +207,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
               >
                 ✍ BE COUNTED
               </button>
-
               <button
                 onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
                 className="border border-green px-4 py-2 rounded-md"
@@ -178,6 +217,15 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
           )}
         </div>
       </div>
+
+      {/* Add keyframe animation for flash */}
+      <style jsx global>{`
+        @keyframes pulseFlash {
+          0% { opacity: 0; }
+          50% { opacity: 0.5; }
+          100% { opacity: 0; }
+        }
+      `}</style>
     </div>
   )
 }
