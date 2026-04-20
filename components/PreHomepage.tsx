@@ -41,22 +41,14 @@ const slides = [
   },
   {
     title: "If enough people move from",
-    body: ["“I agree”", "to", "“I’m on record”", "Congress has to act.", "Or gets replaced."]
+    body: ["“I agree”", "→", "“I’m on record”", "Congress has to act.", "Or gets replaced."]
   }
 ]
 
 export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const [index, setIndex] = useState(0)
-  const [flash, setFlash] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const touchStartX = useRef<number | null>(null)
-
-  // 🔍 Debug console only in development (never production)
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      import('eruda').then(({ default: eruda }) => eruda.init())
-    }
-  }, [])
 
   const next = () => {
     if (isTransitioning) return
@@ -64,7 +56,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 
     if (index < slides.length - 1) {
       setIndex((i) => i + 1)
-      setTimeout(() => setIsTransitioning(false), 300)
+      setTimeout(() => setIsTransitioning(false), 500)
     } else {
       onGoToHomepage()
     }
@@ -74,13 +66,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     if (isTransitioning || index === 0) return
     setIsTransitioning(true)
     setIndex((i) => i - 1)
-    setTimeout(() => setIsTransitioning(false), 300)
-  }
-
-  const handleTap = () => {
-    setFlash(true)
-    setTimeout(() => setFlash(false), 100)
-    next()
+    setTimeout(() => setIsTransitioning(false), 500)
   }
 
   // Keyboard nav
@@ -88,7 +74,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
         e.preventDefault()
-        handleTap()
+        next()
       }
       if (e.key === 'ArrowLeft') {
         e.preventDefault()
@@ -99,21 +85,19 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [index, isTransitioning])
 
-  // Swipe nav (with guard)
+  // Swipe nav
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.touches[0].clientX
     }
-
     const handleTouchEnd = (e: TouchEvent) => {
       if (touchStartX.current === null) return
       const diff = touchStartX.current - e.changedTouches[0].clientX
       if (Math.abs(diff) < 50) return
-      if (diff > 0) handleTap()
+      if (diff > 0) next()
       else prev()
       touchStartX.current = null
     }
-
     window.addEventListener('touchstart', handleTouchStart)
     window.addEventListener('touchend', handleTouchEnd)
     return () => {
@@ -123,15 +107,17 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }, [index, isTransitioning])
 
   const slide = slides[index]
+  const isLastSlide = index === slides.length - 1
 
   return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-6 pt-20 font-sans">
+    <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-4 py-6 font-sans overflow-x-hidden">
+
       {/* Logo */}
       <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none">
         <Image src="/images/PHIERS_Logo.png" alt="logo" width={50} height={50} className="opacity-80" />
       </div>
 
-      {/* Skip button */}
+      {/* Skip */}
       <div className="absolute top-6 right-6 z-10">
         <button
           onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
@@ -141,28 +127,23 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </button>
       </div>
 
-      {/* Main slide area with flash overlay */}
-      <div
-        onClick={handleTap}
-        className="cursor-pointer text-center max-w-2xl w-full relative"
-      >
-        {flash && (
-          <div className="absolute inset-0 bg-white/30 pointer-events-none rounded-lg" style={{ animation: 'pulseFlash 0.1s ease-out' }} />
-        )}
-        <AnimatePresence mode="wait">
+      {/* Slide */}
+      <div onClick={next} className="cursor-pointer text-center w-full max-w-2xl mx-auto">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.35 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
           >
             <h1 className="text-4xl md:text-5xl font-light mb-6">
               {slide.title}
             </h1>
-            <div className="space-y-3">
+
+            <div className={`space-y-3 ${isLastSlide ? 'text-2xl md:text-3xl font-bold text-green' : 'text-lg md:text-xl text-gray-300'}`}>
               {slide.body.map((line, i) => (
-                <p key={i} className="text-lg md:text-xl text-gray-300">
+                <p key={i} className={line === '→' ? 'text-3xl font-bold' : ''}>
                   {line}
                 </p>
               ))}
@@ -172,7 +153,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       </div>
 
       {/* Progress dots */}
-      <div className="absolute bottom-20 flex gap-2">
+      <div className="absolute bottom-28 flex gap-2">
         {slides.map((_, i) => (
           <div
             key={i}
@@ -183,8 +164,8 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         ))}
       </div>
 
-      {/* Controls and final buttons */}
-      <div className="absolute bottom-6 flex flex-col items-center gap-3">
+      {/* Controls */}
+      <div className="absolute bottom-6 flex flex-col items-center gap-3 w-full max-w-md px-4">
         <p className="text-gray-500 text-sm">
           {index + 1} / {slides.length}
         </p>
@@ -199,17 +180,18 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             </button>
           )}
 
-          {index === slides.length - 1 && (
-            <div className="flex gap-3">
+          {isLastSlide && (
+            <div className="flex flex-col gap-3 w-full">
               <button
                 onClick={(e) => { e.stopPropagation(); onGoToPetition(); }}
-                className="bg-green text-black px-4 py-2 rounded-md font-bold"
+                className="bg-green text-black text-xl md:text-2xl font-bold py-4 px-6 rounded-xl w-full shadow-lg hover:bg-green-600 transition"
               >
                 ✍ BE COUNTED
               </button>
+
               <button
                 onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
-                className="border border-green px-4 py-2 rounded-md"
+                className="border-2 border-green text-green text-xl md:text-2xl font-bold py-4 px-6 rounded-xl w-full hover:bg-green/10 transition"
               >
                 → SEE HOW IT WORKS
               </button>
@@ -217,15 +199,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
           )}
         </div>
       </div>
-
-      {/* Add keyframe animation for flash */}
-      <style jsx global>{`
-        @keyframes pulseFlash {
-          0% { opacity: 0; }
-          50% { opacity: 0.5; }
-          100% { opacity: 0; }
-        }
-      `}</style>
     </div>
   )
 }
