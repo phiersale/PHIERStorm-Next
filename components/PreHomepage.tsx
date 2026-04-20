@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
@@ -41,26 +41,24 @@ const slides = [
   },
   {
     title: "If enough people move from",
-    body: ["“I agree”", "to", "“I’m on record”", "", "Congress has to act.", "Or gets replaced."]
+    body: ["“I agree”", "to", "“I’m on record”", "Congress has to act.", "Or gets replaced."]
   }
 ]
 
 export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const [index, setIndex] = useState(0)
+  const touchStartX = useRef<number | null>(null)
 
   const next = () => {
-    if (index < slides.length - 1) {
-      setIndex(index + 1)
-    } else {
-      onGoToHomepage()
-    }
+    if (index < slides.length - 1) setIndex((i) => i + 1)
+    else onGoToHomepage()
   }
 
   const prev = () => {
-    if (index > 0) setIndex(index - 1)
+    if (index > 0) setIndex((i) => i - 1)
   }
 
-  // ✅ KEYBOARD NAV
+  // Keyboard navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'Enter') next()
@@ -70,32 +68,18 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [index])
 
-  // ✅ SWIPE SUPPORT
+  // Swipe navigation (attached once, uses refs for current index)
   useEffect(() => {
-    let startX = 0
-    let endX = 0
-
     const handleTouchStart = (e: TouchEvent) => {
-      startX = e.touches[0].clientX
+      touchStartX.current = e.touches[0].clientX
     }
 
     const handleTouchEnd = (e: TouchEvent) => {
-      endX = e.changedTouches[0].clientX
-      handleSwipe()
-    }
-
-    const handleSwipe = () => {
-      const diff = startX - endX
-
-      if (Math.abs(diff) < 50) return // ignore small swipes
-
-      if (diff > 0) {
-        // swipe left → next
-        next()
-      } else {
-        // swipe right → prev
-        prev()
-      }
+      if (touchStartX.current === null) return
+      const diff = touchStartX.current - e.changedTouches[0].clientX
+      if (diff > 50) next()
+      if (diff < -50) prev()
+      touchStartX.current = null
     }
 
     window.addEventListener('touchstart', handleTouchStart)
@@ -105,19 +89,16 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       window.removeEventListener('touchstart', handleTouchStart)
       window.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [index])
+  }, []) // empty dependency – swipe works without re‑attaching
 
   const slide = slides[index]
 
   return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-6 pt-16 font-sans">
-
-      {/* LOGO */}
+    <div className="min-h-screen bg-[#050b19] text-white flex flex-col items-center justify-center px-6 pt-20 font-sans">
       <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none">
         <Image src="/images/PHIERS_Logo.png" alt="logo" width={50} height={50} className="opacity-80" />
       </div>
 
-      {/* SKIP BUTTON */}
       <div className="absolute top-6 right-6 z-10">
         <button
           onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
@@ -127,17 +108,19 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </button>
       </div>
 
-      {/* SLIDE CONTENT */}
       <div onClick={next} className="cursor-pointer text-center max-w-2xl w-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.35 }}
           >
-            <h1 className="text-4xl md:text-5xl font-light mb-6">{slide.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-light mb-6">
+              {slide.title}
+            </h1>
+
             <div className="space-y-3">
               {slide.body.map((line, i) => (
                 <p key={i} className="text-lg md:text-xl text-gray-300">
@@ -149,7 +132,18 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </AnimatePresence>
       </div>
 
-      {/* NAV CONTROLS */}
+      {/* Progress dots */}
+      <div className="absolute bottom-20 flex gap-2">
+        {slides.map((_, i) => (
+          <div
+            key={i}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === index ? 'bg-green scale-125' : 'bg-gray-600'
+            }`}
+          />
+        ))}
+      </div>
+
       <div className="absolute bottom-6 flex flex-col items-center gap-3">
         <p className="text-gray-500 text-sm">
           {index + 1} / {slides.length}
@@ -173,6 +167,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
               >
                 ✍ BE COUNTED
               </button>
+
               <button
                 onClick={(e) => { e.stopPropagation(); onGoToHomepage(); }}
                 className="border border-green px-4 py-2 rounded-md"

@@ -13,7 +13,6 @@ export default function Page() {
   const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
 
-  // ✅ Check session (only once)
   useEffect(() => {
     const seen = sessionStorage.getItem('entrySequence')
     if (seen) {
@@ -28,34 +27,19 @@ export default function Page() {
     setStage('prehome')
   }
 
-  const skipIntro = () => {
-    setShowEntryModal(false)
-    sessionStorage.setItem('entrySequence', '1')
-    setStage('prehome')
-  }
-
-  // ✅ Keyboard support for modal
   useEffect(() => {
     if (!showEntryModal) return
-
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === 'Escape') {
-        proceed()
-      }
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === 'Escape') proceed()
     }
-
-    window.addEventListener('keydown', handler)
+    window.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
-
     return () => {
-      window.removeEventListener('keydown', handler)
+      window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
     }
   }, [showEntryModal])
 
-  // =========================
-  // ENTRY MODAL
-  // =========================
   if (stage === 'entry') {
     return (
       <AnimatePresence>
@@ -68,8 +52,6 @@ export default function Page() {
             onClick={proceed}
           >
             <div className="relative w-full max-w-xl mx-auto">
-
-              {/* LOGO */}
               <div className="flex justify-center mb-6">
                 <Image
                   src="/images/PHIERS_Logo.png"
@@ -79,38 +61,27 @@ export default function Page() {
                   className="opacity-90"
                 />
               </div>
-
-              {/* SKIP BUTTON */}
               <div className="absolute top-0 right-0">
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    skipIntro()
-                  }}
+                  onClick={(e) => { e.stopPropagation(); proceed() }}
                   className="text-gray-500 text-sm underline hover:text-gray-300"
                 >
                   SKIP
                 </button>
               </div>
-
-              {/* CONTENT */}
               <div className="text-center mt-8">
                 <h2 className="text-white text-4xl md:text-5xl font-light mb-4">
                   Take a breath.
                 </h2>
-
                 <p className="text-gray-300 text-lg md:text-xl mb-2">
                   What you’re about to see is simple.
                 </p>
-
                 <p className="text-gray-300 text-lg md:text-xl mb-6">
                   But it changes how power actually works.
                 </p>
-
                 <p className="text-gray-400 text-base md:text-lg mb-8">
                   Most people haven’t seen the mechanism yet.
                 </p>
-
                 <div className="border-t border-green/20 pt-6">
                   <p className="text-green text-2xl md:text-3xl font-bold mb-2">
                     YOU ARE NOT POWERLESS
@@ -119,7 +90,6 @@ export default function Page() {
                     That’s the first thing to remember.
                   </p>
                 </div>
-
                 <p className="text-gray-500 text-sm mt-8">
                   Click anywhere to continue
                 </p>
@@ -131,9 +101,6 @@ export default function Page() {
     )
   }
 
-  // =========================
-  // PRE-HOMEPAGE SLIDES
-  // =========================
   if (stage === 'prehome') {
     return (
       <PreHomepage
@@ -143,8 +110,5 @@ export default function Page() {
     )
   }
 
-  // =========================
-  // MAIN HOMEPAGE
-  // =========================
   return <MainHomePage />
 }
