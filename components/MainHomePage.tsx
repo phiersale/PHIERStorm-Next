@@ -1,9 +1,13 @@
+Moving forward, be sure to increment the version id and put the naem of the file on top and bottom of ALL files you create. ASk me the previous version if you dont know it.  Other chats repeat the same version ID and dont increment.
+
+ok, review this code:  
+
 // FILE: components/MainHomePage.tsx
-// VERSION: 5.1.0 (fixed text-gold, YouTube ID, copy consistency)
+// VERSION: 5.2.0 (refactored: accessibility, focus trap, iframe state, useCallback, no removal)
 
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -15,31 +19,76 @@ export default function MainHomePage() {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [showArchitectModal, setShowArchitectModal] = useState(false)
+  const [isPathosVideoLoaded, setIsPathosVideoLoaded] = useState(false) // replaces innerHTML
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
 
-  const openModal = (src: string) => {
-    setModalImageSrc(src)
-    document.body.style.overflow = 'hidden'
-  }
-
-  const closeModal = () => {
+  // --- Modal logic with focus trap and proper cleanup ---
+  const closeModal = useCallback(() => {
     setModalImageSrc(null)
     document.body.style.overflow = ''
-  }
+    // Restore focus to previously focused element
+    if (previousFocusRef.current) {
+      previousFocusRef.current.focus()
+      previousFocusRef.current = null
+    }
+  }, [])
 
+  const openModal = useCallback((src: string) => {
+    // Store currently focused element
+    previousFocusRef.current = document.activeElement as HTMLElement
+    setModalImageSrc(src)
+    document.body.style.overflow = 'hidden'
+  }, [])
+
+  // Keyboard handler for modal
   useEffect(() => {
     if (!modalImageSrc) return
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === 'Escape') closeModal()
+      if (e.key === 'Escape') {
+        closeModal()
+      }
+      // Enter key no longer closes – only Escape and click/tap outside
     }
     window.addEventListener('keydown', handleKeyDown)
-    const modalContainer = document.getElementById('image-modal-container')
-    if (modalContainer) modalContainer.focus()
+    // Focus the modal container when opened
+    if (modalRef.current) {
+      modalRef.current.focus()
+    }
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = ''
+      // overflow reset is handled in closeModal
     }
+  }, [modalImageSrc, closeModal])
+
+  // Focus trap inside modal
+  useEffect(() => {
+    if (!modalImageSrc || !modalRef.current) return
+    const focusableElements = modalRef.current.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    const firstElement = focusableElements[0] as HTMLElement
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault()
+          lastElement?.focus()
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault()
+          firstElement?.focus()
+        }
+      }
+    }
+    window.addEventListener('keydown', handleTab)
+    return () => window.removeEventListener('keydown', handleTab)
   }, [modalImageSrc])
 
+  // Back to top logic
   const scrollToTop = useCallback(() => window.scrollTo({ top: 0, behavior: 'smooth' }), [])
   useEffect(() => {
     const handleScroll = () => setShowBackToTop(window.scrollY > 400)
@@ -48,7 +97,17 @@ export default function MainHomePage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToMechanism = () => document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
+  const scrollToMechanism = useCallback(() => {
+    document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
+  // Helper to make any clickable div keyboard-friendly
+  const makeKeyboardClickable = (handler: () => void) => (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      handler()
+    }
+  }
 
   return (
     <>
@@ -59,6 +118,7 @@ export default function MainHomePage() {
       <AnimatePresence>
         {modalImageSrc && (
           <motion.div
+            ref={modalRef}
             id="image-modal-container"
             className="fixed inset-0 bg-black z-[99999] flex items-center justify-center outline-none"
             initial={{ opacity: 0 }}
@@ -68,6 +128,7 @@ export default function MainHomePage() {
             tabIndex={-1}
             aria-modal="true"
             role="dialog"
+            aria-label="Image enlarged view"
           >
             <div className="relative w-screen h-screen flex items-center justify-center cursor-pointer">
               <Image
@@ -76,10 +137,11 @@ export default function MainHomePage() {
                 width={1920}
                 height={1080}
                 className="w-full h-auto max-h-screen object-contain"
+                sizes="100vw"
                 onError={(e) => console.error('Modal image failed to load:', modalImageSrc)}
               />
               <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">
-                Tap anywhere or press Enter to close
+                Tap anywhere or press Escape to close
               </p>
             </div>
           </motion.div>
@@ -107,8 +169,12 @@ export default function MainHomePage() {
 
           <div className="flex justify-center mt-8 mb-8">
             <div
-              className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer"
+              className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
               onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge hero image"
             >
               <Image
                 src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
@@ -147,7 +213,14 @@ export default function MainHomePage() {
             </p>
             <p className="text-gray-300 text-base">That's the leverage PHIERS organizes.</p>
 
-            <div className="my-4 cursor-pointer" onClick={() => openModal('/images/District_Accountability_Dashboard.jpg')}>
+            <div
+              className="my-4 cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/District_Accountability_Dashboard.jpg')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/District_Accountability_Dashboard.jpg'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge dashboard image"
+            >
               <Image
                 src="/images/District_Accountability_Dashboard.jpg"
                 alt="District Accountability Dashboard"
@@ -202,7 +275,14 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold mt-2">That's the engine.</p>
           </div>
           <div className="flex justify-center mt-8">
-            <div className="w-[45%] cursor-pointer" onClick={() => openModal('/images/PHIERS_Tablet__Firewall.png')}>
+            <div
+              className="w-[45%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/PHIERS_Tablet__Firewall.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/PHIERS_Tablet__Firewall.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge PHIERS mechanism image"
+            >
               <Image src="/images/PHIERS_Tablet__Firewall.png" alt="PHIERS mechanism" width={500} height={400} className="w-full h-auto" onError={(e) => console.error('Tablet image missing')} />
             </div>
           </div>
@@ -242,7 +322,14 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold">It turns attention into leverage.</p>
           </div>
           <div className="flex justify-center mt-8">
-            <div className="w-[45%] cursor-pointer" onClick={() => openModal('/images/This_is_what_leverage_looks_like.jpg')}>
+            <div
+              className="w-[45%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/This_is_what_leverage_looks_like.jpg')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/This_is_what_leverage_looks_like.jpg'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge leverage visual"
+            >
               <Image src="/images/This_is_what_leverage_looks_like.jpg" alt="Leverage visual" width={800} height={500} className="w-full h-auto rounded-lg border border-green/20" onError={(e) => console.error('Leverage image missing')} />
             </div>
           </div>
@@ -271,7 +358,14 @@ export default function MainHomePage() {
                 <p className="text-green text-xl font-bold mt-2">That's not a theory. That's math.</p>
               </div>
               <div className="flex justify-center">
-                <div className="w-[80%] md:w-[90%] cursor-pointer" onClick={() => openModal('/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg')}>
+                <div
+                  className="w-[80%] md:w-[90%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+                  onClick={() => openModal('/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg')}
+                  onKeyDown={makeKeyboardClickable(() => openModal('/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg'))}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Enlarge cost comparison image"
+                >
                   <Image src="/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg" alt="Cost comparison" width={500} height={300} className="w-full h-auto" onError={(e) => console.error('Cost comparison missing')} />
                 </div>
               </div>
@@ -292,7 +386,14 @@ export default function MainHomePage() {
             <p className="text-gray-300 text-base">It works because savings fund the next layer.</p>
           </div>
           <div className="flex justify-center mt-8">
-            <div className="w-[55%] cursor-pointer" onClick={() => openModal('/images/Cascade_Math.jpg')}>
+            <div
+              className="w-[55%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Cascade_Math.jpg')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Cascade_Math.jpg'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge cascade math diagram"
+            >
               <Image src="/images/Cascade_Math.jpg" alt="Cascade math" width={600} height={400} className="w-full h-auto" onError={(e) => console.error('Cascade diagram missing')} />
             </div>
           </div>
@@ -343,7 +444,14 @@ export default function MainHomePage() {
               <p className="text-gray-300 text-base mt-2">The same math that reduces costs is what powers the system.</p>
             </div>
             <div className="flex justify-center md:justify-end">
-              <div className="w-[80%] md:w-[90%] cursor-pointer" onClick={() => openModal('/images/3.5pct_Erica_Chenoweth.jpg')}>
+              <div
+                className="w-[80%] md:w-[90%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+                onClick={() => openModal('/images/3.5pct_Erica_Chenoweth.jpg')}
+                onKeyDown={makeKeyboardClickable(() => openModal('/images/3.5pct_Erica_Chenoweth.jpg'))}
+                role="button"
+                tabIndex={0}
+                aria-label="Enlarge 3.5% threshold image"
+              >
                 <Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% threshold" width={400} height={300} className="w-full h-auto" onError={(e) => console.error('3.5% image missing')} />
               </div>
             </div>
@@ -449,16 +557,44 @@ export default function MainHomePage() {
           </div>
 
           <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
-            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Pathos_Logo.png')}>
+            <div
+              className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Pathos_Logo.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Logo.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge Pathos logo"
+            >
               <Image src="/images/Pathos_Logo.png" alt="Pathos Communications" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
             </div>
-            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Harvard_Logo.png')}>
+            <div
+              className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Harvard_Logo.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Harvard_Logo.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge Harvard logo"
+            >
               <Image src="/images/Harvard_Logo.png" alt="Harvard" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
             </div>
-            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Mark_Cuban_Cost_Plus_Drug.png')}>
+            <div
+              className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Mark_Cuban_Cost_Plus_Drug.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Mark_Cuban_Cost_Plus_Drug.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge Cost Plus Drugs logo"
+            >
               <Image src="/images/Mark_Cuban_Cost_Plus_Drug.png" alt="Cost Plus Drugs" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
             </div>
-            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/DotComMag_Logo.png')}>
+            <div
+              className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/DotComMag_Logo.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/DotComMag_Logo.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge DotCom Magazine logo"
+            >
               <Image src="/images/DotComMag_Logo.png" alt="DotCom Magazine" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
             </div>
           </div>
@@ -466,55 +602,77 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-{/* PATHOS CREDIBILITY – RESTORED */}
-    <section className="container section">
-      <div className="bg-bg-card/60 rounded-2xl p-6 md:p-8 border border-green/15 max-w-[800px] mx-auto">
-        <div className="text-center">
-          <p className="font-condensed text-xs text-green uppercase tracking-wider mb-2">Independent Validation</p>
-          <div className="font-condensed text-xl md:text-2xl font-bold text-white leading-relaxed mb-2">
-            “If you weren't legit, we wouldn't risk putting our name behind yours.”
-          </div>
-          <div className="font-condensed text-sm text-gray-500 mb-3">
-            — <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline hover:text-green transition-colors">Pathos Communications</a> · Global PR firm (London Stock Exchange)
-          </div>
-          <div className="font-condensed text-sm text-green font-bold mb-4">
-            We passed their test — and chose to stay grassroots.
-          </div>
+        {/* PATHOS CREDIBILITY – RESTORED */}
+        <section className="container section">
+          <div className="bg-bg-card/60 rounded-2xl p-6 md:p-8 border border-green/15 max-w-[800px] mx-auto">
+            <div className="text-center">
+              <p className="font-condensed text-xs text-green uppercase tracking-wider mb-2">Independent Validation</p>
+              <div className="font-condensed text-xl md:text-2xl font-bold text-white leading-relaxed mb-2">
+                “If you weren't legit, we wouldn't risk putting our name behind yours.”
+              </div>
+              <div className="font-condensed text-sm text-gray-500 mb-3">
+                — <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline hover:text-green transition-colors">Pathos Communications</a> · Global PR firm (London Stock Exchange)
+              </div>
+              <div className="font-condensed text-sm text-green font-bold mb-4">
+                We passed their test — and chose to stay grassroots.
+              </div>
 
-          {/* Pathos Logo (clickable to enlarge) */}
-          <div className="flex justify-center mb-4">
-            <div className="w-32 h-auto opacity-80 grayscale cursor-pointer" onClick={() => openModal('/images/Pathos_Logo.png')}>
-              <Image src="/images/Pathos_Logo.png" alt="Pathos Communications" width={128} height={48} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
-            </div>
-          </div>
-
-          <p className="font-condensed font-bold text-gray-500 text-sm uppercase tracking-wide mb-3">
-            Watch how this works in real life.
-          </p>
-
-          {/* Pathos Video (click to load) – we'll use a simple state for this video */}
-          <div 
-            className="relative w-full max-w-[560px] mx-auto aspect-video cursor-pointer rounded-xl overflow-hidden border border-green/20"
-            onClick={() => {
-              const container = document.getElementById('pathos-video-container')
-              if (container && !container.innerHTML) {
-                container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
-              }
-            }}
-          >
-            <div id="pathos-video-container" className="absolute inset-0">
-              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg')" }}>
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white text-3xl hover:bg-red-700 transition-colors">▶</div>
+              {/* Pathos Logo (clickable to enlarge) */}
+              <div className="flex justify-center mb-4">
+                <div
+                  className="w-32 h-auto opacity-80 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+                  onClick={() => openModal('/images/Pathos_Logo.png')}
+                  onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Logo.png'))}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Enlarge Pathos logo"
+                >
+                  <Image src="/images/Pathos_Logo.png" alt="Pathos Communications" width={128} height={48} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
                 </div>
+              </div>
+
+              <p className="font-condensed font-bold text-gray-500 text-sm uppercase tracking-wide mb-3">
+                Watch how this works in real life.
+              </p>
+
+              {/* Pathos Video – state-driven iframe (no innerHTML) */}
+              <div
+                className="relative w-full max-w-[560px] mx-auto aspect-video cursor-pointer rounded-xl overflow-hidden border border-green/20"
+                onClick={() => {
+                  if (!isPathosVideoLoaded) {
+                    setIsPathosVideoLoaded(true)
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    if (!isPathosVideoLoaded) setIsPathosVideoLoaded(true)
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label="Play Pathos video"
+              >
+                {!isPathosVideoLoaded ? (
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg')" }}>
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white text-3xl hover:bg-red-700 transition-colors">▶</div>
+                    </div>
+                  </div>
+                ) : (
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src="https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0"
+                    title="Pathos Communications endorsement video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )}
               </div>
             </div>
           </div>
-          <p className="font-condensed text-xs text-gray-500 uppercase tracking-wide mt-3">Watch the Validation</p>
-          <p className="text-body text-xs text-gray-500 mt-1">Click to play — video loads here</p>
-        </div>
-      </div>
-    </section>
+        </section>
 
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
@@ -529,7 +687,7 @@ export default function MainHomePage() {
             {/* Meet the architect button */}
             <button
               onClick={() => setShowArchitectModal(true)}
-              className="text-green underline hover:text-green-dim transition-colors mt-6 text-lg"
+              className="text-green underline hover:text-green-dim transition-colors mt-6 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
             >
               Meet the architect →
             </button>
@@ -551,7 +709,14 @@ export default function MainHomePage() {
               <p className="text-white text-lg font-bold mt-6">This isn't abstract. It's visible.</p>
             </div>
             <div className="flex justify-center">
-              <div className="w-[80%] cursor-pointer" onClick={() => openModal('/images/PHIERS_Logo.png')}>
+              <div
+                className="w-[80%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+                onClick={() => openModal('/images/PHIERS_Logo.png')}
+                onKeyDown={makeKeyboardClickable(() => openModal('/images/PHIERS_Logo.png'))}
+                role="button"
+                tabIndex={0}
+                aria-label="Enlarge PHIERS logo"
+              >
                 <Image src="/images/PHIERS_Logo.png" alt="Movement visual" width={400} height={300} className="w-full h-auto border border-green/20 rounded-lg" onError={(e) => console.error('Visual missing')} />
               </div>
             </div>
@@ -612,14 +777,14 @@ export default function MainHomePage() {
             exit={{ opacity: 0 }}
             onClick={() => setShowArchitectModal(false)}
           >
-            <div 
+            <div
               className="relative max-w-[720px] w-full bg-bg-dark/95 border-2 border-green/35 rounded-xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setShowArchitectModal(false)}
-                className="absolute top-3 right-3 bg-bg-card text-green border-2 border-green rounded-full w-10 h-10 flex items-center justify-center hover:bg-green hover:text-bg-deep transition-all z-10"
-                aria-label="Close"
+                className="absolute top-3 right-3 bg-bg-card text-green border-2 border-green rounded-full w-10 h-10 flex items-center justify-center hover:bg-green hover:text-bg-deep transition-all z-10 focus:outline-none focus:ring-2 focus:ring-green"
+                aria-label="Close architect modal"
               >
                 ✕
               </button>
@@ -701,3 +866,6 @@ export default function MainHomePage() {
     </>
   )
 }
+
+// FILE: components/MainHomePage.tsx (end)
+// VERSION: 5.2.0

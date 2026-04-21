@@ -1,138 +1,17 @@
+// FILE: components/PreHomepage.tsx
+// VERSION: 2.0.0 (imports slides from external file, all features intact)
+
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import slides from './slides'   // <-- external slide data
 
 type Props = {
   onGoToHomepage: () => void
   onGoToPetition: () => void
 }
-
-const slides = [
-  // ✅ ORIGINAL OPENING – STRONGER
-  { 
-    title: "Congress doesn't listen.", 
-    body: [
-      "Not because they can't.",
-      "Because nothing forces them to."
-    ],
-    greenLines: [1]
-  },
-
-  { 
-    title: "Congress can fix most of what's broken.", 
-    body: ["They just don't have to."] 
-  },
-
-  // ✅ WAR – CLEAR + CONFRONTATIONAL
-  { 
-    title: "Congress can stop this war.", 
-    body: [
-      "They haven't.",
-      "That failure is proof."
-    ],
-    greenLines: [1]
-  },
-
-  { 
-    title: "Proof they are not representing their constituents.", 
-    body: [
-      "And that gives us the right to replace them."
-    ],
-    greenLines: [0]
-  },
-
-  { 
-    title: "Opinions don't force action.", 
-    body: [
-      "Outrage doesn't force action.", 
-      "Noise doesn't force action."
-    ] 
-  },
-
-  // ✅ "PRESSURE" → "LEVERAGE" (brand consistency)
-  { 
-    title: "Only leverage works.", 
-    body: [
-      "But only if it's organized in the right place."
-    ] 
-  },
-
-  { 
-    title: "We track how many people in each congressional district", 
-    body: ["have gone on record."] 
-  },
-
-  // ✅ NADER ATTRIBUTION MERGED INTO THIS SLIDE (no separate slide)
-  
-    { 
-      title: "Alone, you're easy to ignore.", 
-      body: ["1,500 people in your district are not.", "— Ralph Nader"],
-      greenLines: [0]
-    },  // ← add this comma
-
-  {
-    title: "That's the tipping point.",
-    body: [
-      "Just enough people — in the right place, at the same time."
-    ],
-    greenLines: [0]
-  },
-
-  {
-    title: "1,500 people per district.",
-    body: [
-      "Across 435 districts, that's about 650,000 people.", 
-      "That's enough to force response nationwide."
-    ],
-    greenLines: [1]
-  },
-
-  {
-    title: "When 1,500 people are on record,",
-    body: [
-      "representatives must respond in public.", 
-      "Or they get replaced."
-    ],
-    greenLines: [1]   // second line green for emphasis
-  },
-
-  { 
-    title: "That's leverage.", 
-    body: [
-      "Not opinion.", 
-      "Not noise.", 
-      "Consequence that can't be ignored."
-    ],
-    greenLines: [2]
-  },
-
-  // ✅ ADDED BACK: EXPLICIT "HOW TO END THE WAR" SLIDE
-  {
-    title: "This is how you end the war.",
-    body: ["Force Congress to act.", "Or replace them."],
-    greenLines: [0, 1]
-  },
-
-  { 
-    title: "PHIERS", 
-    body: ["Power Held In Every Representative's Seat"],
-    isAcronymSlide: true 
-  },
-
-  // ✅ FINAL SLIDE – unchanged
-  {
-    title: "If enough people move from",
-    body: [
-      "“I agree”", 
-      "→", 
-      "“I’m on record”", 
-      "Congress has to act.", 
-      "Or gets replaced."
-    ]
-  }
-]
 
 const SWIPE_THRESHOLD = 50
 const TRANSITION_MS = 400
@@ -251,6 +130,59 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
+    // Custom layout for redesigned PHIERS acronym slide
+    if (slide.customLayout) {
+      const letters = "PHIERS".split('')
+      const words = slide.body
+      return (
+        <div className="flex flex-col items-center space-y-6 mt-8">
+          <div className="flex justify-center gap-6 md:gap-10 text-4xl md:text-6xl font-light tracking-widest">
+            {letters.map((letter, idx) => (
+              <span key={idx} className="text-green font-bold">{letter}</span>
+            ))}
+          </div>
+          <div className="grid grid-cols-6 gap-2 md:gap-4 text-center text-xs md:text-sm font-medium text-gray-300 max-w-full">
+            {words.map((word, idx) => (
+              <div key={idx} className="uppercase leading-tight">{word}</div>
+            ))}
+          </div>
+          <p className="text-gray-500 text-sm mt-6 italic">{slide.punchLine}</p>
+        </div>
+      )
+    }
+
+    // New final slide with sequential fade-in
+    if (slide.isFinalSlide) {
+      return (
+        <div className="space-y-8 max-w-2xl mx-auto text-center">
+          <motion.p
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-gray-400 text-xl md:text-2xl font-light"
+          >
+            {slide.body[0]}
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            className="text-green text-3xl md:text-4xl font-bold"
+          >
+            {slide.body[1]}
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="text-white text-2xl md:text-3xl font-semibold leading-relaxed"
+          >
+            {slide.body[2]}
+          </motion.p>
+        </div>
+      )
+    }
+
     const greenLineIndices = slide.greenLines || []
     return slide.body.map((line, i) => {
       if (line === '→') {
@@ -285,7 +217,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
-      {/* Header with logo and skip */}
       <div className="flex justify-between items-start w-full">
         <div className="w-12" aria-hidden="true" />
         <div className="pointer-events-none">
@@ -300,7 +231,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </button>
       </div>
 
-      {/* Main content – clickable area only on text container */}
       <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full">
         <div
           className={`text-center w-full py-6 ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
@@ -322,7 +252,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </div>
       </div>
 
-      {/* Bottom navigation: dots, counter, back button */}
       <div className="flex flex-col items-center gap-3 mt-8 pb-4">
         <div className="flex gap-2">
           {slides.map((_, i) => (
@@ -383,3 +312,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     </div>
   )
 }
+
+// FILE: components/PreHomepage.tsx (end)
+// VERSION: 2.0.0
