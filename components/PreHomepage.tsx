@@ -18,7 +18,10 @@ const slides = [
   { title: "Alone, you're easy to ignore.", body: ["1,500 people in your district are not."] },
   { 
     title: "That's the tipping point.", 
-    body: ["Just enough people — in the right place, at the same time."],
+    body: [
+    "Just enough people — in the right place, at the same time.",
+    "— Ralph Nader, proven in civic campaigns"
+  ],
     greenLines: [0]
   },
   {
