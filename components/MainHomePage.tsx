@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 5.6.1 (refactored: accessibility, focus trap, iframe state, useCallback, no removal)
+// VERSION: 5.6.2 (added spacer to prevent navigation overlap on mobile)
 
 'use client'
 
@@ -147,7 +147,10 @@ export default function MainHomePage() {
       <Navigation />
 
       <main className="font-sans">
-       <section className="container text-center pt-24 md:pt-12 pb-4">
+        {/* Spacer to prevent navigation overlap */}
+        <div className="h-16 md:h-20"></div>
+        <section className="container text-center pt-4 md:pt-6 pb-4">
+
           <h1 className="mb-4">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
             <br />
@@ -845,5 +848,5 @@ export default function MainHomePage() {
   )
 }
 
-// FILE: components/MainHomePage.tsx (end)
-// VERSION: 5.6.1
+// FILE: components/MainHomePage.tsx
+// VERSION: 5.6.2 (added spacer to prevent navigation overlap on mobile)
