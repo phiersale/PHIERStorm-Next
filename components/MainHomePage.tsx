@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 5.2.0 (refactored: accessibility, focus trap, iframe state, useCallback, no removal)
+// VERSION: 5.3.0 (refactored: accessibility, focus trap, iframe state, useCallback, no removal)
 
 'use client'
 
@@ -826,7 +826,7 @@ export default function MainHomePage() {
         )}
       </AnimatePresence>
 
-      <style jsx global>{`
+       <style jsx global>{`
         .back-to-top {
           position: fixed;
           bottom: 24px;
@@ -858,6 +858,7 @@ export default function MainHomePage() {
         .bg-green-glow {
           background: rgba(61, 220, 132, 0.06);
         }
+        
       `}</style>
     </>
   )
