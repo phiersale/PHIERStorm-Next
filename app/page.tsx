@@ -86,27 +86,25 @@ export default function Page() {
                   SKIP
                 </button>
               </div>
-
+ 
               {/* CONTENT */}
-              <div className="text-center mt-8">
-                <h2 className="text-white text-4xl md:text-5xl font-light mb-4">
+              <div className="text-center mt-6">
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
                   Take a breath.
                 </h2>
 
-                <p className="text-gray-300 text-lg md:text-xl mb-2">
+                <p className="text-gray-300 text-lg md:text-xl mb-1">
                   What you’re about to see is simple.
                 </p>
 
-                <p className="text-gray-300 text-lg md:text-xl mb-6">
+                <p className="text-gray-300 text-lg md:text-xl mb-4">
                   But it changes how power actually works.
                 </p>
 
-                <p className="text-gray-400 text-base md:text-lg mb-8">
-                  Most people haven’t seen the mechanism yet.
-                </p>
+                {/* The line "Most people haven't seen the mechanism yet." has been removed */}
 
-                <div className="border-t border-green/20 pt-6">
-                  <p className="text-green text-2xl md:text-3xl font-bold mb-2">
+                <div className="border-t border-green/20 pt-4 mt-1">
+                  <p className="text-green text-2xl md:text-3xl font-bold mb-1">
                     YOU ARE NOT POWERLESS
                   </p>
 
@@ -115,7 +113,7 @@ export default function Page() {
                   </p>
                 </div>
 
-                <p className="text-gray-500 text-sm mt-8">
+                <p className="text-gray-500 text-sm mt-5">
                   Click anywhere to continue
                 </p>
               </div>
