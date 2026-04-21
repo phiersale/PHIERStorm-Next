@@ -67,8 +67,9 @@ const slides = [
   // ✅ NADER ATTRIBUTION MERGED INTO THIS SLIDE (no separate slide)
   { 
     title: "Alone, you're easy to ignore.", 
-    body: ["1,500 people in your district are not.", "— Ralph Nader"] 
-  },
+    body: ["1,500 people in your district are not.", "— Ralph Nader"],
+    greenLines: [0]
+  }
 
   {
     title: "That's the tipping point.",
