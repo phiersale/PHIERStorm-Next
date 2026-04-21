@@ -10,20 +10,74 @@ type Props = {
 }
 
 const slides = [
-  { title: "Congress can fix most of what's broken.", body: ["It just doesn't have to."] },
-  { title: "Not because they can't.", body: ["Because nothing forces them to."] },
-  { title: "Opinions don't force action.", body: ["Outrage doesn't force action.", "Noise doesn't force action."] },
-  { title: "Only pressure works.", body: ["But only if it's organized in the right place."] },
-  { title: "We track how many people in each congressional district", body: ["have gone on record."] },
-  { title: "Alone, you're easy to ignore.", body: ["1,500 people in your district are not."] },
+  // ✅ ORIGINAL OPENING – STRONGER
   { 
-    title: "That's the tipping point.", 
+    title: "Congress doesn't listen.", 
     body: [
-    "Just enough people — in the right place, at the same time.",
-    "— Ralph Nader, proven in civic campaigns"
-  ],
+      "Not because they can't.",
+      "Because nothing forces them to."
+    ],
+    greenLines: [1]
+  },
+
+  { 
+    title: "Congress can fix most of what's broken.", 
+    body: ["They just don't have to."] 
+  },
+
+  // ✅ WAR – CLEAR + CONFRONTATIONAL
+  { 
+    title: "Congress can stop this war.", 
+    body: [
+      "They haven't.",
+      "That failure is proof."
+    ],
+    greenLines: [1]
+  },
+
+  { 
+    title: "Proof they are not representing their constituents.", 
+    body: [
+      "And that gives us the right to replace them."
+    ],
     greenLines: [0]
   },
+
+  { 
+    title: "Opinions don't force action.", 
+    body: [
+      "Outrage doesn't force action.", 
+      "Noise doesn't force action."
+    ] 
+  },
+
+  // ✅ "PRESSURE" → "LEVERAGE" (brand consistency)
+  { 
+    title: "Only leverage works.", 
+    body: [
+      "But only if it's organized in the right place."
+    ] 
+  },
+
+  { 
+    title: "We track how many people in each congressional district", 
+    body: ["have gone on record."] 
+  },
+
+  // ✅ NADER ATTRIBUTION MERGED INTO THIS SLIDE (no separate slide)
+  { 
+    title: "Alone, you're easy to ignore.", 
+    body: ["1,500 people in your district are not.", "— Ralph Nader"] 
+  },
+
+  {
+    title: "That's the tipping point.",
+    body: [
+      "Just enough people — in the right place, at the same time."
+    ],
+    greenLines: [0]
+  },
+
   {
     title: "1,500 people per district.",
     body: [
@@ -32,14 +86,16 @@ const slides = [
     ],
     greenLines: [1]
   },
+
   {
     title: "When 1,500 people are on record,",
     body: [
       "representatives must respond in public.", 
       "Or they get replaced."
     ],
-    greenLines: [0]
+    greenLines: [1]   // second line green for emphasis
   },
+
   { 
     title: "That's leverage.", 
     body: [
@@ -49,33 +105,30 @@ const slides = [
     ],
     greenLines: [2]
   },
-  // ✨ PHIERS acronym slide – now styled to stand out
+
+  // ✅ ADDED BACK: EXPLICIT "HOW TO END THE WAR" SLIDE
+  {
+    title: "This is how you end the war.",
+    body: ["Force Congress to act.", "Or replace them."],
+    greenLines: [0, 1]
+  },
+
   { 
     title: "PHIERS", 
     body: ["Power Held In Every Representative's Seat"],
     isAcronymSlide: true 
   },
-  {
-    title: "When healthcare stops costing 10× more than it should,",
-    body: ["the savings don't vanish.", "They fund more people.", "And power the next wave of access."]
-  },
-  {
-    title: "That's how this works.",
-    body: ["Savings create proof.", "Proof creates leverage.", "Leverage creates results."]
-  },
-  {
-    title: "PHIERS is 100% self-sustaining.",
-    body: [
-      "It’s powered by the savings it creates.",
-      "It runs on solidarity and accountability.",
-      "Representatives respond to constituents.",
-      "Or they get replaced."
-    ]
-  },
-  // Final slide – all body lines become green + bold
+
+  // ✅ FINAL SLIDE – unchanged
   {
     title: "If enough people move from",
-    body: ["“I agree”", "→", "“I’m on record”", "Congress has to act.", "Or gets replaced."]
+    body: [
+      "“I agree”", 
+      "→", 
+      "“I’m on record”", 
+      "Congress has to act.", 
+      "Or gets replaced."
+    ]
   }
 ]
 
@@ -135,13 +188,13 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     }, TRANSITION_MS)
   }, [isTransitioning])
 
+  // Keyboard navigation (including Spacebar)
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') {
         e.preventDefault()
         next()
-      }
-      else if (e.key === 'ArrowLeft') {
+      } else if (e.key === 'ArrowLeft') {
         e.preventDefault()
         prev()
       }
@@ -150,6 +203,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     return () => window.removeEventListener('keydown', handler)
   }, [next, prev])
 
+  // Swipe navigation
   useEffect(() => {
     const onTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.touches[0].clientX
@@ -170,6 +224,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     }
   }, [next, prev])
 
+  // Reduced motion detection
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
     const update = (e: MediaQueryListEvent | MediaQueryList) => setPrefersReducedMotion(e.matches)
@@ -186,7 +241,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const isLastSlide = index === slides.length - 1
   const transitionDuration = prefersReducedMotion ? 0 : 0.4
 
-  // Title: make PHIERS slide title green + bold
   const renderTitle = () => {
     if (slide.title === "PHIERS") {
       return <h1 className="text-4xl md:text-5xl font-bold mb-6 text-green">{slide.title}</h1>
@@ -194,7 +248,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     return <h1 className="text-4xl md:text-5xl font-light mb-6">{slide.title}</h1>
   }
 
-  // Body: special handling for acronym slide
   const renderBody = () => {
     const greenLineIndices = slide.greenLines || []
     return slide.body.map((line, i) => {
@@ -204,7 +257,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       if (isLastSlide) {
         return <p key={i} className="text-2xl md:text-3xl font-bold text-green">{line}</p>
       }
-      // Acronym slide: bold first letter of each word
       if (slide.isAcronymSlide) {
         const words = line.split(' ')
         const formatted = words.map((word, idx) => {
@@ -231,6 +283,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
+      {/* Header with logo and skip */}
       <div className="flex justify-between items-start w-full">
         <div className="w-12" aria-hidden="true" />
         <div className="pointer-events-none">
@@ -245,10 +298,11 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </button>
       </div>
 
+      {/* Main content – clickable area only on text container */}
       <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full">
         <div
+          className={`text-center w-full py-6 ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
           onClick={!isLastSlide && !isTransitioning ? next : undefined}
-          className={`text-center w-full ${!isLastSlide ? 'cursor-pointer' : ''}`}
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -260,14 +314,13 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
               whileTap={{ scale: 1 }}
             >
               {renderTitle()}
-              <div className="space-y-3">
-                {renderBody()}
-              </div>
+              <div className="space-y-3">{renderBody()}</div>
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
+      {/* Bottom navigation: dots, counter, back button */}
       <div className="flex flex-col items-center gap-3 mt-8 pb-4">
         <div className="flex gap-2">
           {slides.map((_, i) => (

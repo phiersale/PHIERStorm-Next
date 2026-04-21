@@ -118,21 +118,27 @@ div:active, button:active, .cursor-pointer:active {
 
 /* Scrollbar styling (always visible, styled to match theme) */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;          /* thinner */
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a1628;
+  background: #0a1628; /* dark, matches background */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3ddc84;
-  border-radius: 4px;
+  background: #1a2a3a; /* dark gray – almost black */
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2ab568;
+  background: #2a3a4a; /* slightly lighter on hover, still dark */
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #1a2a3a #0a1628;
 }
 
 /* Two-tone typography classes */
