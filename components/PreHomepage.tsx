@@ -69,8 +69,8 @@ const slides = [
       "Representatives respond to constituents.",
       "Or they get replaced."
     ]
-  }
-  
+  },
+
   // Final slide – all body lines become green + bold (handled by isLastSlide)
   {
     title: "If enough people move from",
