@@ -1,7 +1,3 @@
-Moving forward, be sure to increment the version id and put the naem of the file on top and bottom of ALL files you create. ASk me the previous version if you dont know it.  Other chats repeat the same version ID and dont increment.
-
-ok, review this code:  
-
 // FILE: components/MainHomePage.tsx
 // VERSION: 5.2.0 (refactored: accessibility, focus trap, iframe state, useCallback, no removal)
 
@@ -559,13 +555,13 @@ export default function MainHomePage() {
           <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
             <div
               className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
-              onClick={() => openModal('/images/Pathos_Logo.png')}
-              onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Logo.png'))}
+              onClick={() => openModal('/images/Pathos_Comms_Logo.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Comms_Logo.png'))}
               role="button"
               tabIndex={0}
               aria-label="Enlarge Pathos logo"
             >
-              <Image src="/images/Pathos_Logo.png" alt="Pathos Communications" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
+              <Image src="/images/Pathos_Comms_Logo.png" alt="Pathos Communications" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
             </div>
             <div
               className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
@@ -621,7 +617,7 @@ export default function MainHomePage() {
               <div className="flex justify-center mb-4">
                 <div
                   className="w-32 h-auto opacity-80 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
-                  onClick={() => openModal('/images/Pathos_Logo.png')}
+                  onClick={() => openModal('/images/Pathos_Comms_Logo.png')}
                   onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Logo.png'))}
                   role="button"
                   tabIndex={0}
