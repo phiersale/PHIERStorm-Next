@@ -147,7 +147,7 @@ export default function MainHomePage() {
       <Navigation />
 
       <main className="font-sans">
-        <section className="container text-center pt-16 md:pt-12 pb-4">
+    <section className="container text-center pt-20 md:pt-12 pb-4">
           <h1 className="mb-4">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
             <br />
