@@ -1,5 +1,20 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 2.0.0 (imports slides from external file, all features intact)
+// VERSION: 2.0.1 
+
+'use client'
+
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
+import slides from './slides'   // <-- external slide data
+
+type Props = {
+  onGoToHomepage: () => void
+  onGoToPetition: () => void
+}
+
+const SWIPE_TH// FILE: components/PreHomepage.tsx
+// VERSION: 2.0.2 (fixed JSX syntax and mobile layout for PHIERS acronym slide)
 
 'use client'
 
@@ -136,12 +151,12 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       const words = slide.body
       return (
         <div className="flex flex-col items-center space-y-6 mt-8">
-          <div className="flex justify-center gap-6 md:gap-10 text-4xl md:text-6xl font-light tracking-widest">
+          <div className="flex justify-center gap-3 sm:gap-6 md:gap-10 text-3xl sm:text-4xl md:text-6xl font-light tracking-widest">
             {letters.map((letter, idx) => (
               <span key={idx} className="text-green font-bold">{letter}</span>
             ))}
           </div>
-          <div className="grid grid-cols-6 gap-2 md:gap-4 text-center text-xs md:text-sm font-medium text-gray-300 max-w-full">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 sm:gap-2 md:gap-4 text-center text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 max-w-full">
             {words.map((word, idx) => (
               <div key={idx} className="uppercase leading-tight">{word}</div>
             ))}
@@ -156,6 +171,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       return (
         <div className="space-y-8 max-w-2xl mx-auto text-center">
           <motion.p
+            key="final-line-1"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -164,6 +180,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             {slide.body[0]}
           </motion.p>
           <motion.p
+            key="final-line-2"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
@@ -172,6 +189,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             {slide.body[1]}
           </motion.p>
           <motion.p
+            key="final-line-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -235,6 +253,15 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         <div
           className={`text-center w-full py-6 ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
           onClick={!isLastSlide && !isTransitioning ? next : undefined}
+          onKeyDown={(e) => {
+            if (!isLastSlide && !isTransitioning && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault()
+              next()
+            }
+          }}
+          role="button"
+          tabIndex={!isLastSlide ? 0 : -1}
+          aria-label={!isLastSlide ? "Click or press Enter to advance to next slide" : undefined}
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -314,4 +341,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 2.0.0
+// VERSION: 2.0.2
