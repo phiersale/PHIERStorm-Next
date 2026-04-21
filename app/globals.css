@@ -91,16 +91,48 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-y: scroll; /* Always show vertical scrollbar to prevent white flash */
   }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
     margin: 0;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: thin;     /* Firefox */
   }
 
   [data-hydration-error] {
     display: none !important;
   }
+}
+
+/* Remove tap highlight flash */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+div:active, button:active, .cursor-pointer:active {
+  background-color: transparent !important;
+}
+
+/* Scrollbar styling (always visible, styled to match theme) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3ddc84;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2ab568;
 }
 
 /* Two-tone typography classes */
@@ -317,9 +349,8 @@
   z-index: 40;
 }
 
-/* Push main content down when menu is open – optional */
 .menu-open main {
-  margin-top: 0; /* already fine */
+  margin-top: 0;
 }
 
 /* Use Bahnschrift or fallback to sans */
@@ -329,4 +360,10 @@ body, button, input, textarea, .font-sans {
 
 .border-t-gold {
   border-top-color: #ffd60a;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }

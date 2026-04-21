@@ -9,10 +9,6 @@ type Props = {
   onGoToPetition: () => void
 }
 
-// Each slide can have:
-// - title (string)
-// - body (array of strings)
-// - greenLines (optional array of indices for which body lines get green highlight)
 const slides = [
   { title: "Congress can fix most of what's broken.", body: ["It just doesn't have to."] },
   { title: "Not because they can't.", body: ["Because nothing forces them to."] },
@@ -20,11 +16,10 @@ const slides = [
   { title: "Only pressure works.", body: ["But only if it's organized in the right place."] },
   { title: "We track how many people in each congressional district", body: ["have gone on record."] },
   { title: "Alone, you're easy to ignore.", body: ["1,500 people in your district are not."] },
-  // Progressive green starts here – only last line of each slide is green
   { 
     title: "That's the tipping point.", 
     body: ["Just enough people — in the right place, at the same time."],
-    greenLines: [0] // last (and only) line
+    greenLines: [0]
   },
   {
     title: "1,500 people per district.",
@@ -32,7 +27,7 @@ const slides = [
       "Across 435 districts, that's about 650,000 people.", 
       "That's enough to force response nationwide."
     ],
-    greenLines: [1] // second line
+    greenLines: [1]
   },
   {
     title: "When 1,500 people are on record,",
@@ -40,7 +35,7 @@ const slides = [
       "representatives must respond in public.", 
       "Or they get replaced."
     ],
-    greenLines: [0] // first line
+    greenLines: [0]
   },
   { 
     title: "That's leverage.", 
@@ -49,9 +44,14 @@ const slides = [
       "Not noise.", 
       "Consequence that can't be ignored."
     ],
-    greenLines: [2] // third line
+    greenLines: [2]
   },
-  { title: "PHIERS", body: ["Power Held In Every Representative's Seat"] },
+  // ✨ PHIERS acronym slide – now styled to stand out
+  { 
+    title: "PHIERS", 
+    body: ["Power Held In Every Representative's Seat"],
+    isAcronymSlide: true 
+  },
   {
     title: "When healthcare stops costing 10× more than it should,",
     body: ["the savings don't vanish.", "They fund more people.", "And power the next wave of access."]
@@ -60,7 +60,6 @@ const slides = [
     title: "That's how this works.",
     body: ["Savings create proof.", "Proof creates leverage.", "Leverage creates results."]
   },
-  
   {
     title: "PHIERS is 100% self-sustaining.",
     body: [
@@ -70,8 +69,7 @@ const slides = [
       "Or they get replaced."
     ]
   },
-
-  // Final slide – all body lines become green + bold (handled by isLastSlide)
+  // Final slide – all body lines become green + bold
   {
     title: "If enough people move from",
     body: ["“I agree”", "→", "“I’m on record”", "Congress has to act.", "Or gets replaced."]
@@ -134,7 +132,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     }, TRANSITION_MS)
   }, [isTransitioning])
 
-  // Keyboard navigation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
@@ -149,7 +146,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     return () => window.removeEventListener('keydown', handler)
   }, [next, prev])
 
-  // Swipe navigation
   useEffect(() => {
     const onTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.touches[0].clientX
@@ -170,7 +166,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     }
   }, [next, prev])
 
-  // Reduced motion detection
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
     const update = (e: MediaQueryListEvent | MediaQueryList) => setPrefersReducedMotion(e.matches)
@@ -187,16 +182,15 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const isLastSlide = index === slides.length - 1
   const transitionDuration = prefersReducedMotion ? 0 : 0.4
 
-  // Title is always white (no green titles)
+  // Title: make PHIERS slide title green + bold
   const renderTitle = () => {
+    if (slide.title === "PHIERS") {
+      return <h1 className="text-4xl md:text-5xl font-bold mb-6 text-green">{slide.title}</h1>
+    }
     return <h1 className="text-4xl md:text-5xl font-light mb-6">{slide.title}</h1>
   }
 
-  // Body lines: 
-  // - Last slide: all lines green + bold
-  // - Otherwise: if line index is in slide.greenLines, make it green (normal weight)
-  // - Arrow line always bold
-  // - Default: gray
+  // Body: special handling for acronym slide
   const renderBody = () => {
     const greenLineIndices = slide.greenLines || []
     return slide.body.map((line, i) => {
@@ -206,6 +200,21 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       if (isLastSlide) {
         return <p key={i} className="text-2xl md:text-3xl font-bold text-green">{line}</p>
       }
+      // Acronym slide: bold first letter of each word
+      if (slide.isAcronymSlide) {
+        const words = line.split(' ')
+        const formatted = words.map((word, idx) => {
+          if (word.length === 0) return null
+          const firstLetter = word[0]
+          const rest = word.slice(1)
+          return (
+            <span key={idx}>
+              <strong className="text-green font-bold">{firstLetter}</strong>{rest}{' '}
+            </span>
+          )
+        })
+        return <p key={i} className="text-lg md:text-xl text-white">{formatted}</p>
+      }
       if (greenLineIndices.includes(i)) {
         return <p key={i} className="text-lg md:text-xl text-green">{line}</p>
       }
@@ -213,12 +222,11 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     })
   }
 
-     return (
+  return (
     <div
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
-      {/* Header with logo and skip */}
       <div className="flex justify-between items-start w-full">
         <div className="w-12" aria-hidden="true" />
         <div className="pointer-events-none">
@@ -233,7 +241,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </button>
       </div>
 
-      {/* Main content – centered vertically */}
       <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full">
         <div
           onClick={!isLastSlide && !isTransitioning ? next : undefined}
@@ -246,6 +253,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: transitionDuration, ease: [0.4, 0, 0.2, 1] }}
+              whileTap={{ scale: 1 }}
             >
               {renderTitle()}
               <div className="space-y-3">
@@ -256,7 +264,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </div>
       </div>
 
-      {/* Bottom navigation */}
       <div className="flex flex-col items-center gap-3 mt-8 pb-4">
         <div className="flex gap-2">
           {slides.map((_, i) => (
@@ -304,7 +311,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </div>
       </div>
 
-      {/* Global styles to kill horizontal scroll (scoped to this component) */}
       <style>{`
         .prehomepage-container, .prehomepage-container * {
           overflow-x: hidden !important;
