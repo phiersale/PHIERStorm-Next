@@ -449,6 +449,9 @@ export default function MainHomePage() {
           </div>
 
           <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
+            <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Pathos_Logo.png')}>
+              <Image src="/images/Pathos_Logo.png" alt="Pathos Communications" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
+            </div>
             <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Harvard_Logo.png')}>
               <Image src="/images/Harvard_Logo.png" alt="Harvard" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
             </div>
@@ -462,6 +465,56 @@ export default function MainHomePage() {
         </section>
 
         <hr className="border-green/20" />
+
+{/* PATHOS CREDIBILITY – RESTORED */}
+    <section className="container section">
+      <div className="bg-bg-card/60 rounded-2xl p-6 md:p-8 border border-green/15 max-w-[800px] mx-auto">
+        <div className="text-center">
+          <p className="font-condensed text-xs text-green uppercase tracking-wider mb-2">Independent Validation</p>
+          <div className="font-condensed text-xl md:text-2xl font-bold text-white leading-relaxed mb-2">
+            “If you weren't legit, we wouldn't risk putting our name behind yours.”
+          </div>
+          <div className="font-condensed text-sm text-gray-500 mb-3">
+            — <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline hover:text-green transition-colors">Pathos Communications</a> · Global PR firm (London Stock Exchange)
+          </div>
+          <div className="font-condensed text-sm text-green font-bold mb-4">
+            We passed their test — and chose to stay grassroots.
+          </div>
+
+          {/* Pathos Logo (clickable to enlarge) */}
+          <div className="flex justify-center mb-4">
+            <div className="w-32 h-auto opacity-80 grayscale cursor-pointer" onClick={() => openModal('/images/Pathos_Logo.png')}>
+              <Image src="/images/Pathos_Logo.png" alt="Pathos Communications" width={128} height={48} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
+            </div>
+          </div>
+
+          <p className="font-condensed font-bold text-gray-500 text-sm uppercase tracking-wide mb-3">
+            Watch how this works in real life.
+          </p>
+
+          {/* Pathos Video (click to load) – we'll use a simple state for this video */}
+          <div 
+            className="relative w-full max-w-[560px] mx-auto aspect-video cursor-pointer rounded-xl overflow-hidden border border-green/20"
+            onClick={() => {
+              const container = document.getElementById('pathos-video-container')
+              if (container && !container.innerHTML) {
+                container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+              }
+            }}
+          >
+            <div id="pathos-video-container" className="absolute inset-0">
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg')" }}>
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white text-3xl hover:bg-red-700 transition-colors">▶</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="font-condensed text-xs text-gray-500 uppercase tracking-wide mt-3">Watch the Validation</p>
+          <p className="text-body text-xs text-gray-500 mt-1">Click to play — video loads here</p>
+        </div>
+      </div>
+    </section>
 
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">

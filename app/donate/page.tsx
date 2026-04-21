@@ -1,4 +1,4 @@
-// FILE: app/donate/page.tsx - START
+// FILE: app/donate/page.tsx - WITH QR CODES
 
 'use client'
 
@@ -23,12 +23,10 @@ export default function DonatePage() {
     document.body.style.overflow = ''
   }
 
-  // scrollToTop function with useCallback
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
-  // forwardToChapter wrapped in useCallback
   const forwardToChapter = useCallback(() => {
     const subject = encodeURIComponent("A solution your chapter needs to see — PHIERS.org")
     const body = encodeURIComponent(
@@ -54,7 +52,6 @@ export default function DonatePage() {
             />
           </div>
           <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Fuel the Movement</span>
-          {/* Two-tone H1 - FIXED */}
           <h1 className="mb-4">
             <span className="hero-white">Your Dollar Is</span>
             <br />
@@ -64,7 +61,6 @@ export default function DonatePage() {
             A movement funded by the people belongs to the people. One dollar from a million people is a million dollars.
           </p>
 
-          {/* Updated banner - No March 28 reference */}
           <div className="bg-red-500/10 border-l-4 border-l-red-500 rounded-r-lg p-5 max-w-[700px] mx-auto text-left mb-8">
             <p className="text-white font-bold mb-2">The window is open right now.</p>
             <p className="text-body text-sm">Every dollar builds district-level pressure in Congress. Your support funds organizing, outreach, media, and district coordination — the infrastructure that turns online signatures into town halls and town halls into accountability and accountability into positive change.</p>
@@ -73,7 +69,7 @@ export default function DonatePage() {
 
         <hr className="border-green/20" />
 
-        {/* Anchor Line - ADDED after Hero */}
+        {/* Anchor Line */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
             Nothing changes until ignoring people costs more than responding to them.<br />
@@ -108,20 +104,50 @@ export default function DonatePage() {
 
           <p className="text-center text-gray-400 text-sm italic mb-8">A movement funded by the people belongs to the people.</p>
 
-          {/* Donation Methods */}
-          <div className="bg-bg-dark border-2 border-green rounded-xl p-6 max-w-[500px] mx-auto">
-            <div className="space-y-3 text-left max-w-[300px] mx-auto">
-              <p><strong className="text-white">Venmo:</strong> @Will4PHIERS</p>
-              <p><strong className="text-white">PayPal:</strong> will@phiers.org</p>
-              <p><strong className="text-white">Zelle:</strong> (301) 919-0970 <span className="text-xs text-gray-500">[Zelle only]</span></p>
-              <p className="mt-3"><Link href="https://www.gofundme.com/f/homeless-but-hopeful-affordable-healthcare-good-jobs-ubi" target="_blank" rel="noopener noreferrer" className="text-green font-condensed font-bold hover:underline">GoFundMe Campaign →</Link></p>
+          {/* Donation Methods with QR Codes */}
+          <div className="bg-bg-dark border-2 border-green rounded-xl p-6 max-w-[800px] mx-auto">
+            <h3 className="font-display text-2xl text-center text-white mb-6">Donate Securely</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Venmo */}
+              <div className="text-center cursor-pointer" onClick={() => openModal('/images/venmo_qr.png')}>
+                <div className="bg-white p-3 rounded-xl inline-block mb-3">
+                  <Image src="/images/venmo_qr.png" alt="Venmo QR Code" width={150} height={150} className="mx-auto" />
+                </div>
+                <p className="text-white font-bold">Venmo</p>
+                <p className="text-gray-400 text-sm">@Will4PHIERS</p>
+              </div>
+
+              {/* PayPal */}
+              <div className="text-center cursor-pointer" onClick={() => openModal('/images/paypal_qr.png')}>
+                <div className="bg-white p-3 rounded-xl inline-block mb-3">
+                  <Image src="/images/paypal_qr.png" alt="PayPal QR Code" width={150} height={150} className="mx-auto" />
+                </div>
+                <p className="text-white font-bold">PayPal</p>
+                <p className="text-gray-400 text-sm">will@phiers.org</p>
+              </div>
+
+              {/* Zelle */}
+              <div className="text-center cursor-pointer" onClick={() => openModal('/images/zelle_qr.png')}>
+                <div className="bg-white p-3 rounded-xl inline-block mb-3">
+                  <Image src="/images/zelle_qr.png" alt="Zelle QR Code" width={150} height={150} className="mx-auto" />
+                </div>
+                <p className="text-white font-bold">Zelle</p>
+                <p className="text-gray-400 text-sm">(301) 919-0970</p>
+                <p className="text-gray-500 text-xs">[Zelle only]</p>
+              </div>
+            </div>
+
+            <div className="text-center mt-6">
+              <Link href="https://www.gofundme.com/f/homeless-but-hopeful-affordable-healthcare-good-jobs-ubi" target="_blank" rel="noopener noreferrer" className="text-green font-condensed font-bold hover:underline">
+                GoFundMe Campaign →
+              </Link>
             </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* Can't Donate Section - Updated */}
+        {/* Can't Donate Section */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <p className="text-gray-400 mb-4">Your name matters as much as your dollar.</p>
@@ -135,7 +161,7 @@ export default function DonatePage() {
 
       <Footer />
 
-      {/* Image Modal */}
+      {/* Image Modal for QR Codes */}
       <AnimatePresence>
         {modalImage && (
           <motion.div
@@ -164,7 +190,7 @@ export default function DonatePage() {
         )}
       </AnimatePresence>
 
-      {/* Back-to-top button - FIXED to use scrollToTop */}
+      {/* Back-to-top button */}
       <button 
         onClick={scrollToTop}
         className="back-to-top"
@@ -222,5 +248,3 @@ export default function DonatePage() {
     </>
   )
 }
-
-// END FILE: app/donate/page.tsx
