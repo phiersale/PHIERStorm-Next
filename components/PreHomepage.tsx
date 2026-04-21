@@ -134,10 +134,11 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight' || e.key === 'Enter') {
+      if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') {
         e.preventDefault()
         next()
-      } else if (e.key === 'ArrowLeft') {
+      }
+      else if (e.key === 'ArrowLeft') {
         e.preventDefault()
         prev()
       }

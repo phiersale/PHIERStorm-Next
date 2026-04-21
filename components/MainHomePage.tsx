@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 5.0.0 (war/leverage block, architect modal, copy tweaks)
+// VERSION: 5.1.0 (fixed text-gold, YouTube ID, copy consistency)
 
 'use client'
 
@@ -122,7 +122,7 @@ export default function MainHomePage() {
             </div>
           </div>
 
-          {/* NEW: WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
+          {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
             <p className="text-white text-xl font-bold mb-2">Congress can end the war. Right now.</p>
             <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
@@ -130,8 +130,8 @@ export default function MainHomePage() {
             <p className="text-gray-300 text-base mb-2">That’s where leverage comes in.</p>
             <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – forces their hand.</p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
-            <p className="text-gray-300 text-base mb-2">If they don’t end the war immediately,<br />we recall and replace them before July 4th – Independence Day.</p>
-            <p className="text-white text-lg font-bold mt-2">That’s the leverage. That’s how we make Congress do its job.</p>
+            <p className="text-gray-300 text-base mb-2">If they don’t end the war immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
+            <p className="text-white text-lg font-bold mt-2">That’s how we make Congress do its job.</p>
           </div>
 
           {/* Why 1,500 Matters – removed fake district counter */}
@@ -140,6 +140,7 @@ export default function MainHomePage() {
             <p className="text-gray-300 text-base mb-3">
               Congress doesn't respond to national percentages — it responds to pressure inside each district.
             </p>
+            <p className="text-gray-500 text-xs mt-2">— Ralph Nader, proven in civic campaigns</p>
             <p className="text-gray-300 text-base mb-3">
               When 1,500 people in a district go on record with the same demand,
               the representative is <span className="text-green font-semibold">forced to respond publicly</span> — or <span className="text-green font-semibold">risks losing their seat</span>.
@@ -310,7 +311,7 @@ export default function MainHomePage() {
               <div className="font-display text-2xl text-white mb-1">Political Power</div>
               <p className="text-gray-400 text-sm">1,500 constituents on the record forces a choice: act, or face replacement.</p>
             </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-gold">
+            <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-yellow-400">
               <div className="text-3xl mb-2">💰</div>
               <div className="font-display text-2xl text-white mb-1">Economic Power</div>
               <p className="text-gray-400 text-sm">We're already spending the money — it's just being wasted. Redirecting it changes outcomes.</p>
@@ -583,7 +584,7 @@ export default function MainHomePage() {
                 <div className="flex-1 min-w-[240px] p-6 flex flex-col justify-center">
                   <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-1">The Architect</p>
                   <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-0">Will Price</h3>
-                  <p className="font-condensed text-sm text-gold font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
+                  <p className="font-condensed text-sm text-yellow-400 font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
                   <p className="text-body text-sm leading-relaxed">
                     Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009.
                   </p>
