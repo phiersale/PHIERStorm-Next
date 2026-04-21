@@ -1,27 +1,12 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 2.0.1 
+// VERSION: 2.0.3 (fixed JSX syntax and mobile layout for PHIERS acronym slide)
 
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import slides from './slides'   // <-- external slide data
-
-type Props = {
-  onGoToHomepage: () => void
-  onGoToPetition: () => void
-}
-
-const SWIPE_TH// FILE: components/PreHomepage.tsx
-// VERSION: 2.0.2 (fixed JSX syntax and mobile layout for PHIERS acronym slide)
-
-'use client'
-
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
-import slides from './slides'   // <-- external slide data
+import slides from './slides'
 
 type Props = {
   onGoToHomepage: () => void
@@ -84,7 +69,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     }, TRANSITION_MS)
   }, [isTransitioning])
 
-  // Keyboard navigation (including Spacebar)
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') {
@@ -99,7 +83,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     return () => window.removeEventListener('keydown', handler)
   }, [next, prev])
 
-  // Swipe navigation
   useEffect(() => {
     const onTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.touches[0].clientX
@@ -120,7 +103,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     }
   }, [next, prev])
 
-  // Reduced motion detection
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
     const update = (e: MediaQueryListEvent | MediaQueryList) => setPrefersReducedMotion(e.matches)
@@ -145,7 +127,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
-    // Custom layout for redesigned PHIERS acronym slide
     if (slide.customLayout) {
       const letters = "PHIERS".split('')
       const words = slide.body
@@ -166,7 +147,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       )
     }
 
-    // New final slide with sequential fade-in
     if (slide.isFinalSlide) {
       return (
         <div className="space-y-8 max-w-2xl mx-auto text-center">
@@ -341,4 +321,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 2.0.2
+// VERSION: 2.0.3
