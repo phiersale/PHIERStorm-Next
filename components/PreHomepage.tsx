@@ -53,17 +53,24 @@ const slides = [
   },
   { title: "PHIERS", body: ["Power Held In Every Representative's Seat"] },
   {
-    title: "When people stop overpaying for healthcare,",
-    body: ["the savings don't disappear.", "They fund more people.", "And the system grows on its own."]
+    title: "When healthcare stops costing 10× more than it should,",
+    body: ["the savings don't vanish.", "They fund more people.", "And power the next wave of access."]
   },
   {
     title: "That's how this works.",
-    body: ["Savings create growth.", "Growth creates pressure.", "Pressure creates results."]
+    body: ["Savings create proof.", "Proof creates leverage.", "Leverage creates results."]
   },
+  
   {
-    title: "This doesn't run on donations.",
-    body: ["It runs on coordination.", "And accountability.", "Representatives respond — or they get replaced."]
-  },
+    title: "PHIERS is 100% self-sustaining.",
+    body: [
+      "It’s powered by the savings it creates.",
+      "It runs on solidarity and accountability.",
+      "Representatives respond to constituents.",
+      "Or they get replaced."
+    ]
+  }
+  
   // Final slide – all body lines become green + bold (handled by isLastSlide)
   {
     title: "If enough people move from",
