@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 1.0.3 (clean + bug fixed)
+// VERSION: 1.0.4 (final – all slides have a green hit, errors fixed)
 
 const slides = [
   // 1
@@ -12,11 +12,11 @@ const slides = [
     greenLines: [1]
   },
 
-  // 2
+  // 2 (added emphasis)
   { 
     title: "Congress can fix most of what's broken.", 
     body: ["They just don't have to."],
-    greenLines: []
+    greenLines: [0]
   },
 
   // 3
@@ -38,7 +38,7 @@ const slides = [
     greenLines: [0]
   },
 
-  // 5 (FIXED)
+  // 5 (fixed + emphasis)
   { 
     title: "Opinions don't force action.", 
     body: [
@@ -57,21 +57,21 @@ const slides = [
     greenLines: [0]
   },
 
-  // 7
+  // 7 (added emphasis)
   { 
     title: "We track how many people in each congressional district", 
     body: ["have gone on record."],
     greenLines: [0]
   },
 
-  // 8 (IMPROVED EMPHASIS)
+  // 8 (Nader attribution)
   { 
     title: "Alone, you're easy to ignore.", 
     body: [
       "1,500 people in your district are not.",
       "Proven in civic campaigns — Ralph Nader"
     ],
-    greenLines: [0]
+    greenLines: [0, 1]
   },
 
   // 9
@@ -114,7 +114,7 @@ const slides = [
     greenLines: [2]
   },
 
-  // 13
+  // 13 – PHIERS acronym (custom layout)
   { 
     title: "PHIERS", 
     body: [
@@ -129,7 +129,7 @@ const slides = [
     punchLine: "Power Held In Every Representative's Seat"
   },
 
-  // 14
+  // 14 – final slide
   {
     title: "",
     body: [
@@ -143,3 +143,6 @@ const slides = [
 ];
 
 export default slides;
+
+// FILE: components/slides.ts (end)
+// VERSION: 1.0.4
