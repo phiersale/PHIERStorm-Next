@@ -326,3 +326,7 @@
 body, button, input, textarea, .font-sans {
   font-family: 'Bahnschrift', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
+
+.border-t-gold {
+  border-top-color: #ffd60a;
+}
