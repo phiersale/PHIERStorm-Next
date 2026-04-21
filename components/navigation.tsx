@@ -1,4 +1,5 @@
-// FILE: components/navigation.tsx - UPDATED with Buying Power
+// FILE: components/navigation.tsx 
+// Ver 1.0.5
 
 'use client'
 
@@ -83,3 +84,6 @@ export default function Navigation() {
     </>
   )
 }
+
+// FILE: components/navigation.tsx 
+// Ver 1.0.5

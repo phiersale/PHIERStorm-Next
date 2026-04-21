@@ -1,3 +1,6 @@
+// FILE: app/homepage-teeth/page.tsx
+//  Version 1.0.5
+
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
@@ -239,6 +242,24 @@ export default function HomepageTeethPage() {
         <section className="container section text-center pt-12"><p className="font-condensed font-bold text-base text-gray-400 leading-relaxed">PHIERS is built for one purpose:<br />giving the public the leverage we've always deserved.</p><p className="font-condensed font-bold text-white mt-2">Now it's organized.</p></section>
       </main>
 
+      {/* Navigation – back and forward */}
+        <div className="container py-8 flex flex-col sm:flex-row justify-center gap-4">
+          <Link
+            href="/?skip=slides"
+            className="btn-secondary inline-block text-center"
+            aria-label="Go back to main home page (skip slides)"
+          >
+            ← Back
+          </Link>
+          <Link
+            href="/the-teeth"
+            className="btn-primary inline-block text-center"
+            aria-label="Continue to next page"
+          >
+            Next →
+          </Link>
+        </div>
+      
       <Footer />
 
       {chenowethModalOpen && (<div className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4" onClick={() => setChenowethModalOpen(false)}><div className="relative max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}><button onClick={() => setChenowethModalOpen(false)} className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors">✕</button><Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% — Chenoweth Research" width={800} height={600} className="rounded-xl" /></div></div>)}
@@ -259,3 +280,6 @@ export default function HomepageTeethPage() {
     </>
   )
 }
+
+// FILE: app/homepage-teeth/page.tsx
+//  Version 1.0.5

@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 5.3.0 (refactored: accessibility, focus trap, iframe state, useCallback, no removal)
+// VERSION: 5.6.0 (refactored: accessibility, focus trap, iframe state, useCallback, no removal)
 
 'use client'
 
@@ -666,6 +666,17 @@ export default function MainHomePage() {
                   />
                 )}
               </div>
+
+          {/* Meet the architect – underlined bold text */}
+          <div className="mt-6 text-center">
+            <a
+              href="/our-origins"
+              className="inline-block font-bold underline text-gray-400 hover:text-green transition-colors text-base"
+            >
+              Meet the architect →
+            </a>
+          </div>
+              
             </div>
           </div>
         </section>
@@ -680,13 +691,6 @@ export default function MainHomePage() {
               This is coordinated civic leverage — district by district.<br />
               A counted signal tied to your specific representative.
             </p>
-            {/* Meet the architect button */}
-            <button
-              onClick={() => setShowArchitectModal(true)}
-              className="text-green underline hover:text-green-dim transition-colors mt-6 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
-            >
-              Meet the architect →
-            </button>
           </div>
         </section>
 
@@ -759,6 +763,17 @@ export default function MainHomePage() {
         </section>
       </main>
 
+      {/* Navigation – forward only */}
+        <div className="container py-8 text-center">
+          <Link
+            href="/homepage-teeth"
+            className="inline-block bg-green text-black font-bold py-3 px-6 rounded-lg hover:bg-green-dim transition text-center"
+            aria-label="Continue to next page"
+          >
+            Next →
+          </Link>
+        </div>
+
       <Footer />
 
       <button onClick={scrollToTop} className={`back-to-top ${showBackToTop ? 'visible' : ''}`} aria-label="Back to top">↑</button>
@@ -826,43 +841,9 @@ export default function MainHomePage() {
         )}
       </AnimatePresence>
 
-       <style jsx global>{`
-        .back-to-top {
-          position: fixed;
-          bottom: 24px;
-          right: 24px;
-          background: var(--green);
-          color: var(--bg-deep);
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 24px;
-          cursor: pointer;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 150ms ease;
-          z-index: 999;
-          border: none;
-        }
-        .back-to-top.visible {
-          opacity: 1;
-          visibility: visible;
-        }
-        .back-to-top:hover {
-          background: #2ab568;
-          transform: translateY(-2px);
-        }
-        .bg-green-glow {
-          background: rgba(61, 220, 132, 0.06);
-        }
-        
-      `}</style>
     </>
   )
 }
 
 // FILE: components/MainHomePage.tsx (end)
-// VERSION: 5.2.0
+// VERSION: 5.6.0

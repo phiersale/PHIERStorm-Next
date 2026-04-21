@@ -1,3 +1,6 @@
+// FILE: tailwind.config.js
+// VERSION: 1.0.0
+
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -80,16 +83,17 @@ const config: Config = {
           5: 'hsl(var(--chart-5))',
         },
 
-        // PHIERS aliases used across pages
-        'bg-deep': '#080d1a',
-        'bg-dark': '#0d1525',
-        'bg-card': '#111d35',
-        green: '#3ddc84',
-        red: '#e63946',
-        gold: '#ffd60a',
-        'text-bright': '#f0f4ff',
-        'text-body': '#b8c8e8',
-        'text-dim': '#7a94b8',
+          // PHIERS aliases used across pages
+          'bg-deep': '#080d1a',
+          'bg-dark': '#0d1525',
+          'bg-card': '#111d35',
+          green: '#3ddc84',
+          'green-dim': '#2ab568',   // ← add this line
+          red: '#e63946',
+          gold: '#ffd60a',
+          'text-bright': '#f0f4ff',
+          'text-body': '#b8c8e8',
+          'text-dim': '#7a94b8',
       },
       fontFamily: {
         sans: ['Barlow', 'system-ui', 'sans-serif'],
@@ -133,3 +137,6 @@ const config: Config = {
 }
 
 export default config
+
+// FILE: tailwind.config.js
+// VERSION: 1.0.0

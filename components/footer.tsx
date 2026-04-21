@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="text-center py-12 px-6 border-t border-[#3ddc84]/10 bg-[#0d1525]">
       <Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={80} height={80} className="mx-auto mb-4 opacity-70" />
-      
+
       <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto mb-6">
         <Link href="/crisis" className="text-gray-500 text-sm hover:text-[#3ddc84]">Crisis</Link>
         <Link href="/homepage-teeth" className="text-gray-500 text-sm hover:text-[#3ddc84]">How It Works</Link>
@@ -22,9 +22,10 @@ export default function Footer() {
         <Link href="/about" className="text-gray-500 text-sm hover:text-[#3ddc84]">About</Link>
         <Link href="/donate" className="text-gray-500 text-sm hover:text-[#3ddc84]">Donate</Link>
         <Link href="/join" className="text-gray-500 text-sm hover:text-[#3ddc84]">Join</Link>
+        <Link href="/sitemap" className="text-gray-500 text-sm hover:text-[#3ddc84]">Site Map</Link>
         <a href="mailto:info@phiers.org" className="text-gray-500 text-sm hover:text-[#3ddc84]">Contact</a>
       </div>
-      
+
       <div className="text-xs text-gray-600">
         Not built for profit. Not built for power. Built for We the People — by people who refused to stop.<br />
         📧 <a href="mailto:info@phiers.org" className="text-[#3ddc84]">info@phiers.org</a> · 📞 (916) 306-8967<br />

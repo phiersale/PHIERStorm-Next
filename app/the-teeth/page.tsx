@@ -1,4 +1,5 @@
 // FILE: app/the-teeth/page.tsx - UPDATED (Tiers 1-7)
+// VERSION: 1.0.5
 
 'use client'
 
@@ -66,7 +67,7 @@ export default function TheTeethPage() {
             </h1>
 
             <p className="text-gray-400 mb-3">Leaders can fire people up.<br />Movements can bring people together.</p>
-            <p className="text-white font-semibold text-lg mb-3">But only organized people make Congress move.</p>
+            <p className="text-white font-semibold text-lg mb-3">But only organized people make Congress respond.</p>
             <p className="text-gray-400 mb-3">Speeches fade.<br />Rallies fade.<br />The news cycle fades.</p>
             <p className="font-condensed font-bold text-2xl text-green mb-4">Pressure doesn't.</p>
 
@@ -90,7 +91,7 @@ export default function TheTeethPage() {
         {/* ✓ Anchor line present */}
         <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
           <p className="font-display text-xl md:text-2xl text-white font-extrabold">
-            Nothing changes until ignoring people costs more than responding to them.<br />
+            Nothing changes until ignoring people costs more than listening to them.<br />
             <span className="text-green">PHIERS is how we raise that cost.</span>
           </p>
         </div>
@@ -177,6 +178,17 @@ export default function TheTeethPage() {
         </section>
       </main>
 
+      {/* Navigation – back only */}
+        <div className="container py-8 flex justify-center">
+          <Link
+            href="/homepage-teeth"
+            className="inline-block bg-transparent border-2 border-green text-green font-bold py-3 px-6 rounded-lg hover:bg-green/10 transition text-center"
+            aria-label="Go back to homepage-teeth"
+          >
+            ← Back
+          </Link>
+        </div>
+
       <Footer />
 
       {/* Teeth Image Lightbox */}
@@ -208,3 +220,4 @@ export default function TheTeethPage() {
 }
 
 // END FILE: app/the-teeth/page.tsx - TIERS 1-7 COMPLETE
+// VERSION: 1.0.5

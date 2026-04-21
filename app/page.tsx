@@ -1,3 +1,6 @@
+// FILE:page.tsx
+// VERSION: 1.0.3
+
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -13,13 +16,25 @@ export default function Page() {
   const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
 
-  useEffect(() => {
-    const seen = sessionStorage.getItem('entrySequence')
-    if (seen) {
-      setShowEntryModal(false)
-      setStage('prehome')
-    }
-  }, [])
+ useEffect(() => {
+  const urlParams = new URLSearchParams(window.location.search)
+  const skipSlides = urlParams.get('skip') === 'slides'
+
+  if (skipSlides) {
+    // Mark as seen so reloads also skip the intro
+    sessionStorage.setItem('entrySequence', '1')   
+    setShowEntryModal(false)
+    setStage('main')
+    window.history.replaceState({}, '', '/')
+    return
+  }
+
+  const seen = sessionStorage.getItem('entrySequence')
+  if (seen) {
+    setShowEntryModal(false)
+    setStage('prehome')
+  }
+}, [])
 
   const proceed = () => {
     setShowEntryModal(false)
@@ -126,3 +141,6 @@ export default function Page() {
 
   return <MainHomePage />
 }
+
+// FILE:page.tsx
+// VERSION: 1.0.3

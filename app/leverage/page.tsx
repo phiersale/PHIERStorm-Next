@@ -1,4 +1,5 @@
 // FILE: app/leverage/page.tsx - START
+// Ver.1.0.5
 
 'use client'
 
@@ -75,7 +76,7 @@ export default function LeveragePage() {
             A small, organized group can force Congress to act — peacefully, democratically, and fast.<br />
             This is already building — district by district across the country. Organizers are already building toward thresholds in early districts.<br />
             War abroad. Economic pressure at home. And Congress still isn't responding.<br />
-            We can't wait for the next election. Organized constituents are the only thing that makes Congress act now — not later.
+            We can't wait for the next election. Organized constituents are what make Congress respond now — not later.
           </p>
         </div>
 
@@ -96,7 +97,7 @@ export default function LeveragePage() {
 
           <div className="bg-bg-card border border-green/20 rounded-r-lg p-6 mb-4 border-l-4 border-l-green">
             <h3 className="font-condensed font-bold text-green text-xl mb-2">2. When 1,500 people in a district are organized</h3>
-            <p className="text-body">A public town hall is triggered. Your representative is required to show up — and answer, on the record, in front of the people they represent. In the coming weeks — not after the next election.</p>
+            <p className="text-body">A public town hall is triggered. Your representative faces direct public pressure to show up — and answer, on the record, in front of the people they represent. Before July 4, Independence Day</p>
           </div>
 
           <div className="bg-bg-card border border-green/20 rounded-r-lg p-6 mb-4 border-l-4 border-l-green">
@@ -106,7 +107,7 @@ export default function LeveragePage() {
 
           <div className="bg-bg-card border border-red-500/20 rounded-r-lg p-6 mb-4 border-l-4 border-l-red-500">
             <h3 className="font-condensed font-bold text-red-500 text-xl mb-2">4. Representatives who don't do what their constituents want</h3>
-            <p className="text-body">Get replaced by someone who will. In the coming weeks — not after the next election. We are not waiting.</p>
+            <p className="text-body">Face immediate, organized replacement pressure from their own district. We are not waiting.</p>
           </div>
         </section>
 
@@ -173,8 +174,8 @@ export default function LeveragePage() {
           <p className="text-body mb-4">Harvard researcher Erica Chenoweth studied 323 social movements over more than a century and found one pattern that never broke:</p>
           
           <div className="bg-green-glow border border-green/20 rounded-r-lg p-6 mb-4 border-l-4 border-l-green">
-            <p className="font-condensed font-bold text-white text-lg mb-2">When 3.5% of the population is actively organized and sustained, systemic change becomes historically inevitable.</p>
-            <p className="text-body">No campaign that crossed this threshold — ever — failed.</p>
+            <p className="font-condensed font-bold text-white text-lg mb-2">When a small percentage of the population becomes actively organized and sustained, systemic change becomes historically very difficult to stop.</p>
+            <p className="text-body">Across hundreds of movements studied, this level of participation has been consistently associated with success.</p>
           </div>
 
           <p className="text-body mb-3">3.5% of the United States is 11.6 million people.<br />
@@ -221,7 +222,7 @@ export default function LeveragePage() {
             </div>
           </div>
 
-          <p className="font-condensed font-bold text-white text-lg text-center mt-6">They do what their constituents want — or they get replaced by someone who will.</p>
+          <p className="font-condensed font-bold text-white text-lg text-center mt-6">They respond to their constituents — or face organized pressure to be replaced by someone who will.</p>
           <p className="text-center text-gray-500 text-sm mt-2">That's not a campaign tactic. That's a civic requirement. And it's happening now.</p>
         </section>
 
@@ -245,7 +246,7 @@ export default function LeveragePage() {
           <p className="text-body text-center mb-4">The average congressional district has roughly $1.95 billion in constituent pressure potential — organized voters, organized wallets, organized voices.<br />
           The average corporate lobbying budget: $8.5 million.</p>
           <p className="text-center font-condensed font-bold text-2xl text-green my-4">230:1. That's the constituent advantage when people coordinate.</p>
-          <p className="text-center text-body mb-4">That's why organized people always win when they coordinate. And why Congress knows it.</p>
+          <p className="text-center text-body mb-4">That’s why organized people consistently outperform when they coordinate. And why Congress knows it.</p>
 
           <div className="max-w-[500px] mx-auto">
             <button onClick={() => openModal('/images/LEVERAGE_Pwr_of_the_People.png')} className="cursor-pointer">
@@ -385,3 +386,4 @@ export default function LeveragePage() {
 }
 
 // END FILE: app/leverage/page.tsx
+// Ver.1.0.5
