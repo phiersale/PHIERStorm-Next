@@ -213,10 +213,10 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     })
   }
 
-  return (
+     return (
     <div
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
-      style={{ touchAction: 'pan-y', overscrollBehavior: 'none' }}
+      style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
       {/* Header with logo and skip */}
       <div className="flex justify-between items-start w-full">
