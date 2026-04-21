@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 3.0.0 (ENHANCED – restored lost content, evidence footer, validation text)
+// VERSION: 5.0.0 (war/leverage block, architect modal, copy tweaks)
 
 'use client'
 
@@ -14,17 +14,7 @@ import Button from '@/components/Button'
 export default function MainHomePage() {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
-  const [userDistrict, setUserDistrict] = useState<string | null>(null)
-  const [districtCount, setDistrictCount] = useState<number | null>(null)
-
-  // Simulate district detection (replace with real API)
-  useEffect(() => {
-    const storedDistrict = sessionStorage.getItem('userDistrict')
-    if (storedDistrict) {
-      setUserDistrict(storedDistrict)
-      setDistrictCount(342) // placeholder
-    }
-  }, [])
+  const [showArchitectModal, setShowArchitectModal] = useState(false)
 
   const openModal = (src: string) => {
     setModalImageSrc(src)
@@ -62,12 +52,10 @@ export default function MainHomePage() {
 
   return (
     <>
-      {/* Under construction banner */}
       <div className="bg-amber-600 text-black text-center py-2 text-sm font-bold">
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
-      {/* Image modal for all clickable images */}
       <AnimatePresence>
         {modalImageSrc && (
           <motion.div
@@ -101,7 +89,6 @@ export default function MainHomePage() {
       <Navigation />
 
       <main className="font-sans">
-        {/* HERO – softened: "politically costly" instead of "being replaced" */}
         <section className="container text-center pt-8 md:pt-12 pb-4">
           <h1 className="mb-4">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
@@ -118,7 +105,6 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
           </div>
 
-          {/* Hero image – clickable */}
           <div className="flex justify-center mt-8 mb-8">
             <div
               className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer"
@@ -136,38 +122,19 @@ export default function MainHomePage() {
             </div>
           </div>
 
-          {/* RESTORED: "You've voted. You've called..." paragraph + organized fish image */}
-          <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
-            <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="md:w-1/2 cursor-pointer" onClick={() => openModal('/images/organized_fish.jpg')}>
-                <Image
-                  src="/images/organized_fish.jpg"
-                  alt="Organized fish – scattered vs. together"
-                  width={400}
-                  height={300}
-                  className="w-full h-auto rounded-lg border border-green/20"
-                  onError={(e) => console.error('Organized fish image missing – add to /public/images/')}
-                />
-              </div>
-              <div className="md:w-1/2">
-                <p className="text-gray-300 text-base mb-2">
-                  You've voted. You've called. You've marched. You've posted.
-                </p>
-                <p className="text-gray-300 text-base mb-2">
-                  You've done everything you were told to do.
-                </p>
-                <p className="text-gray-300 text-base mb-2">
-                  And every cycle, the same thing happens: nothing changes for regular people.
-                </p>
-                <p className="text-gray-300 text-base mb-2">
-                  Not because you didn't try hard enough. Because pressure that's scattered doesn't land anywhere. It just dissipates.
-                </p>
-                <p className="text-green text-lg font-bold">PHIERS is how we stop that.</p>
-              </div>
-            </div>
+          {/* NEW: WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
+          <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
+            <p className="text-white text-xl font-bold mb-2">Congress can end the war. Right now.</p>
+            <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
+            <p className="text-green text-xl font-bold mb-3">They just don’t have the pressure.</p>
+            <p className="text-gray-300 text-base mb-2">That’s where leverage comes in.</p>
+            <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – forces their hand.</p>
+            <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
+            <p className="text-gray-300 text-base mb-2">If they don’t end the war immediately,<br />we recall and replace them before July 4th – Independence Day.</p>
+            <p className="text-white text-lg font-bold mt-2">That’s the leverage. That’s how we make Congress do its job.</p>
           </div>
 
-          {/* Why 1,500 Matters + district counter */}
+          {/* Why 1,500 Matters – removed fake district counter */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <h3 className="text-2xl font-bold text-white mb-2">Why 1,500 Matters</h3>
             <p className="text-gray-300 text-base mb-3">
@@ -189,29 +156,8 @@ export default function MainHomePage() {
                 onError={(e) => console.error('Dashboard image missing')}
               />
             </div>
-
-            <div className="mt-4 p-4 bg-green-glow border border-green/30 rounded-lg">
-              {userDistrict ? (
-                <>
-                  <p className="text-white font-bold">Your District: {userDistrict}</p>
-                  <p className="text-green text-2xl font-bold">{districtCount ?? '?'} / 1,500</p>
-                  <p className="text-gray-400 text-sm">{districtCount ? 1500 - districtCount : '?'} more to reach tipping point.</p>
-                </>
-              ) : (
-                <>
-                  <p className="text-white font-bold">Find Your District</p>
-                  <p className="text-gray-400 text-sm">Enter your ZIP code to see your district's progress.</p>
-                  <div className="flex mt-2">
-                    <input type="text" placeholder="ZIP Code" className="bg-bg-dark border border-green/30 rounded-l px-3 py-2 text-white w-32" />
-                    <button className="bg-green text-black px-4 py-2 rounded-r font-bold">Check</button>
-                  </div>
-                </>
-              )}
-              <p className="text-gray-500 text-xs mt-2">Congress responds at the district level. That's why 1,500 matters.</p>
-            </div>
           </div>
 
-          {/* ACT NOW block */}
           <div className="max-w-[600px] mx-auto mt-8">
             <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
@@ -223,7 +169,6 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* LIVE MOVEMENT STATUS */}
         <section className="container py-8 border-t border-b border-green/20 my-6">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">⭐ LIVE MOVEMENT STATUS</span>
@@ -242,7 +187,6 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* THE MECHANISM – pure explanation */}
         <section id="mechanism" className="container section scroll-mt-24">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">THE MECHANISM</span>
@@ -265,7 +209,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* HOW IT WORKS */}
         <section className="container section">
           <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6">HOW IT WORKS</h2>
           <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -273,7 +216,7 @@ export default function MainHomePage() {
               <div><p className="text-white text-lg font-bold">1. You go on record</p><p className="text-gray-400 text-sm">Not "I agree." You're counted.</p></div>
               <div><p className="text-white text-lg font-bold mt-3">2. We organize by congressional district</p><p className="text-gray-400 text-sm">Not noise — numbers. Not vibes — leverage.</p></div>
               <div><p className="text-white text-lg font-bold mt-3">3. Representatives are forced to respond publicly</p><p className="text-gray-400 text-sm">Or face primary challenge or replacement.</p></div>
-              <div><p className="text-white text-lg font-bold mt-3">4. Congress acts — or gets replaced</p><p className="text-gray-400 text-sm">Not eventually. Before it's too late.</p></div>
+              <div><p className="text-white text-lg font-bold mt-3">4. Congress acts — or gets replaced</p><p className="text-gray-400 text-sm">Not later. Now. Before the next election.</p></div>
             </div>
             <div className="flex justify-center md:justify-end">
               <div className="w-full md:w-[80%] bg-bg-card rounded-xl border border-green/20 p-4 text-center">
@@ -288,7 +231,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY 1,500 PEOPLE MATTER (repeated for emphasis) */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY 1,500 PEOPLE MATTER</h2>
@@ -307,7 +249,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* MID-PAGE ACTION */}
         <section className="container py-8 text-center">
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
@@ -318,7 +259,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* THE ECONOMIC ENGINE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto">
             <div className="text-center mb-6"><span className="text-green text-sm font-condensed font-bold tracking-wider">THE ECONOMIC ENGINE</span></div>
@@ -340,7 +280,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* THE CASCADE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
@@ -348,7 +287,7 @@ export default function MainHomePage() {
             <p className="text-gray-300 text-base mb-3">Then it compounds:</p>
             <p className="text-green text-lg font-mono font-bold mb-4 break-words">1 → 12 → 148 → 1,825 → 22,000 → 260,000 → 3.1M → 37M → 450M</p>
             <div className="bg-bg-card border border-green/20 rounded-xl p-4 my-4"><p className="text-white font-mono text-lg">In nine rounds: • 234 million people covered • 8–13 months</p></div>
-            <p className="text-green text-lg font-bold mb-3">Not a promise. Arithmetic.</p>
+            <p className="text-green text-lg font-bold mb-3">Not a promise. Math.</p>
             <p className="text-gray-300 text-base">It works because savings fund the next layer.</p>
           </div>
           <div className="flex justify-center mt-8">
@@ -360,9 +299,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        <hr className="border-green/20" />
-
-        {/* THREE KINDS OF POWER – RESTORED */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THREE KINDS OF POWER</h2>
@@ -390,7 +326,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY THIS BECOMES UNSTOPPABLE */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -416,7 +351,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY AFFORDABILITY = LEVERAGE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY AFFORDABILITY = LEVERAGE</h2>
@@ -436,7 +370,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* REALITY ANCHOR – softened */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <div className="max-w-[760px] mx-auto">
@@ -452,7 +385,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS UNLOCKS – concrete outcomes */}
         <section className="container section">
           <div className="text-center max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS UNLOCKS</h2>
@@ -469,7 +401,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* CREDIBILITY – RESTORED detailed validation text */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS WORKS</h2>
@@ -496,7 +427,6 @@ export default function MainHomePage() {
               They weren't built together. They arrived at the same conclusions independently. That's what makes this credible.
             </p>
 
-            {/* RESTORED: Detailed validation descriptions */}
             <div className="space-y-4 text-left">
               <div className="bg-bg-card/60 rounded-xl p-4 border-l-4 border-green">
                 <p className="text-white font-bold">Pathos Communications</p>
@@ -517,7 +447,6 @@ export default function MainHomePage() {
             </div>
           </div>
 
-          {/* Logo row remains */}
           <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
             <div className="w-24 h-auto opacity-70 grayscale cursor-pointer" onClick={() => openModal('/images/Harvard_Logo.png')}>
               <Image src="/images/Harvard_Logo.png" alt="Harvard" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
@@ -533,7 +462,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS IS NOT – fixed cognitive dissonance */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS IS NOT</h2>
@@ -544,12 +472,18 @@ export default function MainHomePage() {
               This is coordinated civic leverage — district by district.<br />
               A counted signal tied to your specific representative.
             </p>
+            {/* Meet the architect button */}
+            <button
+              onClick={() => setShowArchitectModal(true)}
+              className="text-green underline hover:text-green-dim transition-colors mt-6 text-lg"
+            >
+              Meet the architect →
+            </button>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* WHAT HAPPENS AFTER YOU SIGN */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -572,7 +506,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* EVIDENCE FOOTER – RESTORED (verifiable sources) */}
         <section className="container section bg-bg-dark rounded-xl border border-green/20 p-6 my-6">
           <div className="max-w-[900px] mx-auto">
             <h3 className="text-green text-lg font-bold mb-3">📌 Everything here is verifiable</h3>
@@ -592,7 +525,6 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* FINAL CLOSE */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <p className="text-white text-xl font-bold mb-4">Nothing changes until ignoring people costs more than responding.</p>
@@ -615,6 +547,69 @@ export default function MainHomePage() {
       <Footer />
 
       <button onClick={scrollToTop} className={`back-to-top ${showBackToTop ? 'visible' : ''}`} aria-label="Back to top">↑</button>
+
+      {/* Architect Modal (Will Price) */}
+      <AnimatePresence>
+        {showArchitectModal && (
+          <motion.div
+            className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowArchitectModal(false)}
+          >
+            <div 
+              className="relative max-w-[720px] w-full bg-bg-dark/95 border-2 border-green/35 rounded-xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowArchitectModal(false)}
+                className="absolute top-3 right-3 bg-bg-card text-green border-2 border-green rounded-full w-10 h-10 flex items-center justify-center hover:bg-green hover:text-bg-deep transition-all z-10"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+
+              <div className="flex flex-wrap items-stretch">
+                <div className="flex-0 w-full max-w-[240px] min-h-[280px] overflow-hidden">
+                  <Image
+                    src="/images/Will_Price.png"
+                    alt="Will Price — Founder & Chief Solutions Architect, PHIERS"
+                    width={240}
+                    height={280}
+                    className="w-full h-full object-cover object-[55%_top]"
+                  />
+                </div>
+                <div className="flex-1 min-w-[240px] p-6 flex flex-col justify-center">
+                  <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-1">The Architect</p>
+                  <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-0">Will Price</h3>
+                  <p className="font-condensed text-sm text-gold font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
+                  <p className="text-body text-sm leading-relaxed">
+                    Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-6 pt-0">
+                <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-3">Why Pathos Communications Chose PHIERS</p>
+                <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20">
+                  <iframe
+                    src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"
+                    title="Pathos Communications — Why We Stand Behind PHIERS"
+                    frameBorder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full"
+                  />
+                </div>
+                <p className="font-condensed text-sm text-gray-400 mt-3 leading-relaxed">
+                  A Fortune 500 PR firm — listed on the London Stock Exchange — publicly staking their reputation on PHIERS. That's not a pitch. That's a verdict.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <style jsx global>{`
         .back-to-top {

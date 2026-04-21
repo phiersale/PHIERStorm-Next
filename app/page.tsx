@@ -94,7 +94,7 @@ export default function Page() {
                     onClick={(e) => { e.stopPropagation(); setPowerlessModalOpen(true); }}
                   >
                     <Image
-                      src="/images/YOU ARE NOT POWERLESS.jpg"
+                      src="/images/You_Are_Not_Powerless.jpg"
                       alt="YOU ARE NOT POWERLESS"
                       width={400}
                       height={200}
@@ -131,7 +131,7 @@ export default function Page() {
                 ✕
               </button>
               <Image
-                src="/images/YOU ARE NOT POWERLESS.jpg"
+                src="/images/You_Are_Not_Powerless.jpg"
                 alt="YOU ARE NOT POWERLESS (enlarged)"
                 width={800}
                 height={600}
