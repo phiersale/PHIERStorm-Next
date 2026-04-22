@@ -125,29 +125,29 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
-    // Image slide (You Are Not Powerless) – no extra outer spacing
-    if (slide.isImageSlide) {
-      return (
-        <div className="flex flex-col items-center justify-center space-y-6">
-          <div className="flex justify-center w-full">
-            <Image
-              src={slide.imageSrc}
-              alt={slide.imageAlt}
-              width={500}
-              height={300}
-              sizes="(max-width: 768px) 90vw, 500px"
-              className="w-full max-w-[90%] md:max-w-[500px] h-auto rounded-lg border border-green/20"
-              priority
-            />
-          </div>
-          {slide.body.map((line, idx) => (
-            <p key={idx} className="text-gray-300 text-base md:text-xl text-center break-words">
-              {line}
-            </p>
-          ))}
-        </div>
-      )
-    }
+   // Image slide (You Are Not Powerless) – full image visible, no cropping
+if (slide.isImageSlide) {
+  return (
+    <div className="flex flex-col items-center justify-center space-y-6">
+      <div className="flex justify-center w-full">
+        <Image
+          src={slide.imageSrc}
+          alt={slide.imageAlt}
+          width={500}
+          height={300}
+          sizes="(max-width: 768px) 90vw, 500px"
+          className="w-full max-w-[90%] md:max-w-[500px] h-auto object-contain"
+          priority
+        />
+      </div>
+      {slide.body.map((line, idx) => (
+        <p key={idx} className="text-gray-300 text-base md:text-xl text-center break-words">
+          {line}
+        </p>
+      ))}
+    </div>
+  )
+}
 
     // PHIERS acronym – grid layout with large desktop letters, reduced mobile gaps
     if (slide.customLayout) {
@@ -352,4 +352,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.2.0
+// VERSION: 3.2.0 
