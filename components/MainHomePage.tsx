@@ -150,6 +150,22 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
           </div>
 
+        {/* INTRO VIDEO – “When Enough People Organize, Congress Must Respond” */}
+          <div className="max-w-3xl mx-auto mt-12 mb-8 px-4">
+            <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
+              <iframe
+                src="https://www.youtube.com/embed/C2mMIx5yoyw?rel=0"
+                title="When Enough People Organize, Congress Must Respond"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                className="absolute top-0 left-0 w-full h-full"
+              />
+            </div>
+            <p className="text-center text-gray-400 text-sm mt-3">Why organization creates leverage – watch to understand the core mechanism.</p>
+          </div>
+
           <div className="flex justify-center mt-8 mb-8">
             <div
               className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
@@ -896,7 +912,56 @@ export default function MainHomePage() {
               </div>
 
               <div className="p-6 pt-0">
-                <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-3">Why Pathos Communications Chose PHIERS</p>
+                <div className="p-6 pt-0">
+  <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-3">Hear the vision – in Will’s own words</p>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {/* Video 1 – PHIERS intro */}
+    <div>
+      <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20">
+        <iframe
+          src="https://www.youtube.com/embed/McmYW558i78?rel=0"
+          title="PHIERS – The Leverage Explained"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          loading="lazy"
+          className="absolute top-0 left-0 w-full h-full"
+        />
+      </div>
+      <p className="text-xs text-gray-400 mt-2 text-center">How leverage works</p>
+    </div>
+    {/* Video 2 – LEVERAGE is Power Held In Every Representative's Seat */}
+    <div>
+      <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20">
+        <iframe
+          src="https://www.youtube.com/embed/wnSy5jjxAac?rel=0"
+          title="LEVERAGE is Power Held In Every Representative's Seat (PHIERS)"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          loading="lazy"
+          className="absolute top-0 left-0 w-full h-full"
+        />
+      </div>
+      <p className="text-xs text-gray-400 mt-2 text-center">The PHIERS framework</p>
+    </div>
+    {/* Video 3 – Funding Mamdani’s Agenda for a Stronger Future */}
+        <div>
+          <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20">
+            <iframe
+              src="https://www.youtube.com/embed/VdeniYs1QsQ?rel=0"
+              title="Funding Mamdani’s Agenda for a Stronger Future (a National strategy)"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+              className="absolute top-0 left-0 w-full h-full"
+            />
+          </div>
+          <p className="text-xs text-gray-400 mt-2 text-center">National strategy</p>
+        </div>
+      </div>
+    </div>
                 <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20">
                   <iframe
                     src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"

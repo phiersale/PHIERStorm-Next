@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.6.0 (added credibility stage between slides and main)
+// VERSION: 1.7.0 (credibility stage with PathosCredibility and bridge line)
 
 'use client'
 
@@ -90,7 +90,7 @@ export default function Page() {
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            {/* ... entry modal content (unchanged) ... */}
+            {/* Entry modal content – unchanged */}
             <div className="flex-1 flex flex-col items-center justify-center px-4 py-6">
               <div className="text-center max-w-xl mx-auto">
                 <h2 className="text-white text-4xl md:text-5xl font-light mb-3">Take a deep breath.</h2>
@@ -121,8 +121,8 @@ export default function Page() {
   if (stage === 'credibility') {
     return (
       <div className="min-h-screen bg-[#050b19] flex flex-col">
-        {/* Bridge line */}
         <div className="flex-1 flex flex-col justify-center">
+          {/* Bridge line */}
           <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto px-4 mb-8">
             If this feels different, it’s because it is.
           </p>
