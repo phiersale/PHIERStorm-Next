@@ -128,8 +128,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 if (slide.customLayout) {
   const items = slide.body
   return (
-    <div className="flex flex-col items-center space-y-6 mt-4">
-      {/* Large logo */}
+    <div className="flex flex-col items-center space-y-6">
       <div className="mb-2">
         <Image
           src="/images/PHIERS_Logo.png"
@@ -140,12 +139,11 @@ if (slide.customLayout) {
           priority
         />
       </div>
-      {/* Horizontal scroll container for narrow screens */}
       <div className="overflow-x-auto w-full pb-2">
-        <div className="grid grid-cols-6 gap-8 sm:gap-12 md:gap-16 lg:gap-20 justify-items-center min-w-max mx-auto">
+        <div className="grid grid-cols-6 gap-12 sm:gap-16 md:gap-20 lg:gap-24 justify-items-center min-w-max mx-auto">
           {items.map((item, idx) => (
             <div key={idx} className="flex flex-col items-center">
-              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-green whitespace-nowrap">
+              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-green whitespace-nowrap">
                 {item.letter}
               </span>
               <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 uppercase text-center whitespace-nowrap">
@@ -155,12 +153,10 @@ if (slide.customLayout) {
           ))}
         </div>
       </div>
-      {/* Punch line */}
-      <p className="text-gray-500 text-xs mt-4 italic text-center">{slide.punchLine}</p>
+      <p className="text-gray-500 text-xs italic text-center">{slide.punchLine}</p>
     </div>
   )
 }
-
     // Image slide (You Are Not Powerless)
     if (slide.isImageSlide) {
       return (
