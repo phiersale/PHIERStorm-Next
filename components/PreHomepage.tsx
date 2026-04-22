@@ -164,20 +164,20 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
               priority
             />
           </div>
-          <div className="overflow-x-auto w-full pb-2 px-4">
-            <div className="grid grid-cols-6 gap-6 sm:gap-12 md:gap-16 lg:gap-20 justify-items-center min-w-max mx-auto">
-              {items.map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center">
-                  <span className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-green whitespace-nowrap">
-                    {item.letter}
-                  </span>
-                  <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 uppercase text-center whitespace-nowrap">
-                    {item.word}
-                  </span>
-                </div>
-              ))}
+            <div className="overflow-x-auto w-full pb-2 px-4">
+              <div className="grid grid-cols-6 gap-4 sm:gap-6 md:gap-8 lg:gap-10 justify-items-center min-w-max mx-auto">
+                {items.map((item, idx) => (
+                  <div key={idx} className="flex flex-col items-center">
+                    <span className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-green whitespace-nowrap">
+                      {item.letter}
+                    </span>
+                    <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 uppercase text-center whitespace-nowrap">
+                      {item.word}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
           <p className="text-gray-500 text-xs italic text-center">{slide.punchLine}</p>
         </div>
       )
