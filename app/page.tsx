@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.8.0 (credibility stage with PathosCredibility text + video)
+// VERSION: 1.9.0 (accessibility fixes: modal ARIA, focus management, video title)
 
 'use client'
 
@@ -17,6 +17,7 @@ export default function Page() {
   const [stage, setStage] = useState<'entry' | 'prehome' | 'credibility' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
   const modalRef = useRef<HTMLDivElement>(null)
+  const continueButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
@@ -74,6 +75,26 @@ export default function Page() {
     setStage('main')
   }
 
+  // Focus the continue button when credibility stage mounts
+  useEffect(() => {
+    if (stage === 'credibility' && continueButtonRef.current) {
+      continueButtonRef.current.focus()
+    }
+  }, [stage])
+
+  // Escape key in credibility stage – go to main site
+  useEffect(() => {
+    if (stage !== 'credibility') return
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        handleCredibilityComplete()
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [stage])
+
   if (stage === 'entry') {
     return (
       <AnimatePresence>
@@ -82,7 +103,9 @@ export default function Page() {
             ref={modalRef}
             id="entry-modal"
             tabIndex={-1}
-            className="fixed inset-0 bg-[#050b19] z-[99999] flex flex-col focus:outline-none"
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 bg-[#050b19] z-[99999] flex flex-col focus:outline-none cursor-pointer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -94,7 +117,15 @@ export default function Page() {
                 <p className="text-gray-300 text-lg md:text-xl mb-1">What you’re about to learn is simple.</p>
                 <p className="text-gray-300 text-lg md:text-xl mb-6">It changes how power actually works.</p>
                 <div className="mt-8 mb-6 flex justify-center">
-                  <Image src="/images/You_Are_Not_Powerless.jpg" alt="YOU ARE NOT POWERLESS" width={350} height={175} className="w-full max-w-[345px] h-auto" priority />
+                  <Image
+                    src="/images/You_Are_Not_Powerless.jpg"
+                    alt="YOU ARE NOT POWERLESS"
+                    width={350}
+                    height={175}
+                    sizes="(max-width: 768px) 90vw, 350px"
+                    className="w-full max-w-[345px] h-auto"
+                    priority
+                  />
                 </div>
                 <p className="text-gray-300 text-base md:text-lg text-center mb-6">That’s the first thing to remember.</p>
                 <p className="text-gray-500 text-sm mt-2">Click anywhere to continue</p>
@@ -148,8 +179,9 @@ export default function Page() {
           {/* Continue button */}
           <div className="flex justify-center mt-12">
             <button
+              ref={continueButtonRef}
               onClick={handleCredibilityComplete}
-              className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition"
+              className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition focus:outline-none focus:ring-2 focus:ring-green"
             >
               Continue to site →
             </button>
