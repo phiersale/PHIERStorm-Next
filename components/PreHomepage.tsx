@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 2.4.0 (stacked PHIERS layout, subdued buttons, clickable dots)
+// VERSION: 2.5.0 (larger logo, smaller letters on PHIERS slide)
 
 'use client'
 
@@ -124,25 +124,36 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
-    // Custom layout for PHIERS acronym – stacked letters over words
+    // Custom layout for PHIERS acronym – larger logo, smaller letters
     if (slide.customLayout) {
       const items = slide.body  // array of { letter, word }
       return (
-        <div className="flex flex-col items-center space-y-8 mt-8">
-          {/* Letters row – huge, spaced far apart */}
-          <div className="flex justify-center gap-12 md:gap-16 text-6xl md:text-7xl font-bold tracking-[0.2em] text-green">
+        <div className="flex flex-col items-center space-y-6 mt-4">
+          {/* Large logo */}
+          <div className="mb-2">
+            <Image
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              width={160}
+              height={160}
+              className="w-32 sm:w-40 md:w-48 h-auto mx-auto"
+              priority
+            />
+          </div>
+          {/* Letters row – smaller, spaced appropriately */}
+          <div className="flex justify-center gap-6 md:gap-8 text-3xl md:text-4xl font-bold tracking-wider text-green">
             {items.map((item, idx) => (
               <span key={idx}>{item.letter}</span>
             ))}
           </div>
           {/* Words row – directly underneath each letter */}
-          <div className="flex justify-center gap-12 md:gap-16 text-sm md:text-base font-medium text-gray-300 uppercase tracking-wide">
+          <div className="flex justify-center gap-6 md:gap-8 text-xs md:text-sm font-medium text-gray-300 uppercase tracking-wide">
             {items.map((item, idx) => (
               <div key={idx} className="text-center">{item.word}</div>
             ))}
           </div>
           {/* Punch line – grey, italic, smaller */}
-          <p className="text-gray-500 text-sm mt-6 italic">{slide.punchLine}</p>
+          <p className="text-gray-500 text-xs mt-4 italic">{slide.punchLine}</p>
         </div>
       )
     }
@@ -325,4 +336,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 2.4.0
+// VERSION: 2.5.0
