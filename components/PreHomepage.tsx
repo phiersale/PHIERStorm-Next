@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 2.0.3 (fixed JSX syntax and mobile layout for PHIERS acronym slide)
+// VERSION: 2.1.2 (slide 13 shows large PHIERS logo instead of letter grid)
 
 'use client'
 
@@ -120,6 +120,10 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const transitionDuration = prefersReducedMotion ? 0 : 0.4
 
   const renderTitle = () => {
+    // For the custom layout slide (PHIERS logo slide), show no text title
+    if (slide.customLayout) {
+      return null
+    }
     if (slide.title === "PHIERS") {
       return <h1 className="text-4xl md:text-5xl font-bold mb-6 text-green">{slide.title}</h1>
     }
@@ -128,15 +132,21 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 
   const renderBody = () => {
     if (slide.customLayout) {
-      const letters = "PHIERS".split('')
       const words = slide.body
       return (
-        <div className="flex flex-col items-center space-y-6 mt-8">
-          <div className="flex justify-center gap-3 sm:gap-6 md:gap-10 text-3xl sm:text-4xl md:text-6xl font-light tracking-widest">
-            {letters.map((letter, idx) => (
-              <span key={idx} className="text-green font-bold">{letter}</span>
-            ))}
+        <div className="flex flex-col items-center space-y-6">
+          {/* Large PHIERS Logo */}
+          <div className="mb-4">
+            <Image
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              width={200}
+              height={200}
+              className="w-40 sm:w-48 md:w-56 h-auto"
+              priority
+            />
           </div>
+          {/* Stacked words */}
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 sm:gap-2 md:gap-4 text-center text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 max-w-full">
             {words.map((word, idx) => (
               <div key={idx} className="uppercase leading-tight">{word}</div>
@@ -215,14 +225,15 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
-      <div className="flex justify-between items-start w-full">
-        <div className="w-12" aria-hidden="true" />
+      <div className="relative w-full flex justify-center items-center py-2">
+        {/* Logo – centered */}
         <div className="pointer-events-none">
           <Image src="/images/PHIERS_Logo.png" alt="" width={50} height={50} className="opacity-80" />
         </div>
+        {/* Skip link – absolute top-right */}
         <button
           onClick={onGoToHomepage}
-          className="text-gray-500 text-sm underline hover:text-gray-300"
+          className="absolute top-1/2 -translate-y-1/2 right-4 text-gray-500 text-sm underline hover:text-gray-300"
           aria-label="Skip introduction"
         >
           Skip →
@@ -321,4 +332,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 2.0.3
+// VERSION: 2.1.2
