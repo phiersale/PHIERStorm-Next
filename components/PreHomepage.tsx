@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 2.5.0 (larger logo, smaller letters on PHIERS slide)
+// VERSION: 3.1.0 (grid layout for PHIERS slide, fixed truncation)
 
 'use client'
 
@@ -124,38 +124,70 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
-    // Custom layout for PHIERS acronym – larger logo, smaller letters
-    if (slide.customLayout) {
-      const items = slide.body  // array of { letter, word }
+    // Custom layout for PHIERS acronym – grid (letter exactly above word)
+if (slide.customLayout) {
+  const items = slide.body
+  return (
+    <div className="flex flex-col items-center space-y-6 mt-4">
+      {/* Large logo */}
+      <div className="mb-2">
+        <Image
+          src="/images/PHIERS_Logo.png"
+          alt="PHIERS Logo"
+          width={160}
+          height={160}
+          className="w-32 sm:w-40 md:w-48 h-auto mx-auto"
+          priority
+        />
+      </div>
+      {/* Horizontal scroll container for narrow screens */}
+      <div className="overflow-x-auto w-full pb-2">
+        <div className="grid grid-cols-6 gap-8 sm:gap-12 md:gap-16 lg:gap-20 justify-items-center min-w-max mx-auto">
+          {items.map((item, idx) => (
+            <div key={idx} className="flex flex-col items-center">
+              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-green whitespace-nowrap">
+                {item.letter}
+              </span>
+              <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 uppercase text-center whitespace-nowrap">
+                {item.word}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Punch line */}
+      <p className="text-gray-500 text-xs mt-4 italic text-center">{slide.punchLine}</p>
+    </div>
+  )
+}
+
+    // Image slide (You Are Not Powerless)
+    if (slide.isImageSlide) {
       return (
-        <div className="flex flex-col items-center space-y-6 mt-4">
-          {/* Large logo */}
-          <div className="mb-2">
+        <div className="flex flex-col items-center justify-center space-y-6 mt-4">
+          <div className="flex justify-center">
             <Image
-              src="/images/PHIERS_Logo.png"
-              alt="PHIERS Logo"
-              width={160}
-              height={160}
-              className="w-32 sm:w-40 md:w-48 h-auto mx-auto"
+              src={slide.imageSrc}
+              alt={slide.imageAlt}
+              width={500}
+              height={300}
+              sizes="(max-width: 768px) 90vw, 400px"
+              className="w-full max-w-[400px] h-auto rounded-lg border border-green/20"
               priority
             />
           </div>
-          {/* Letters row – smaller, spaced appropriately */}
-          <div className="flex justify-center gap-6 md:gap-8 text-3xl md:text-4xl font-bold tracking-wider text-green">
-            {items.map((item, idx) => (
-              <span key={idx}>{item.letter}</span>
-            ))}
-          </div>
-          {/* Words row – directly underneath each letter */}
-          <div className="flex justify-center gap-6 md:gap-8 text-xs md:text-sm font-medium text-gray-300 uppercase tracking-wide">
-            {items.map((item, idx) => (
-              <div key={idx} className="text-center">{item.word}</div>
-            ))}
-          </div>
-          {/* Punch line – grey, italic, smaller */}
-          <p className="text-gray-500 text-xs mt-4 italic">{slide.punchLine}</p>
+          {slide.body.map((line, idx) => (
+            <p key={idx} className="text-gray-300 text-base md:text-xl text-center break-words">
+              {line}
+            </p>
+          ))}
         </div>
       )
+    }
+
+    // Custom style slide (plain text with custom classes)
+    if (slide.customStyle) {
+      return <p className={`text-center ${slide.customStyle}`}>{slide.body[0]}</p>
     }
 
     // Final slide with sequential fade‑in
@@ -193,6 +225,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       )
     }
 
+    // Normal slides with greenLines
     const greenLineIndices = slide.greenLines || []
     return slide.body.map((line, i) => {
       if (line === '→') {
@@ -200,20 +233,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       }
       if (isLastSlide) {
         return <p key={i} className="text-2xl md:text-3xl font-bold text-green">{line}</p>
-      }
-      if (slide.isAcronymSlide) {
-        const words = line.split(' ')
-        const formatted = words.map((word, idx) => {
-          if (word.length === 0) return null
-          const firstLetter = word[0]
-          const rest = word.slice(1)
-          return (
-            <span key={idx}>
-              <strong className="text-green font-bold">{firstLetter}</strong>{rest}{' '}
-            </span>
-          )
-        })
-        return <p key={i} className="text-lg md:text-xl text-white">{formatted}</p>
       }
       if (greenLineIndices.includes(i)) {
         return <p key={i} className="text-lg md:text-xl text-green">{line}</p>
@@ -336,4 +355,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 2.5.0
+// VERSION: 3.1.0
