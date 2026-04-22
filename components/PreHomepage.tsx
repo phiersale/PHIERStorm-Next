@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 2.1.2 (slide 13 shows large PHIERS logo instead of letter grid)
+// VERSION: 2.2.0 (skip button and logo centered together, better UX)
 
 'use client'
 
@@ -120,7 +120,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const transitionDuration = prefersReducedMotion ? 0 : 0.4
 
   const renderTitle = () => {
-    // For the custom layout slide (PHIERS logo slide), show no text title
     if (slide.customLayout) {
       return null
     }
@@ -135,7 +134,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       const words = slide.body
       return (
         <div className="flex flex-col items-center space-y-6">
-          {/* Large PHIERS Logo */}
           <div className="mb-4">
             <Image
               src="/images/PHIERS_Logo.png"
@@ -146,7 +144,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
               priority
             />
           </div>
-          {/* Stacked words */}
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 sm:gap-2 md:gap-4 text-center text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 max-w-full">
             {words.map((word, idx) => (
               <div key={idx} className="uppercase leading-tight">{word}</div>
@@ -225,15 +222,14 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
-      <div className="relative w-full flex justify-center items-center py-2">
-        {/* Logo – centered */}
+      {/* Centered header with logo and skip button side by side */}
+      <div className="flex justify-center items-center gap-6 py-2">
         <div className="pointer-events-none">
-          <Image src="/images/PHIERS_Logo.png" alt="" width={50} height={50} className="opacity-80" />
+          <Image src="/images/PHIERS_Logo.png" alt="" width={40} height={40} className="opacity-80" />
         </div>
-        {/* Skip link – absolute top-right */}
         <button
           onClick={onGoToHomepage}
-          className="absolute top-1/2 -translate-y-1/2 right-4 text-gray-500 text-sm underline hover:text-gray-300"
+          className="text-gray-500 text-sm underline hover:text-gray-300"
           aria-label="Skip introduction"
         >
           Skip →
@@ -332,4 +328,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 2.1.2
+// VERSION: 2.2.0
