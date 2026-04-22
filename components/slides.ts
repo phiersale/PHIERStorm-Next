@@ -16,7 +16,10 @@ const slides = [
   // 2 — Congress can fix things
   {
     title: "Congress can fix most of what's broken.",
-    body: ["They just don't have to."],
+    body: [
+      "They just don't have to.",
+      "And they choose not to."
+    ],
     greenLines: [0]
   },
 
@@ -42,7 +45,7 @@ const slides = [
 
   // 5 — Only leverage works
   {
-    title: "Only leve rage forces action.",
+    title: "Only leverage forces action.",
     body: [
       "But only if it's organized the right way.",
       "District by district, online, and viral."
