@@ -93,7 +93,7 @@ export default function Page() {
                 <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
                   Take a deep breath.
                 </h2>
-
+ 
                 <p className="text-gray-300 text-lg md:text-xl mb-1">
                   What you’re about to see is simple.
                 </p>

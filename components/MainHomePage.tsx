@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 5.6.2 (added spacer to prevent navigation overlap on mobile)
+// VERSION: 5.7.1 (added spacer to prevent navigation overlap on mobile)
 
 'use client'
 
@@ -154,7 +154,7 @@ export default function MainHomePage() {
           <h1 className="mb-4">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
             <br />
-            <span className="hero-green">IT JUST DOESN'T HAVE TO.</span>
+            <span className="hero-green">IT'S PAID NOT TO CARE ABOUT YOU.</span>
           </h1>
           <div className="max-w-[760px] mx-auto mt-4">
             <p className="text-white text-lg md:text-xl font-semibold mb-2">Alone, you're easy to ignore.</p>
@@ -187,7 +187,7 @@ export default function MainHomePage() {
             </div>
           </div>
 
-          {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
+           {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
             <p className="text-white text-xl font-bold mb-2">Congress can end the war. Right now.</p>
             <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
@@ -196,8 +196,23 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – forces their hand.</p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
             <p className="text-gray-300 text-base mb-2">If they don’t end the war immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
+
+            {/* July 4th image */}
+            <div className="my-6 flex flex-col items-center">
+              <Image
+                src="/images/Independence_Day-American_Miracle.jpg"
+                alt="The Miracle of America – REBORN in US"
+                width={600}
+                height={400}
+                className="rounded-lg border border-green/20"
+                onError={(e) => console.error('July 4th image failed to load')}
+              />
+              <p className="text-gold text-sm italic mt-2">The miracle of America – reborn in us.</p>
+            </div>
+
             <p className="text-white text-lg font-bold mt-2">That’s how we make Congress do its job.</p>
           </div>
+
 
           {/* Why 1,500 Matters – removed fake district counter */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
@@ -849,4 +864,4 @@ export default function MainHomePage() {
 }
 
 // FILE: components/MainHomePage.tsx
-// VERSION: 5.6.2 (added spacer to prevent navigation overlap on mobile)
+// VERSION: 5.7.1 (added spacer to prevent navigation overlap on mobile)
