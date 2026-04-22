@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.0.6 (modal focusable, space bar advances)
+// VERSION: 1.0.7 (image removed, text centered, spacing adjusted)
 
 'use client'
 
@@ -55,7 +55,6 @@ export default function Page() {
     window.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
 
-    // Focus the modal container so key events work reliably
     if (modalRef.current) {
       modalRef.current.focus()
     }
@@ -80,7 +79,7 @@ export default function Page() {
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            <div className="relative w-full max-w-xl mx-auto overflow-y-auto max-h-[90vh]">
+            <div className="relative w-full max-w-xl mx-auto">
               {/* Centered header with logo and skip button */}
               <div className="flex justify-center items-center gap-6 mb-6">
                 <Image
@@ -98,7 +97,7 @@ export default function Page() {
                 </button>
               </div>
 
-              <div className="text-center mt-4">
+              <div className="text-center">
                 <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
                   Take a deep breath.
                 </h2>
@@ -107,27 +106,17 @@ export default function Page() {
                   What you’re about to see is simple.
                 </p>
 
-                <p className="text-gray-300 text-lg md:text-xl mb-4">
+                <p className="text-gray-300 text-lg md:text-xl mb-6">
                   But it changes how power actually works.
                 </p>
 
-               <div className="border-t border-green/20 pt-4 mt-4">
-                <div className="mb-6 flex justify-center">
-                  <Image
-                    src="/images/You_Are_Not_Powerless.jpg"
-                    alt="YOU ARE NOT POWERLESS"
-                    width={400}
-                    height={200}
-                    className="w-full max-w-[300px] h-auto rounded-lg border border-green/20"
-                    onError={(e) => console.error('Image failed to load')}
-                  />
+                <div className="border-t border-green/20 pt-6 mt-2">
+                  <p className="text-gray-300 text-base md:text-lg text-center">
+                    That’s the first thing to remember.
+                  </p>
                 </div>
-                <p className="text-gray-300 text-base md:text-lg text-center">
-                  That’s the first thing to remember.
-                </p>
-              </div>
 
-                <p className="text-gray-500 text-sm mt-5">
+                <p className="text-gray-500 text-sm mt-6">
                   Click anywhere to continue
                 </p>
               </div>
@@ -151,4 +140,4 @@ export default function Page() {
 }
 
 // FILE: app/page.tsx (end)
-// VERSION: 1.0.6
+// VERSION: 1.0.7
