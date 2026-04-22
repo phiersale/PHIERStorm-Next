@@ -1,5 +1,5 @@
-// FILE:page.tsx
-// VERSION: 1.0.3
+// FILE: app/page.tsx
+// VERSION: 1.0.4 (centered skip button, space bar closes modal)
 
 'use client'
 
@@ -16,25 +16,24 @@ export default function Page() {
   const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
 
- useEffect(() => {
-  const urlParams = new URLSearchParams(window.location.search)
-  const skipSlides = urlParams.get('skip') === 'slides'
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const skipSlides = urlParams.get('skip') === 'slides'
 
-  if (skipSlides) {
-    // Mark as seen so reloads also skip the intro
-    sessionStorage.setItem('entrySequence', '1')   
-    setShowEntryModal(false)
-    setStage('main')
-    window.history.replaceState({}, '', '/')
-    return
-  }
+    if (skipSlides) {
+      sessionStorage.setItem('entrySequence', '1')   
+      setShowEntryModal(false)
+      setStage('main')
+      window.history.replaceState({}, '', '/')
+      return
+    }
 
-  const seen = sessionStorage.getItem('entrySequence')
-  if (seen) {
-    setShowEntryModal(false)
-    setStage('prehome')
-  }
-}, [])
+    const seen = sessionStorage.getItem('entrySequence')
+    if (seen) {
+      setShowEntryModal(false)
+      setStage('prehome')
+    }
+  }, [])
 
   const proceed = () => {
     setShowEntryModal(false)
@@ -46,7 +45,10 @@ export default function Page() {
     if (!showEntryModal) return
 
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === 'Escape') proceed()
+      if (e.key === 'Enter' || e.key === 'Escape' || e.key === ' ') {
+        e.preventDefault()
+        proceed()
+      }
     }
 
     window.addEventListener('keydown', handleKey)
@@ -56,7 +58,7 @@ export default function Page() {
       window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
     }
-  }, [showEntryModal])
+  }, [showEntryModal, proceed])
 
   if (stage === 'entry') {
     return (
@@ -70,17 +72,15 @@ export default function Page() {
             onClick={proceed}
           >
             <div className="relative w-full max-w-xl mx-auto">
-              <div className="flex justify-center mb-6">
+              {/* Centered header with logo and skip button side by side */}
+              <div className="flex justify-center items-center gap-6 mb-6">
                 <Image
                   src="/images/PHIERS_Logo.png"
                   alt="PHIERS"
-                  width={60}
-                  height={60}
+                  width={50}
+                  height={50}
                   className="opacity-90"
                 />
-              </div>
-
-              <div className="absolute top-0 right-0">
                 <button
                   onClick={(e) => { e.stopPropagation(); proceed() }}
                   className="text-gray-500 text-sm underline hover:text-gray-300"
@@ -89,11 +89,11 @@ export default function Page() {
                 </button>
               </div>
 
-              <div className="text-center mt-6">
+              <div className="text-center mt-4">
                 <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
                   Take a deep breath.
                 </h2>
- 
+
                 <p className="text-gray-300 text-lg md:text-xl mb-1">
                   What you’re about to see is simple.
                 </p>
@@ -103,7 +103,6 @@ export default function Page() {
                 </p>
 
                 <div className="border-t border-green/20 pt-4 mt-1">
-                  {/* Image is now static – no click modal */}
                   <div className="mb-2 flex justify-center">
                     <Image
                       src="/images/You_Are_Not_Powerless.jpg"
@@ -142,5 +141,5 @@ export default function Page() {
   return <MainHomePage />
 }
 
-// FILE:page.tsx
-// VERSION: 1.0.3
+// FILE: app/page.tsx (end)
+// VERSION: 1.0.4
