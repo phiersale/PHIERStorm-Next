@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 3.3.0 (full clickable area, PHIERS grid right padding, image object-contain)
+// VERSION: 3.5.0 (got rid of phiers logo at top)
 
 'use client'
 
@@ -246,9 +246,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     >
       {/* Header */}
       <div className="flex justify-center items-center gap-6 py-2">
-        <div className="pointer-events-none">
-          <Image src="/images/PHIERS_Logo.png" alt="" width={40} height={40} className="opacity-80" />
-        </div>
         <button
           onClick={onGoToHomepage}
           className="text-gray-500 text-sm underline hover:text-gray-300"
@@ -354,4 +351,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.3.0
+// VERSION: 3.5
