@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 3.2.0 (subdued buttons, large PHIERS letters, fixed spacing, no regressions)
+// VERSION: 3.3.0 (full clickable area, PHIERS grid right padding, image object-contain)
 
 'use client'
 
@@ -117,7 +117,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 
   const renderTitle = () => {
     if (slide.customLayout) return null
-    if (slide.title === "") return null  // empty title check restored
+    if (slide.title === "") return null
     if (slide.title === "PHIERS") {
       return <h1 className="text-4xl md:text-5xl font-bold mb-6 text-green">{slide.title}</h1>
     }
@@ -125,31 +125,31 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
-   // Image slide (You Are Not Powerless) – full image visible, no cropping
-if (slide.isImageSlide) {
-  return (
-    <div className="flex flex-col items-center justify-center space-y-6">
-      <div className="flex justify-center w-full">
-        <Image
-          src={slide.imageSrc}
-          alt={slide.imageAlt}
-          width={500}
-          height={300}
-          sizes="(max-width: 768px) 90vw, 500px"
-          className="w-full max-w-[90%] md:max-w-[500px] h-auto object-contain"
-          priority
-        />
-      </div>
-      {slide.body.map((line, idx) => (
-        <p key={idx} className="text-gray-300 text-base md:text-xl text-center break-words">
-          {line}
-        </p>
-      ))}
-    </div>
-  )
-}
+    // Image slide (You Are Not Powerless) – full image visible
+    if (slide.isImageSlide) {
+      return (
+        <div className="flex flex-col items-center justify-center space-y-6">
+          <div className="flex justify-center w-full">
+            <Image
+              src={slide.imageSrc}
+              alt={slide.imageAlt}
+              width={500}
+              height={300}
+              sizes="(max-width: 768px) 90vw, 500px"
+              className="w-full max-w-[90%] md:max-w-[500px] h-auto object-contain"
+              priority
+            />
+          </div>
+          {slide.body.map((line, idx) => (
+            <p key={idx} className="text-gray-300 text-base md:text-xl text-center break-words">
+              {line}
+            </p>
+          ))}
+        </div>
+      )
+    }
 
-    // PHIERS acronym – grid layout with large desktop letters, reduced mobile gaps
+    // PHIERS acronym – grid with right padding to reveal last column
     if (slide.customLayout) {
       const items = slide.body
       return (
@@ -164,7 +164,7 @@ if (slide.isImageSlide) {
               priority
             />
           </div>
-          <div className="overflow-x-auto w-full pb-2">
+          <div className="overflow-x-auto w-full pb-2 px-4">
             <div className="grid grid-cols-6 gap-6 sm:gap-12 md:gap-16 lg:gap-20 justify-items-center min-w-max mx-auto">
               {items.map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center">
@@ -258,9 +258,10 @@ if (slide.isImageSlide) {
         </button>
       </div>
 
+      {/* Main clickable area – full height */}
       <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full">
         <div
-          className={`text-center w-full py-6 ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
+          className={`text-center w-full flex-1 flex flex-col justify-center ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
           onClick={!isLastSlide && !isTransitioning ? next : undefined}
           onKeyDown={(e) => {
             if (!isLastSlide && !isTransitioning && (e.key === 'Enter' || e.key === ' ')) {
@@ -282,12 +283,13 @@ if (slide.isImageSlide) {
               whileTap={{ scale: 1 }}
             >
               {renderTitle()}
-              {renderBody()}   {/* No outer space-y-3 wrapper */}
+              {renderBody()}
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
+      {/* Bottom navigation */}
       <div className="flex flex-col items-center gap-3 mt-8 pb-4">
         <div className="flex gap-2">
           {slides.map((_, i) => (
@@ -352,4 +354,4 @@ if (slide.isImageSlide) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.2.0 
+// VERSION: 3.3.0
