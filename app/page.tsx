@@ -79,21 +79,20 @@ export default function Page() {
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-center max-w-xl mx-auto px-4">
-                <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
-                  Take a deep breath.
-                </h2>
-                <p className="text-gray-300 text-lg md:text-xl mb-1">
-                  What you’re about to learn is simple.
-                </p>
-                <p className="text-gray-300 text-lg md:text-xl mb-6">
-                  It changes how power actually works.
-                </p>
-                <p className="text-gray-500 text-sm mt-6">
-                  Click anywhere to continue
-                </p>
-              </div>
+            <div className="text-center max-w-xl mx-auto px-4">
+              <h2 className="text-white text-4xl md:text-5xl font-light mb-6">
+                Take a deep breath.
+              </h2>
+              <p className="text-gray-300 text-lg md:text-xl mb-4">
+                What you’re about to learn is simple.
+              </p>
+              <p className="text-gray-300 text-lg md:text-xl mb-8">
+                It changes how power actually works.
+              </p>
+              <p className="text-gray-500 text-sm mt-8">
+                Click anywhere to continue
+              </p>
+            </div>
             </div>
           </motion.div>
         )}
