@@ -5,33 +5,31 @@ const slides = [
   
    // 1
   { 
-    title: "Congress doesn't listen.", 
+    title: "Congress doesn't listen to you.", 
     body: [
-      "Not because they can't.",
-      "Because nothing forces them to."
+      "Why? Because nothing forces them to."
     ],
     greenLines: [1]
   },
   // 2
   { 
     title: "Congress can fix most of what's broken.", 
-    body: ["They just don't have to."],
+    body: ["They chose not to."],
     greenLines: [0]
   },
   // 3
   { 
     title: "Congress can stop this war.", 
-    body: [
-      "They haven't.",
-      "That failure is proof."
+    body: [n
+      "They haven't because many are paid not to.",
     ],
     greenLines: [1]
   },
   // 4
   { 
-    title: "Proof they are not representing their constituents.", 
+    title: "Congress refuses to represent their constituents.", 
     body: [
-      "And that gives us a way to replace them."
+      "This gives us a reason to replace them."
     ],
     greenLines: [0]
   },
@@ -46,16 +44,19 @@ const slides = [
   },
   // 6
   { 
-    title: "Only leverage works.", 
+    title: "Only Leverage forces action.", 
     body: [
-      "Only if it's organized the right way (district level, online, and viral)."
+      "To succeed, it must be organized the right way",
+      "district by district, online, and viral)."
     ],
     greenLines: [0]
   },
   // 7
   { 
-    title: "We track how many people in each congressional district", 
-    body: ["have gone on record."],
+    title: "We track and report support in each congressional district", 
+    body: [
+      "Many have alrady gone on record."
+      "More are needed to make Congress do its job."],
     greenLines: [0]
   },
   // 8
@@ -80,7 +81,7 @@ const slides = [
     title: "1,500 people per district.",
     body: [
       "Across 435 districts, that's about 650,000 people.", 
-      "That's the math."
+      "That's the that will make Congress listen."
     ],
     greenLines: [1]
   },
@@ -89,7 +90,7 @@ const slides = [
     title: "When 1,500 people are on record,",
     body: [
       "representatives must respond in public.", 
-      "Or they get replaced."
+      "Or they will get replaced before July 4."
     ],
     greenLines: [1]
   },
@@ -99,7 +100,7 @@ const slides = [
     body: [
       "Not opinion.", 
       "Not noise.", 
-      "Consequence that can't be ignored."
+      "Consequences that can't be ignored."
     ],
     greenLines: [2]
   },
