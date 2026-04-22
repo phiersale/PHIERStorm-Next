@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.0.7 (image removed, text centered, spacing adjusted)
+// VERSION: 1.0.8 
 
 'use client'
 
@@ -134,4 +134,4 @@ export default function Page() {
 }
 
 // FILE: app/page.tsx (end)
-// VERSION: 1.0.7
+// VERSION: 1.0.8
