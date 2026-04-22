@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.7.0 (credibility stage with PathosCredibility and bridge line)
+// VERSION: 1.8.0 (credibility stage with PathosCredibility text + video)
 
 'use client'
 
@@ -66,12 +66,10 @@ export default function Page() {
     }
   }, [showEntryModal, proceed])
 
-  // After slides finish, go to credibility stage
   const handleSlidesComplete = () => {
     setStage('credibility')
   }
 
-  // After credibility, go to main homepage
   const handleCredibilityComplete = () => {
     setStage('main')
   }
@@ -90,7 +88,6 @@ export default function Page() {
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            {/* Entry modal content – unchanged */}
             <div className="flex-1 flex flex-col items-center justify-center px-4 py-6">
               <div className="text-center max-w-xl mx-auto">
                 <h2 className="text-white text-4xl md:text-5xl font-light mb-3">Take a deep breath.</h2>
@@ -121,12 +118,34 @@ export default function Page() {
   if (stage === 'credibility') {
     return (
       <div className="min-h-screen bg-[#050b19] flex flex-col">
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="flex-1 flex flex-col justify-center py-12 px-4">
           {/* Bridge line */}
-          <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto px-4 mb-8">
+          <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
             If this feels different, it’s because it is.
           </p>
+
+          {/* Pathos text credibility block */}
           <PathosCredibility />
+
+          {/* Pathos video */}
+          <div className="max-w-3xl mx-auto w-full mt-12">
+            <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
+              <iframe
+                src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"
+                title="Pathos Communications endorsement video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                className="absolute top-0 left-0 w-full h-full"
+              />
+            </div>
+            <p className="text-center text-gray-400 text-sm mt-3">
+              A Fortune 500 PR firm publicly staking their reputation on PHIERS.
+            </p>
+          </div>
+
+          {/* Continue button */}
           <div className="flex justify-center mt-12">
             <button
               onClick={handleCredibilityComplete}
