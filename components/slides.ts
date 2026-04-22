@@ -3,17 +3,7 @@
 
 const slides = [
   
-  // Slide 0 – You Are Not Powerless (image slide)
-{
-  title: "",
-  body: [
-    "That’s the first thing to remember."
-  ],
-  isImageSlide: true,
-  imageSrc: "/images/You_Are_Not_Powerless.jpg",
-  imageAlt: "YOU ARE NOT POWERLESS"
-},
-  // 1
+   // 1
   { 
     title: "Congress doesn't listen.", 
     body: [

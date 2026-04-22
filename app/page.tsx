@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.2.0 (logo restored: larger, 50% opacity, more spacing; fixed syntax)
+// VERSION: 1.4.0 (preserved all text, added image + caption, no logo)
 
 'use client'
 
@@ -79,29 +79,35 @@ export default function Page() {
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            {/* Centered content with logo at top */}
-            <div className="flex-1 flex flex-col items-center justify-center">
-              {/* Logo – larger, 50% opacity, more bottom margin */}
-              <div className="mb-8">
-                <Image
-                  src="/images/PHIERS_Logo.png"
-                  alt="PHIERS"
-                  width={70}
-                  height={70}
-                  className="opacity-50"
-                />
-              </div>
-              <div className="text-center max-w-xl mx-auto px-4">
-                <h2 className="text-white text-4xl md:text-5xl font-light mb-6">
+            {/* Centered content – all text preserved, image added */}
+            <div className="flex-1 flex flex-col items-center justify-center px-4 py-6">
+              <div className="text-center max-w-xl mx-auto">
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
                   Take a deep breath.
                 </h2>
-                <p className="text-gray-300 text-lg md:text-xl mb-4">
+                <p className="text-gray-300 text-lg md:text-xl mb-1">
                   What you’re about to learn is simple.
                 </p>
-                <p className="text-gray-300 text-lg md:text-xl mb-8">
+                <p className="text-gray-300 text-lg md:text-xl mb-6">
                   It changes how power actually works.
                 </p>
-                <p className="text-gray-500 text-sm mt-8">
+
+                {/* Restored image + caption */}
+                <div className="my-6 flex justify-center">
+                  <Image
+                    src="/images/You_Are_Not_Powerless.jpg"
+                    alt="YOU ARE NOT POWERLESS"
+                    width={300}
+                    height={150}
+                    className="w-full max-w-[280px] h-auto"
+                    priority
+                  />
+                </div>
+                <p className="text-gray-300 text-base md:text-lg text-center mb-6">
+                  That’s the first thing to remember.
+                </p>
+
+                <p className="text-gray-500 text-sm mt-2">
                   Click anywhere to continue
                 </p>
               </div>
@@ -125,4 +131,4 @@ export default function Page() {
 }
 
 // FILE: app/page.tsx (end)
-// VERSION: 1.2.0
+// VERSION: 1.4.0
