@@ -103,18 +103,12 @@ export default function Page() {
                 </h2>
 
                 <p className="text-gray-300 text-lg md:text-xl mb-1">
-                  What you’re about to see is simple.
+                  What you’re about to learn is simple.
                 </p>
 
                 <p className="text-gray-300 text-lg md:text-xl mb-6">
-                  But it changes how power actually works.
+                  It changes how power actually works.
                 </p>
-
-                <div className="border-t border-green/20 pt-6 mt-2">
-                  <p className="text-gray-300 text-base md:text-lg text-center">
-                    That’s the first thing to remember.
-                  </p>
-                </div>
 
                 <p className="text-gray-500 text-sm mt-6">
                   Click anywhere to continue
