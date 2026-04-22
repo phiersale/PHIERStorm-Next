@@ -82,7 +82,7 @@ export default function Page() {
             {/* Centered content – all text preserved, image added */}
             <div className="flex-1 flex flex-col items-center justify-center px-4 py-6">
               <div className="text-center max-w-xl mx-auto">
-                <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-6">
                   Take a deep breath.
                 </h2>
                 <p className="text-gray-300 text-lg md:text-xl mb-1">
