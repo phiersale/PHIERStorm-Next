@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.9.1 (credibility stage: top‑aligned, reduced spacing, scroll to top)
+// VERSION: 1.9.2 (credibility stage: robust scroll to top on skip)
 
 'use client'
 
@@ -18,6 +18,7 @@ export default function Page() {
   const [showEntryModal, setShowEntryModal] = useState(true)
   const modalRef = useRef<HTMLDivElement>(null)
   const continueButtonRef = useRef<HTMLButtonElement>(null)
+  const credibilityContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
@@ -82,10 +83,17 @@ export default function Page() {
     }
   }, [stage])
 
-  // Scroll to top when credibility stage mounts (so bridge line is visible)
+  // Robust scroll to top of credibility container when stage mounts
   useEffect(() => {
     if (stage === 'credibility') {
-      window.scrollTo(0, 0)
+      // Use requestAnimationFrame to ensure DOM is painted
+      requestAnimationFrame(() => {
+        if (credibilityContainerRef.current) {
+          credibilityContainerRef.current.scrollIntoView({ behavior: 'instant', block: 'start' })
+        } else {
+          window.scrollTo(0, 0)
+        }
+      })
     }
   }, [stage])
 
@@ -155,7 +163,7 @@ export default function Page() {
 
   if (stage === 'credibility') {
     return (
-      <div className="min-h-screen bg-[#050b19] py-12 px-4">
+      <div ref={credibilityContainerRef} className="min-h-screen bg-[#050b19] py-12 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Bridge line */}
           <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
