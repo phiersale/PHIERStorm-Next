@@ -1,14 +1,11 @@
 // FILE: app/petition/page.tsx
-// VERSION: 1.0.4 (success screen: survey + full petition buttons)
+// VERSION: 1.0.8 (success screen: survey + action page buttons, thin, no wrap)
 
 'use client'
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-// If you already have a working Google Sheets webhook URL, keep it here.
-// If not, you can remove the entire form submission and just show a message,
-// but I'm assuming your existing petition already works.
 const SHEETS_WEBHOOK_URL = process.env.NEXT_PUBLIC_SHEETS_WEBHOOK_URL || ''
 
 export default function PetitionPage() {
@@ -33,7 +30,6 @@ export default function PetitionPage() {
     setError('')
     setLoading(true)
 
-    // Honeypot
     if (honeypot) {
       setSubmitted(true)
       setLoading(false)
@@ -57,67 +53,62 @@ export default function PetitionPage() {
       return
     }
 
-    const payload = {
-      timestamp: new Date().toISOString(),
-      firstName,
-      lastName,
-      zipCode,
-      email,
+    // Show success immediately
+    setSubmitted(true)
+
+    // Background webhook (if configured)
+    if (SHEETS_WEBHOOK_URL) {
+      const payload = {
+        timestamp: new Date().toISOString(),
+        firstName,
+        lastName,
+        zipCode,
+        email,
+      }
+      fetch(SHEETS_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }).catch(err => console.error('Webhook failed:', err))
     }
 
-    try {
-      // If you have a working webhook, keep this; otherwise comment out
-      if (SHEETS_WEBHOOK_URL) {
-        await fetch(SHEETS_WEBHOOK_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        })
-      }
-      setSubmitted(true)
-    } catch (err) {
-      setError('Something went wrong. Please try again or email info@phiers.org.')
-    } finally {
-      setLoading(false)
-    }
+    setLoading(false)
   }
 
-  // --- SUCCESS SCREEN with survey link + full petition link ---
+  // --- SUCCESS SCREEN with two thin buttons (vertical) ---
   if (submitted) {
     return (
       <div className="min-h-screen bg-[#050b19] text-white flex items-center justify-center p-4">
-        <div className="text-center max-w-md">
+        <div className="text-center max-w-sm w-full">
           <h1 className="text-3xl font-bold text-green mb-4">You're On The Record.</h1>
           <p className="text-gray-300 mb-6">
             Your name has been added. We'll notify you when your district reaches 1,500.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
-            {/* Survey button - your existing Google Form */}
+          <div className="flex flex-col gap-3 items-stretch">
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-green text-black font-bold py-2 px-6 rounded-lg hover:bg-green-600 transition"
+              className="bg-green text-black font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition text-center whitespace-nowrap"
             >
               📋 TAKE THE SURVEY
             </a>
 
-            {/* Full Petition button - REPLACE URL with your actual Google Doc link */}
             <a
-              href="https://docs.google.com/document/d/YOUR_DOC_ID/edit"   // ← CHANGE THIS to your actual Google Doc URL
+              href="/action"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-blue-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-600 transition"
+              className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition text-center whitespace-nowrap"
             >
-              📄 READ THE FULL PETITION
+              ⚡ TAKE ACTION
             </a>
           </div>
 
           <button
             onClick={() => router.push('/?skip=slides')}
-            className="block w-full text-gray-400 text-sm underline"
+            className="block w-full text-gray-400 text-sm underline mt-6"
           >
             ← Back to homepage
           </button>
@@ -134,7 +125,6 @@ export default function PetitionPage() {
         <p className="text-center text-gray-300 mb-8">Add your name. Make Congress do its job.</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Honeypot */}
           <input
             type="text"
             name="website"
@@ -221,4 +211,4 @@ export default function PetitionPage() {
 }
 
 // FILE: app/petition/page.tsx (end)
-// VERSION: 1.0.4
+// VERSION: 1.0.8
