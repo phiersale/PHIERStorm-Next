@@ -160,7 +160,7 @@ if (slide.customLayout) {
     // Image slide (You Are Not Powerless)
     if (slide.isImageSlide) {
       return (
-        <div className="flex flex-col items-center justify-center space-y-6">
+        <div className="flex flex-col items-center justify-center space-y-6 -mt-8">
           <div className="flex justify-center">
             <Image
               src={slide.imageSrc}
