@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 3.1.0 (grid layout for PHIERS slide, fixed truncation)
+// VERSION: 3.2.0 (subdued buttons, large PHIERS letters, fixed spacing, no regressions)
 
 'use client'
 
@@ -117,6 +117,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 
   const renderTitle = () => {
     if (slide.customLayout) return null
+    if (slide.title === "") return null  // empty title check restored
     if (slide.title === "PHIERS") {
       return <h1 className="text-4xl md:text-5xl font-bold mb-6 text-green">{slide.title}</h1>
     }
@@ -124,51 +125,18 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
-    // Custom layout for PHIERS acronym – grid (letter exactly above word)
-if (slide.customLayout) {
-  const items = slide.body
-  return (
-    <div className="flex flex-col items-center space-y-6">
-      <div className="mb-2">
-        <Image
-          src="/images/PHIERS_Logo.png"
-          alt="PHIERS Logo"
-          width={160}
-          height={160}
-          className="w-32 sm:w-40 md:w-48 h-auto mx-auto"
-          priority
-        />
-      </div>
-      <div className="overflow-x-auto w-full pb-2">
-        <div className="grid grid-cols-6 gap-12 sm:gap-16 md:gap-20 lg:gap-24 justify-items-center min-w-max mx-auto">
-          {items.map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center">
-              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-green whitespace-nowrap">
-                {item.letter}
-              </span>
-              <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 uppercase text-center whitespace-nowrap">
-                {item.word}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <p className="text-gray-500 text-xs italic text-center">{slide.punchLine}</p>
-    </div>
-  )
-}
-    // Image slide (You Are Not Powerless)
+    // Image slide (You Are Not Powerless) – no extra outer spacing
     if (slide.isImageSlide) {
       return (
-        <div className="flex flex-col items-center justify-center space-y-6 -mt-8">
-          <div className="flex justify-center">
+        <div className="flex flex-col items-center justify-center space-y-6">
+          <div className="flex justify-center w-full">
             <Image
               src={slide.imageSrc}
               alt={slide.imageAlt}
               width={500}
               height={300}
-              sizes="(max-width: 768px) 90vw, 400px"
-              className="w-full max-w-[400px] h-auto rounded-lg border border-green/20"
+              sizes="(max-width: 768px) 90vw, 500px"
+              className="w-full max-w-[90%] md:max-w-[500px] h-auto rounded-lg border border-green/20"
               priority
             />
           </div>
@@ -177,6 +145,40 @@ if (slide.customLayout) {
               {line}
             </p>
           ))}
+        </div>
+      )
+    }
+
+    // PHIERS acronym – grid layout with large desktop letters, reduced mobile gaps
+    if (slide.customLayout) {
+      const items = slide.body
+      return (
+        <div className="flex flex-col items-center space-y-6">
+          <div className="mb-2">
+            <Image
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              width={160}
+              height={160}
+              className="w-32 sm:w-40 md:w-48 h-auto mx-auto"
+              priority
+            />
+          </div>
+          <div className="overflow-x-auto w-full pb-2">
+            <div className="grid grid-cols-6 gap-6 sm:gap-12 md:gap-16 lg:gap-20 justify-items-center min-w-max mx-auto">
+              {items.map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center">
+                  <span className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-green whitespace-nowrap">
+                    {item.letter}
+                  </span>
+                  <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 uppercase text-center whitespace-nowrap">
+                    {item.word}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="text-gray-500 text-xs italic text-center">{slide.punchLine}</p>
         </div>
       )
     }
@@ -242,7 +244,7 @@ if (slide.customLayout) {
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
-      {/* Centered header with logo and skip button */}
+      {/* Header */}
       <div className="flex justify-center items-center gap-6 py-2">
         <div className="pointer-events-none">
           <Image src="/images/PHIERS_Logo.png" alt="" width={40} height={40} className="opacity-80" />
@@ -280,14 +282,13 @@ if (slide.customLayout) {
               whileTap={{ scale: 1 }}
             >
               {renderTitle()}
-              <div className="space-y-3">{renderBody()}</div>
+              {renderBody()}   {/* No outer space-y-3 wrapper */}
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
       <div className="flex flex-col items-center gap-3 mt-8 pb-4">
-        {/* Clickable dots */}
         <div className="flex gap-2">
           {slides.map((_, i) => (
             <button
@@ -319,14 +320,14 @@ if (slide.customLayout) {
             <div className="flex flex-col gap-2 w-full max-w-xs mx-auto">
               <button
                 onClick={onGoToPetition}
-                className="bg-green/80 text-black text-base md:text-lg font-semibold py-2 px-4 rounded-lg w-full shadow-sm hover:bg-green/90 transition"
+                className="bg-green/60 text-black text-sm md:text-base font-semibold py-1 px-3 rounded-md hover:bg-green/70 transition"
                 aria-label="Sign the petition"
               >
                 ✍ BE COUNTED
               </button>
               <button
                 onClick={onGoToHomepage}
-                className="border border-green/50 text-green text-base md:text-lg font-semibold py-2 px-4 rounded-lg w-full hover:bg-green/10 transition"
+                className="border border-green/40 text-green text-sm md:text-base font-semibold py-1 px-3 rounded-md hover:bg-green/10 transition"
                 aria-label="Learn how it works"
               >
                 → SEE HOW IT WORKS
@@ -351,4 +352,4 @@ if (slide.customLayout) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.1.0
+// VERSION: 3.2.0
