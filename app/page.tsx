@@ -93,13 +93,13 @@ export default function Page() {
                 </p>
 
                 {/* Restored image + caption */}
-                <div className="my-6 flex justify-center">
+                <div className="mt-8 mb-6 flex justify-center">
                   <Image
                     src="/images/You_Are_Not_Powerless.jpg"
                     alt="YOU ARE NOT POWERLESS"
-                    width={300}
-                    height={150}
-                    className="w-full max-w-[280px] h-auto"
+                    width={350}
+                    height={175}
+                    className="w-full max-w-[345px] h-auto"
                     priority
                   />
                 </div>
