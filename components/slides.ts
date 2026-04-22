@@ -55,7 +55,7 @@ const slides = [
   { 
     title: "We track and report support in each congressional district", 
     body: [
-      "Many have alrady gone on record.",
+      "Many have already gone on record.",
       "More are needed to make Congress do its job."],
     greenLines: [0]
   },
