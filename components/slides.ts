@@ -20,7 +20,7 @@ const slides = [
   // 3
   { 
     title: "Congress can stop this war.", 
-    body: [n
+    body: [
       "They haven't because many are paid not to.",
     ],
     greenLines: [1]
@@ -47,7 +47,7 @@ const slides = [
     title: "Only Leverage forces action.", 
     body: [
       "To succeed, it must be organized the right way",
-      "district by district, online, and viral)."
+      "district by district, online, and viral."
     ],
     greenLines: [0]
   },
@@ -55,7 +55,7 @@ const slides = [
   { 
     title: "We track and report support in each congressional district", 
     body: [
-      "Many have alrady gone on record."
+      "Many have alrady gone on record.",
       "More are needed to make Congress do its job."],
     greenLines: [0]
   },
@@ -81,7 +81,7 @@ const slides = [
     title: "1,500 people per district.",
     body: [
       "Across 435 districts, that's about 650,000 people.", 
-      "That's the that will make Congress listen."
+      "That's the Math that will make Congress listen."
     ],
     greenLines: [1]
   },
