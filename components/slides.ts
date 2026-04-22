@@ -1,112 +1,108 @@
 // FILE: components/slides.ts
-// VERSION: 1.1.0 (stacked letters for PHIERS slide)
+// VERSION: .3.0 (clean, safe, aligned with PHIERS identity)
 
 const slides = [
-  
-   // 1
-  { 
-    title: "Congress doesn't listen to you.", 
+
+  // 1 — Congress ignores you
+  {
+    title: "Congress doesn't listen to you.",
     body: [
-      "Why? Because nothing forces them to."
+      "Not because they can't.",
+      "Because nothing forces them to."
     ],
     greenLines: [1]
   },
-  // 2
-  { 
-    title: "Congress can fix most of what's broken.", 
-    body: ["They chose not to."],
+
+  // 2 — Congress can fix things
+  {
+    title: "Congress can fix most of what's broken.",
+    body: ["They just don't have to."],
     greenLines: [0]
   },
-  // 3
-  { 
-    title: "Congress can stop this war.", 
+
+  // 3 — War as proof
+  {
+    title: "Congress can stop this war.",
     body: [
-      "They haven't because many are paid not to.",
+      "They haven't. That failure is proof.",
+      "Proof they are not representing their constituents."
     ],
     greenLines: [1]
   },
-  // 4
-  { 
-    title: "Congress refuses to represent their constituents.", 
+
+  // 4 — Opinions vs leverage
+  {
+    title: "Opinions don't force action.",
     body: [
-      "This gives us a reason to replace them."
-    ],
-    greenLines: [0]
-  },
-  // 5
-  { 
-    title: "Opinions don't force action.", 
-    body: [
-      "Outrage doesn't force action.", 
+      "Outrage doesn't force action.",
       "Noise doesn't force action."
     ],
     greenLines: [1]
   },
-  // 6
-  { 
-    title: "Only Leverage forces action.", 
+
+  // 5 — Only leverage works
+  {
+    title: "Only leve rage forces action.",
     body: [
-      "To succeed, it must be organized the right way",
-      "district by district, online, and viral."
+      "But only if it's organized the right way.",
+      "District by district, online, and viral."
     ],
-    greenLines: [0]
+    greenLines: [1]
   },
-  // 7
-  { 
-    title: "We track and report support in each congressional district", 
+
+  // 6 — Tracking
+  {
+    title: "We track how many people in each district are on record.",
     body: [
-      "Many have already gone on record.",
-      "More are needed to make Congress do its job."],
-    greenLines: [0]
-  },
-  // 8
-  { 
-    title: "Alone, you're easy to ignore.", 
-    body: [
-      "1,500 people in your district are not.",
-      "Proven in civic campaigns — Ralph Nader"
+      "Alone, you're easy to ignore.",
+      "1,500 people in your district are not."
     ],
-    greenLines: [0, 1]
+    greenLines: [1]
   },
-  // 9
+
+  // 7 — Nader + Harvard
   {
     title: "That's the tipping point.",
     body: [
-      "Just enough people — in the right place, at the same time."
+      "1,500 people per district — proven in civic campaigns.",
+      "3.5% can overthrow an authoritarian — Harvard."
     ],
-    greenLines: [0]
+    greenLines: [1]
   },
-  // 10
+
+  // 8 — National math
   {
     title: "1,500 people per district.",
     body: [
-      "Across 435 districts, that's about 650,000 people.", 
-      "That's the Math that will make Congress listen."
+      "Across 435 districts, that's about 650,000 people.",
+      "That's all it takes to end war and fix Congress."
     ],
     greenLines: [1]
   },
-  // 11
+
+  // 9 — Consequence
   {
     title: "When 1,500 people are on record,",
     body: [
-      "representatives must respond in public.", 
-      "Or they will get replaced before July 4."
+      "Representatives must respond in public.",
+      "Or they risk being replaced."
     ],
     greenLines: [1]
   },
-  // 12
-  { 
-    title: "That's leverage.", 
+
+  // 10 — Leverage defined
+  {
+    title: "That's leverage.",
     body: [
-      "Not opinion.", 
-      "Not noise.", 
-      "Consequences that can't be ignored."
+      "Not opinion. Not noise.",
+      "Consequences they can't ignore."
     ],
     greenLines: [2]
   },
-  // 13 – PHIERS acronym with stacked letters
-  { 
-    title: "PHIERS", 
+
+  // 11 — PHIERS acronym
+  {
+    title: "PHIERS",
     body: [
       { letter: "P", word: "POWER" },
       { letter: "H", word: "HELD" },
@@ -116,15 +112,17 @@ const slides = [
       { letter: "S", word: "SEAT" }
     ],
     customLayout: true,
-    punchLine: "Power Held In Every Reps Seat"
+    punchLine: "Power Held In Every Representative's Seat"
   },
-  // 14 – final slide
+
+  // 12 — Final slide
   {
     title: "",
     body: [
       "I agree",
-      "I'm on record",
-      "…so they respond — or get replaced."
+      "I'm on record. I am not alone.",
+      "We are many, so Congress must respond",
+      " or they will get replaced."
     ],
     isFinalSlide: true,
     greenLines: []
@@ -132,6 +130,3 @@ const slides = [
 ];
 
 export default slides;
-
-// FILE: components/slides.ts (end)
-// VERSION: 1.1.0

@@ -188,40 +188,42 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       return <p className={`text-center ${slide.customStyle}`}>{slide.body[0]}</p>
     }
 
-    // Final slide with sequential fade‑in
+    // Final slide with progressive font sizes and green intensity
     if (slide.isFinalSlide) {
+      const lines = slide.body
+      // Font size classes that increase with each line
+      const fontSizes = [
+        "text-xl md:text-2xl",       // line 0
+        "text-2xl md:text-3xl",      // line 1
+        "text-3xl md:text-4xl",      // line 2
+        "text-4xl md:text-5xl",      // line 3
+        "text-5xl md:text-6xl"       // line 4 (if more)
+      ]
+      // Green intensity classes (from dim to full green)
+      const greenIntensities = [
+        "text-green/50",    // line 0 – very dim green
+        "text-green/70",    // line 1
+        "text-green/90",    // line 2
+        "text-green",       // line 3 – full green
+        "text-green font-bold" // line 4 – full green + bold
+      ]
       return (
-        <div className="space-y-8 max-w-2xl mx-auto text-center">
-          <motion.p
-            key="final-line-1"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-gray-300 text-xl md:text-2xl font-light"
-          >
-            {slide.body[0]}
-          </motion.p>
-          <motion.p
-            key="final-line-2"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="text-white text-4xl md:text-5xl font-bold"
-          >
-            {slide.body[1]}
-          </motion.p>
-          <motion.p
-            key="final-line-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-green text-2xl md:text-3xl font-semibold"
-          >
-            {slide.body[2]}
-          </motion.p>
+        <div className="space-y-6 max-w-2xl mx-auto text-center">
+          {lines.map((line, idx) => (
+            <motion.p
+              key={`final-line-${idx}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.3, ease: "easeOut" }}
+              className={`${fontSizes[idx] || fontSizes[fontSizes.length-1]} ${greenIntensities[idx] || greenIntensities[greenIntensities.length-1]} font-medium`}
+            >
+              {line}
+            </motion.p>
+          ))}
         </div>
       )
     }
+  
 
     // Normal slides with greenLines
     const greenLineIndices = slide.greenLines || []
@@ -244,11 +246,11 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
-      {/* Header */}
-      <div className="flex justify-center items-center gap-6 py-2">
+     {/* Header */}
+      <div className="flex justify-end px-6 py-2">
         <button
           onClick={onGoToHomepage}
-          className="text-gray-500 text-sm underline hover:text-gray-300"
+          className="text-gray-500 text-sm underline hover:text-gray-300 mr-[25%]"
           aria-label="Skip introduction"
         >
           Skip →
