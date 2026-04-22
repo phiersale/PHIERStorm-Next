@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 2.3.0 (clickable dot navigation)
+// VERSION: 2.4.0 (stacked PHIERS layout, subdued buttons, clickable dots)
 
 'use client'
 
@@ -124,30 +124,30 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
+    // Custom layout for PHIERS acronym – stacked letters over words
     if (slide.customLayout) {
-      const words = slide.body
+      const items = slide.body  // array of { letter, word }
       return (
-        <div className="flex flex-col items-center space-y-6">
-          <div className="mb-4">
-            <Image
-              src="/images/PHIERS_Logo.png"
-              alt="PHIERS Logo"
-              width={200}
-              height={200}
-              className="w-40 sm:w-48 md:w-56 h-auto"
-              priority
-            />
-          </div>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 sm:gap-2 md:gap-4 text-center text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 max-w-full">
-            {words.map((word, idx) => (
-              <div key={idx} className="uppercase leading-tight">{word}</div>
+        <div className="flex flex-col items-center space-y-8 mt-8">
+          {/* Letters row – huge, spaced far apart */}
+          <div className="flex justify-center gap-12 md:gap-16 text-6xl md:text-7xl font-bold tracking-[0.2em] text-green">
+            {items.map((item, idx) => (
+              <span key={idx}>{item.letter}</span>
             ))}
           </div>
+          {/* Words row – directly underneath each letter */}
+          <div className="flex justify-center gap-12 md:gap-16 text-sm md:text-base font-medium text-gray-300 uppercase tracking-wide">
+            {items.map((item, idx) => (
+              <div key={idx} className="text-center">{item.word}</div>
+            ))}
+          </div>
+          {/* Punch line – grey, italic, smaller */}
           <p className="text-gray-500 text-sm mt-6 italic">{slide.punchLine}</p>
         </div>
       )
     }
 
+    // Final slide with sequential fade‑in
     if (slide.isFinalSlide) {
       return (
         <div className="space-y-8 max-w-2xl mx-auto text-center">
@@ -156,7 +156,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-gray-400 text-xl md:text-2xl font-light"
+            className="text-gray-300 text-xl md:text-2xl font-light"
           >
             {slide.body[0]}
           </motion.p>
@@ -165,7 +165,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="text-green text-3xl md:text-4xl font-bold"
+            className="text-white text-4xl md:text-5xl font-bold"
           >
             {slide.body[1]}
           </motion.p>
@@ -174,7 +174,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white text-2xl md:text-3xl font-semibold leading-relaxed"
+            className="text-green text-2xl md:text-3xl font-semibold"
           >
             {slide.body[2]}
           </motion.p>
@@ -290,17 +290,17 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             </button>
           )}
           {isLastSlide && (
-            <div className="flex flex-col gap-3 w-full max-w-md">
+            <div className="flex flex-col gap-2 w-full max-w-xs mx-auto">
               <button
                 onClick={onGoToPetition}
-                className="bg-green text-black text-xl md:text-2xl font-bold py-4 px-6 rounded-xl w-full shadow-lg hover:bg-green-600 transition"
+                className="bg-green/80 text-black text-base md:text-lg font-semibold py-2 px-4 rounded-lg w-full shadow-sm hover:bg-green/90 transition"
                 aria-label="Sign the petition"
               >
                 ✍ BE COUNTED
               </button>
               <button
                 onClick={onGoToHomepage}
-                className="border-2 border-green text-green text-xl md:text-2xl font-bold py-4 px-6 rounded-xl w-full hover:bg-green/10 transition"
+                className="border border-green/50 text-green text-base md:text-lg font-semibold py-2 px-4 rounded-lg w-full hover:bg-green/10 transition"
                 aria-label="Learn how it works"
               >
                 → SEE HOW IT WORKS
@@ -325,4 +325,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 2.3.0
+// VERSION: 2.4.0

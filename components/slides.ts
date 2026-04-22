@@ -1,72 +1,108 @@
 // FILE: components/slides.ts
-// VERSION: 2.3.0 (punchline aligned: "Power Held In Every Reps Seat")
+// VERSION: 1.1.0 (stacked letters for PHIERS slide)
 
 const slides = [
-  // SLIDE 1 – Congress ignores you.
-  {
-    title: "Congress ignores you because they can.",
+  // 1
+  { 
+    title: "Congress doesn't listen.", 
     body: [
-      "Congress can fix most of what's broken. They choose not to."
+      "Not because they can't.",
+      "Because nothing forces them to."
     ],
     greenLines: [1]
   },
-
-  // SLIDE 2 – Congress can stop this war.
-  {
-    title: "Congress can stop this war.",
-    body: [
-      "They haven't. Now they're talking draft.",
-      "They have a different agenda. ",
-      "For this, we should replace them."
-    ],
-    greenLines: [2]
+  // 2
+  { 
+    title: "Congress can fix most of what's broken.", 
+    body: ["They just don't have to."],
+    greenLines: [0]
   },
-
-  // SLIDE 3 – Opinions don't force action.
-  {
-    title: "Opinions don't force change.",
+  // 3
+  { 
+    title: "Congress can stop this war.", 
     body: [
-      "Outrage doesn't force action. Noise doesn't force action.",
-      "Only leverage works — when it's organized the right way: district‑level, online, and viral."
+      "They haven't.",
+      "That failure is proof."
     ],
     greenLines: [1]
   },
-
-  // SLIDE 4 – Tracking + 1,500 (Nader + Harvard)
-  {
-    title: "We track how many people in each congressional district:",
+  // 4
+  { 
+    title: "Proof they are not representing their constituents.", 
     body: [
-      "Are on record with their demands.
-      "Alone, you're easy to ignore.",
-      "1,500 people in your district are not — Ralph Nader",
-      "3.5% defeats authoritarians every time — Harvard"
+      "And that gives us a way to replace them."
     ],
-    greenLines: [1, 2]
+    greenLines: [0]
   },
-
-  // SLIDE 5 – The tipping point
+  // 5
+  { 
+    title: "Opinions don't force action.", 
+    body: [
+      "Outrage doesn't force action.", 
+      "Noise doesn't force action."
+    ],
+    greenLines: [1]
+  },
+  // 6
+  { 
+    title: "Only leverage works.", 
+    body: [
+      "Only if it's organized the right way (district level, online, and viral)."
+    ],
+    greenLines: [0]
+  },
+  // 7
+  { 
+    title: "We track how many people in each congressional district", 
+    body: ["have gone on record."],
+    greenLines: [0]
+  },
+  // 8
+  { 
+    title: "Alone, you're easy to ignore.", 
+    body: [
+      "1,500 people in your district are not.",
+      "Proven in civic campaigns — Ralph Nader"
+    ],
+    greenLines: [0, 1]
+  },
+  // 9
   {
     title: "That's the tipping point.",
     body: [
-      "Just enough people — in the right place, at the same time.",
-      "1,500 people per district. Across 435 districts, about 650,000 people.",
-      "That's all it takes to make Congress do its job"
+      "Just enough people — in the right place, at the same time."
     ],
-    greenLines: [2]
+    greenLines: [0]
   },
-
-  // SLIDE 6 – On record → leverage
+  // 10
+  {
+    title: "1,500 people per district.",
+    body: [
+      "Across 435 districts, that's about 650,000 people.", 
+      "That's the math."
+    ],
+    greenLines: [1]
+  },
+  // 11
   {
     title: "When 1,500 people are on record,",
     body: [
-      "Representatives are forced to respond to the public — or risk being replaced.",
-      "Not opinion. Not noise. Not outrage.",
-      "Consequence they can't ignore. Solidarity. That's leverage."
+      "representatives must respond in public.", 
+      "Or they get replaced."
+    ],
+    greenLines: [1]
+  },
+  // 12
+  { 
+    title: "That's leverage.", 
+    body: [
+      "Not opinion.", 
+      "Not noise.", 
+      "Consequence that can't be ignored."
     ],
     greenLines: [2]
   },
-
-  // SLIDE 7 – PHIERS (custom layout – logo + stacked words)
+  // 13 – PHIERS acronym with stacked letters
   { 
     title: "PHIERS", 
     body: [
@@ -79,16 +115,16 @@ const slides = [
     ],
     customLayout: true,
     punchLine: "Power Held In Every Reps Seat"
-  }
-
-  // SLIDE 8 – Final
+  },
+  // 14 – final slide
   {
     title: "",
     body: [
-      "End war. Stop Trump. Recover.",
-      "I'm on record.",
-      "Congress must respond — or get replaced."
+      "I agree",
+      "I'm on record",
+      "…so they respond — or get replaced."
     ],
+    isFinalSlide: true,
     greenLines: []
   }
 ];
@@ -96,4 +132,4 @@ const slides = [
 export default slides;
 
 // FILE: components/slides.ts (end)
-// VERSION: 2.3.0
+// VERSION: 1.1.0
