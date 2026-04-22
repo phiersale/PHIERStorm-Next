@@ -1,5 +1,6 @@
+not finding it 
 // FILE: app/page.tsx
-// VERSION: 1.0.8 
+// VERSION: 1.0.7 (image removed, text centered, spacing adjusted)
 
 'use client'
 
@@ -134,4 +135,4 @@ export default function Page() {
 }
 
 // FILE: app/page.tsx (end)
-// VERSION: 1.0.8
+// VERSION: 1.0.7
