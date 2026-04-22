@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 5.7.1 (added spacer to prevent navigation overlap on mobile)
+// VERSION: 5.4.0 (focus trap fix, accessibility, better alt text, image sizes, iframe lazy)
 
 'use client'
 
@@ -15,15 +15,13 @@ export default function MainHomePage() {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [showArchitectModal, setShowArchitectModal] = useState(false)
-  const [isPathosVideoLoaded, setIsPathosVideoLoaded] = useState(false) // replaces innerHTML
+  const [isPathosVideoLoaded, setIsPathosVideoLoaded] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
 
-  // --- Modal logic with focus trap and proper cleanup ---
   const closeModal = useCallback(() => {
     setModalImageSrc(null)
     document.body.style.overflow = ''
-    // Restore focus to previously focused element
     if (previousFocusRef.current) {
       previousFocusRef.current.focus()
       previousFocusRef.current = null
@@ -31,33 +29,23 @@ export default function MainHomePage() {
   }, [])
 
   const openModal = useCallback((src: string) => {
-    // Store currently focused element
     previousFocusRef.current = document.activeElement as HTMLElement
     setModalImageSrc(src)
     document.body.style.overflow = 'hidden'
   }, [])
 
-  // Keyboard handler for modal
+  // Keyboard handler for modal (Escape)
   useEffect(() => {
     if (!modalImageSrc) return
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeModal()
-      }
-      // Enter key no longer closes – only Escape and click/tap outside
+      if (e.key === 'Escape') closeModal()
     }
     window.addEventListener('keydown', handleKeyDown)
-    // Focus the modal container when opened
-    if (modalRef.current) {
-      modalRef.current.focus()
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-      // overflow reset is handled in closeModal
-    }
+    if (modalRef.current) modalRef.current.focus()
+    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [modalImageSrc, closeModal])
 
-  // Focus trap inside modal
+  // Focus trap for modal
   useEffect(() => {
     if (!modalImageSrc || !modalRef.current) return
     const focusableElements = modalRef.current.querySelectorAll(
@@ -84,7 +72,6 @@ export default function MainHomePage() {
     return () => window.removeEventListener('keydown', handleTab)
   }, [modalImageSrc])
 
-  // Back to top logic
   const scrollToTop = useCallback(() => window.scrollTo({ top: 0, behavior: 'smooth' }), [])
   useEffect(() => {
     const handleScroll = () => setShowBackToTop(window.scrollY > 400)
@@ -97,7 +84,6 @@ export default function MainHomePage() {
     document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
   }, [])
 
-  // Helper to make any clickable div keyboard-friendly
   const makeKeyboardClickable = (handler: () => void) => (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
@@ -137,7 +123,7 @@ export default function MainHomePage() {
                 onError={(e) => console.error('Modal image failed to load:', modalImageSrc)}
               />
               <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">
-                Tap anywhere or press Escape to close
+                Click anywhere or press Escape to close
               </p>
             </div>
           </motion.div>
@@ -147,14 +133,12 @@ export default function MainHomePage() {
       <Navigation />
 
       <main className="font-sans">
-        {/* Spacer to prevent navigation overlap */}
-        <div className="h-16 md:h-20"></div>
-        <section className="container text-center pt-4 md:pt-6 pb-4">
-
+        {/* HERO */}
+        <section className="container text-center pt-8 md:pt-12 pb-4">
           <h1 className="mb-4">
             <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
             <br />
-            <span className="hero-green">IT'S PAID NOT TO CARE ABOUT YOU.</span>
+            <span className="hero-green">IT JUST DOESN'T HAVE TO.</span>
           </h1>
           <div className="max-w-[760px] mx-auto mt-4">
             <p className="text-white text-lg md:text-xl font-semibold mb-2">Alone, you're easy to ignore.</p>
@@ -182,12 +166,13 @@ export default function MainHomePage() {
                 height={648}
                 priority
                 className="w-full h-auto object-contain"
+                sizes="(max-width: 768px) 90vw, 600px"
                 onError={(e) => console.error('Hero image failed to load')}
               />
             </div>
           </div>
 
-           {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
+          {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
             <p className="text-white text-xl font-bold mb-2">Congress can end the war. Right now.</p>
             <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
@@ -196,25 +181,10 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – forces their hand.</p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
             <p className="text-gray-300 text-base mb-2">If they don’t end the war immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
-
-            {/* July 4th image */}
-            <div className="my-6 flex flex-col items-center">
-              <Image
-                src="/images/Independence_Day-American_Miracle.jpg"
-                alt="The Miracle of America – REBORN in US"
-                width={600}
-                height={400}
-                className="rounded-lg border border-green/20"
-                onError={(e) => console.error('July 4th image failed to load')}
-              />
-              <p className="text-gold text-sm italic mt-2">The miracle of America – reborn in us.</p>
-            </div>
-
             <p className="text-white text-lg font-bold mt-2">That’s how we make Congress do its job.</p>
           </div>
 
-
-          {/* Why 1,500 Matters – removed fake district counter */}
+          {/* Why 1,500 Matters */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <h3 className="text-2xl font-bold text-white mb-2">Why 1,500 Matters</h3>
             <p className="text-gray-300 text-base mb-3">
@@ -241,6 +211,7 @@ export default function MainHomePage() {
                 width={600}
                 height={400}
                 className="mx-auto rounded-lg border border-green/20"
+                sizes="(max-width: 768px) 90vw, 600px"
                 onError={(e) => console.error('Dashboard image missing')}
               />
             </div>
@@ -257,6 +228,7 @@ export default function MainHomePage() {
           </div>
         </section>
 
+        {/* LIVE MOVEMENT STATUS */}
         <section className="container py-8 border-t border-b border-green/20 my-6">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">⭐ LIVE MOVEMENT STATUS</span>
@@ -275,6 +247,7 @@ export default function MainHomePage() {
           </div>
         </section>
 
+        {/* THE MECHANISM */}
         <section id="mechanism" className="container section scroll-mt-24">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">THE MECHANISM</span>
@@ -297,13 +270,22 @@ export default function MainHomePage() {
               tabIndex={0}
               aria-label="Enlarge PHIERS mechanism image"
             >
-              <Image src="/images/PHIERS_Tablet__Firewall.png" alt="PHIERS mechanism" width={500} height={400} className="w-full h-auto" onError={(e) => console.error('Tablet image missing')} />
+              <Image
+                src="/images/PHIERS_Tablet__Firewall.png"
+                alt="PHIERS mechanism"
+                width={500}
+                height={400}
+                className="w-full h-auto"
+                sizes="(max-width: 768px) 90vw, 500px"
+                onError={(e) => console.error('Tablet image missing')}
+              />
             </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
+        {/* HOW IT WORKS */}
         <section className="container section">
           <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6">HOW IT WORKS</h2>
           <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -326,6 +308,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* WHY 1,500 PEOPLE MATTER */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY 1,500 PEOPLE MATTER</h2>
@@ -344,13 +327,22 @@ export default function MainHomePage() {
               tabIndex={0}
               aria-label="Enlarge leverage visual"
             >
-              <Image src="/images/This_is_what_leverage_looks_like.jpg" alt="Leverage visual" width={800} height={500} className="w-full h-auto rounded-lg border border-green/20" onError={(e) => console.error('Leverage image missing')} />
+              <Image
+                src="/images/This_is_what_leverage_looks_like.jpg"
+                alt="Leverage visual"
+                width={800}
+                height={500}
+                className="w-full h-auto rounded-lg border border-green/20"
+                sizes="(max-width: 768px) 90vw, 800px"
+                onError={(e) => console.error('Leverage image missing')}
+              />
             </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
+        {/* MID-PAGE ACTION */}
         <section className="container py-8 text-center">
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
@@ -361,6 +353,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* ECONOMIC ENGINE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto">
             <div className="text-center mb-6"><span className="text-green text-sm font-condensed font-bold tracking-wider">THE ECONOMIC ENGINE</span></div>
@@ -380,7 +373,15 @@ export default function MainHomePage() {
                   tabIndex={0}
                   aria-label="Enlarge cost comparison image"
                 >
-                  <Image src="/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg" alt="Cost comparison" width={500} height={300} className="w-full h-auto" onError={(e) => console.error('Cost comparison missing')} />
+                  <Image
+                    src="/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg"
+                    alt="Cost comparison"
+                    width={500}
+                    height={300}
+                    className="w-full h-auto"
+                    sizes="(max-width: 768px) 90vw, 500px"
+                    onError={(e) => console.error('Cost comparison missing')}
+                  />
                 </div>
               </div>
             </div>
@@ -389,6 +390,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* THE CASCADE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
@@ -408,13 +410,22 @@ export default function MainHomePage() {
               tabIndex={0}
               aria-label="Enlarge cascade math diagram"
             >
-              <Image src="/images/Cascade_Math.jpg" alt="Cascade math" width={600} height={400} className="w-full h-auto" onError={(e) => console.error('Cascade diagram missing')} />
+              <Image
+                src="/images/Cascade_Math.jpg"
+                alt="Cascade math"
+                width={600}
+                height={400}
+                className="w-full h-auto"
+                sizes="(max-width: 768px) 90vw, 600px"
+                onError={(e) => console.error('Cascade diagram missing')}
+              />
             </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
+        {/* THREE KINDS OF POWER */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THREE KINDS OF POWER</h2>
@@ -442,6 +453,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* WHY THIS BECOMES UNSTOPPABLE */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -466,7 +478,15 @@ export default function MainHomePage() {
                 tabIndex={0}
                 aria-label="Enlarge 3.5% threshold image"
               >
-                <Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% threshold" width={400} height={300} className="w-full h-auto" onError={(e) => console.error('3.5% image missing')} />
+                <Image
+                  src="/images/3.5pct_Erica_Chenoweth.jpg"
+                  alt="3.5% threshold"
+                  width={400}
+                  height={300}
+                  className="w-full h-auto"
+                  sizes="(max-width: 768px) 90vw, 400px"
+                  onError={(e) => console.error('3.5% image missing')}
+                />
               </div>
             </div>
           </div>
@@ -474,6 +494,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* WHY AFFORDABILITY = LEVERAGE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY AFFORDABILITY = LEVERAGE</h2>
@@ -493,6 +514,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* REALITY ANCHOR */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <div className="max-w-[760px] mx-auto">
@@ -508,6 +530,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* WHAT THIS UNLOCKS */}
         <section className="container section">
           <div className="text-center max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS UNLOCKS</h2>
@@ -524,6 +547,79 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* PATHOS CREDIBILITY SECTION (moved higher) */}
+        <section className="container section">
+          <div className="bg-bg-card/60 rounded-2xl p-6 md:p-8 border border-green/15 max-w-[800px] mx-auto">
+            <div className="text-center">
+              <p className="font-condensed text-xs text-green uppercase tracking-wider mb-2">Independent Validation</p>
+              <div className="font-condensed text-xl md:text-2xl font-bold text-white leading-relaxed mb-2">
+                “If you weren't legit, we wouldn't risk putting our name behind yours.”
+              </div>
+              <div className="font-condensed text-sm text-gray-500 mb-3">
+                — <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline hover:text-green transition-colors">Pathos Communications</a> · Global PR firm (London Stock Exchange)
+              </div>
+              <div className="font-condensed text-sm text-green font-bold mb-4">
+                We passed their test — and chose to stay grassroots.
+              </div>
+
+              <div className="flex justify-center mb-4">
+                <div
+                  className="w-32 h-auto opacity-80 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+                  onClick={() => openModal('/images/Pathos_Logo.png')}
+                  onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Logo.png'))}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Enlarge Pathos Communications logo"
+                >
+                  <Image
+                    src="/images/Pathos_Logo.png"
+                    alt="Pathos Communications logo"
+                    width={128}
+                    height={48}
+                    className="w-full h-auto"
+                    sizes="128px"
+                    onError={(e) => console.error('Pathos logo missing')}
+                  />
+                </div>
+              </div>
+
+              <p className="font-condensed font-bold text-gray-500 text-sm uppercase tracking-wide mb-3">
+                Watch how this works in real life.
+              </p>
+
+              <div
+                className="relative w-full max-w-[560px] mx-auto aspect-video cursor-pointer rounded-xl overflow-hidden border border-green/20"
+                onClick={() => { if (!isPathosVideoLoaded) setIsPathosVideoLoaded(true) }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (!isPathosVideoLoaded) setIsPathosVideoLoaded(true) } }}
+                role="button"
+                tabIndex={0}
+                aria-label="Play Pathos validation video"
+              >
+                {!isPathosVideoLoaded ? (
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg')" }}>
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white text-3xl hover:bg-red-700 transition-colors">▶</div>
+                    </div>
+                  </div>
+                ) : (
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src="https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0"
+                    title="Pathos Communications endorsement video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHY THIS WORKS – includes logos and validation text */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS WORKS</h2>
@@ -570,16 +666,25 @@ export default function MainHomePage() {
             </div>
           </div>
 
+          {/* Logo row */}
           <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
             <div
               className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
-              onClick={() => openModal('/images/Pathos_Comms_Logo.png')}
-              onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Comms_Logo.png'))}
+              onClick={() => openModal('/images/Pathos_Logo.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Logo.png'))}
               role="button"
               tabIndex={0}
-              aria-label="Enlarge Pathos logo"
+              aria-label="Enlarge Pathos Communications logo"
             >
-              <Image src="/images/Pathos_Comms_Logo.png" alt="Pathos Communications" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
+              <Image
+                src="/images/Pathos_Logo.png"
+                alt="Pathos Communications logo"
+                width={100}
+                height={40}
+                className="w-full h-auto"
+                sizes="100px"
+                onError={(e) => console.error('Pathos logo missing')}
+              />
             </div>
             <div
               className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
@@ -589,7 +694,15 @@ export default function MainHomePage() {
               tabIndex={0}
               aria-label="Enlarge Harvard logo"
             >
-              <Image src="/images/Harvard_Logo.png" alt="Harvard" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
+              <Image
+                src="/images/Harvard_Logo.png"
+                alt="Harvard University logo"
+                width={100}
+                height={40}
+                className="w-full h-auto"
+                sizes="100px"
+                onError={(e) => console.error('Harvard logo missing')}
+              />
             </div>
             <div
               className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
@@ -599,7 +712,15 @@ export default function MainHomePage() {
               tabIndex={0}
               aria-label="Enlarge Cost Plus Drugs logo"
             >
-              <Image src="/images/Mark_Cuban_Cost_Plus_Drug.png" alt="Cost Plus Drugs" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
+              <Image
+                src="/images/Mark_Cuban_Cost_Plus_Drug.png"
+                alt="Mark Cuban Cost Plus Drugs logo"
+                width={100}
+                height={40}
+                className="w-full h-auto"
+                sizes="100px"
+                onError={(e) => console.error('Cost Plus Drugs logo missing')}
+              />
             </div>
             <div
               className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
@@ -609,96 +730,22 @@ export default function MainHomePage() {
               tabIndex={0}
               aria-label="Enlarge DotCom Magazine logo"
             >
-              <Image src="/images/DotComMag_Logo.png" alt="DotCom Magazine" width={100} height={40} className="w-full h-auto" onError={(e) => console.error('Logo missing')} />
+              <Image
+                src="/images/DotComMag_Logo.png"
+                alt="DotCom Magazine logo"
+                width={100}
+                height={40}
+                className="w-full h-auto"
+                sizes="100px"
+                onError={(e) => console.error('DotCom Magazine logo missing')}
+              />
             </div>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* PATHOS CREDIBILITY – RESTORED */}
-        <section className="container section">
-          <div className="bg-bg-card/60 rounded-2xl p-6 md:p-8 border border-green/15 max-w-[800px] mx-auto">
-            <div className="text-center">
-              <p className="font-condensed text-xs text-green uppercase tracking-wider mb-2">Independent Validation</p>
-              <div className="font-condensed text-xl md:text-2xl font-bold text-white leading-relaxed mb-2">
-                “If you weren't legit, we wouldn't risk putting our name behind yours.”
-              </div>
-              <div className="font-condensed text-sm text-gray-500 mb-3">
-                — <a href="https://www.pathoscommunications.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 underline hover:text-green transition-colors">Pathos Communications</a> · Global PR firm (London Stock Exchange)
-              </div>
-              <div className="font-condensed text-sm text-green font-bold mb-4">
-                We passed their test — and chose to stay grassroots.
-              </div>
-
-              {/* Pathos Logo (clickable to enlarge) */}
-              <div className="flex justify-center mb-4">
-                <div
-                  className="w-32 h-auto opacity-80 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
-                  onClick={() => openModal('/images/Pathos_Comms_Logo.png')}
-                  onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Logo.png'))}
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Enlarge Pathos logo"
-                >
-                  <Image src="/images/Pathos_Logo.png" alt="Pathos Communications" width={128} height={48} className="w-full h-auto" onError={(e) => console.error('Pathos logo missing')} />
-                </div>
-              </div>
-
-              <p className="font-condensed font-bold text-gray-500 text-sm uppercase tracking-wide mb-3">
-                Watch how this works in real life.
-              </p>
-
-              {/* Pathos Video – state-driven iframe (no innerHTML) */}
-              <div
-                className="relative w-full max-w-[560px] mx-auto aspect-video cursor-pointer rounded-xl overflow-hidden border border-green/20"
-                onClick={() => {
-                  if (!isPathosVideoLoaded) {
-                    setIsPathosVideoLoaded(true)
-                  }
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault()
-                    if (!isPathosVideoLoaded) setIsPathosVideoLoaded(true)
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-label="Play Pathos video"
-              >
-                {!isPathosVideoLoaded ? (
-                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/KLu7USN_dao/hqdefault.jpg')" }}>
-                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white text-3xl hover:bg-red-700 transition-colors">▶</div>
-                    </div>
-                  </div>
-                ) : (
-                  <iframe
-                    className="absolute inset-0 w-full h-full"
-                    src="https://www.youtube.com/embed/KLu7USN_dao?autoplay=1&rel=0"
-                    title="Pathos Communications endorsement video"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                )}
-              </div>
-
-          {/* Meet the architect – underlined bold text */}
-          <div className="mt-6 text-center">
-            <a
-              href="/our-origins"
-              className="inline-block font-bold underline text-gray-400 hover:text-green transition-colors text-base"
-            >
-              Meet the architect →
-            </a>
-          </div>
-              
-            </div>
-          </div>
-        </section>
-
+        {/* WHAT THIS IS NOT */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS IS NOT</h2>
@@ -709,11 +756,18 @@ export default function MainHomePage() {
               This is coordinated civic leverage — district by district.<br />
               A counted signal tied to your specific representative.
             </p>
+            <button
+              onClick={() => setShowArchitectModal(true)}
+              className="text-green underline hover:text-green-dim transition-colors mt-6 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
+            >
+              Meet the architect →
+            </button>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
+        {/* WHAT HAPPENS AFTER YOU SIGN */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -735,7 +789,15 @@ export default function MainHomePage() {
                 tabIndex={0}
                 aria-label="Enlarge PHIERS logo"
               >
-                <Image src="/images/PHIERS_Logo.png" alt="Movement visual" width={400} height={300} className="w-full h-auto border border-green/20 rounded-lg" onError={(e) => console.error('Visual missing')} />
+                <Image
+                  src="/images/PHIERS_Logo.png"
+                  alt="PHIERS logo – Power Held In Every Representative's Seat"
+                  width={400}
+                  height={300}
+                  className="w-full h-auto border border-green/20 rounded-lg"
+                  sizes="(max-width: 768px) 80vw, 400px"
+                  onError={(e) => console.error('PHIERS logo missing')}
+                />
               </div>
             </div>
           </div>
@@ -743,6 +805,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* EVIDENCE FOOTER */}
         <section className="container section bg-bg-dark rounded-xl border border-green/20 p-6 my-6">
           <div className="max-w-[900px] mx-auto">
             <h3 className="text-green text-lg font-bold mb-3">📌 Everything here is verifiable</h3>
@@ -762,6 +825,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
+        {/* FINAL CLOSE */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <p className="text-white text-xl font-bold mb-4">Nothing changes until ignoring people costs more than responding.</p>
@@ -781,22 +845,11 @@ export default function MainHomePage() {
         </section>
       </main>
 
-      {/* Navigation – forward only */}
-        <div className="container py-8 text-center">
-          <Link
-            href="/homepage-teeth"
-            className="inline-block bg-green text-black font-bold py-3 px-6 rounded-lg hover:bg-green-dim transition text-center"
-            aria-label="Continue to next page"
-          >
-            Next →
-          </Link>
-        </div>
-
       <Footer />
 
       <button onClick={scrollToTop} className={`back-to-top ${showBackToTop ? 'visible' : ''}`} aria-label="Back to top">↑</button>
 
-      {/* Architect Modal (Will Price) */}
+      {/* REDESIGNED WILL PRICE MODAL with accessibility attributes */}
       <AnimatePresence>
         {showArchitectModal && (
           <motion.div
@@ -805,14 +858,18 @@ export default function MainHomePage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setShowArchitectModal(false)}
+            aria-hidden="true"
           >
             <div
-              className="relative max-w-[720px] w-full bg-bg-dark/95 border-2 border-green/35 rounded-xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+              className="relative max-w-[720px] w-full bg-[#0a1628] border-2 border-green/35 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Will Price – architect modal"
             >
               <button
                 onClick={() => setShowArchitectModal(false)}
-                className="absolute top-3 right-3 bg-bg-card text-green border-2 border-green rounded-full w-10 h-10 flex items-center justify-center hover:bg-green hover:text-bg-deep transition-all z-10 focus:outline-none focus:ring-2 focus:ring-green"
+                className="absolute top-3 right-3 bg-[#111d35] text-green border-2 border-green rounded-full w-10 h-10 flex items-center justify-center hover:bg-green hover:text-[#111d35] transition-all z-10 focus:outline-none focus:ring-2 focus:ring-green"
                 aria-label="Close architect modal"
               >
                 ✕
@@ -831,7 +888,7 @@ export default function MainHomePage() {
                 <div className="flex-1 min-w-[240px] p-6 flex flex-col justify-center">
                   <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-1">The Architect</p>
                   <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-0">Will Price</h3>
-                  <p className="font-condensed text-sm text-yellow-400 font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
+                  <p className="font-condensed text-sm text-[#ffd60a] font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
                   <p className="text-body text-sm leading-relaxed">
                     Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009.
                   </p>
@@ -847,10 +904,11 @@ export default function MainHomePage() {
                     frameBorder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
+                    loading="lazy"
                     className="absolute top-0 left-0 w-full h-full"
                   />
                 </div>
-                <p className="font-condensed text-sm text-gray-400 mt-3 leading-relaxed">
+                <p className="font-condensed text-sm text-[#8899bb] mt-3 leading-relaxed">
                   A Fortune 500 PR firm — listed on the London Stock Exchange — publicly staking their reputation on PHIERS. That's not a pitch. That's a verdict.
                 </p>
               </div>
@@ -859,9 +917,42 @@ export default function MainHomePage() {
         )}
       </AnimatePresence>
 
+      <style jsx global>{`
+        .back-to-top {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          background: var(--green);
+          color: var(--bg-deep);
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          cursor: pointer;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 150ms ease;
+          z-index: 999;
+          border: none;
+        }
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+        }
+        .back-to-top:hover {
+          background: #2ab568;
+          transform: translateY(-2px);
+        }
+        .bg-green-glow {
+          background: rgba(61, 220, 132, 0.06);
+        }
+      `}</style>
     </>
   )
 }
 
-// FILE: components/MainHomePage.tsx
-// VERSION: 5.7.1 (added spacer to prevent navigation overlap on mobile)
+// FILE: components/MainHomePage.tsx (end)
+// VERSION: 5.4.0
