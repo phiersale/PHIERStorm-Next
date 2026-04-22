@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.0.5 (modal focusable, space bar advances)
+// VERSION: 1.0.6 (modal focusable, space bar advances)
 
 'use client'
 
@@ -74,13 +74,13 @@ export default function Page() {
             ref={modalRef}
             id="entry-modal"
             tabIndex={-1}
-            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 focus:outline-none"
+            className="fixed inset-0 bg-[#050b19] z-[99999] flex items-center justify-center p-4 focus:outline-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            <div className="relative w-full max-w-xl mx-auto">
+            <div className="relative w-full max-w-xl mx-auto overflow-y-auto max-h-[90vh]">
               {/* Centered header with logo and skip button */}
               <div className="flex justify-center items-center gap-6 mb-6">
                 <Image
@@ -111,21 +111,21 @@ export default function Page() {
                   But it changes how power actually works.
                 </p>
 
-                <div className="border-t border-green/20 pt-4 mt-1">
-                  <div className="mb-2 flex justify-center">
-                    <Image
-                      src="/images/You_Are_Not_Powerless.jpg"
-                      alt="YOU ARE NOT POWERLESS"
-                      width={400}
-                      height={200}
-                      className="w-full max-w-[300px] h-auto rounded-lg border border-green/20"
-                      onError={(e) => console.error('Image failed to load')}
-                    />
-                  </div>
-                  <p className="text-gray-300 text-base md:text-lg text-center">
-                    That’s the first thing to remember.
-                  </p>
+               <div className="border-t border-green/20 pt-4 mt-4">
+                <div className="mb-6 flex justify-center">
+                  <Image
+                    src="/images/You_Are_Not_Powerless.jpg"
+                    alt="YOU ARE NOT POWERLESS"
+                    width={400}
+                    height={200}
+                    className="w-full max-w-[300px] h-auto rounded-lg border border-green/20"
+                    onError={(e) => console.error('Image failed to load')}
+                  />
                 </div>
+                <p className="text-gray-300 text-base md:text-lg text-center">
+                  That’s the first thing to remember.
+                </p>
+              </div>
 
                 <p className="text-gray-500 text-sm mt-5">
                   Click anywhere to continue
@@ -151,4 +151,4 @@ export default function Page() {
 }
 
 // FILE: app/page.tsx (end)
-// VERSION: 1.0.5
+// VERSION: 1.0.6
