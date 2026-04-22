@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 2.2.0 (skip button and logo centered together, better UX)
+// VERSION: 2.3.0 (clickable dot navigation)
 
 'use client'
 
@@ -40,34 +40,30 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     }
   }
 
-  const next = useCallback(() => {
+  const goToSlide = useCallback((newIndex: number) => {
     if (isTransitioning) return
     clearTimer()
     setIsTransitioning(true)
-
-    setIndex(prev => {
-      if (prev >= slides.length - 1) {
-        onGoToHomepage()
-        return prev
-      }
-      const nextIdx = prev + 1
-      const delay = nextIdx === slides.length - 1 ? TRANSITION_MS + LAST_SLIDE_EXTRA_MS : TRANSITION_MS
-      timeoutRef.current = setTimeout(() => {
-        if (mounted.current) setIsTransitioning(false)
-      }, delay)
-      return nextIdx
-    })
-  }, [isTransitioning, onGoToHomepage])
-
-  const prev = useCallback(() => {
-    if (isTransitioning) return
-    clearTimer()
-    setIsTransitioning(true)
-    setIndex(prev => Math.max(0, prev - 1))
+    setIndex(newIndex)
     timeoutRef.current = setTimeout(() => {
       if (mounted.current) setIsTransitioning(false)
     }, TRANSITION_MS)
   }, [isTransitioning])
+
+  const next = useCallback(() => {
+    if (isTransitioning) return
+    if (index >= slides.length - 1) {
+      onGoToHomepage()
+      return
+    }
+    goToSlide(index + 1)
+  }, [isTransitioning, index, onGoToHomepage, goToSlide])
+
+  const prev = useCallback(() => {
+    if (isTransitioning) return
+    if (index === 0) return
+    goToSlide(index - 1)
+  }, [isTransitioning, index, goToSlide])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -120,9 +116,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const transitionDuration = prefersReducedMotion ? 0 : 0.4
 
   const renderTitle = () => {
-    if (slide.customLayout) {
-      return null
-    }
+    if (slide.customLayout) return null
     if (slide.title === "PHIERS") {
       return <h1 className="text-4xl md:text-5xl font-bold mb-6 text-green">{slide.title}</h1>
     }
@@ -222,7 +216,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
-      {/* Centered header with logo and skip button side by side */}
+      {/* Centered header with logo and skip button */}
       <div className="flex justify-center items-center gap-6 py-2">
         <div className="pointer-events-none">
           <Image src="/images/PHIERS_Logo.png" alt="" width={40} height={40} className="opacity-80" />
@@ -267,13 +261,16 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       </div>
 
       <div className="flex flex-col items-center gap-3 mt-8 pb-4">
+        {/* Clickable dots */}
         <div className="flex gap-2">
           {slides.map((_, i) => (
-            <div
+            <button
               key={i}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                i === index ? 'bg-green scale-125 shadow-[0_0_6px_rgba(61,220,132,0.6)]' : 'bg-gray-600 opacity-60'
+              onClick={() => goToSlide(i)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
+                i === index ? 'bg-green scale-125 shadow-[0_0_6px_rgba(61,220,132,0.6)]' : 'bg-gray-600 opacity-60 hover:bg-gray-400'
               }`}
+              aria-label={`Go to slide ${i + 1}`}
               aria-current={i === index ? 'step' : undefined}
             />
           ))}
@@ -328,4 +325,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 2.2.0
+// VERSION: 2.3.0

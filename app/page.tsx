@@ -91,7 +91,7 @@ export default function Page() {
 
               <div className="text-center mt-6">
                 <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
-                  Take a breath.
+                  Take a deep breath.
                 </h2>
 
                 <p className="text-gray-300 text-lg md:text-xl mb-1">

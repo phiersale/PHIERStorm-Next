@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 2.4.0 (slide 8 updated: Congress must end wars and Article 25 NOW)
+// VERSION: 2.3.0 (punchline aligned: "Power Held In Every Reps Seat")
 
 const slides = [
   // SLIDE 1 – Congress ignores you.
@@ -69,12 +69,12 @@ const slides = [
   // SLIDE 7 – PHIERS (custom layout – logo + stacked words)
   {
     title: "PHIERS",
-    body: ["POWER", "HELD", "IN", "EVERY", "REP'S", "SEAT"],
+    body: ["POWER", "HELD", "IN", "EVERY", "REPS", "SEAT"],
     customLayout: true,
-    punchLine: "Power Held In Every Rep's Seat"
+    punchLine: "Power Held In Every Reps Seat"
   },
 
-  // SLIDE 8 – Final (updated)
+  // SLIDE 8 – Final
   {
     title: "",
     body: [
@@ -89,4 +89,4 @@ const slides = [
 export default slides;
 
 // FILE: components/slides.ts (end)
-// VERSION: 2.4.0
+// VERSION: 2.3.0
