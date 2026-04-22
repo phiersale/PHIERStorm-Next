@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 1.0.4 (final – all slides have a green hit, errors fixed)
+// VERSION: 1.0.5 (Rep's and PHIERS Logo on Acronym slide)
 
 const slides = [
   // 1
@@ -122,11 +122,11 @@ const slides = [
       "HELD",
       "IN",
       "EVERY",
-      "REPRESENTATIVE'S",
+      "REP'S",
       "SEAT"
     ],
     customLayout: true,
-    punchLine: "Power Held In Every Representative's Seat"
+    punchLine: "Power Held In Every Rep's Seat"
   },
 
   // 14 – final slide
@@ -145,4 +145,4 @@ const slides = [
 export default slides;
 
 // FILE: components/slides.ts (end)
-// VERSION: 1.0.4
+// VERSION: 1.0.5
