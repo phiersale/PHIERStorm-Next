@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.1.0 (no slides import, no logo, centered text)
+// VERSION: 1.2.0 (logo restored: larger, 50% opacity, more spacing; fixed syntax)
 
 'use client'
 
@@ -79,20 +79,32 @@ export default function Page() {
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
-            <div className="text-center max-w-xl mx-auto px-4">
-              <h2 className="text-white text-4xl md:text-5xl font-light mb-6">
-                Take a deep breath.
-              </h2>
-              <p className="text-gray-300 text-lg md:text-xl mb-4">
-                What you’re about to learn is simple.
-              </p>
-              <p className="text-gray-300 text-lg md:text-xl mb-8">
-                It changes how power actually works.
-              </p>
-              <p className="text-gray-500 text-sm mt-8">
-                Click anywhere to continue
-              </p>
-            </div>
+            {/* Centered content with logo at top */}
+            <div className="flex-1 flex flex-col items-center justify-center">
+              {/* Logo – larger, 50% opacity, more bottom margin */}
+              <div className="mb-8">
+                <Image
+                  src="/images/PHIERS_Logo.png"
+                  alt="PHIERS"
+                  width={70}
+                  height={70}
+                  className="opacity-50"
+                />
+              </div>
+              <div className="text-center max-w-xl mx-auto px-4">
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-6">
+                  Take a deep breath.
+                </h2>
+                <p className="text-gray-300 text-lg md:text-xl mb-4">
+                  What you’re about to learn is simple.
+                </p>
+                <p className="text-gray-300 text-lg md:text-xl mb-8">
+                  It changes how power actually works.
+                </p>
+                <p className="text-gray-500 text-sm mt-8">
+                  Click anywhere to continue
+                </p>
+              </div>
             </div>
           </motion.div>
         )}
@@ -113,4 +125,4 @@ export default function Page() {
 }
 
 // FILE: app/page.tsx (end)
-// VERSION: 1.1.0
+// VERSION: 1.2.0
