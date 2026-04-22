@@ -1,9 +1,9 @@
 // FILE: app/page.tsx
-// VERSION: 1.0.4 (centered skip button, space bar closes modal)
+// VERSION: 1.0.5 (modal focusable, space bar advances)
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
@@ -15,6 +15,7 @@ export default function Page() {
 
   const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
+  const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
@@ -54,6 +55,11 @@ export default function Page() {
     window.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
 
+    // Focus the modal container so key events work reliably
+    if (modalRef.current) {
+      modalRef.current.focus()
+    }
+
     return () => {
       window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
@@ -65,14 +71,17 @@ export default function Page() {
       <AnimatePresence>
         {showEntryModal && (
           <motion.div
-            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4"
+            ref={modalRef}
+            id="entry-modal"
+            tabIndex={-1}
+            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 focus:outline-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={proceed}
           >
             <div className="relative w-full max-w-xl mx-auto">
-              {/* Centered header with logo and skip button side by side */}
+              {/* Centered header with logo and skip button */}
               <div className="flex justify-center items-center gap-6 mb-6">
                 <Image
                   src="/images/PHIERS_Logo.png"
@@ -142,4 +151,4 @@ export default function Page() {
 }
 
 // FILE: app/page.tsx (end)
-// VERSION: 1.0.4
+// VERSION: 1.0.5
