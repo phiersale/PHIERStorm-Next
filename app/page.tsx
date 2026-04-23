@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.9.5 (fixed loop, proper scroll to top of credibility content)
+// VERSION: 1.9.6 (fixed loop: sessionStorage flag for credibility completion)
 
 'use client'
 
@@ -23,6 +23,14 @@ export default function Page() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const skipSlides = urlParams.get('skip') === 'slides'
+
+    // Check if user already completed credibility (e.g., clicked "Continue to site" before)
+    const passedCredibility = sessionStorage.getItem('credibilityComplete')
+    if (passedCredibility) {
+      setShowEntryModal(false)
+      setStage('main')
+      return
+    }
 
     if (skipSlides) {
       sessionStorage.setItem('entrySequence', '1')   
@@ -73,6 +81,8 @@ export default function Page() {
   }
 
   const goToMain = () => {
+    // Set flag to skip entry/slides/credibility on next visit
+    sessionStorage.setItem('credibilityComplete', '1')
     setStage('main')
   }
 
@@ -86,7 +96,6 @@ export default function Page() {
   // Scroll to the very top of the credibility content when stage mounts
   useEffect(() => {
     if (stage === 'credibility') {
-      // Use setTimeout to ensure the DOM is fully rendered
       const scrollToTop = () => {
         if (credibilityTopRef.current) {
           credibilityTopRef.current.scrollIntoView({ behavior: 'instant', block: 'start' })
@@ -94,12 +103,11 @@ export default function Page() {
           window.scrollTo(0, 0)
         }
       }
-      // Delay slightly to avoid any race conditions with layout
       setTimeout(scrollToTop, 50)
     }
   }, [stage])
 
-  // Escape key in credibility stage – go to main site
+  // Escape key in credibility stage – go to main site (also set flag)
   useEffect(() => {
     if (stage !== 'credibility') return
     const handler = (e: KeyboardEvent) => {
@@ -166,17 +174,14 @@ export default function Page() {
   if (stage === 'credibility') {
     return (
       <div className="min-h-screen bg-[#050b19] py-12 px-4">
-        {/* Anchor element for scrolling to the top of credibility content */}
         <div ref={credibilityTopRef} className="scroll-mt-0"></div>
         <div className="max-w-4xl mx-auto">
-          {/* Bridge line */}
           <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
             If this feels different, it’s because it is.
           </p>
 
           <PathosCredibility />
 
-          {/* Pathos video */}
           <div className="max-w-3xl mx-auto w-full mt-6">
             <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
               <iframe
@@ -194,7 +199,6 @@ export default function Page() {
             </p>
           </div>
 
-          {/* Continue button */}
           <div className="flex justify-center mt-8">
             <button
               ref={continueButtonRef}
