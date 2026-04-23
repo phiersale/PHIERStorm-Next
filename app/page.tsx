@@ -77,7 +77,7 @@ export default function Page() {
   }, [showEntryModal, proceed])
 
   const handleSlidesComplete = () => {
-    setStage('credibility')
+    setStage('main')
   }
 
   const goToMain = () => {
