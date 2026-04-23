@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 6.7.4 – added disclaimer that numbers are estimates
+// VERSION: 6.7.5 – added disclaimer that numbers are estimates
 
 'use client'
 
@@ -186,11 +186,11 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
           </div>
 
-          {/* Two intro videos side by side (kept as requested) */}
-          <div className="max-w-4xl mx-auto mt-12 mb-8 px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Two intro videos – stacked on mobile, side by side on larger screens, with compact height */}
+          <div className="max-w-4xl mx-auto mt-8 mb-6 px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
+                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md">
                   <iframe
                     src="https://www.youtube.com/embed/SFW9fhUBEwE?rel=0"
                     title="PHIERS – The Movement That Forces Congress to Respond"
@@ -201,10 +201,10 @@ export default function MainHomePage() {
                     className="absolute top-0 left-0 w-full h-full"
                   />
                 </div>
-                <p className="text-center text-gray-400 text-sm mt-2">Introduction – How leverage works</p>
+                <p className="text-center text-gray-400 text-xs sm:text-sm mt-1">How leverage works</p>
               </div>
               <div>
-                <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
+                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md">
                   <iframe
                     src="https://www.youtube.com/embed/ihTa_2CLmvk?rel=0"
                     title="Short Intro to PHIERS"
@@ -215,9 +215,13 @@ export default function MainHomePage() {
                     className="absolute top-0 left-0 w-full h-full"
                   />
                 </div>
-                <p className="text-center text-gray-400 text-sm mt-2">Short intro – The PHIERS framework</p>
+                <p className="text-center text-gray-400 text-xs sm:text-sm mt-1">The PHIERS framework</p>
               </div>
             </div>
+            {/* Hint to scroll */}
+            <p className="text-center text-gray-500 text-xs mt-4 animate-pulse">
+              ↓ Scroll down for the full vision ↓
+            </p>
           </div>
 
           {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK – plural wars */}
@@ -967,4 +971,4 @@ export default function MainHomePage() {
 }
 
 // FILE: components/MainHomePage.tsx (end)
-// VERSION: 6.7.4
+// VERSION: 6.7.5
