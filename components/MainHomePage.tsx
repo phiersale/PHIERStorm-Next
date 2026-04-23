@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.9.2 (credibility stage: robust scroll to top on skip)
+// VERSION: 1.9.3 (fixed "Continue to site" button – now reliably goes to main homepage)
 
 'use client'
 
@@ -72,7 +72,8 @@ export default function Page() {
     setStage('credibility')
   }
 
-  const handleCredibilityComplete = () => {
+  // Direct function to go to main homepage – no extra logic
+  const goToMain = () => {
     setStage('main')
   }
 
@@ -83,10 +84,9 @@ export default function Page() {
     }
   }, [stage])
 
-  // Robust scroll to top of credibility container when stage mounts
+  // Scroll to top of credibility container when stage mounts
   useEffect(() => {
     if (stage === 'credibility') {
-      // Use requestAnimationFrame to ensure DOM is painted
       requestAnimationFrame(() => {
         if (credibilityContainerRef.current) {
           credibilityContainerRef.current.scrollIntoView({ behavior: 'instant', block: 'start' })
@@ -103,7 +103,7 @@ export default function Page() {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault()
-        handleCredibilityComplete()
+        goToMain()
       }
     }
     window.addEventListener('keydown', handler)
@@ -165,15 +165,12 @@ export default function Page() {
     return (
       <div ref={credibilityContainerRef} className="min-h-screen bg-[#050b19] py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          {/* Bridge line */}
           <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
             If this feels different, it’s because it is.
           </p>
 
-          {/* Pathos text credibility block */}
           <PathosCredibility />
 
-          {/* Pathos video - reduced top margin */}
           <div className="max-w-3xl mx-auto w-full mt-6">
             <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
               <iframe
@@ -191,11 +188,10 @@ export default function Page() {
             </p>
           </div>
 
-          {/* Continue button - reduced top margin */}
           <div className="flex justify-center mt-8">
             <button
               ref={continueButtonRef}
-              onClick={handleCredibilityComplete}
+              onClick={goToMain}
               className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition focus:outline-none focus:ring-2 focus:ring-green"
             >
               Continue to site →
