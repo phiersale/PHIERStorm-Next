@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.9.0 (accessibility fixes: modal ARIA, focus management, video title)
+// VERSION: 1.9.5 (fixed loop, proper scroll to top of credibility content)
 
 'use client'
 
@@ -18,6 +18,7 @@ export default function Page() {
   const [showEntryModal, setShowEntryModal] = useState(true)
   const modalRef = useRef<HTMLDivElement>(null)
   const continueButtonRef = useRef<HTMLButtonElement>(null)
+  const credibilityTopRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
@@ -71,14 +72,30 @@ export default function Page() {
     setStage('credibility')
   }
 
-  const handleCredibilityComplete = () => {
+  const goToMain = () => {
     setStage('main')
   }
 
-  // Focus the continue button when credibility stage mounts
+  // Focus continue button when credibility stage mounts
   useEffect(() => {
     if (stage === 'credibility' && continueButtonRef.current) {
       continueButtonRef.current.focus()
+    }
+  }, [stage])
+
+  // Scroll to the very top of the credibility content when stage mounts
+  useEffect(() => {
+    if (stage === 'credibility') {
+      // Use setTimeout to ensure the DOM is fully rendered
+      const scrollToTop = () => {
+        if (credibilityTopRef.current) {
+          credibilityTopRef.current.scrollIntoView({ behavior: 'instant', block: 'start' })
+        } else {
+          window.scrollTo(0, 0)
+        }
+      }
+      // Delay slightly to avoid any race conditions with layout
+      setTimeout(scrollToTop, 50)
     }
   }, [stage])
 
@@ -88,7 +105,7 @@ export default function Page() {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault()
-        handleCredibilityComplete()
+        goToMain()
       }
     }
     window.addEventListener('keydown', handler)
@@ -148,18 +165,19 @@ export default function Page() {
 
   if (stage === 'credibility') {
     return (
-      <div className="min-h-screen bg-[#050b19] flex flex-col">
-        <div className="flex-1 flex flex-col justify-center py-12 px-4">
+      <div className="min-h-screen bg-[#050b19] py-12 px-4">
+        {/* Anchor element for scrolling to the top of credibility content */}
+        <div ref={credibilityTopRef} className="scroll-mt-0"></div>
+        <div className="max-w-4xl mx-auto">
           {/* Bridge line */}
           <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
             If this feels different, it’s because it is.
           </p>
 
-          {/* Pathos text credibility block */}
           <PathosCredibility />
 
           {/* Pathos video */}
-          <div className="max-w-3xl mx-auto w-full mt-12">
+          <div className="max-w-3xl mx-auto w-full mt-6">
             <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
               <iframe
                 src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"
@@ -177,10 +195,11 @@ export default function Page() {
           </div>
 
           {/* Continue button */}
-          <div className="flex justify-center mt-12">
+          <div className="flex justify-center mt-8">
             <button
               ref={continueButtonRef}
-              onClick={handleCredibilityComplete}
+              onClick={goToMain}
+              type="button"
               className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition focus:outline-none focus:ring-2 focus:ring-green"
             >
               Continue to site →
