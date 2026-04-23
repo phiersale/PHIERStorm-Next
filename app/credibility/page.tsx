@@ -1,27 +1,11 @@
 // FILE: app/credibility/page.tsx
-// VERSION: 1.2.0 – guard, replace, and optional scroll reset
 
 'use client'
-
-import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import PathosCredibility from '@/components/PathosCredibility'
 
 export default function CredibilityPage() {
   const router = useRouter()
-
-  // Guard: only allow if stage is 'credibility' or 'main'
-  useEffect(() => {
-    const stage = sessionStorage.getItem('phiers_stage')
-    if (stage !== 'credibility' && stage !== 'main') {
-      router.replace('/')
-    }
-  }, [router])
-
-  const goToMain = () => {
-    sessionStorage.setItem('phiers_stage', 'main')
-    router.replace('/main')
-  }
 
   return (
     <div className="min-h-screen bg-[#050b19] py-12 px-4">
@@ -51,9 +35,8 @@ export default function CredibilityPage() {
 
         <div className="flex justify-center mt-8">
           <button
-            onClick={goToMain}
-            type="button"
-            className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition focus:outline-none focus:ring-2 focus:ring-green"
+            onClick={() => router.push('/main')}
+            className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition"
           >
             Continue to site →
           </button>
