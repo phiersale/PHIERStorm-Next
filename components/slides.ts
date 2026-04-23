@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 2.3.0 (8 slides, merged content – fixed syntax)
+// VERSION: 2.4.0 (added isFinalSlide flag to last slide)
 
 const slides = [
   // 1 – Congress ignores you + can fix
@@ -67,7 +67,7 @@ const slides = [
     customLayout: true,
     punchLine: "Power Held In Every Reps Seat"
   },
-  // 8 – Final slide
+  // 8 – Final slide (with staggered fade-in animation)
   {
     title: "",
     body: [
@@ -75,11 +75,12 @@ const slides = [
       "I'm on record.",
       "Congress must respond — or get replaced."
     ],
-    greenLines: []
+    greenLines: [],
+    isFinalSlide: true
   }
 ];
 
 export default slides;
 
 // FILE: components/slides.ts (end)
-// VERSION: 2.3.0
+// VERSION: 2.4.0

@@ -1,25 +1,45 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 1.0.0 (fade‑in credibility block, exact copy)
+// VERSION: 1.1.0 – viewport‑triggered fade + scale, respects reduced motion
 
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useAnimation, useInView } from 'framer-motion'
 
 export default function PathosCredibility() {
-  const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLElement>(null)
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
+  const controls = useAnimation()
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 300)
-    return () => clearTimeout(timer)
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = (e: MediaQueryListEvent | MediaQueryList) => setPrefersReducedMotion(e.matches)
+    update(media)
+    if (media.addEventListener) media.addEventListener('change', update)
+    else media.addListener(update)
+    return () => {
+      if (media.removeEventListener) media.removeEventListener('change', update)
+      else media.removeListener(update)
+    }
   }, [])
 
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      controls.set({ opacity: 1, scale: 1 })
+      return
+    }
+    if (isInView) {
+      controls.start({ opacity: 1, scale: 1, transition: { duration: 0.7, ease: 'easeOut' } })
+    }
+  }, [isInView, controls, prefersReducedMotion])
+
   return (
-    <section
-      className={`
-        w-full py-20 px-6 md:px-12 border-y border-neutral-800
-        transition-opacity duration-1000 ease-out
-        ${visible ? 'opacity-100' : 'opacity-0'}
-      `}
+    <motion.section
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={controls}
+      className="w-full py-20 px-6 md:px-12 border-y border-neutral-800"
     >
       <div className="max-w-3xl mx-auto text-center">
         <p className="text-sm uppercase tracking-widest text-neutral-500 mb-6">
@@ -38,6 +58,9 @@ export default function PathosCredibility() {
           A national PR firm reviewed PHIERS and confirmed the strategy holds up.
         </p>
       </div>
-    </section>
+    </motion.section>
   )
 }
+
+// FILE: components/PathosCredibility.tsx (end)
+// VERSION: 1.1.0
