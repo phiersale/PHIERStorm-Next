@@ -234,8 +234,7 @@ export default function MainHomePage() {
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
               <Button href="/petition" variant="primary" fullWidth>✍ BE COUNTED</Button>
-              <Button onClick={scrollToMechanism} variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
-            </div>
+              <Button href="/homepage-teeth" variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>            </div>
             <p className="text-gray-400 text-sm mt-2">Your district. Your number. On record.</p>
           </div>
         </section>
