@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.9.3 (fixed "Continue to site" button – now reliably goes to main homepage)
+// VERSION: 1.9.4 (fixed loop, proper scroll to quote on skip)
 
 'use client'
 
@@ -18,7 +18,7 @@ export default function Page() {
   const [showEntryModal, setShowEntryModal] = useState(true)
   const modalRef = useRef<HTMLDivElement>(null)
   const continueButtonRef = useRef<HTMLButtonElement>(null)
-  const credibilityContainerRef = useRef<HTMLDivElement>(null)
+  const credibilityTopRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
@@ -72,7 +72,6 @@ export default function Page() {
     setStage('credibility')
   }
 
-  // Direct function to go to main homepage – no extra logic
   const goToMain = () => {
     setStage('main')
   }
@@ -84,16 +83,18 @@ export default function Page() {
     }
   }, [stage])
 
-  // Scroll to top of credibility container when stage mounts
+  // Scroll to the top of credibility content (bridge line) when stage mounts
   useEffect(() => {
     if (stage === 'credibility') {
-      requestAnimationFrame(() => {
-        if (credibilityContainerRef.current) {
-          credibilityContainerRef.current.scrollIntoView({ behavior: 'instant', block: 'start' })
+      // Use setTimeout to ensure DOM is fully rendered
+      const timer = setTimeout(() => {
+        if (credibilityTopRef.current) {
+          credibilityTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         } else {
           window.scrollTo(0, 0)
         }
-      })
+      }, 100)
+      return () => clearTimeout(timer)
     }
   }, [stage])
 
@@ -163,14 +164,17 @@ export default function Page() {
 
   if (stage === 'credibility') {
     return (
-      <div ref={credibilityContainerRef} className="min-h-screen bg-[#050b19] py-12 px-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-[#050b19] py-12 px-4">
+        <div ref={credibilityTopRef} className="max-w-4xl mx-auto">
+          {/* Bridge line */}
           <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
             If this feels different, it’s because it is.
           </p>
 
+          {/* Pathos text credibility block */}
           <PathosCredibility />
 
+          {/* Pathos video */}
           <div className="max-w-3xl mx-auto w-full mt-6">
             <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
               <iframe
@@ -188,6 +192,7 @@ export default function Page() {
             </p>
           </div>
 
+          {/* Continue button */}
           <div className="flex justify-center mt-8">
             <button
               ref={continueButtonRef}
