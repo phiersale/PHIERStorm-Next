@@ -208,7 +208,7 @@ export default function MainHomePage() {
                     src="https://www.youtube.com/embed/ihTa_2CLmvk?rel=0"
                     title="Short Intro to PHIERS"
                     frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                     allowFullScreen
                     loading="lazy"
                     className="absolute top-0 left-0 w-full h-full"
