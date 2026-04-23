@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.0.8 – entry modal shows on every visit (no sessionStorage)
+// VERSION: 1.1.0 – escape does nothing, modal exit animation, focus ring
 
 'use client'
 
@@ -9,11 +9,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import PreHomepage from '@/components/PreHomepage'
 import MainHomePage from '@/components/MainHomePage'
+import PathosCredibility from '@/components/PathosCredibility'
 
 export default function Page() {
   const router = useRouter()
-  const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
-  const [showEntryModal, setShowEntryModal] = useState(true)
+  const [stage, setStage] = useState<'entry' | 'prehome' | 'credibility' | 'main'>('entry')
+  const [showModal, setShowModal] = useState(true) // controls modal visibility for exit animation
   const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -21,31 +22,40 @@ export default function Page() {
     const skipSlides = urlParams.get('skip') === 'slides'
 
     if (skipSlides) {
-      // Bypass entry modal and slides entirely
-      setShowEntryModal(false)
-      setStage('main')
+      // Bypass entry modal and prehome → directly to credibility
+      setShowModal(false)
+      setStage('credibility')
       window.history.replaceState({}, '', '/')
       return
     }
 
-    // ALWAYS show the entry modal on every normal visit
-    setShowEntryModal(true)
+    // Normal visit: show entry modal
+    setShowModal(true)
     setStage('entry')
   }, [])
 
   const proceed = () => {
-    setShowEntryModal(false)
-    setStage('prehome')
+    // Start exit animation: hide modal, then switch to prehome
+    setShowModal(false)
   }
 
+  const handleModalExitComplete = () => {
+    // After fade-out animation finishes, move to prehome stage
+    if (stage === 'entry') {
+      setStage('prehome')
+    }
+  }
+
+  // Keyboard handler: only Enter / Space advance. Escape does nothing.
   useEffect(() => {
-    if (!showEntryModal) return
+    if (!showModal) return
 
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === 'Escape' || e.key === ' ') {
+      if (e.key === 'Enter' || e.key === 'Space' || e.key === ' ') {
         e.preventDefault()
         proceed()
       }
+      // Escape key intentionally ignored
     }
 
     window.addEventListener('keydown', handleKey)
@@ -56,20 +66,22 @@ export default function Page() {
       window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
     }
-  }, [showEntryModal])
+  }, [showModal])
 
+  // Entry modal (only rendered when stage === 'entry', but we control its exit animation)
   if (stage === 'entry') {
     return (
-      <AnimatePresence>
-        {showEntryModal && (
+      <AnimatePresence onExitComplete={handleModalExitComplete}>
+        {showModal && (
           <motion.div
             ref={modalRef}
             id="entry-modal"
             tabIndex={-1}
-            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 focus:outline-none"
+            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 focus:ring-offset-black"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
             onClick={proceed}
           >
             <div className="relative w-full max-w-xl mx-auto">
@@ -114,7 +126,7 @@ export default function Page() {
                   </p>
                 </div>
                 <p className="text-gray-500 text-sm mt-5">
-                  Click anywhere to continue
+                  Click anywhere or press Enter/Space to continue
                 </p>
               </div>
             </div>
@@ -127,11 +139,44 @@ export default function Page() {
   if (stage === 'prehome') {
     return (
       <PreHomepage
-        onGoToHomepage={() => setStage('main')}
+        onGoToHomepage={() => setStage('credibility')}
         onGoToPetition={() => router.push('/petition')}
       />
     )
   }
 
+  if (stage === 'credibility') {
+    return (
+      <div className="min-h-screen bg-[#050b19] py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
+            If this feels different, it’s because it is.
+          </p>
+          <PathosCredibility />
+          <div className="max-w-3xl mx-auto w-full mt-6">
+            <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
+              <iframe
+                src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"
+                title="Pathos Communications endorsement video"
+                className="absolute top-0 left-0 w-full h-full"
+                allowFullScreen
+              />
+            </div>
+          </div>
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={() => setStage('main')}
+              className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition"
+            >
+              Continue to site →
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return <MainHomePage />
 }
+// FILE: app/page.tsx (end)
+// VERSION: 1.1.0

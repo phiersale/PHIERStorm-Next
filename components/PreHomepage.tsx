@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 3.7.0 (fixed onSkip prop destructuring)
+// VERSION: 3.7.2 – cleaned dead code, removed !important style, added last‑slide hint, enabled isFinalSlide animation
 
 'use client'
 
@@ -15,7 +15,6 @@ type Props = {
 
 const SWIPE_THRESHOLD = 50
 const TRANSITION_MS = 400
-const LAST_SLIDE_EXTRA_MS = 300
 
 export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const [index, setIndex] = useState(0)
@@ -113,7 +112,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 
   const slide = slides[index]
   const isLastSlide = index === slides.length - 1
-  const transitionDuration = prefersReducedMotion ? 0 : 0.4
 
   const renderTitle = () => {
     if (slide.customLayout) return null
@@ -125,31 +123,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
-    // Image slide (You Are Not Powerless) – full image visible
-    if (slide.isImageSlide) {
-      return (
-        <div className="flex flex-col items-center justify-center space-y-6">
-          <div className="flex justify-center w-full">
-            <Image
-              src={slide.imageSrc}
-              alt={slide.imageAlt}
-              width={500}
-              height={300}
-              sizes="(max-width: 768px) 90vw, 500px"
-              className="w-full max-w-[90%] md:max-w-[500px] h-auto object-contain"
-              priority
-            />
-          </div>
-          {slide.body.map((line, idx) => (
-            <p key={idx} className="text-gray-300 text-base md:text-xl text-center break-words">
-              {line}
-            </p>
-          ))}
-        </div>
-      )
-    }
-
-    // PHIERS acronym – grid with right padding to reveal last column
+    // Custom layout for PHIERS acronym (slide 7)
     if (slide.customLayout) {
       const items = slide.body
       return (
@@ -164,31 +138,26 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
               priority
             />
           </div>
-            <div className="overflow-x-auto w-full pb-2 px-4">
-              <div className="grid grid-cols-6 gap-4 sm:gap-6 md:gap-8 lg:gap-10 justify-items-center min-w-max mx-auto">
-                {items.map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center">
-                    <span className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-green whitespace-nowrap">
-                      {item.letter}
-                    </span>
-                    <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 uppercase text-center whitespace-nowrap">
-                      {item.word}
-                    </span>
-                  </div>
-                ))}
-              </div>
+          <div className="overflow-x-auto w-full pb-2 px-4">
+            <div className="grid grid-cols-6 gap-4 sm:gap-6 md:gap-8 lg:gap-10 justify-items-center min-w-max mx-auto">
+              {items.map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center">
+                  <span className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-green whitespace-nowrap">
+                    {item.letter}
+                  </span>
+                  <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 uppercase text-center whitespace-nowrap">
+                    {item.word}
+                  </span>
+                </div>
+              ))}
             </div>
+          </div>
           <p className="text-gray-500 text-xs italic text-center">{slide.punchLine}</p>
         </div>
       )
     }
 
-    // Custom style slide (plain text with custom classes)
-    if (slide.customStyle) {
-      return <p className={`text-center ${slide.customStyle}`}>{slide.body[0]}</p>
-    }
-
-    // Final slide with progressive font sizes and green intensity
+    // Final slide with staggered fade‑in (uses isFinalSlide flag from slide data)
     if (slide.isFinalSlide) {
       const lines = slide.body
       const fontSizes = [
@@ -221,16 +190,12 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </div>
       )
     }
-  
 
-    // Normal slides with greenLines
+    // Normal slides with greenLines support
     const greenLineIndices = slide.greenLines || []
     return slide.body.map((line, i) => {
       if (line === '→') {
         return <p key={i} className="text-3xl font-bold">{line}</p>
-      }
-      if (isLastSlide) {
-        return <p key={i} className="text-2xl md:text-3xl font-bold text-green">{line}</p>
       }
       if (greenLineIndices.includes(i)) {
         return <p key={i} className="text-lg md:text-xl text-green">{line}</p>
@@ -245,18 +210,18 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
       {/* Header */}
-        <div className="flex justify-end pr-12 py-2">
-          <button
-            onClick={() => {
-              console.log('Skip button clicked in PreHomepage');
-              onGoToHomepage();
-            }}
-            className="text-gray-500 text-sm underline hover:text-gray-300"
-            aria-label="Skip introduction"
-          >
-            Skip →
-          </button>
-        </div>
+      <div className="flex justify-end pr-12 py-2">
+        <button
+          onClick={() => {
+            console.log('Skip button clicked → forcing credibility');
+            onGoToHomepage();
+          }}
+          className="text-gray-500 text-sm underline hover:text-gray-300"
+          aria-label="Skip introduction"
+        >
+          Skip →
+        </button>
+      </div>
 
       {/* Main clickable area – full height */}
       <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full">
@@ -284,6 +249,10 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             >
               {renderTitle()}
               {renderBody()}
+              {/* UX hint on last slide */}
+              {isLastSlide && (
+                <p className="text-gray-500 text-xs italic mt-6">Use buttons below →</p>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -338,20 +307,9 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
           )}
         </div>
       </div>
-
-      <style>{`
-        .prehomepage-container, .prehomepage-container * {
-          overflow-x: hidden !important;
-          box-sizing: border-box;
-        }
-        .prehomepage-container img, .prehomepage-container video {
-          max-width: 100%;
-          height: auto;
-        }
-      `}</style>
     </div>
   )
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.7.0
+// VERSION: 3.7.2
