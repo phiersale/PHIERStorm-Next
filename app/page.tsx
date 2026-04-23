@@ -1,24 +1,18 @@
-// FILE: app/page.tsx – entry modal or main homepage, with Suspense boundary
+// FILE: app/page.tsx
+// VERSION: 3.0.0 – entry modal only, redirects to /slides
 
 'use client'
 
-import { Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import MainHomePage from '@/components/MainHomePage'
 
-// Client component that reads searchParams and decides what to render
-function EntryOrMain() {
+export default function EntryPage() {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const showMain = searchParams.get('show') === 'main'
 
-  if (showMain) {
-    return <MainHomePage />
+  const proceed = () => {
+    router.push('/slides')
   }
-
-  const proceed = () => router.push('/slides')
 
   return (
     <motion.div
@@ -44,14 +38,5 @@ function EntryOrMain() {
         <p className="text-gray-500 text-sm">Click anywhere to continue</p>
       </div>
     </motion.div>
-  )
-}
-
-// Wrap the client component in Suspense to avoid prerendering bailout
-export default function Page() {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-[#050b19]" />}>
-      <EntryOrMain />
-    </Suspense>
   )
 }

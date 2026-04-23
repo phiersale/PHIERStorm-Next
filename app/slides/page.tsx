@@ -1,14 +1,21 @@
 // FILE: app/slides/page.tsx
+// VERSION: 1.0.0 – renders PreHomepage, redirects to /credibility when done
 
 'use client'
+
 import { useRouter } from 'next/navigation'
 import PreHomepage from '@/components/PreHomepage'
 
 export default function SlidesPage() {
   const router = useRouter()
 
-  const handleComplete = () => router.push('/credibility')
-  const handleSkip = () => router.push('/credibility')
+  const handleComplete = () => {
+    router.push('/credibility')
+  }
+
+  const handleSkip = () => {
+    router.push('/credibility')
+  }
 
   return (
     <PreHomepage

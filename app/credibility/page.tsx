@@ -1,9 +1,18 @@
 // FILE: app/credibility/page.tsx
+// VERSION: 1.0.0 – shows PathosCredibility and video, button goes to /main-home
 
 'use client'
+
+import { useRouter } from 'next/navigation'
 import PathosCredibility from '@/components/PathosCredibility'
 
 export default function CredibilityPage() {
+  const router = useRouter()
+
+  const goToMain = () => {
+    window.location.href = '/main-home'
+  }
+
   return (
     <div className="min-h-screen bg-[#050b19] py-12 px-4">
       <div className="max-w-4xl mx-auto">
@@ -32,8 +41,9 @@ export default function CredibilityPage() {
 
         <div className="flex justify-center mt-8">
           <button
-            onClick={() => window.location.href = '/?show=main'}
-            className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition"
+            onClick={goToMain}
+            type="button"
+            className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition focus:outline-none focus:ring-2 focus:ring-green"
           >
             Continue to site →
           </button>
