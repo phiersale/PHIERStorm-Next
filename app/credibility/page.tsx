@@ -1,14 +1,26 @@
 // FILE: app/credibility/page.tsx
-// VERSION: 1.1.0
+// VERSION: 1.2.0 – guard, replace, and optional scroll reset
 
 'use client'
 
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import PathosCredibility from '@/components/PathosCredibility'
 
 export default function CredibilityPage() {
+  const router = useRouter()
+
+  // Guard: only allow if stage is 'credibility' or 'main'
+  useEffect(() => {
+    const stage = sessionStorage.getItem('phiers_stage')
+    if (stage !== 'credibility' && stage !== 'main') {
+      router.replace('/')
+    }
+  }, [router])
+
   const goToMain = () => {
-    console.log('Redirecting to /main') // debug
-    window.location.href = '/main'
+    sessionStorage.setItem('phiers_stage', 'main')
+    router.replace('/main')
   }
 
   return (

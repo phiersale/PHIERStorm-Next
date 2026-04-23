@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 3.5.0 (got rid of phiers logo at top)
+// VERSION: 3.6.0 (fixed onSkip prop destructuring)
 
 'use client'
 
@@ -11,13 +11,14 @@ import slides from './slides'
 type Props = {
   onGoToHomepage: () => void
   onGoToPetition: () => void
+  onSkip: () => void
 }
 
 const SWIPE_THRESHOLD = 50
 const TRANSITION_MS = 400
 const LAST_SLIDE_EXTRA_MS = 300
 
-export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
+export default function PreHomepage({ onGoToHomepage, onGoToPetition, onSkip }: Props) {
   const [index, setIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -191,21 +192,19 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     // Final slide with progressive font sizes and green intensity
     if (slide.isFinalSlide) {
       const lines = slide.body
-      // Font size classes that increase with each line
       const fontSizes = [
-        "text-xl md:text-2xl",       // line 0
-        "text-2xl md:text-3xl",      // line 1
-        "text-3xl md:text-4xl",      // line 2
-        "text-4xl md:text-5xl",      // line 3
-        "text-5xl md:text-6xl"       // line 4 (if more)
+        "text-xl md:text-2xl",
+        "text-2xl md:text-3xl",
+        "text-3xl md:text-4xl",
+        "text-4xl md:text-5xl",
+        "text-5xl md:text-6xl"
       ]
-      // Green intensity classes (from dim to full green)
       const greenIntensities = [
-        "text-green/50",    // line 0 – very dim green
-        "text-green/70",    // line 1
-        "text-green/90",    // line 2
-        "text-green",       // line 3 – full green
-        "text-green font-bold" // line 4 – full green + bold
+        "text-green/50",
+        "text-green/70",
+        "text-green/90",
+        "text-green",
+        "text-green font-bold"
       ]
       return (
         <div className="space-y-6 max-w-2xl mx-auto text-center">
@@ -249,8 +248,8 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
      {/* Header */}
       <div className="flex justify-end px-6 py-2">
         <button
-          onClick={onGoToHomepage}
-          className="text-gray-500 text-sm underline hover:text-gray-300 mr-[25%]"
+          onClick={onSkip}
+          className="text-gray-500 text-sm underline hover:text-gray-300"
           aria-label="Skip introduction"
         >
           Skip →
@@ -353,4 +352,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.5
+// VERSION: 3.6.0
