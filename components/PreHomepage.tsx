@@ -271,13 +271,13 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition, onSkip }: 
           tabIndex={!isLastSlide ? 0 : -1}
           aria-label={!isLastSlide ? "Click or press Enter to advance to next slide" : undefined}
         >
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence mode="wait">
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
-              transition={{ duration: transitionDuration, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               whileTap={{ scale: 1 }}
             >
               {renderTitle()}
