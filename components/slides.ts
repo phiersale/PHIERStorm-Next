@@ -62,10 +62,19 @@ const slides = [
   },
   // 7 – PHIERS logo slide (custom layout)
   {
-    title: "PHIERS",
-    body: ["POWER", "HELD", "IN", "EVERY", "REPS", "SEAT"],
-    customLayout: true,
-    punchLine: "Power Held In Every Reps Seat"
+    {
+  title: "PHIERS",
+  body: [
+    { letter: "P", word: "POWER" },
+    { letter: "H", word: "HELD" },
+    { letter: "I", word: "IN" },
+    { letter: "E", word: "EVERY" },
+    { letter: "R", word: "REPS" },
+    { letter: "S", word: "SEAT" }
+  ],
+  customLayout: true,
+  punchLine: "Power Held In Every Reps Seat"
+}
   },
   // 8 – Final slide (with staggered fade-in animation)
   {
