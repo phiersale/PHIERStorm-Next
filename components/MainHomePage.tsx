@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 6.7.0 – added disclaimer that numbers are estimates
+// VERSION: 6.7.4 – added disclaimer that numbers are estimates
 
 'use client'
 
@@ -20,7 +20,7 @@ function VideoCard({ id, title }: { id: string; title: string }) {
           src={`https://www.youtube.com/embed/${id}?rel=0`}
           title={title}
           frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
           allowFullScreen
           loading="lazy"
           className="absolute top-0 left-0 w-full h-full"
@@ -39,6 +39,11 @@ export default function MainHomePage() {
   const [showArchitectModal, setShowArchitectModal] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
+
+  // Scroll to top when page mounts (fixes coming from credibility stage)
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const closeModal = useCallback(() => {
     setModalImageSrc(null)
@@ -90,7 +95,6 @@ export default function MainHomePage() {
     return () => window.removeEventListener('keydown', handleTab)
   }, [modalImageSrc])
 
-  const scrollToTop = useCallback(() => window.scrollTo({ top: 0, behavior: 'smooth' }), [])
   useEffect(() => {
     const handleScroll = () => setShowBackToTop(window.scrollY > 400)
     handleScroll()
@@ -98,9 +102,22 @@ export default function MainHomePage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToMechanism = useCallback(() => {
-    document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
-  }, [])
+  // Detect reduced motion preference
+    useEffect(() => {
+      const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+      const update = () => { prefersReducedMotionRef.current = media.matches }
+      update()
+      media.addEventListener('change', update)
+      return () => media.removeEventListener('change', update)
+    }, [])
+
+    const scrollToTop = useCallback(() => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotionRef.current ? 'auto' : 'smooth' })
+    }, [])
+
+    const scrollToMechanism = useCallback(() => {
+      document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
+    }, [])
 
   const makeKeyboardClickable = (handler: () => void) => (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -150,7 +167,7 @@ export default function MainHomePage() {
 
       <Navigation />
 
-      <main className="font-sans">
+      <main className="font-sans pt-20 md:pt-0">
         {/* HERO */}
         <section className="container text-center pt-8 md:pt-12 pb-4">
           <h1 className="mb-12 md:mb-16">
@@ -177,7 +194,7 @@ export default function MainHomePage() {
                     src="https://www.youtube.com/embed/SFW9fhUBEwE?rel=0"
                     title="PHIERS – The Movement That Forces Congress to Respond"
                     frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                     allowFullScreen
                     loading="lazy"
                     className="absolute top-0 left-0 w-full h-full"
@@ -242,7 +259,7 @@ export default function MainHomePage() {
                 height={400}
                 className="mx-auto rounded-lg border border-green/20"
                 sizes="(max-width: 768px) 90vw, 600px"
-                onError={(e) => console.error('Dashboard image missing')}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
             </div>
           </div>
@@ -308,7 +325,7 @@ export default function MainHomePage() {
                 height={400}
                 className="w-full h-auto"
                 sizes="(max-width: 768px) 90vw, 500px"
-                onError={(e) => console.error('Tablet image missing')}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
             </div>
           </div>
@@ -365,7 +382,7 @@ export default function MainHomePage() {
                 height={500}
                 className="w-full h-auto rounded-lg border border-green/20"
                 sizes="(max-width: 768px) 90vw, 800px"
-                onError={(e) => console.error('Leverage image missing')}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
             </div>
           </div>
@@ -411,7 +428,7 @@ export default function MainHomePage() {
                     height={300}
                     className="w-full h-auto"
                     sizes="(max-width: 768px) 90vw, 500px"
-                    onError={(e) => console.error('Cost comparison missing')}
+                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
                   />
                 </div>
               </div>
@@ -448,7 +465,7 @@ export default function MainHomePage() {
                 height={400}
                 className="w-full h-auto"
                 sizes="(max-width: 768px) 90vw, 600px"
-                onError={(e) => console.error('Cascade diagram missing')}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
             </div>
           </div>
@@ -473,7 +490,7 @@ export default function MainHomePage() {
                 priority
                 className="w-full h-auto object-contain"
                 sizes="(max-width: 768px) 90vw, 600px"
-                onError={(e) => console.error('Hero image failed to load')}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
             </div>
           </div>
@@ -538,7 +555,7 @@ export default function MainHomePage() {
                   height={300}
                   className="w-full h-auto"
                   sizes="(max-width: 768px) 90vw, 400px"
-                  onError={(e) => console.error('3.5% image missing')}
+                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
                 />
               </div>
             </div>
@@ -660,7 +677,7 @@ export default function MainHomePage() {
                 height={40}
                 className="w-full h-auto"
                 sizes="100px"
-                onError={(e) => console.error('Harvard logo missing')}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
             </div>
             <div
@@ -678,7 +695,7 @@ export default function MainHomePage() {
                 height={40}
                 className="w-full h-auto"
                 sizes="100px"
-                onError={(e) => console.error('Cost Plus Drugs logo missing')}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
             </div>
             <div
@@ -696,7 +713,7 @@ export default function MainHomePage() {
                 height={40}
                 className="w-full h-auto"
                 sizes="100px"
-                onError={(e) => console.error('DotCom Magazine logo missing')}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
             </div>
           </div>
@@ -774,7 +791,7 @@ export default function MainHomePage() {
                   height={300}
                   className="w-full h-auto border border-green/20 rounded-lg"
                   sizes="(max-width: 768px) 80vw, 400px"
-                  onError={(e) => console.error('PHIERS logo missing')}
+                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
                 />
               </div>
             </div>
@@ -825,7 +842,15 @@ export default function MainHomePage() {
 
       <Footer />
 
-      <button onClick={scrollToTop} className={`back-to-top ${showBackToTop ? 'visible' : ''}`} aria-label="Back to top">↑</button>
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 bg-green text-black w-12 h-12 rounded-full flex items-center justify-center text-2xl cursor-pointer transition-all duration-150 hover:bg-[#2ab568] hover:-translate-y-0.5 z-[999] border-none ${
+          showBackToTop ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
 
       {/* ARCHITECT MODAL – now contains the full video library */}
       <AnimatePresence>
@@ -936,42 +961,9 @@ export default function MainHomePage() {
         )}
       </AnimatePresence>
 
-      <style jsx global>{`
-        .back-to-top {
-          position: fixed;
-          bottom: 24px;
-          right: 24px;
-          background: var(--green);
-          color: var(--bg-deep);
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 24px;
-          cursor: pointer;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 150ms ease;
-          z-index: 999;
-          border: none;
-        }
-        .back-to-top.visible {
-          opacity: 1;
-          visibility: visible;
-        }
-        .back-to-top:hover {
-          background: #2ab568;
-          transform: translateY(-2px);
-        }
-        .bg-green-glow {
-          background: rgba(61, 220, 132, 0.06);
-        }
-      `}</style>
     </>
   )
 }
 
 // FILE: components/MainHomePage.tsx (end)
-// VERSION: 6.7.0
+// VERSION: 6.7.4
