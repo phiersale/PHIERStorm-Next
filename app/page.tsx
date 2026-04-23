@@ -1,87 +1,143 @@
 // FILE: app/page.tsx
-// VERSION: 3.4.0 – intuitive: background click closes, content clicks don't
+// VERSION: 1.0.7 – skip button moved to right side with margin
 
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import PreHomepage from '@/components/PreHomepage'
+import MainHomePage from '@/components/MainHomePage'
 
-export default function EntryPage() {
+export default function Page() {
   const router = useRouter()
-  const contentRef = useRef<HTMLDivElement>(null)
+  const [stage, setStage] = useState<'entry' | 'prehome' | 'main'>('entry')
+  const [showEntryModal, setShowEntryModal] = useState(true)
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const skipSlides = urlParams.get('skip') === 'slides'
+    if (skipSlides) {
+      sessionStorage.setItem('entrySequence', '1')
+      setShowEntryModal(false)
+      setStage('main')
+      window.history.replaceState({}, '', '/')
+      return
+    }
+    const seen = sessionStorage.getItem('entrySequence')
+    if (seen) {
+      setShowEntryModal(false)
+      setStage('prehome')
+    }
+  }, [])
 
   const proceed = () => {
-    router.push('/slides')
+    console.log('proceed called')
+    setShowEntryModal(false)
+    sessionStorage.setItem('entrySequence', '1')
+    setStage('prehome')
   }
 
-  // Keyboard support: Enter, Space, Escape all proceed
   useEffect(() => {
+    if (!showEntryModal) return
+
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+      if (e.key === 'Enter' || e.key === 'Escape' || e.key === ' ') {
         e.preventDefault()
         proceed()
       }
     }
+
     window.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
+    if (modalRef.current) modalRef.current.focus()
+
     return () => {
       window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
     }
-  }, [])
+  }, [showEntryModal])
 
-  // Only close when clicking directly on the background overlay
-  const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      proceed()
-    }
+  if (stage === 'entry') {
+    return (
+      <AnimatePresence>
+        {showEntryModal && (
+          <motion.div
+            ref={modalRef}
+            id="entry-modal"
+            tabIndex={-1}
+            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 focus:outline-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={proceed}
+          >
+            <div className="relative w-full max-w-xl mx-auto">
+              <div className="flex justify-between items-center mb-6">
+                <Image
+                  src="/images/PHIERS_Logo.png"
+                  alt="PHIERS"
+                  width={50}
+                  height={50}
+                  className="opacity-90"
+                />
+                <button
+                  onClick={(e) => { e.stopPropagation(); proceed() }}
+                  className="text-gray-500 text-sm underline hover:text-gray-300 mr-8"
+                >
+                  SKIP
+                </button>
+              </div>
+              <div className="text-center mt-4">
+                <h2 className="text-white text-4xl md:text-5xl font-light mb-3">
+                  Take a deep breath.
+                </h2>
+                <p className="text-gray-300 text-lg md:text-xl mb-1">
+                  What you’re about to see is simple.
+                </p>
+                <p className="text-gray-300 text-lg md:text-xl mb-4">
+                  But it changes how power actually works.
+                </p>
+                <div className="border-t border-green/20 pt-4 mt-1">
+                  <div className="mb-2 flex justify-center">
+                    <Image
+                      src="/images/You_Are_Not_Powerless.jpg"
+                      alt="YOU ARE NOT POWERLESS"
+                      width={400}
+                      height={200}
+                      className="w-full max-w-[300px] h-auto rounded-lg border border-green/20"
+                      onError={(e) => console.error('Image failed to load')}
+                    />
+                  </div>
+                  <p className="text-gray-300 text-base md:text-lg text-center">
+                    That’s the first thing to remember.
+                  </p>
+                </div>
+                <p className="text-gray-500 text-sm mt-5">
+                  Click anywhere to continue
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    )
   }
 
-  return (
-    <motion.div
-      className="fixed inset-0 bg-[#050b19] z-[99999] overflow-y-auto"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      onClick={handleBackgroundClick}
-    >
-      {/* Content wrapper – clicks here do NOT close the modal */}
-      <div
-        ref={contentRef}
-        className="min-h-screen flex items-center justify-center p-4"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="text-center max-w-xl mx-auto w-full">
-          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-light mb-3">
-            Take a deep breath.
-          </h2>
-          <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-1">
-            What you’re about to learn is simple.
-          </p>
-          <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-6">
-            It changes how power actually works.
-          </p>
-          <div className="mt-6 mb-6 flex justify-center">
-            <Image
-              src="/images/You_Are_Not_Powerless.jpg"
-              alt="YOU ARE NOT POWERLESS"
-              width={280}
-              height={140}
-              className="w-full max-w-[240px] sm:max-w-[280px] md:max-w-[350px] h-auto"
-              priority
-            />
-          </div>
-          <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-6">
-            That’s the first thing to remember.
-          </p>
-          <p className="text-gray-500 text-xs sm:text-sm">
-            Click outside this box or press Space/Enter to continue
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  )
+  if (stage === 'prehome') {
+    return (
+      <PreHomepage
+        onGoToHomepage={() => setStage('main')}
+        onGoToPetition={() => router.push('/petition')}
+        onSkip={() => {
+          console.log('skip slides')
+          router.push('/credibility')
+        }}
+      />
+    )
+  }
+
+  return <MainHomePage />
 }
-// FILE: app/page.tsx (end)
-// VERSION: 3.4.0

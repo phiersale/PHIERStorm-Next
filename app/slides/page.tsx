@@ -1,5 +1,5 @@
 // FILE: app/slides/page.tsx
-// VERSION: 1.0.0 – renders PreHomepage, redirects to /credibility when done
+// VERSION: 1.0.4 – redirects to /credibility on skip
 
 'use client'
 
