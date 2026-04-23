@@ -76,9 +76,10 @@ export default function Page() {
     }
   }, [showEntryModal, proceed])
 
-  const handleSlidesComplete = () => {
-    setStage('main')
-  }
+ const handleSlidesComplete = () => {
+  sessionStorage.setItem('credibilityComplete', '1')
+  setStage('main')
+}
 
   const goToMain = () => {
     // Set flag to skip entry/slides/credibility on next visit
