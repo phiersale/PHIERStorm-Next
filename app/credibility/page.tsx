@@ -32,7 +32,7 @@ export default function CredibilityPage() {
 
         <div className="flex justify-center mt-8">
           <button
-            onClick={() => router.push('/main')}
+            onClick={() => window.location.href = '/home'}
             className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition"
           >
             Continue to site →
