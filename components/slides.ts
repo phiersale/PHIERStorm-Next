@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 2.3.0 (8 slides, merged content)
+// VERSION: 2.3.0 (8 slides, merged content – fixed syntax)
 
 const slides = [
   // 1 – Congress ignores you + can fix
