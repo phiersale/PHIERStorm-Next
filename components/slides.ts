@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 2.5.0 (fixed PHIERS acronym slide syntax)
+// VERSION: 2.5.1 (fixed PHIERS acronym slide syntax)
 
 const slides = [
   // 1 – Congress ignores you + can fix
@@ -90,4 +90,4 @@ const slides = [
 export default slides;
 
 // FILE: components/slides.ts (end)
-// VERSION: 2.5.0
+// VERSION: 2.5.1
