@@ -1,34 +1,28 @@
 // FILE: app/page.tsx
-// VERSION: 3.0.0 (separate routes, no state machine)
+// VERSION: 4.0.0 (separate routes, no state machine)
 
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import PreHomepage from '@/components/PreHomepage'
 
 export default function Page() {
-  const router = useRouter()
   const [showEntryModal, setShowEntryModal] = useState(true)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  // Optional: remember that user has seen the modal (sessionStorage)
+  // Optional: remember that user has seen the entry modal (so it won't show again on refresh)
   useEffect(() => {
     const seen = sessionStorage.getItem('entrySeen')
     if (seen) {
       setShowEntryModal(false)
-      // Go directly to slides (or /credibility? but we go to slides)
-      // For now, we'll just hide modal and show PreHomepage immediately.
-      // We'll handle that by not rendering the modal and rendering PreHomepage below.
     }
   }, [])
 
   const proceed = () => {
     setShowEntryModal(false)
     sessionStorage.setItem('entrySeen', '1')
-    // No need to set stage – we just render PreHomepage directly
   }
 
   useEffect(() => {
@@ -43,10 +37,7 @@ export default function Page() {
 
     window.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
-
-    if (modalRef.current) {
-      modalRef.current.focus()
-    }
+    if (modalRef.current) modalRef.current.focus()
 
     return () => {
       window.removeEventListener('keydown', handleKey)
@@ -54,12 +45,10 @@ export default function Page() {
     }
   }, [showEntryModal])
 
-  // When slides finish, go to /credibility
   const handleSlidesComplete = () => {
     window.location.href = '/credibility'
   }
 
-  // When user clicks "Skip" inside PreHomepage, also go to /credibility
   const handleSkip = () => {
     window.location.href = '/credibility'
   }
@@ -106,12 +95,11 @@ export default function Page() {
     )
   }
 
-  // Entry modal closed – show slides
   return (
     <PreHomepage
       onGoToHomepage={handleSlidesComplete}
-      onGoToPetition={() => router.push('/petition')}
-      onSkip={handleSkip}   // we need to add this prop to PreHomepage
+      onGoToPetition={() => window.location.href = '/petition'}
+      onSkip={handleSkip}
     />
   )
 }

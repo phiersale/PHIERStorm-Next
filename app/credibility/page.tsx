@@ -3,14 +3,11 @@
 
 'use client'
 
-import { useRouter } from 'next/navigation'
 import PathosCredibility from '@/components/PathosCredibility'
 
 export default function CredibilityPage() {
-  const router = useRouter()
-
   const goToMain = () => {
-    router.push('/main')
+    window.location.href = '/main'
   }
 
   return (
