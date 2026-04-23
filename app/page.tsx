@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.9.6 (fixed loop: sessionStorage flag for credibility completion)
+// VERSION: 1.9.7 (absolute priority for credibilityComplete, cleanup, render guard)
 
 'use client'
 
@@ -11,6 +11,16 @@ import PreHomepage from '@/components/PreHomepage'
 import PathosCredibility from '@/components/PathosCredibility'
 import MainHomePage from '@/components/MainHomePage'
 
+// Render guard: if credibility already completed, skip all stages
+if (typeof window !== 'undefined') {
+  const passed = sessionStorage.getItem('credibilityComplete')
+  if (passed === '1') {
+    // Directly export a component that returns MainHomePage without any state
+    // We must do this outside the component to avoid violating hooks rules.
+    // Instead, we'll handle it inside the component with a fast return.
+  }
+}
+
 export default function Page() {
   const router = useRouter()
 
@@ -20,20 +30,23 @@ export default function Page() {
   const continueButtonRef = useRef<HTMLButtonElement>(null)
   const credibilityTopRef = useRef<HTMLDivElement>(null)
 
+  // ----- CRITICAL: check credibilityComplete FIRST, before anything else -----
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const skipSlides = urlParams.get('skip') === 'slides'
+    if (typeof window === 'undefined') return
 
-    // Check if user already completed credibility (e.g., clicked "Continue to site" before)
+    // Highest priority: if user already completed credibility, go straight to main
     const passedCredibility = sessionStorage.getItem('credibilityComplete')
-    if (passedCredibility) {
+    if (passedCredibility === '1') {
       setShowEntryModal(false)
       setStage('main')
       return
     }
 
+    const urlParams = new URLSearchParams(window.location.search)
+    const skipSlides = urlParams.get('skip') === 'slides'
+
     if (skipSlides) {
-      sessionStorage.setItem('entrySequence', '1')   
+      sessionStorage.setItem('entrySequence', '1')
       setShowEntryModal(false)
       setStage('main')
       window.history.replaceState({}, '', '/')
@@ -76,14 +89,14 @@ export default function Page() {
     }
   }, [showEntryModal, proceed])
 
- const handleSlidesComplete = () => {
-  sessionStorage.setItem('credibilityComplete', '1')
-  setStage('main')
-}
+  const handleSlidesComplete = () => {
+    setStage('credibility')
+  }
 
   const goToMain = () => {
-    // Set flag to skip entry/slides/credibility on next visit
+    // Set the completion flag AND remove the old entrySequence to avoid fallback
     sessionStorage.setItem('credibilityComplete', '1')
+    sessionStorage.removeItem('entrySequence')
     setStage('main')
   }
 
@@ -94,21 +107,21 @@ export default function Page() {
     }
   }, [stage])
 
-  // Scroll to the very top of the credibility content when stage mounts
+  // Smooth scroll to top of credibility content when stage mounts
   useEffect(() => {
     if (stage === 'credibility') {
       const scrollToTop = () => {
         if (credibilityTopRef.current) {
-          credibilityTopRef.current.scrollIntoView({ behavior: 'instant', block: 'start' })
+          credibilityTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         } else {
-          window.scrollTo(0, 0)
+          window.scrollTo({ top: 0, behavior: 'smooth' })
         }
       }
       setTimeout(scrollToTop, 50)
     }
   }, [stage])
 
-  // Escape key in credibility stage – go to main site (also set flag)
+  // Escape key in credibility stage – go to main site
   useEffect(() => {
     if (stage !== 'credibility') return
     const handler = (e: KeyboardEvent) => {
@@ -120,6 +133,11 @@ export default function Page() {
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [stage])
+
+  // ----- Render guard: if credibilityComplete already set, return MainHomePage immediately -----
+  if (typeof window !== 'undefined' && sessionStorage.getItem('credibilityComplete') === '1') {
+    return <MainHomePage />
+  }
 
   if (stage === 'entry') {
     return (
@@ -175,7 +193,7 @@ export default function Page() {
   if (stage === 'credibility') {
     return (
       <div className="min-h-screen bg-[#050b19] py-12 px-4">
-        <div ref={credibilityTopRef} className="scroll-mt-0"></div>
+        <div ref={credibilityTopRef}></div>
         <div className="max-w-4xl mx-auto">
           <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
             If this feels different, it’s because it is.
