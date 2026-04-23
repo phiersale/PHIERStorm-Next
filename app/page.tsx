@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 2.0.0 (finite state machine: single source of truth phiers_stage)
+// VERSION: 2.0.1 (FSM – single source of truth, no commented dead code)
 
 'use client'
 
@@ -14,29 +14,14 @@ import MainHomePage from '@/components/MainHomePage'
 export default function Page() {
   const router = useRouter()
 
-  // --- Single source of truth: stage ---
   const [stage, setStage] = useState<'entry' | 'slides' | 'credibility' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
 
-  // Refs for focus and scrolling
   const modalRef = useRef<HTMLDivElement>(null)
   const continueButtonRef = useRef<HTMLButtonElement>(null)
   const credibilityTopRef = useRef<HTMLDivElement>(null)
 
-  // --- Optional render guard: prevents any flicker on refresh when already at 'main' ---
-  if (typeof window !== 'undefined') {
-    const savedStage = sessionStorage.getItem('phiers_stage')
-    if (savedStage === 'main') {
-      // Return MainHomePage immediately, skipping all hooks – but we cannot call hooks conditionally.
-      // However, this guard runs before hooks, so it's safe to return early.
-      // To avoid breaking hooks order, we'll move this guard inside the component after hooks? Actually,
-      // React requires hooks to be called unconditionally. The best practice is to handle this inside the useEffect.
-      // The render guard can cause hydration mismatches. Instead, rely on the useEffect to set the stage quickly.
-      // We'll keep it simple: no render guard, just the useEffect.
-    }
-  }
-
-  // --- Centralized stage loader (replaces all old flag logic) ---
+  // Centralized stage loader – replaces all old flag logic
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -47,25 +32,23 @@ export default function Page() {
       setShowEntryModal(false)
       return
     }
-
     if (savedStage === 'credibility') {
       setStage('credibility')
       setShowEntryModal(false)
       return
     }
-
     if (savedStage === 'slides') {
       setStage('slides')
       setShowEntryModal(false)
       return
     }
 
-    // First‑time visitor: default to 'entry'
+    // First‑time visitor
     setStage('entry')
     setShowEntryModal(true)
   }, [])
 
-  // --- Transition functions (explicit state changes) ---
+  // Transitions
   const proceed = () => {
     sessionStorage.setItem('phiers_stage', 'slides')
     setShowEntryModal(false)
@@ -82,7 +65,7 @@ export default function Page() {
     setStage('main')
   }
 
-  // --- Keyboard handling for entry modal ---
+  // Entry modal keyboard handling
   useEffect(() => {
     if (!showEntryModal) return
 
@@ -106,14 +89,14 @@ export default function Page() {
     }
   }, [showEntryModal])
 
-  // --- Focus continue button when credibility stage mounts ---
+  // Focus continue button on credibility stage
   useEffect(() => {
     if (stage === 'credibility' && continueButtonRef.current) {
       continueButtonRef.current.focus()
     }
   }, [stage])
 
-  // --- Smooth scroll to top of credibility content when stage mounts ---
+  // Scroll to top of credibility content
   useEffect(() => {
     if (stage === 'credibility') {
       const scrollToTop = () => {
@@ -127,7 +110,7 @@ export default function Page() {
     }
   }, [stage])
 
-  // --- Escape key on credibility stage: go to main ---
+  // Escape key on credibility stage
   useEffect(() => {
     if (stage !== 'credibility') return
     const handler = (e: KeyboardEvent) => {
@@ -140,7 +123,7 @@ export default function Page() {
     return () => window.removeEventListener('keydown', handler)
   }, [stage])
 
-  // --- Render logic based on stage ---
+  // Render
   if (stage === 'entry') {
     return (
       <AnimatePresence>
@@ -235,6 +218,5 @@ export default function Page() {
     )
   }
 
-  // stage === 'main'
   return <MainHomePage />
 }
