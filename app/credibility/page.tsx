@@ -1,5 +1,5 @@
 // FILE: app/credibility/page.tsx
-// VERSION: 1.0.0
+// VERSION: 1.1.0
 
 'use client'
 
@@ -7,6 +7,7 @@ import PathosCredibility from '@/components/PathosCredibility'
 
 export default function CredibilityPage() {
   const goToMain = () => {
+    console.log('Redirecting to /main') // debug
     window.location.href = '/main'
   }
 

@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 4.0.0 (separate routes, no state machine)
+// VERSION: 4.1.0
 
 'use client'
 
@@ -12,7 +12,6 @@ export default function Page() {
   const [showEntryModal, setShowEntryModal] = useState(true)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  // Optional: remember that user has seen the entry modal (so it won't show again on refresh)
   useEffect(() => {
     const seen = sessionStorage.getItem('entrySeen')
     if (seen) {
@@ -27,18 +26,15 @@ export default function Page() {
 
   useEffect(() => {
     if (!showEntryModal) return
-
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === 'Escape' || e.key === ' ') {
         e.preventDefault()
         proceed()
       }
     }
-
     window.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
     if (modalRef.current) modalRef.current.focus()
-
     return () => {
       window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
