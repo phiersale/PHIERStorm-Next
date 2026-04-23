@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.0.7 – skip button moved to right side with margin
+// VERSION: 1.0.8 – entry modal shows on every visit (no sessionStorage)
 
 'use client'
 
@@ -19,22 +19,22 @@ export default function Page() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const skipSlides = urlParams.get('skip') === 'slides'
+
     if (skipSlides) {
-      sessionStorage.setItem('entrySequence', '1')
+      // Bypass entry modal and slides entirely
       setShowEntryModal(false)
       setStage('main')
       window.history.replaceState({}, '', '/')
       return
     }
-    // Always show the modal on every visit
+
+    // ALWAYS show the entry modal on every normal visit
     setShowEntryModal(true)
     setStage('entry')
   }, [])
 
   const proceed = () => {
-    console.log('proceed called')
     setShowEntryModal(false)
-    sessionStorage.setItem('entrySequence', '1')
     setStage('prehome')
   }
 
@@ -129,10 +129,6 @@ export default function Page() {
       <PreHomepage
         onGoToHomepage={() => setStage('main')}
         onGoToPetition={() => router.push('/petition')}
-        onSkip={() => {
-          console.log('skip slides')
-          router.push('/credibility')
-        }}
       />
     )
   }
