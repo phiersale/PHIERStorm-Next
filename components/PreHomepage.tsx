@@ -11,14 +11,13 @@ import slides from './slides'
 type Props = {
   onGoToHomepage: () => void
   onGoToPetition: () => void
-  onSkip: () => void
 }
 
 const SWIPE_THRESHOLD = 50
 const TRANSITION_MS = 400
 const LAST_SLIDE_EXTRA_MS = 300
 
-export default function PreHomepage({ onGoToHomepage, onGoToPetition, onSkip }: Props) {
+export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   const [index, setIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -245,16 +244,19 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition, onSkip }: 
       className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
-     {/* Header */}
-      <div className="flex justify-end pr-12 py-2">
-        <button
-          onClick={onSkip}
-          className="text-gray-500 text-sm underline hover:text-gray-300"
-          aria-label="Skip introduction"
-        >
-          Skip →
-        </button>
-      </div>
+      {/* Header */}
+        <div className="flex justify-end pr-12 py-2">
+          <button
+            onClick={() => {
+              console.log('Skip button clicked in PreHomepage');
+              onGoToHomepage();
+            }}
+            className="text-gray-500 text-sm underline hover:text-gray-300"
+            aria-label="Skip introduction"
+          >
+            Skip →
+          </button>
+        </div>
 
       {/* Main clickable area – full height */}
       <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full">
