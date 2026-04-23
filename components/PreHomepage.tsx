@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 3.6.0 (fixed onSkip prop destructuring)
+// VERSION: 3.7.0 (fixed onSkip prop destructuring)
 
 'use client'
 
@@ -246,7 +246,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition, onSkip }: 
       style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
     >
      {/* Header */}
-      <div className="flex justify-end px-6 py-2">
+      <div className="flex justify-end pr-12 py-2">
         <button
           onClick={onSkip}
           className="text-gray-500 text-sm underline hover:text-gray-300"
@@ -352,4 +352,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition, onSkip }: 
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.6.0
+// VERSION: 3.7.0
