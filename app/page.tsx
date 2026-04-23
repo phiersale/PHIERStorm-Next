@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.9.7 (absolute priority for credibilityComplete, cleanup, render guard)
+// VERSION: 2.0.0 (finite state machine: single source of truth phiers_stage)
 
 'use client'
 
@@ -11,61 +11,78 @@ import PreHomepage from '@/components/PreHomepage'
 import PathosCredibility from '@/components/PathosCredibility'
 import MainHomePage from '@/components/MainHomePage'
 
-// Render guard: if credibility already completed, skip all stages
-if (typeof window !== 'undefined') {
-  const passed = sessionStorage.getItem('credibilityComplete')
-  if (passed === '1') {
-    // Directly export a component that returns MainHomePage without any state
-    // We must do this outside the component to avoid violating hooks rules.
-    // Instead, we'll handle it inside the component with a fast return.
-  }
-}
-
 export default function Page() {
   const router = useRouter()
 
-  const [stage, setStage] = useState<'entry' | 'prehome' | 'credibility' | 'main'>('entry')
+  // --- Single source of truth: stage ---
+  const [stage, setStage] = useState<'entry' | 'slides' | 'credibility' | 'main'>('entry')
   const [showEntryModal, setShowEntryModal] = useState(true)
+
+  // Refs for focus and scrolling
   const modalRef = useRef<HTMLDivElement>(null)
   const continueButtonRef = useRef<HTMLButtonElement>(null)
   const credibilityTopRef = useRef<HTMLDivElement>(null)
 
-  // ----- CRITICAL: check credibilityComplete FIRST, before anything else -----
+  // --- Optional render guard: prevents any flicker on refresh when already at 'main' ---
+  if (typeof window !== 'undefined') {
+    const savedStage = sessionStorage.getItem('phiers_stage')
+    if (savedStage === 'main') {
+      // Return MainHomePage immediately, skipping all hooks – but we cannot call hooks conditionally.
+      // However, this guard runs before hooks, so it's safe to return early.
+      // To avoid breaking hooks order, we'll move this guard inside the component after hooks? Actually,
+      // React requires hooks to be called unconditionally. The best practice is to handle this inside the useEffect.
+      // The render guard can cause hydration mismatches. Instead, rely on the useEffect to set the stage quickly.
+      // We'll keep it simple: no render guard, just the useEffect.
+    }
+  }
+
+  // --- Centralized stage loader (replaces all old flag logic) ---
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // Highest priority: if user already completed credibility, go straight to main
-    const passedCredibility = sessionStorage.getItem('credibilityComplete')
-    if (passedCredibility === '1') {
-      setShowEntryModal(false)
+    const savedStage = sessionStorage.getItem('phiers_stage')
+
+    if (savedStage === 'main') {
       setStage('main')
+      setShowEntryModal(false)
       return
     }
 
-    const urlParams = new URLSearchParams(window.location.search)
-    const skipSlides = urlParams.get('skip') === 'slides'
-
-    if (skipSlides) {
-      sessionStorage.setItem('entrySequence', '1')
+    if (savedStage === 'credibility') {
+      setStage('credibility')
       setShowEntryModal(false)
-      setStage('main')
-      window.history.replaceState({}, '', '/')
       return
     }
 
-    const seen = sessionStorage.getItem('entrySequence')
-    if (seen) {
+    if (savedStage === 'slides') {
+      setStage('slides')
       setShowEntryModal(false)
-      setStage('prehome')
+      return
     }
+
+    // First‑time visitor: default to 'entry'
+    setStage('entry')
+    setShowEntryModal(true)
   }, [])
 
+  // --- Transition functions (explicit state changes) ---
   const proceed = () => {
+    sessionStorage.setItem('phiers_stage', 'slides')
     setShowEntryModal(false)
-    sessionStorage.setItem('entrySequence', '1')
-    setStage('prehome')
+    setStage('slides')
   }
 
+  const handleSlidesComplete = () => {
+    sessionStorage.setItem('phiers_stage', 'credibility')
+    setStage('credibility')
+  }
+
+  const goToMain = () => {
+    sessionStorage.setItem('phiers_stage', 'main')
+    setStage('main')
+  }
+
+  // --- Keyboard handling for entry modal ---
   useEffect(() => {
     if (!showEntryModal) return
 
@@ -87,27 +104,16 @@ export default function Page() {
       window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
     }
-  }, [showEntryModal, proceed])
+  }, [showEntryModal])
 
-  const handleSlidesComplete = () => {
-    setStage('credibility')
-  }
-
-  const goToMain = () => {
-    // Set the completion flag AND remove the old entrySequence to avoid fallback
-    sessionStorage.setItem('credibilityComplete', '1')
-    sessionStorage.removeItem('entrySequence')
-    setStage('main')
-  }
-
-  // Focus continue button when credibility stage mounts
+  // --- Focus continue button when credibility stage mounts ---
   useEffect(() => {
     if (stage === 'credibility' && continueButtonRef.current) {
       continueButtonRef.current.focus()
     }
   }, [stage])
 
-  // Smooth scroll to top of credibility content when stage mounts
+  // --- Smooth scroll to top of credibility content when stage mounts ---
   useEffect(() => {
     if (stage === 'credibility') {
       const scrollToTop = () => {
@@ -121,7 +127,7 @@ export default function Page() {
     }
   }, [stage])
 
-  // Escape key in credibility stage – go to main site
+  // --- Escape key on credibility stage: go to main ---
   useEffect(() => {
     if (stage !== 'credibility') return
     const handler = (e: KeyboardEvent) => {
@@ -134,11 +140,7 @@ export default function Page() {
     return () => window.removeEventListener('keydown', handler)
   }, [stage])
 
-  // ----- Render guard: if credibilityComplete already set, return MainHomePage immediately -----
-  if (typeof window !== 'undefined' && sessionStorage.getItem('credibilityComplete') === '1') {
-    return <MainHomePage />
-  }
-
+  // --- Render logic based on stage ---
   if (stage === 'entry') {
     return (
       <AnimatePresence>
@@ -181,7 +183,7 @@ export default function Page() {
     )
   }
 
-  if (stage === 'prehome') {
+  if (stage === 'slides') {
     return (
       <PreHomepage
         onGoToHomepage={handleSlidesComplete}
@@ -233,5 +235,6 @@ export default function Page() {
     )
   }
 
+  // stage === 'main'
   return <MainHomePage />
 }
