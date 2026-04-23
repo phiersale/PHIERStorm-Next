@@ -1,15 +1,16 @@
 // FILE: app/page.tsx
-// VERSION: 3.2.0 – scrollable modal for small screens / large fonts
+// VERSION: 3.4.0 – intuitive: background click closes, content clicks don't
 
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 export default function EntryPage() {
   const router = useRouter()
+  const contentRef = useRef<HTMLDivElement>(null)
 
   const proceed = () => {
     router.push('/slides')
@@ -31,15 +32,26 @@ export default function EntryPage() {
     }
   }, [])
 
+  // Only close when clicking directly on the background overlay
+  const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      proceed()
+    }
+  }
+
   return (
     <motion.div
       className="fixed inset-0 bg-[#050b19] z-[99999] overflow-y-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      onClick={proceed}
+      onClick={handleBackgroundClick}
     >
-      {/* Centered content wrapper */}
-      <div className="min-h-screen flex items-center justify-center p-4">
+      {/* Content wrapper – clicks here do NOT close the modal */}
+      <div
+        ref={contentRef}
+        className="min-h-screen flex items-center justify-center p-4"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="text-center max-w-xl mx-auto w-full">
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-light mb-3">
             Take a deep breath.
@@ -64,10 +76,12 @@ export default function EntryPage() {
             That’s the first thing to remember.
           </p>
           <p className="text-gray-500 text-xs sm:text-sm">
-            Click anywhere or press Space/Enter to continue
+            Click outside this box or press Space/Enter to continue
           </p>
         </div>
       </div>
     </motion.div>
   )
 }
+// FILE: app/page.tsx (end)
+// VERSION: 3.4.0

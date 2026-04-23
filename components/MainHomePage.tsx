@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 6.2.0 (clean, complete, no routing logic)
+// VERSION: 6.5.0 – moved wasy to ignore image lower on the page
 
 'use client'
 
@@ -10,6 +10,28 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
+
+// Helper component for video cards (used inside modal)
+function VideoCard({ id, title }: { id: string; title: string }) {
+  return (
+    <div className="bg-bg-card/80 rounded-xl border border-green/20 overflow-hidden hover:border-green/50 transition-all">
+      <div className="relative pb-[56.25%] h-0">
+        <iframe
+          src={`https://www.youtube.com/embed/${id}?rel=0`}
+          title={title}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          loading="lazy"
+          className="absolute top-0 left-0 w-full h-full"
+        />
+      </div>
+      <div className="p-2 text-center">
+        <p className="text-gray-300 text-sm font-medium">{title}</p>
+      </div>
+    </div>
+  )
+}
 
 export default function MainHomePage() {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
@@ -146,57 +168,53 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
           </div>
 
-          {/* INTRO VIDEO – “When Enough People Organize, Congress Must Respond” */}
-          <div className="max-w-3xl mx-auto mt-12 mb-8 px-4">
-            <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
-              <iframe
-                src="https://www.youtube.com/embed/C2mMIx5yoyw?rel=0"
-                title="When Enough People Organize, Congress Must Respond"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-                className="absolute top-0 left-0 w-full h-full"
-              />
-            </div>
-            <p className="text-center text-gray-400 text-sm mt-3">Why organization creates leverage – watch to understand the core mechanism.</p>
-          </div>
-
-          <div className="flex justify-center mt-8 mb-8">
-            <div
-              className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
-              onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
-              onKeyDown={makeKeyboardClickable(() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg'))}
-              role="button"
-              tabIndex={0}
-              aria-label="Enlarge hero image"
-            >
-              <Image
-                src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
-                alt="Congress Ignores You"
-                width={954}
-                height={648}
-                priority
-                className="w-full h-auto object-contain"
-                sizes="(max-width: 768px) 90vw, 600px"
-                onError={(e) => console.error('Hero image failed to load')}
-              />
+          {/* Two intro videos side by side (kept as requested) */}
+          <div className="max-w-4xl mx-auto mt-12 mb-8 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
+                  <iframe
+                    src="https://www.youtube.com/embed/SFW9fhUBEwE?rel=0"
+                    title="PHIERS – The Movement That Forces Congress to Respond"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute top-0 left-0 w-full h-full"
+                  />
+                </div>
+                <p className="text-center text-gray-400 text-sm mt-2">Introduction – How leverage works</p>
+              </div>
+              <div>
+                <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
+                  <iframe
+                    src="https://www.youtube.com/embed/ihTa_2CLmvk?rel=0"
+                    title="Short Intro to PHIERS"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute top-0 left-0 w-full h-full"
+                  />
+                </div>
+                <p className="text-center text-gray-400 text-sm mt-2">Short intro – The PHIERS framework</p>
+              </div>
             </div>
           </div>
 
-          {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
+          {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK – plural wars */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
-            <p className="text-white text-xl font-bold mb-2">Congress can end the war. Right now.</p>
+            <p className="text-white text-xl font-bold mb-2">Congress can end the wars. Right now.</p>
             <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
             <p className="text-green text-xl font-bold mb-3">They just don’t have the pressure.</p>
             <p className="text-gray-300 text-base mb-2">That’s where leverage comes in.</p>
             <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – forces their hand.</p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
-            <p className="text-gray-300 text-base mb-2">If they don’t end the war immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
+            <p className="text-gray-300 text-base mb-2">If they don’t end the wars immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
             <p className="text-white text-lg font-bold mt-2">That’s how we make Congress do its job.</p>
           </div>
 
-          {/* Why 1,500 Matters */}
+          {/* Why 1,500 Matters – unchanged */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <h3 className="text-2xl font-bold text-white mb-2">Why 1,500 Matters</h3>
             <p className="text-gray-300 text-base mb-3">
@@ -234,12 +252,13 @@ export default function MainHomePage() {
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
               <Button href="/petition" variant="primary" fullWidth>✍ BE COUNTED</Button>
-              <Button href="/homepage-teeth" variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>            </div>
+              <Button href="/homepage-teeth" variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
+            </div>
             <p className="text-gray-400 text-sm mt-2">Your district. Your number. On record.</p>
           </div>
         </section>
 
-        {/* LIVE MOVEMENT STATUS */}
+        {/* LIVE MOVEMENT STATUS – unchanged */}
         <section className="container py-8 border-t border-b border-green/20 my-6">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">⭐ LIVE MOVEMENT STATUS</span>
@@ -258,7 +277,7 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* THE MECHANISM */}
+        {/* THE MECHANISM – unchanged */}
         <section id="mechanism" className="container section scroll-mt-24">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">THE MECHANISM</span>
@@ -296,7 +315,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* HOW IT WORKS */}
+        {/* HOW IT WORKS – unchanged */}
         <section className="container section">
           <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6">HOW IT WORKS</h2>
           <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -319,7 +338,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY 1,500 PEOPLE MATTER */}
+        {/* WHY 1,500 PEOPLE MATTER – unchanged */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY 1,500 PEOPLE MATTER</h2>
@@ -353,7 +372,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* MID-PAGE ACTION */}
+        {/* MID-PAGE ACTION – unchanged */}
         <section className="container py-8 text-center">
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
@@ -364,7 +383,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* ECONOMIC ENGINE */}
+        {/* ECONOMIC ENGINE – unchanged */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto">
             <div className="text-center mb-6"><span className="text-green text-sm font-condensed font-bold tracking-wider">THE ECONOMIC ENGINE</span></div>
@@ -401,7 +420,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* THE CASCADE */}
+        {/* THE CASCADE – unchanged */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
@@ -436,7 +455,29 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* THREE KINDS OF POWER */}
+                  <div className="flex justify-center mt-8 mb-8">
+            <div
+              className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge hero image"
+            >
+              <Image
+                src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
+                alt="Congress Ignores You"
+                width={954}
+                height={648}
+                priority
+                className="w-full h-auto object-contain"
+                sizes="(max-width: 768px) 90vw, 600px"
+                onError={(e) => console.error('Hero image failed to load')}
+              />
+            </div>
+          </div>
+
+        {/* THREE KINDS OF POWER – unchanged */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THREE KINDS OF POWER</h2>
@@ -464,7 +505,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY THIS BECOMES UNSTOPPABLE */}
+        {/* WHY THIS BECOMES UNSTOPPABLE – unchanged */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -505,7 +546,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY AFFORDABILITY = LEVERAGE */}
+        {/* WHY AFFORDABILITY = LEVERAGE – unchanged */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY AFFORDABILITY = LEVERAGE</h2>
@@ -525,7 +566,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* REALITY ANCHOR */}
+        {/* REALITY ANCHOR – unchanged */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <div className="max-w-[760px] mx-auto">
@@ -541,11 +582,11 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS UNLOCKS */}
+        {/* WHAT THIS UNLOCKS – unchanged */}
         <section className="container section">
           <div className="text-center max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS UNLOCKS</h2>
-            <p className="text-gray-300 text-base mb-4">The same leverage that can end a war can also be used to:</p>
+            <p className="text-gray-300 text-base mb-4">The same leverage that can end wars can also be used to:</p>
             <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6 text-left max-w-md mx-auto">
               <li>End policies people never voted for</li>
               <li>Force public accountability from representatives</li>
@@ -558,7 +599,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY THIS WORKS – includes logos */}
+        {/* WHY THIS WORKS – unchanged (logos only) */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS WORKS</h2>
@@ -662,7 +703,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS IS NOT */}
+        {/* WHAT THIS IS NOT – includes “Meet the architect” button */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS IS NOT</h2>
@@ -684,7 +725,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT HAPPENS AFTER YOU SIGN */}
+        {/* WHAT HAPPENS AFTER YOU SIGN – unchanged */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -722,7 +763,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* EVIDENCE FOOTER */}
+        {/* EVIDENCE FOOTER – unchanged */}
         <section className="container section bg-bg-dark rounded-xl border border-green/20 p-6 my-6">
           <div className="max-w-[900px] mx-auto">
             <h3 className="text-green text-lg font-bold mb-3">📌 Everything here is verifiable</h3>
@@ -742,7 +783,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* FINAL CLOSE */}
+        {/* FINAL CLOSE – unchanged */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <p className="text-white text-xl font-bold mb-4">Nothing changes until ignoring people costs more than responding.</p>
@@ -766,7 +807,7 @@ export default function MainHomePage() {
 
       <button onClick={scrollToTop} className={`back-to-top ${showBackToTop ? 'visible' : ''}`} aria-label="Back to top">↑</button>
 
-      {/* ARCHITECT MODAL with three mission videos */}
+      {/* ARCHITECT MODAL – now contains the full video library */}
       <AnimatePresence>
         {showArchitectModal && (
           <motion.div
@@ -778,11 +819,11 @@ export default function MainHomePage() {
             aria-hidden="true"
           >
             <div
-              className="relative max-w-[720px] w-full bg-[#0a1628] border-2 border-green/35 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+              className="relative max-w-4xl w-full bg-[#0a1628] border-2 border-green/35 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
               role="dialog"
               aria-modal="true"
-              aria-label="Will Price – architect modal"
+              aria-label="Will Price – architect modal with video library"
             >
               <button
                 onClick={() => setShowArchitectModal(false)}
@@ -792,7 +833,7 @@ export default function MainHomePage() {
                 ✕
               </button>
 
-              <div className="flex flex-wrap items-stretch">
+              <div className="flex flex-wrap items-stretch border-b border-green/20">
                 <div className="flex-0 w-full max-w-[240px] min-h-[280px] overflow-hidden">
                   <Image
                     src="/images/Will_Price.png"
@@ -807,59 +848,67 @@ export default function MainHomePage() {
                   <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-0">Will Price</h3>
                   <p className="font-condensed text-sm text-[#ffd60a] font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
                   <p className="text-body text-sm leading-relaxed">
-                    Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009.
+                    Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009... AFTER ending the wars.
                   </p>
                 </div>
               </div>
 
-              <div className="p-6 pt-0">
-                <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-3">Hear the vision – in Will’s own words</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* Video 1 – PHIERS intro */}
-                  <div>
-                    <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20">
-                      <iframe
-                        src="https://www.youtube.com/embed/McmYW558i78?rel=0"
-                        title="PHIERS – The Leverage Explained"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        loading="lazy"
-                        className="absolute top-0 left-0 w-full h-full"
-                      />
-                    </div>
-                    <p className="text-xs text-gray-400 mt-2 text-center">How leverage works</p>
+              <div className="p-6">
+                <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-4">The Vision – Over 20 years of recorded talks</p>
+
+                {/* Short Intros to PHIERS */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Short Intros to PHIERS</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <VideoCard id="ihTa_2CLmvk" title="Intro – The Framework" />
+                    <VideoCard id="2j-dF3hgdeE" title="Intro – The Leverage" />
                   </div>
-                  {/* Video 2 – LEVERAGE is Power Held In Every Representative's Seat */}
-                  <div>
-                    <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20">
-                      <iframe
-                        src="https://www.youtube.com/embed/wnSy5jjxAac?rel=0"
-                        title="LEVERAGE is Power Held In Every Representative's Seat (PHIERS)"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        loading="lazy"
-                        className="absolute top-0 left-0 w-full h-full"
-                      />
-                    </div>
-                    <p className="text-xs text-gray-400 mt-2 text-center">The PHIERS framework</p>
+                </div>
+
+                {/* Current Wars & Congress */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Current Wars & Congress</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <VideoCard id="D3RPVoJ93BU" title="The Wars – Congress Must Act" />
                   </div>
-                  {/* Video 3 – Funding Mamdani’s Agenda for a Stronger Future */}
-                  <div>
-                    <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20">
-                      <iframe
-                        src="https://www.youtube.com/embed/VdeniYs1QsQ?rel=0"
-                        title="Funding Mamdani’s Agenda for a Stronger Future (a National strategy)"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        loading="lazy"
-                        className="absolute top-0 left-0 w-full h-full"
-                      />
-                    </div>
-                    <p className="text-xs text-gray-400 mt-2 text-center">National strategy</p>
+                </div>
+
+                {/* Healthcare Reform */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Healthcare Reform</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <VideoCard id="jMU6LKEBzbs" title="The Healthcare Cascade" />
+                    <VideoCard id="kd6kTJM_SuM" title="Telehealth Solution" />
+                    <VideoCard id="bEUyDVAYwpk" title="Cost Savings" />
+                    <VideoCard id="xy3F9ZWbgS8" title="Why $600 Works" />
+                    <VideoCard id="453Hf3rgymY" title="Fixing the System" />
                   </div>
+                </div>
+
+                {/* Tackling Fascism, Authoritarianism and Nazis */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Tackling Fascism and Nazis</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <VideoCard id="h1AqunGaAA0" title="Confronting Authoritarianism" />
+                  </div>
+                </div>
+
+                {/* Additional placeholders – you can expand later */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Public Health</h4>
+                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Veterans and Unions</h4>
+                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Mission Oriented</h4>
+                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Foundational</h4>
+                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
                 </div>
               </div>
             </div>
@@ -903,3 +952,6 @@ export default function MainHomePage() {
     </>
   )
 }
+
+// FILE: components/MainHomePage.tsx (end)
+// VERSION: 6.5.0
