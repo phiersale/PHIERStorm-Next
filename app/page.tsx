@@ -26,11 +26,9 @@ export default function Page() {
       window.history.replaceState({}, '', '/')
       return
     }
-    const seen = sessionStorage.getItem('entrySequence')
-    if (seen) {
-      setShowEntryModal(false)
-      setStage('prehome')
-    }
+    // Always show the modal on every visit
+    setShowEntryModal(true)
+    setStage('entry')
   }, [])
 
   const proceed = () => {
