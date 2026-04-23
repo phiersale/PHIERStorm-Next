@@ -1,10 +1,9 @@
+// FILE: app/credibility/page.tsx
+
 'use client'
-import { useRouter } from 'next/navigation'
 import PathosCredibility from '@/components/PathosCredibility'
 
 export default function CredibilityPage() {
-  const router = useRouter()
-
   return (
     <div className="min-h-screen bg-[#050b19] py-12 px-4">
       <div className="max-w-4xl mx-auto">
@@ -20,6 +19,7 @@ export default function CredibilityPage() {
               src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"
               title="Pathos Communications endorsement video"
               frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
               className="absolute top-0 left-0 w-full h-full"
@@ -32,7 +32,7 @@ export default function CredibilityPage() {
 
         <div className="flex justify-center mt-8">
           <button
-            onClick={() => window.location.href = '/home'}
+            onClick={() => window.location.href = '/?show=main'}
             className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition"
           >
             Continue to site →

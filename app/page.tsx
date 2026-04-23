@@ -1,12 +1,22 @@
-// FILE: app/page.tsx – entry modal, no state
+// FILE: app/page.tsx – entry modal, or main homepage when ?show=main
 
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import MainHomePage from '@/components/MainHomePage'
 
 export default function EntryPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const showMain = searchParams.get('show') === 'main'
+
+  // If the query param says show=main, render MainHomePage directly
+  if (showMain) {
+    return <MainHomePage />
+  }
+
+  // Otherwise, show the entry modal
   const proceed = () => router.push('/slides')
 
   return (
