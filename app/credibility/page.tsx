@@ -1,5 +1,3 @@
-// FILE: app/credibility/page.tsx
-
 'use client'
 import { useRouter } from 'next/navigation'
 import PathosCredibility from '@/components/PathosCredibility'
@@ -22,7 +20,6 @@ export default function CredibilityPage() {
               src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"
               title="Pathos Communications endorsement video"
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
               className="absolute top-0 left-0 w-full h-full"
