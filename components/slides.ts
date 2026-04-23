@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 2.4.0 (added isFinalSlide flag to last slide)
+// VERSION: 2.5.0 (fixed PHIERS acronym slide syntax)
 
 const slides = [
   // 1 – Congress ignores you + can fix
@@ -62,19 +62,17 @@ const slides = [
   },
   // 7 – PHIERS logo slide (custom layout)
   {
-    {
-  title: "PHIERS",
-  body: [
-    { letter: "P", word: "POWER" },
-    { letter: "H", word: "HELD" },
-    { letter: "I", word: "IN" },
-    { letter: "E", word: "EVERY" },
-    { letter: "R", word: "REPS" },
-    { letter: "S", word: "SEAT" }
-  ],
-  customLayout: true,
-  punchLine: "Power Held In Every Reps Seat"
-}
+    title: "PHIERS",
+    body: [
+      { letter: "P", word: "POWER" },
+      { letter: "H", word: "HELD" },
+      { letter: "I", word: "IN" },
+      { letter: "E", word: "EVERY" },
+      { letter: "R", word: "REPS" },
+      { letter: "S", word: "SEAT" }
+    ],
+    customLayout: true,
+    punchLine: "Power Held In Every Reps Seat"
   },
   // 8 – Final slide (with staggered fade-in animation)
   {
@@ -92,4 +90,4 @@ const slides = [
 export default slides;
 
 // FILE: components/slides.ts (end)
-// VERSION: 2.4.0
+// VERSION: 2.5.0
