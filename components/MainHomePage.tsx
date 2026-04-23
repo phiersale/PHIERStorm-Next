@@ -39,6 +39,7 @@ export default function MainHomePage() {
   const [showArchitectModal, setShowArchitectModal] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
+  const prefersReducedMotionRef = useRef(false)
 
   // Scroll to top when page mounts (fixes coming from credibility stage)
   useEffect(() => {
