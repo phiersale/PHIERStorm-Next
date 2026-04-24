@@ -13,7 +13,7 @@ import PathosCredibility from '@/components/PathosCredibility'
 
 // Phased text sequence – reveals text then image, then calls onComplete
 function PhasedText({ onComplete }: { onComplete: () => void }) {
-  const [subphase, setSubphase] = useState<'pause' | 'breath' | 'description' | 'image'>('pause')
+  const [subphase, setSubphase] = useState<'pause' | 'breath' | 'description' | 'waiting' | 'image'>('pause')
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
@@ -24,6 +24,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
     return () => media.removeEventListener('change', update)
   }, [])
 
+  // Auto‑advance through first steps, then stop at 'waiting'
   useEffect(() => {
     if (prefersReducedMotion) {
       setSubphase('image')
@@ -31,7 +32,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
     }
     const timer1 = setTimeout(() => setSubphase('breath'), 1500)
     const timer2 = setTimeout(() => setSubphase('description'), 3000)
-    const timer3 = setTimeout(() => setSubphase('image'), 5000)
+    const timer3 = setTimeout(() => setSubphase('waiting'), 3500) // after description, wait for tap
     return () => {
       clearTimeout(timer1)
       clearTimeout(timer2)
@@ -39,8 +40,32 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
     }
   }, [prefersReducedMotion])
 
+  // Reveal image on user interaction (tap, click, Space, Enter)
+  useEffect(() => {
+    if (subphase !== 'waiting') return
+
+    const handleInteraction = () => setSubphase('image')
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Space' || e.key === 'Enter') {
+        e.preventDefault()
+        setSubphase('image')
+      }
+    }
+
+    window.addEventListener('click', handleInteraction)
+    window.addEventListener('touchstart', handleInteraction)
+    window.addEventListener('keydown', handleKey)
+
+    return () => {
+      window.removeEventListener('click', handleInteraction)
+      window.removeEventListener('touchstart', handleInteraction)
+      window.removeEventListener('keydown', handleKey)
+    }
+  }, [subphase])
+
   return (
     <div className="mt-4 space-y-3">
+      {/* Logo */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: subphase !== 'pause' ? 1 : 1 }}
@@ -50,57 +75,74 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         <Image
           src="/images/PHIERS-Pause.png"
           alt="PHIERS - Pause"
-          width={200}
-          height={60}
-          className="w-auto h-auto max-w-[200px]"
+          width={300}
+          height={90}
+          className="w-auto h-auto max-w-[250px] md:max-w-[300px]"
         />
       </motion.div>
 
+      {/* "Take a breath" */}
       <motion.p
         initial={{ opacity: 0 }}
-        animate={{ opacity: subphase === 'breath' || subphase === 'description' || subphase === 'image' ? 1 : 0 }}
+        animate={{ opacity: subphase === 'breath' || subphase === 'description' || subphase === 'waiting' || subphase === 'image' ? 1 : 0 }}
         transition={{ duration: 0.8 }}
-        className="text-white text-xl md:text-2xl font-light"
+        className="text-white text-2xl md:text-4xl font-bold -mt-2 mb-10"
       >
         Take a breath.
       </motion.p>
 
+      {/* Description lines */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: subphase === 'description' || subphase === 'image' ? 1 : 0 }}
+        animate={{ opacity: subphase === 'description' || subphase === 'waiting' || subphase === 'image' ? 1 : 0 }}
         transition={{ duration: 0.8 }}
-        className="space-y-1"
+        className="space-y-2 mt-16"
       >
-        <p className="text-gray-300 text-lg md:text-xl">What you’re about to see is simple.</p>
-        <p className="text-gray-300 text-lg md:text-xl">It changes the balance of power.</p>
+        <p className="text-gray-300 text-xl md:text-3xl">What you’re about to see is simple.</p>
+        <p className="text-gray-300 text-xl md:text-3xl">It changes the balance of power.</p>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: subphase === 'image' ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="border-t border-green/20 pt-4 mt-1">
-          <div className="mb-2 flex justify-center">
+      {/* Faint instruction text when waiting */}
+      {subphase === 'waiting' && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="text-gray-500 text-sm italic mt-8"
+        >
+          Tap anywhere to reveal the image →
+        </motion.p>
+      )}
+
+      {/* Full‑screen image overlay (revealed on interaction) */}
+      {subphase === 'image' && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="fixed inset-0 z-20 flex flex-col items-center justify-center bg-black"
+          style={{ margin: 0, padding: 0, left: 0, right: 0, top: 0, bottom: 0 }}
+        >
+          <div className="relative w-full h-full flex items-center justify-center">
             <Image
               src="/images/You_Are_Not_Powerless.jpg"
               alt="YOU ARE NOT POWERLESS"
-              width={600}
-              height={300}
-              className="w-full max-w-[450px] h-auto rounded-lg border border-green/20"
+              fill
+              className="object-contain"
+              priority
               onError={(e) => console.error('Image failed to load')}
             />
           </div>
-        </div>
-        <div className="mt-4">
-           <button
+          <div className="absolute bottom-8 left-0 right-0 text-center">
+            <button
               onClick={onComplete}
-              className="text-green/40 text-sm underline hover:text-green/70 transition-colors"
+              className="text-green/50 text-base md:text-lg underline hover:text-green/80 transition-colors"
             >
               Begin →
             </button>
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
+      )}
     </div>
   )
 }
@@ -185,14 +227,13 @@ export default function Page() {
             ref={modalRef}
             id="entry-modal"
             tabIndex={-1}
-            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 focus:ring-offset-black"
+            className="fixed inset-0 w-screen h-screen bg-black/95 z-[99999] flex items-center justify-center p-4 overflow-y-auto focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 focus:ring-offset-black"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            onClick={proceed}
           >
-            <div className="relative w-full max-w-xl mx-auto -mt-8">
+            <div className="relative w-full max-w-xl mx-auto pb-8">
               <div className="flex justify-end mb-6">
                 <button
                   onClick={(e) => { e.stopPropagation(); proceed() }}
