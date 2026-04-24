@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 3.7.3 – fixed mobile experience with slides
+// VERSION: 3.8.0 – split attribution, PHIERS slide with cinematic glow, more margin
 
 'use client'
 
@@ -123,41 +123,61 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   const renderBody = () => {
-    // Custom layout for PHIERS acronym (slide 7) – fits mobile without horizontal scroll
+    // Custom layout for PHIERS acronym – cinematic, more margin, glow
     if (slide.customLayout) {
       const items = slide.body
       return (
-        <div className="flex flex-col items-center space-y-4 sm:space-y-6">
-          <div className="mb-1 sm:mb-2">
+        <div className="flex flex-col items-center space-y-8 sm:space-y-10 mt-8">
+          {/* Logo with subtle glow */}
+          <div className="mb-4">
             <Image
               src="/images/PHIERS_Logo.png"
               alt="PHIERS Logo"
-              width={120}
-              height={120}
-              className="w-24 sm:w-32 md:w-40 h-auto mx-auto"
+              width={140}
+              height={140}
+              className="w-28 sm:w-36 md:w-48 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
               priority
             />
           </div>
-          <div className="w-full px-2 sm:px-4">
-            <div className="grid grid-cols-6 gap-1 sm:gap-2 md:gap-4 justify-items-center mx-auto">
+          {/* Grid with more margin, bold words, glow on letters */}
+          <div className="w-full px-4">
+            <div className="grid grid-cols-6 gap-2 sm:gap-4 md:gap-6 justify-items-center mx-auto">
               {items.map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center">
-                  <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-green whitespace-nowrap">
+                <div key={idx} className="flex flex-col items-center space-y-2">
+                  <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
                     {item.letter}
                   </span>
-                  <span className="text-[8px] sm:text-[10px] md:text-xs font-medium text-gray-300 uppercase text-center whitespace-nowrap">
+                  <span className="text-[9px] sm:text-[11px] md:text-sm font-bold text-gray-200 uppercase tracking-wide">
                     {item.word}
                   </span>
                 </div>
               ))}
             </div>
           </div>
-          <p className="text-gray-500 text-xs italic text-center px-2">{slide.punchLine}</p>
+          <p className="text-gray-400 text-xs italic text-center px-2">{slide.punchLine}</p>
         </div>
       )
     }
 
-    // Final slide with staggered fade‑in (uses isFinalSlide flag from slide data)
+    // Split attribution for Nader/Harvard slide
+    if (slide.splitAttribution) {
+      const greenIndices = slide.greenLines || []
+      return slide.body.map((line, i) => {
+        if (line === '→') return <p key={i} className="text-3xl font-bold">{line}</p>
+        const parts = line.split('—')
+        const fact = parts[0].trim()
+        const attribution = parts[1] ? `—${parts[1]}` : ''
+        const isGreen = greenIndices.includes(i)
+        return (
+          <p key={i} className={`text-base md:text-lg mb-3 ${isGreen ? 'text-green font-medium' : 'text-gray-300'}`}>
+            {fact}
+            {attribution && <span className="text-gray-500 text-sm ml-1">{attribution}</span>}
+          </p>
+        )
+      })
+    }
+
+    // Final slide with staggered fade‑in
     if (slide.isFinalSlide) {
       const lines = slide.body
       const fontSizes = [
@@ -223,7 +243,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </button>
       </div>
 
-      {/* Main clickable area – full height or scrollable if last slide */}
+      {/* Main clickable area */}
       <div className={`flex-1 flex flex-col max-w-2xl mx-auto w-full ${isLastSlide ? 'overflow-y-auto' : 'justify-center'}`}>
         <div
           className={`text-center w-full ${!isLastSlide ? 'flex-1 flex flex-col justify-center cursor-pointer active:opacity-80 transition-opacity' : ''} ${isLastSlide ? 'pb-4' : ''}`}
@@ -249,7 +269,6 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             >
               {renderTitle()}
               {renderBody()}
-              {/* UX hint on last slide – indicates scrolling needed */}
               {isLastSlide && (
                 <p className="text-gray-500 text-xs italic mt-4 mb-2">Use buttons below ↓</p>
               )}
@@ -312,4 +331,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
 }
 
 // FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.7.3
+// VERSION: 3.8.0

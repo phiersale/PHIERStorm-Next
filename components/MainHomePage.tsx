@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 6.7.5 – added disclaimer that numbers are estimates
+// VERSION: 6.8.0 – added PHIERS logo at the top of the main content
 
 'use client'
 
@@ -41,7 +41,7 @@ export default function MainHomePage() {
   const previousFocusRef = useRef<HTMLElement | null>(null)
   const prefersReducedMotionRef = useRef(false)
 
-  // Scroll to top when page mounts (fixes coming from credibility stage)
+  // Scroll to top when page mounts
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -104,21 +104,21 @@ export default function MainHomePage() {
   }, [])
 
   // Detect reduced motion preference
-    useEffect(() => {
-      const media = window.matchMedia('(prefers-reduced-motion: reduce)')
-      const update = () => { prefersReducedMotionRef.current = media.matches }
-      update()
-      media.addEventListener('change', update)
-      return () => media.removeEventListener('change', update)
-    }, [])
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => { prefersReducedMotionRef.current = media.matches }
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
 
-    const scrollToTop = useCallback(() => {
-      window.scrollTo({ top: 0, behavior: prefersReducedMotionRef.current ? 'auto' : 'smooth' })
-    }, [])
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotionRef.current ? 'auto' : 'smooth' })
+  }, [])
 
-    const scrollToMechanism = useCallback(() => {
-      document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
-    }, [])
+  const scrollToMechanism = useCallback(() => {
+    document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
 
   const makeKeyboardClickable = (handler: () => void) => (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -169,6 +169,18 @@ export default function MainHomePage() {
       <Navigation />
 
       <main className="font-sans pt-20 md:pt-0">
+        {/* PHIERS Logo at the top of the main content */}
+        <div className="flex justify-center mt-6 mb-2">
+          <Image
+            src="/images/PHIERS_Logo.png"
+            alt="PHIERS – Power Held In Every Representative's Seat"
+            width={80}
+            height={80}
+            className="w-16 sm:w-20 md:w-24 h-auto opacity-90"
+            priority
+          />
+        </div>
+
         {/* HERO */}
         <section className="container text-center pt-8 md:pt-12 pb-4">
           <h1 className="mb-12 md:mb-16">
@@ -186,7 +198,7 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
           </div>
 
-          {/* Two intro videos – stacked on mobile, side by side on larger screens, with compact height */}
+          {/* Two intro videos – stacked on mobile, side by side on larger screens */}
           <div className="max-w-4xl mx-auto mt-8 mb-6 px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div>
@@ -224,7 +236,7 @@ export default function MainHomePage() {
             </p>
           </div>
 
-          {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK – plural wars */}
+          {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
             <p className="text-white text-xl font-bold mb-2">Congress can end the wars. Right now.</p>
             <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
@@ -236,7 +248,7 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-bold mt-2">That’s how we make Congress do its job.</p>
           </div>
 
-          {/* Why 1,500 Matters – unchanged */}
+          {/* Why 1,500 Matters */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <h3 className="text-2xl font-bold text-white mb-2">Why 1,500 Matters</h3>
             <p className="text-gray-300 text-base mb-3">
@@ -280,7 +292,7 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* LIVE MOVEMENT STATUS – unchanged */}
+        {/* LIVE MOVEMENT STATUS */}
         <section className="container py-8 border-t border-b border-green/20 my-12">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">⭐ LIVE MOVEMENT STATUS</span>
@@ -300,7 +312,7 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* THE MECHANISM – unchanged */}
+        {/* THE MECHANISM */}
         <section id="mechanism" className="container section scroll-mt-24 mb-12">
           <div className="max-w-[760px] mx-auto text-center">
             <span className="text-green text-sm font-condensed font-bold tracking-wider">THE MECHANISM</span>
@@ -338,7 +350,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* HOW IT WORKS – unchanged */}
+        {/* HOW IT WORKS */}
         <section className="container section">
           <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6">HOW IT WORKS</h2>
           <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -361,7 +373,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY 1,500 PEOPLE MATTER – unchanged */}
+        {/* WHY 1,500 PEOPLE MATTER */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY 1,500 PEOPLE MATTER</h2>
@@ -395,7 +407,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* MID-PAGE ACTION – unchanged */}
+        {/* MID-PAGE ACTION */}
         <section className="container py-8 text-center">
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
@@ -406,7 +418,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* ECONOMIC ENGINE – unchanged */}
+        {/* ECONOMIC ENGINE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto">
             <div className="text-center mb-6"><span className="text-green text-sm font-condensed font-bold tracking-wider">THE ECONOMIC ENGINE</span></div>
@@ -443,7 +455,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* THE CASCADE – unchanged */}
+        {/* THE CASCADE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
@@ -478,29 +490,29 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-                  <div className="flex justify-center mt-8 mb-8">
-            <div
-              className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
-              onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
-              onKeyDown={makeKeyboardClickable(() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg'))}
-              role="button"
-              tabIndex={0}
-              aria-label="Enlarge hero image"
-            >
-              <Image
-                src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
-                alt="Congress Ignores You"
-                width={954}
-                height={648}
-                priority
-                className="w-full h-auto object-contain"
-                sizes="(max-width: 768px) 90vw, 600px"
-                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
-              />
-            </div>
+        <div className="flex justify-center mt-8 mb-8">
+          <div
+            className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+            onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
+            onKeyDown={makeKeyboardClickable(() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg'))}
+            role="button"
+            tabIndex={0}
+            aria-label="Enlarge hero image"
+          >
+            <Image
+              src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
+              alt="Congress Ignores You"
+              width={954}
+              height={648}
+              priority
+              className="w-full h-auto object-contain"
+              sizes="(max-width: 768px) 90vw, 600px"
+              onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+            />
           </div>
+        </div>
 
-        {/* THREE KINDS OF POWER – unchanged */}
+        {/* THREE KINDS OF POWER */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THREE KINDS OF POWER</h2>
@@ -528,7 +540,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY THIS BECOMES UNSTOPPABLE – unchanged */}
+        {/* WHY THIS BECOMES UNSTOPPABLE */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -569,7 +581,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY AFFORDABILITY = LEVERAGE – unchanged */}
+        {/* WHY AFFORDABILITY = LEVERAGE */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY AFFORDABILITY = LEVERAGE</h2>
@@ -589,7 +601,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* REALITY ANCHOR – unchanged */}
+        {/* REALITY ANCHOR */}
         <section className="bg-bg-dark border-y border-green/10 section">
           <div className="container text-center">
             <div className="max-w-[760px] mx-auto">
@@ -605,7 +617,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS UNLOCKS – unchanged */}
+        {/* WHAT THIS UNLOCKS */}
         <section className="container section">
           <div className="text-center max-w-[760px] mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS UNLOCKS</h2>
@@ -622,7 +634,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHY THIS WORKS – unchanged (logos only) */}
+        {/* WHY THIS WORKS – logos only */}
         <section className="container section">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS WORKS</h2>
@@ -726,10 +738,9 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS IS NOT – ARCHITECT + CREDIBILITY (IMPROVED) */}
+        {/* WHAT THIS IS NOT – ARCHITECT + CREDIBILITY */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
-
             {/* Architect portrait */}
             <div className="flex justify-center mb-4">
               <div
@@ -749,9 +760,7 @@ export default function MainHomePage() {
               </div>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              WHAT THIS IS NOT
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHAT THIS IS NOT</h2>
 
             <p className="text-gray-300 text-base mb-2">This isn't a protest.</p>
             <p className="text-gray-300 text-base mb-2">This isn't a petition that disappears into a database.</p>
@@ -762,7 +771,7 @@ export default function MainHomePage() {
               A counted signal tied to real representation.
             </p>
 
-            {/* ARCHITECT DESCRIPTION – DIRECT VOICE */}
+            {/* ARCHITECT DESCRIPTION */}
             <div className="bg-bg-card border border-green/20 rounded-xl p-5 md:p-6 text-left mb-6">
               <p className="text-white text-base mb-3">
                 This didn’t start as a campaign. It started because I didn’t see anything addressing this in a way that felt direct enough to match what’s actually happening.
@@ -815,20 +824,19 @@ export default function MainHomePage() {
               </p>
             </div>
 
-            {/* CTA BUTTON – optional (portrait also works) */}
+            {/* CTA BUTTON */}
             <button
               onClick={() => setShowArchitectModal(true)}
               className="text-green underline hover:text-green-dim transition-colors mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
             >
               Meet the architect →
             </button>
-
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* WHAT HAPPENS AFTER YOU SIGN – unchanged */}
+        {/* WHAT HAPPENS AFTER YOU SIGN */}
         <section className="container section">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -866,7 +874,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* EVIDENCE FOOTER – unchanged */}
+        {/* EVIDENCE FOOTER */}
         <section className="container section bg-bg-dark rounded-xl border border-green/20 p-6 my-6">
           <div className="max-w-[900px] mx-auto">
             <h3 className="text-green text-lg font-bold mb-3">📌 Everything here is verifiable</h3>
@@ -886,7 +894,7 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* FINAL CLOSE – unchanged */}
+        {/* FINAL CLOSE */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
             <p className="text-white text-xl font-bold mb-4">Nothing changes until ignoring people costs more than responding.</p>
@@ -918,7 +926,7 @@ export default function MainHomePage() {
         ↑
       </button>
 
-      {/* ARCHITECT MODAL – now contains the full video library */}
+      {/* ARCHITECT MODAL – full video library */}
       <AnimatePresence>
         {showArchitectModal && (
           <motion.div
@@ -1004,7 +1012,6 @@ export default function MainHomePage() {
                   </div>
                 </div>
 
-                {/* Additional placeholders – you can expand later */}
                 <div className="mb-8">
                   <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Public Health</h4>
                   <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
@@ -1026,10 +1033,9 @@ export default function MainHomePage() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </>
   )
 }
 
 // FILE: components/MainHomePage.tsx (end)
-// VERSION: 6.7.5
+// VERSION: 6.8.0

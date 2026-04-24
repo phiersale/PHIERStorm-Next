@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 2.5.1 (fixed PHIERS acronym slide syntax)
+// VERSION: 2.5.2 – added splitAttribution for Nader/Harvard slide
 
 const slides = [
   // 1 – Congress ignores you + can fix
@@ -30,7 +30,7 @@ const slides = [
     ],
     greenLines: [1]
   },
-  // 4 – Tracking + 1,500 (Nader + Harvard)
+  // 4 – Tracking + 1,500 (Nader + Harvard) – with split attribution
   {
     title: "We track how many people in each congressional district have gone on record.",
     body: [
@@ -38,7 +38,8 @@ const slides = [
       "1,500 people in your district are not — Ralph Nader",
       "3.5% defeats authoritarians every time — Harvard"
     ],
-    greenLines: [1, 2]
+    greenLines: [1, 2],
+    splitAttribution: true
   },
   // 5 – Tipping point
   {
@@ -90,4 +91,4 @@ const slides = [
 export default slides;
 
 // FILE: components/slides.ts (end)
-// VERSION: 2.5.1
+// VERSION: 2.5.2
