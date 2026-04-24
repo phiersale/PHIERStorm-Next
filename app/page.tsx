@@ -150,7 +150,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
       )}
     </div>
   )
-}}
+}
 
 export default function Page() {
   const router = useRouter()
