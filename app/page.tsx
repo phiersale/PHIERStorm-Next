@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.7.6 – fixed words on slide three and fixed clik image
+// VERSION: 1.7.7 – fixed words on slide three and fixed clik image
 
 'use client'
 
@@ -120,10 +120,11 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="fixed inset-0 z-20 flex flex-col items-center justify-center bg-black"
+          className="fixed inset-0 z-20 flex flex-col items-center justify-center bg-black cursor-pointer"
           style={{ margin: 0, padding: 0, left: 0, right: 0, top: 0, bottom: 0 }}
+          onClick={onComplete}
         >
-          <div className="relative w-full h-full flex items-center justify-center">
+          <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
             <Image
               src="/images/You_Are_Not_Powerless.jpg"
               alt="YOU ARE NOT POWERLESS"
@@ -133,13 +134,10 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
               onError={(e) => console.error('Image failed to load')}
             />
           </div>
-          <div className="absolute bottom-8 left-0 right-0 text-center">
-            <button
-              onClick={onComplete}
-              className="text-green/50 text-base md:text-lg underline hover:text-green/80 transition-colors"
-            >
+          <div className="absolute bottom-8 left-0 right-0 text-center pointer-events-none">
+            <span className="text-green/50 text-base md:text-lg underline">
               Begin →
-            </button>
+            </span>
           </div>
         </motion.div>
       )}
@@ -154,15 +152,16 @@ export default function Page() {
   const [showPathosVideo, setShowPathosVideo] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
   const [readingVisibleCount, setReadingVisibleCount] = useState(0)
+  const [isModalTransitioning, setIsModalTransitioning] = useState(false)
   const readingLines = [
     "PHIERS — Things are moving fast.",
     "",
-    "It takes less than 3 minutes to make Congress do its job.",
+    "It takes <span class='text-green'>less than 3 minutes</span> to make Congress do its job.",
     "",
     "Right now, Congress isn't listening to voters.",
     "They choose not to act — even in crisis.",
     "",
-    "PHIERS changes that.",
+    "<strong class='text-green font-bold'>PHIERS changes that.</strong>",
     "",
     "It forces Congress to respond — or face consequences.",
     "",
@@ -198,8 +197,12 @@ export default function Page() {
   }, [])
 
   const proceed = () => {
-    setShowModal(false)
-    setStage('reading')
+    setIsModalTransitioning(true)
+    setTimeout(() => {
+      setShowModal(false)
+      setStage('reading')
+      setIsModalTransitioning(false)
+    }, 200)
   }
 
   // Keyboard support for entry modal
@@ -247,6 +250,9 @@ export default function Page() {
               <div className="text-center mt-0">
                 <PhasedText onComplete={proceed} />
               </div>
+              {isModalTransitioning && (
+                <div className="absolute inset-0 bg-black pointer-events-none" />
+              )}
             </div>
           </motion.div>
         )}
@@ -293,7 +299,7 @@ export default function Page() {
           {/* Remaining animated text (excluding the first line) */}
           <div className="space-y-3 text-center">
             {displayLines.map((line, idx) => (
-              <motion.p
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: idx < readingVisibleCount - 1 ? 1 : 0, y: idx < readingVisibleCount - 1 ? 0 : 10 }}
@@ -303,9 +309,8 @@ export default function Page() {
                     ? "h-2"
                     : "text-white text-sm md:text-base"
                 }
-              >
-                {line === "" ? "" : line}
-              </motion.p>
+                dangerouslySetInnerHTML={line !== "" ? { __html: line } : undefined}
+              />
             ))}
           </div>
 
@@ -315,7 +320,7 @@ export default function Page() {
               onClick={() => setStage('prehome')}
               className="bg-green/40 text-black text-xs md:text-sm font-semibold py-1.5 px-4 rounded-md hover:bg-green/60 transition"
             >
-              Start slideshow →
+              Begin
             </button>
           </div>
         </div>
@@ -412,4 +417,4 @@ export default function Page() {
   return <MainHomePage />
 }
 // FILE: app/page.tsx (end)
-// VERSION: 1.7.6
+// VERSION: 1.7.7
