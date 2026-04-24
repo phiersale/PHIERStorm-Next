@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.7.4 – moved skip button 
+// VERSION: 1.7.5 – shortened time for you are not alone
 
 'use client'
 
@@ -31,7 +31,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
     }
     const timer1 = setTimeout(() => setSubphase('breath'), 1500)
     const timer2 = setTimeout(() => setSubphase('description'), 3000)
-    const timer3 = setTimeout(() => setSubphase('image'), 7000)
+    const timer3 = setTimeout(() => setSubphase('image'), 5000)
     return () => {
       clearTimeout(timer1)
       clearTimeout(timer2)
@@ -366,4 +366,4 @@ export default function Page() {
   return <MainHomePage />
 }
 // FILE: app/page.tsx (end)
-// VERSION: 1.7.4
+// VERSION: 1.7.5
