@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.8 – fixed words on slide three and fixed clik image
+// VERSION: 1.8.3 – polish
 
 'use client'
 
@@ -163,7 +163,7 @@ export default function Page() {
   const readingLines = [
     "PHIERS — Things are moving fast.",
     "",
-    "It takes <span class='text-green'>less than 3 minutes</span> to make Congress do its job.",
+    "It takes <span class='text-green/80'>less than 3 minutes</span> to make Congress do its job.",
     "",
     "Right now, Congress isn't listening to voters.",
     "They choose not to act — even in crisis.",
@@ -186,6 +186,27 @@ export default function Page() {
       })
     }, 400)
     return () => clearInterval(interval)
+  }, [stage])
+
+    // Swipe to advance reading stage
+  useEffect(() => {
+    if (stage !== 'reading') return
+    let startX = 0
+    const onTouchStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX
+    }
+    const onTouchEnd = (e: TouchEvent) => {
+      const diff = startX - e.changedTouches[0].clientX
+      if (Math.abs(diff) > 50) {
+        setStage('prehome')
+      }
+    }
+    window.addEventListener('touchstart', onTouchStart)
+    window.addEventListener('touchend', onTouchEnd)
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
   }, [stage])
 
   useEffect(() => {
@@ -272,17 +293,18 @@ export default function Page() {
     // Remove the first line from readingLines since we're replacing it with an image
     const displayLines = readingLines.slice(1)
     return (
-      <motion.div
+            <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="fixed inset-0 bg-black/95 z-[99999] flex flex-col items-center justify-center p-4 overflow-y-auto"
+        className="fixed inset-0 bg-black/95 z-[99999] flex flex-col items-center justify-center p-4"
+        onClick={() => setStage('prehome')}
       >
-        <div className="w-full max-w-md mx-auto my-auto relative z-10">
+        <div className="w-full max-w-md mx-auto my-auto relative z-10 pointer-events-auto">
           {/* SKIP button - top right relative to content */}
           <div className="flex justify-end mb-2">
             <button
-              onClick={() => setStage('credibility')}
+              onClick={(e) => { e.stopPropagation(); setStage('credibility'); }}
               className="text-gray-500 text-xs underline hover:text-gray-300"
             >
               SKIP →
@@ -292,7 +314,7 @@ export default function Page() {
           {/* Logo image instead of the first line – tappable to skip to slides */}
           <div
             className="flex justify-center mb-4 cursor-pointer"
-            onClick={() => setStage('prehome')}
+            onClick={(e) => { e.stopPropagation(); setStage('prehome'); }}
           >
             <Image
               src="/images/PHIERS_Things_Moving_Fast.png"
@@ -304,31 +326,17 @@ export default function Page() {
           </div>
 
           {/* Remaining animated text (excluding the first line) */}
-          <div className="space-y-3 text-center">
+          <div className="space-y-3 text-center pointer-events-none">
             {displayLines.map((line, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: idx < readingVisibleCount - 1 ? 1 : 0, y: idx < readingVisibleCount - 1 ? 0 : 10 }}
                 transition={{ duration: 0.3 }}
-                className={
-                  line === ""
-                    ? "h-2"
-                    : "text-white text-sm md:text-base"
-                }
+                className={line === "" ? "h-2" : "text-white text-sm md:text-base"}
                 dangerouslySetInnerHTML={line !== "" ? { __html: line } : undefined}
               />
             ))}
-          </div>
-
-          {/* Button section - dimmer */}
-          <div className="mt-6 text-center">
-            <button
-              onClick={() => setStage('prehome')}
-              className="bg-green/40 text-black text-xs md:text-sm font-semibold py-1.5 px-4 rounded-md hover:bg-green/60 transition"
-            >
-              Begin
-            </button>
           </div>
         </div>
       </motion.div>
@@ -424,4 +432,4 @@ export default function Page() {
   return <MainHomePage />
 }
 // FILE: app/page.tsx (end)
-// VERSION: 1.8
+// VERSION: 1.8.3  
