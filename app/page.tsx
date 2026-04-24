@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.8.3 – polish
+// VERSION: 1.9.2 (fixed progress bar and spacing on phiers page)
 
 'use client'
 
@@ -159,6 +159,7 @@ export default function Page() {
   const [showPathosVideo, setShowPathosVideo] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
   const [readingVisibleCount, setReadingVisibleCount] = useState(0)
+  const [readingComplete, setReadingComplete] = useState(false)
   const [isModalTransitioning, setIsModalTransitioning] = useState(false)
   const readingLines = [
     "PHIERS — Things are moving fast.",
@@ -178,17 +179,40 @@ export default function Page() {
   useEffect(() => {
     if (stage !== 'reading') return
     setReadingVisibleCount(0)
+    setReadingComplete(false)
     const interval = setInterval(() => {
       setReadingVisibleCount(prev => {
-        if (prev < readingLines.length) return prev + 1
-        clearInterval(interval)
-        return prev
+        if (prev < readingLines.length) {
+          return prev + 1
+        } else {
+          clearInterval(interval)
+          setReadingComplete(true)
+          return prev
+        }
       })
     }, 400)
     return () => clearInterval(interval)
   }, [stage])
 
-    // Swipe to advance reading stage
+  // Spacebar to advance reading stage
+  useEffect(() => {
+    if (stage !== 'reading') return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Space') {
+        e.preventDefault()
+        if (readingComplete) {
+          setStage('prehome')
+        } else {
+          setReadingVisibleCount(readingLines.length)
+          setReadingComplete(true)
+        }
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [stage, readingComplete])
+
+  // Swipe to advance reading stage
   useEffect(() => {
     if (stage !== 'reading') return
     let startX = 0
@@ -198,7 +222,12 @@ export default function Page() {
     const onTouchEnd = (e: TouchEvent) => {
       const diff = startX - e.changedTouches[0].clientX
       if (Math.abs(diff) > 50) {
-        setStage('prehome')
+        if (readingComplete) {
+          setStage('prehome')
+        } else {
+          setReadingVisibleCount(readingLines.length)
+          setReadingComplete(true)
+        }
       }
     }
     window.addEventListener('touchstart', onTouchStart)
@@ -207,7 +236,7 @@ export default function Page() {
       window.removeEventListener('touchstart', onTouchStart)
       window.removeEventListener('touchend', onTouchEnd)
     }
-  }, [stage])
+  }, [stage, readingComplete])
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
@@ -228,8 +257,11 @@ export default function Page() {
     setIsModalTransitioning(true)
     setTimeout(() => {
       setShowModal(false)
-      setStage('reading')
-      setIsModalTransitioning(false)
+      // Extra 50ms black frame to prevent the next screen flashing behind
+      setTimeout(() => {
+        setStage('reading')
+        setIsModalTransitioning(false)
+      }, 50)
     }, 200)
   }
 
@@ -298,7 +330,15 @@ export default function Page() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         className="fixed inset-0 bg-black/95 z-[99999] flex flex-col items-center justify-center p-4"
-        onClick={() => setStage('prehome')}
+        onClick={() => {
+          if (readingComplete) {
+            setStage('prehome')
+          } else {
+            // Fast‑forward: show all lines immediately
+            setReadingVisibleCount(readingLines.length)
+            setReadingComplete(true)
+          }
+        }}
       >
         <div className="w-full max-w-md mx-auto my-auto relative z-10 pointer-events-auto">
           {/* SKIP button - top right relative to content */}
@@ -314,7 +354,15 @@ export default function Page() {
           {/* Logo image instead of the first line – tappable to skip to slides */}
           <div
             className="flex justify-center mb-4 cursor-pointer"
-            onClick={(e) => { e.stopPropagation(); setStage('prehome'); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (readingComplete) {
+                setStage('prehome')
+              } else {
+                setReadingVisibleCount(readingLines.length)
+                setReadingComplete(true)
+              }
+            }}
           >
             <Image
               src="/images/PHIERS_Things_Moving_Fast.png"
@@ -353,28 +401,28 @@ export default function Page() {
     )
   }
 
-  // ========== CREDIBILITY ==========
+    // ========== CREDIBILITY ==========
   if (stage === 'credibility') {
     return (
-      <div className="min-h-screen bg-[#050b19] py-12 px-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-[#050b19] py-8 px-4">
+        <div className="max-w-3xl mx-auto">
           {/* TOP SKIP */}
-          <div className="flex justify-end mb-4">
+          <div className="flex justify-end mb-2">
             <button
               onClick={() => setStage('main')}
-              className="text-gray-500 text-sm underline hover:text-gray-300"
+              className="text-gray-500 text-xs underline hover:text-gray-300"
             >
               Skip →
             </button>
           </div>
 
-          <p className="text-center text-neutral-500 text-base md:text-lg max-w-xl mx-auto mb-8">
-            If this feels different, it’s because it is.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+            Independently reviewed.
+          </h2>
 
           <PathosCredibility />
 
-          <div className="max-w-3xl mx-auto w-full mt-6">
+          <div className="max-w-3xl mx-auto w-full mt-4">
             <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
               {!showPathosVideo ? (
                 <div
@@ -408,17 +456,11 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Bottom buttons */}
-          <div className="flex justify-between items-center mt-8">
+          {/* Bottom button only */}
+          <div className="flex justify-center mt-4">
             <button
               onClick={() => setStage('main')}
-              className="text-gray-500 text-sm underline hover:text-gray-300"
-            >
-              Skip →
-            </button>
-            <button
-              onClick={() => setStage('main')}
-              className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-6 rounded-md hover:bg-green/70 transition"
+              className="bg-green/60 text-black text-sm md:text-base font-semibold py-1.5 px-4 rounded-md hover:bg-green/70 transition"
             >
               Continue to site →
             </button>
@@ -432,4 +474,4 @@ export default function Page() {
   return <MainHomePage />
 }
 // FILE: app/page.tsx (end)
-// VERSION: 1.8.3  
+// VERSION: 1.9.2

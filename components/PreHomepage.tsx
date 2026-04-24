@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 3.8.0 – split attribution, PHIERS slide with cinematic glow, more margin
+// VERSION: 3.9.1 – fixed layout: pinned nav, acronym slide compact, final slide scrollable
 
 'use client'
 
@@ -117,37 +117,35 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     if (slide.customLayout) return null
     if (slide.title === "") return null
     if (slide.title === "PHIERS") {
-      return <h1 className="text-4xl md:text-5xl font-bold mb-6 text-green">{slide.title}</h1>
+      return <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green">{slide.title}</h1>
     }
-    return <h1 className="text-4xl md:text-5xl font-light mb-6">{slide.title}</h1>
+    return <h1 className="text-4xl md:text-5xl font-light mb-4">{slide.title}</h1>
   }
 
   const renderBody = () => {
-    // Custom layout for PHIERS acronym – cinematic, more margin, glow
+    // Custom layout for PHIERS acronym – compact, less top spacing
     if (slide.customLayout) {
       const items = slide.body
       return (
-        <div className="flex flex-col items-center space-y-8 sm:space-y-10 mt-8">
-          {/* Logo with subtle glow */}
-          <div className="mb-4">
+        <div className="flex flex-col items-center space-y-3">
+          <div className="mb-2">
             <Image
               src="/images/PHIERS_Logo.png"
               alt="PHIERS Logo"
-              width={140}
-              height={140}
-              className="w-28 sm:w-36 md:w-48 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+              width={120}
+              height={120}
+              className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
               priority
             />
           </div>
-          {/* Grid with more margin, bold words, glow on letters */}
-          <div className="w-full px-4">
-            <div className="grid grid-cols-6 gap-2 sm:gap-4 md:gap-6 justify-items-center mx-auto">
+          <div className="w-full px-2">
+            <div className="grid grid-cols-6 gap-1 sm:gap-3 justify-items-center mx-auto">
               {items.map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center space-y-2">
-                  <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
+                <div key={idx} className="flex flex-col items-center space-y-1">
+                  <span className="text-xl sm:text-2xl md:text-4xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
                     {item.letter}
                   </span>
-                  <span className="text-[9px] sm:text-[11px] md:text-sm font-bold text-gray-200 uppercase tracking-wide">
+                  <span className="text-[8px] sm:text-[10px] md:text-xs font-bold text-gray-200 uppercase tracking-wide">
                     {item.word}
                   </span>
                 </div>
@@ -169,7 +167,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         const attribution = parts[1] ? `—${parts[1]}` : ''
         const isGreen = greenIndices.includes(i)
         return (
-          <p key={i} className={`text-base md:text-lg mb-3 ${isGreen ? 'text-green font-medium' : 'text-gray-300'}`}>
+          <p key={i} className={`text-base md:text-lg mb-2 ${isGreen ? 'text-green font-medium' : 'text-gray-300'}`}>
             {fact}
             {attribution && <span className="text-gray-500 text-sm ml-1">{attribution}</span>}
           </p>
@@ -195,7 +193,7 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         "text-green font-bold"
       ]
       return (
-        <div className="space-y-6 max-w-2xl mx-auto text-center">
+        <div className="space-y-5 max-w-2xl mx-auto text-center">
           {lines.map((line, idx) => (
             <motion.p
               key={`final-line-${idx}`}
@@ -225,17 +223,11 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
   }
 
   return (
-    <div
-      className="prehomepage-container min-h-screen bg-[#050b19] text-white flex flex-col px-4 py-6 font-sans overflow-x-hidden w-full max-w-full"
-      style={{ touchAction: 'pan-y', overscrollBehavior: 'none', overflowX: 'hidden' }}
-    >
+    <div className="h-screen bg-[#050b19] text-white flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex justify-end pr-12 py-2">
+      <div className="flex justify-end pr-6 pt-4 pb-2 shrink-0">
         <button
-          onClick={() => {
-            console.log('Skip button clicked → forcing credibility');
-            onGoToHomepage();
-          }}
+          onClick={onGoToHomepage}
           className="text-gray-500 text-sm underline hover:text-gray-300"
           aria-label="Skip introduction"
         >
@@ -243,42 +235,42 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
         </button>
       </div>
 
-      {/* Main clickable area */}
-      <div className={`flex-1 flex flex-col max-w-2xl mx-auto w-full ${isLastSlide ? 'overflow-y-auto' : 'justify-center'}`}>
-        <div
-          className={`text-center w-full ${!isLastSlide ? 'flex-1 flex flex-col justify-center cursor-pointer active:opacity-80 transition-opacity' : ''} ${isLastSlide ? 'pb-4' : ''}`}
-          onClick={!isLastSlide && !isTransitioning ? next : undefined}
-          onKeyDown={(e) => {
-            if (!isLastSlide && !isTransitioning && (e.key === 'Enter' || e.key === ' ')) {
-              e.preventDefault()
-              next()
-            }
-          }}
-          role="button"
-          tabIndex={!isLastSlide ? 0 : -1}
-          aria-label={!isLastSlide ? "Click or press Enter to advance to next slide" : undefined}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.02 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              whileTap={{ scale: 1 }}
-            >
-              {renderTitle()}
-              {renderBody()}
-              {isLastSlide && (
-                <p className="text-gray-500 text-xs italic mt-4 mb-2">Use buttons below ↓</p>
-              )}
-            </motion.div>
-          </AnimatePresence>
+      {/* Scrollable content area */}
+      <div className={`flex-1 overflow-y-auto px-4 ${!isLastSlide ? 'flex items-center' : ''}`}>
+        <div className="w-full max-w-2xl mx-auto">
+          <div
+            className={`text-center w-full ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
+            onClick={!isLastSlide && !isTransitioning ? next : undefined}
+            onKeyDown={(e) => {
+              if (!isLastSlide && !isTransitioning && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault()
+                next()
+              }
+            }}
+            role="button"
+            tabIndex={!isLastSlide ? 0 : -1}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                {renderTitle()}
+                {renderBody()}
+                {isLastSlide && (
+                  <p className="text-gray-500 text-xs italic mt-4">Use buttons below ↓</p>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 
-      {/* Bottom navigation */}
-      <div className="flex flex-col items-center gap-3 mt-8 pb-4">
+      {/* Bottom navigation – always visible at bottom */}
+      <div className="shrink-0 flex flex-col items-center gap-2 py-4 border-t border-gray-800/50">
         <div className="flex gap-2">
           {slides.map((_, i) => (
             <button
@@ -292,11 +284,11 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             />
           ))}
         </div>
-        <p className="text-gray-500 text-sm" aria-live="polite">
+        <p className="text-gray-500 text-xs" aria-live="polite">
           {index + 1} / {slides.length}
         </p>
 
-        <div className="flex gap-4 flex-wrap justify-center">
+        <div className="flex gap-4 flex-wrap justify-center mt-1">
           {index > 0 && (
             <button
               onClick={prev}
@@ -310,17 +302,17 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
             <div className="flex flex-col gap-2 w-full max-w-xs mx-auto">
               <button
                 onClick={onGoToPetition}
-                className="bg-green/60 text-black text-sm md:text-base font-semibold py-1 px-3 rounded-md hover:bg-green/70 transition"
+                className="bg-green/60 text-black text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/70 transition"
                 aria-label="Sign the petition"
               >
                 ✍ BE COUNTED
               </button>
               <button
                 onClick={onGoToHomepage}
-                className="border border-green/40 text-green text-sm md:text-base font-semibold py-1 px-3 rounded-md hover:bg-green/10 transition"
-                aria-label="Learn how it works"
+                className="border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition"
+                aria-label="See what the experts say"
               >
-                → SEE HOW IT WORKS
+                → SEE WHAT THE EXPERTS SAY
               </button>
             </div>
           )}
@@ -329,6 +321,4 @@ export default function PreHomepage({ onGoToHomepage, onGoToPetition }: Props) {
     </div>
   )
 }
-
-// FILE: components/PreHomepage.tsx (end)
-// VERSION: 3.8.0
+// VERSION: 3.9.1
