@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.7.5 – shortened time for you are not alone
+// VERSION: 1.7.6 – fixed words on slide three and fixed clik image
 
 'use client'
 
@@ -155,16 +155,18 @@ export default function Page() {
   const modalRef = useRef<HTMLDivElement>(null)
   const [readingVisibleCount, setReadingVisibleCount] = useState(0)
   const readingLines = [
-    "Things are moving fast.",
+    "PHIERS — Things are moving fast.",
     "",
     "It takes less than 3 minutes to make Congress do its job.",
     "",
-    "You see, Congress doesn't listen to voters.",
+    "Right now, Congress isn't listening to voters.",
+    "They choose not to act — even in crisis.",
+    "",
     "PHIERS changes that.",
     "",
     "It forces Congress to respond — or face consequences.",
     "",
-    "Here's why."
+    "Here’s how it works."
   ]
 
   useEffect(() => {
@@ -274,8 +276,11 @@ export default function Page() {
             </button>
           </div>
 
-          {/* Logo image instead of the first line */}
-          <div className="flex justify-center mb-4">
+          {/* Logo image instead of the first line – tappable to skip to slides */}
+          <div
+            className="flex justify-center mb-4 cursor-pointer"
+            onClick={() => setStage('prehome')}
+          >
             <Image
               src="/images/PHIERS_Things_Moving_Fast.png"
               alt="PHIERS - Things are moving fast"
@@ -407,4 +412,4 @@ export default function Page() {
   return <MainHomePage />
 }
 // FILE: app/page.tsx (end)
-// VERSION: 1.7.5
+// VERSION: 1.7.6
