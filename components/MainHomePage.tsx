@@ -726,10 +726,11 @@ export default function MainHomePage() {
 
         <hr className="border-green/20" />
 
-        {/* WHAT THIS IS NOT – includes architect portrait + button */}
+        {/* WHAT THIS IS NOT – ARCHITECT + CREDIBILITY (IMPROVED) */}
         <section className="container section text-center">
           <div className="max-w-[760px] mx-auto">
-            {/* Architect portrait – centered, above the headline */}
+
+            {/* Architect portrait */}
             <div className="flex justify-center mb-4">
               <div
                 className="w-32 h-32 rounded-full overflow-hidden border-2 border-green/30 shadow-lg cursor-pointer hover:scale-105 transition-transform"
@@ -740,7 +741,7 @@ export default function MainHomePage() {
               >
                 <Image
                   src="/images/Will_Price.png"
-                  alt="Will Price – Founder & Chief Solutions Architect"
+                  alt="Will Price – Architect"
                   width={128}
                   height={128}
                   className="w-full h-full object-cover object-[55%_top]"
@@ -748,20 +749,80 @@ export default function MainHomePage() {
               </div>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS IS NOT</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              WHAT THIS IS NOT
+            </h2>
+
             <p className="text-gray-300 text-base mb-2">This isn't a protest.</p>
             <p className="text-gray-300 text-base mb-2">This isn't a petition that disappears into a database.</p>
-            <p className="text-gray-300 text-base mb-4">This isn't a campaign.</p>
-            <p className="text-green text-xl font-bold">
-              This is coordinated civic leverage — district by district.<br />
-              A counted signal tied to your specific representative.
+            <p className="text-gray-300 text-base mb-5">This isn't a campaign.</p>
+
+            <p className="text-green text-xl font-bold mb-8">
+              This is coordinated civic leverage — built district by district.<br />
+              A counted signal tied to real representation.
             </p>
+
+            {/* ARCHITECT DESCRIPTION – DIRECT VOICE */}
+            <div className="bg-bg-card border border-green/20 rounded-xl p-5 md:p-6 text-left mb-6">
+              <p className="text-white text-base mb-3">
+                This didn’t start as a campaign. It started because I didn’t see anything addressing this in a way that felt direct enough to match what’s actually happening.
+              </p>
+              <p className="text-gray-300 text-base mb-3">
+                So I built it.
+              </p>
+              <p className="text-gray-300 text-base mb-3">
+                It’s designed to work through direct public participation — not institutions, not commentary, not abstraction.
+              </p>
+              <p className="text-gray-300 text-base mb-3">
+                If people engage, it scales. If they don’t, it stays small. Either way, it stays grounded in real participation.
+              </p>
+              <p className="text-white text-base font-semibold mt-3">
+                Action first. Everything else follows from that.
+              </p>
+            </div>
+
+            {/* PATHOS COMMUNICATIONS BLOCK */}
+            <div className="bg-bg-card border border-green/20 rounded-xl p-5 md:p-6 text-left mb-6">
+              <p className="text-green font-bold text-lg mb-2">Pathos Communications</p>
+              <p className="text-gray-300 text-base mb-3">
+                A London Stock Exchange–associated communications firm involved in shaping narrative structure and strategic messaging for this initiative.
+              </p>
+              <p className="text-gray-300 text-base mb-3">
+                Their role centers on refining message clarity, positioning, and preparing the story for broader media visibility.
+              </p>
+              <p className="text-white text-base font-semibold">
+                Focus: translating public participation into a message that can carry into national and international media spaces.
+              </p>
+            </div>
+
+            {/* PATHOS VIDEO CTA */}
+            <div className="bg-black/50 border border-green/30 rounded-xl p-4 mb-6">
+              <p className="text-green font-bold mb-3">
+                Pathos Communications – Narrative & Strategy Overview
+              </p>
+              <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
+                <iframe
+                  src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"
+                  title="Pathos Communications Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                />
+              </div>
+              <p className="text-gray-500 text-xs mt-2">
+                Communications and narrative strategy context.
+              </p>
+            </div>
+
+            {/* CTA BUTTON – optional (portrait also works) */}
             <button
               onClick={() => setShowArchitectModal(true)}
-              className="text-green underline hover:text-green-dim transition-colors mt-6 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
+              className="text-green underline hover:text-green-dim transition-colors mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
             >
               Meet the architect →
             </button>
+
           </div>
         </section>
 
