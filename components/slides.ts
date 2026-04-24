@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 2.5.2 – added splitAttribution for Nader/Harvard slide
+// VERSION: 2.5.3 – added splitAttribution for Nader/Harvard slide
 
 const slides = [
   // 1 – Congress ignores you + can fix
@@ -79,7 +79,7 @@ const slides = [
   {
     title: "",
     body: [
-      "End war. Stop Trump. Recover.",
+      "End war and Make Congress to its job.",
       "I'm on record.",
       "Congress must respond — or get replaced."
     ],
@@ -91,4 +91,4 @@ const slides = [
 export default slides;
 
 // FILE: components/slides.ts (end)
-// VERSION: 2.5.2
+// VERSION: 2.5.3
