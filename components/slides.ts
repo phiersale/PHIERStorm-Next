@@ -73,7 +73,7 @@ const slides = [
       { letter: "S", word: "SEAT" }
     ],
     customLayout: true,
-    punchLine: "Power Held In Every Reps Seat"
+    punchLine: "Power Held In Every Representative's Seat"
   },
   // 8 – Final slide (with staggered fade-in animation)
   {
