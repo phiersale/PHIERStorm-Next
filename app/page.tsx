@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 1.7.7 – fixed words on slide three and fixed clik image
+// VERSION: 1.8 – fixed words on slide three and fixed clik image
 
 'use client'
 
@@ -15,6 +15,7 @@ import PathosCredibility from '@/components/PathosCredibility'
 function PhasedText({ onComplete }: { onComplete: () => void }) {
   const [subphase, setSubphase] = useState<'pause' | 'breath' | 'description' | 'waiting' | 'image'>('pause')
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [canAdvance, setCanAdvance] = useState(false)
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -24,7 +25,6 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
     return () => media.removeEventListener('change', update)
   }, [])
 
-  // Auto‑advance through first steps, then stop at 'waiting'
   useEffect(() => {
     if (prefersReducedMotion) {
       setSubphase('image')
@@ -32,7 +32,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
     }
     const timer1 = setTimeout(() => setSubphase('breath'), 1500)
     const timer2 = setTimeout(() => setSubphase('description'), 3000)
-    const timer3 = setTimeout(() => setSubphase('waiting'), 3500) // after description, wait for tap
+    const timer3 = setTimeout(() => setSubphase('waiting'), 3500)
     return () => {
       clearTimeout(timer1)
       clearTimeout(timer2)
@@ -40,7 +40,6 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
     }
   }, [prefersReducedMotion])
 
-  // Reveal image on user interaction (tap, click, Space, Enter)
   useEffect(() => {
     if (subphase !== 'waiting') return
 
@@ -63,9 +62,21 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
     }
   }, [subphase])
 
+  useEffect(() => {
+    if (subphase !== 'image') {
+      setCanAdvance(false)
+      return
+    }
+    const timer = setTimeout(() => setCanAdvance(true), 300)
+    return () => clearTimeout(timer)
+  }, [subphase])
+
+  const handleImageClick = () => {
+    if (canAdvance) onComplete()
+  }
+
   return (
     <div className="mt-4 space-y-3">
-      {/* Logo */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: subphase !== 'pause' ? 1 : 1 }}
@@ -81,7 +92,6 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         />
       </motion.div>
 
-      {/* "Take a breath" */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: subphase === 'breath' || subphase === 'description' || subphase === 'waiting' || subphase === 'image' ? 1 : 0 }}
@@ -91,7 +101,6 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         Take a breath.
       </motion.p>
 
-      {/* Description lines */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: subphase === 'description' || subphase === 'waiting' || subphase === 'image' ? 1 : 0 }}
@@ -102,7 +111,6 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         <p className="text-gray-300 text-xl md:text-3xl">It changes the balance of power.</p>
       </motion.div>
 
-      {/* Faint instruction text when waiting */}
       {subphase === 'waiting' && (
         <motion.p
           initial={{ opacity: 0 }}
@@ -114,7 +122,6 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         </motion.p>
       )}
 
-      {/* Full‑screen image overlay (revealed on interaction) */}
       {subphase === 'image' && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -122,7 +129,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           transition={{ duration: 0.6 }}
           className="fixed inset-0 z-20 flex flex-col items-center justify-center bg-black cursor-pointer"
           style={{ margin: 0, padding: 0, left: 0, right: 0, top: 0, bottom: 0 }}
-          onClick={onComplete}
+          onClick={handleImageClick}
         >
           <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
             <Image
@@ -143,7 +150,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
       )}
     </div>
   )
-}
+}}
 
 export default function Page() {
   const router = useRouter()
@@ -417,4 +424,4 @@ export default function Page() {
   return <MainHomePage />
 }
 // FILE: app/page.tsx (end)
-// VERSION: 1.7.7
+// VERSION: 1.8
