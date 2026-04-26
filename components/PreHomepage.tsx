@@ -22,7 +22,7 @@ export default function PreHomepage({
   onGoToPetition, 
   skipFirstImageSlide = false
 }: Props) {
-  const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
+  const [index, setIndex] = useState(1)   // Always start at slide 1, skip the "You Are Not Powerless" image
   const [isTransitioning, setIsTransitioning] = useState(false)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)

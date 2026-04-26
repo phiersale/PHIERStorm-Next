@@ -171,6 +171,7 @@ export default function Page() {
         className="fixed inset-0 bg-black flex items-center justify-center outline-none"
         tabIndex={0}
         autoFocus
+        onClick={() => setStage('reading')}
         onKeyDown={(e) => {
           if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowRight') {
             e.preventDefault()
