@@ -187,7 +187,7 @@ export default function Page() {
             alt="You Are Not Powerless"
             width={1200}
             height={800}
-            className="w-[85%] max-w-[85%] h-auto object-contain md:h-full mx-auto"
+            className="w-[95%] max-w-[95%] h-auto object-contain md:h-full mx-auto"
             priority
           />
         </motion.div>
@@ -229,7 +229,7 @@ export default function Page() {
                     alt="Things Changing Fast"
                     width={220}
                     height={220}
-                    className="mx-auto w-[55%] h-auto"
+                    className="mx-auto w-[75%] h-auto"
                   />
                 </motion.div>
               )
