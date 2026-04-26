@@ -170,23 +170,26 @@ export default function MainHomePage() {
 
       <main className="font-sans pt-20 md:pt-0">
         {/* PHIERS Logo at the top of the main content */}
-        <div className="flex justify-center mt-6 mb-2">
+        <div className="flex justify-center mt-4 mb-6">
           <Image
             src="/images/PHIERS_Logo.png"
             alt="PHIERS – Power Held In Every Representative's Seat"
-            width={80}
-            height={80}
-            className="w-16 sm:w-20 md:w-24 h-auto opacity-90"
+            width={160}
+            height={160}
+            className="w-32 sm:w-40 md:w-48 h-auto"
             priority
           />
         </div>
 
         {/* HERO */}
         <section className="container text-center pt-8 md:pt-12 pb-4">
-          <h1 className="mb-12 md:mb-16">
-            <span className="hero-white">CONGRESS CAN FIX MOST OF WHAT'S BROKEN.</span>
-            <br />
-            <span className="hero-green">IT JUST DOESN'T HAVE TO.</span>
+          <h1 className="mb-8 md:mb-10 text-center">
+            <span className="block text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              CONGRESS CAN FIX MOST OF WHAT'S BROKEN.
+            </span>
+            <span className="block text-xl md:text-2xl lg:text-3xl font-bold text-green mt-2 leading-tight">
+              IT JUST DOESN'T HAVE TO.
+            </span>
           </h1>
           <div className="max-w-[760px] mx-auto mt-4">
             <p className="text-white text-lg md:text-xl font-semibold mb-2">Alone, you're easy to ignore.</p>
@@ -238,7 +241,7 @@ export default function MainHomePage() {
 
           {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
-            <p className="text-white text-xl font-bold mb-2">Congress can end the wars. Right now.</p>
+            <p className="text-white text-2xl md:text-3xl font-bold mb-2">Congress can end the wars. Right now.</p>
             <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
             <p className="text-green text-xl font-bold mb-3">They just don’t have the pressure.</p>
             <p className="text-gray-300 text-base mb-2">That’s where leverage comes in.</p>
@@ -250,7 +253,7 @@ export default function MainHomePage() {
 
           {/* Why 1,500 Matters */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
-            <h3 className="text-2xl font-bold text-white mb-2">Why 1,500 Matters</h3>
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Why 1,500 Matters</h3>
             <p className="text-gray-300 text-base mb-3">
               Congress doesn't respond to national percentages — it responds to pressure inside each district.
             </p>
@@ -292,30 +295,10 @@ export default function MainHomePage() {
           </div>
         </section>
 
-        {/* LIVE MOVEMENT STATUS */}
-        <section className="container py-8 border-t border-b border-green/20 my-12">
-          <div className="max-w-[760px] mx-auto text-center">
-            <span className="text-green text-sm font-condensed font-bold tracking-wider">⭐ LIVE MOVEMENT STATUS</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mt-2 mb-4">THIS IS ALREADY IN MOTION</h2>
-            <p className="text-gray-300 text-base mb-4">
-              We track how many people in each congressional district have gone on record and completed the survey.
-              Organization is already happening — district by district.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-bg-card rounded-xl p-6 border border-green/20">
-              <div><p className="text-gray-400 text-sm">Districts Activated</p><p className="text-green text-3xl font-bold">12</p></div>
-              <div><p className="text-gray-400 text-sm">People Counted</p><p className="text-green text-3xl font-bold">4,382</p></div>
-              <div><p className="text-gray-400 text-sm">Closest to 1,500</p><p className="text-white text-lg font-semibold">PA-07 (1,203)</p></div>
-              <div><p className="text-gray-400 text-sm">Next District to Reach Threshold</p><p className="text-white text-lg font-semibold">3–5 days</p></div>
-            </div>
-            <p className="text-gray-400 text-sm mt-4">Visible by design. When a district hits 1,500, it can't be ignored.</p>
-            <p className="text-gray-500 text-xs mt-1">* Numbers are estimates and update as people add their names.</p>
-          </div>
-        </section>
-
         {/* THE MECHANISM */}
         <section id="mechanism" className="container section scroll-mt-24 mb-12">
           <div className="max-w-[760px] mx-auto text-center">
-            <span className="text-green text-sm font-condensed font-bold tracking-wider">THE MECHANISM</span>
+            <h2 className="text-2xl md:text-3xl font-bold text-green mb-3">THE MECHANISM</h2>
             <p className="text-gray-300 text-base mb-3">Congress doesn't respond to opinion.</p>
             <p className="text-gray-300 text-base mb-4">Congress responds to pressure it can't ignore.</p>
             <p className="text-white text-lg font-semibold mb-3">Pressure becomes unavoidable when:</p>

@@ -88,6 +88,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
       >
         Continue →
       </button>
+
     </div>
   )
 }
@@ -95,6 +96,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
 export default function Page() {
   const router = useRouter()
   const [stage, setStage] = useState<'entry' | 'image' | 'reading' | 'prehome' | 'credibility' | 'main'>('entry')
+  const [skipFirstImage, setSkipFirstImage] = useState(true)
   const [readingVisibleCount, setReadingVisibleCount] = useState(0)
   const [readingComplete, setReadingComplete] = useState(false)
 
@@ -209,7 +211,7 @@ export default function Page() {
           }
         }}
       >
-        <div className="max-w-xl space-y-3 md:space-y-4 w-full">
+        <div className="max-w-xl space-y-1.5 md:space-y-2 w-full">
           {readingLines.map((line, i) => {
             if (i >= readingVisibleCount) return null
 
@@ -277,11 +279,14 @@ export default function Page() {
     )
   }
 
-  if (stage === 'prehome') {
+    if (stage === 'prehome') {
     return (
       <PreHomepage
-        skipFirstImageSlide={true}
-        onGoToHomepage={() => setStage('credibility')}
+        skipFirstImageSlide={skipFirstImage}
+        onGoToHomepage={() => {
+          setSkipFirstImage(true)
+          setStage('credibility')
+        }}
         onGoToPetition={() => router.push('/petition')}
       />
     )
@@ -293,7 +298,10 @@ if (stage === 'credibility') {
       <PathosCredibility />
       <div className="flex justify-center gap-4 pb-12">
         <button
-          onClick={() => setStage('prehome')}
+          onClick={() => {
+            setSkipFirstImage(false)
+            setStage('prehome')
+          }}
           className="px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition"
         >
           ← Back to Slides

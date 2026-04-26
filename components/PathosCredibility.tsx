@@ -1,66 +1,81 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 1.1.0 – viewport‑triggered fade + scale, respects reduced motion
+// VERSION: 5.0 – full styling + local thumbnail + motion
 
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion, useAnimation, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function PathosCredibility() {
-  const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
-  const controls = useAnimation()
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-
-  useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = (e: MediaQueryListEvent | MediaQueryList) => setPrefersReducedMotion(e.matches)
-    update(media)
-    if (media.addEventListener) media.addEventListener('change', update)
-    else media.addListener(update)
-    return () => {
-      if (media.removeEventListener) media.removeEventListener('change', update)
-      else media.removeListener(update)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      controls.set({ opacity: 1, scale: 1 })
-      return
-    }
-    if (isInView) {
-      controls.start({ opacity: 1, scale: 1, transition: { duration: 0.7, ease: 'easeOut' } })
-    }
-  }, [isInView, controls, prefersReducedMotion])
-
   return (
-    <motion.section
-      ref={ref}
-      initial={{ opacity: 0, scale: 0.98 }}
-      animate={controls}
-      className="w-full py-20 px-6 md:px-12 border-y border-neutral-800"
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="max-w-3xl mx-auto px-4 py-12"
     >
-      <div className="max-w-3xl mx-auto text-center">
-        <p className="text-sm uppercase tracking-widest text-neutral-500 mb-6">
-          Independently reviewed
+      {/* Title */}
+      <h2 className="text-2xl md:text-3xl font-bold text-green text-center mb-4">
+        Why Pathos Communications Staked Their Reputation on PHIERS
+      </h2>
+
+      {/* Broken‑up description */}
+      <div className="text-left max-w-2xl mx-auto space-y-3 text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+        <p>
+          Pathos Communications is a <span className="text-green font-semibold">global research and PR agency</span> listed on the London Stock Exchange.
         </p>
-
-        <blockquote className="text-2xl md:text-3xl font-medium leading-relaxed mb-4 text-white">
-          “If you weren’t legit, we wouldn’t risk putting our name behind yours.”
-        </blockquote>
-
-        <p className="text-base text-neutral-400 mb-4">
-          — Pathos Communications
+        <p>
+          They conducted <span className="text-green font-semibold">multiple 30-minute interviews</span> with Will Price.
         </p>
-
-        <p className="text-sm text-neutral-500">
-          A national PR firm reviewed PHIERS and confirmed the strategy holds up.
+        <p>
+          After reviewing the mechanism, they chose to represent PHIERS — and explained why on video.
         </p>
       </div>
-    </motion.section>
+
+      {/* Thumbnail linking to YouTube */}
+      <a
+        href="https://www.youtube.com/watch?v=KLu7USN_dao"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block max-w-xl mx-auto group"
+      >
+        <div className="relative rounded-xl overflow-hidden border border-green/20 shadow-lg transition-transform group-hover:scale-[1.02]">
+          <Image
+            src="/images/Pathos_Interview_Thumbnail.png"
+            alt="Pathos Communications – Why They Staked Their Reputation on PHIERS"
+            width={1280}
+            height={720}
+            className="w-full h-auto object-cover"
+            priority
+          />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition">
+            <div className="w-16 h-16 rounded-full bg-black/70 flex items-center justify-center border-2 border-white/60 group-hover:scale-110 transition">
+              <span className="text-white text-2xl ml-1">▶</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      {/* Quote and attribution */}
+      <div className="text-center mt-8 mb-6">
+        <p className="text-green text-xl md:text-2xl font-semibold italic">
+          “If you weren’t legit, we wouldn’t risk putting our name behind yours.”
+        </p>
+        <p className="text-gray-400 text-base mt-2">
+          — Pathos Communications
+        </p>
+      </div>
+
+      {/* Context lines */}
+      <p className="text-gray-300 text-center max-w-xl mx-auto">
+        They asked hard questions. They pushed on the mechanism.<br />
+        They chose to represent PHIERS because the idea had already earned serious interest.
+      </p>
+
+      {/* Closing line */}
+      <p className="text-gray-400 text-sm text-center border-t border-green/20 pt-6 mt-6">
+        Their decision to represent PHIERS — and to say this publicly — is on record.
+      </p>
+    </motion.div>
   )
 }
-
-// FILE: components/PathosCredibility.tsx (end)
-// VERSION: 1.1.0

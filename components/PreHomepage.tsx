@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 5.3 – vertical centering, largeFormat support, cinematic spacing
+// VERSION: 5.4 – fixed brace syntax
 
 'use client'
 
@@ -22,7 +22,7 @@ export default function PreHomepage({
   onGoToPetition, 
   skipFirstImageSlide = false
 }: Props) {
-  const [index, setIndex] = useState(1)   // Always start at slide 1, skip the "You Are Not Powerless" image
+  const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -109,7 +109,7 @@ export default function PreHomepage({
   const isLastSlide = index === slides.length - 1
   const isLargeFormatSlide = slide.largeFormat === true
 
-  // ===== TITLE RENDERING (no top margins, conditional sizes) =====
+  // ===== TITLE RENDERING =====
   const renderTitle = () => {
     if (slide.customLayout) return null
     if (!slide.title) return null
@@ -125,47 +125,42 @@ export default function PreHomepage({
     return <h1 className="text-2xl md:text-4xl font-semibold leading-tight mb-6">{slide.title}</h1>
   }
 
-  // ===== BODY RENDERING with largeFormat support =====
+  // ===== BODY RENDERING =====
   const renderBody = () => {
-      if (slide.customLayout) {
-    const items = slide.body
-    return (
-      <div className="flex flex-col items-center space-y-4">
-        {/* Logo */}
-        <div className="mb-2">
-          <Image
-            src="/images/PHIERS_Logo.png"
-            alt="PHIERS Logo"
-            width={120}
-            height={120}
-            className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
-            priority
-          />
-        </div>
-
-        {/* Acronym grid: 6 columns, each with letter above word */}
-        <div className="w-full px-2">
-          <div className="grid grid-cols-6 gap-1 sm:gap-3 justify-items-center mx-auto">
-            {items.map((item: { letter: string; word: string }, idx: number) => (
-              <div key={idx} className="flex flex-col items-center space-y-1">
-                <span className="text-xl sm:text-2xl md:text-4xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
-                  {item.letter}
-                </span>
-                <span className="text-[8px] sm:text-[10px] md:text-xs font-bold text-gray-200 uppercase tracking-wide">
-                  {item.word}
-                </span>
-              </div>
-            ))}
+    if (slide.customLayout) {
+      const items = slide.body
+      return (
+        <div className="flex flex-col items-center space-y-4">
+          <div className="mb-2">
+            <Image
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              width={120}
+              height={120}
+              className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+              priority
+            />
           </div>
+          <div className="w-full px-2">
+            <div className="grid grid-cols-6 gap-1 sm:gap-3 justify-items-center mx-auto">
+              {items.map((item: { letter: string; word: string }, idx: number) => (
+                <div key={idx} className="flex flex-col items-center space-y-1">
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
+                    {item.letter}
+                  </span>
+                  <span className="text-[11px] sm:text-[13px] md:text-sm font-bold text-gray-200 uppercase tracking-wide">
+                    {item.word}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="text-base md:text-lg font-normal text-gray-400 text-center px-2 mt-4">
+            {slide.punchLine}
+          </p>
         </div>
-
-        {/* Punchline – smaller, quieter */}
-        <p className="text-sm md:text-base font-normal text-gray-400 text-center px-2 mt-4">
-          {slide.punchLine}
-        </p>
-      </div>
-    )
-  }
+      )
+    }
 
     if (slide.type === "image" && slide.imageSrc) {
       return (
@@ -186,7 +181,6 @@ export default function PreHomepage({
 
     const greenLineIndices = slide.greenLines || []
 
-    // ===== LARGE FORMAT STYLES (for consequence slide) =====
     if (isLargeFormatSlide) {
       const largeBodyClass = "text-3xl md:text-5xl font-semibold tracking-tight"
       const wrapperClass = "space-y-4 md:space-y-6"
@@ -205,7 +199,6 @@ export default function PreHomepage({
       )
     }
 
-    // ===== NORMAL BODY STYLES =====
     const grayClass = "text-gray-300 text-base md:text-lg leading-relaxed"
     const greenClass = "text-green font-bold text-base md:text-lg leading-relaxed"
 
@@ -246,14 +239,12 @@ export default function PreHomepage({
   // ===== MAIN RETURN =====
   return (
     <div className="h-screen bg-[#050b19] text-white flex flex-col overflow-hidden">
-      {/* Header – Skip button */}
       <div className="flex justify-end pr-6 pt-4 pb-2 shrink-0 z-10">
         <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
           Skip →
         </button>
       </div>
 
-      {/* Scrollable content – vertically centered, with flex‑col for natural distribution */}
       <div className="flex-1 overflow-y-auto flex items-center justify-center px-6 md:px-12">
         <div className="w-full max-w-[90%] md:max-w-[70%] mx-auto">
           <div
@@ -268,9 +259,13 @@ export default function PreHomepage({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ 
+                transition={{
                   duration: slide.title === "" && !isLargeFormatSlide ? 0.8 : (slide.isFinalSlide ? 1.4 : 1.2),
-                  ease: "easeOut" 
+                  ease: "easeOut"
+                }}
+                exit={{
+                  opacity: 0,
+                  transition: { duration: 0.2, ease: "easeOut" }
                 }}
               >
                 {renderTitle()}
@@ -284,7 +279,6 @@ export default function PreHomepage({
         </div>
       </div>
 
-      {/* Bottom bar – buttons above dots */}
       <div className="shrink-0 flex flex-col items-center gap-3 py-4 border-t border-gray-800/50">
         {isLastSlide && (
           <div className="flex flex-col gap-2 w-full max-w-xs mx-auto mb-2">
@@ -328,6 +322,3 @@ export default function PreHomepage({
     </div>
   )
 }
-
-// FILE: components/PreHomepage.tsx
-//
