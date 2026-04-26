@@ -62,13 +62,13 @@ const slides = [
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 6 — PROOF (was slide 5)
+  // 6 — PROOF (UPDATED)
   {
-    title: "This plan works. And it's documented.",
+    title: "This plan works. It’s proven.",
     body: [
-      "3.5% movements reshape nations — Harvard Kennedy School",
-      "1,500 people in a district cannot be ignored — Ralph Nader",
-      "PHIERS applies this at scale across all 435 districts."
+      "3.5% involvement forces change — Harvard Kennedy School",
+      "1,500 people in a district can’t be ignored — Ralph Nader",
+      "PHIERS applies this in all 435 districts"
     ],
     greenLines: [2]
   },

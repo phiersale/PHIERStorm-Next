@@ -117,12 +117,12 @@ export default function PreHomepage({
       return <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green">{slide.title}</h1>
     }
     if (slide.title.includes("Frederick Douglass")) {
-      return <h1 className="text-xl md:text-3xl font-semibold leading-tight mb-6">{slide.title}</h1>
+      return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">{slide.title}</h1>
     }
     if (slide.isFinalSlide) {
-      return <h1 className="text-xl md:text-3xl font-semibold leading-tight mb-6">{slide.title}</h1>
+      return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-6">{slide.title}</h1>
     }
-    return <h1 className="text-2xl md:text-4xl font-semibold leading-tight mb-6">{slide.title}</h1>
+    return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">{slide.title}</h1>
   }
 
   // ===== BODY RENDERING =====
@@ -180,6 +180,34 @@ export default function PreHomepage({
     if (!slide.body) return null
 
     const greenLineIndices = slide.greenLines || []
+
+    // Special handling for slide 4 (no title, core principle)
+    const isCorePrincipleSlide = slide.title === "" && slide.body.length > 0 && slide.body[0].includes("Outrage doesn’t create change.")
+    if (isCorePrincipleSlide) {
+      return (
+        <div className="space-y-3 md:space-y-4">
+          {slide.body.map((line, i) => {
+            const isGreen = greenLineIndices.includes(i)
+            // First line: large, bold, white/gray (not green)
+            if (i === 0) {
+              return (
+                <p key={i} className="text-2xl md:text-3xl font-bold text-white leading-relaxed">
+                  {line}
+                </p>
+              )
+            }
+            // Subsequent lines: normal size, with green highlighting where needed
+            const baseClass = "text-base md:text-lg leading-relaxed"
+            const colorClass = isGreen ? "text-green font-bold" : "text-gray-300"
+            return (
+              <p key={i} className={`${baseClass} ${colorClass}`}>
+                {line}
+              </p>
+            )
+          })}
+        </div>
+      )
+    }
 
     if (isLargeFormatSlide) {
       const largeBodyClass = "text-3xl md:text-5xl font-semibold tracking-tight"
