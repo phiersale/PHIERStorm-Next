@@ -1,68 +1,111 @@
-// FILE: components/slides.ts
-// VERSION: 2.5.3 – added splitAttribution for Nader/Harvard slide
+// VERSION: 4.4.0 – added Frederick Douglass image slide between core principle and proof
 
 const slides = [
-  // 1 – Congress ignores you + can fix
+  // 0 — IMAGE (ANCHOR)
+  {
+    type: "image",
+    imageSrc: "/images/You_Are_Not_Powerless.jpg",
+    imageAlt: "YOU ARE NOT POWERLESS"
+  },
+
+  // 1 — HOOK (SERIOUS, NOT SALESY)
+  {
+    title: "It's Not Too Late.",
+    body: [
+      "It takes less than 3 minutes to force a response from Congress.",
+      "Right now, they don’t respond because they don’t have to.",
+      "PHIERS changes that.",
+      "Either they do their job or risk being replaced."
+    ],
+    greenLines: [0, 3]
+  },
+
+  // 2 — EMOTIONAL TRIGGER (WAR / POWER ABUSE)
+  {
+    title: "Congress can stop this.",
+    body: [
+      "They are talking escalation.",
+      "They can act — and choose not to.",
+      "More and more people are starting to see it.",
+      "They respond only when the public forces them to."
+    ],
+    greenLines: [3]
+  },
+
+  // 3 — ROOT PROBLEM
   {
     title: "Congress ignores you.",
     body: [
-      "Because they choose to. Nothing forces them to respond.",
-      "Congress can fix most of what's broken. They choose not to."
+      "Because they can.",
+      "Nothing forces them to respond.",
+      "They can fix most of what's broken — but choose not to.",
+      "PHIERS makes them answer to you."
+    ],
+    greenLines: [1, 3]
+  },
+
+  // 4 — CORE PRINCIPLE (CLEAN, NO TITLE – DOUGLASS QUOTE IS ON THE IMAGE)
+  {
+    title: "",
+    body: [
+      "Outrage doesn’t create change.",
+      "Leverage does.",
+      "But only if it's organized — district-level, online, and visible."
+    ],
+    greenLines: [1, 2]
+  },
+
+  // 5 — NEW: FREDERICK DOUGLASS IMAGE SLIDE
+  {
+    type: "image",
+    imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
+    imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
+  },
+
+  // 6 — PROOF (was slide 5)
+  {
+    title: "This plan works. And it's documented.",
+    body: [
+      "3.5% movements reshape nations — Harvard Kennedy School",
+      "1,500 people in a district cannot be ignored — Ralph Nader",
+      "PHIERS applies this at scale across all 435 districts."
+    ],
+    greenLines: [2]
+  },
+
+  // 7 — MECHANISM (was slide 6)
+  {
+    title: "Here’s how it works.",
+    body: [
+      "We track how many people in each district go on record.",
+      "Every district counts separately.",
+      "Not opinions — real people, counted.",
+      "At 1,500, representatives are forced to respond.",
+      "Or they risk being replaced."
+    ],
+    greenLines: [2, 3]
+  },
+
+  // 8 — CONSEQUENCE (was slide 7)
+  {
+    title: "",
+    body: ["Not noise.", "Not opinion.", "Consequence."],
+    greenLines: [2],
+    largeFormat: true
+  },
+
+  // 9 — ORDER OUT OF CHAOS (was slide 8)
+  {
+    title: "ORDER OUT OF CHAOS",
+    body: [
+      "Right now, resignations, investigations, and impeachment proceedings are reshaping the landscape.",
+      "This moment gives the public real leverage."
     ],
     greenLines: [1]
   },
-  // 2 – War + replacement
-  {
-    title: "Congress can stop this war.",
-    body: [
-      "They haven't. Now they're talking draft.",
-      "Proof they have a different agenda. They don't represent their constituents.",
-      "For this, we will replace them before July 4th."
-    ],
-    greenLines: [2]
-  },
-  // 3 – Opinions vs leverage
-  {
-    title: "Opinions don't force action.",
-    body: [
-      "Outrage doesn't force action. Noise doesn't force action.",
-      "Only leverage works — but only if it's organized the right way: district‑level, online, and viral."
-    ],
-    greenLines: [1]
-  },
-  // 4 – Tracking + 1,500 (Nader + Harvard) – with split attribution
-  {
-    title: "We track how many people in each congressional district have gone on record.",
-    body: [
-      "Alone, you're easy to ignore.",
-      "1,500 people in your district are not — Ralph Nader",
-      "3.5% defeats authoritarians every time — Harvard"
-    ],
-    greenLines: [1, 2],
-    splitAttribution: true
-  },
-  // 5 – Tipping point
-  {
-    title: "That's the tipping point.",
-    body: [
-      "Just enough people — in the right place, at the same time.",
-      "1,500 people per district. Across 435 districts, that's about 650,000 people.",
-      "That's all it takes to make Congress do its job."
-    ],
-    greenLines: [2]
-  },
-  // 6 – On record → leverage
-  {
-    title: "When 1,500 people are on record,",
-    body: [
-      "representatives are forced to respond to the public — or risk being replaced.",
-      "Not opinion. Not noise.",
-      "Consequence they can't ignore. That's leverage."
-    ],
-    greenLines: [2]
-  },
-  // 7 – PHIERS logo slide (custom layout)
-  {
+
+  // 10 — BRAND LOCK (ACRONYM) – was slide 9
+   {
     title: "PHIERS",
     body: [
       { letter: "P", word: "POWER" },
@@ -73,22 +116,19 @@ const slides = [
       { letter: "S", word: "SEAT" }
     ],
     customLayout: true,
-    punchLine: "Power Held In Every Representative's Seat"
+    punchLine: "Power held in every representative's seat."
   },
-  // 8 – Final slide (with staggered fade-in animation)
+
+  // 11 — DEMAND + CTA (FINAL SLIDE) – was slide 10
   {
-    title: "",
+    title: "Demand: Congress must reclaim war powers & expand telehealth access.",
     body: [
-      "End war and Make Congress to its job.",
-      "I'm on record.",
-      "Congress must respond — or get replaced."
+      "Get on the record.",
+      "Name. Email. Zip code.",
+      "Congress must respond or be replaced."
     ],
-    greenLines: [],
     isFinalSlide: true
   }
-];
+]
 
-export default slides;
-
-// FILE: components/slides.ts (end)
-// VERSION: 2.5.3
+export default slides

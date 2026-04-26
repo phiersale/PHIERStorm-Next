@@ -1,477 +1,314 @@
 // FILE: app/page.tsx
-// VERSION: 1.9.2 (fixed progress bar and spacing on phiers page)
+// VERSION: 2.8 – 
 
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import PreHomepage from '@/components/PreHomepage'
 import MainHomePage from '@/components/MainHomePage'
 import PathosCredibility from '@/components/PathosCredibility'
 
-// Phased text sequence – reveals text then image, then calls onComplete
 function PhasedText({ onComplete }: { onComplete: () => void }) {
-  const [subphase, setSubphase] = useState<'pause' | 'breath' | 'description' | 'waiting' | 'image'>('pause')
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-  const [canAdvance, setCanAdvance] = useState(false)
+  const [subphase, setSubphase] = useState<'pause' | 'breath' | 'description'>('pause')
 
   useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => setPrefersReducedMotion(media.matches)
-    update()
-    media.addEventListener('change', update)
-    return () => media.removeEventListener('change', update)
+    const t1 = setTimeout(() => setSubphase('breath'), 400)
+    const t2 = setTimeout(() => setSubphase('description'), 800)
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
   }, [])
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setSubphase('image')
-      return
-    }
-    const timer1 = setTimeout(() => setSubphase('breath'), 1500)
-    const timer2 = setTimeout(() => setSubphase('description'), 3000)
-    const timer3 = setTimeout(() => setSubphase('waiting'), 3500)
-    return () => {
-      clearTimeout(timer1)
-      clearTimeout(timer2)
-      clearTimeout(timer3)
-    }
-  }, [prefersReducedMotion])
-
-  useEffect(() => {
-    if (subphase !== 'waiting') return
-
-    const handleInteraction = () => setSubphase('image')
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'Space' || e.key === 'Enter') {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Space') {
         e.preventDefault()
-        setSubphase('image')
+        onComplete()
       }
     }
-
-    window.addEventListener('click', handleInteraction)
-    window.addEventListener('touchstart', handleInteraction)
-    window.addEventListener('keydown', handleKey)
-
-    return () => {
-      window.removeEventListener('click', handleInteraction)
-      window.removeEventListener('touchstart', handleInteraction)
-      window.removeEventListener('keydown', handleKey)
-    }
-  }, [subphase])
-
-  useEffect(() => {
-    if (subphase !== 'image') {
-      setCanAdvance(false)
-      return
-    }
-    const timer = setTimeout(() => setCanAdvance(true), 300)
-    return () => clearTimeout(timer)
-  }, [subphase])
-
-  const handleImageClick = () => {
-    if (canAdvance) onComplete()
-  }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onComplete])
 
   return (
-    <div className="mt-4 space-y-3">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: subphase !== 'pause' ? 1 : 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="flex justify-center mb-2"
-      >
+    <div className="flex flex-col items-center justify-center h-full w-full px-3 pt-1 pb-2 text-center">
+      <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
         <Image
           src="/images/PHIERS-Pause.png"
           alt="PHIERS - Pause"
-          width={300}
-          height={90}
-          className="w-auto h-auto max-w-[250px] md:max-w-[300px]"
+          width={204}
+          height={61}
+          className="mx-auto max-w-[80%] h-auto"
+          priority
         />
       </motion.div>
-
       <motion.p
         initial={{ opacity: 0 }}
-        animate={{ opacity: subphase === 'breath' || subphase === 'description' || subphase === 'waiting' || subphase === 'image' ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-white text-2xl md:text-4xl font-bold -mt-2 mb-10"
+        animate={{ opacity: subphase === 'breath' ? 1 : 1 }}
+        transition={{ duration: 0.6 }}
+        className="text-white text-xl sm:text-2xl md:text-3xl font-bold mb-2"
       >
-        Take a breath.
+        Take a deep breath.
       </motion.p>
-
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: subphase === 'description' || subphase === 'waiting' || subphase === 'image' ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
-        className="space-y-2 mt-16"
+        animate={{ opacity: subphase === 'description' ? 1 : 0 }}
+        transition={{ duration: 0.6 }}
+        className="space-y-0.5 mt-1 mb-4"
       >
-        <p className="text-gray-300 text-xl md:text-3xl">What you’re about to see is simple.</p>
-        <p className="text-gray-300 text-xl md:text-3xl">It changes the balance of power.</p>
+        <p className="text-gray-300 text-base sm:text-lg md:text-xl">
+          What you’re about to see is simple.
+        </p>
+        <p className="text-gray-300 text-base sm:text-lg md:text-xl">
+          It changes the balance of power.
+        </p>
       </motion.div>
-
-      {subphase === 'waiting' && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="text-gray-500 text-sm italic mt-8"
-        >
-          Tap anywhere to reveal the image →
-        </motion.p>
-      )}
-
-      {subphase === 'image' && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="fixed inset-0 z-20 flex flex-col items-center justify-center bg-black cursor-pointer"
-          style={{ margin: 0, padding: 0, left: 0, right: 0, top: 0, bottom: 0 }}
-          onClick={handleImageClick}
-        >
-          <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
-            <Image
-              src="/images/You_Are_Not_Powerless.jpg"
-              alt="YOU ARE NOT POWERLESS"
-              fill
-              className="object-contain"
-              priority
-              onError={(e) => console.error('Image failed to load')}
-            />
-          </div>
-          <div className="absolute bottom-8 left-0 right-0 text-center pointer-events-none">
-            <span className="text-green/50 text-base md:text-lg underline">
-              Begin →
-            </span>
-          </div>
-        </motion.div>
-      )}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: subphase === 'description' ? 1 : 0 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+        className="w-full flex justify-center mb-4"
+      >
+        <Image
+          src="/images/Congress-Is_Anybody_Home.jpg"
+          alt="Congress Is Anybody Home"
+          width={440}
+          height={267}
+          className="w-[70%] max-w-[290px] h-auto rounded-md"
+          priority
+        />
+      </motion.div>
+      <button
+        onClick={onComplete}
+        className="text-green/60 underline hover:text-green text-sm sm:text-base"
+      >
+        Continue →
+      </button>
     </div>
   )
 }
 
 export default function Page() {
   const router = useRouter()
-  const [stage, setStage] = useState<'entry' | 'reading' | 'prehome' | 'credibility' | 'main'>('entry')
-  const [showModal, setShowModal] = useState(true)
-  const [showPathosVideo, setShowPathosVideo] = useState(false)
-  const modalRef = useRef<HTMLDivElement>(null)
+  const [stage, setStage] = useState<'entry' | 'image' | 'reading' | 'prehome' | 'credibility' | 'main'>('entry')
   const [readingVisibleCount, setReadingVisibleCount] = useState(0)
   const [readingComplete, setReadingComplete] = useState(false)
-  const [isModalTransitioning, setIsModalTransitioning] = useState(false)
+
   const readingLines = [
-    "PHIERS — Things are moving fast.",
-    "",
-    "It takes <span class='text-green/80'>less than 3 minutes</span> to make Congress do its job.",
-    "",
-    "Right now, Congress isn't listening to voters.",
-    "They choose not to act — even in crisis.",
-    "",
-    "<strong class='text-green font-bold'>PHIERS changes that.</strong>",
-    "",
-    "It forces Congress to respond — or face consequences.",
-    "",
-    "Here’s how it works."
+    { type: 'image' },
+    { type: 'spacer' },
+    { type: 'html', content: "<div class='text-center'><div class='text-xl md:text-2xl font-bold text-green mb-0.5'>Less than 3 minutes</div><div class='text-lg md:text-xl text-gray-300'>can create leverage.</div></div>" },
+    { type: 'spacer' },
+    { type: 'text', content: "Congress doesn’t respond to voters." },
+    { type: 'text', content: "They respond to pressure.", isPressureLine: true },
+    { type: 'spacer' },
+    { type: 'html', content: "<strong class='text-green'>PHIERS creates that pressure.</strong>" },
+    { type: 'spacer' },
+    { type: 'text', content: "Here’s how it works." }
   ]
 
   useEffect(() => {
     if (stage !== 'reading') return
     setReadingVisibleCount(0)
     setReadingComplete(false)
+
     const interval = setInterval(() => {
       setReadingVisibleCount(prev => {
-        if (prev < readingLines.length) {
-          return prev + 1
-        } else {
-          clearInterval(interval)
-          setReadingComplete(true)
-          return prev
-        }
+        if (prev < readingLines.length) return prev + 1
+        clearInterval(interval)
+        setReadingComplete(true)
+        return prev
       })
-    }, 400)
+    }, 250) // faster reveal, similar to slide rhythm
+
     return () => clearInterval(interval)
   }, [stage])
 
-  // Spacebar to advance reading stage
+  useEffect(() => {
+    if (stage === 'image') {
+      const el = document.getElementById('powerless-screen')
+      if (el) el.focus()
+    }
+  }, [stage])
+
   useEffect(() => {
     if (stage !== 'reading') return
-    const onKeyDown = (e: KeyboardEvent) => {
+
+    const handler = (e: KeyboardEvent) => {
       if (e.key === ' ' || e.key === 'Space') {
         e.preventDefault()
-        if (readingComplete) {
-          setStage('prehome')
-        } else {
+        if (!readingComplete) {
           setReadingVisibleCount(readingLines.length)
           setReadingComplete(true)
+        } else {
+          setStage('prehome')
         }
       }
     }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
   }, [stage, readingComplete])
 
-  // Swipe to advance reading stage
-  useEffect(() => {
-    if (stage !== 'reading') return
-    let startX = 0
-    const onTouchStart = (e: TouchEvent) => {
-      startX = e.touches[0].clientX
-    }
-    const onTouchEnd = (e: TouchEvent) => {
-      const diff = startX - e.changedTouches[0].clientX
-      if (Math.abs(diff) > 50) {
-        if (readingComplete) {
-          setStage('prehome')
-        } else {
-          setReadingVisibleCount(readingLines.length)
-          setReadingComplete(true)
-        }
-      }
-    }
-    window.addEventListener('touchstart', onTouchStart)
-    window.addEventListener('touchend', onTouchEnd)
-    return () => {
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchend', onTouchEnd)
-    }
-  }, [stage, readingComplete])
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const skipSlides = urlParams.get('skip') === 'slides'
-
-    if (skipSlides) {
-      setShowModal(false)
-      setStage('credibility')
-      window.history.replaceState({}, '', '/')
-      return
-    }
-
-    setShowModal(true)
-    setStage('entry')
-  }, [])
-
-  const proceed = () => {
-    setIsModalTransitioning(true)
-    setTimeout(() => {
-      setShowModal(false)
-      // Extra 50ms black frame to prevent the next screen flashing behind
-      setTimeout(() => {
-        setStage('reading')
-        setIsModalTransitioning(false)
-      }, 50)
-    }, 200)
-  }
-
-  // Keyboard support for entry modal
-  useEffect(() => {
-    if (!showModal) return
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === 'Space' || e.key === ' ') {
-        e.preventDefault()
-        proceed()
-      }
-    }
-    window.addEventListener('keydown', handleKey)
-    document.body.style.overflow = 'hidden'
-    if (modalRef.current) modalRef.current.focus()
-    return () => {
-      window.removeEventListener('keydown', handleKey)
-      document.body.style.overflow = ''
-    }
-  }, [showModal, proceed])
-
-  // ========== ENTRY MODAL ==========
   if (stage === 'entry') {
     return (
-      <AnimatePresence>
-        {showModal && (
-          <motion.div
-            ref={modalRef}
-            id="entry-modal"
-            tabIndex={-1}
-            className="fixed inset-0 w-screen h-screen bg-black/95 z-[99999] flex items-center justify-center p-4 overflow-y-auto focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 focus:ring-offset-black"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="relative w-full max-w-xl mx-auto pb-8">
-              <div className="flex justify-end mb-6">
-                <button
-                  onClick={(e) => { e.stopPropagation(); proceed() }}
-                  className="text-gray-500 text-sm underline hover:text-gray-300"
-                >
-                  SKIP
-                </button>
-              </div>
-              <div className="text-center mt-0">
-                <PhasedText onComplete={proceed} />
-              </div>
-              {isModalTransitioning && (
-                <div className="absolute inset-0 bg-black pointer-events-none" />
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="fixed inset-0 bg-black flex items-center justify-center p-2">
+        <div className="w-full max-w-md h-full max-h-screen overflow-hidden">
+          <PhasedText onComplete={() => setStage('image')} />
+        </div>
+      </div>
     )
   }
 
-  // ========== READING STAGE - SEQUENTIAL ANIMATION ==========
-  if (stage === 'reading') {
-    // Remove the first line from readingLines since we're replacing it with an image
-    const displayLines = readingLines.slice(1)
+  if (stage === 'image') {
     return (
-            <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="fixed inset-0 bg-black/95 z-[99999] flex flex-col items-center justify-center p-4"
-        onClick={() => {
-          if (readingComplete) {
-            setStage('prehome')
-          } else {
-            // Fast‑forward: show all lines immediately
-            setReadingVisibleCount(readingLines.length)
-            setReadingComplete(true)
+      <div
+        id="powerless-screen"
+        className="fixed inset-0 bg-black flex items-center justify-center outline-none"
+        tabIndex={0}
+        autoFocus
+        onKeyDown={(e) => {
+          if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowRight') {
+            e.preventDefault()
+            setStage('reading')
           }
         }}
       >
-        <div className="w-full max-w-md mx-auto my-auto relative z-10 pointer-events-auto">
-          {/* SKIP button - top right relative to content */}
-          <div className="flex justify-end mb-2">
-            <button
-              onClick={(e) => { e.stopPropagation(); setStage('credibility'); }}
-              className="text-gray-500 text-xs underline hover:text-gray-300"
-            >
-              SKIP →
-            </button>
-          </div>
-
-          {/* Logo image instead of the first line – tappable to skip to slides */}
-          <div
-            className="flex justify-center mb-4 cursor-pointer"
-            onClick={(e) => {
-              e.stopPropagation();
-              if (readingComplete) {
-                setStage('prehome')
-              } else {
-                setReadingVisibleCount(readingLines.length)
-                setReadingComplete(true)
-              }
-            }}
-          >
-            <Image
-              src="/images/PHIERS_Things_Moving_Fast.png"
-              alt="PHIERS - Things are moving fast"
-              width={280}
-              height={80}
-              className="w-auto h-auto max-w-[280px]"
-            />
-          </div>
-
-          {/* Remaining animated text (excluding the first line) */}
-          <div className="space-y-3 text-center pointer-events-none">
-            {displayLines.map((line, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: idx < readingVisibleCount - 1 ? 1 : 0, y: idx < readingVisibleCount - 1 ? 0 : 10 }}
-                transition={{ duration: 0.3 }}
-                className={line === "" ? "h-2" : "text-white text-sm md:text-base"}
-                dangerouslySetInnerHTML={line !== "" ? { __html: line } : undefined}
-              />
-            ))}
-          </div>
-        </div>
-      </motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <Image
+            src="/images/You_Are_Not_Powerless.jpg"
+            alt="You Are Not Powerless"
+            width={1200}
+            height={800}
+            className="w-[85%] max-w-[85%] h-auto object-contain md:h-full mx-auto"
+            priority
+          />
+        </motion.div>
+        <p className="absolute bottom-10 text-gray-500 text-sm text-center w-full">
+          Press space or enter →
+        </p>
+      </div>
     )
   }
 
-  // ========== PREHOME (SLIDES) – FORWARD ONLY ==========
+  if (stage === 'reading') {
+    return (
+      <div
+        className="fixed inset-0 bg-black flex items-start justify-center px-6 pt-10 pb-12 text-center"
+        onClick={() => {
+          if (!readingComplete) {
+            setReadingVisibleCount(readingLines.length)
+            setReadingComplete(true)
+          } else {
+            setStage('prehome')
+          }
+        }}
+      >
+        <div className="max-w-xl space-y-1.5">
+          {readingLines.map((line, i) => {
+            if (i >= readingVisibleCount) return null
+
+            if (line.type === 'image') {
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="mb-3"
+                >
+                  <Image
+                    src="/images/PHIERS_Things_Changing_Fast.png"
+                    alt="Things Changing Fast"
+                    width={220}
+                    height={220}
+                    className="mx-auto w-[55%] h-auto"
+                  />
+                </motion.div>
+              )
+            }
+
+            if (line.type === 'spacer') {
+              return <div key={i} className="h-1" />
+            }
+
+            if (line.type === 'html') {
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="text-[1.05rem] md:text-lg text-gray-300 leading-tight"
+                  dangerouslySetInnerHTML={{ __html: line.content }}
+                />
+              )
+            }
+
+            const isPressureLine = line.isPressureLine === true
+            const isFinalLine = line.content === "Here’s how it works"
+
+            let className = "text-[0.95rem] md:text-lg text-gray-400 leading-tight"
+            if (isPressureLine) {
+              className = "text-gray-200 text-lg md:text-xl font-semibold"
+            } else if (isFinalLine) {
+              className = "text-[1.15rem] md:text-xl text-white font-semibold mt-2"
+            }
+
+            return (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className={className}
+              >
+                {line.content}
+              </motion.p>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
   if (stage === 'prehome') {
     return (
       <PreHomepage
+        skipFirstImageSlide={true}
         onGoToHomepage={() => setStage('credibility')}
         onGoToPetition={() => router.push('/petition')}
       />
     )
   }
 
-    // ========== CREDIBILITY ==========
-  if (stage === 'credibility') {
-    return (
-      <div className="min-h-screen bg-[#050b19] py-8 px-4">
-        <div className="max-w-3xl mx-auto">
-          {/* TOP SKIP */}
-          <div className="flex justify-end mb-2">
-            <button
-              onClick={() => setStage('main')}
-              className="text-gray-500 text-xs underline hover:text-gray-300"
-            >
-              Skip →
-            </button>
-          </div>
-
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-            Independently reviewed.
-          </h2>
-
-          <PathosCredibility />
-
-          <div className="max-w-3xl mx-auto w-full mt-4">
-            <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-green/20 shadow-lg">
-              {!showPathosVideo ? (
-                <div
-                  className="absolute inset-0 cursor-pointer group"
-                  onClick={() => setShowPathosVideo(true)}
-                >
-                  <Image
-                    src="/images/Pathos_Interview_Thumbnail.png"
-                    alt="Pathos Communications endorsement – click to play"
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    priority
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition">
-                    <div className="w-16 h-16 rounded-full bg-green/80 flex items-center justify-center shadow-lg group-hover:scale-110 transition">
-                      <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <iframe
-                  src="https://www.youtube.com/embed/KLu7USN_dao?rel=0&autoplay=1"
-                  title="Pathos Communications endorsement video"
-                  className="absolute top-0 left-0 w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              )}
-            </div>
-          </div>
-
-          {/* Bottom button only */}
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={() => setStage('main')}
-              className="bg-green/60 text-black text-sm md:text-base font-semibold py-1.5 px-4 rounded-md hover:bg-green/70 transition"
-            >
-              Continue to site →
-            </button>
-          </div>
-        </div>
+if (stage === 'credibility') {
+  return (
+    <div className="min-h-screen bg-[#050b19] flex flex-col">
+      <PathosCredibility />
+      <div className="flex justify-center gap-4 pb-12">
+        <button
+          onClick={() => setStage('prehome')}
+          className="px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition"
+        >
+          ← Back to Slides
+        </button>
+        <button
+          onClick={() => setStage('main')}
+          className="px-6 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
+        >
+          Continue to Main Site →
+        </button>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
-  // ========== MAIN HOMEPAGE ==========
   return <MainHomePage />
 }
-// FILE: app/page.tsx (end)
-// VERSION: 1.9.2
+
+// FILE: app/page.tsx
