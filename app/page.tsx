@@ -296,7 +296,7 @@ if (stage === 'credibility') {
   return (
     <div className="min-h-screen bg-[#050b19] flex flex-col">
       <PathosCredibility />
-      <div className="flex justify-center gap-4 pb-12">
+      <div id="credibility-buttons" className="flex justify-center gap-4 pb-12">
         <button
           onClick={() => {
             setSkipFirstImage(false)

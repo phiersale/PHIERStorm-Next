@@ -23,6 +23,19 @@ export default function PathosCredibility() {
 
   return (
     <>
+      {/* Skip button - fixed top-right */}
+      <div className="fixed top-16 right-4 z-50">
+        <button
+          onClick={() => {
+            const buttons = document.getElementById('credibility-buttons');
+            if (buttons) buttons.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="px-4 py-2 text-sm bg-green/80 hover:bg-green text-black font-semibold rounded-full shadow-lg backdrop-blur-sm transition"
+        >
+          Skip
+        </button>
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -30,7 +43,8 @@ export default function PathosCredibility() {
         className="max-w-3xl mx-auto px-4 py-12"
       >
         {/* Page Title */}
-        <h1 className="text-3xl md:text-4xl font-bold text-green text-center mb-8">
+
+      <h1 className="text-3xl md:text-4xl font-bold text-green text-center mb-8">
           Third‑Party Validation:<br />
           Why Pathos Communications Staked Its Reputation on PHIERS
         </h1>

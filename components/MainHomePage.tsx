@@ -345,10 +345,16 @@ export default function MainHomePage() {
             </div>
             <div className="flex justify-center md:justify-end">
               <div className="w-full md:w-[80%] bg-bg-card rounded-xl border border-green/20 p-4 text-center">
-                <div className="aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-500 text-sm">Video: How district‑level organization works</p>
+                <div className="aspect-video rounded-lg overflow-hidden">
+                  <iframe
+                    src="https://www.youtube.com/embed/xEA5zVium58?rel=0"
+                    title="How district‑level organization works"
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
-                <p className="text-gray-400 text-xs mt-2">(Explainer video – controls on)</p>
+                <p className="text-gray-400 text-xs mt-2">How district‑level organization works</p>
               </div>
             </div>
           </div>
