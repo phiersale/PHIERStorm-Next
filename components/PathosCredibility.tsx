@@ -23,14 +23,14 @@ export default function PathosCredibility() {
 
   return (
     <>
-      {/* Skip button - fixed top-right */}
+      {/* Skip button - subtle text link (matches other pages) */}
       <div className="fixed top-16 right-4 z-50">
         <button
           onClick={() => {
             const buttons = document.getElementById('credibility-buttons');
             if (buttons) buttons.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="px-4 py-2 text-sm bg-green/80 hover:bg-green text-black font-semibold rounded-full shadow-lg backdrop-blur-sm transition"
+          className="text-gray-500 text-sm underline hover:text-gray-300 transition"
         >
           Skip
         </button>
@@ -89,14 +89,18 @@ export default function PathosCredibility() {
         {/* SECTION: What We Know Works */}
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-green mb-4">What We Know Works</h2>
-          <p className="text-gray-300 text-base mb-3">
-            <span className="font-bold text-white">Harvard Kennedy School</span><br />
-            Research shows that when about 3.5% of people get involved, things change. Governments move. Congress listens.
-          </p>
-          <p className="text-gray-300 text-base mb-3">
-            <span className="font-bold text-white">Ralph Nader</span><br />
-            Decades of work inside Congress point to a clear number: When 1,500 people in a district speak up together, a representative can’t ignore them.
-          </p>
+          <div className="mb-4">
+            <p className="text-white font-bold text-base md:text-lg mb-1">Harvard Kennedy School</p>
+            <p className="text-gray-400 text-sm md:text-base">
+              Research shows that when about 3.5% of people get involved, things change. Governments move. Congress listens.
+            </p>
+          </div>
+          <div className="mb-4">
+            <p className="text-white font-bold text-base md:text-lg mb-1">Ralph Nader</p>
+            <p className="text-gray-400 text-sm md:text-base">
+              Decades of work inside Congress point to a clear number: When 1,500 people in a district speak up together, a representative can’t ignore them.
+            </p>
+          </div>
           <p className="text-gray-300 text-base italic mt-2">These aren’t theories.<br />They’re patterns that repeat.</p>
         </div>
 

@@ -8,7 +8,8 @@ export default function Footer() {
 
       <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto mb-6">
         <Link href="/crisis" className="text-gray-500 text-sm hover:text-[#3ddc84]">Crisis</Link>
-        <Link href="/homepage-teeth" className="text-gray-500 text-sm hover:text-[#3ddc84]">How It Works</Link>
+        <Link href="/homepage-teeth" className="text-gray-500 text-sm hover:text-[#3ddc84]">Homepage Teeth</Link>
+        <Link href="/the-teeth" className="text-gray-500 text-sm hover:text-[#3ddc84]">The Teeth</Link>
         <Link href="/solutions" className="text-gray-500 text-sm hover:text-[#3ddc84]">Solutions</Link>
         <Link href="/telecare" className="text-gray-500 text-sm hover:text-[#3ddc84]">TeleCARE</Link>
         <Link href="/no-war" className="text-gray-500 text-sm hover:text-[#3ddc84]">No War</Link>

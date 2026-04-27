@@ -245,18 +245,18 @@ export default function HomepageTeethPage() {
       {/* Navigation – back and forward */}
         <div className="container py-8 flex flex-col sm:flex-row justify-center gap-4">
           <Link
-            href="/?skip=slides"
-            className="btn-secondary inline-block text-center"
-            aria-label="Go back to main home page (skip slides)"
+            href="/"
+            className="px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition text-center"
+            aria-label="Go back to main home page"
           >
-            ← Back
+            ← Back to Main
           </Link>
           <Link
             href="/the-teeth"
-            className="btn-primary inline-block text-center"
-            aria-label="Continue to next page"
+            className="px-6 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition text-center"
+            aria-label="Continue to The Teeth"
           >
-            Next →
+            Next: The Teeth →
           </Link>
         </div>
       
