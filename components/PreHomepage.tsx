@@ -137,7 +137,7 @@ export default function PreHomepage({
       return <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green">{slide.title}</h1>
     }
     if (slide.title.includes("Frederick Douglass")) {
-      return <h1 className="text-2xl md:text-3xl font-bold leading-tight mb-4">{slide.title}</h1>
+      return <h1 className="text-xl md:text-2xl font-bold leading-tight mb-2">{slide.title}</h1>
     }
     if (slide.isFinalSlide) {
       return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-6">{slide.title}</h1>
@@ -161,10 +161,10 @@ export default function PreHomepage({
               priority
             />
           </div>
-          <div className="w-full px-2">
-            <div className="grid grid-cols-6 gap-1 sm:gap-3 justify-items-center mx-auto">
+          <div className="w-full px-4 sm:px-6">
+            <div className="grid grid-cols-6 gap-2 sm:gap-4 justify-items-center mx-auto max-w-[90%] sm:max-w-full">
               {items.map((item: { letter: string; word: string }, idx: number) => (
-                <div key={idx} className="flex flex-col items-center space-y-1">
+                <div key={idx} className="flex flex-col items-center space-y-2 sm:space-y-2">
                   <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
                     {item.letter}
                   </span>
@@ -195,7 +195,7 @@ export default function PreHomepage({
               alt={slide.imageAlt || "Slide image"}
               width={1200}
               height={800}
-              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full md:w-[70%]' : 'w-[85%] md:w-[70%]'}`}
+              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full md:w-[60%] max-h-[60vh] md:max-h-[45vh]' : 'w-[85%] md:w-[70%]'}`}
               priority
             />
             {isDouglassSlide && (
@@ -300,11 +300,11 @@ export default function PreHomepage({
         <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
           Skip →
         </button>
-      </div>
+      </div>              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full md:w-[70%]' : 'w-[85%] md:w-[70%]'}`}
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
-        className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12' : 'px-6 md:px-12'}`}
+        className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-8 md:pt-12' : 'px-6 md:px-12'}`}
         style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
         onClick={!isLastSlide && !isTransitioning ? next : undefined}
         onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
