@@ -382,7 +382,7 @@ export default function PreHomepage({
 
       {/* Modal for Douglass image */}
       <AnimatePresence>
-        {douglassModalOpen && (
+        {douglassModalOpen && slide.imageSrc && (
           <motion.div
             className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
@@ -399,12 +399,11 @@ export default function PreHomepage({
               >
                 ✕
               </button>
-              <Image
+              <img
                 src={slide.imageSrc}
                 alt="Frederick Douglass quote – enlarged"
-                width={1200}
-                height={800}
                 className="w-full h-auto object-contain rounded-xl"
+                onError={(e) => console.error('Modal image failed to load:', slide.imageSrc)}
               />
             </div>
           </motion.div>
