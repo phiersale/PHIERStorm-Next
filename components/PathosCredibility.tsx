@@ -82,7 +82,7 @@ export default function PathosCredibility() {
           </p>
           <p className="text-gray-400 text-base">— Pathos Communications</p>
           <p className="text-gray-300 text-center text-sm mt-4">
-            Pathos Communications — a global research and PR agency listed on the London Stock Exchange — conducted multiple multi‑hour interviews with Will Price and publicly explained on video why they chose to represent PHIERS.
+            Pathos Communications — a global research and PR agency listed on the London Stock Exchange — conducted hours interviews with Will Price and publicly explained on video why they chose to represent PHIERS.
           </p>
         </div>
 

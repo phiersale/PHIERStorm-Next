@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
+import JumpToFooter from '@/components/JumpToFooter'
 
 // Helper component for video cards (used inside modal)
 function VideoCard({ id, title }: { id: string; title: string }) {
@@ -914,21 +915,22 @@ export default function MainHomePage() {
               <p className="text-white text-lg font-semibold">And once it reaches scale — it sustains itself.</p>
             </div>
             <p className="text-green text-2xl font-bold mb-6">The only variable is you.</p>
-            <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
-              <Button href="/petition" variant="primary" fullWidth>✍ BE HEARD</Button>
-              <Button onClick={scrollToMechanism} variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
-            </div>
-            <div className="mt-4">
+            <div className="mt-6">
               <Link
                 href="/homepage-teeth"
-                className="inline-block px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition text-center"
+                className="inline-block px-8 py-3 bg-green/20 border-2 border-green text-green font-bold rounded-lg hover:bg-green/30 transition text-center text-lg shadow-md"
               >
-                Next: Homepage Teeth →
+                Next: How It Works →
               </Link>
+            </div>
+            <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto mt-6">
+              <Button href="/petition" variant="primary" fullWidth>✍ BE HEARD</Button>
             </div>
           </div>
         </section>
       </main>
+
+      <JumpToFooter />
 
       <Footer />
 

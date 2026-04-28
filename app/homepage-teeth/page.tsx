@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
+import JumpToFooter from '@/components/JumpToFooter'
 
 export default function HomepageTeethPage() {
   const [activeRing, setActiveRing] = useState<number | null>(null)
@@ -240,7 +241,8 @@ export default function HomepageTeethPage() {
 
         {/* Closing Statement */}
         <section className="container section text-center pt-12"><p className="font-condensed font-bold text-base text-gray-400 leading-relaxed">PHIERS is built for one purpose:<br />giving the public the leverage we've always deserved.</p><p className="font-condensed font-bold text-white mt-2">Now it's organized.</p></section>
-      </main>
+      <JumpToFooter />
+      <Footer />
 
       {/* Navigation – back and forward */}
         <div className="container py-8 flex flex-col sm:flex-row justify-center gap-4">
@@ -249,14 +251,14 @@ export default function HomepageTeethPage() {
             className="px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition text-center"
             aria-label="Go back to main home page"
           >
-            ← Back to Main
+            ← Back to How It Works
           </Link>
           <Link
             href="/the-teeth"
             className="px-6 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition text-center"
             aria-label="Continue to The Teeth"
           >
-            Next: The Teeth →
+            Next: The Framework →
           </Link>
         </div>
       

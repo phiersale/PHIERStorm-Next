@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
+import JumpToFooter from '@/components/JumpToFooter'
 
 export default function TheTeethPage() {
   const [teethModalOpen, setTeethModalOpen] = useState(false)
@@ -189,6 +190,7 @@ export default function TheTeethPage() {
           </Link>
         </div>
 
+      <JumpToFooter />
       <Footer />
 
       {/* Teeth Image Lightbox */}

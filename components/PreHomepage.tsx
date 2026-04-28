@@ -68,7 +68,8 @@ export default function PreHomepage({
   const prev = useCallback(() => {
     if (isTransitioning) return
     if (index === 0) return
-    goToSlide(index - 1)
+    // Jump directly to the first image slide (index 0) instead of previous slide
+    goToSlide(0)
   }, [isTransitioning, index, goToSlide])
 
   useEffect(() => {
@@ -299,7 +300,10 @@ export default function PreHomepage({
                 {renderTitle()}
                 {renderBody()}
                 {isLastSlide && (
-                  <p className="text-gray-500 text-xs italic mt-6">Use buttons below ↓</p>
+                  <div className="mt-6 space-y-2">
+                    <p className="text-gray-400 text-sm animate-pulse">✨ Press space bar, Enter, or click anywhere ✨</p>
+                    <p className="text-gray-500 text-xs">Or use the buttons below ↓</p>
+                  </div>
                 )}
               </motion.div>
             </AnimatePresence>
