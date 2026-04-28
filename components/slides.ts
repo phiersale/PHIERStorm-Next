@@ -55,13 +55,13 @@ const slides = [
     greenLines: [1, 2]
   },
 
-  // 5 — FREDERICK DOUGLASS IMAGE SLIDE (title added, +15% larger on mobile)
+  // 5 — FREDERICK DOUGLASS IMAGE SLIDE – full width on mobile for readability
   {
     type: "image",
-    title: "Power creates change.",               // <-- ADDED: matches other title slides
+    title: "Power creates change.",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand",
-    mobileScale: 1.15                         // <-- ADDED: makes image 15% larger on mobile
+    fullWidthOnMobile: true
   },
 
   // 6 — PROOF (UPDATED)
