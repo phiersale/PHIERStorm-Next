@@ -161,10 +161,10 @@ export default function PreHomepage({
               priority
             />
           </div>
-          <div className="w-full px-4 sm:px-6">
-            <div className="grid grid-cols-6 gap-2 sm:gap-4 justify-items-center mx-auto max-w-[90%] sm:max-w-full">
+          <div className="w-full px-2 sm:px-6">
+            <div className="grid grid-cols-6 gap-3 sm:gap-4 justify-items-center mx-auto w-full">
               {items.map((item: { letter: string; word: string }, idx: number) => (
-                <div key={idx} className="flex flex-col items-center space-y-2 sm:space-y-2">
+                <div key={idx} className="flex flex-col items-center space-y-3 sm:space-y-2">
                   <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
                     {item.letter}
                   </span>
