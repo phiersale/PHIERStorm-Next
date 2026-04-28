@@ -300,6 +300,7 @@ export default function PreHomepage({
         <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
           Skip →
         </button>
+      </div>
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
