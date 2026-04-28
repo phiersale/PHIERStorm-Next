@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 5.4 – fixed brace syntax
+// VERSION: 5.5 – fixed JSX structure, full‑width Douglass image on mobile, modal works
 
 'use client'
 
@@ -137,7 +137,7 @@ export default function PreHomepage({
       return <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green">{slide.title}</h1>
     }
     if (slide.title.includes("Frederick Douglass")) {
-      return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">{slide.title}</h1>
+      return <h1 className="text-2xl md:text-3xl font-bold leading-tight mb-4">{slide.title}</h1>
     }
     if (slide.isFinalSlide) {
       return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-6">{slide.title}</h1>
@@ -189,13 +189,13 @@ export default function PreHomepage({
       };
       return (
         <div className="w-full flex justify-center">
-          <div onClick={handleImageClick} className={`${isDouglassSlide ? 'cursor-pointer' : ''}`}>
+          <div onClick={handleImageClick} className={`${isDouglassSlide ? 'cursor-pointer w-full' : ''}`}>
             <Image
               src={slide.imageSrc}
               alt={slide.imageAlt || "Slide image"}
               width={1200}
               height={800}
-              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full max-w-full' : 'w-[85%] md:w-[70%]'}`}
+              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full' : 'w-[85%] md:w-[70%]'}`}
               priority
             />
             {isDouglassSlide && (
@@ -307,6 +307,7 @@ export default function PreHomepage({
           <div
             className={`text-center w-full ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
             onClick={!isLastSlide && !isTransitioning ? next : undefined}
+            onMouseDown={!isLastSlide && !isTransitioning ? next : undefined}
             role="button"
             tabIndex={!isLastSlide ? 0 : -1}
           >
