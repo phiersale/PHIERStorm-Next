@@ -58,7 +58,7 @@ const slides = [
   // 5 — FREDERICK DOUGLASS IMAGE SLIDE (title added, +15% larger on mobile)
   {
     type: "image",
-    title: "About Power",               // <-- ADDED: matches other title slides
+    title: "Power creates change.",               // <-- ADDED: matches other title slides
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand",
     mobileScale: 1.15                         // <-- ADDED: makes image 15% larger on mobile
@@ -66,11 +66,12 @@ const slides = [
 
   // 6 — PROOF (UPDATED)
   {
-    title: "This plan works. It’s proven.",
+    title: "Our plan works. The milestones are proven.",
     body: [
       "3.5% involvement forces change — Harvard Kennedy School",
       "1,500 people in a district can’t be ignored — Ralph Nader",
-      "PHIERS applies this in all 435 districts"
+      "PHIERS will apply this to all 435 districts",
+      "The only thing missing is you"
     ],
     greenLines: [2]
   },

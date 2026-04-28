@@ -6,7 +6,7 @@ export default function PathosCredibility() {
       <div className="aspect-video mb-4">
         <iframe
           src="https://www.youtube.com/embed/KLu7USN_dao"
-          title="Pathos Communications explains why they represent PHIERS"
+          title="Pathos Communications explains why they want to represent PHIERS"
           className="w-full h-full"
           allowFullScreen
         />

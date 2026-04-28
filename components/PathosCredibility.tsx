@@ -44,10 +44,10 @@ export default function PathosCredibility() {
       >
         {/* Page Title */}
 
-      <h1 className="text-3xl md:text-4xl font-bold text-green text-center mb-8">
-          Third‑Party Validation:<br />
-          Why Pathos Communications Staked Its Reputation on PHIERS
-        </h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
+        <span className="text-white">Third‑Party Validation:</span><br />
+        <span className="text-green text-2xl md:text-3xl">Why Pathos Communications Staked Its Reputation on PHIERS</span>
+      </h1>
 
         {/* Click‑to‑play video thumbnail */}
         <div className="text-center mb-12">
