@@ -140,7 +140,7 @@ export default function PreHomepage({
       return <h1 className="text-xl md:text-2xl font-bold leading-tight mb-2">{slide.title}</h1>
     }
     if (slide.isFinalSlide) {
-      return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-6">{slide.title}</h1>
+      return <h1 className="text-base sm:text-xl md:text-4xl font-bold leading-tight mb-4 pt-2">{slide.title}</h1>
     }
     return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">{slide.title}</h1>
   }
