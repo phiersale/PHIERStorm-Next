@@ -169,7 +169,14 @@ export default function PreHomepage({
                     {item.letter}
                   </span>
                   <span className="text-[11px] sm:text-[13px] md:text-sm font-bold text-gray-200 uppercase tracking-wide">
-                    {item.word}
+                    {item.letter === 'R' ? (
+                      <>
+                        <span className="md:hidden">REPS</span>
+                        <span className="hidden md:inline">REPRESENTATIVES</span>
+                      </>
+                    ) : (
+                      item.word
+                    )}
                   </span>
                 </div>
               ))}
@@ -366,7 +373,7 @@ export default function PreHomepage({
               <button
                 key={i}
                 onClick={() => goToSlide(i)}
-                className={`w-1 h-1 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
+                className={`w-[2px] h-[2px] rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
                   i === index
                     ? 'bg-green scale-125 shadow-[0_0_6px_rgba(61,220,132,0.6)]'
                     : 'bg-gray-600 opacity-60 hover:bg-gray-400'
