@@ -300,7 +300,6 @@ export default function PreHomepage({
         <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
           Skip →
         </button>
-      </div>              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full md:w-[70%]' : 'w-[85%] md:w-[70%]'}`}
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
