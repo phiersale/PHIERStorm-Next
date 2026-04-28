@@ -24,6 +24,7 @@ export default function PreHomepage({
 }: Props) {
   const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [douglassModalOpen, setDouglassModalOpen] = useState(false)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const mounted = useRef(true)
@@ -65,12 +66,30 @@ export default function PreHomepage({
     goToSlide(index + 1)
   }, [isTransitioning, index, onGoToHomepage, goToSlide])
 
-  const prev = useCallback(() => {
+  // Normal previous slide (used by swipe and keyboard)
+  const prevNormal = useCallback(() => {
     if (isTransitioning) return
     if (index === 0) return
-    // Jump directly to the first image slide (index 0) instead of previous slide
+    goToSlide(index - 1)
+  }, [isTransitioning, index, goToSlide])
+
+  // Back button jumps to first image slide (index 0)
+  const prevButton = useCallback(() => {
+    if (isTransitioning) return
+    if (index === 0) return
     goToSlide(0)
   }, [isTransitioning, index, goToSlide])
+
+  // Close Douglass modal with Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && douglassModalOpen) {
+        setDouglassModalOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [douglassModalOpen])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -79,12 +98,12 @@ export default function PreHomepage({
         next()
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault()
-        prev()
+        prevNormal()
       }
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [next, prev])
+  }, [next, prevNormal])
 
   useEffect(() => {
     const onTouchStart = (e: TouchEvent) => {
@@ -95,7 +114,7 @@ export default function PreHomepage({
       const diff = touchStartX.current - e.changedTouches[0].clientX
       if (Math.abs(diff) < SWIPE_THRESHOLD) return
       if (diff > 0) next()
-      else prev()
+      else prevNormal()
       touchStartX.current = null
     }
     window.addEventListener('touchstart', onTouchStart)
@@ -104,7 +123,7 @@ export default function PreHomepage({
       window.removeEventListener('touchstart', onTouchStart)
       window.removeEventListener('touchend', onTouchEnd)
     }
-  }, [next, prev])
+  }, [next, prevNormal])
 
   const slide = slides[index]
   const isLastSlide = index === slides.length - 1
@@ -165,16 +184,24 @@ export default function PreHomepage({
 
     if (slide.type === "image" && slide.imageSrc) {
       const isDouglassSlide = slide.imageSrc.includes('FredDoug');
+      const handleImageClick = () => {
+        if (isDouglassSlide) setDouglassModalOpen(true);
+      };
       return (
         <div className="w-full flex justify-center">
-          <Image
-            src={slide.imageSrc}
-            alt={slide.imageAlt || "Slide image"}
-            width={1200}
-            height={800}
-            className={`mx-auto object-contain ${isDouglassSlide ? 'w-full' : 'w-[85%] md:w-[70%]'}`}
-            priority
-          />
+          <div onClick={handleImageClick} className={`${isDouglassSlide ? 'cursor-pointer' : ''}`}>
+            <Image
+              src={slide.imageSrc}
+              alt={slide.imageAlt || "Slide image"}
+              width={1200}
+              height={800}
+              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full max-w-full' : 'w-[85%] md:w-[70%]'}`}
+              priority
+            />
+            {isDouglassSlide && (
+              <p className="text-center text-gray-400 text-xs mt-2">Tap to enlarge</p>
+            )}
+          </div>
         </div>
       )
     }
@@ -275,8 +302,8 @@ export default function PreHomepage({
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto flex items-center justify-center px-6 md:px-12">
-        <div className="w-full max-w-[90%] md:max-w-[70%] mx-auto">
+      <div className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0' : 'px-6 md:px-12'}`}>
+        <div className="w-full mx-auto max-w-full">
           <div
             className={`text-center w-full ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
             onClick={!isLastSlide && !isTransitioning ? next : undefined}
@@ -345,13 +372,44 @@ export default function PreHomepage({
             ))}
           </div>
           {index > 0 && (
-            <button onClick={prev} className="text-gray-500 text-xs underline hover:text-gray-300">
+            <button onClick={prevButton} className="text-gray-500 text-xs underline hover:text-gray-300">
               ← Back
             </button>
           )}
         </div>
         <p className="text-gray-500 text-xs">{index + 1} / {slides.length}</p>
       </div>
+
+      {/* Modal for Douglass image */}
+      <AnimatePresence>
+        {douglassModalOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setDouglassModalOpen(false)}
+            aria-hidden="true"
+          >
+            <div className="relative max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={() => setDouglassModalOpen(false)}
+                className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+              <Image
+                src={slide.imageSrc}
+                alt="Frederick Douglass quote – enlarged"
+                width={1200}
+                height={800}
+                className="w-full h-auto object-contain rounded-xl"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
