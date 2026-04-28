@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 5.6 – fixed desktop click (removed onMouseDown, cursor pointer shows reliably)
+// VERSION: 5.7 – whole area clickable, smaller dots
 
 'use client'
 
@@ -302,16 +302,17 @@ export default function PreHomepage({
         </button>
       </div>
 
-      <div className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0' : 'px-6 md:px-12'}`}>
+      {/* CLICKABLE AREA: entire flex container */}
+      <div
+        className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0' : 'px-6 md:px-12'}`}
+        style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
+        onClick={!isLastSlide && !isTransitioning ? next : undefined}
+        onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
+        role="button"
+        tabIndex={!isLastSlide ? 0 : -1}
+      >
         <div className="w-full mx-auto max-w-full">
-          <div
-            className="text-center w-full"
-            style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
-            onClick={!isLastSlide && !isTransitioning ? next : undefined}
-            onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
-            role="button"
-            tabIndex={!isLastSlide ? 0 : -1}
-          >
+          <div className="text-center w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
@@ -365,7 +366,7 @@ export default function PreHomepage({
               <button
                 key={i}
                 onClick={() => goToSlide(i)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
+                className={`w-1 h-1 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
                   i === index
                     ? 'bg-green scale-125 shadow-[0_0_6px_rgba(61,220,132,0.6)]'
                     : 'bg-gray-600 opacity-60 hover:bg-gray-400'
