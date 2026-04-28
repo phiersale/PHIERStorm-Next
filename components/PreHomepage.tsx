@@ -331,7 +331,7 @@ export default function PreHomepage({
                 {renderBody()}
                 {isLastSlide && (
                   <div className="mt-6 space-y-2">
-                    <p className="text-gray-400 text-sm animate-pulse">✨ Press space bar, Enter, or click anywhere ✨</p>
+                    <p className="text-gray-400 text-sm animate-pulse">✨ Click/tap anywhere, or press space/enter ✨</p>
                     <p className="text-gray-500 text-xs">Or use the buttons below ↓</p>
                   </div>
                 )}
