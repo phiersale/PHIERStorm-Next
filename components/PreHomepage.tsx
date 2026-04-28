@@ -195,7 +195,7 @@ export default function PreHomepage({
               alt={slide.imageAlt || "Slide image"}
               width={1200}
               height={800}
-              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full' : 'w-[85%] md:w-[70%]'}`}
+              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full md:w-[70%]' : 'w-[85%] md:w-[70%]'}`}
               priority
             />
             {isDouglassSlide && (
@@ -304,7 +304,7 @@ export default function PreHomepage({
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
-        className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0' : 'px-6 md:px-12'}`}
+        className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12' : 'px-6 md:px-12'}`}
         style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
         onClick={!isLastSlide && !isTransitioning ? next : undefined}
         onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
