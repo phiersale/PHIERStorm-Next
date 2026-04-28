@@ -120,12 +120,15 @@ export default function MainHomePage() {
     document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
   }, [])
 
-  const makeKeyboardClickable = (handler: () => void) => (e: React.KeyboardEvent) => {
+  const makeKeyboardClickable = (handler: () => void) => {
+  return (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
       handler()
     }
   }
+}
+
   return (
     <>
       <div className="bg-amber-600 text-black text-center py-2 text-sm font-bold">

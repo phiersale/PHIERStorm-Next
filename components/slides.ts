@@ -1,4 +1,4 @@
-// VERSION: 4.4.0 – added Frederick Douglass image slide between core principle and proof
+// VERSION: 4.4.1 – added title to slide 5 & mobileScale for Douglass quote
 
 const slides = [
   // 0 — IMAGE (ANCHOR)
@@ -46,20 +46,22 @@ const slides = [
 
   // 4 — CORE PRINCIPLE (CLEAN, NO TITLE – DOUGLASS QUOTE IS ON THE IMAGE)
   {
-    title: "",
+    title: "Outrage doesn’t create change.",
     body: [
-      "Outrage doesn’t create change.",
-      "Leverage does.",
-      "But only if it's organized — district-level, online, and visible."
+      "Outrage doesn’t create change. Neither does hate or blame",
+      "Only leverage does.",
+      "If it's organized — district-level, online, and visible."
     ],
     greenLines: [1, 2]
   },
 
-  // 5 — NEW: FREDERICK DOUGLASS IMAGE SLIDE
+  // 5 — FREDERICK DOUGLASS IMAGE SLIDE (title added, +15% larger on mobile)
   {
     type: "image",
+    title: "About Power",               // <-- ADDED: matches other title slides
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
-    imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
+    imageAlt: "Frederick Douglass – Power concedes nothing without a demand",
+    mobileScale: 1.15                         // <-- ADDED: makes image 15% larger on mobile
   },
 
   // 6 — PROOF (UPDATED)
@@ -105,7 +107,7 @@ const slides = [
   },
 
   // 10 — BRAND LOCK (ACRONYM) – was slide 9
-   {
+  {
     title: "PHIERS",
     body: [
       { letter: "P", word: "POWER" },
