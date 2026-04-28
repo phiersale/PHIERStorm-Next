@@ -164,7 +164,7 @@ export default function PreHomepage({
     }
 
     if (slide.type === "image" && slide.imageSrc) {
-      const useFullWidth = slide.fullWidthOnMobile === true;
+      const isDouglassSlide = slide.imageSrc.includes('FredDoug');
       return (
         <div className="w-full flex justify-center">
           <Image
@@ -172,7 +172,7 @@ export default function PreHomepage({
             alt={slide.imageAlt || "Slide image"}
             width={1200}
             height={800}
-            className={`mx-auto object-contain ${useFullWidth ? 'w-full md:w-[85%]' : 'w-[85%] md:w-[70%]'}`}
+            className={`mx-auto object-contain ${isDouglassSlide ? 'w-full' : 'w-[85%] md:w-[70%]'}`}
             priority
           />
         </div>
