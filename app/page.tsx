@@ -35,60 +35,65 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
   }, [onComplete])
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full px-3 pt-1 pb-2 text-center">
-      <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-        <Image
-          src="/images/PHIERS-Pause.png"
-          alt="PHIERS - Pause"
-          width={204}
-          height={61}
-          className="mx-auto max-w-[80%] h-auto"
-          priority
-        />
-      </motion.div>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: subphase === 'breath' ? 1 : 1 }}
-        transition={{ duration: 0.6 }}
-        className="text-white text-xl sm:text-2xl md:text-3xl font-bold mb-2"
-      >
-        Take a deep breath.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: subphase === 'description' ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
-        className="space-y-0.5 mt-1 mb-4"
-      >
-        <p className="text-gray-300 text-base sm:text-lg md:text-xl">
-          What you’re about to see is simple.
-        </p>
-        <p className="text-gray-300 text-base sm:text-lg md:text-xl">
-          It changes the balance of power... to you.
-        </p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: subphase === 'description' ? 1 : 0 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        className="w-full flex justify-center mb-4"
-      >
-        <Image
-          src="/images/Congress-Is_Anybody_Home.jpg"
-          alt="Congress Is Anybody Home"
-          width={440}
-          height={267}
-          className="w-[70%] max-w-[290px] h-auto rounded-md"
-          priority
-        />
-      </motion.div>
-      <button
-        onClick={onComplete}
-        className="text-green/60 underline hover:text-green text-sm sm:text-base"
-      >
-        Continue →
-      </button>
+    <div className="h-full w-full flex flex-col items-center justify-evenly px-6 py-12 text-center">
+      <div className="w-full max-w-md mx-auto">
+        <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
+          <Image
+            src="/images/PHIERS-Pause.png"
+            alt="PHIERS - Pause"
+            width={240}
+            height={72}
+            className="mx-auto w-auto max-w-[80%] h-auto"
+            priority
+          />
+        </motion.div>
+      </div>
 
+      <div className="space-y-6">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: subphase === 'breath' ? 1 : 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-white text-2xl sm:text-3xl md:text-4xl font-bold"
+        >
+          Take a deep breath.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: subphase === 'description' ? 1 : 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-2 text-gray-300 text-base sm:text-lg md:text-xl max-w-md mx-auto"
+        >
+          <p>What you’re about to see is simple.</p>
+          <p>It changes the balance of power... to you.</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: subphase === 'description' ? 1 : 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="w-full flex justify-center my-4"
+        >
+          <Image
+            src="/images/Congress-Is_Anybody_Home.jpg"
+            alt="Congress Is Anybody Home"
+            width={380}
+            height={231}
+            className="w-4/5 max-w-[340px] h-auto rounded-md shadow-lg"
+            priority
+          />
+        </motion.div>
+
+        <motion.button
+          animate={{ opacity: subphase === 'description' ? 1 : 0 }}
+          transition={{ delay: 0.8, duration: 0.4 }}
+          onClick={onComplete}
+          className="mt-6 px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition text-lg"
+        >
+          Continue →
+        </motion.button>
+      </div>
     </div>
   )
 }
