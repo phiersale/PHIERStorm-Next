@@ -64,7 +64,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           What you’re about to see is simple.
         </p>
         <p className="text-gray-300 text-base sm:text-lg md:text-xl">
-          It changes the balance of power.
+          It changes the balance of power... to you.
         </p>
       </motion.div>
       <motion.div
@@ -103,14 +103,22 @@ export default function Page() {
   const readingLines = [
     { type: 'image' },
     { type: 'spacer' },
-    { type: 'html', content: "<div class='text-center'><div class='text-xl md:text-2xl font-bold text-green mb-0.5'>Less than 3 minutes</div><div class='text-lg md:text-xl text-gray-300'>can create leverage.</div></div>" },
+    { type: 'text', content: "Things are moving fast." },
+    { type: 'text', content: "Three minutes can change that." },
     { type: 'spacer' },
-    { type: 'text', content: "Congress doesn’t respond to voters." },
-    { type: 'text', content: "They respond to pressure.", isPressureLine: true },
+    { type: 'text', content: "Congress doesn't respond to voters." },
+    {
+      type: 'text',
+      content: "It responds to pressure.",
+      isPressureLine: true
+    },
     { type: 'spacer' },
-    { type: 'html', content: "<strong class='text-green'>PHIERS creates that pressure.</strong>" },
+    { type: 'text', content: "PHIERS puts you on record." },
+    { type: 'text', content: "Records become leverage." },
+    { type: 'text', content: "Leverage becomes pressure." },
+    { type: 'text', content: "Pressure forces action." },
     { type: 'spacer' },
-    { type: 'text', content: "Here’s how it works." }
+    { type: 'text', content: "Here's how it works." }
   ]
 
   useEffect(() => {
