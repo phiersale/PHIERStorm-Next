@@ -35,7 +35,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
   }, [onComplete])
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-evenly px-6 py-12 text-center">
+    <div className="h-full w-full flex flex-col items-center justify-center px-6 pt-6 pb-12 text-center">
       <div className="w-full max-w-md mx-auto">
         <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
           <Image
