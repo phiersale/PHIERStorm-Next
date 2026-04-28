@@ -120,7 +120,7 @@ const slides = [
     ],
     customLayout: true,
     punchLine: "Power held in every representative's seat."
-  },
+  }, 
 
   // 11 — DEMAND + CTA (FINAL SLIDE) – was slide 10
   {
