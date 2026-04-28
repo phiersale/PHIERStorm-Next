@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 5.5 – fixed JSX structure, full‑width Douglass image on mobile, modal works
+// VERSION: 5.6 – fixed desktop click (removed onMouseDown, cursor pointer shows reliably)
 
 'use client'
 
@@ -305,9 +305,10 @@ export default function PreHomepage({
       <div className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0' : 'px-6 md:px-12'}`}>
         <div className="w-full mx-auto max-w-full">
           <div
-            className={`text-center w-full ${!isLastSlide ? 'cursor-pointer active:opacity-80 transition-opacity' : ''}`}
+            className="text-center w-full"
+            style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
             onClick={!isLastSlide && !isTransitioning ? next : undefined}
-            onMouseDown={!isLastSlide && !isTransitioning ? next : undefined}
+            onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
             role="button"
             tabIndex={!isLastSlide ? 0 : -1}
           >
