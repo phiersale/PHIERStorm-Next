@@ -1,5 +1,5 @@
 // FILE: app/homepage-teeth/page.tsx
-//  Version 1.0.5
+//  Version 1.1.0
 
 'use client'
 
@@ -44,6 +44,18 @@ export default function HomepageTeethPage() {
   // Scroll to top function with useCallback
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const btt = document.getElementById('back-to-top')
+      if (btt) {
+        if (window.scrollY > 400) btt.classList.add('visible')
+        else btt.classList.remove('visible')
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
@@ -241,8 +253,8 @@ export default function HomepageTeethPage() {
 
         {/* Closing Statement */}
         <section className="container section text-center pt-12"><p className="font-condensed font-bold text-base text-gray-400 leading-relaxed">PHIERS is built for one purpose:<br />giving the public the leverage we've always deserved.</p><p className="font-condensed font-bold text-white mt-2">Now it's organized.</p></section>
+      </main>
       <JumpToFooter />
-      <Footer />
 
       {/* Navigation – back and forward */}
         <div className="container py-8 flex flex-col sm:flex-row justify-center gap-4">
@@ -278,10 +290,9 @@ export default function HomepageTeethPage() {
         .video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
       `}</style>
 
-      <script dangerouslySetInnerHTML={{ __html: `window.addEventListener('scroll', function() { var btt = document.getElementById('back-to-top'); if (btt) { if (window.scrollY > 400) { btt.classList.add('visible'); } else { btt.classList.remove('visible'); } } });` }} />
     </>
   )
 }
 
 // FILE: app/homepage-teeth/page.tsx
-//  Version 1.0.5
+//  Version 1.1.0
