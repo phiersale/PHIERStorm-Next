@@ -1,4 +1,4 @@
-// VERSION: 4.4.1 – added title to slide 5 & mobileScale for Douglass quote
+// VERSION: 4.4.2 – added title to slide 5 & mobileScale for Douglass quote
 
 const slides = [
   // 0 — IMAGE (ANCHOR)
@@ -10,7 +10,7 @@ const slides = [
 
   // 1 — HOOK (SERIOUS, NOT SALESY)
   {
-    title: "It's Not Too Late.",
+    title: "Congress responds to power.",
     body: [
       "It takes less than 3 minutes to force a response from Congress.",
       "Right now, they don’t respond because they don’t have to.",
