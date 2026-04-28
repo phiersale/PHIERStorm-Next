@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 7.0.3 – added PHIERS logo at the top of the main content
+// VERSION: 7.0.3 – added PHIERS logo at top of main content
 
 'use client'
 
@@ -121,13 +121,13 @@ export default function MainHomePage() {
   }, [])
 
   const makeKeyboardClickable = (handler: () => void) => {
-  return (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handler()
+    return (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        handler()
+      }
     }
   }
-}
 
   return (
     <>
@@ -235,7 +235,6 @@ export default function MainHomePage() {
                 <p className="text-center text-gray-400 text-xs sm:text-sm mt-1">The PHIERS framework</p>
               </div>
             </div>
-            {/* Hint to scroll */}
             <p className="text-center text-gray-500 text-xs mt-4 animate-pulse">
               ↓ Scroll down for the full vision ↓
             </p>
@@ -915,18 +914,19 @@ export default function MainHomePage() {
               <p className="text-white text-lg font-semibold">And once it reaches scale — it sustains itself.</p>
             </div>
             <p className="text-green text-2xl font-bold mb-6">The only variable is you.</p>
-                <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
-          <Button href="/petition" variant="primary" fullWidth>✍ BE HEARD</Button>
-          <Button onClick={scrollToMechanism} variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
-        </div>
-        <div className="mt-4">
-          <Link
-            href="/homepage-teeth"
-            className="inline-block px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition text-center"
-          >
-            Next: Homepage Teeth →
-          </Link>
-        </div>
+            <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
+              <Button href="/petition" variant="primary" fullWidth>✍ BE HEARD</Button>
+              <Button onClick={scrollToMechanism} variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
+            </div>
+            <div className="mt-4">
+              <Link
+                href="/homepage-teeth"
+                className="inline-block px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition text-center"
+              >
+                Next: Homepage Teeth →
+              </Link>
+            </div>
+          </div>
         </section>
       </main>
 
@@ -1052,6 +1052,3 @@ export default function MainHomePage() {
     </>
   )
 }
-
-// FILE: components/MainHomePage.tsx (end)
-// VERSION: 7.0.3
