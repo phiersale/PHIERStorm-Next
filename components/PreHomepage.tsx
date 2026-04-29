@@ -191,9 +191,14 @@ export default function PreHomepage({
 
     if (slide.type === "image" && slide.imageSrc) {
       const isDouglassSlide = slide.imageSrc.includes('FredDoug');
+      const isPowerlessSlide = slide.imageSrc.includes('You_Are_Not_Powerless');
       const handleImageClick = () => {
         if (isDouglassSlide) setDouglassModalOpen(true);
       };
+      let widthClass = 'w-[57%] md:w-[47%]';
+      if (isPowerlessSlide) {
+        widthClass = 'w-[40%] md:w-[30%]';   // adjust these percentages as needed
+      }
       return (
         <div className="w-full flex justify-center">
           <div onClick={handleImageClick} className={`${isDouglassSlide ? 'cursor-pointer w-full' : ''}`}>
@@ -202,7 +207,7 @@ export default function PreHomepage({
               alt={slide.imageAlt || "Slide image"}
               width={1200}
               height={800}
-              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full md:w-[60%] max-h-[60vh] md:max-h-[45vh]' : 'w-[85%] md:w-[70%]'}`}
+              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full md:w-[60%] max-h-[60vh] md:max-h-[45vh]' : widthClass}`}
               priority
             />
             {isDouglassSlide && (
@@ -373,7 +378,7 @@ export default function PreHomepage({
               <button
                 key={i}
                 onClick={() => goToSlide(i)}
-                className={`w-[2px] h-[2px] rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
+                className={`w-[1px] h-[1px] rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
                   i === index
                     ? 'bg-green scale-125 shadow-[0_0_6px_rgba(61,220,132,0.6)]'
                     : 'bg-gray-600 opacity-60 hover:bg-gray-400'

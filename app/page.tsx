@@ -35,7 +35,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
   }, [onComplete])
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center px-6 pt-6 pb-12 text-center">
+    <div className="h-full w-full flex flex-col items-center justify-start px-6 pt-12 pb-12 text-center">
       <div className="w-full max-w-md mx-auto">
         <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
           <Image
@@ -43,13 +43,13 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
             alt="PHIERS - Pause"
             width={240}
             height={72}
-            className="mx-auto w-auto max-w-[80%] h-auto"
+            className="mx-auto w-auto max-w-[80%] h-auto drop-shadow-[0_0_6px_rgba(61,220,132,0.3)]"
             priority
           />
         </motion.div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: subphase === 'breath' ? 1 : 1 }}
@@ -89,7 +89,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           animate={{ opacity: subphase === 'description' ? 1 : 0 }}
           transition={{ delay: 0.8, duration: 0.4 }}
           onClick={onComplete}
-          className="mt-6 px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition text-lg"
+          className="text-green underline decoration-1 hover:text-green/80 transition text-base sm:text-lg"
         >
           Continue →
         </motion.button>
@@ -200,7 +200,7 @@ export default function Page() {
             alt="You Are Not Powerless"
             width={1200}
             height={800}
-            className="w-[95%] max-w-[95%] h-auto object-contain md:h-full mx-auto"
+            className="w-[80%] md:w-[60%] max-w-2xl h-auto object-contain mx-auto"
             priority
           />
         </motion.div>
