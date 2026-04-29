@@ -150,7 +150,7 @@ export default function PreHomepage({
     if (slide.customLayout) {
       const items = slide.body
       return (
-        <div className="flex flex-col items-center space-y-4 pb-6 pt-0">
+        <div className="flex flex-col items-center space-y-4 pb-6 pt-0"
           <div className="mb-2">
             <Image
               src="/images/PHIERS_Logo.png"
