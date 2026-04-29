@@ -216,7 +216,7 @@ export default function Page() {
   if (stage === 'reading') {
     return (
       <div
-        className="fixed inset-0 bg-black flex items-center justify-center px-6 text-center"
+        className="fixed inset-0 bg-black flex flex-col items-center justify-start overflow-y-auto py-12 px-6"
         onClick={() => {
           if (!readingComplete) {
             setReadingVisibleCount(readingLines.length)
@@ -226,7 +226,7 @@ export default function Page() {
           }
         }}
       >
-        <div className="max-w-xl space-y-1.5 md:space-y-2 w-full">
+        <div className="max-w-xl space-y-3 md:space-y-4 w-full text-center">
           {readingLines.map((line, i) => {
             if (i >= readingVisibleCount) return null
 
