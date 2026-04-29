@@ -169,14 +169,7 @@ export default function PreHomepage({
                     {item.letter}
                   </span>
                   <span className="text-[11px] sm:text-[13px] md:text-sm font-bold text-gray-200 uppercase tracking-wide">
-                    {item.letter === 'R' ? (
-                      <>
-                        <span className="md:hidden">REPS</span>
-                        <span className="hidden md:inline">REPRESENTATIVES</span>
-                      </>
-                    ) : (
-                      item.word
-                    )}
+                    {item.letter === 'R' ? 'REPS' : item.word}
                   </span>
                 </div>
               ))}
