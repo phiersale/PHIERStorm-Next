@@ -1051,7 +1051,7 @@ export default function MainHomePage() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }
 
