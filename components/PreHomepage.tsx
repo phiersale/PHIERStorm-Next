@@ -150,8 +150,8 @@ export default function PreHomepage({
     if (slide.customLayout) {
       const items = slide.body
       return (
-        <div className="flex flex-col items-center space-y-4 pb-6 pt-0"
-          <div className="mb-2">
+        <div className="flex flex-col items-center space-y-4 pb-6 pt-0">
+            <div className="mb-2">
             <Image
               src="/images/PHIERS_Logo.png"
               alt="PHIERS Logo"
@@ -162,7 +162,7 @@ export default function PreHomepage({
             />
           </div>
           <div className="w-full px-2 sm:px-6">
-            <div className="grid grid-cols-6 gap-3 sm:gap-4 justify-items-center w-full" style={{ gridAutoFlow: 'row' }}>
+            <div className="grid grid-cols-6 gap-3 sm:gap-4 justify-items-center mx-auto w-full min-w-full" style={{ gridAutoFlow: 'row', display: 'grid' }}>
               {items.map((item: { letter: string; word: string }, idx: number) => (
                 <div key={idx} className="flex flex-col items-center space-y-3 sm:space-y-2">
                   <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
@@ -182,7 +182,7 @@ export default function PreHomepage({
               ))}
             </div>
           </div>
-          <p className="text-sm md:text-base font-normal text-gray-500 text-center px-2 mt-6">
+          <p className="text-sm md:text-base font-normal text-gray-500 text-center px-2 mt-6 mb-6">
             {slide.punchLine}
           </p>
         </div>

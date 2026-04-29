@@ -236,7 +236,7 @@ export default function Page() {
                     alt="Things Changing Fast"
                     width={120}
                     height={120}
-                    className="mx-auto w-[45%] h-auto"
+                    className="mx-auto w-[75%] sm:w-[45%] h-auto"
                   />
                 </motion.div>
               )

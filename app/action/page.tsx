@@ -87,6 +87,14 @@ export default function ActionPage() {
           <p className="text-gray-400 mb-6">That's how pressure forms. That's how Congress responds.</p>
         </div>
 
+        <div className="container text-center mt-2">
+          <button
+            onClick={() => window.location.href = '/'}
+            className="px-4 py-1.5 text-xs text-gray-400 underline hover:text-gray-300 transition"
+          >
+            ← Back to Main Site
+          </button>
+        </div>
         <hr className="border-green/20" />
 
         {/* ✓ Anchor line added after Hero section */}
@@ -126,7 +134,7 @@ export default function ActionPage() {
             <p className="text-body mb-2">Add your name to your district.</p>
             <p className="text-body mb-2">Not symbolic. Not a comment.</p>
             <p className="text-body mb-4">A number tied to your representative. That's where pressure starts.</p>
-            <Button href="/petition" variant="primary" fullWidth>✍ ADD MY NAME</Button>
+            <Button href="/petition" variant="primary">✍ ADD MY NAME</Button>
           </div>
         </section>
 
@@ -177,17 +185,29 @@ export default function ActionPage() {
 
         <hr className="border-green/20" />
 
-        {/* Step 3 - Organize Your District */}
+        {/* Step 3 - Support the Movement (optional, no pressure) */}
         <section className="container section">
-          <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[600px] mx-auto">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-full bg-green text-bg-deep flex items-center justify-center font-condensed font-black text-lg">3</div>
-              <h2 className="font-display text-2xl text-white">ORGANIZE YOUR DISTRICT</h2>
+          <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[600px] mx-auto text-center">
+            <div className="flex items-center gap-3 mb-3 justify-center">
+              <div className="w-8 h-8 rounded-full bg-green text-bg-deep flex items-center justify-center font-condensed font-black text-sm">3</div>
+              <h2 className="font-display text-xl text-white">SUPPORT THE MOVEMENT</h2>
             </div>
-            <p className="text-body mb-2">Sharing builds momentum. Organization converts it into pressure.</p>
-            <p className="text-body mb-4">Every district needs people turning names into accountability. That's how 1,500 happens. That's how representatives are forced to respond.</p>
-            <p className="font-condensed text-lg text-green font-bold mb-4">If you're willing to step up — we'll connect you directly.</p>
-            <Button href="/organizers" variant="secondary" fullWidth>✊ ORGANIZE YOUR DISTRICT</Button>
+            <p className="text-gray-400 text-sm mb-4">If you'd like to help further, here are two simple ways.</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch">
+              <a
+                href="/donate"
+                className="bg-green/20 text-green border border-green/40 py-2 px-4 rounded-md hover:bg-green/30 transition text-center text-sm font-semibold"
+              >
+                💚 Donate
+              </a>
+              <a
+                href="/organizers"
+                className="bg-gray-700/50 text-gray-300 border border-gray-600 py-2 px-4 rounded-md hover:bg-gray-700 transition text-center text-sm"
+              >
+                ✊ Learn about organizing
+              </a>
+            </div>
+            <p className="text-gray-500 text-xs mt-3">No pressure. Every bit helps.</p>
           </div>
         </section>
 
@@ -222,19 +242,12 @@ export default function ActionPage() {
 
         <hr className="border-green/20" />
 
-        {/* Final CTA */}
+        {/* Final CTA – soft return to main site */}
         <section className="container section text-center">
-          <div className="bg-bg-dark border-2 border-green rounded-xl p-6 max-w-[600px] mx-auto">
-            <p className="font-condensed text-lg text-gold font-bold mb-3">District counts begin compiling immediately.</p>
-            <p className="text-white text-lg mb-1">Your name.</p>
-            <p className="text-white text-lg mb-1">Your district.</p>
-            <p className="text-white text-lg mb-3">On the record.</p>
-            <p className="text-body mb-4">Counted. Delivered. Impossible to ignore.</p>
-            
-            <div className="flex flex-col gap-3 max-w-md mx-auto">
-              <Button href="/petition" variant="primary" fullWidth>✍ BE COUNTED</Button>
-              <Button href="/organizers" variant="secondary" fullWidth>✊ I ORGANIZE</Button>
-            </div>
+          <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[500px] mx-auto">
+            <p className="text-gray-300 text-sm mb-4">You've already taken the most important step.</p>
+            <Button href="/" variant="primary">← RETURN TO MAIN SITE</Button>
+            <p className="text-gray-500 text-xs mt-3">Explore more or share this page.</p>
           </div>
         </section>
       </main>
