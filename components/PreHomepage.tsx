@@ -210,9 +210,6 @@ export default function PreHomepage({
               className={`mx-auto object-contain ${isDouglassSlide ? 'w-[70%] md:w-[50%]' : widthClass}`}
               priority
             />
-            {isDouglassSlide && (
-              <p className="text-center text-gray-400 text-xs mt-2">Tap to enlarge</p>
-            )}
           </div>
         </div>
       )
