@@ -62,16 +62,16 @@ const slides = [
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 6 — PROOF (threshold is proven)
+   // 6 — PROOF (threshold is proven)
   {
     title: "The threshold is proven.",
     body: [
-      "3.5% organized involvement forces change — Harvard Kennedy School",
-      "1,500 constituents in a district can't be ignored — Ralph Nader",
+      "3.5% organized involvement forces change\n(Harvard Kennedy School)",
+      "1,500 constituents in a district can't be ignored\n(Ralph Nader)",
       "435 districts. One coordinated demand.",
       "The math works. The only variable is turnout."
     ],
-    greenLines: [3]   // last line green
+    greenLines: [3]
   },
 
   // 7 — MECHANISM (how it works, consequence at end)

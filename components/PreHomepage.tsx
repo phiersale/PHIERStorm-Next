@@ -150,7 +150,7 @@ export default function PreHomepage({
     if (slide.customLayout) {
       const items = slide.body
       return (
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center space-y-4 pb-6 pt-0">
           <div className="mb-2">
             <Image
               src="/images/PHIERS_Logo.png"
@@ -162,7 +162,7 @@ export default function PreHomepage({
             />
           </div>
           <div className="w-full px-2 sm:px-6">
-            <div className="grid grid-cols-6 gap-3 sm:gap-4 justify-items-center mx-auto w-full">
+            <div className="grid grid-cols-6 gap-3 sm:gap-4 justify-items-center w-full" style={{ gridAutoFlow: 'row' }}>
               {items.map((item: { letter: string; word: string }, idx: number) => (
                 <div key={idx} className="flex flex-col items-center space-y-3 sm:space-y-2">
                   <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
@@ -182,7 +182,7 @@ export default function PreHomepage({
               ))}
             </div>
           </div>
-          <p className="text-base md:text-lg font-normal text-gray-400 text-center px-2 mt-4">
+          <p className="text-sm md:text-base font-normal text-gray-500 text-center px-2 mt-6">
             {slide.punchLine}
           </p>
         </div>
@@ -201,13 +201,13 @@ export default function PreHomepage({
       }
       return (
         <div className="w-full flex justify-center">
-          <div onClick={handleImageClick} className={`${isDouglassSlide ? 'cursor-pointer w-full' : ''}`}>
+          <div onClick={handleImageClick} className={`${isDouglassSlide ? 'cursor-pointer w-full mb-8' : ''}`}>
             <Image
               src={slide.imageSrc}
               alt={slide.imageAlt || "Slide image"}
               width={1200}
               height={800}
-              className={`mx-auto object-contain ${isDouglassSlide ? 'w-full md:w-[60%] max-h-[60vh] md:max-h-[45vh]' : widthClass}`}
+              className={`mx-auto object-contain ${isDouglassSlide ? 'w-[70%] md:w-[50%]' : widthClass}`}
               priority
             />
             {isDouglassSlide && (
@@ -316,7 +316,7 @@ export default function PreHomepage({
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
-        className={`flex-1 overflow-y-auto flex items-center justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-8 md:pt-12' : 'px-6 md:px-12'}`}
+        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-12 md:pt-16 pb-48' : 'px-6 md:px-12 pt-12 pb-12'}`}
         style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
         onClick={!isLastSlide && !isTransitioning ? next : undefined}
         onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
@@ -343,9 +343,8 @@ export default function PreHomepage({
                 {renderTitle()}
                 {renderBody()}
                 {isLastSlide && (
-                  <div className="mt-6 space-y-2">
-                    <p className="text-gray-400 text-sm animate-pulse">✨ Click/tap anywhere, or press space/enter ✨</p>
-                    <p className="text-gray-500 text-xs">Or use the buttons below ↓</p>
+                  <div className="mt-6">
+                    {/* no instructional text */}
                   </div>
                 )}
               </motion.div>
@@ -378,19 +377,15 @@ export default function PreHomepage({
               <button
                 key={i}
                 onClick={() => goToSlide(i)}
-                className={`w-[1px] h-[1px] rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
+                className={`w-[1px] h-[1px] rounded-full transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-green/15 ${
                   i === index
-                    ? 'bg-green shadow-[0_0_2px_rgba(61,220,132,0.2)]'
-                    : 'bg-gray-900 opacity-10'
+                    ? 'bg-green/20'
+                    : 'bg-gray-800 opacity-5 hover:opacity-15'
                 }`}
               />
             ))}
           </div>
-          {index > 0 && (
-            <button onClick={prevButton} className="text-gray-500 text-xs underline hover:text-gray-300">
-              ← Back
-            </button>
-          )}
+
         </div>
         <p className="text-gray-500 text-xs">{index + 1} / {slides.length}</p>
       </div>
