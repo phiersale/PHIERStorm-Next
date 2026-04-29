@@ -35,7 +35,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
   }, [onComplete])
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full px-4 py-8">
+    <div className="flex flex-col items-center justify-center h-full w-full px-4 py-8" onClick={onComplete}>
       <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center space-y-3 text-center">
         <motion.div
           initial={{ opacity: 0 }}
@@ -91,9 +91,9 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           animate={{ opacity: subphase === 'description' ? 1 : 0 }}
           transition={{ delay: 0.8, duration: 0.4 }}
           onClick={onComplete}
-          className="text-green underline decoration-1 hover:text-green/80 transition text-xs sm:text-sm"
+          className="px-6 py-2 bg-green text-black font-semibold rounded-lg hover:bg-green/80 transition text-sm"
         >
-          Continue →
+          Start →
         </motion.button>
       </div>
     </div>
@@ -199,7 +199,7 @@ export default function Page() {
           />
         </motion.div>
         <p className="absolute bottom-10 text-gray-500 text-sm text-center w-full">
-          Press space or enter →
+          Tap anywhere, or press space/enter →
         </p>
       </div>
     )

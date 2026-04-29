@@ -25,6 +25,7 @@ export default function PreHomepage({
   const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [douglassModalOpen, setDouglassModalOpen] = useState(false)
+  const [showSwipeHint, setShowSwipeHint] = useState(true)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const mounted = useRef(true)
@@ -36,6 +37,14 @@ export default function PreHomepage({
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
+
+    // Hide swipe hint after 3 seconds on first slide
+  useEffect(() => {
+    if (index === 1 && showSwipeHint) {
+      const timer = setTimeout(() => setShowSwipeHint(false), 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [index, showSwipeHint])
 
   const clearTimer = () => {
     if (timeoutRef.current) {
@@ -332,6 +341,11 @@ export default function PreHomepage({
               >
                 {renderTitle()}
                 {renderBody()}
+                {index === 1 && showSwipeHint && (
+                  <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-sm px-4 py-2 rounded-full pointer-events-none animate-fadeOut z-50">
+                    ← Swipe or press → for next slide
+                  </div>
+                )}
                 {isLastSlide && (
                   <div className="mt-6">
                     {/* no instructional text */}
