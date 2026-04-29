@@ -35,9 +35,13 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
   }, [onComplete])
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-start px-6 pt-12 pb-12 text-center">
+    <div className="h-full w-full flex flex-col items-center justify-start px-6 pt-2 pb-12 text-center overflow-y-auto">
       <div className="w-full max-w-md mx-auto">
-        <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
           <Image
             src="/images/PHIERS-Pause.png"
             alt="PHIERS - Pause"
@@ -49,12 +53,12 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         </motion.div>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-3">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: subphase === 'breath' ? 1 : 1 }}
           transition={{ duration: 0.6 }}
-          className="text-white text-2xl sm:text-3xl md:text-4xl font-bold"
+          className="text-white text-xl sm:text-2xl md:text-3xl font-bold"
         >
           Take a deep breath.
         </motion.p>
@@ -80,7 +84,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
             alt="Congress Is Anybody Home"
             width={380}
             height={231}
-            className="w-4/5 max-w-[340px] h-auto rounded-md shadow-lg"
+            className="w-1/2 max-w-[200px] h-auto rounded-md shadow-lg"
             priority
           />
         </motion.div>
@@ -89,7 +93,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           animate={{ opacity: subphase === 'description' ? 1 : 0 }}
           transition={{ delay: 0.8, duration: 0.4 }}
           onClick={onComplete}
-          className="text-green underline decoration-1 hover:text-green/80 transition text-base sm:text-lg"
+          className="text-green underline decoration-1 hover:text-green/80 transition text-sm sm:text-base"
         >
           Continue →
         </motion.button>
@@ -315,13 +319,13 @@ if (stage === 'credibility') {
             setSkipFirstImage(false)
             setStage('prehome')
           }}
-          className="px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition"
+          className="px-4 py-1.5 text-sm border border-green/40 text-green rounded-md hover:bg-green/10 transition"
         >
           ← Back to Slides
         </button>
         <button
           onClick={() => setStage('main')}
-          className="px-6 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
+          className="px-4 py-1.5 text-sm bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
         >
           Continue to Main Site →
         </button>
