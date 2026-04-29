@@ -89,7 +89,7 @@ export default function ActionPage() {
 
         <div className="container text-center mt-2">
           <button
-            onClick={() => window.location.href = '/'}
+            onClick={() => window.location.href = '/home'}
             className="px-4 py-1.5 text-xs text-gray-400 underline hover:text-gray-300 transition"
           >
             ← Back to Main Site
@@ -246,7 +246,7 @@ export default function ActionPage() {
         <section className="container section text-center">
           <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[500px] mx-auto">
             <p className="text-gray-300 text-sm mb-4">You've already taken the most important step.</p>
-            <Button href="/" variant="primary">← RETURN TO MAIN SITE</Button>
+            <Button href="/home" variant="primary">← RETURN TO MAIN SITE</Button>
             <p className="text-gray-500 text-xs mt-3">Explore more or share this page.</p>
           </div>
         </section>
