@@ -307,7 +307,7 @@ export default function PreHomepage({
 
   // ===== MAIN RETURN =====
   return (
-    <div className="h-screen bg-[#050b19] text-white flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-[#050b19] text-white flex flex-col">
       <div className="flex justify-end pr-6 pt-4 pb-2 shrink-0 z-10">
         <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
           Skip →

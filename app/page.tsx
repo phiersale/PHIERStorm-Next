@@ -208,7 +208,7 @@ export default function Page() {
    if (stage === 'reading') {
     return (
       <div
-        className="fixed inset-0 bg-black flex flex-col items-center justify-center px-6"
+        className="fixed inset-0 bg-black flex flex-col items-center justify-start overflow-y-auto px-6 py-8"
         onClick={() => {
           if (!readingComplete) {
             setReadingVisibleCount(readingLines.length)

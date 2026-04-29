@@ -131,7 +131,7 @@ export default function MainHomePage() {
   }
 
   return (
-    <>
+    <div className="min-h-screen">
       <div className="bg-amber-600 text-black text-center py-2 text-sm font-bold">
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
