@@ -35,7 +35,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
   }, [onComplete])
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
+    <div className="flex flex-col items-center justify-center h-full w-full px-4 py-8">
       <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center space-y-3 text-center">
         <motion.div
           initial={{ opacity: 0 }}
@@ -165,7 +165,7 @@ export default function Page() {
 
   if (stage === 'entry') {
     return (
-      <div className="fixed inset-0 bg-black flex items-center justify-center">
+      <div className="fixed inset-0 bg-black flex items-center justify-center overflow-y-auto">
         <div className="w-full max-w-md">
           <PhasedText onComplete={() => setStage('image')} />
         </div>
