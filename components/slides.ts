@@ -105,7 +105,7 @@ const slides = [
     greenLines: [2]   // last line green
   },
 
-  // 10 — ACRONYM (unchanged except "REP'S")
+  // 10 — ACRONYM
   {
     title: "PHIERS",
     body: [

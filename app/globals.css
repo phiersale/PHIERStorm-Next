@@ -92,11 +92,6 @@
     @apply border-border;
   }
 
-  html {
-    scroll-behavior: smooth;
-    overflow-y: scroll; /* Always show vertical scrollbar to prevent white flash */
-  }
-
   body {
     @apply bg-background text-foreground font-body antialiased;
     margin: 0;
@@ -421,3 +416,5 @@ button, .button, a[class*="Button"] {
 html, body {
   overflow-y: auto !important;
 }
+
+/* FILE: app/globals.css */
