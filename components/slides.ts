@@ -1,4 +1,5 @@
-// VERSION: 4.4.2 – added title to slide 5 & mobileScale for Douglass quote
+// FILE: components/slides.ts
+// VERSION: 5.0 – v2 rewrite (escalation logic, earned pivot, no wasted lines)
 
 const slides = [
   // 0 — IMAGE (ANCHOR)
@@ -8,88 +9,84 @@ const slides = [
     imageAlt: "YOU ARE NOT POWERLESS"
   },
 
-  // 1 — HOOK (SERIOUS, NOT SALESY)
+  // 1 — HOOK (escalation first, time stat at the end)
   {
     title: "Congress responds to power.",
     body: [
-      "It takes less than 3 minutes to force a response from Congress.",
-      "Right now, they don’t respond because they don’t have to.",
+      "Right now, they don't have to respond to you.",
       "PHIERS changes that.",
-      "Either they do their job or risk being replaced."
+      "3 minutes. On the record. Consequence if they don't."
     ],
-    greenLines: [0, 3]
+    greenLines: [2]   // last line green
   },
 
-  // 2 — EMOTIONAL TRIGGER (WAR / POWER ABUSE)
+  // 2 — EMOTIONAL TRIGGER (choice, not incompetence)
   {
-    title: "Congress can stop this.",
+    title: "They can stop it.",
     body: [
-      "They are talking escalation.",
-      "They can act — and choose not to.",
-      "More and more people are starting to see it.",
-      "They respond only when the public forces them to."
+      "Wars escalate while Congress watches.",
+      "They have the authority to act.",
+      "They choose not to.",
+      "That's not incompetence. That's a choice."
     ],
-    greenLines: [3]
+    greenLines: [3]   // last line green
   },
 
-  // 3 — ROOT PROBLEM
+  // 3 — ROOT PROBLEM (no solution yet)
   {
     title: "Congress ignores you.",
     body: [
-      "Because they can.",
-      "Nothing forces them to respond.",
-      "They can fix most of what's broken — but choose not to.",
-      "PHIERS makes them answer to you."
+      "Because nothing forces them to respond.",
+      "Not emails. Not calls. Not petitions.",
+      "They can fix most of what's broken.",
+      "They just don't have to."
     ],
-    greenLines: [1, 3]
+    greenLines: [3]   // last line green
   },
 
-  // 4 — CORE PRINCIPLE (CLEAN, NO TITLE – DOUGLASS QUOTE IS ON THE IMAGE)
+  // 4 — CORE PRINCIPLE (outrage doesn't move them)
   {
-    title: "Outrage doesn’t create change.",
+    title: "Outrage doesn't move them.",
     body: [
-      "Outrage doesn’t create change. Neither does hate or blame",
-      "Only leverage does.",
-      "If it's organized — district-level, online, and visible."
+      "Neither does blame. Neither does noise.",
+      "Only organized pressure does.",
+      "District-level. Counted. Visible. On the record."
     ],
-    greenLines: [1, 2]
+    greenLines: [1, 2]   // second and third lines green
   },
 
-  // 5 — FREDERICK DOUGLASS IMAGE SLIDE – full width on mobile for readability
+  // 5 — FREDERICK DOUGLASS IMAGE (unchanged)
   {
     type: "image",
-    title: "Power creates change.",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
-    imageAlt: "Frederick Douglass – Power concedes nothing without a demand",
-    fullWidthOnMobile: true
+    imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 6 — PROOF (UPDATED)
+  // 6 — PROOF (threshold is proven)
   {
-    title: "Our plan works. The milestones are proven.",
+    title: "The threshold is proven.",
     body: [
-      "3.5% involvement forces change — Harvard Kennedy School",
-      "1,500 people in a district can’t be ignored — Ralph Nader",
-      "PHIERS will apply this to all 435 districts",
-      "The only thing missing is you"
+      "3.5% organized involvement forces change — Harvard Kennedy School",
+      "1,500 constituents in a district can't be ignored — Ralph Nader",
+      "435 districts. One coordinated demand.",
+      "The math works. The only variable is turnout."
     ],
-    greenLines: [2]
+    greenLines: [3]   // last line green
   },
 
-  // 7 — MECHANISM (was slide 6)
+  // 7 — MECHANISM (how it works, consequence at end)
   {
-    title: "Here’s how it works.",
+    title: "Here's how it works.",
     body: [
-      "We track how many people in each district go on record.",
-      "Every district counts separately.",
-      "Not opinions — real people, counted.",
-      "At 1,500, representatives are forced to respond.",
-      "Or they risk being replaced."
+      "Every district is tracked separately.",
+      "Real people. On the record. Counted by district.",
+      "At 1,500, your representative must respond.",
+      "Or face being replaced."
     ],
-    greenLines: [2, 3]
+    greenLines: [2, 3]   // two green lines at the end
   },
 
-  // 8 — CONSEQUENCE (was slide 7)
+  // 8 — CONSEQUENCE (large format, no title)
   {
     title: "",
     body: ["Not noise.", "Not opinion.", "Consequence."],
@@ -97,17 +94,18 @@ const slides = [
     largeFormat: true
   },
 
-  // 9 — ORDER OUT OF CHAOS (was slide 8)
+  // 9 — THE MOMENT (renamed from "ORDER OUT OF CHAOS")
   {
-    title: "ORDER OUT OF CHAOS",
+    title: "The landscape is already shifting.",
     body: [
-      "Right now, resignations, investigations, and impeachment proceedings are reshaping the landscape.",
-      "This moment gives the public real leverage."
+      "Resignations. Investigations. Public pressure mounting.",
+      "Congress is more exposed than it has been in decades.",
+      "This is when organized pressure becomes unstoppable."
     ],
-    greenLines: [1]
+    greenLines: [2]   // last line green
   },
 
-  // 10 — BRAND LOCK (ACRONYM) – was slide 9
+  // 10 — ACRONYM (unchanged except "REP'S")
   {
     title: "PHIERS",
     body: [
@@ -115,21 +113,22 @@ const slides = [
       { letter: "H", word: "HELD" },
       { letter: "I", word: "IN" },
       { letter: "E", word: "EVERY" },
-      { letter: "R", word: "REPS" },
+      { letter: "R", word: "REP'S" },
       { letter: "S", word: "SEAT" }
     ],
     customLayout: true,
     punchLine: "Power held in every representative's seat."
-  }, 
+  },
 
-  // 11 — DEMAND + CTA (FINAL SLIDE) – was slide 10
+  // 11 — FINAL CTA (single demand: telehealth)
   {
-    title: "Demand: Congress must reclaim war powers & expand telehealth access.",
+    title: "One demand. On the record.",
     body: [
-      "Get on the record.",
+      "Congress must expand telehealth access — or be replaced.",
       "Name. Email. Zip code.",
-      "Congress must respond or be replaced."
+      "That's all it takes to make them answer."
     ],
+    greenLines: [0, 2],   // first and last line green
     isFinalSlide: true
   }
 ]

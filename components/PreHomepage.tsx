@@ -142,7 +142,7 @@ export default function PreHomepage({
     if (slide.isFinalSlide) {
       return <h1 className="text-base sm:text-xl md:text-4xl font-bold leading-tight mb-4 pt-2">{slide.title}</h1>
     }
-    return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">{slide.title}</h1>
+    return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">{slide.title}</h1>
   }
 
   // ===== BODY RENDERING =====
@@ -354,7 +354,7 @@ export default function PreHomepage({
         </div>
       </div>
 
-      <div className="shrink-0 flex flex-col items-center gap-3 py-4 border-t border-gray-800/50">
+      <div className="shrink-0 flex flex-col items-center gap-3 py-4 border-t border-gray-800/50 mt-4">
         {isLastSlide && (
           <div className="flex flex-col gap-2 w-full max-w-xs mx-auto mb-2">
             <button
@@ -380,8 +380,8 @@ export default function PreHomepage({
                 onClick={() => goToSlide(i)}
                 className={`w-[1px] h-[1px] rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
                   i === index
-                    ? 'bg-green shadow-[0_0_4px_rgba(61,220,132,0.4)]'
-                    : 'bg-gray-800 opacity-30 hover:opacity-50'
+                    ? 'bg-green shadow-[0_0_2px_rgba(61,220,132,0.2)]'
+                    : 'bg-gray-900 opacity-10'
                 }`}
               />
             ))}
