@@ -380,8 +380,8 @@ export default function PreHomepage({
                 onClick={() => goToSlide(i)}
                 className={`w-[1px] h-[1px] rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green ${
                   i === index
-                    ? 'bg-green scale-125 shadow-[0_0_6px_rgba(61,220,132,0.6)]'
-                    : 'bg-gray-600 opacity-60 hover:bg-gray-400'
+                    ? 'bg-green shadow-[0_0_4px_rgba(61,220,132,0.4)]'
+                    : 'bg-gray-800 opacity-30 hover:opacity-50'
                 }`}
               />
             ))}
@@ -427,3 +427,5 @@ export default function PreHomepage({
     </div>
   )
 }
+
+// FILE: components/PreHomepage.tsx

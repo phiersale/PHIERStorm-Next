@@ -1054,3 +1054,5 @@ export default function MainHomePage() {
     </>
   )
 }
+
+// FILE: components/MainHomePage.tsx

@@ -35,30 +35,28 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
   }, [onComplete])
 
   return (
-    <div className="flex flex-col items-center justify-start px-3 py-1 text-center">
-      <div className="w-full">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
+      <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center space-y-3 text-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <Image
             src="/images/PHIERS-Pause.png"
             alt="PHIERS - Pause"
-            width={100}
-            height={30}
-            className="mx-auto w-auto max-w-[30%] h-auto"
+            width={140}
+            height={42}
+            className="mx-auto w-auto max-w-[50%] h-auto"
             priority
           />
         </motion.div>
-      </div>
 
-      <div className="space-y-0.5 mt-0">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: subphase === 'breath' ? 1 : 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-white text-xs sm:text-sm md:text-base font-semibold"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-white text-sm sm:text-base md:text-lg font-semibold"
         >
           Take a deep breath.
         </motion.p>
@@ -67,7 +65,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: subphase === 'description' ? 1 : 0 }}
           transition={{ duration: 0.6 }}
-          className="space-y-0.5 text-gray-300 text-[0.65rem] sm:text-xs md:text-sm max-w-xs mx-auto"
+          className="space-y-1 text-gray-300 text-sm sm:text-base max-w-xs mx-auto"
         >
           <p>What you’re about to see is simple.</p>
           <p>It changes the balance of power... to you.</p>
@@ -77,14 +75,14 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: subphase === 'description' ? 1 : 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="w-full flex justify-center my-0.5"
+          className="flex justify-center"
         >
           <Image
             src="/images/Congress-Is_Anybody_Home.jpg"
             alt="Congress Is Anybody Home"
-            width={140}
-            height={85}
-            className="w-1/4 max-w-[80px] h-auto rounded-md shadow-md"
+            width={180}
+            height={108}
+            className="w-auto max-w-[100px] h-auto rounded-md shadow-md"
             priority
           />
         </motion.div>
@@ -93,7 +91,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           animate={{ opacity: subphase === 'description' ? 1 : 0 }}
           transition={{ delay: 0.8, duration: 0.4 }}
           onClick={onComplete}
-          className="text-green underline decoration-1 hover:text-green/80 transition text-[0.65rem] sm:text-xs"
+          className="text-green underline decoration-1 hover:text-green/80 transition text-xs sm:text-sm"
         >
           Continue →
         </motion.button>
@@ -175,7 +173,7 @@ export default function Page() {
 
   if (stage === 'entry') {
     return (
-      <div className="fixed inset-0 bg-black flex items-start justify-center p-2 overflow-y-auto">
+      <div className="fixed inset-0 bg-black flex items-center justify-center">
         <div className="w-full max-w-md">
           <PhasedText onComplete={() => setStage('image')} />
         </div>
