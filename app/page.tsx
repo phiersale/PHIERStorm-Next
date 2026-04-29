@@ -110,22 +110,14 @@ export default function Page() {
   const readingLines = [
     { type: 'image' },
     { type: 'spacer' },
-    { type: 'text', content: "Things are moving fast." },
-    { type: 'text', content: "Three minutes can change that." },
+    { type: 'html', content: "<div class='text-center'><div class='text-xl md:text-2xl font-bold text-green mb-0.5'>Less than 3 minutes</div><div class='text-lg md:text-xl text-gray-300'>can create leverage.</div></div>" },
     { type: 'spacer' },
-    { type: 'text', content: "Congress doesn't respond to voters." },
-    {
-      type: 'text',
-      content: "It responds to pressure.",
-      isPressureLine: true
-    },
+    { type: 'text', content: "Congress doesn’t respond to voters." },
+    { type: 'text', content: "They respond to pressure.", isPressureLine: true },
     { type: 'spacer' },
-    { type: 'text', content: "PHIERS puts you on record." },
-    { type: 'text', content: "Records become leverage." },
-    { type: 'text', content: "Leverage becomes pressure." },
-    { type: 'text', content: "Pressure forces action." },
+    { type: 'html', content: "<strong class='text-green'>PHIERS creates that pressure.</strong>" },
     { type: 'spacer' },
-    { type: 'text', content: "Here's how it works." }
+    { type: 'text', content: "Here’s how it works." }
   ]
 
   useEffect(() => {
@@ -213,10 +205,10 @@ export default function Page() {
     )
   }
 
-  if (stage === 'reading') {
+   if (stage === 'reading') {
     return (
       <div
-        className="fixed inset-0 bg-black flex flex-col items-center justify-start overflow-y-auto py-12 px-6"
+        className="fixed inset-0 bg-black flex flex-col items-center justify-center px-6"
         onClick={() => {
           if (!readingComplete) {
             setReadingVisibleCount(readingLines.length)
@@ -226,7 +218,7 @@ export default function Page() {
           }
         }}
       >
-        <div className="max-w-xl space-y-3 md:space-y-4 w-full text-center">
+        <div className="max-w-xl space-y-0.5 w-full text-center">
           {readingLines.map((line, i) => {
             if (i >= readingVisibleCount) return null
 
@@ -237,14 +229,14 @@ export default function Page() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="mb-3"
+                  className="mb-1"
                 >
                   <Image
                     src="/images/PHIERS_Things_Changing_Fast.png"
                     alt="Things Changing Fast"
-                    width={220}
-                    height={220}
-                    className="mx-auto w-[75%] h-auto"
+                    width={120}
+                    height={120}
+                    className="mx-auto w-[45%] h-auto"
                   />
                 </motion.div>
               )
@@ -274,7 +266,7 @@ export default function Page() {
             if (isPressureLine) {
               className = "text-gray-200 text-lg md:text-xl font-semibold"
             } else if (isFinalLine) {
-              className = "text-[1.15rem] md:text-xl text-white font-semibold mt-2"
+              className = "text-[1.15rem] md:text-xl text-white font-semibold mt-0"
             }
 
             return (
