@@ -80,9 +80,9 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           <Image
             src="/images/Congress-Is_Anybody_Home.jpg"
             alt="Congress Is Anybody Home"
-            width={180}
-            height={108}
-            className="w-auto max-w-[100px] h-auto rounded-md shadow-md"
+            width={360}
+            height={216}
+            className="w-auto max-w-[200px] h-auto rounded-md shadow-md"
             priority
           />
         </motion.div>
