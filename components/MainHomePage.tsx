@@ -250,7 +250,13 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – forces their hand.</p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
             <p className="text-gray-300 text-base mb-2">If they don’t end the wars immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
-            <p className="text-white text-lg font-bold mt-2">That’s how we make Congress do its job.</p>
+            <p className="text-white text-lg font-bold mt-2">That's how we make Congress do its job.</p>
+            <p className="text-gray-300 text-base mt-4">And if they still won't?</p>
+            <p className="text-gray-300 text-base">We investigate how they voted.</p>
+            <p className="text-gray-300 text-base">We publish who paid for those votes.</p>
+            <p className="text-gray-300 text-base">We organize their constituents around what they find.</p>
+            <p className="text-green text-lg font-bold mt-2">And we push for special elections — so the people they abandoned can choose someone who actually represents them.</p>
+            <p className="text-gray-500 text-sm mt-3 italic">That's not a threat. That's democracy. The same rules they use — finally used on them.</p>
           </div>
 
           {/* Why 1,500 Matters */}
@@ -618,6 +624,8 @@ export default function MainHomePage() {
               <li>Force public accountability from representatives</li>
               <li>Protect access to healthcare and basic needs</li>
               <li>Ensure decisions reflect the people they represent</li>
+              <li>Trigger investigations when representatives betray the public trust</li>
+              <li>Organize support for special elections to restore real representation</li>
             </ul>
             <p className="text-green text-xl font-bold">Power Held In Every Representative's Seat.</p>
           </div>
@@ -777,7 +785,9 @@ export default function MainHomePage() {
 
             <p className="text-green text-xl font-bold mb-8">
               This is coordinated civic leverage — built district by district.<br />
-              A counted signal tied to real representation.
+              A counted signal tied to real representation.<br />
+              And a standing promise: represent us, or we replace you.<br />
+              <span className="text-gray-400 text-base font-normal">Legally. Democratically. Before the next election if we have to.</span>
             </p>
 
             {/* ARCHITECT DESCRIPTION */}

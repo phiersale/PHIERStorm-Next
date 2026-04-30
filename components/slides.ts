@@ -80,10 +80,10 @@ const slides = [
     body: [
       "Every district is tracked separately.",
       "Real people. On the record. Counted by district.",
-      "At 1,500, your representative must respond.",
-      "Or face being replaced."
+      "At 1,500, your representative must respond publicly.",
+      "Or face investigation, primary challenge, or replacement."
     ],
-    greenLines: [2, 3]   // two green lines at the end
+    greenLines: [2, 3]
   },
 
   // 8 — CONSEQUENCE (large format, no title)
@@ -94,18 +94,36 @@ const slides = [
     largeFormat: true
   },
 
-  // 9 — THE MOMENT (renamed from "ORDER OUT OF CHAOS")
+  // 9 — THE MOMENT
   {
     title: "The landscape is already shifting.",
     body: [
-      "Resignations. Investigations. Public pressure mounting.",
-      "Congress is more exposed than it has been in decades.",
-      "This is when organized pressure becomes unstoppable."
+      "The Voting Rights Act was gutted yesterday.",
+      "The Iran War is breaking the global economy.",
+      "Elected officials are resigning rather than face scrutiny.",
+      "Congress is more exposed than it has been in generations.",
+      "This is exactly when organized pressure becomes unstoppable."
     ],
-    greenLines: [2]   // last line green
+    greenLines: [4]
   },
 
-  // 10 — ACRONYM
+  // 10 — ACCOUNTABILITY (standard, not threat)
+  {
+    title: "A standard. Not a threat.",
+    body: [
+      "If you know the war is crushing your constituents —",
+      "and you do nothing —",
+      "you have made a choice.",
+      "We investigate that choice.",
+      "We publish what we find.",
+      "We organize around it.",
+      "And we push for special elections if we have to.",
+      "Legally. Democratically. That's the standard."
+    ],
+    greenLines: [6, 7]
+  },
+
+  // 11 — ACRONYM
   {
     title: "PHIERS",
     body: [
@@ -120,7 +138,7 @@ const slides = [
     punchLine: "Power held in every representative's seat."
   },
 
-  // 11 — FINAL CTA (single demand: telehealth)
+  // 12 — FINAL CTA (single demand: telehealth)
   {
     title: "One demand. On the record.",
     body: [

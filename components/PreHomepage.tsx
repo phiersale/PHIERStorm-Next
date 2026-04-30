@@ -199,7 +199,7 @@ export default function PreHomepage({
       };
       let widthClass = 'w-[57%] md:w-[47%]';
       if (isPowerlessSlide) {
-        widthClass = 'w-[40%] md:w-[30%]';   // adjust these percentages as needed
+        widthClass = 'w-[85%] md:w-[70%]';
       }
       return (
         <div className="w-full flex justify-center">

@@ -1,5 +1,5 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 6.3 – added floating Back to Top button
+// VERSION: 6.5 – stacked the buttons anddimmed scroll to top 
 
 'use client'
 
@@ -162,10 +162,10 @@ export default function PathosCredibility() {
         </div>
       </motion.div>
 
-      {/* Floating Back to Top Button */}
+      {/* Floating Back to Top Button - darker, smaller, higher */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 bg-green text-black w-12 h-12 rounded-full flex items-center justify-center text-2xl cursor-pointer transition-all duration-150 hover:bg-[#2ab568] hover:-translate-y-0.5 z-[999] border-none shadow-lg ${
+        className={`fixed bottom-20 right-6 bg-gray-700 text-gray-300 w-10 h-10 rounded-full flex items-center justify-center text-xl cursor-pointer transition-all duration-150 hover:bg-gray-600 hover:-translate-y-0.5 z-[999] border-none shadow-md ${
           showBackToTop ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
         aria-label="Back to top"
@@ -175,3 +175,5 @@ export default function PathosCredibility() {
     </>
   )
 }
+
+// FILE: components/PathosCredibility.tsx
