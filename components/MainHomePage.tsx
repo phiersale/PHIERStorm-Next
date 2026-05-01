@@ -259,6 +259,37 @@ export default function MainHomePage() {
             <p className="text-gray-500 text-sm mt-3 italic">That's not a threat. That's democracy. The same rules they use — finally used on them.</p>
           </div>
 
+          {/* THE MOMENT WE'RE IN */}
+          <div className="max-w-3xl mx-auto mt-8 p-6 bg-yellow-500/10 border border-yellow-500/30 rounded-xl text-center">
+            <p className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-4">The Moment We're In</p>
+            <p className="text-white text-xl md:text-2xl font-bold mb-4">Here's what's actually happening right now.</p>
+
+            <div className="space-y-3 text-left max-w-xl mx-auto mb-6">
+              <p className="text-gray-300 text-base">🗳 The Supreme Court gutted the Voting Rights Act. The ballot has been narrowed — intentionally.</p>
+              <p className="text-gray-300 text-base">⚔️ The Iran War is breaking the global economy. Gas. Food. Shipping. Everyone is paying.</p>
+              <p className="text-gray-300 text-base">💼 Black workers are last hired and first fired — again. Federal agencies with the highest Black employment were cut first.</p>
+              <p className="text-gray-300 text-base">🏥 The safety net was gutted to pay for tax cuts. The people who needed it most were left to absorb the damage.</p>
+              <p className="text-gray-300 text-base">🤖 AI is coming for jobs. Nobody in Congress has a real plan for what comes next.</p>
+            </div>
+
+            <p className="text-white text-lg font-bold mb-2">Congress has the power to fix every single one of these. Right now.</p>
+            <p className="text-green text-xl font-bold mb-3">They just don't have the pressure.</p>
+
+            <div className="bg-black/30 rounded-xl p-4 mt-4 text-left max-w-xl mx-auto">
+              <p className="text-white font-bold mb-2">Once we have 1,500 signatures per district — organized nationally — a brand new Congress answers to us.</p>
+              <p className="text-gray-300 text-sm mb-1">That Congress can:</p>
+              <ul className="text-gray-300 text-sm space-y-1 list-disc list-inside">
+                <li>Reverse every harmful executive order</li>
+                <li>End the wars — immediately</li>
+                <li>Restore the Voting Rights Act</li>
+                <li>Impeach those who betrayed the public trust</li>
+                <li>Fix the safety net — sustainably</li>
+                <li>Build a plan for AI that creates more jobs and small businesses than we lose</li>
+              </ul>
+              <p className="text-green font-bold text-sm mt-3">This is not a dream. This is a legislative checklist. PHIERS is the infrastructure that makes it executable.</p>
+            </div>
+          </div>
+
           {/* Why 1,500 Matters */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Why 1,500 Matters</h3>

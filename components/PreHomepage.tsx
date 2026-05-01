@@ -12,6 +12,7 @@ type Props = {
   onGoToHomepage: () => void
   onGoToPetition: () => void
   skipFirstImageSlide?: boolean
+  onBackToReading?: () => void
 }
 
 const SWIPE_THRESHOLD = 50
@@ -20,7 +21,8 @@ const TRANSITION_MS = 400
 export default function PreHomepage({ 
   onGoToHomepage, 
   onGoToPetition, 
-  skipFirstImageSlide = false
+  skipFirstImageSlide = false,
+  onBackToReading
 }: Props) {
   const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -38,9 +40,9 @@ export default function PreHomepage({
     }
   }, [])
 
-    // Hide swipe hint after 3 seconds on first slide
+    // Hide swipe hint after 3 seconds on first text slide
   useEffect(() => {
-    if (index === 1 && showSwipeHint) {
+    if (index === 2 && showSwipeHint) {
       const timer = setTimeout(() => setShowSwipeHint(false), 3000)
       return () => clearTimeout(timer)
     }
@@ -156,6 +158,55 @@ export default function PreHomepage({
 
   // ===== BODY RENDERING =====
   const renderBody = () => {
+    if (slide.replacementLayout) {
+      return (
+        <div className="flex flex-col items-center px-6 text-center">
+          <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">Consequences</p>
+          <p className="text-lg md:text-xl text-gray-400 mb-2 leading-relaxed">
+            If the investigation finds they betrayed the public trust —
+          </p>
+          <p className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">
+            we replace them. Legally.
+          </p>
+          <p className="text-xl md:text-2xl font-bold text-green mb-6">
+            Before the next election.
+          </p>
+          <p className="text-sm md:text-base text-gray-500 italic mb-1">
+            That's not a threat.
+          </p>
+          <p className="text-lg md:text-xl font-semibold text-green">
+            That's democracy working the way it was designed to.
+          </p>
+        </div>
+      )
+    }
+
+    if (slide.accountabilityLayout) {
+      return (
+        <div className="flex flex-col items-center px-6 text-center">
+          {/* Beat 1 — Thesis */}
+          <p className="text-3xl md:text-4xl font-bold text-white mt-2 mb-3">
+            A standard. Not a threat.
+          </p>
+
+          {/* Beat 2 — Indictment */}
+          <p className="text-base md:text-lg text-gray-300 mb-0.5">If you know the war is crushing your constituents —</p>
+          <p className="text-base md:text-lg text-gray-300 mb-0.5">and you do nothing —</p>
+          <p className="text-base md:text-lg text-white font-semibold mb-2">you have made a choice.</p>
+
+          {/* Beat 3 — Accountability sequence */}
+          <p className="text-base md:text-lg text-gray-300 mb-0.5">We investigate that choice.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-0.5">We publish what we find.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-2">We organize around it.</p>
+
+          {/* Beat 4 — Democratic landing */}
+          <p className="text-base md:text-lg text-gray-300 mb-0.5">And we push for resignations and special elections if we have to.</p>
+          <p className="text-lg md:text-xl font-bold text-green mb-0">Legally. Democratically.</p>
+          <p className="text-lg md:text-xl font-bold text-green">That's the standard.</p>
+        </div>
+      )
+    }
+
     if (slide.customLayout) {
       const items = slide.body
       return (
@@ -250,6 +301,34 @@ export default function PreHomepage({
     }
 
     if (isLargeFormatSlide) {
+      // Special tight layout for the replacement + democracy slide (index 12)
+      const isReplacementSlide = slide.body && 
+        slide.body.length === 4 &&
+        slide.body[0] === "We replace them. Legally." &&
+        slide.body[1] === "Before the next election." &&
+        slide.body[2] === "That's not a threat." &&
+        slide.body[3] === "That's democracy working the way it was designed to."
+
+      if (isReplacementSlide) {
+        return (
+          <div className="flex flex-col items-center px-6 text-center">
+            <p className="text-lg md:text-xl text-gray-300 mb-1">
+              We replace them. Legally.
+            </p>
+            <p className="text-2xl md:text-3xl font-bold text-white mb-1">
+              Before the next election.
+            </p>
+            <p className="text-xl md:text-2xl font-bold text-green mb-4">
+              That's not a threat.
+            </p>
+            <p className="text-base md:text-lg text-gray-300 leading-snug">
+              That's democracy working the way it was designed to.
+            </p>
+          </div>
+        )
+      }
+
+      // Original large format rendering for all other large-format slides
       const largeBodyClass = "text-3xl md:text-5xl font-semibold tracking-tight"
       const wrapperClass = "space-y-4 md:space-y-6"
       return (
@@ -271,10 +350,10 @@ export default function PreHomepage({
     const greenClass = "text-green font-bold text-base md:text-lg leading-relaxed"
 
     let wrapperClass = "space-y-3 md:space-y-4"
-    if (slide.body.length >= 4 && slide.title === "Here’s how it works.") {
+    if (slide.body.length >= 4 && slide.title === "The Mechanism") {
       wrapperClass = "space-y-4 md:space-y-5"
     } else if (slide.isFinalSlide) {
-      wrapperClass = "space-y-3 md:space-y-4 mt-4 md:mt-6"
+      wrapperClass = "space-y-1 md:space-y-2 mt-1 md:mt-2"
     }
 
     return (
@@ -307,7 +386,12 @@ export default function PreHomepage({
   // ===== MAIN RETURN =====
   return (
     <div className="min-h-screen bg-[#050b19] text-white flex flex-col">
-      <div className="flex justify-end pr-6 pt-4 pb-2 shrink-0 z-10">
+      <div className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
+        {onBackToReading && (
+          <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
+            ← Back
+          </button>
+        )}
         <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
           Skip →
         </button>
@@ -341,7 +425,7 @@ export default function PreHomepage({
               >
                 {renderTitle()}
                 {renderBody()}
-                {index === 1 && showSwipeHint && (
+                {index === 2 && showSwipeHint && (
                   <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-sm px-4 py-2 rounded-full pointer-events-none animate-fadeOut z-50">
                     ← Swipe or press → for next slide
                   </div>
@@ -357,7 +441,7 @@ export default function PreHomepage({
         </div>
       </div>
 
-      <div className="shrink-0 flex flex-col items-center gap-3 py-4 border-t border-gray-800/50 mt-4">
+      <div className="shrink-0 flex flex-col items-center gap-2 py-2 border-t border-gray-800/50 mt-0">
         {isLastSlide && (
           <div className="flex flex-col gap-2 w-full max-w-xs mx-auto mb-2">
             <button
@@ -378,14 +462,28 @@ export default function PreHomepage({
         <div className="flex items-center gap-4 flex-wrap justify-center">
           <div className="flex gap-2">
             {slides.map((_, i) => (
-              <button
+              <div
                 key={i}
                 onClick={() => goToSlide(i)}
-                className={`w-[1px] h-[1px] rounded-full transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-green/15 ${
-                  i === index
-                    ? 'bg-green/20'
-                    : 'bg-gray-800 opacity-5 hover:opacity-15'
-                }`}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToSlide(i); } }}
+                style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  backgroundColor: i === index ? 'rgba(61, 220, 132, 0.7)' : 'rgba(156, 163, 175, 0.5)',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  margin: '0 3px',
+                  flexShrink: 0
+                }}
+                onMouseEnter={(e) => {
+                  if (i !== index) e.currentTarget.style.backgroundColor = 'rgba(156, 163, 175, 0.7)';
+                }}
+                onMouseLeave={(e) => {
+                  if (i !== index) e.currentTarget.style.backgroundColor = 'rgba(156, 163, 175, 0.5)';
+                }}
               />
             ))}
           </div>

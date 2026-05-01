@@ -104,21 +104,19 @@
             const [readingVisibleCount, setReadingVisibleCount] = useState(0)
             const [readingComplete, setReadingComplete] = useState(false)
 
+            // In app/page.tsx, replace the readingLines declaration
             const readingLines = [
               { type: 'image' },
               { type: 'spacer' },
-              { type: 'html', content: "<div class='text-center'><div class='text-xl md:text-2xl font-bold text-green mb-0.5'>Less than 3 minutes</div><div class='text-lg md:text-xl text-gray-300'>can create leverage.</div></div>" },
               { type: 'spacer' },
-              { type: 'text', content: "Congress doesn’t respond to voters." },
+              { type: 'spacer' },
+              { type: 'text', content: "Congress doesn't respond to voters." },
               { type: 'text', content: "They respond to pressure.", isPressureLine: true },
               { type: 'spacer' },
               { type: 'html', content: "<strong class='text-green'>PHIERS creates that pressure.</strong>" },
               { type: 'spacer' },
-              { type: 'html', content: "<p class='text-gray-400 text-base'>And if they still won't respond?</p><p class='text-white font-semibold text-lg mt-2'>We replace them. Legally. Before the next election.</p>" },
               { type: 'spacer' },
-              { type: 'html', content: "<p class='text-gray-500 text-sm italic'>That's not a threat.</p><p class='text-gray-500 text-sm italic'>That's democracy working the way it was designed to.</p>" },
-              { type: 'spacer' },
-              { type: 'html', content: "<p class='text-white font-semibold text-lg mt-8 mb-12'>Here's how it works.</p>" },
+              { type: 'html', content: "<p class='text-white font-semibold text-lg mt-4 mb-8'>Here's how.</p>" },
             ]
 
             useEffect(() => {
@@ -126,16 +124,24 @@
               setReadingVisibleCount(0)
               setReadingComplete(false)
 
-              const interval = setInterval(() => {
-                setReadingVisibleCount(prev => {
-                  if (prev < readingLines.length) return prev + 1
-                  clearInterval(interval)
-                  setReadingComplete(true)
-                  return prev
-                })
-              }, 250) // faster reveal, similar to slide rhythm
+              let intervalId: NodeJS.Timeout | null = null
+              let timeoutId: NodeJS.Timeout | null = null
 
-              return () => clearInterval(interval)
+              timeoutId = setTimeout(() => {
+                intervalId = setInterval(() => {
+                  setReadingVisibleCount(prev => {
+                    if (prev < readingLines.length) return prev + 1
+                    if (intervalId) clearInterval(intervalId)
+                    setReadingComplete(true)
+                    return prev
+                  })
+                }, 400)
+              }, 200)
+
+              return () => {
+                if (timeoutId) clearTimeout(timeoutId)
+                if (intervalId) clearInterval(intervalId)
+              }
             }, [stage])
 
             useEffect(() => {
@@ -219,7 +225,7 @@
                     }
                   }}
                 >
-                  <div className="max-w-xl space-y-0.5 w-full text-center">
+                  <div className="max-w-xl space-y-1 w-full text-center">
                     {readingLines.map((line, i) => {
                       if (i >= readingVisibleCount) return null
 
@@ -296,6 +302,7 @@
                     setStage('credibility')
                   }}
                   onGoToPetition={() => router.push('/petition')}
+                  onBackToReading={() => setStage('reading')}
                 />
               )
             }
@@ -303,7 +310,10 @@
           if (stage === 'credibility') {
             return (
               <div className="min-h-screen bg-[#050b19] flex flex-col">
-                <PathosCredibility />
+                <PathosCredibility onBackToSlides={() => {
+                  setSkipFirstImage(false);
+                  setStage('prehome');
+                }} />
                 <div id="credibility-buttons" className="flex justify-center gap-4 pb-12">
                   <button
                     onClick={() => {

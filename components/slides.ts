@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 5.0 – v2 rewrite (escalation logic, earned pivot, no wasted lines)
+// VERSION: 6.0 – Added standalone leverage slide + replacement/democracy slide; "Here's how it works" renamed to "The Mechanism"
 
 const slides = [
   // 0 — IMAGE (ANCHOR)
@@ -9,7 +9,15 @@ const slides = [
     imageAlt: "YOU ARE NOT POWERLESS"
   },
 
-  // 1 — HOOK (escalation first, time stat at the end)
+  // 1 — NEW: Less than 3 minutes (standalone punch)
+  {
+    title: "",
+    body: ["Less than 3 minutes can create leverage."],
+    greenLines: [0],
+    largeFormat: true
+  },
+
+  // 2 — HOOK (originally slide 1)
   {
     title: "Congress responds to power.",
     body: [
@@ -17,10 +25,10 @@ const slides = [
       "PHIERS changes that.",
       "3 minutes. On the record. Consequence if they don't."
     ],
-    greenLines: [2]   // last line green
+    greenLines: [2]
   },
 
-  // 2 — EMOTIONAL TRIGGER (choice, not incompetence)
+  // 3 — EMOTIONAL TRIGGER (originally slide 2)
   {
     title: "They can stop it.",
     body: [
@@ -29,10 +37,10 @@ const slides = [
       "They choose not to.",
       "That's not incompetence. That's a choice."
     ],
-    greenLines: [3]   // last line green
+    greenLines: [3]
   },
 
-  // 3 — ROOT PROBLEM (no solution yet)
+  // 4 — ROOT PROBLEM (originally slide 3)
   {
     title: "Congress ignores you.",
     body: [
@@ -41,10 +49,10 @@ const slides = [
       "They can fix most of what's broken.",
       "They just don't have to."
     ],
-    greenLines: [3]   // last line green
+    greenLines: [3]
   },
 
-  // 4 — CORE PRINCIPLE (outrage doesn't move them)
+  // 5 — CORE PRINCIPLE (originally slide 4)
   {
     title: "Outrage doesn't move them.",
     body: [
@@ -52,17 +60,17 @@ const slides = [
       "Only organized pressure does.",
       "District-level. Counted. Visible. On the record."
     ],
-    greenLines: [1, 2]   // second and third lines green
+    greenLines: [1, 2]
   },
 
-  // 5 — FREDERICK DOUGLASS IMAGE (unchanged)
+  // 6 — FREDERICK DOUGLASS IMAGE (originally slide 5)
   {
     type: "image",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-   // 6 — PROOF (threshold is proven)
+  // 7 — PROOF (originally slide 6)
   {
     title: "The threshold is proven.",
     body: [
@@ -74,9 +82,9 @@ const slides = [
     greenLines: [3]
   },
 
-  // 7 — MECHANISM (how it works, consequence at end)
+  // 8 — MECHANISM (originally slide 7, title changed to "The Mechanism")
   {
-    title: "Here's how it works.",
+    title: "The Mechanism",
     body: [
       "Every district is tracked separately.",
       "Real people. On the record. Counted by district.",
@@ -86,7 +94,7 @@ const slides = [
     greenLines: [2, 3]
   },
 
-  // 8 — CONSEQUENCE (large format, no title)
+  // 9 — CONSEQUENCE (originally slide 8)
   {
     title: "",
     body: ["Not noise.", "Not opinion.", "Consequence."],
@@ -94,7 +102,7 @@ const slides = [
     largeFormat: true
   },
 
-  // 9 — THE MOMENT
+  // 10 — THE MOMENT (originally slide 9)
   {
     title: "The landscape is already shifting.",
     body: [
@@ -107,23 +115,17 @@ const slides = [
     greenLines: [4]
   },
 
-  // 10 — ACCOUNTABILITY (standard, not threat)
+  // 11 — ACCOUNTABILITY (custom layout)
   {
-    title: "A standard. Not a threat.",
-    body: [
-      "If you know the war is crushing your constituents —",
-      "and you do nothing —",
-      "you have made a choice.",
-      "We investigate that choice.",
-      "We publish what we find.",
-      "We organize around it.",
-      "And we push for special elections if we have to.",
-      "Legally. Democratically. That's the standard."
-    ],
-    greenLines: [6, 7]
+    accountabilityLayout: true
   },
 
-  // 11 — ACRONYM
+  // 12 — NEW: Replacement + democracy (custom layout)
+  {
+    replacementLayout: true
+  },
+
+  // 13 — ACRONYM (originally slide 11)
   {
     title: "PHIERS",
     body: [
@@ -138,7 +140,7 @@ const slides = [
     punchLine: "Power held in every representative's seat."
   },
 
-  // 12 — FINAL CTA (single demand: telehealth)
+  // 14 — FINAL CTA (originally slide 12)
   {
     title: "One demand. On the record.",
     body: [
@@ -146,7 +148,7 @@ const slides = [
       "Name. Email. Zip code.",
       "That's all it takes to make them answer."
     ],
-    greenLines: [0, 2],   // first and last line green
+    greenLines: [0, 2],
     isFinalSlide: true
   }
 ]

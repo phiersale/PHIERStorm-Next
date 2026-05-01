@@ -1,12 +1,16 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 6.5 – stacked the buttons anddimmed scroll to top 
+// VERSION: 7.1 – back-to-slides button, combined validation section with Cuban/telehealth
 
 'use client'
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-export default function PathosCredibility() {
+type Props = {
+  onBackToSlides?: () => void
+}
+
+export default function PathosCredibility({ onBackToSlides }: Props) {
   const [showBackToTop, setShowBackToTop] = useState(false)
 
   useEffect(() => {
@@ -23,7 +27,19 @@ export default function PathosCredibility() {
 
   return (
     <>
-      {/* Skip button - subtle text link (matches other pages) */}
+      {/* Back to Slides button - left side */}
+      {onBackToSlides && (
+        <div className="fixed top-16 left-4 z-50">
+          <button
+            onClick={onBackToSlides}
+            className="text-gray-500 text-sm underline hover:text-gray-300 transition"
+          >
+            ← Back to Slides
+          </button>
+        </div>
+      )}
+
+      {/* Skip button - right side (scrolls to action buttons) */}
       <div className="fixed top-16 right-4 z-50">
         <button
           onClick={() => {
@@ -43,11 +59,10 @@ export default function PathosCredibility() {
         className="max-w-3xl mx-auto px-4 py-12"
       >
         {/* Page Title */}
-
-      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
-        <span className="text-white">Third‑Party Validation:</span><br />
-        <span className="text-green text-2xl md:text-3xl">Why Pathos Communications Staked Its Reputation on PHIERS</span>
-      </h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
+          <span className="text-white">Third‑Party Validation:</span><br />
+          <span className="text-green text-2xl md:text-3xl">Why Pathos Communications Staked Its Reputation on PHIERS</span>
+        </h1>
 
         {/* Click‑to‑play video thumbnail */}
         <div className="text-center mb-12">
@@ -82,11 +97,11 @@ export default function PathosCredibility() {
           </p>
           <p className="text-gray-400 text-base">— Pathos Communications</p>
           <p className="text-gray-300 text-center text-sm mt-4">
-            Pathos Communications — a global research and PR agency listed on the London Stock Exchange — conducted hours interviews with Will Price and publicly explained on video why they chose to represent PHIERS.
+            Pathos Communications — a global research and PR agency listed on the London Stock Exchange — conducted hours of interviews with Will Price and publicly explained on video why they chose to represent PHIERS.
           </p>
         </div>
 
-        {/* SECTION: What We Know Works */}
+        {/* SECTION: What We Know Works (unchanged) */}
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-green mb-4">What We Know Works</h2>
           <div className="mb-4">
@@ -104,65 +119,58 @@ export default function PathosCredibility() {
           <p className="text-gray-300 text-base italic mt-2">These aren’t theories.<br />They’re patterns that repeat.</p>
         </div>
 
-        {/* SECTION: Who’s Backed the Strategy */}
+        {/* SECTION: Independent Validation. Real‑World Confirmation. */}
         <div className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-green mb-4">Who’s Backed the Strategy</h2>
-          <p className="text-gray-300 text-base">
-            <span className="font-bold text-white">PATHOS</span><br />
-            PHIERS’ strategy and message structure have been reviewed and supported by PATHOS, a respected communications firm that handles tough fights, crisis moments, and high‑stakes public influence.
+          <h2 className="text-2xl md:text-3xl font-bold text-green mb-6">Independent Validation. Real‑World Confirmation.</h2>
+
+          <div className="mb-4">
+            <p className="text-white font-bold text-base md:text-lg mb-1">Pathos Communications</p>
+            <p className="text-gray-400 text-sm md:text-base">
+              A global research and PR firm listed on the London Stock Exchange. After hours of interviews with Will Price, they publicly staked their professional reputation on PHIERS — on video.
+            </p>
+          </div>
+
+          <p className="text-gray-300 text-base mb-6">
+            Years later, the real world independently confirmed what the model predicted — without knowing PHIERS existed.
           </p>
-          <p className="text-gray-300 text-base mt-2">They don’t sign off on nonsense.<br />Their support means the model is solid.</p>
+
+          <div className="mb-6 pl-4 border-l-2 border-green/30">
+            <p className="text-white font-bold text-base md:text-lg mb-1">Mark Cuban's Cost Plus Drugs</p>
+            <p className="text-gray-400 text-sm md:text-base">
+              In 2022, Cuban launched direct‑to‑consumer pharmaceuticals at cost, no middlemen. PHIERS documented this exact model in 2009. He built it thirteen years later. Seven million customers proved it works.
+            </p>
+            <p className="text-green text-sm font-semibold mt-2">We didn't need his endorsement. He built our proof.</p>
+          </div>
+
+          <div className="mb-6 pl-4 border-l-2 border-green/30">
+            <p className="text-white font-bold text-base md:text-lg mb-1">Telehealth Industry — Teladoc, Zocdoc, Zortt and others</p>
+            <p className="text-gray-400 text-sm md:text-base">
+              The entire telehealth industry is built on the delivery model PHIERS designed over a decade before it went mainstream. The math was always there. The industry eventually caught up.
+            </p>
+            <p className="text-green text-sm font-semibold mt-2">The model was right in 2009. The market confirmed it in 2020.</p>
+          </div>
+
+          <div className="mt-4 p-4 bg-green/5 border border-green/20 rounded-xl">
+            <p className="text-white text-sm font-semibold">The pattern is clear:</p>
+            <p className="text-gray-400 text-sm mt-1">
+              Every major validation of the PHIERS model came from institutions and entrepreneurs who arrived at the same conclusions independently — without knowing PHIERS existed. That's not coincidence. That's what being a decade early looks like.
+            </p>
+          </div>
         </div>
 
-        {/* SECTION: Built for Everyone */}
+        {/* SECTION: Built for Everyone (unchanged) */}
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-green mb-4">Built for Everyone</h2>
           <p className="text-gray-300 text-base">
-            PHIERS isn’t left or right.<br />
-            It’s not red or blue.<br />
-            It’s neighbors, workers, parents, veterans, small‑business owners — anyone tired of being ignored.
+            PHIERS isn't left or right.<br />
+            It's not red or blue.<br />
+            It's neighbors, workers, parents, veterans, small‑business owners — anyone tired of being ignored.
           </p>
           <p className="text-gray-400 text-lg mt-3 italic">Your district.<br />Your voice.<br />Your leverage.</p>
         </div>
-
-        {/* SECTION: How It Works */}
-        <div className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-green mb-4">How It Works</h2>
-          <ul className="list-disc list-inside text-gray-300 space-y-2">
-            <li>You go on the record with your name, email, and ZIP code</li>
-            <li>You’re counted in your district</li>
-            <li>When your district hits 1,500 people, your rep has to respond</li>
-            <li>If they don’t, they risk losing their seat</li>
-          </ul>
-          <p className="text-green font-semibold mt-3">Not noise.<br />Not outrage.<br />Accountability.</p>
-        </div>
-
-        {/* SECTION: Why It Works */}
-        <div className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-green mb-4">Why It Works</h2>
-          <p className="text-gray-300 text-base">
-            Congress doesn’t fear opinions.<br />
-            They fear organized people in their own district.
-          </p>
-          <p className="text-gray-300 text-base mt-3">
-            PHIERS gives regular people the same kind of leverage lobbyists use — without money, access, or backroom deals.
-          </p>
-          <p className="text-gray-300 text-base mt-2">Just numbers.<br />Just neighbors.<br />Just pressure they can’t ignore.</p>
-        </div>
-
-        {/* OPTIONAL: Three Pillars Block */}
-        <div className="mt-10 pt-6 border-t border-green/20">
-          <h3 className="text-xl md:text-2xl font-bold text-green mb-3">The Three Things That Make Leverage Real</h3>
-          <ul className="list-disc list-inside text-gray-300 space-y-1">
-            <li>Show up in the district</li>
-            <li>Make it public</li>
-            <li>Do it together</li>
-          </ul>
-          <p className="text-gray-400 text-sm mt-2">Works no matter who you voted for — leverage doesn’t care about parties</p>
-        </div>
       </motion.div>
 
-      {/* Floating Back to Top Button - darker, smaller, higher */}
+      {/* Floating Back to Top Button */}
       <button
         onClick={scrollToTop}
         className={`fixed bottom-20 right-6 bg-gray-700 text-gray-300 w-10 h-10 rounded-full flex items-center justify-center text-xl cursor-pointer transition-all duration-150 hover:bg-gray-600 hover:-translate-y-0.5 z-[999] border-none shadow-md ${
@@ -175,5 +183,3 @@ export default function PathosCredibility() {
     </>
   )
 }
-
-// FILE: components/PathosCredibility.tsx
