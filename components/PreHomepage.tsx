@@ -315,7 +315,7 @@ export default function PreHomepage({
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
-        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-12 md:pt-16 pb-48' : 'px-6 md:px-12 pt-12 pb-12'}`}
+        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-48' : 'px-6 md:px-12 pt-4 pb-6'}`}
         style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
         onClick={!isLastSlide && !isTransitioning ? next : undefined}
         onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}

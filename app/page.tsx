@@ -64,10 +64,18 @@
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: subphase === 'description' ? 1 : 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="space-y-4 text-gray-300 text-sm sm:text-base max-w-xs mx-auto"
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="text-gray-300 text-sm sm:text-base max-w-xs mx-auto"
                   >
-                    <p>What you’re about to see is simple.</p>
+                    <p>What you're about to see is simple.</p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: subphase === 'description' ? 1 : 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    className="text-gray-300 text-sm sm:text-base max-w-xs mx-auto"
+                  >
                     <p>It changes the balance of power... to you.</p>
                   </motion.div>
 
