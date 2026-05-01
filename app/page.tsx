@@ -65,33 +65,18 @@
                     initial={{ opacity: 0 }}
                     animate={{ opacity: subphase === 'description' ? 1 : 0 }}
                     transition={{ duration: 0.6 }}
-                    className="space-y-1 text-gray-300 text-sm sm:text-base max-w-xs mx-auto"
+                    className="space-y-4 text-gray-300 text-sm sm:text-base max-w-xs mx-auto"
                   >
                     <p>What you’re about to see is simple.</p>
                     <p>It changes the balance of power... to you.</p>
                   </motion.div>
 
-                  <motion.div
+                  <motion.button
                     initial={{ opacity: 0 }}
                     animate={{ opacity: subphase === 'description' ? 1 : 0 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                    className="flex justify-center"
-                  >
-                    <Image
-                      src="/images/Congress-Is_Anybody_Home.jpg"
-                      alt="Congress Is Anybody Home"
-                      width={360}
-                      height={216}
-                      className="w-auto max-w-[200px] h-auto rounded-md shadow-md"
-                      priority
-                    />
-                  </motion.div>
-
-                  <motion.button
-                    animate={{ opacity: subphase === 'description' ? 1 : 0 }}
-                    transition={{ delay: 0.8, duration: 0.4 }}
+                    transition={{ delay: 2.2, duration: 0.6 }}
                     onClick={onComplete}
-                    className="text-green/80 underline hover:text-green transition text-sm"
+                    className="text-green/80 underline hover:text-green transition text-sm mt-10"
                   >
                     Continue →
                   </motion.button>
@@ -125,7 +110,7 @@
               { type: 'spacer' },
               { type: 'html', content: "<p class='text-gray-500 text-sm italic'>That's not a threat.</p><p class='text-gray-500 text-sm italic'>That's democracy working the way it was designed to.</p>" },
               { type: 'spacer' },
-              { type: 'html', content: "<p class='text-white font-semibold text-lg mt-3'>Here's how it works.</p>" },
+              { type: 'html', content: "<p class='text-white font-semibold text-lg mt-8 mb-12'>Here's how it works.</p>" },
             ]
 
             useEffect(() => {
