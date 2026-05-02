@@ -141,9 +141,9 @@ const slides = [
     body: [
       "People are paying attention.",
       "Officials are being held accountable.",
-      "The old excuses aren't working anymore.",
+      "Many are choosing to resign.",
       "Organized people are winning right now.",
-      "This is that moment."
+      "This is that moment. Now is our time."
     ],
     greenLines: [3, 4]
   },

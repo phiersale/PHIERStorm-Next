@@ -201,8 +201,7 @@ export default function PreHomepage({
 
           {/* Beat 4 — Democratic landing */}
           <p className="text-base md:text-lg text-gray-300 mb-2">And we push for resignations and special elections if we have to.</p>
-          <p className="text-lg md:text-xl font-bold text-green mb-1">Legally.</p>
-          <p className="text-lg md:text-xl font-bold text-green mb-1">Democratically.</p>
+          <p className="text-lg md:text-xl font-bold text-green mb-1">Legally and democratically.</p>
           <p className="text-lg md:text-xl font-bold text-green">That's the standard.</p>
         </div>
       )
