@@ -1,5 +1,5 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 7.5 – back-to-slides button, combined validation section with Cuban/telehealth
+// VERSION: 7.6 – fixed syntax, proper spacing, deduplicated sections
 
 'use client'
 
@@ -98,28 +98,14 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           <p className="text-green text-xl md:text-2xl font-semibold italic">
             “If you weren’t legit, we wouldn’t risk putting our name behind yours.”
           </p>
-          <p className="text-gray-400 text-base">— Pathos Communications</p>        {/* Why this holds up */}
-        <div className="mt-10 mb-12 text-center max-w-2xl mx-auto">
-          <h3 className="text-white text-xl font-semibold mb-4">
-            Why this holds up
-          </h3>
-          <div className="text-gray-300 space-y-4 text-sm md:text-base">
-            <p>Real people. Verified. District‑level.</p>
-            <p>Not one moment — patterns over time.</p>
-            <p>Fully transparent. No black boxes.</p>
-            <p>We publish what we find. What happens next is up to voters, the press, and the democratic process.</p>
-          </div>
-        </div>
-
-        {/* SECTION: What We Know Works (unchanged) */}
-        <div className="mb-12">
-          <p className="text-gray-300 text-center textf-sm mt-4">
+          <p className="text-gray-400 text-base">— Pathos Communications</p>
+          <p className="text-gray-300 text-center text-sm mt-4">
             Pathos Communications — a global research and PR agency listed on the London Stock Exchange — conducted hours of interviews with Will Price and publicly explained on video why they chose to represent PHIERS.
           </p>
         </div>
 
         {/* Why this holds up */}
-        <div className="mt-10 text-center max-w-2xl mx-auto">
+        <div className="mt-2 mb-12 text-center max-w-2xl mx-auto">
           <h3 className="text-white text-xl font-semibold mb-4">
             Why this holds up
           </h3>
@@ -131,7 +117,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           </div>
         </div>
 
-        {/* SECTION: What We Know Works (unchanged) */}
+        {/* SECTION: What We Know Works */}
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-green mb-4">What We Know Works</h2>
           <div className="mb-4">
@@ -188,7 +174,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           </div>
         </div>
 
-        {/* SECTION: Built for Everyone (unchanged) */}
+        {/* SECTION: Built for Everyone */}
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-green mb-4">Built for Everyone</h2>
           <p className="text-gray-300 text-base">
@@ -199,8 +185,17 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           <p className="text-gray-400 text-lg mt-3 italic">Your district.<br />Your voice.<br />Your leverage.</p>
         </div>
       </motion.div>
+
+      {/* Floating Back to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-20 right-6 bg-gray-700 text-gray-300 w-10 h-10 rounded-full flex items-center justify-center text-xl cursor-pointer transition-all duration-150 hover:bg-gray-600 hover:-translate-y-0.5 z-[999] border-none shadow-md ${
+          showBackToTop ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
     </>
   )
 }
-
-// FILE: components/PathosCredibility.tsx
