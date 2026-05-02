@@ -428,7 +428,7 @@ export default function PreHomepage({
                     opacity: 0,
                     transition: { duration: 0.2, ease: "easeOut" }
                   }}
-                  className="relative"
+                  className="relative -mt-2"
                 >
                   {renderTitle()}
                   {renderBody()}
@@ -540,7 +540,7 @@ export default function PreHomepage({
 
   // For all other slides (1–11, 13–14) we use a fixed footer layout
   return (
-    <div className={`min-h-screen bg-[#050b19] text-white flex flex-col ${index === 12 ? '' : 'justify-between'}`} style={{ overflowY: 'scroll' }}>
+    <div className="min-h-screen bg-[#050b19] text-white flex flex-col" style={{ overflowY: 'scroll' }}>
       <div className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
         {onBackToReading && (
           <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
@@ -577,7 +577,7 @@ export default function PreHomepage({
                   opacity: 0,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }}
-                className="relative -mt-5"
+                className="relative"
               >
                 {renderTitle()}
                 {renderBody()}
