@@ -42,7 +42,7 @@ export default function PreHomepage({
 
     // Hide swipe hint after 3 seconds on first text slide
   useEffect(() => {
-    if (index === 2 && showSwipeHint) {
+    if (index === 1 && showSwipeHint) {
       const timer = setTimeout(() => setShowSwipeHint(false), 3000)
       return () => clearTimeout(timer)
     }
@@ -185,7 +185,7 @@ export default function PreHomepage({
       return (
         <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-3xl mx-auto">
           {/* Beat 1 — Thesis */}
-          <p className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+          <p className="text-3xl md:text-4xl font-bold text-white mt-1 mb-4">
             A standard.<br />Not a threat.
           </p>
 
@@ -388,8 +388,159 @@ export default function PreHomepage({
   }
 
   // ===== MAIN RETURN =====
+  // Use a different layout only for the very tall slide (index 12)
+  if (index === 12) {
+    return (
+      <div className="min-h-screen bg-[#050b19] text-white flex flex-col" style={{ overflowY: 'scroll' }}>
+        {/* standard layout – same as before, but footer can move naturally */}
+        <div className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
+          {onBackToReading && (
+            <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
+              ← Back
+            </button>
+          )}
+          <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
+            Skip →
+          </button>
+        </div>
+
+        <div
+          className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-48' : 'px-6 md:px-12 pt-4 pb-6'}`}
+          style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
+          onClick={!isLastSlide && !isTransitioning ? next : undefined}
+          onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
+          role="button"
+          tabIndex={!isLastSlide ? 0 : -1}
+        >
+          <div className="w-full mx-auto max-w-full">
+            <div className="text-center w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: slide.title === "" && !isLargeFormatSlide ? 0.8 : (slide.isFinalSlide ? 1.4 : 1.2),
+                    ease: "easeOut"
+                  }}
+                  exit={{
+                    opacity: 0,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  }}
+                  className="relative"
+                >
+                  {renderTitle()}
+                  {renderBody()}
+                  {index === 1 && showSwipeHint && (
+                    <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-sm px-4 py-2 rounded-full pointer-events-none animate-fadeOut z-50">
+                      ← Swipe or press → for next slide
+                    </div>
+                  )}
+                  {isLastSlide && (
+                    <div className="mt-6">
+                      {/* no instructional text */}
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+
+        <div className="shrink-0 flex flex-col items-center gap-2 py-2 border-t border-gray-800/50">
+          {isLastSlide && (
+            <div className="flex flex-col gap-2 w-full max-w-xs mx-auto mb-2">
+              <button onClick={onGoToPetition} className="px-8 md:px-10 py-3 md:py-4 bg-green-600 hover:bg-green-700 text-white font-semibold tracking-wide rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                ✍ BE COUNTED
+              </button>
+              <button onClick={onGoToHomepage} className="border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition">
+                → SEE WHAT THE EXPERTS SAY
+              </button>
+            </div>
+          )}
+
+          {/* Dimmed logo for specific slides - appears just above navigation dots */}
+          {[1,2,5,7,8,10].includes(index) && (
+            <div className="my-1 pointer-events-none">
+              <Image
+                src="/images/PHIERS_Logo.png"
+                alt="PHIERS"
+                width={80}
+                height={80}
+                className="opacity-30 w-16 md:w-20 mx-auto"
+              />
+            </div>
+          )}
+
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <div className="flex gap-2">
+              {slides.map((_, i) => (
+                <div
+                  key={i}
+                  onClick={() => goToSlide(i)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToSlide(i); } }}
+                  style={{
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    backgroundColor: i === index ? 'rgba(61, 220, 132, 0.7)' : 'rgba(156, 163, 175, 0.5)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    margin: '0 3px',
+                    flexShrink: 0
+                  }}
+                  onMouseEnter={(e) => {
+                    if (i !== index) e.currentTarget.style.backgroundColor = 'rgba(156, 163, 175, 0.7)';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (i !== index) e.currentTarget.style.backgroundColor = 'rgba(156, 163, 175, 0.5)';
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          <p className="text-gray-500 text-xs">{index + 1} / {slides.length}</p>
+        </div>
+
+        {/* Modal for Douglass image */}
+        <AnimatePresence>
+          {douglassModalOpen && slide.imageSrc && (
+            <motion.div
+              className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDouglassModalOpen(false)}
+              aria-hidden="true"
+            >
+              <div className="relative max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
+                <button
+                  onClick={() => setDouglassModalOpen(false)}
+                  className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors"
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
+                <img
+                  src={slide.imageSrc}
+                  alt="Frederick Douglass quote – enlarged"
+                  className="w-full h-auto object-contain rounded-xl"
+                  onError={(e) => console.error('Modal image failed to load:', slide.imageSrc)}
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+  }
+
+  // For all other slides (1–11, 13–14) we use a fixed footer layout
   return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col">
+    <div className={`min-h-screen bg-[#050b19] text-white flex flex-col ${index === 12 ? '' : 'justify-between'}`} style={{ overflowY: 'scroll' }}>
       <div className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
         {onBackToReading && (
           <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
@@ -426,10 +577,11 @@ export default function PreHomepage({
                   opacity: 0,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }}
+                className="relative"
               >
                 {renderTitle()}
                 {renderBody()}
-                {index === 2 && showSwipeHint && (
+                {index === 1 && showSwipeHint && (
                   <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-sm px-4 py-2 rounded-full pointer-events-none animate-fadeOut z-50">
                     ← Swipe or press → for next slide
                   </div>
@@ -439,13 +591,14 @@ export default function PreHomepage({
                     {/* no instructional text */}
                   </div>
                 )}
+
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
       </div>
 
-      <div className="shrink-0 flex flex-col items-center gap-2 py-2 border-t border-gray-800/50 mt-0">
+         <div className="shrink-0 flex flex-col items-center gap-2 py-2 border-t border-gray-800/50">
         {isLastSlide && (
           <div className="flex flex-col gap-2 w-full max-w-xs mx-auto mb-2">
             <button
@@ -462,6 +615,17 @@ export default function PreHomepage({
             </button>
           </div>
         )}
+
+        {/* Dimmed logo for specific slides - appears just above navigation dots */}
+        <div className="my-1 pointer-events-none">
+          <Image
+            src="/images/PHIERS_Logo.png"
+            alt=""
+            width={80}
+            height={80}
+            className={`opacity-${[1,2,5,7,8,10].includes(index) ? '30' : '0'} w-16 md:w-20 mx-auto transition-opacity duration-300`}
+          />
+        </div>
 
         <div className="flex items-center gap-4 flex-wrap justify-center">
           <div className="flex gap-2">
@@ -491,7 +655,6 @@ export default function PreHomepage({
               />
             ))}
           </div>
-
         </div>
         <p className="text-gray-500 text-xs">{index + 1} / {slides.length}</p>
       </div>

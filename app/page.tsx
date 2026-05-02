@@ -106,9 +106,8 @@
 
             // In app/page.tsx, replace the readingLines declaration
             const readingLines = [
-              { type: 'spacer' },
-              { type: 'spacer' },
               { type: 'image' },
+              { type: 'spacer' },
               { type: 'spacer' },
               { type: 'spacer' },
               { type: 'spacer' },
@@ -238,7 +237,7 @@
                             initial={{ opacity: 0, scale: 0.98 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="mb-1"
+                            className="mb-1 mt-[60px]"
                           >
                             <Image
                               src="/images/PHIERS_Things_Changing_Fast.png"

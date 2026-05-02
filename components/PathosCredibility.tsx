@@ -98,8 +98,22 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           <p className="text-green text-xl md:text-2xl font-semibold italic">
             “If you weren’t legit, we wouldn’t risk putting our name behind yours.”
           </p>
-          <p className="text-gray-400 text-base">— Pathos Communications</p>
-          <p className="text-gray-300 text-center text-sm mt-4">
+          <p className="text-gray-400 text-base">— Pathos Communications</p>        {/* Why this holds up */}
+        <div className="mt-10 mb-12 text-center max-w-2xl mx-auto">
+          <h3 className="text-white text-xl font-semibold mb-4">
+            Why this holds up
+          </h3>
+          <div className="text-gray-300 space-y-4 text-sm md:text-base">
+            <p>Real people. Verified. District‑level.</p>
+            <p>Not one moment — patterns over time.</p>
+            <p>Fully transparent. No black boxes.</p>
+            <p>We publish what we find. What happens next is up to voters, the press, and the democratic process.</p>
+          </div>
+        </div>
+
+        {/* SECTION: What We Know Works (unchanged) */}
+        <div className="mb-12">
+          <p className="text-gray-300 text-center textf-sm mt-4">
             Pathos Communications — a global research and PR agency listed on the London Stock Exchange — conducted hours of interviews with Will Price and publicly explained on video why they chose to represent PHIERS.
           </p>
         </div>
