@@ -183,25 +183,26 @@ export default function PreHomepage({
 
     if (slide.accountabilityLayout) {
       return (
-        <div className="flex flex-col items-center px-6 text-center">
+        <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-3xl mx-auto">
           {/* Beat 1 — Thesis */}
-          <p className="text-3xl md:text-4xl font-bold text-white mt-2 mb-3">
-            A standard. Not a threat.
+          <p className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+            A standard.<br />Not a threat.
           </p>
 
           {/* Beat 2 — Indictment */}
-          <p className="text-base md:text-lg text-gray-300 mb-0.5">If you know the war is crushing your constituents —</p>
-          <p className="text-base md:text-lg text-gray-300 mb-0.5">and you do nothing —</p>
-          <p className="text-base md:text-lg text-white font-semibold mb-2">you have made a choice.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-1">If you know the war is crushing your constituents —</p>
+          <p className="text-base md:text-lg text-gray-300 mb-1">and you do nothing —</p>
+          <p className="text-base md:text-lg text-white font-semibold mb-3">you have made a choice.</p>
 
           {/* Beat 3 — Accountability sequence */}
-          <p className="text-base md:text-lg text-gray-300 mb-0.5">We investigate and analyze.</p>
-          <p className="text-base md:text-lg text-gray-300 mb-0.5">We publish what we find.</p>
-          <p className="text-base md:text-lg text-gray-300 mb-2">We organize around it.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-1">We investigate and analyze.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-1">We publish what we find.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-3">We organize around it.</p>
 
           {/* Beat 4 — Democratic landing */}
-          <p className="text-base md:text-lg text-gray-300 mb-0.5">And we push for resignations and special elections if we have to.</p>
-          <p className="text-lg md:text-xl font-bold text-green mb-0">Legally. Democratically.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-2">And we push for resignations and special elections if we have to.</p>
+          <p className="text-lg md:text-xl font-bold text-green mb-1">Legally.</p>
+          <p className="text-lg md:text-xl font-bold text-green mb-1">Democratically.</p>
           <p className="text-lg md:text-xl font-bold text-green">That's the standard.</p>
         </div>
       )
