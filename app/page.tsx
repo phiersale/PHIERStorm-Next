@@ -106,6 +106,8 @@
 
             // In app/page.tsx, replace the readingLines declaration
             const readingLines = [
+              { type: 'spacer' },
+              { type: 'spacer' },
               { type: 'image' },
               { type: 'spacer' },
               { type: 'spacer' },
@@ -243,7 +245,7 @@
                               alt="Things Changing Fast"
                               width={120}
                               height={120}
-                              className="mx-auto w-[75%] sm:w-[45%] h-auto"
+                              className="mx-auto w-[90%] sm:w-[65%] h-auto"
                             />
                           </motion.div>
                         )
