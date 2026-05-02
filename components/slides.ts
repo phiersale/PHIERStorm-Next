@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 7.0 – Final copy & structure per 2026-05-01 review
+// VERSION: 9.0 – Plain spoken, kitchen table, no kings
 
 const slides = [
   // 0 — IMAGE (ANCHOR)
@@ -9,93 +9,97 @@ const slides = [
     imageAlt: "YOU ARE NOT POWERLESS"
   },
 
-  // 1 — PUNCH (less marketing‑y)
+  // 1 — PUNCH
   {
     title: "",
-    body: ["This takes minutes. The impact is leverage."],
-    greenLines: [0],
+    body: [
+      "A few minutes.",
+      "Enough to make Congress do its job."
+    ],
+    greenLines: [1],
     largeFormat: true
   },
 
   // 2 — HOOK
   {
-    title: "Congress responds to power.",
+    title: "Congress works for you.",
     body: [
-      "Right now, they don't have to respond to you.",
-      "PHIERS changes that.",
-      "On the record. Counted in your district. Consequences if they don't respond."
-    ],
-    greenLines: [2]
-  },
-
-  // 3 — WAR / DECIDING MOMENT (sharper, connects to leverage)
-  {
-    title: "They can stop it.",
-    body: [
-      "Wars escalate while Congress watches.",
-      "They have the authority to stop it.",
-      "They are choosing not to act.",
-      "And they will only act when the public forces them to."
+      "They just forgot that.",
+      "PHIERS reminds them.",
+      "Your name. Your district. On the record.",
+      "And they have to answer for it."
     ],
     greenLines: [3]
   },
 
-  // 4 — ROOT PROBLEM (sharper cause‑effect)
+  // 3 — WAR
   {
-    title: "Congress ignores you.",
+    title: "They could stop the wars today.",
     body: [
-      "Because nothing forces them to respond.",
-      "Not emails. Not calls. Not petitions.",
-      "They can fix most of what's broken.",
-      "Because nothing makes them."
+      "Most Americans want them stopped.",
+      "Congress has the authority.",
+      "They're choosing not to use it.",
+      "Because nobody holds them accountable."
     ],
     greenLines: [3]
   },
 
-  // 5 — CORE PRINCIPLE (leverage language unified)
+  // 4 — ROOT PROBLEM
   {
-    title: "Outrage doesn't move them.",
+    title: "They ignore you because they can.",
     body: [
-      "Outrage doesn't move them.",
+      "Your email goes in a folder.",
+      "Your call gets logged by a staffer.",
+      "Your petition disappears into a database.",
+      "None of it costs them anything."
+    ],
+    greenLines: [3]
+  },
+
+  // 5 — CORE PRINCIPLE
+  {
+    title: "Anger doesn't move them.",
+    body: [
       "Neither does blame. Neither does noise.",
-      "Only organized leverage does.",
-      "District-level. Counted. Visible. On the record."
+      "What moves them is organized people in their own district —",
+      "people they know will show up."
     ],
-    greenLines: [2, 3]
+    greenLines: [1, 2]
   },
 
-  // 6 — FREDERICK DOUGLASS IMAGE (unchanged)
+  // 6 — FREDERICK DOUGLASS IMAGE
   {
     type: "image",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 7 — PROOF (stronger, personal)
+  // 7 — PROOF
   {
-    title: "The threshold is proven.",
+    title: "We know what works.",
     body: [
-      "3.5% organized involvement forces change (Harvard Kennedy School)",
-      "1,500 constituents in a district can't be ignored (Ralph Nader)",
-      "Every district is measurable.",
-      "The only variable is whether people show up."
+      "When 3.5% of people get organized, governments move.",
+      "That's not a theory. Harvard studied it.",
+      "When 1,500 people in a district speak together,",
+      "their representative cannot ignore them.",
+      "Ralph Nader proved it. We're using it."
     ],
-    greenLines: [3]
+    greenLines: [3, 4]
   },
 
-  // 8 — MECHANISM (legally safer, clearer)
+  // 8 — MECHANISM
   {
-    title: "The Mechanism",
+    title: "Here's what we do.",
     body: [
-      "We track how many people in each district go on record.",
-      "Not opinions — real people, counted.",
-      "At 1,500, it becomes visible to the public, the press, and other voters.",
-      "That visibility creates accountability."
+      "We count how many people in your district go on record.",
+      "Real people. Real names. Real zip codes.",
+      "When we hit 1,500, your rep has to respond publicly.",
+      "Or answer for why they won't."
     ],
-    greenLines: [1, 3]
+    greenLines: [2, 3]
   },
 
-  // 9 — CONSEQUENCE (untouched)
+  // 9 — CONSEQUENCE (large format)
   {
     title: "",
     body: ["Not noise.", "Not opinion.", "Consequence."],
@@ -103,38 +107,58 @@ const slides = [
     largeFormat: true
   },
 
-  // 10 — THE MOMENT (universal, less fragile)
+  // 10 — THE EVIDENCE BASE
   {
-    title: "The landscape is already shifting.",
+    title: "The petition and the survey are the proof.",
     body: [
-      "The system is under strain.",
-      "Trust is breaking down.",
-      "Officials are being exposed.",
-      "People are paying attention again.",
-      "This is when leverage works."
+      "The petition says: this many people in your district are watching.",
+      "The survey says: here's exactly what they want.",
+      "Should we end the war? Yes or no.",
+      "Should everyone have access to affordable healthcare? Yes or no.",
+      "Real questions. Real answers. Published for everyone to see.",
+      "Not opinions. A verified record of what your neighbors want."
     ],
-    greenLines: [4]
+    greenLines: [4, 5]
   },
 
-  // 11 — ACCOUNTABILITY (custom layout, unchanged)
+  // 11 — THE TOWN HALL
+  {
+    title: "Then we call the meeting.",
+    body: [
+      "1,500 signatures means you get a town hall.",
+      "Your rep shows up and answers the questions — in public.",
+      "Not talking points. The actual things you asked about.",
+      "They can agree, disagree, or explain themselves.",
+      "But they have to show up.",
+      "Refusing to show up is its own answer."
+    ],
+    greenLines: [0, 5]
+  },
+
+  // 12 — THE MOMENT
+  {
+    title: "The window is open right now.",
+    body: [
+      "People are paying attention.",
+      "Officials are being held accountable.",
+      "The old excuses aren't working anymore.",
+      "Organized people are winning right now.",
+      "This is that moment."
+    ],
+    greenLines: [3, 4]
+  },
+
+  // 13 — ACCOUNTABILITY (custom layout)
   {
     accountabilityLayout: true
   },
 
-  // 12 — REPLACEMENT & DEMOCRACY (large format, unchanged)
+  // 14 — REPLACEMENT (custom layout)
   {
-    title: "Consequences",
-    body: [
-      "We replace them. Legally.",
-      "Before the next election.",
-      "That's not a threat.",
-      "That's democracy working the way it was designed to."
-    ],
-    greenLines: [1, 3],
-    largeFormat: true
+    replacementLayout: true
   },
 
-  // 13 — ACRONYM (fixed apostrophe)
+  // 15 — ACRONYM
   {
     title: "PHIERS",
     body: [
@@ -149,15 +173,15 @@ const slides = [
     punchLine: "Power held in every representative's seat."
   },
 
-  // 14 — FINAL CTA (broader, less specific)
+  // 16 — FINAL CTA
   {
-    title: "One demand. On the record.",
+    title: "Your name. Your district. On the record.",
     body: [
-      "Set the demand. Put it on the record.",
+      "That's all it takes to start the process.",
       "Name. Email. Zip code.",
-      "Make your representative answer."
+      "Make them answer."
     ],
-    greenLines: [2],
+    greenLines: [0, 2],
     isFinalSlide: true
   }
 ]
