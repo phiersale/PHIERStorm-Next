@@ -1,5 +1,5 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 7.1 – back-to-slides button, combined validation section with Cuban/telehealth
+// VERSION: 7.5 – back-to-slides button, combined validation section with Cuban/telehealth
 
 'use client'
 
@@ -85,6 +85,9 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
               src="/images/Pathos_Interview_Thumbnail.png"
               alt="Play video: Pathos Communications on PHIERS"
               className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "https://img.youtube.com/vi/KLu7USN_dao/maxresdefault.jpg"
+              }}
             />
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition">
               <div className="w-16 h-16 rounded-full bg-black/70 flex items-center justify-center border-2 border-white/60 group-hover:scale-110 transition">
@@ -99,6 +102,19 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           <p className="text-gray-300 text-center text-sm mt-4">
             Pathos Communications — a global research and PR agency listed on the London Stock Exchange — conducted hours of interviews with Will Price and publicly explained on video why they chose to represent PHIERS.
           </p>
+        </div>
+
+        {/* Why this holds up */}
+        <div className="mt-10 text-center max-w-2xl mx-auto">
+          <h3 className="text-white text-xl font-semibold mb-4">
+            Why this holds up
+          </h3>
+          <div className="text-gray-300 space-y-4 text-sm md:text-base">
+            <p>Real people. Verified. District‑level.</p>
+            <p>Not one moment — patterns over time.</p>
+            <p>Fully transparent. No black boxes.</p>
+            <p>We publish what we find. What happens next is up to voters, the press, and the democratic process.</p>
+          </div>
         </div>
 
         {/* SECTION: What We Know Works (unchanged) */}
@@ -169,17 +185,8 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           <p className="text-gray-400 text-lg mt-3 italic">Your district.<br />Your voice.<br />Your leverage.</p>
         </div>
       </motion.div>
-
-      {/* Floating Back to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-20 right-6 bg-gray-700 text-gray-300 w-10 h-10 rounded-full flex items-center justify-center text-xl cursor-pointer transition-all duration-150 hover:bg-gray-600 hover:-translate-y-0.5 z-[999] border-none shadow-md ${
-          showBackToTop ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
-        aria-label="Back to top"
-      >
-        ↑
-      </button>
     </>
   )
 }
+
+// FILE: components/PathosCredibility.tsx

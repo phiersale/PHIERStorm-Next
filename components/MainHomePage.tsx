@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 7.0.3 – added PHIERS logo at top of main content
+// VERSION: 7.1.0 – added PHIERS logo at top of main content
 
 'use client'
 
@@ -245,9 +245,9 @@ export default function MainHomePage() {
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
             <p className="text-white text-2xl md:text-3xl font-bold mb-2">Congress can end the wars. Right now.</p>
             <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
-            <p className="text-green text-xl font-bold mb-3">They just don’t have the pressure.</p>
+            <p className="text-green text-xl font-bold mb-3">They just don’t have the leverage.</p>
             <p className="text-gray-300 text-base mb-2">That’s where leverage comes in.</p>
-            <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – forces their hand.</p>
+            <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – creates leverage.</p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
             <p className="text-gray-300 text-base mb-2">If they don’t end the wars immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
             <p className="text-white text-lg font-bold mt-2">That's how we make Congress do its job.</p>
@@ -343,8 +343,8 @@ export default function MainHomePage() {
             <p className="text-white text-lg font-semibold mb-3">Pressure becomes unavoidable when:</p>
             <div className="bg-green-glow border border-green/20 rounded-xl p-6 my-4">
               <p className="text-green text-xl font-bold">Savings create growth.</p>
-              <p className="text-green text-xl font-bold my-2">Growth creates pressure.</p>
-              <p className="text-green text-xl font-bold">Pressure creates results.</p>
+              <p className="text-green text-xl font-bold my-2">Growth creates pressure, then leverage.</p>
+              <p className="text-green text-xl font-bold">Leverage creates results.</p>
             </div>
             <p className="text-white text-lg font-bold mt-2">That's the engine.</p>
           </div>
@@ -429,6 +429,22 @@ export default function MainHomePage() {
                 sizes="(max-width: 768px) 90vw, 800px"
                 onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
               />
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* How this works */}
+        <section className="container section">
+          <div className="max-w-[760px] mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-green mb-6">How this works</h2>
+            <div className="space-y-4 text-gray-300 text-base">
+              <p>PHIERS tracks how many verified constituents in each district go on record.</p>
+              <p>Not opinions — real people.</p>
+              <p>When enough people speak up in one district, it becomes visible.</p>
+              <p>That visibility creates accountability.</p>
+              <p className="text-white font-semibold">We don’t remove anyone. We make alignment public — and impossible to ignore.</p>
             </div>
           </div>
         </section>
@@ -577,7 +593,7 @@ export default function MainHomePage() {
               <ul className="list-disc list-inside text-gray-300 space-y-1 mb-4">
                 <li>The system funds itself</li>
                 <li>Growth accelerates</li>
-                <li>Pressure compounds</li>
+                <li>Leverage compounds</li>
                 <li><span className="text-green font-semibold">Political resistance becomes harder to sustain</span></li>
               </ul>
               <p className="text-gray-300 text-base mb-2">No donations. No wealthy backers. No corporate strings.</p>
@@ -621,7 +637,7 @@ export default function MainHomePage() {
               <span className="bg-green-glow px-4 py-2 rounded-full text-white font-bold">Capacity</span>
               <span className="bg-green-glow px-4 py-2 rounded-full text-white font-bold">Staying power</span>
             </div>
-            <p className="text-gray-300 text-base mb-3">And staying power is what makes pressure durable.</p>
+            <p className="text-gray-300 text-base mb-3">And staying power is what makes leverage durable.</p>
             <p className="text-green text-xl font-bold my-4">Affordability → capacity → sustained pressure → response.</p>
             <p className="text-white text-lg font-bold">That's leverage.</p>
           </div>
@@ -817,7 +833,7 @@ export default function MainHomePage() {
             <p className="text-green text-xl font-bold mb-8">
               This is coordinated civic leverage — built district by district.<br />
               A counted signal tied to real representation.<br />
-              And a standing promise: represent us, or we replace you.<br />
+              And a standing promise: represent us, or you risk being replaced.<br />
               <span className="text-gray-400 text-base font-normal">Legally. Democratically. Before the next election if we have to.</span>
             </p>
 
@@ -952,7 +968,7 @@ export default function MainHomePage() {
             <div className="bg-green-glow border border-green/20 rounded-xl p-6 my-6">
               <p className="text-gray-300 text-base mb-2">Affordability gives the system its fuel.</p>
               <p className="text-gray-300 text-base mb-2">Organization gives it structure.</p>
-              <p className="text-gray-300 text-base mb-4">Sustained pressure gives it results.</p>
+              <p className="text-gray-300 text-base mb-4">Sustained pressure → leverage produces results.</p>
               <p className="text-white text-lg font-semibold">And once it reaches scale — it sustains itself.</p>
             </div>
             <p className="text-green text-2xl font-bold mb-6">The only variable is you.</p>

@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 6.0 – Added standalone leverage slide + replacement/democracy slide; "Here's how it works" renamed to "The Mechanism"
+// VERSION: 7.0 – Final copy & structure per 2026-05-01 review
 
 const slides = [
   // 0 — IMAGE (ANCHOR)
@@ -9,92 +9,93 @@ const slides = [
     imageAlt: "YOU ARE NOT POWERLESS"
   },
 
-  // 1 — NEW: Less than 3 minutes (standalone punch)
+  // 1 — PUNCH (less marketing‑y)
   {
     title: "",
-    body: ["Less than 3 minutes can create leverage."],
+    body: ["This takes minutes. The impact is leverage."],
     greenLines: [0],
     largeFormat: true
   },
 
-  // 2 — HOOK (originally slide 1)
+  // 2 — HOOK
   {
     title: "Congress responds to power.",
     body: [
       "Right now, they don't have to respond to you.",
       "PHIERS changes that.",
-      "3 minutes. On the record. Consequence if they don't."
+      "On the record. Counted in your district. Consequences if they don't respond."
     ],
     greenLines: [2]
   },
 
-  // 3 — EMOTIONAL TRIGGER (originally slide 2)
+  // 3 — WAR / DECIDING MOMENT (sharper, connects to leverage)
   {
     title: "They can stop it.",
     body: [
       "Wars escalate while Congress watches.",
-      "They have the authority to act.",
-      "They choose not to.",
-      "That's not incompetence. That's a choice."
+      "They have the authority to stop it.",
+      "They are choosing not to act.",
+      "And they will only act when the public forces them to."
     ],
     greenLines: [3]
   },
 
-  // 4 — ROOT PROBLEM (originally slide 3)
+  // 4 — ROOT PROBLEM (sharper cause‑effect)
   {
     title: "Congress ignores you.",
     body: [
       "Because nothing forces them to respond.",
       "Not emails. Not calls. Not petitions.",
       "They can fix most of what's broken.",
-      "They just don't have to."
+      "Because nothing makes them."
     ],
     greenLines: [3]
   },
 
-  // 5 — CORE PRINCIPLE (originally slide 4)
+  // 5 — CORE PRINCIPLE (leverage language unified)
   {
     title: "Outrage doesn't move them.",
     body: [
+      "Outrage doesn't move them.",
       "Neither does blame. Neither does noise.",
-      "Only organized pressure does.",
+      "Only organized leverage does.",
       "District-level. Counted. Visible. On the record."
     ],
-    greenLines: [1, 2]
+    greenLines: [2, 3]
   },
 
-  // 6 — FREDERICK DOUGLASS IMAGE (originally slide 5)
+  // 6 — FREDERICK DOUGLASS IMAGE (unchanged)
   {
     type: "image",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 7 — PROOF (originally slide 6)
+  // 7 — PROOF (stronger, personal)
   {
     title: "The threshold is proven.",
     body: [
-      "3.5% organized involvement forces change\n(Harvard Kennedy School)",
-      "1,500 constituents in a district can't be ignored\n(Ralph Nader)",
-      "435 districts. One coordinated demand.",
-      "The math works. The only variable is turnout."
+      "3.5% organized involvement forces change (Harvard Kennedy School)",
+      "1,500 constituents in a district can't be ignored (Ralph Nader)",
+      "Every district is measurable.",
+      "The only variable is whether people show up."
     ],
     greenLines: [3]
   },
 
-  // 8 — MECHANISM (originally slide 7, title changed to "The Mechanism")
+  // 8 — MECHANISM (legally safer, clearer)
   {
     title: "The Mechanism",
     body: [
-      "Every district is tracked separately.",
-      "Real people. On the record. Counted by district.",
-      "At 1,500, your representative must respond publicly.",
-      "Or face investigation, primary challenge, or replacement."
+      "We track how many people in each district go on record.",
+      "Not opinions — real people, counted.",
+      "At 1,500, it becomes visible to the public, the press, and other voters.",
+      "That visibility creates accountability."
     ],
-    greenLines: [2, 3]
+    greenLines: [1, 3]
   },
 
-  // 9 — CONSEQUENCE (originally slide 8)
+  // 9 — CONSEQUENCE (untouched)
   {
     title: "",
     body: ["Not noise.", "Not opinion.", "Consequence."],
@@ -102,30 +103,38 @@ const slides = [
     largeFormat: true
   },
 
-  // 10 — THE MOMENT (originally slide 9)
+  // 10 — THE MOMENT (universal, less fragile)
   {
     title: "The landscape is already shifting.",
     body: [
-      "The Voting Rights Act was gutted yesterday.",
-      "The Iran War is breaking the global economy.",
-      "Elected officials are resigning rather than face scrutiny.",
-      "Congress is more exposed than it has been in generations.",
-      "This is exactly when organized pressure becomes unstoppable."
+      "The system is under strain.",
+      "Trust is breaking down.",
+      "Officials are being exposed.",
+      "People are paying attention again.",
+      "This is when leverage works."
     ],
     greenLines: [4]
   },
 
-  // 11 — ACCOUNTABILITY (custom layout)
+  // 11 — ACCOUNTABILITY (custom layout, unchanged)
   {
     accountabilityLayout: true
   },
 
-  // 12 — NEW: Replacement + democracy (custom layout)
+  // 12 — REPLACEMENT & DEMOCRACY (large format, unchanged)
   {
-    replacementLayout: true
+    title: "",
+    body: [
+      "We replace them. Legally.",
+      "Before the next election.",
+      "That's not a threat.",
+      "That's democracy working the way it was designed to."
+    ],
+    greenLines: [1, 3],
+    largeFormat: true
   },
 
-  // 13 — ACRONYM (originally slide 11)
+  // 13 — ACRONYM (fixed apostrophe)
   {
     title: "PHIERS",
     body: [
@@ -133,22 +142,22 @@ const slides = [
       { letter: "H", word: "HELD" },
       { letter: "I", word: "IN" },
       { letter: "E", word: "EVERY" },
-      { letter: "R", word: "REP'S" },
+      { letter: "R", word: "REPS" },
       { letter: "S", word: "SEAT" }
     ],
     customLayout: true,
     punchLine: "Power held in every representative's seat."
   },
 
-  // 14 — FINAL CTA (originally slide 12)
+  // 14 — FINAL CTA (broader, less specific)
   {
     title: "One demand. On the record.",
     body: [
-      "Congress must expand telehealth access — or be replaced.",
+      "Set the demand. Put it on the record.",
       "Name. Email. Zip code.",
-      "That's all it takes to make them answer."
+      "Make your representative answer."
     ],
-    greenLines: [0, 2],
+    greenLines: [2],
     isFinalSlide: true
   }
 ]

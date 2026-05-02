@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 5.7 – whole area clickable, smaller dots
+// VERSION: 6 – whole area clickable, smaller dots
 
 'use client'
 
@@ -166,7 +166,7 @@ export default function PreHomepage({
             If the investigation finds they betrayed the public trust —
           </p>
           <p className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">
-            we replace them. Legally.
+            they risk being replaced. Legally.
           </p>
           <p className="text-xl md:text-2xl font-bold text-green mb-6">
             Before the next election.
@@ -195,7 +195,7 @@ export default function PreHomepage({
           <p className="text-base md:text-lg text-white font-semibold mb-2">you have made a choice.</p>
 
           {/* Beat 3 — Accountability sequence */}
-          <p className="text-base md:text-lg text-gray-300 mb-0.5">We investigate that choice.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-0.5">We investigate and analyze.</p>
           <p className="text-base md:text-lg text-gray-300 mb-0.5">We publish what we find.</p>
           <p className="text-base md:text-lg text-gray-300 mb-2">We organize around it.</p>
 
@@ -448,7 +448,7 @@ export default function PreHomepage({
               onClick={onGoToPetition}
               className="px-8 md:px-10 py-3 md:py-4 bg-green-600 hover:bg-green-700 text-white font-semibold tracking-wide rounded-lg shadow-md hover:shadow-lg transition duration-200"
             >
-              ✍ SIGN THE PETITION NOW
+              ✍ BE COUNTED
             </button>
             <button
               onClick={onGoToHomepage}
