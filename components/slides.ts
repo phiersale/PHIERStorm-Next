@@ -123,7 +123,7 @@ const slides = [
 
   // 12 — REPLACEMENT & DEMOCRACY (large format, unchanged)
   {
-    title: "",
+    title: "Consequences",
     body: [
       "We replace them. Legally.",
       "Before the next election.",
