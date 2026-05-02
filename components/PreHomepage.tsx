@@ -185,8 +185,8 @@ export default function PreHomepage({
       return (
         <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-3xl mx-auto">
           {/* Beat 1 — Thesis */}
-          <p className="text-3xl md:text-4xl font-bold text-white mt-1 mb-4">
-            A standard.<br />Not a threat.
+          <p className="text-3xl md:text-5xl font-bold text-white -mt-2 mb-4">
+            A standard. Not a threat.
           </p>
 
           {/* Beat 2 — Indictment */}
@@ -302,6 +302,24 @@ export default function PreHomepage({
     }
 
     if (isLargeFormatSlide) {
+      // Special layout for slide 1: "This takes minutes. The impact is leverage."
+      const isPunchSlide = slide.body && 
+        slide.body.length === 1 &&
+        slide.body[0] === "This takes minutes. The impact is leverage."
+
+      if (isPunchSlide) {
+        return (
+          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto">
+            <p className="text-xl md:text-2xl font-bold text-green mb-2">
+              This takes minutes.
+            </p>
+            <p className="text-2xl md:text-3xl font-bold text-white">
+              The impact is leverage.
+            </p>
+          </div>
+        )
+      }
+
       // Special tight layout for the replacement + democracy slide (index 12)
       const isReplacementSlide = slide.body && 
         slide.body.length === 4 &&
@@ -405,7 +423,7 @@ export default function PreHomepage({
         </div>
 
         <div
-          className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-48' : 'px-6 md:px-12 pt-0 pb-6'}`}
+          className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-48' : 'px-6 md:px-12 pt-3 pb-6'}`}
           style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
           onClick={!isLastSlide && !isTransitioning ? next : undefined}
           onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
