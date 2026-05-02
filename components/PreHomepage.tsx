@@ -391,7 +391,7 @@ export default function PreHomepage({
   // Use a different layout only for the very tall slide (index 12)
   if (index === 12) {
     return (
-      <div className="min-h-screen bg-[#050b19] text-white flex flex-col" style={{ overflowY: 'scroll' }}>
+      <div key={`slide-12-${index}`} className="min-h-screen bg-[#050b19] text-white flex flex-col" style={{ overflowY: 'scroll' }}>
         {/* standard layout – same as before, but footer can move naturally */}
         <div className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
           {onBackToReading && (
@@ -405,7 +405,7 @@ export default function PreHomepage({
         </div>
 
         <div
-          className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-48' : 'px-6 md:px-12 pt-4 pb-6'}`}
+          className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-48' : 'px-6 md:px-12 pt-0 pb-6'}`}
           style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
           onClick={!isLastSlide && !isTransitioning ? next : undefined}
           onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
@@ -577,7 +577,7 @@ export default function PreHomepage({
                   opacity: 0,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }}
-                className="relative"
+                className="relative -mt-5"
               >
                 {renderTitle()}
                 {renderBody()}
