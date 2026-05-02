@@ -311,18 +311,21 @@ export default function PreHomepage({
 
       if (isReplacementSlide) {
         return (
-          <div className="flex flex-col items-center px-6 text-center">
-            <p className="text-lg md:text-xl text-gray-300 mb-1">
+          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto">
+            <p className="text-lg md:text-xl text-gray-300 mb-3">
               We replace them. Legally.
             </p>
-            <p className="text-2xl md:text-3xl font-bold text-white mb-1">
+            <p className="text-2xl md:text-3xl font-bold text-white mb-2">
               Before the next election.
             </p>
-            <p className="text-xl md:text-2xl font-bold text-green mb-4">
+            <p className="text-xl md:text-2xl font-bold text-green mb-5">
               That's not a threat.
             </p>
+            <p className="text-base md:text-lg text-gray-300 leading-snug mb-1">
+              That's democracy working
+            </p>
             <p className="text-base md:text-lg text-gray-300 leading-snug">
-              That's democracy working the way it was designed to.
+              the way it was designed to.
             </p>
           </div>
         )
