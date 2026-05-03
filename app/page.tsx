@@ -23,13 +23,13 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           src="/images/PHIERS_Logo.png"
           alt="PHIERS Logo"
           className="w-20 opacity-80 mb-6"
-          style={{ opacity: 0, animation: "fadeIn 0.4s ease forwards" }}
+          style={{ opacity: 0, animation: "fadeIn 0.8s ease forwards" }}
         />
 
         {/* Title */}
         <h1
           className="text-white text-4xl font-semibold tracking-tight mb-6"
-          style={{ opacity: 0, animation: "fadeIn 0.6s ease forwards" }}
+          style={{ opacity: 0, animation: "fadeIn 1.2s ease forwards" }}
         >
           Pause.
         </h1>
@@ -37,7 +37,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         {/* Text block */}
         <div
           className="text-white/90 text-lg leading-relaxed space-y-3 max-w-md"
-          style={{ opacity: 0, animation: "fadeIn 0.9s ease forwards" }}
+          style={{ opacity: 0, animation: "fadeIn 1.8s ease forwards" }}
         >
           <p>Take a deep breath.</p>
           <p className="text-white/70">What you're about to see is simple.</p>
@@ -53,7 +53,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           style={{
             opacity: 0,
             color: '#3ddc84',
-            animation: "fadeIn 1.3s ease forwards"
+            animation: "fadeIn 2.6s ease forwards"
           }}
           onMouseEnter={(e) => e.currentTarget.style.color = '#2ab568'}
           onMouseLeave={(e) => e.currentTarget.style.color = '#3ddc84'}
