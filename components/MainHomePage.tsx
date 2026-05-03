@@ -838,22 +838,23 @@ export default function MainHomePage() {
               <span className="text-gray-400 text-base font-normal">Legally. Democratically. Before the next election if we have to.</span>
             </p>
 
-            {/* ARCHITECT DESCRIPTION */}
+            {/* ARCHITECT DESCRIPTION - Updated from LinkedIn bio */}
             <div className="bg-bg-card border border-green/20 rounded-xl p-5 md:p-6 text-left mb-6">
-              <p className="text-white text-base mb-3">
-                This didn’t start as a campaign. It started because I didn’t see anything addressing this in a way that felt direct enough to match what’s actually happening.
+              <p className="text-green font-bold text-lg mb-2">Will Price | Chief Solutions Architect</p>
+              <p className="text-gray-300 text-base mb-3">
+                Will Price is an Information Engineer with more than 20 years of experience in healthcare systems integration. He is the co‑founder and Chief Solutions Architect of PHIERS, where he focuses on integrating proven healthcare, workforce, and resource‑matching models into one coordinated system.
               </p>
               <p className="text-gray-300 text-base mb-3">
-                So I built it.
+                His work includes PHIERSale (a cooperative marketplace), PHIERWorks (AI‑resistant job training and placement), and PHIERplace (resource matching). Will’s background spans care coordination systems, health literacy, digital integration, and national‑scale operational design.
               </p>
               <p className="text-gray-300 text-base mb-3">
-                It’s designed to work through direct public participation — not institutions, not commentary, not abstraction.
+                He was selected as one of five civilian participants in the VA’s Enterprise‑wide Reengineering Initiative, working directly with the CIO’s office. In 2019, the Maryland Health Care Commission recognized him as an expert in healthcare systems integration and health information exchange policy.
               </p>
               <p className="text-gray-300 text-base mb-3">
-                If people engage, it scales. If they don’t, it stays small. Either way, it stays grounded in real participation.
+                Will has documented models for integrated healthcare delivery that are now operationalized by organizations such as Mark Cuban Cost Plus and ZORTT Healthcare, demonstrating 60–90% cost reductions at scale. His current work focuses on architecting PHIERS to unify these proven components into a single, accessible mechanism.
               </p>
-              <p className="text-white text-base font-semibold mt-3">
-                Action first. Everything else follows from that.
+              <p className="text-gray-300 text-base">
+                The journey has not been easy. Much of it unfolded publicly and under pressure, but the work continued. PHIERS reflects that persistence — a system built to give ordinary people clearer access, lower costs, and real leverage in processes that traditionally ignore them.
               </p>
             </div>
 

@@ -11,23 +11,11 @@
           import MainHomePage from '@/components/MainHomePage'
           import PathosCredibility from '@/components/PathosCredibility'
 
-function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: () => void }) {
+function PhasedText({ onComplete }: { onComplete: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden">
       {/* Background subtle zoom */}
-      <div className="absolute inset-0 bg-black animate-slowZoom"></div>
-
-      {/* Skip Intro */}
-      <button
-        onClick={() => {
-          sessionStorage.setItem('phiers_intro_seen', 'true');
-          onSkip();
-        }}
-        className="absolute top-6 right-6 text-white/40 hover:text-white/70 text-sm transition-opacity duration-300"
-        style={{ animation: "fadeIn 1.2s ease forwards" }}
-      >
-        Skip intro →
-      </button>
+      <div className="absolute inset-0 bg-black animate-slowZoom"></div> 
 
       <div className="relative z-10 flex flex-col items-center text-center px-6">
         {/* Logo */}
@@ -60,9 +48,17 @@ function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: ()
 
         {/* CTA */}
         <button
-          onClick={onComplete}
-          className="mt-12 text-green-400 hover:text-green-300 text-xl font-medium transition-colors duration-300"
-          style={{ animation: "fadeIn 1.3s ease forwards" }}
+          onClick={() => {
+            localStorage.setItem('phiers_intro_seen', 'true');
+            onComplete();
+          }}
+          className="mt-12 text-xl font-medium transition-colors duration-300"
+          style={{
+            color: '#3ddc84',
+            animation: "fadeIn 1.3s ease forwards"
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.color = '#2ab568'}
+          onMouseLeave={(e) => e.currentTarget.style.color = '#3ddc84'}
         >
           Continue →
         </button>
@@ -93,7 +89,7 @@ function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: ()
             const [skipFirstImage, setSkipFirstImage] = useState(true)
 
             useEffect(() => {
-              const hasSeenIntro = sessionStorage.getItem('phiers_intro_seen')
+              const hasSeenIntro = localStorage.getItem('phiers_intro_seen')
               if (hasSeenIntro === 'true') {
                 setStage('main')
               }
@@ -176,7 +172,6 @@ function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: ()
               return (
                 <PhasedText 
                   onComplete={() => setStage('image')} 
-                  onSkip={() => setStage('main')} 
                 />
               )
             }
