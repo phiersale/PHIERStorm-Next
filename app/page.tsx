@@ -11,90 +11,78 @@
           import MainHomePage from '@/components/MainHomePage'
           import PathosCredibility from '@/components/PathosCredibility'
 
-          function PhasedText({ onComplete }: { onComplete: () => void }) {
-            const [subphase, setSubphase] = useState<'pause' | 'breath' | 'description'>('pause')
+function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden">
+      {/* Background subtle zoom */}
+      <div className="absolute inset-0 bg-black animate-slowZoom"></div>
 
-            useEffect(() => {
-              const t1 = setTimeout(() => setSubphase('breath'), 400)
-              const t2 = setTimeout(() => setSubphase('description'), 800)
-              return () => {
-                clearTimeout(t1)
-                clearTimeout(t2)
-              }
-            }, [])
+      {/* Skip Intro */}
+      <button
+        onClick={onSkip}
+        className="absolute top-6 right-6 text-white/40 hover:text-white/70 text-sm transition-opacity duration-300"
+        style={{ animation: "fadeIn 1.2s ease forwards" }}
+      >
+        Skip intro →
+      </button>
 
-            useEffect(() => {
-              const handler = (e: KeyboardEvent) => {
-                if (e.key === ' ' || e.key === 'Space') {
-                  e.preventDefault()
-                  onComplete()
-                }
-              }
-              window.addEventListener('keydown', handler)
-              return () => window.removeEventListener('keydown', handler)
-            }, [onComplete])
+      <div className="relative z-10 flex flex-col items-center text-center px-6">
+        {/* Logo */}
+        <img
+          src="/images/PHIERS_Logo.png"
+          alt="PHIERS Logo"
+          className="w-20 opacity-80 mb-6"
+          style={{ animation: "fadeIn 0.4s ease forwards" }}
+        />
 
-            return (
-              <div className="flex flex-col items-center justify-center h-full w-full px-4 py-2" onClick={onComplete}>
-                <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center space-y-2 text-center" style={{ maxHeight: '90vh', paddingTop: '5vh' }}>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    <Image
-                      src="/images/PHIERS-Pause.png"
-                      alt="PHIERS - Pause"
-                      width={140}
-                      height={42}
-                      className="mx-auto w-auto max-w-[50%] h-auto"
-                      priority
-                    />
-                  </motion.div>
+        {/* Title */}
+        <h1
+          className="text-white text-4xl font-semibold tracking-tight mb-6"
+          style={{ animation: "fadeIn 0.6s ease forwards" }}
+        >
+          Pause.
+        </h1>
 
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: subphase === 'breath' ? 1 : 1 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-white text-sm sm:text-base md:text-lg font-semibold"
-                  >
-                    Take a deep breath.
-                  </motion.p>
+        {/* Text block */}
+        <div
+          className="text-white/90 text-lg leading-relaxed space-y-3 max-w-md"
+          style={{ animation: "fadeIn 0.9s ease forwards" }}
+        >
+          <p>Take a deep breath.</p>
+          <p className="text-white/70">What you're about to see is simple.</p>
+          <p className="text-white font-medium">
+            It shifts the balance of power — back to you.
+          </p>
+        </div>
 
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: subphase === 'description' ? 1 : 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-gray-300 text-sm sm:text-base max-w-xs mx-auto"
-                  >
-                    <p>What you're about to see is simple.</p>
-                  </motion.div>
+        {/* CTA */}
+        <button
+          onClick={onComplete}
+          className="mt-12 text-green-400 hover:text-green-300 text-xl font-medium transition-colors duration-300"
+          style={{ animation: "fadeIn 1.3s ease forwards" }}
+        >
+          Continue →
+        </button>
+      </div>
 
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: subphase === 'description' ? 1 : 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="text-gray-300 text-sm sm:text-base max-w-xs mx-auto"
-                  >
-                    <p>It changes the balance of power... to you.</p>
-                  </motion.div>
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
-                  <motion.button
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: subphase === 'description' ? 1 : 0 }}
-                    transition={{ delay: 2.2, duration: 0.6 }}
-                    onClick={() => {
-                      sessionStorage.setItem('phiers_intro_seen', 'true')
-                      onComplete()
-                    }}
-                    className="text-green/80 underline hover:text-green transition text-sm mt-10"
-                  >
-                    Continue →
-                  </motion.button>
-                </div>
-              </div>
-            )
-          }
+        @keyframes slowZoom {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.02); }
+        }
+
+        .animate-slowZoom {
+          animation: slowZoom 12s ease-in-out infinite alternate;
+        }
+      `}</style>
+    </div>
+  )
+}
 
           export default function Page() {
             const router = useRouter()
@@ -183,11 +171,10 @@
 
             if (stage === 'entry') {
               return (
-                <div className="fixed inset-0 bg-black overflow-y-auto">
-                  <div className="w-full max-w-md mx-auto pt-2">
-                    <PhasedText onComplete={() => setStage('image')} />
-                  </div>
-                </div>
+                <PhasedText 
+                  onComplete={() => setStage('image')} 
+                  onSkip={() => setStage('main')} 
+                />
               )
             }
 
