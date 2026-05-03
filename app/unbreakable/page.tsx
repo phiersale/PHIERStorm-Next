@@ -1,4 +1,5 @@
-// FILE: app/unbreakable/page.tsx - FINAL (Invitational & Credible)
+// app/unbreakable/page.tsx
+// UNBREAKABLE – The Pattern. The Pressure. The Proof.
 
 'use client'
 
@@ -12,12 +13,10 @@ import Button from '@/components/Button'
 
 export default function UnbreakablePage() {
   const [modalImage, setModalImage] = useState<string | null>(null)
-
   const openModal = (src: string) => {
     setModalImage(src)
     document.body.style.overflow = 'hidden'
   }
-
   const closeModal = () => {
     setModalImage(null)
     document.body.style.overflow = ''
@@ -34,19 +33,16 @@ export default function UnbreakablePage() {
   return (
     <>
       <Navigation />
-
       <main>
         {/* Hero */}
         <div className="container section text-center pt-32">
-          <div className="relative h-[250px] w-auto mx-auto mb-4 flex justify-center">
-            <Image
-              src="/images/PHIERS_Logo.png"
-              alt="PHIERS Logo"
-              width={250}
-              height={100}
-              className="opacity-70 max-w-[250px] w-full h-auto grayscale brightness-75"
-            />
-          </div>
+          <Image
+            src="/images/PHIERS_Logo.png"
+            alt="PHIERS Logo"
+            width={200}
+            height={80}
+            className="opacity-70 mx-auto mb-4"
+          />
           <div className="text-gray-500 text-xs uppercase tracking-wider mb-3">The Pattern. The Pressure. The Proof.</div>
           <div className="text-gray-600 text-base italic mb-4">When they dissed us, we built anyway.</div>
           <h1 className="font-display text-5xl md:text-7xl text-white tracking-[6px] mb-4">UNBREAKABLE</h1>
@@ -55,16 +51,8 @@ export default function UnbreakablePage() {
 
         {/* Purpose Box */}
         <div className="bg-[#141414] border-t border-b border-[#222] py-5 px-8 text-center my-8">
-          <p className="text-gray-500 text-sm italic">UNBREAKABLE exists to document the pattern, the pressure, and the proof — so the country understands what PHIERS survived to exist.</p>
-        </div>
-
-        <hr className="border-green/20" />
-
-        {/* Anchor Line */}
-        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
-          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
-            Nothing changes until ignoring people costs more than responding to them.<br />
-            <span className="text-green">PHIERS is how we raise that cost.</span>
+          <p className="text-gray-500 text-sm italic">
+            UNBREAKABLE exists to document the pattern, the pressure, and the proof — so the country understands what PHIERS survived to exist.
           </p>
         </div>
 
@@ -85,25 +73,7 @@ export default function UnbreakablePage() {
 
         <hr className="border-green/20" />
 
-        {/* THE OPPORTUNITY – Invitational, fact-based */}
-        <section className="container section">
-          <div className="bg-green-900/10 border-l-4 border-green-500 rounded-r-lg p-5 my-6">
-            <p className="text-white font-bold text-xl mb-2">How ordinary people become impossible to ignore</p>
-            <p className="text-gray-300 mb-2">
-              When 1,500 verified constituents in a single congressional district go on record with the same reasonable request, their representative is publicly accountable. That representative cannot wave away a town hall. They must answer – on the record, in front of their district.
-            </p>
-            <p className="text-gray-300 mb-2">
-              This mechanism works for any issue backed by enough real people. We start with healthcare access – and with ending a war that Congress never authorized. <span className="font-semibold text-green-300">That’s not radical. That’s the Constitution.</span>
-            </p>
-            <p className="text-gray-300 text-sm mt-2">
-              The goal is not to control anyone’s vote. The goal is to make ignoring constituents politically costly – so that representatives have a clear incentive to listen.
-            </p>
-          </div>
-        </section>
-
-        <hr className="border-green/20" />
-
-        {/* The Pattern (unchanged from original working file) */}
+        {/* The Pattern */}
         <section className="bg-[#111] py-12 px-6 my-8">
           <div className="max-w-[840px] mx-auto">
             <h2 className="font-display text-3xl text-white mb-4">The Pattern</h2>
@@ -125,7 +95,7 @@ export default function UnbreakablePage() {
 
         <hr className="border-green/20" />
 
-        {/* The Response (unchanged) */}
+        {/* The Response */}
         <section className="container section">
           <h2 className="font-display text-3xl text-white mb-4">The Response</h2>
           <p className="text-gray-400 mb-3">Despite the pattern, Black men do something extraordinary.</p>
@@ -157,7 +127,7 @@ export default function UnbreakablePage() {
 
         <hr className="border-green/20" />
 
-        {/* The Philosophy (unchanged) */}
+        {/* The Philosophy Behind UNBREAKABLE */}
         <section className="bg-[#111] py-12 px-6 my-8">
           <div className="max-w-[840px] mx-auto">
             <h2 className="font-display text-3xl text-white mb-4">The Philosophy Behind UNBREAKABLE</h2>
@@ -165,10 +135,12 @@ export default function UnbreakablePage() {
             <p className="text-gray-400 mb-3">Not to antagonize. Not to accuse. Not to divide.</p>
             <p className="text-gray-400 mb-6">But to document the pattern — and then transcend it.</p>
             <div className="border-t border-b border-[#222] py-6 my-6 text-center">
-              <p className="text-white text-base italic mb-2">"Black men have been disrespected globally, yet we consistently deliver solutions that uplift everyone — even when no one uplifts us.<br />
-              That is not pain. That is capacity.<br />
-              That is not grievance. That is character.<br />
-              That is the record."</p>
+              <p className="text-white text-base italic mb-2">
+                “Black men have been disrespected globally, yet we consistently deliver solutions that uplift everyone — even when no one uplifts us.<br />
+                That is not pain. That is capacity.<br />
+                That is not grievance. That is character.<br />
+                That is the record.”
+              </p>
               <span className="text-gray-600 text-sm">— Will Price, PHIERS Founders</span>
             </div>
             <p className="text-gray-400 mb-3">Black excellence is not a performance for the world's approval.</p>
@@ -190,7 +162,7 @@ export default function UnbreakablePage() {
 
         <hr className="border-green/20" />
 
-        {/* Mid-Page Anchor (unchanged) */}
+        {/* Mid-Page Anchor */}
         <div className="text-center py-8 my-4 border-t border-b border-[#1e1e1e]">
           <p className="text-gray-500 text-sm">This is what the pattern produced.</p>
           <p className="text-white text-xl font-extrabold tracking-[4px] mt-2">STRUCTURE.</p>
@@ -198,7 +170,7 @@ export default function UnbreakablePage() {
 
         <hr className="border-green/20" />
 
-        {/* PHIERS Built (unchanged) – keep the math */}
+        {/* PHIERS: Built Without Permission. Built for Everyone. */}
         <section className="container section">
           <h2 className="font-display text-3xl text-white mb-4">PHIERS: Built Without Permission. Built for Everyone.</h2>
           <p className="text-gray-400 mb-3">PHIERS is a citizen-powered healthcare movement.</p>
@@ -214,6 +186,7 @@ export default function UnbreakablePage() {
           </div>
           <p className="text-gray-400 mb-4"><strong className="text-white">This is not ideology. This is arithmetic.</strong></p>
           <p className="text-gray-400 mb-6">PHIERS solves a problem Congress could not solve — and gives citizens the leverage to demand they adopt it, or justify publicly why they won't.</p>
+
           <h3 className="font-condensed font-bold text-gray-300 text-lg mb-3">What It Was Built Without</h3>
           <ul className="list-disc list-inside text-gray-400 mb-6">
             <li>Without institutional protection</li>
@@ -221,6 +194,7 @@ export default function UnbreakablePage() {
             <li>Without political shelter</li>
           </ul>
           <p className="text-gray-500 italic mb-8">Under pressure designed to break us.</p>
+
           <h3 className="font-condensed font-bold text-gray-300 text-lg mb-3">What It Cost — The Receipts</h3>
           <p className="text-gray-500 italic mb-4">These are not grievances. These are the conditions under which the work continued.</p>
           <p className="text-gray-300 font-semibold mt-4 mb-2">Financial &amp; Legal Pressure</p>
@@ -246,12 +220,13 @@ export default function UnbreakablePage() {
           <div className="bg-[#161616] border-l-4 border-l-gray-500 rounded-r-lg p-5 my-6">
             <p className="text-gray-300"><strong className="text-white">Every threat was an opportunity to go into survival mode.</strong> Every time, the answer was the same: keep building. Not despite the pressure — through it. That is not suffering. That is the architecture of a movement. And it proves, beyond any reasonable doubt, that we are inferior to no one.</p>
           </div>
+
           <h3 className="font-condensed font-bold text-gray-300 text-lg mb-3">The Validation Before the Silence</h3>
           <p className="text-gray-400 mb-3">A Fortune 500 PR firm reviewed PHIERS and staked their reputation on it.</p>
           <div className="bg-[#161616] border-l-4 border-l-gray-500 rounded-r-lg p-5 my-4">
-            <p className="text-gray-400 mb-2">"If we're talking to you right now, there is an available editorial window."</p>
-            <p className="text-gray-400 mb-2">"If you weren't legit, we wouldn't risk putting our name behind yours."</p>
-            <p className="text-gray-400">"Major outlets are interested — Forbes, USA Today, International Business Times."</p>
+            <p className="text-gray-400 mb-2">“If we're talking to you right now, there is an available editorial window.”</p>
+            <p className="text-gray-400 mb-2">“If you weren't legit, we wouldn't risk putting our name behind yours.”</p>
+            <p className="text-gray-400">“Major outlets are interested — Forbes, USA Today, International Business Times.”</p>
           </div>
           <p className="text-gray-400 mb-3">Nothing changed about PHIERS.</p>
           <p className="text-gray-400 mb-3">Not after hours of interviews.</p>
@@ -264,7 +239,7 @@ export default function UnbreakablePage() {
 
         <hr className="border-green/20" />
 
-        {/* The Mirror (unchanged) */}
+        {/* The Mirror (BAFTA incident) */}
         <section className="bg-[#111] py-12 px-6 my-8">
           <div className="max-w-[840px] mx-auto">
             <p className="text-gray-600 text-sm italic mb-3">The pattern didn't stop at home — it showed up globally.</p>
@@ -276,14 +251,14 @@ export default function UnbreakablePage() {
             <p className="text-gray-400 mb-3">More than once.</p>
             <p className="text-gray-400 mt-4 mb-3">BAFTA had a tape delay. The BBC had editors. Warner Bros. immediately requested the slur be removed.</p>
             <div className="bg-[#161616] border-l-4 border-l-gray-500 rounded-r-lg p-5 my-6">
-              <p className="text-gray-300 mb-2"><strong className="text-white">What was removed from the broadcast?</strong> A joke about "corrupt leaders." A filmmaker saying "Free Palestine."</p>
+              <p className="text-gray-300 mb-2"><strong className="text-white">What was removed from the broadcast?</strong> A joke about “corrupt leaders.” A filmmaker saying “Free Palestine.”</p>
               <p className="text-gray-400 mt-2"><strong className="text-white">What was not removed?</strong> The racial slur directed at two Black men on a global stage.</p>
             </div>
-            <p className="text-gray-400 mb-3">Delroy Lindo said afterward he wished "someone from BAFTA had spoken to us." No one did.</p>
+            <p className="text-gray-400 mb-3">Delroy Lindo said afterward he wished “someone from BAFTA had spoken to us.” No one did.</p>
             <p className="text-gray-400 mt-4 mb-3">That same week, a UK-based PR firm traded on the London Stock Exchange shifted direction after warm, collaborative conversations about PHIERS. The energy changed. They backed out of a signed contract. No questions asked.</p>
             <p className="text-gray-400 mb-5">The reader can connect the same dots he connected.</p>
             <div className="border-t border-b border-[#222] py-6 my-6 text-center">
-              <p className="text-white text-base italic mb-2">"Different institution. Same pattern. Same silence. Same discomfort with excellence that disrupts the status quo."</p>
+              <p className="text-white text-base italic mb-2">“Different institution. Same pattern. Same silence. Same discomfort with excellence that disrupts the status quo.”</p>
               <span className="text-gray-600 text-sm">— Will Price, on what he observed</span>
             </div>
             <p className="text-gray-400">Our response is not retaliation.</p>
@@ -293,69 +268,70 @@ export default function UnbreakablePage() {
 
         <hr className="border-green/20" />
 
-        {/* NEW: Why Participation Matters – replaces the old “Why Black Men Should Walk Tall” */}
+        {/* Why Black Men Should Walk Tall */}
         <section className="container section">
-          <h2 className="font-display text-3xl text-white mb-4">Why your participation changes the math</h2>
-          <p className="text-gray-400 mb-3">
-            You don’t need to be a politician. You don’t need money or a media platform.
-          </p>
-          <p className="text-gray-400 mb-3">
-            You just need to be willing to put your name on the record – alongside thousands of other people who want the same thing: affordable healthcare, an end to unauthorized wars, and representatives who actually respond.
-          </p>
-          <div className="bg-[#141414] border border-green-500/30 rounded-xl p-5 my-5">
-            <p className="text-white font-semibold mb-1">What this is:</p>
-            <ul className="list-disc list-inside text-gray-400 mb-3">
-              <li>Constituent power made visible</li>
-              <li>The right to be heard, exercised peacefully</li>
-              <li>Accountability through public records and town halls</li>
-            </ul>
-            <p className="text-white font-semibold mb-1">What this is not:</p>
-            <ul className="list-disc list-inside text-gray-400">
-              <li>Control over anyone’s vote</li>
-              <li>A threat of violence or coercion</li>
-              <li>Exclusion of any other group</li>
-            </ul>
+          <h2 className="font-display text-3xl text-white mb-4">Why Black Men Should Walk Tall</h2>
+          <p className="text-gray-400 mb-3">Not because the world treats us well. But because we keep building anyway.</p>
+          <p className="text-gray-400 mt-4 mb-3">When institutions fail to protect us — we still protect others.</p>
+          <p className="text-gray-400 mb-3">When institutions refuse to support us — we still support others.</p>
+          <p className="text-gray-400 mb-3">When institutions underestimate us —</p>
+          <p className="text-white font-semibold mb-5 pl-5">we still outperform them.</p>
+          <p className="text-gray-400 mt-4 mb-4">Black men are unbreakable not because life is easy — but because we build under pressure, without applause, without protection, for people who may never stand up for us.</p>
+          <div className="bg-[#161616] border-l-4 border-l-gray-300 rounded-r-lg p-5 my-6">
+            <p className="text-gray-300 text-base mb-2"><strong>We improve the lives of everyone else<br />more than they can improve ours without us.</strong></p>
+            <p className="text-gray-400 mt-3">That is why we stand tall. That is why we speak with dignity. That is why we are unbreakable.</p>
           </div>
-          <p className="text-gray-400 mt-3">
-            Every democracy works this way: when enough people speak clearly, together, representatives listen – or they explain why they won’t.
-          </p>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* NEW: What we can accomplish together – replaces “The Call to Pride” (toned down) */}
+        {/* The Call to Pride */}
         <section className="bg-[#111] py-12 px-6 my-8">
           <div className="max-w-[840px] mx-auto">
-            <h2 className="font-display text-3xl text-white mb-4">What we can accomplish together</h2>
-            <p className="text-gray-400 mb-3">
-              A peaceable, lawful channel for citizens to demand that Congress:
-            </p>
-            <ul className="list-disc list-inside text-gray-400 mb-5">
-              <li>Hold public town halls on issues with 1,500+ constituent signatures</li>
-              <li>Answer whether they support expanding no‑middleman telehealth to every American</li>
-              <li>Explain why the US continues a war that Congress never authorized</li>
-              <li>Publish their votes and justifications for all to see</li>
-            </ul>
-            <p className="text-gray-400 mb-3">
-              This is not radical. This is what democracy looks like when citizens are organized and informed.
-            </p>
-            <p className="text-gray-400">
-              We built the mechanism. Now we invite you to help us use it – peacefully, legally, and effectively.
-            </p>
+            <h2 className="font-display text-3xl text-white mb-4">The Call to Pride</h2>
+            <div className="text-center my-8">
+              <button onClick={() => openModal('/images/i_am_a_man.jpg')} className="cursor-pointer">
+                <Image
+                  src="/images/i_am_a_man.jpg"
+                  alt="I AM A MAN — Memphis, 1968"
+                  width={260}
+                  height={260}
+                  className="rounded-lg border border-[#222] grayscale mx-auto hover:scale-[1.02] transition-transform"
+                />
+              </button>
+              <p className="text-gray-600 text-xs italic mt-2">“I AM A MAN” — Memphis, 1968. They marched for dignity then. We build it now.</p>
+            </div>
+            <p className="text-gray-400 mb-3">To every Foundational Black American man who has been dismissed, sabotaged, blacklisted, or written off:</p>
+            <p className="text-gray-300 font-semibold text-base mb-5">See what we built anyway.</p>
+            <div className="my-6">
+              <p className="text-gray-400 mb-1">We have been sabotaged.</p>
+              <p className="text-gray-400 mb-1">Betrayed.</p>
+              <p className="text-gray-400 mb-1">Disrupted.</p>
+              <p className="text-gray-400 mb-1">Blacklisted.</p>
+              <p className="text-gray-400 mb-1">Homeless.</p>
+              <p className="text-gray-400 mb-4">Erased.</p>
+              <p className="text-white font-bold text-base mt-4 mb-4">And we built anyway.</p>
+            </div>
+            <p className="text-gray-400 mb-3">UNBREAKABLE is not a complaint.</p>
+            <p className="text-gray-400 mb-3">It is not a performance.</p>
+            <p className="text-gray-400 mb-3">It is not a reaction.</p>
+            <p className="text-white font-extrabold text-lg mt-4 mb-5">It is proof.</p>
+            <p className="text-gray-500 italic mb-5">UNBREAKABLE is not about the past — it's about the structure we built anyway.</p>
             <div className="border-t border-b border-[#222] py-6 my-6 text-center">
-              <p className="text-white text-base italic mb-2">
-                “We are unbreakable because we keep building.<br />
-                We are unstoppable because we build together.<br />
-                We will be undeniable when the world sees what we built – and what it made possible.”
-              </p>
+              <p className="text-white text-base italic mb-2">“PHIERS is the proof of what happens when Black men build with integrity under pressure.<br />And the world is better for it.”</p>
               <span className="text-gray-600 text-sm">— Will Price, PHIERS Founders</span>
             </div>
+            <p className="text-white text-lg text-center font-bold tracking-wide leading-loose">
+              If not this, what?<br />
+              If not now, when?<br />
+              If not us, who?
+            </p>
           </div>
         </section>
 
         <hr className="border-green/20" />
 
-        {/* Pathos Video (unchanged) */}
+        {/* Pathos Video */}
         <section className="container section text-center">
           <p className="text-gray-500 font-semibold text-sm mb-3">Pathos Communications: Why They Put Their Reputation Behind PHIERS (7:11)</p>
           <div className="video-container max-w-[640px] mx-auto">
@@ -372,7 +348,7 @@ export default function UnbreakablePage() {
 
         <hr className="border-green/20" />
 
-        {/* This Cannot Be Erased (unchanged) */}
+        {/* This Cannot Be Erased */}
         <section className="container section">
           <h2 className="font-display text-3xl text-white mb-4">This Cannot Be Erased</h2>
           <p className="text-gray-400 mb-4">This page permanently establishes:</p>
@@ -402,6 +378,24 @@ export default function UnbreakablePage() {
             </div>
           </div>
         </section>
+
+        {/* Trilogy Footer */}
+        <div className="border-t border-green/20 py-8 mt-12">
+          <div className="container text-center">
+            <p className="text-gray-400 text-sm mb-4">The complete story – read in any order</p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+              <Link href="/unforgettable" className="text-green-400 hover:text-green-300">
+                🌟 UNFORGETTABLE – The Invitation
+              </Link>
+              <Link href="/unstoppable" className="text-green-400 hover:text-green-300">
+                📘 UNSTOPPABLE – The Movement
+              </Link>
+              <Link href="/unbreakable" className="text-green-400 hover:text-green-300 font-bold border-b border-green-400">
+                📖 UNBREAKABLE – The Pattern
+              </Link>
+            </div>
+          </div>
+        </div>
       </main>
 
       <Footer />
@@ -435,7 +429,8 @@ export default function UnbreakablePage() {
         )}
       </AnimatePresence>
 
-      <button 
+      {/* Back to top button */}
+      <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className="back-to-top"
         id="back-to-top"
@@ -449,8 +444,8 @@ export default function UnbreakablePage() {
           position: fixed;
           bottom: 24px;
           right: 24px;
-          background: var(--green);
-          color: var(--bg-deep);
+          background: #3ddc84;
+          color: #0a1022;
           width: 48px;
           height: 48px;
           border-radius: 50%;
