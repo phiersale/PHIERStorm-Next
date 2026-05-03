@@ -187,7 +187,7 @@ export default function PreHomepage({
             <img
               src="/images/ORGANIZE_Fish.jpg"
               alt="Organized fish – a demand with teeth"
-              className="w-3/4 md:w-1/2 max-w-md rounded-lg shadow-md"
+              className="w-5/6 md:w-2/3 max-w-lg rounded-lg shadow-md"
             />
           </div>
         </div>
