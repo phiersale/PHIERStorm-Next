@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 9.0 – Plain spoken, kitchen table, no kings
+// VERSION: 9.1 – Plain spoken, kitchen table, no kings (fish image added)
 
 const slides = [
   // 0 — IMAGE (ANCHOR)
@@ -14,9 +14,10 @@ const slides = [
     title: "",
     body: [
       "A few minutes.",
-      "Enough to make Congress do its job."
+      "Enough to make",
+      "Congress do its job."
     ],
-    greenLines: [1],
+    greenLines: [2],
     largeFormat: true
   },
 
@@ -46,7 +47,7 @@ const slides = [
     greenLines: [2, 5]
   },
 
-  // 5 — CORE PRINCIPLE
+  // 4 — CORE PRINCIPLE
   {
     title: "Anger doesn't move them.",
     body: [
@@ -57,22 +58,24 @@ const slides = [
     greenLines: [1, 2]
   },
 
-  // 6 — FREDERICK DOUGLASS IMAGE
+  // 5 — FREDERICK DOUGLASS IMAGE
   {
     type: "image",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 7 — A DEMAND THAT HAS TEETH
+  // 7 — A DEMAND THAT HAS TEETH (with image)
   {
     title: "",
     body: ["A demand that has TEETH."],
     greenLines: [0],
-    largeFormat: true
+    largeFormat: true,
+    teethImage: true
   },
 
-  // 7 — PROOF + MECHANISM (merged)
+
+  // 8 — PROOF + MECHANISM (merged)
   {
     title: "We know what works. Here's how we use it.",
     body: [
@@ -106,7 +109,7 @@ const slides = [
     greenLines: [2, 4]
   },
 
-  // 12 — THE MOMENT
+  // 11 — THE MOMENT
   {
     title: "The window is open right now.",
     body: [
@@ -119,17 +122,17 @@ const slides = [
     greenLines: [3, 4]
   },
 
-  // 13 — ACCOUNTABILITY (custom layout)
+  // 12 — ACCOUNTABILITY (custom layout)
   {
     accountabilityLayout: true
   },
 
-  // 14 — REPLACEMENT (custom layout)
+  // 13 — REPLACEMENT (custom layout)
   {
     replacementLayout: true
   },
 
-  // 15 — ACRONYM
+  // 14 — ACRONYM
   {
     title: "PHIERS",
     body: [
@@ -144,7 +147,7 @@ const slides = [
     punchLine: "Power held in every representative's seat."
   },
 
-  // 16 — FINAL CTA
+  // 15 — FINAL CTA
   {
     title: "Your name. Your district. On the record.",
     body: [

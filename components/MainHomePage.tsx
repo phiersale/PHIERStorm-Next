@@ -1030,21 +1030,33 @@ export default function MainHomePage() {
               </button>
 
               <div className="flex flex-wrap items-stretch border-b border-green/20">
-                <div className="flex-0 w-full max-w-[240px] min-h-[280px] overflow-hidden">
+                <div className="flex-shrink-0 ml-4 mr-2 mt-8 w-48 sticky top-8 self-start">
                   <Image
                     src="/images/Will_Price.png"
                     alt="Will Price — Founder & Chief Solutions Architect, PHIERS"
-                    width={240}
-                    height={280}
-                    className="w-full h-full object-cover object-[55%_top]"
+                    width={192}
+                    height={192}
+                    className="w-full h-auto object-cover object-[55%_top] rounded-full"
                   />
                 </div>
-                <div className="flex-1 min-w-[240px] p-6 flex flex-col justify-center">
+                <div className="flex-1 min-w-[240px] py-6 pr-6 pl-2 flex flex-col justify-center">
                   <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-1">The Architect</p>
                   <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-0">Will Price</h3>
                   <p className="font-condensed text-sm text-[#ffd60a] font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
                   <p className="text-body text-sm leading-relaxed">
-                    Not a politician. Not a lobbyist. A systems architect who found $trillions in reclaimable wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009... AFTER ending the wars.
+                    Will Price is an Information Engineer with more than 20 years of experience in healthcare systems integration. He is the co‑founder and Chief Solutions Architect of PHIERS, where he focuses on integrating proven healthcare, workforce, and resource‑matching models into one coordinated system.
+                  </p>
+                  <p className="text-body text-sm leading-relaxed mt-3">
+                    His work includes PHIERSale (a cooperative marketplace), PHIERWorks (AI‑resistant job training and placement), and PHIERplace (resource matching). Will’s background spans care coordination systems, health literacy, digital integration, and national‑scale operational design.
+                  </p>
+                  <p className="text-body text-sm leading-relaxed mt-3">
+                    He was selected as one of five civilian participants in the VA’s Enterprise‑wide Reengineering Initiative, working directly with the CIO’s office. In 2019, the Maryland Health Care Commission recognized him as an expert in healthcare systems integration and health information exchange policy.
+                  </p>
+                  <p className="text-body text-sm leading-relaxed mt-3">
+                    Will has documented models for integrated healthcare delivery that are now operationalized by organizations such as Mark Cuban Cost Plus and ZORTT Healthcare, demonstrating 60–90% cost reductions at scale. His current work focuses on architecting PHIERS to unify these proven components into a single, accessible mechanism.
+                  </p>
+                  <p className="text-body text-sm leading-relaxed mt-3">
+                    The journey has not been easy. Much of it unfolded publicly and under pressure, but the work continued. PHIERS reflects that persistence — a system built to give ordinary people clearer access, lower costs, and real leverage in processes that traditionally ignore them.
                   </p>
                 </div>
               </div>

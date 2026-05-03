@@ -144,20 +144,56 @@ export default function PreHomepage({
   const renderTitle = () => {
     if (slide.customLayout) return null
     if (!slide.title) return null
+
+    // Helper to split a title into two lines if it contains ". " (period + space)
+    const splitTitle = (text: string) => {
+      const periodSpaceIndex = text.indexOf('. ');
+      if (periodSpaceIndex !== -1 && periodSpaceIndex < text.length - 2) {
+        const firstPart = text.substring(0, periodSpaceIndex + 1);
+        const secondPart = text.substring(periodSpaceIndex + 2);
+        return (
+          <>
+            {firstPart}<br />
+            {secondPart}
+          </>
+        );
+      }
+      return text;
+    };
+
+    const renderedTitle = splitTitle(slide.title);
+
     if (slide.title === "PHIERS") {
-      return <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green">{slide.title}</h1>
+      return <h1 className="text-3xl md:text-4xl font-bold mb-4 text-green">{renderedTitle}</h1>
     }
     if (slide.title.includes("Frederick Douglass")) {
-      return <h1 className="text-xl md:text-2xl font-bold leading-tight mb-2">{slide.title}</h1>
+      return <h1 className="text-xl md:text-2xl font-bold leading-tight mb-2">{renderedTitle}</h1>
     }
     if (slide.isFinalSlide) {
-      return <h1 className="text-base sm:text-xl md:text-4xl font-bold leading-tight mb-4 pt-2">{slide.title}</h1>
+      return <h1 className="text-sm sm:text-lg md:text-3xl font-bold leading-tight mb-4 pt-2">{renderedTitle}</h1>
     }
-    return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">{slide.title}</h1>
+    return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-4">{renderedTitle}</h1>
   }
 
   // ===== BODY RENDERING =====
   const renderBody = () => {
+    if (slide.teethImage) {
+      return (
+        <div className="flex flex-col items-center text-center">
+          <p className="text-3xl md:text-5xl font-bold text-green mb-6">
+            A demand that has TEETH.
+          </p>
+          <div className="flex justify-center w-full">
+            <img
+              src="/images/ORGANIZE_Fish.jpg"
+              alt="Organized fish – a demand with teeth"
+              className="w-3/4 md:w-1/2 max-w-md rounded-lg shadow-md"
+            />
+          </div>
+        </div>
+      )
+    }
+
     if (slide.replacementLayout) {
       return (
         <div className="flex flex-col items-center px-6 text-center">
@@ -245,12 +281,16 @@ export default function PreHomepage({
     if (slide.type === "image" && slide.imageSrc) {
       const isDouglassSlide = slide.imageSrc.includes('FredDoug');
       const isPowerlessSlide = slide.imageSrc.includes('You_Are_Not_Powerless');
+      const isOrganizeFish = slide.imageSrc.includes('ORGANIZE_Fish') || slide.imageSrc.includes('organize_fish');
       const handleImageClick = () => {
         if (isDouglassSlide) setDouglassModalOpen(true);
       };
       let widthClass = 'w-[57%] md:w-[47%]';
       if (isPowerlessSlide) {
         widthClass = 'w-[85%] md:w-[70%]';
+      }
+      if (isOrganizeFish) {
+        widthClass = 'w-[80%] md:w-[60%]';
       }
       return (
         <div className="w-full flex justify-center">
@@ -262,6 +302,13 @@ export default function PreHomepage({
               height={800}
               className={`mx-auto object-contain ${isDouglassSlide ? 'w-[70%] md:w-[50%]' : widthClass}`}
               priority
+              onError={(e) => {
+                // Fallback for fish image if it fails to load
+                if (isOrganizeFish) {
+                  (e.target as HTMLImageElement).src = '/images/PHIERS_Logo.png';
+                  console.warn('ORGANIZE_Fish.jpg failed to load, using fallback logo');
+                }
+              }}
             />
           </div>
         </div>
@@ -367,14 +414,14 @@ export default function PreHomepage({
       )
     }
 
-    const grayClass = "text-gray-300 text-base md:text-lg leading-relaxed"
-    const greenClass = "text-green font-bold text-base md:text-lg leading-relaxed"
+    const grayClass = "text-gray-300 text-sm md:text-base leading-relaxed"
+    const greenClass = "text-green font-bold text-sm md:text-base leading-relaxed"
 
     let wrapperClass = "space-y-3 md:space-y-4"
     if (slide.body.length >= 4 && slide.title === "The Mechanism") {
       wrapperClass = "space-y-4 md:space-y-5"
     } else if (slide.isFinalSlide) {
-      wrapperClass = "space-y-1 md:space-y-2 mt-1 md:mt-2"
+      wrapperClass = "space-y-1 md:space-y-2 mt-0 md:mt-0"
     }
 
     return (
@@ -592,9 +639,9 @@ export default function PreHomepage({
                 }}
                 exit={{
                   opacity: 0,
-                  transition: { duration: 0.2, ease: "easeOut" }
+                  transition: { duration: slide.imageSrc?.includes('FredDoug') ? 0.1 : 0.2, ease: "easeOut" }
                 }}
-                className="relative"
+                className={`relative ${slide.imageSrc?.includes('FredDoug') ? 'min-h-[300px] md:min-h-[450px]' : ''}`}
               >
                 {renderTitle()}
                 {renderBody()}

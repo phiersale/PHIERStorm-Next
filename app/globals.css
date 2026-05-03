@@ -474,3 +474,21 @@ body {
   font-style: normal;
 }
 
+/* Reduce slide title sizes globally by ~15% */
+.slides-title {
+  font-size: 1.8rem;
+}
+@media (min-width: 768px) {
+  .slides-title {
+    font-size: 2.2rem;
+  }
+}
+/* For PHIERS acronym slide title */
+.slides-title-green {
+  font-size: 2rem;
+}
+@media (min-width: 768px) {
+  .slides-title-green {
+    font-size: 2.5rem;
+  }
+}

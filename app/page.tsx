@@ -182,16 +182,6 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
                     }
                   }}
                 >
-                  {/* Skip button – goes to slideshow (prehome) */}
-                  <button
-                    onClick={() => {
-                      localStorage.setItem('phiers_intro_seen', 'true');
-                      setStage('prehome');
-                    }}
-                    className="absolute top-6 right-6 text-white/40 hover:text-white/70 text-sm transition-opacity duration-300 z-50"
-                  >
-                    Skip intro →
-                  </button>
 
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
                     <Image
@@ -223,6 +213,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
                     }
                   }}
                 >
+
                   <div className="max-w-xl space-y-1 w-full text-center">
                     {readingLines.map((line, i) => {
                       if (i >= readingVisibleCount) return null
