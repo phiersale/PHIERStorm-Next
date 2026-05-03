@@ -83,7 +83,10 @@
                     initial={{ opacity: 0 }}
                     animate={{ opacity: subphase === 'description' ? 1 : 0 }}
                     transition={{ delay: 2.2, duration: 0.6 }}
-                    onClick={onComplete}
+                    onClick={() => {
+                      sessionStorage.setItem('phiers_intro_seen', 'true')
+                      onComplete()
+                    }}
                     className="text-green/80 underline hover:text-green transition text-sm mt-10"
                   >
                     Continue →
@@ -97,6 +100,13 @@
             const router = useRouter()
             const [stage, setStage] = useState<'entry' | 'image' | 'reading' | 'prehome' | 'credibility' | 'main'>('entry')
             const [skipFirstImage, setSkipFirstImage] = useState(true)
+
+            useEffect(() => {
+              const hasSeenIntro = sessionStorage.getItem('phiers_intro_seen')
+              if (hasSeenIntro === 'true') {
+                setStage('main')
+              }
+            }, [])
 
             useEffect(() => {
               window.scrollTo({ top: 0, behavior: 'instant' })
