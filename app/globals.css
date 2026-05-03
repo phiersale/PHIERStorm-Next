@@ -427,3 +427,41 @@ html, body {
 .animate-fadeOut {
   animation: fadeOut 3s forwards;
 }
+
+/* Trilogy typography upgrades */
+body {
+  color: #d1d5db; /* gray-300 */
+}
+.prose-trilogy p {
+  margin-bottom: 1.25rem;
+  line-height: 1.65;
+}
+.section-spacing {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+.subsection-spacing {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.pivot-line {
+  margin: 2rem 0;
+  font-weight: 600;
+  color: #9ca3af;
+  text-align: center;
+}
+.blockquote-pull {
+  font-size: 1.25rem;
+  font-style: italic;
+  border-left: 4px solid #3ddc84;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  color: #e5e7eb;
+}
+.blockquote-pull .attr {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+  font-style: normal;
+}
+

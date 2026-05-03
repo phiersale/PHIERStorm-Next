@@ -264,6 +264,7 @@ export default function UnbreakablePage() {
             </div>
             <p className="text-gray-400">Our response is not retaliation.</p>
             <p className="text-gray-400">Our response is solutions that make silence indefensible.</p>
+          
           </div>
         </section>
 
