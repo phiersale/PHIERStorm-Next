@@ -15,7 +15,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden">
       {/* Background subtle zoom */}
-      <div className="absolute inset-0 bg-black animate-slowZoom"></div> 
+      <div className="absolute inset-0 bg-black animate-slowZoom"></div>
 
       <div className="relative z-10 flex flex-col items-center text-center px-6">
         {/* Logo */}
@@ -48,10 +48,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
 
         {/* CTA */}
         <button
-          onClick={() => {
-            localStorage.setItem('phiers_intro_seen', 'true');
-            onComplete();
-          }}
+          onClick={onComplete}
           className="mt-12 text-xl font-medium transition-colors duration-300"
           style={{
             color: '#3ddc84',
@@ -87,13 +84,6 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
             const router = useRouter()
             const [stage, setStage] = useState<'entry' | 'image' | 'reading' | 'prehome' | 'credibility' | 'main'>('entry')
             const [skipFirstImage, setSkipFirstImage] = useState(true)
-
-            useEffect(() => {
-              const hasSeenIntro = localStorage.getItem('phiers_intro_seen')
-              if (hasSeenIntro === 'true') {
-                setStage('main')
-              }
-            }, [])
 
             useEffect(() => {
               window.scrollTo({ top: 0, behavior: 'instant' })
@@ -191,6 +181,17 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
                     }
                   }}
                 >
+                  {/* Skip button – goes to slideshow (prehome) */}
+                  <button
+                    onClick={() => {
+                      localStorage.setItem('phiers_intro_seen', 'true');
+                      setStage('prehome');
+                    }}
+                    className="absolute top-6 right-6 text-white/40 hover:text-white/70 text-sm transition-opacity duration-300 z-50"
+                  >
+                    Skip intro →
+                  </button>
+
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
                     <Image
                       src="/images/You_Are_Not_Powerless.jpg"
