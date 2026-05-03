@@ -1,5 +1,5 @@
 // FILE: app/homepage-teeth/page.tsx
-//  Version 1.1.0
+//  Version 1.5.0
 
 'use client'
 
@@ -13,7 +13,8 @@ import JumpToFooter from '@/components/JumpToFooter'
 
 export default function HomepageTeethPage() {
   const [activeRing, setActiveRing] = useState<number | null>(null)
-  const [detailVisible, setDetailVisible] = useState(false)
+  const [ringModalOpen, setRingModalOpen] = useState(false)
+  const [selectedRingIndex, setSelectedRingIndex] = useState<number | null>(null)
   const [chenowethModalOpen, setChenowethModalOpen] = useState(false)
 
   const ringsData = [
@@ -26,12 +27,13 @@ export default function HomepageTeethPage() {
   ]
 
   useEffect(() => {
-    setTimeout(() => { setActiveRing(0); setDetailVisible(true); }, 800)
+    setTimeout(() => { setActiveRing(0); }, 800)
   }, [])
 
   const handleRingClick = (index: number) => {
-    if (activeRing === index) { setActiveRing(null); setDetailVisible(false) }
-    else { setActiveRing(index); setDetailVisible(true) }
+    setActiveRing(index);
+    setSelectedRingIndex(index);
+    setRingModalOpen(true);
   }
 
   // playVideo wrapped in useCallback
@@ -74,8 +76,8 @@ export default function HomepageTeethPage() {
           </div>
           {/* Two-tone H1 - FIXED */}
           <h1 className="mb-4">
-            <span className="hero-white">Movements Without Leverage Don't Win.</span>
-            <span className="hero-green">Here's what that looks like in practice.</span>
+            <span className="hero-white" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)' }}>Movements Without Leverage Don't Win.</span>
+            <span className="hero-green" style={{ fontSize: 'clamp(1.4rem, 3.5vw, 1.8rem)' }}>Here's what that looks like in practice.</span>
           </h1>
           <div className="max-w-[720px] mx-auto">
             <p className="font-condensed text-lg text-gray-400 mb-3">Protests create attention. Petitions create signals. Viral moments create headlines.</p>
@@ -94,7 +96,7 @@ export default function HomepageTeethPage() {
           <p className="text-body text-sm mb-6">Start with the most urgent threat — because nothing else works until it's stabilized.</p>
           <p className="font-condensed text-xs text-gray-500 mb-4 tracking-wide">↓ Tap any ring to see what's inside</p>
 
-          <div className="relative w-[min(520px,92vw)] aspect-square mx-auto mb-8 cursor-pointer">
+          <div className="relative w-[min(380px,85vw)] aspect-square mx-auto mb-8 cursor-pointer">
             {[0, 1, 2, 3, 4, 5].map((ringIdx) => {
               const insets = [0, 10, 22, 34, 46, 58]
               const colors = ['rgba(230,57,70,0.7)', 'rgba(230,57,70,0.5)', 'rgba(255,214,10,0.5)', 'rgba(61,220,132,0.5)', 'rgba(61,220,132,0.7)', '#3ddc84']
@@ -109,9 +111,24 @@ export default function HomepageTeethPage() {
             <div className="absolute top-[51%] left-1/2 -translate-x-1/2 font-condensed font-black text-[0.6rem] text-green-200 uppercase tracking-wide w-[90%] text-center pointer-events-none drop-shadow-md">✊ ECONOMIC FLOOR</div>
           </div>
 
-          <div className={`w-[min(600px,92vw)] min-h-[140px] bg-bg-dark/95 rounded-xl p-6 mx-auto transition-all duration-300 border-l-4 ${detailVisible && activeRing !== null ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`} style={{ borderLeftColor: activeRing !== null ? ringsData[activeRing].color : '#e63946' }}>
-            {activeRing !== null && (<><div className="font-display text-xl md:text-2xl mb-2" style={{ color: ringsData[activeRing].color }}>{ringsData[activeRing].title}</div><div className="text-gray-300 text-sm md:text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: ringsData[activeRing].body }} />{ringsData[activeRing].urgent && (<span className="inline-block mt-3 font-condensed font-bold text-xs uppercase tracking-wide py-1 px-3 rounded bg-red-500/20 text-red-400 border border-red-500/30">⚠️ URGENT — ACT NOW</span>)}</>)}
+          <div className="text-center mt-4">
+            <p className="text-gray-400 text-sm italic">Tap any ring to see what's inside</p>
           </div>
+
+          {/* Ring definition modal */}
+          {ringModalOpen && selectedRingIndex !== null && (
+            <div key={selectedRingIndex} className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 animate-fadeInModal" onClick={() => setRingModalOpen(false)}>
+              <div className="relative max-w-[90vw] max-h-[85vh] overflow-y-auto bg-bg-card rounded-2xl p-6 border border-green/30 shadow-2xl animate-fadeInModal" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setRingModalOpen(false)} className="absolute top-4 right-4 text-white text-2xl cursor-pointer hover:text-green transition-colors">✕</button>
+                <div className="font-display text-2xl md:text-3xl mb-4" style={{ color: ringsData[selectedRingIndex].color }}>{ringsData[selectedRingIndex].title}</div>
+                <div className="text-gray-300 text-base md:text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: ringsData[selectedRingIndex].body }} />
+                {ringsData[selectedRingIndex].urgent && (<div className="mt-4 inline-block font-condensed font-bold text-xs uppercase tracking-wide py-1 px-3 rounded bg-red-500/20 text-red-400 border border-red-500/30">⚠️ URGENT — ACT NOW</div>)}
+                <div className="mt-6 text-center">
+                  <button onClick={() => setRingModalOpen(false)} className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Close</button>
+                </div>
+              </div>
+            </div>
+          )}
         </section>
 
         <hr className="border-green/20" />
@@ -295,4 +312,3 @@ export default function HomepageTeethPage() {
 }
 
 // FILE: app/homepage-teeth/page.tsx
-//  Version 1.1.0
