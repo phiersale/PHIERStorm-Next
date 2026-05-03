@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 6 – whole area clickable, smaller dots
+// VERSION: 7
 
 'use client'
 
@@ -28,6 +28,8 @@ export default function PreHomepage({
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [douglassModalOpen, setDouglassModalOpen] = useState(false)
   const [showSwipeHint, setShowSwipeHint] = useState(true)
+  const [showNavControls, setShowNavControls] = useState(true)
+  const lastScrollY = useRef(0)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const mounted = useRef(true)
@@ -40,13 +42,21 @@ export default function PreHomepage({
     }
   }, [])
 
-    // Hide swipe hint after 3 seconds on first text slide
+
+  // Hide bottom navigation controls on scroll down, show on scroll up or near top
   useEffect(() => {
-    if (index === 1 && showSwipeHint) {
-      const timer = setTimeout(() => setShowSwipeHint(false), 3000)
-      return () => clearTimeout(timer)
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
+        setShowNavControls(false)
+      } else if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
+        setShowNavControls(true)
+      }
+      lastScrollY.current = currentScrollY
     }
-  }, [index, showSwipeHint])
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const clearTimer = () => {
     if (timeoutRef.current) {
@@ -455,21 +465,18 @@ export default function PreHomepage({
   // Use a different layout only for the very tall slide (index 12)
   if (index === 12) {
     return (
-      <div key={`slide-12-${index}`} className="min-h-screen bg-[#050b19] text-white flex flex-col" style={{ overflowY: 'scroll' }}>
+      <div key={`slide-12-${index}`} className="min-h-screen bg-[#050b19] text-white flex flex-col">
         {/* standard layout – same as before, but footer can move naturally */}
-        <div className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
-          {onBackToReading && (
-            <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
-              ← Back
-            </button>
-          )}
-          <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
-            Skip →
-          </button>
-        </div>
+              <div className="flex justify-center items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
+        {index <= 3 && (
+          <p className="text-gray-500 text-xs md:text-sm text-center w-full">
+            ← Swipe or press space/enter →
+          </p>
+        )}
+      </div>
 
         <div
-          className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-48' : 'px-6 md:px-12 pt-3 pb-6'}`}
+          className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : 'px-6 md:px-12 pt-3 pb-2'}`}
           style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
           onClick={!isLastSlide && !isTransitioning ? next : undefined}
           onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
@@ -604,21 +611,18 @@ export default function PreHomepage({
 
   // For all other slides (1–11, 13–14) we use a fixed footer layout
   return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col" style={{ overflowY: 'scroll' }}>
-      <div className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
-        {onBackToReading && (
-          <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
-            ← Back
-          </button>
+    <div className="min-h-screen bg-[#050b19] text-white flex flex-col">
+      <div className="flex justify-center items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
+        {index <= 3 && (
+          <p className="text-gray-500 text-xs md:text-sm text-center w-full">
+            ← Swipe or press space/enter →
+          </p>
         )}
-        <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
-          Skip →
-        </button>
       </div>
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
-        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-48' : 'px-6 md:px-12 pt-4 pb-6'}`}
+        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : 'px-6 md:px-12 pt-4 pb-2'}`}
         style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
         onClick={!isLastSlide && !isTransitioning ? next : undefined}
         onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
@@ -641,7 +645,7 @@ export default function PreHomepage({
                   opacity: 0,
                   transition: { duration: slide.imageSrc?.includes('FredDoug') ? 0.1 : 0.2, ease: "easeOut" }
                 }}
-                className={`relative ${slide.imageSrc?.includes('FredDoug') ? 'min-h-[300px] md:min-h-[450px]' : ''}`}
+                className="relative"
               >
                 {renderTitle()}
                 {renderBody()}
@@ -662,7 +666,11 @@ export default function PreHomepage({
         </div>
       </div>
 
-         <div className="shrink-0 flex flex-col items-center gap-2 py-2 border-t border-gray-800/50">
+         <div
+           className={`shrink-0 flex flex-col items-center gap-2 py-2 border-t border-gray-800/50 transition-opacity duration-300 ${
+             showNavControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
+           }`}
+         >
         {isLastSlide && (
           <div className="flex flex-col gap-2 w-full max-w-xs mx-auto mb-2">
             <button

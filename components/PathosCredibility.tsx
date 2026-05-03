@@ -1,9 +1,9 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 7.6 – fixed syntax, proper spacing, deduplicated sections
+// VERSION: 7.8 
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 type Props = {
@@ -12,10 +12,21 @@ type Props = {
 
 export default function PathosCredibility({ onBackToSlides }: Props) {
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [showTopButtons, setShowTopButtons] = useState(true)
+  const lastScrollY = useRef(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 300)
+      const currentScrollY = window.scrollY
+      setShowBackToTop(currentScrollY > 300)
+
+      // Hide top buttons when scrolling down past 100px, show when scrolling up or near top
+      if (currentScrollY > 100 && (lastScrollY.current === undefined || currentScrollY > lastScrollY.current)) {
+        setShowTopButtons(false)
+      } else if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
+        setShowTopButtons(true)
+      }
+      lastScrollY.current = currentScrollY
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -27,20 +38,23 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
 
   return (
     <>
-      {/* Back to Slides button - left side */}
-      {onBackToSlides && (
-        <div className="fixed top-16 left-4 z-50">
+      {/* Top buttons container – fades out on scroll down */}
+      <div
+        className={`fixed top-16 left-0 right-0 z-50 flex justify-between px-4 transition-opacity duration-300 ${
+          showTopButtons ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        {/* Back to Slides button - left side */}
+        {onBackToSlides && (
           <button
             onClick={onBackToSlides}
             className="text-gray-500 text-sm underline hover:text-gray-300 transition"
           >
             ← Back to Slides
           </button>
-        </div>
-      )}
+        )}
 
-      {/* Skip button - right side (scrolls to action buttons) */}
-      <div className="fixed top-16 right-4 z-50">
+        {/* Skip button - right side */}
         <button
           onClick={() => {
             const buttons = document.getElementById('credibility-buttons');
@@ -199,3 +213,5 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
     </>
   )
 }
+
+// FILE: components/PathosCredibility.tsx
