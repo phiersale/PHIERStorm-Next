@@ -233,7 +233,7 @@ function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: ()
                             key={i}
                             initial={{ opacity: 0, scale: 0.98 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            transition={{ duration: 1.6, ease: "easeOut" }}
                             className="mb-1 mt-[60px]"
                           >
                             <Image

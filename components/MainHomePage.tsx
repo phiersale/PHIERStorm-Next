@@ -892,12 +892,22 @@ export default function MainHomePage() {
             </div>
 
             {/* CTA BUTTON */}
-            <button
-              onClick={() => setShowArchitectModal(true)}
-              className="text-green underline hover:text-green-dim transition-colors mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
-            >
-              Meet the architect →
-            </button>
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
+              <button
+                onClick={() => setShowArchitectModal(true)}
+                className="text-green underline hover:text-green-dim transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
+              >
+                Meet the architect →
+              </button>
+              <a
+                href="http://www.linkedin.com/in/will-price-phiers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green underline hover:text-green-dim transition-colors text-lg"
+              >
+                LinkedIn bio →
+              </a>
+            </div>
           </div>
         </section>
 
@@ -1043,7 +1053,7 @@ export default function MainHomePage() {
                   <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-0">Will Price</h3>
                   <p className="font-condensed text-sm text-[#ffd60a] font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
                   <p className="text-body text-sm leading-relaxed">
-                    Not a politician. Not a lobbyist. A systems architect who found $2.7 trillion in wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009... AFTER ending the wars.
+                    Not a politician. Not a lobbyist. A systems architect who found $trillions in reclaimable wasted spending — and built the lever to redirect it toward healthcare, jobs, and a monthly check for every American. Building this since 2009... AFTER ending the wars.
                   </p>
                 </div>
               </div>
