@@ -468,7 +468,8 @@ export default function MainHomePage() {
             <div className="text-center mb-6"><span className="text-green text-sm font-condensed font-bold tracking-wider">THE ECONOMIC ENGINE</span></div>
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <p className="text-gray-300 text-base mb-3">Right now, the country spends $8,000–$10,000 per person each year on healthcare.</p>
+                <p className="text-gray-300 text-base mb-3">Even using conservative estimates — around $8,000–$10,000 per person annually — the scale is massive.</p>
+                <p className="text-gray-500 text-sm italic mb-3">(Actual costs are often significantly higher depending on coverage and employer contributions.)</p>
                 <p className="text-gray-300 text-base mb-3">But most of the care people actually use — at a fraction of the cost — can be delivered for about $600 through telehealth.</p>
                 <p className="text-gray-300 text-base mb-3">That gap represents <span className="text-green font-semibold">trillions in potential savings</span>.</p>
                 <p className="text-green text-xl font-bold mt-2">That's not a theory. That's math.</p>
