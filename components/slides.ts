@@ -74,6 +74,14 @@ const slides = [
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
+  // 7 — A DEMAND THAT HAS TEETH
+  {
+    title: "",
+    body: ["A demand that has TEETH."],
+    greenLines: [0],
+    largeFormat: true
+  },
+
   // 7 — PROOF
   {
     title: "We know what works.",

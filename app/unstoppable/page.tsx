@@ -29,6 +29,7 @@ export default function UnstoppablePage() {
         <div className="text-center pt-32 pb-16">
           <Image src="/images/PHIERS_Logo.png" alt="PHIERS Logo" width={180} height={70} className="mx-auto mb-4 opacity-80" />
           <div className="text-gray-500 text-sm italic">UNBREAKABLE was the proof. UNSTOPPABLE is the plan.</div>
+          <div className="text-green-400 text-sm font-mono uppercase tracking-wider mb-2">Part III · UNSTOPPABLE</div>
           <h1 className="font-display text-5xl md:text-7xl text-white tracking-[6px] my-4">UNSTOPPABLE</h1>
           <div className="text-gray-400">The movement we build together.</div>
           <p className="max-w-2xl mx-auto mt-6 text-green-400 font-bold">Black men built this.<br />Millions of us make it unstoppable.</p>
@@ -206,21 +207,12 @@ export default function UnstoppablePage() {
           </div>
         </section>
 
-        {/* Trilogy Footer */}
-        <div className="border-t border-green/20 py-8 mt-12">
-          <div className="container text-center">
-            <p className="text-gray-400 text-sm mb-4">The complete story – read in any order</p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <Link href="/unforgettable" className="text-green-400 hover:text-green-300 font-bold border-b border-green-400">
-                🌟 UNFORGETTABLE – The Invitation
-              </Link>
-              <Link href="/unbreakable" className="text-green-400 hover:text-green-300">
-                📖 UNBREAKABLE – The Pattern &amp; The Proof
-              </Link>
-              <Link href="/unstoppable" className="text-green-400 hover:text-green-300">
-                📘 UNSTOPPABLE – The Plan
-              </Link>
-            </div>
+        {/* Continue to the rest of the trilogy */}
+        <div className="border-t border-gray-800 py-8 mt-16 text-center">
+          <p className="text-gray-400 text-sm mb-3">This started with something deeper:</p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <a href="/unforgettable" className="text-green-400 hover:underline">→ UNFORGETTABLE — why it matters</a>
+            <a href="/unbreakable" className="text-green-400 hover:underline">→ UNBREAKABLE — what we’ve proven</a>
           </div>
         </div>
       </main>

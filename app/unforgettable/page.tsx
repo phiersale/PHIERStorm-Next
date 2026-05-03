@@ -45,6 +45,7 @@ export default function UnforgettablePage() {
           />
           <div className="text-gray-500 text-xs uppercase tracking-wider mb-2">The Gift. The Invitation. The Legacy.</div>
           <div className="text-gray-600 text-base italic mb-4">We built the lever. Now we need you to pull it with us.</div>
+          <div className="text-green-400 text-sm font-mono uppercase tracking-wider mb-2">Part I · UNFORGETTABLE</div>
           <h1 className="font-display text-5xl md:text-7xl text-white tracking-[6px] mb-4">UNFORGETTABLE</h1>
           <div className="text-gray-500 text-sm tracking-wide">What we leave behind</div>
         </div>
@@ -267,6 +268,14 @@ export default function UnforgettablePage() {
             </div>
           </div>
         </div>
+      {/* Trilogy continuation footer */}
+      <div className="border-t border-gray-800 py-8 mt-16 text-center">
+        <p className="text-gray-400 text-sm mb-3">If this resonated, there’s more:</p>
+        <div className="flex flex-wrap justify-center gap-4 text-sm">
+          <a href="/unbreakable" className="text-green-400 hover:underline">→ UNBREAKABLE — how we got here</a>
+          <a href="/unstoppable" className="text-green-400 hover:underline">→ UNSTOPPABLE — where we go next</a>
+        </div>
+      </div>
       </main>
 
       <Footer />

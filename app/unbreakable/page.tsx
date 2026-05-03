@@ -45,6 +45,7 @@ export default function UnbreakablePage() {
           />
           <div className="text-gray-500 text-xs uppercase tracking-wider mb-3">The Pattern. The Pressure. The Proof.</div>
           <div className="text-gray-600 text-base italic mb-4">When they dissed us, we built anyway.</div>
+          <div className="text-green-400 text-sm font-mono uppercase tracking-wider mb-2">Part II · UNBREAKABLE</div>
           <h1 className="font-display text-5xl md:text-7xl text-white tracking-[6px] mb-4">UNBREAKABLE</h1>
           <div className="text-gray-500 text-sm tracking-wide">The pattern. The pressure. The proof.</div>
         </div>
@@ -396,6 +397,10 @@ export default function UnbreakablePage() {
             </div>
           </div>
         </div>
+      <div className="border-t border-gray-800 py-8 mt-16 text-center">
+        <p className="text-gray-400 text-sm mb-3">You’ve seen what we’ve endured. Now see what happens when we move together:</p>
+        <a href="/unstoppable" className="text-green-400 hover:underline">→ UNSTOPPABLE</a>
+      </div>
       </main>
 
       <Footer />
