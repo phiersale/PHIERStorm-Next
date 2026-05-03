@@ -893,22 +893,12 @@ export default function MainHomePage() {
             </div>
 
             {/* CTA BUTTON */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
-              <button
-                onClick={() => setShowArchitectModal(true)}
-                className="text-green underline hover:text-green-dim transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
-              >
-                Meet the architect →
-              </button>
-              <a
-                href="http://www.linkedin.com/in/will-price-phiers"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-green underline hover:text-green-dim transition-colors text-lg"
-              >
-                LinkedIn bio →
-              </a>
-            </div>
+            <button
+              onClick={() => setShowArchitectModal(true)}
+              className="text-green underline hover:text-green-dim transition-colors mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
+            >
+              Meet the architect →
+            </button>
           </div>
         </section>
 
