@@ -19,7 +19,10 @@ function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: ()
 
       {/* Skip Intro */}
       <button
-        onClick={onSkip}
+        onClick={() => {
+          sessionStorage.setItem('phiers_intro_seen', 'true');
+          onSkip();
+        }}
         className="absolute top-6 right-6 text-white/40 hover:text-white/70 text-sm transition-opacity duration-300"
         style={{ animation: "fadeIn 1.2s ease forwards" }}
       >
