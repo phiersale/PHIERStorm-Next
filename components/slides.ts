@@ -32,28 +32,18 @@ const slides = [
     greenLines: [3]
   },
 
-  // 3 — WAR
+  // 3 — WAR + ROOT PROBLEM (merged)
   {
-    title: "They could stop the wars today.",
+    title: "They could stop it. They choose not to.",
     body: [
-      "Most Americans want them stopped.",
+      "Most Americans want the wars stopped.",
       "Congress has the authority.",
       "They're choosing not to use it.",
-      "Because nobody holds them accountable."
-    ],
-    greenLines: [3]
-  },
-
-  // 4 — ROOT PROBLEM
-  {
-    title: "They ignore you because they can.",
-    body: [
-      "Your email goes in a folder.",
+      "Because your email goes in a folder.",
       "Your call gets logged by a staffer.",
-      "Your petition disappears into a database.",
       "None of it costs them anything."
     ],
-    greenLines: [3]
+    greenLines: [2, 5]
   },
 
   // 5 — CORE PRINCIPLE
@@ -82,29 +72,17 @@ const slides = [
     largeFormat: true
   },
 
-  // 7 — PROOF
+  // 7 — PROOF + MECHANISM (merged)
   {
-    title: "We know what works.",
+    title: "We know what works. Here's how we use it.",
     body: [
-      "When 3.5% of people get organized, governments move.",
-      "That's not a theory. Harvard studied it.",
-      "When 1,500 people in a district speak together,",
-      "their representative cannot ignore them.",
-      "Ralph Nader proved it. We're using it."
-    ],
-    greenLines: [3, 4]
-  },
-
-  // 8 — MECHANISM
-  {
-    title: "Here's what we do.",
-    body: [
-      "We count how many people in your district go on record.",
-      "Real people. Real names. Real zip codes.",
-      "When we hit 1,500, your rep has to respond publicly.",
+      "3.5% organized involvement forces change. Harvard proved it.",
+      "1,500 people in a district can't be ignored. Ralph Nader proved it.",
+      "So we count real people in your district — on the record.",
+      "At 1,500, your rep has to respond publicly.",
       "Or answer for why they won't."
     ],
-    greenLines: [2, 3]
+    greenLines: [3, 4]
   },
 
   // 9 — CONSEQUENCE (large format)
@@ -115,32 +93,17 @@ const slides = [
     largeFormat: true
   },
 
-  // 10 — THE EVIDENCE BASE
+  // 10 — EVIDENCE BASE + TOWN HALL (merged)
   {
-    title: "The petition and the survey are the proof.",
+    title: "The petition and survey call the meeting.",
     body: [
-      "The petition says: this many people in your district are watching.",
-      "The survey says: here's exactly what they want.",
-      "Should we end the war? Yes or no.",
-      "Should everyone have access to affordable healthcare? Yes or no.",
-      "Real questions. Real answers. Published for everyone to see.",
-      "Not opinions. A verified record of what your neighbors want."
-    ],
-    greenLines: [4, 5]
-  },
-
-  // 11 — THE TOWN HALL
-  {
-    title: "Then we call the meeting.",
-    body: [
-      "1,500 signatures means you get a town hall.",
-      "Your rep shows up and answers the questions — in public.",
-      "Not talking points. The actual things you asked about.",
-      "They can agree, disagree, or explain themselves.",
-      "But they have to show up.",
+      "The petition proves organized standing — verified, by district.",
+      "The survey documents exactly what constituents demand.",
+      "Together they trigger a mandatory town hall.",
+      "Your rep shows up and answers — in public.",
       "Refusing to show up is its own answer."
     ],
-    greenLines: [0, 5]
+    greenLines: [2, 4]
   },
 
   // 12 — THE MOMENT
