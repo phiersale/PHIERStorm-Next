@@ -184,22 +184,6 @@ export default function MainHomePage() {
           />
         </div>
 
-        {/* Back button to restart intro experience – dim, only on this page */}
-        <div className="flex justify-center mb-6">
-          <button
-            onClick={() => {
-              localStorage.setItem('phiers_intro_seen', 'false');
-              window.location.href = '/';
-            }}
-            className="text-gray-400 text-sm underline transition hover:text-gray-300"
-            style={{ opacity: 0.6 }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
-          >
-            ← Back
-          </button>
-        </div>
-
         {/* HERO */}
         <section className="container text-center pt-8 md:pt-12 pb-4">
           <h1 className="mb-8 md:mb-10 text-center">
