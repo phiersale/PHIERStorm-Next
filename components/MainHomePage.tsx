@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 7.1.0 – added PHIERS logo at top of main content
+// VERSION: 7.3.0 – added dim "BACK" button with scroll‑hide
 
 'use client'
 
@@ -34,7 +34,7 @@ function VideoCard({ id, title }: { id: string; title: string }) {
   )
 }
 
-export default function MainHomePage() {
+export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => void }) {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [showArchitectModal, setShowArchitectModal] = useState(false)
@@ -97,8 +97,20 @@ export default function MainHomePage() {
     return () => window.removeEventListener('keydown', handleTab)
   }, [modalImageSrc])
 
+  const [showBackButton, setShowBackButton] = useState(true)
+  const lastScrollY = useRef(0)
+
   useEffect(() => {
-    const handleScroll = () => setShowBackToTop(window.scrollY > 400)
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400)
+      const currentScrollY = window.scrollY
+      if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
+        setShowBackButton(false)
+      } else if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
+        setShowBackButton(true)
+      }
+      lastScrollY.current = currentScrollY
+    }
     handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -170,6 +182,23 @@ export default function MainHomePage() {
       </AnimatePresence>
 
       <Navigation />
+
+      {/* Dim "BACK" button – only shown if onBackToEntry is provided */}
+      {onBackToEntry && (
+        <div
+          className={`fixed top-[50px] left-4 z-40 md:top-[60px] transition-opacity duration-300 ${
+            showBackButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          <button
+            onClick={onBackToEntry}
+            className="text-gray-500 text-sm underline hover:text-gray-400 transition-colors focus:outline-none focus:ring-1 focus:ring-green rounded px-1"
+            aria-label="Go back to the beginning of the site"
+          >
+            ← BACK
+          </button>
+        </div>
+      )}
 
       <main className="font-sans pt-20 md:pt-0">
         {/* PHIERS Logo at the top of the main content */}

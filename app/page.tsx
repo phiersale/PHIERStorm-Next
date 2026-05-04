@@ -330,7 +330,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
             )
           }
 
-            return <MainHomePage />
+            return <MainHomePage onBackToEntry={() => setStage('entry')} />
           }
 
           // FILE: app/page.tsx
