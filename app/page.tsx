@@ -318,10 +318,16 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
                     className="px-6 py-2 text-base font-bold rounded-lg shadow-md transition"
                     style={{
                       backgroundColor: '#3ddc84',
-                      color: 'white'
+                      color: 'black'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2ab568'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3ddc84'}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#2ab568';
+                      e.currentTarget.style.color = 'black';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#3ddc84';
+                      e.currentTarget.style.color = 'black';
+                    }}
                   >
                     Continue to Main Site →
                   </button>

@@ -1,5 +1,6 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 7.9 - added back top nav buttongs fo rback and skip
+// FILE: components/PathosCredibility.tsx
+// VERSION: 7.10 - removed back-to-top button (short page)
 
 'use client'
 
@@ -11,14 +12,12 @@ type Props = {
 }
 
 export default function PathosCredibility({ onBackToSlides }: Props) {
-  const [showBackToTop, setShowBackToTop] = useState(false)
   const [showTopButtons, setShowTopButtons] = useState(true)
   const lastScrollY = useRef(0)
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-      setShowBackToTop(currentScrollY > 300)
 
       // Hide top buttons when scrolling down past 100px, show when scrolling up or near top
       if (currentScrollY > 100 && (lastScrollY.current === undefined || currentScrollY > lastScrollY.current)) {
@@ -31,10 +30,6 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
 
   return (
     <>
@@ -206,16 +201,6 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         </div>
       </motion.div>
 
-      {/* Floating Back to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-20 right-6 bg-gray-700 text-gray-300 w-10 h-10 rounded-full flex items-center justify-center text-xl cursor-pointer transition-all duration-150 hover:bg-gray-600 hover:-translate-y-0.5 z-[999] border-none shadow-md ${
-          showBackToTop ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
-        aria-label="Back to top"
-      >
-        ↑
-      </button>
     </>
   )
 }
