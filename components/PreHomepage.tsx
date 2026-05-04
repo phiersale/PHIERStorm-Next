@@ -1,4 +1,3 @@
-// FILE: components/PreHomepage.tsx
 // VERSION: 7.1 – refined accountability spacing + cold procedural replacement slide
 
 'use client'
@@ -216,7 +215,7 @@ export default function PreHomepage({
 
           {/* Top Block — Title */}
           <div className="space-y-2 mb-6">
-            <h2 className="text-3xl md:text-3xl font-bold text-white leading-tight">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
               If they refuse the town hall meeting
               <br />
               they lose the seat.
