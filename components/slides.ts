@@ -35,16 +35,14 @@ const slides = [
 
   // 3 — WAR + ROOT PROBLEM (merged)
   {
-    title: "They could stop it. They choose not to.",
+    title: "They have the authority. They choose not to use it.",
     body: [
       "Most Americans want the wars stopped.",
-      "Congress has the authority.",
-      "They're choosing not to use it.",
-      "Because your email goes in a folder.",
-      "Your call gets logged by a staffer.",
-      "It costs them nothing to ignore you."
+      "They want healthcare, jobs, a safety net.",
+      "Congress can act on all of it — tomorrow.",
+      "They won't. Because it costs them nothing to ignore you."
     ],
-    greenLines: [2, 5]
+    greenLines: [3]
   },
 
   // 4 — CORE PRINCIPLE
