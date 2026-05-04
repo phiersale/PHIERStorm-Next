@@ -237,8 +237,7 @@ export default function PreHomepage({
 
           {/* Bottom Block — Clarifier */}
           <div className="space-y-1 opacity-80">
-            <p className="text-base md:text-lg text-gray-400">No heat.</p>
-            <p className="text-base md:text-lg text-gray-400">No threats.</p>
+            <p className="text-base md:text-lg text-gray-400">No heat. No threats.</p>
             <p className="text-base md:text-lg text-gray-400">Just process.</p>
           </div>
 

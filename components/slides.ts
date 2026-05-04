@@ -102,7 +102,7 @@ const slides = [
     body: [
       "The petition proves organized standing — verified, by district.",
       "The survey documents exactly what constituents demand.",
-      "Together they trigger a mandatory town hall.",
+      "Together they force a public town hall meeting.",
       "Your rep shows up and answers — in public.",
       "Refusing to show up is its own answer."
     ],
@@ -131,8 +131,8 @@ const slides = [
   {
     title: "1,500 signatures → town hall demanded.",
     body: [
-      "Rep must answer: Why won't you put constituents first?",
-      "If the answer is corrupt or evasive → public investigation.",
+      "Your rep must answer: Why won’t you put constituents first?",
+      "If the answer is corrupt, evasive, or dismissive → public investigation.",
       "We publish votes, donors, ties to war profiteers.",
       "They will resign under pressure, or face a primary challenger who pre‑commits to the district's demands.",
       "That's called leverage. No recall needed. Only accountability."
