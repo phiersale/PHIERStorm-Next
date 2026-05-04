@@ -315,7 +315,13 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
                   </button>
                   <button
                     onClick={() => setStage('main')}
-                    className="px-6 py-2 text-base bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 transition"
+                    className="px-6 py-2 text-base font-bold rounded-lg shadow-md transition"
+                    style={{
+                      backgroundColor: '#3ddc84',
+                      color: 'white'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2ab568'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3ddc84'}
                   >
                     Continue to Main Site →
                   </button>

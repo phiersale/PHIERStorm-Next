@@ -1,5 +1,5 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 7.8 
+// VERSION: 7.9 - added back top nav buttongs fo rback and skip
 
 'use client'
 
@@ -40,7 +40,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
     <>
       {/* Top buttons container – fades out on scroll down */}
       <div
-        className={`fixed top-16 left-0 right-0 z-50 flex justify-between px-4 transition-opacity duration-300 ${
+        className={`fixed top-2 left-0 right-0 z-50 flex justify-between px-4 transition-opacity duration-300 ${
           showTopButtons ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -48,9 +48,12 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         {onBackToSlides && (
           <button
             onClick={onBackToSlides}
-            className="text-gray-500 text-sm underline hover:text-gray-300 transition"
+            className="text-gray-500 text-sm underline transition hover:text-gray-300"
+            style={{ opacity: 0.6 }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
           >
-            ← Back to Slides
+            ← Back
           </button>
         )}
 
@@ -60,7 +63,10 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             const buttons = document.getElementById('credibility-buttons');
             if (buttons) buttons.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="text-gray-500 text-sm underline hover:text-gray-300 transition"
+          className="text-gray-500 text-sm underline transition hover:text-gray-300"
+          style={{ opacity: 0.6 }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
         >
           Skip
         </button>

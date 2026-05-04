@@ -29,6 +29,7 @@ export default function PreHomepage({
   const [douglassModalOpen, setDouglassModalOpen] = useState(false)
   const [showSwipeHint, setShowSwipeHint] = useState(true)
   const [showNavControls, setShowNavControls] = useState(true)
+  const [topBarOpacity, setTopBarOpacity] = useState(1)
   const lastScrollY = useRef(0)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -57,6 +58,11 @@ export default function PreHomepage({
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Dim top bar after first 3 slides
+  useEffect(() => {
+    setTopBarOpacity(index <= 3 ? 1 : 0.4)
+  }, [index])
 
   const clearTimer = () => {
     if (timeoutRef.current) {
@@ -467,12 +473,18 @@ export default function PreHomepage({
     return (
       <div key={`slide-12-${index}`} className="min-h-screen bg-[#050b19] text-white flex flex-col">
         {/* standard layout – same as before, but footer can move naturally */}
-              <div className="flex justify-center items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
-        {index <= 3 && (
-          <p className="text-gray-500 text-xs md:text-sm text-center w-full">
-            ← Swipe or press space/enter →
-          </p>
+              <div
+        className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10 transition-opacity duration-300"
+        style={{ opacity: topBarOpacity }}
+      >
+        {onBackToReading && (
+          <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
+            ← Back
+          </button>
         )}
+        <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
+          Skip →
+        </button>
       </div>
 
         <div
@@ -612,13 +624,19 @@ export default function PreHomepage({
   // For all other slides (1–11, 13–14) we use a fixed footer layout
   return (
     <div className="min-h-screen bg-[#050b19] text-white flex flex-col">
-      <div className="flex justify-center items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10">
-        {index <= 3 && (
-          <p className="text-gray-500 text-xs md:text-sm text-center w-full">
-            ← Swipe or press space/enter →
-          </p>
-        )}
-      </div>
+        <div
+          className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10 transition-opacity duration-300"
+          style={{ opacity: topBarOpacity }}
+        >
+          {onBackToReading && (
+            <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
+              ← Back
+            </button>
+          )}
+          <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
+            Skip →
+          </button>
+        </div>
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
