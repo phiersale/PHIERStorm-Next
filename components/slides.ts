@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 9.1 – Plain spoken, kitchen table, no kings (fish image added)
+// VERSION: 9.2 – Added "From Investigation to Accountability" slide
 
 const slides = [
   // 0 — IMAGE (ANCHOR)
@@ -65,6 +65,7 @@ const slides = [
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
+  // 6 — (previously missing, now used for teeth? but we'll keep as is – skip to 7)
   // 7 — A DEMAND THAT HAS TEETH (with image)
   {
     title: "",
@@ -73,7 +74,6 @@ const slides = [
     largeFormat: true,
     teethImage: true
   },
-
 
   // 8 — PROOF + MECHANISM (merged)
   {
@@ -127,12 +127,27 @@ const slides = [
     accountabilityLayout: true
   },
 
-  // 13 — REPLACEMENT (custom layout)
+  // 13 — NEW SLIDE: FROM INVESTIGATION TO ACCOUNTABILITY
+  {
+    title: "",
+    body: [
+      "1,500 signatures → town hall demanded.",
+      "Rep must answer: Why won't you end the war?",
+      "If the answer is corrupt or evasive → public investigation.",
+      "We publish votes, donors, ties to war profiteers.",
+      "Then: resign under pressure, or face a primary challenger who pre‑commits to the district's demands.",
+      "That's the leverage. No recall needed."
+    ],
+    greenLines: [4],
+    largeFormat: false
+  },
+
+  // 14 — REPLACEMENT (custom layout) – shifted from 13
   {
     replacementLayout: true
   },
 
-  // 14 — ACRONYM
+  // 15 — ACRONYM – shifted from 14
   {
     title: "PHIERS",
     body: [
@@ -147,7 +162,7 @@ const slides = [
     punchLine: "Power held in every representative's seat."
   },
 
-  // 15 — FINAL CTA
+  // 16 — FINAL CTA – shifted from 15
   {
     title: "Your name. Your district. On the record.",
     body: [

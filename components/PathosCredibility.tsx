@@ -1,6 +1,5 @@
 // FILE: components/PathosCredibility.tsx
-// FILE: components/PathosCredibility.tsx
-// VERSION: 7.10 - removed back-to-top button (short page)
+// VERSION: 7.11 - added step-by-step pressure summary box
 
 'use client'
 
@@ -130,6 +129,19 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             <p>Fully transparent. No black boxes.</p>
             <p>We publish what we find. What happens next is up to voters, the press, and the democratic process.</p>
           </div>
+        </div>
+
+        {/* HOW PHIERS ACTUALLY CREATES PRESSURE – step by step */}
+        <div className="mb-12 bg-[#0a1628] border border-green/20 rounded-xl p-6 max-w-2xl mx-auto">
+          <h3 className="text-green text-lg font-bold mb-3 text-center">How PHIERS creates pressure (step by step)</h3>
+          <ol className="list-decimal list-inside text-gray-300 text-sm md:text-base space-y-2">
+            <li>1,500 verified people in a district go on record.</li>
+            <li>Representative is called to a public town hall.</li>
+            <li>If they refuse or give a corrupt answer → public investigation launched.</li>
+            <li>We publish findings: votes, donors, ties to war profiteers.</li>
+            <li>Representative either resigns under pressure or faces a PHIERS‑backed primary challenger who pre‑commits to the district’s demands.</li>
+          </ol>
+          <p className="text-gray-400 text-sm mt-3 text-center">No recall needed. Just transparency + voting power.</p>
         </div>
 
         {/* SECTION: What We Know Works */}
