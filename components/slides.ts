@@ -42,7 +42,7 @@ const slides = [
       "They're choosing not to use it.",
       "Because your email goes in a folder.",
       "Your call gets logged by a staffer.",
-      "None of it costs them anything."
+      "It costs them nothing to ignore you."
     ],
     greenLines: [2, 5]
   },
@@ -53,7 +53,7 @@ const slides = [
     body: [
       "Neither does blame. Neither does noise.",
       "What moves them is organized people in their own district —",
-      "people they know will show up."
+      "people they know will show up and hold them accountable."
     ],
     greenLines: [1, 2]
   },
@@ -129,14 +129,13 @@ const slides = [
 
   // 13 — NEW SLIDE: FROM INVESTIGATION TO ACCOUNTABILITY
   {
-    title: "",
+    title: "1,500 signatures → town hall demanded.",
     body: [
-      "1,500 signatures → town hall demanded.",
-      "Rep must answer: Why won't you end the war?",
+      "Rep must answer: Why won't you put constituents first?",
       "If the answer is corrupt or evasive → public investigation.",
       "We publish votes, donors, ties to war profiteers.",
-      "Then: resign under pressure, or face a primary challenger who pre‑commits to the district's demands.",
-      "That's the leverage. No recall needed."
+      "They will resign under pressure, or face a primary challenger who pre‑commits to the district's demands.",
+      "That's called leverage. No recall needed. Only accountability."
     ],
     greenLines: [4],
     largeFormat: false

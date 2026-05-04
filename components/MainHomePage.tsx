@@ -10,7 +10,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
-import JumpToFooter from '@/components/JumpToFooter'
 
 // Helper component for video cards (used inside modal)
 function VideoCard({ id, title }: { id: string; title: string }) {
@@ -1018,13 +1017,11 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         </section>
       </main>
 
-      <JumpToFooter />
-
       <Footer />
 
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 bg-green text-black w-12 h-12 rounded-full flex items-center justify-center text-2xl cursor-pointer transition-all duration-150 hover:bg-[#2ab568] hover:-translate-y-0.5 z-[999] border-none ${
+        className={`fixed bottom-6 right-6 bg-green/70 text-gray-900 w-10 h-10 rounded-full flex items-center justify-center text-xl cursor-pointer transition-all duration-150 hover:bg-green/90 hover:-translate-y-0.5 z-[999] border-none ${
           showBackToTop ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
         aria-label="Back to top"

@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 7
+// VERSION: 7.1 – refined accountability spacing + cold procedural replacement slide
 
 'use client'
 
@@ -212,23 +212,36 @@ export default function PreHomepage({
 
     if (slide.replacementLayout) {
       return (
-        <div className="flex flex-col items-center px-6 text-center">
-          <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">Consequences</p>
-          <p className="text-lg md:text-xl text-gray-400 mb-2 leading-relaxed">
-            If the investigation finds they betrayed the public trust —
-          </p>
-          <p className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">
-            they risk being replaced. Legally.
-          </p>
-          <p className="text-xl md:text-2xl font-bold text-green mb-6">
-            Before the next election.
-          </p>
-          <p className="text-sm md:text-base text-gray-500 italic mb-1">
-            That's not a threat.
-          </p>
-          <p className="text-lg md:text-xl font-semibold text-green">
-            That's democracy working the way it was designed to.
-          </p>
+        <div className="flex flex-col items-center text-center px-6 md:px-12 pt-0 pb-12">
+
+          {/* Top Block — Title */}
+          <div className="space-y-3 mb-10">
+            <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+              If a representative refuses the district —
+              <br />
+              they’re replaced.
+            </h2>
+          </div>
+
+          {/* Middle Block — Mechanism */}
+          <div className="space-y-2 mb-12">
+            <p className="text-xl md:text-2xl text-gray-200">Legally.</p>
+
+            {/* FORCE GREEN */}
+            <p className="text-xl md:text-2xl font-semibold" style={{ color: "#22c55e" }}>
+              Before the next election.
+            </p>
+
+            <p className="text-xl md:text-2xl text-gray-200">That’s how accountability works.</p>
+          </div>
+
+          {/* Bottom Block — Clarifier */}
+          <div className="space-y-1 opacity-80">
+            <p className="text-base md:text-lg text-gray-400">No heat.</p>
+            <p className="text-base md:text-lg text-gray-400">No threats.</p>
+            <p className="text-base md:text-lg text-gray-400">Just process.</p>
+          </div>
+
         </div>
       )
     }
@@ -237,7 +250,7 @@ export default function PreHomepage({
       return (
         <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-3xl mx-auto">
           {/* Beat 1 — Thesis */}
-          <p className="text-3xl md:text-5xl font-bold text-white -mt-2 mb-4">
+          <p className="text-3xl md:text-5xl font-bold text-white -mt-4 mb-4">
             A standard. Not a threat.
           </p>
 
@@ -249,7 +262,7 @@ export default function PreHomepage({
           {/* Beat 3 — Accountability sequence */}
           <p className="text-base md:text-lg text-gray-300 mb-1">We investigate and analyze.</p>
           <p className="text-base md:text-lg text-gray-300 mb-1">We publish what we find.</p>
-          <p className="text-base md:text-lg text-gray-300 mb-3">We organize around it.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-4">We organize around it.</p>
 
           {/* Beat 4 — Democratic landing */}
           <p className="text-base md:text-lg text-gray-300 mb-2">And we push for resignations and special elections if we have to.</p>
