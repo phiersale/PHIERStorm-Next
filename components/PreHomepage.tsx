@@ -215,36 +215,35 @@ export default function PreHomepage({
         <div className="flex flex-col items-center text-center px-6 md:px-12 pt-0 pb-12">
 
           {/* Top Block — Title */}
-          <div className="space-y-3 mb-10">
-            <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-              If a representative refuses the district —
+          <div className="space-y-2 mb-6">
+            <h2 className="text-3xl md:text-3xl font-bold text-white leading-tight">
+              If they refuse the town hall meeting
               <br />
-              they’re replaced.
+              they lose the seat.
             </h2>
           </div>
 
           {/* Middle Block — Mechanism */}
-          <div className="space-y-2 mb-12">
-            <p className="text-xl md:text-2xl text-gray-200">Legally.</p>
+          <div className="space-y-1 mb-6">
+            <p className="text-base md:text-lg text-gray-200">Legally.</p>
 
             {/* FORCE GREEN */}
-            <p className="text-xl md:text-2xl font-semibold" style={{ color: "#22c55e" }}>
+            <p className="text-base md:text-lg font-semibold" style={{ color: "#22c55e" }}>
               Before the next election.
             </p>
 
-            <p className="text-xl md:text-2xl text-gray-200">That’s how accountability works.</p>
+            <p className="text-base md:text-lg text-gray-200">That’s how accountability works.</p>
           </div>
 
           {/* Bottom Block — Clarifier */}
-          <div className="space-y-1 opacity-80">
-            <p className="text-base md:text-lg text-gray-400">No heat. No threats.</p>
-            <p className="text-base md:text-lg text-gray-400">Just process.</p>
+          <div className="space-y-0.5 opacity-80">
+            <p className="text-sm md:text-base text-gray-400">No heat. No threats.</p>
+            <p className="text-sm md:text-base text-gray-400">Just process.</p>
           </div>
 
         </div>
       )
     }
-
     if (slide.accountabilityLayout) {
       return (
         <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-3xl mx-auto">
@@ -652,7 +651,7 @@ export default function PreHomepage({
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
-        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : 'px-6 md:px-12 pt-4 pb-2'}`}
+        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : index === 14 ? 'px-6 md:px-12 pt-0 pb-2' : 'px-6 md:px-12 pt-4 pb-2'}`}
         style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
         onClick={!isLastSlide && !isTransitioning ? next : undefined}
         onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
