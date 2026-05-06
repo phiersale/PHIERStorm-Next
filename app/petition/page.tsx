@@ -31,32 +31,8 @@ export default function PetitionPage() {
     setLoading(true)
 
     if (honeypot) {
+      // Silent drop for bots – show success so they don't retry
       setSubmitted(true)
-
-      // --- BACKGROUND WRITE TO NEON (via Prisma) ---
-      try {
-        fetch('/api/signature', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: `${formData.firstName} ${formData.lastName}`.trim(),
-            email: formData.email,
-            zipCode: formData.zipCode,
-            district: '',
-          }),
-        })
-          .then(async (res) => {
-            if (!res.ok) {
-              const text = await res.text().catch(() => '')
-              console.error('Server write failed:', res.status, text)
-            }
-          })
-          .catch((err) => {
-            console.error('Fetch to /api/signature failed:', err)
-          })
-      } catch (err) {
-        console.error('Background write error:', err)
-      }
       setLoading(false)
       return
     }
