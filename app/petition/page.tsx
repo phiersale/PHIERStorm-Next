@@ -1,5 +1,5 @@
 // FILE: app/petition/page.tsx
-// VERSION: 1.0.8 (success screen: survey + action page buttons, thin, no wrap)
+// VERSION: 1.0.9 – sends zipCode (matches API & DB)
 
 'use client'
 
@@ -32,6 +32,31 @@ export default function PetitionPage() {
 
     if (honeypot) {
       setSubmitted(true)
+
+      // --- BACKGROUND WRITE TO NEON (via Prisma) ---
+      try {
+        fetch('/api/signature', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: `${formData.firstName} ${formData.lastName}`.trim(),
+            email: formData.email,
+            zipCode: formData.zipCode,
+            district: '',
+          }),
+        })
+          .then(async (res) => {
+            if (!res.ok) {
+              const text = await res.text().catch(() => '')
+              console.error('Server write failed:', res.status, text)
+            }
+          })
+          .catch((err) => {
+            console.error('Fetch to /api/signature failed:', err)
+          })
+      } catch (err) {
+        console.error('Background write error:', err)
+      }
       setLoading(false)
       return
     }
@@ -56,14 +81,39 @@ export default function PetitionPage() {
     // Show success immediately
     setSubmitted(true)
 
+    // --- BACKGROUND WRITE TO NEON (via Prisma) ---
+    try {
+      fetch('/api/signature', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          zipCode: formData.zipCode,
+          district: '',
+        }),
+      })
+        .then(async (res) => {
+          if (!res.ok) {
+            const text = await res.text().catch(() => '')
+            console.error('Server write failed:', res.status, text)
+          }
+        })
+        .catch((err) => {
+          console.error('Fetch to /api/signature failed:', err)
+        })
+    } catch (err) {
+      console.error('Background write error:', err)
+    }
+
     // Background webhook (if configured)
     if (SHEETS_WEBHOOK_URL) {
       const payload = {
         timestamp: new Date().toISOString(),
-        firstName,
-        lastName,
-        zipCode,
-        email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        zipCode: formData.zipCode,
+        email: formData.email,
       }
       fetch(SHEETS_WEBHOOK_URL, {
         method: 'POST',
@@ -211,4 +261,4 @@ export default function PetitionPage() {
 }
 
 // FILE: app/petition/page.tsx (end)
-// VERSION: 1.0.8
+// VERSION: 1.0.9

@@ -130,3 +130,5 @@
       </div>
     )
   }
+
+  // app/trilogy/page.tsx
