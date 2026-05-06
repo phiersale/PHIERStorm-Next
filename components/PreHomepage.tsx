@@ -196,14 +196,14 @@ export default function PreHomepage({
     if (slide.teethImage) {
       return (
         <div className="flex flex-col items-center text-center">
-          <p className="text-3xl md:text-5xl font-bold text-green mb-6">
+          <p className="text-3xl md:text-5xl font-bold text-green mb-2">
             A demand that has TEETH.
           </p>
           <div className="flex justify-center w-full">
             <img
               src="/images/ORGANIZE_Fish.jpg"
               alt="Organized fish – a demand with teeth"
-              className="w-5/6 md:w-2/3 max-w-lg rounded-lg shadow-md"
+              className="w-2/3 md:w-1/2 max-w-md rounded-lg shadow-md"
             />
           </div>
         </div>
