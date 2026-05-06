@@ -382,12 +382,15 @@ export default function PreHomepage({
 
       if (isPunchSlide) {
         return (
-          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto space-y-0.5">
-            <p className="text-sm md:text-base font-bold text-green">
-              This takes minutes.
+          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto space-y-2 md:space-y-3">
+            <p className="text-5xl md:text-7xl font-bold text-green">
+              A few minutes.
             </p>
-            <p className="text-base md:text-lg font-bold text-white">
-              The impact is leverage.
+            <p className="text-5xl md:text-7xl font-bold text-white">
+              Enough to make
+            </p>
+            <p className="text-5xl md:text-7xl font-bold text-green">
+              Congress do its job.
             </p>
           </div>
         )
@@ -424,8 +427,13 @@ export default function PreHomepage({
       }
 
       // Original large format rendering for all other large-format slides
-      const largeBodyClass = "text-3xl md:text-5xl font-semibold tracking-tight"
-      const wrapperClass = "space-y-4 md:space-y-6"
+      const isSlide1 = index === 1
+      const largeBodyClass = isSlide1
+        ? "text-3xl md:text-5xl font-bold"
+        : "text-3xl md:text-5xl font-semibold tracking-tight"
+      const wrapperClass = isSlide1
+        ? "space-y-2 md:space-y-3"
+        : "space-y-4 md:space-y-6"
       return (
         <div className={wrapperClass}>
           {slide.body.map((line, i) => {
