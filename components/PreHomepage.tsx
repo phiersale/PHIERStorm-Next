@@ -187,6 +187,7 @@ export default function PreHomepage({
     if (slide.isFinalSlide) {
       return <h1 className="text-sm sm:text-lg md:text-3xl font-bold leading-tight mb-4 pt-2">{renderedTitle}</h1>
     }
+
     return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-4">{renderedTitle}</h1>
   }
 
@@ -381,11 +382,11 @@ export default function PreHomepage({
 
       if (isPunchSlide) {
         return (
-          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto">
-            <p className="text-xl md:text-2xl font-bold text-green mb-2">
+          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto space-y-0.5">
+            <p className="text-sm md:text-base font-bold text-green">
               This takes minutes.
             </p>
-            <p className="text-2xl md:text-3xl font-bold text-white">
+            <p className="text-base md:text-lg font-bold text-white">
               The impact is leverage.
             </p>
           </div>
@@ -525,11 +526,6 @@ export default function PreHomepage({
                 >
                   {renderTitle()}
                   {renderBody()}
-                  {index === 1 && showSwipeHint && (
-                    <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-sm px-4 py-2 rounded-full pointer-events-none animate-fadeOut z-50">
-                      ← Swipe or press → for next slide
-                    </div>
-                  )}
                   {isLastSlide && (
                     <div className="mt-6">
                       {/* no instructional text */}
@@ -650,7 +646,7 @@ export default function PreHomepage({
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
-        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : index === 14 ? 'px-6 md:px-12 pt-0 pb-2' : 'px-6 md:px-12 pt-4 pb-2'}`}
+        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : index === 14 || index === 1 ? 'px-6 md:px-12 pt-0 pb-2' : 'px-6 md:px-12 pt-4 pb-2'}`}
         style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
         onClick={!isLastSlide && !isTransitioning ? next : undefined}
         onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
@@ -677,11 +673,6 @@ export default function PreHomepage({
               >
                 {renderTitle()}
                 {renderBody()}
-                {index === 1 && showSwipeHint && (
-                  <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-sm px-4 py-2 rounded-full pointer-events-none animate-fadeOut z-50">
-                    ← Swipe or press → for next slide
-                  </div>
-                )}
                 {isLastSlide && (
                   <div className="mt-6">
                     {/* no instructional text */}
