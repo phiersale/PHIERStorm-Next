@@ -12,6 +12,17 @@
           import PathosCredibility from '@/components/PathosCredibility'
 
 function PhasedText({ onComplete }: { onComplete: () => void }) {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space' || e.key === ' ' || e.key === 'Space') {
+        e.preventDefault()
+        onComplete()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onComplete])
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden">
       {/* Background subtle zoom */}

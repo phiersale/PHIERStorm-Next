@@ -654,7 +654,7 @@ export default function PreHomepage({
 
       {/* CLICKABLE AREA: entire flex container */}
       <div
-        className={`flex-1 overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : index === 14 || index === 1 ? 'px-6 md:px-12 pt-0 pb-2' : 'px-6 md:px-12 pt-4 pb-2'}`}
+        className={`flex-1 min-h-[65vh] overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : index === 14 || index === 1 ? 'px-6 md:px-12 pt-0 pb-2' : 'px-6 md:px-12 pt-4 pb-2'}`}
         style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
         onClick={!isLastSlide && !isTransitioning ? next : undefined}
         onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
@@ -663,15 +663,15 @@ export default function PreHomepage({
       >
         <div className="w-full mx-auto max-w-full">
           <div className="text-center w-full">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="popLayout">
               <motion.div
                 key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{
-                  duration: slide.title === "" && !isLargeFormatSlide ? 0.8 : (slide.isFinalSlide ? 1.4 : 1.2),
-                  ease: "easeOut"
+                  duration: 0.3,
+                  ease: "easeInOut"
                 }}
                 exit={{
                   opacity: 0,
