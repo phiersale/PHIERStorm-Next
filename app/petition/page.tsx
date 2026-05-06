@@ -148,7 +148,7 @@ export default function PetitionPage() {
     <div className="min-h-screen bg-[#050b19] text-white py-12 px-4">
       <div className="max-w-md mx-auto">
         <h1 className="text-3xl font-bold text-center mb-2">Your Name Is Leverage.</h1>
-        <p className="text-center text-gray-300 mb-8">Add your name. Make Congress do its job.</p>
+        <p className="text-center text-gray-300 mb-8">Add your name. Be counted. Make Congress do its job.</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
