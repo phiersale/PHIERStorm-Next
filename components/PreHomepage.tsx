@@ -253,9 +253,9 @@ export default function PreHomepage({
           </p>
 
           {/* Beat 2 — Indictment */}
-          <p className="text-base md:text-lg text-gray-300 mb-1">If you know the war is crushing your constituents —</p>
-          <p className="text-base md:text-lg text-gray-300 mb-1">and you do nothing —</p>
-          <p className="text-base md:text-lg text-white font-semibold mb-3">you have made a choice.</p>
+          <p className="text-base md:text-lg text-gray-300 mb-1">If they know the war is crushing constituents —</p>
+          <p className="text-base md:text-lg text-gray-300 mb-1">and they do nothing —</p>
+          <p className="text-base md:text-lg text-white font-semibold mb-3">they have made a choice.</p>
 
           {/* Beat 3 — Accountability sequence */}
           <p className="text-base md:text-lg text-gray-300 mb-1">We investigate and analyze.</p>

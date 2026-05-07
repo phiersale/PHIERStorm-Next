@@ -109,9 +109,8 @@ const slides = [
 
   // 11 — THE MOMENT
   {
-    title: "The window is open right now.",
+    title: "People are paying attention",
     body: [
-      "People are paying attention.",
       "Officials are being held accountable.",
       "Many are choosing to resign.",
       "Organized people are winning right now.",
