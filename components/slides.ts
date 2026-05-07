@@ -35,7 +35,7 @@ const slides = [
 
   // 3 — WAR + ROOT PROBLEM (merged)
   {
-    title: "They have the authority. They choose not to use it.",
+    title: "Congress has the authority. They choose not to use it.",
     body: [
       "Most Americans want the wars stopped.",
       "They want healthcare, jobs, a safety net.",
