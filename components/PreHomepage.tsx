@@ -175,7 +175,7 @@ export default function PreHomepage({
       return <h1 className="text-xl md:text-2xl font-bold leading-tight mb-2">{renderedTitle}</h1>
     }
     if (slide.isFinalSlide) {
-      return <h1 className="text-sm sm:text-lg md:text-3xl font-bold leading-tight mb-4 pt-2">{renderedTitle}</h1>
+      return <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">{renderedTitle}</h1>
     }
     return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-4">{renderedTitle}</h1>
   }
@@ -420,10 +420,7 @@ export default function PreHomepage({
         }`}
       >
         {isLastSlide && (
-          <div className="flex flex-col gap-2 w-full max-w-xs mx-auto mb-2">
-            <button onClick={onGoToPetition} className="px-8 md:px-10 py-3 md:py-4 bg-green-600 hover:bg-green-700 text-white font-semibold tracking-wide rounded-lg shadow-md hover:shadow-lg transition duration-200">
-              ✍ BE COUNTED
-            </button>
+          <div className="flex flex-col gap-1 w-full max-w-xs mx-auto mb-2">
             <button onClick={onGoToHomepage} className="border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition">
               → SEE WHAT THE EXPERTS SAY
             </button>

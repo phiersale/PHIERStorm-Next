@@ -213,6 +213,16 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         </div>
       </motion.div>
 
+      {/* Continue to Petition Button */}
+      <div className="text-center mt-8 pt-4 border-t border-gray-800">
+        <button
+          onClick={() => window.location.href = '/petition'}
+          className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md transition"
+        >
+          ✍ Continue to Petition
+        </button>
+      </div>
+
     </>
   )
 }
