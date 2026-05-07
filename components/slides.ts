@@ -1,58 +1,56 @@
 // FILE: components/slides.ts
-// VERSION: 9.2 – Added "From Investigation to Accountability" slide
+// VERSION: 10.0 – Lean deck (10 slides, compressed mechanism)
 
 const slides = [
-  // 0 — IMAGE (ANCHOR)
+  // 0 — IMAGE ANCHOR
   {
     type: "image",
     imageSrc: "/images/You_Are_Not_Powerless.jpg",
     imageAlt: "YOU ARE NOT POWERLESS"
   },
 
-  // 1 — PUNCH
+  // 1 — THE PROMISE
   {
     title: "",
     body: [
       "A few minutes.",
       "Enough to make",
-      "Congress do its job."
+      "Congress listen."
     ],
     greenLines: [2],
     largeFormat: true
   },
 
-  // 2 — HOOK
+  // 2 — THE HOOK (merged)
   {
     title: "Congress works for you.",
     body: [
       "They just forgot that.",
-      "PHIERS reminds them.",
-      "Your name. Your district. On the record.",
-      "And they have to answer for it."
+      "Ignoring people became politically safe.",
+      "PHIERS changes the cost of ignoring you.",
+      "Your name. Your district. On the record."
     ],
-    greenLines: [3]
+    greenLines: [2]
   },
 
-  // 4 — CORE PRINCIPLE
+  // 3 — CORE PRINCIPLE
   {
     title: "Anger doesn't move them.",
     body: [
-      "Neither does blame. Neither does noise.",
-      "What moves them is organized people in their own district —",
-      "people they know will show up and hold them accountable."
+      "Organized people do.",
+      "Especially in their own district."
     ],
-    greenLines: [1, 2]
+    greenLines: [0, 1]
   },
 
-  // 5 — FREDERICK DOUGLASS IMAGE
+  // 4 — FREDERICK DOUGLASS IMAGE
   {
     type: "image",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 6 — (previously missing, now used for teeth? but we'll keep as is – skip to 7)
-  // 7 — A DEMAND THAT HAS TEETH (with image)
+  // 5 — TEETH IMAGE
   {
     title: "",
     body: ["A demand that has TEETH."],
@@ -61,77 +59,37 @@ const slides = [
     teethImage: true
   },
 
-  // 8 — PROOF + MECHANISM (merged)
-  {
-    title: "PHIERS is what works. Here's how we know.",
-    body: [
-      "3.5% organized involvement forces change. Harvard proved it.",
-      "1,500 people in a district can't be ignored. Ralph Nader proved it.",
-      "So we count real people in your district — on the record.",
-      "At 1,500, your rep has to respond publicly.",
-      "Or answer for why they won't."
-    ],
-    greenLines: [3, 4]
-  },
-
-  // 9 — CONSEQUENCE (large format)
+  // 6 — CONSEQUENCE
   {
     title: "",
-    body: ["Not noise.", "Not opinion.", "Consequence."],
+    body: [
+      "Not noise.",
+      "Not outrage.",
+      "Consequence."
+    ],
     greenLines: [2],
     largeFormat: true
   },
 
-  // 10 — EVIDENCE BASE + TOWN HALL (merged)
+  // 7 — THE MECHANISM (merged, single escalation)
   {
-    title: "The petition and survey call the meeting.",
+    title: "How pressure becomes unavoidable.",
     body: [
-      "The petition proves organized standing — verified, by district.",
-      "The survey documents exactly what constituents demand.",
-      "Together they force a public town hall meeting.",
-      "Your rep shows up and answers — in public.",
-      "Refusing to show up is its own answer."
+      "1,500 verified people in a district go on record.",
+      "A public town hall is demanded.",
+      "If they refuse or lie → investigation.",
+      "Votes. Donors. Financial ties. Published publicly.",
+      "Then voters decide what happens next."
     ],
-    greenLines: [2, 4]
+    greenLines: [1, 2, 3]
   },
 
-  // 11 — THE MOMENT
-  {
-    title: "People are paying attention",
-    body: [
-      "Officials are being held accountable.",
-      "Many are choosing to resign.",
-      "Organized people are winning right now.",
-      "This is that moment. Now is our time."
-    ],
-    greenLines: [3, 4]
-  },
-
-  // 12 — ACCOUNTABILITY (custom layout)
-  {
-    accountabilityLayout: true
-  },
-
-  // 13 — NEW SLIDE: FROM INVESTIGATION TO ACCOUNTABILITY
-  {
-    title: "1,500 signatures → town hall demanded.",
-    body: [
-      "Your rep must answer: Why won’t you put constituents first?",
-      "If the answer is corrupt, evasive, or dismissive → public investigation.",
-      "We publish votes, donors, ties to war profiteers.",
-      "They will resign under pressure, or face a primary challenger who pre‑commits to the district's demands.",
-      "That's called leverage. No recall needed. Only accountability."
-    ],
-    greenLines: [4],
-    largeFormat: false
-  },
-
-  // 14 — REPLACEMENT (custom layout) – shifted from 13
+  // 8 — ACCOUNTABILITY (cold procedural)
   {
     replacementLayout: true
   },
 
-  // 15 — ACRONYM – shifted from 14
+   // 9 — PHIERS ACRONYM (original meaning)
   {
     title: "PHIERS",
     body: [
@@ -143,14 +101,14 @@ const slides = [
       { letter: "S", word: "SEAT" }
     ],
     customLayout: true,
-    punchLine: "Power held in every representative's seat."
+    punchLine: "Power Held In Every Representative's Seat"
   },
 
-  // 16 — FINAL CTA – shifted from 15
+  // 10 — FINAL CTA
   {
     title: "Your name. Your district. On the record.",
     body: [
-      "That's all it takes to start the process.",
+      "That's how pressure starts.",
       "Name. Email. Zip code.",
       "Make them answer."
     ],
