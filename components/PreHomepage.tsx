@@ -250,9 +250,14 @@ export default function PreHomepage({
             </div>
           </div>
           {slide.punchLine && (
-            <p className="text-xs md:text-sm font-normal text-gray-500 text-center px-2 mt-4 mb-6">
-              {slide.punchLine}
-            </p>
+            <>
+              <div style={{ height: '1.5rem' }}></div>
+              <div className="w-full">
+                <p className="text-xs md:text-sm font-normal text-gray-500 text-center px-2">
+                  {slide.punchLine}
+                </p>
+              </div>
+            </>
           )}
         </div>
       )
