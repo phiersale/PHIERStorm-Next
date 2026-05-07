@@ -33,18 +33,6 @@ const slides = [
     greenLines: [3]
   },
 
-  // 3 — WAR + ROOT PROBLEM (merged)
-  {
-    title: "Congress has the authority. They choose not to use it.",
-    body: [
-      "Most Americans want the wars stopped.",
-      "They want healthcare, jobs, a safety net.",
-      "Congress can act on all of it — tomorrow.",
-      "They won't. Because it costs them nothing to ignore you."
-    ],
-    greenLines: [3]
-  },
-
   // 4 — CORE PRINCIPLE
   {
     title: "Anger doesn't move them.",
@@ -75,7 +63,7 @@ const slides = [
 
   // 8 — PROOF + MECHANISM (merged)
   {
-    title: "We know what works. Here's how we use it.",
+    title: "PHIERS is what works. Here's how we know.",
     body: [
       "3.5% organized involvement forces change. Harvard proved it.",
       "1,500 people in a district can't be ignored. Ralph Nader proved it.",
