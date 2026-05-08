@@ -213,11 +213,12 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         </div>
       </motion.div>
 
-      {/* Continue to Petition Button */}
-      <div className="text-center mt-8 pt-4 border-t border-gray-800">
+      {/* Petition Button – safe, visible style */}
+      <div className="text-center py-6">
         <button
           onClick={() => window.location.href = '/petition'}
-          className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-md transition"
+          className="px-8 py-3 bg-green text-black font-bold rounded-lg shadow-md hover:bg-green-dim transition text-center text-base"
+          style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
         >
           ✍ Continue to Petition
         </button>
