@@ -1,5 +1,5 @@
 // FILE: app/petition/page.tsx
-// VERSION: 1.3.0 – collapsible “What is this?” (optional, friction‑free)
+// VERSION: 1.4.0 – custom thank‑you with district notification & town hall schedule
 
 'use client'
 
@@ -92,34 +92,30 @@ export default function PetitionPage() {
     return (
       <div className="min-h-screen bg-[#050b19] text-white flex items-center justify-center p-4">
         <div className="text-center max-w-sm w-full">
-          <h1 className="text-3xl font-bold text-green mb-3">You're On The Record.</h1>
+          <h1 className="text-3xl font-bold text-green mb-3">Thank You – You’re On The Record.</h1>
+          <p className="text-gray-300 mb-3">
+            Your name has been added. We’ll notify <strong>you and your representatives</strong> when your voting district reaches <strong>1,500 signatures</strong>.
+          </p>
           <p className="text-gray-300 mb-5">
-            Your name has been added. We'll notify you when your district reaches 1,500.
+            Tentative town hall meetings are being scheduled nationwide. You’ll receive dates and locations as soon as they are confirmed.
           </p>
           <div className="flex flex-col gap-2 items-stretch">
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-green text-black font-semibold py-1.5 px-3 rounded-md hover:bg-green-600 transition text-sm text-center"
-            >
-              📋 TAKE THE SURVEY
-            </a>
-            <a
               href="/action"
-              target="_blank"
-              rel="noopener noreferrer"
               className="bg-blue-500 text-white font-semibold py-1.5 px-3 rounded-md hover:bg-blue-600 transition text-sm text-center"
             >
               ⚡ TAKE ACTION
             </a>
+            <a
+              href="/?skip=slides"
+              className="bg-green text-black font-semibold py-1.5 px-3 rounded-md hover:bg-green-600 transition text-sm text-center"
+            >
+              🏠 GO TO MAIN HOMEPAGE
+            </a>
           </div>
-          <button
-            onClick={() => router.push('/?skip=slides')}
-            className="block w-full text-gray-400 text-xs underline mt-5"
-          >
-            ← Back to homepage
-          </button>
+          <p className="text-gray-500 text-xs mt-5">
+            We don’t sell or share your data. Used only for district verification and updates.
+          </p>
         </div>
       </div>
     )
@@ -143,7 +139,7 @@ export default function PetitionPage() {
         {/* Headline */}
         <h1 className="text-2xl font-bold text-center mb-2">Your Name Is Leverage.</h1>
 
-        {/* Collapsible explainer – tiny, optional, friction‑free */}
+        {/* Collapsible explainer */}
         <div className="text-center mb-4">
           <button
             onClick={() => setExplainerOpen(!explainerOpen)}
@@ -162,7 +158,7 @@ export default function PetitionPage() {
           </div>
         )}
 
-        {/* Form – same as before */}
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-3">
           <input
             type="text"
@@ -229,12 +225,12 @@ export default function PetitionPage() {
           </button>
         </form>
 
-        <button
-          onClick={() => router.push('/?skip=slides')}
-          className="block w-full text-gray-400 text-xs underline mt-3"
+        <a
+          href="/mainhomepage"
+          className="block w-full text-gray-400 text-xs underline mt-3 text-center"
         >
           ← Back to homepage
-        </button>
+        </a>
 
         <p className="text-gray-500 text-xs text-center mt-5">
           We don't sell or share your data. Used only for district verification and updates.
@@ -243,4 +239,3 @@ export default function PetitionPage() {
     </div>
   )
 }
-// FILE: app/petition/page.tsx (end)
