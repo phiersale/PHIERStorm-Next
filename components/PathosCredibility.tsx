@@ -213,8 +213,8 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         </div>
       </motion.div>
 
-      {/* Petition Button – safe, visible style */}
-      <div className="text-center py-6">
+      {/* Petition Button – reduced top spacing */}
+      <div className="text-center pt-1 pb-6">
         <button
           onClick={() => window.location.href = '/petition'}
           className="px-8 py-3 bg-green text-black font-bold rounded-lg shadow-md hover:bg-green-dim transition text-center text-base"

@@ -322,7 +322,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
                   setSkipFirstImage(false);
                   setStage('prehome');
                 }} />
-                <div id="credibility-buttons" className="flex justify-center gap-4 pb-12">
+                <div id="credibility-buttons" className="flex justify-center gap-2 pb-2 -mt-4">  
                   <button
                     onClick={() => {
                       setSkipFirstImage(false)
