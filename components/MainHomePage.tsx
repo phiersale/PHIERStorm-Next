@@ -219,7 +219,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
               CONGRESS CAN FIX MOST OF WHAT'S BROKEN.
             </span>
             <span className="block text-xl md:text-2xl lg:text-3xl font-bold text-green mt-2 leading-tight">
-              IT JUST DOESN'T HAVE TO.
+              THEY JUST CHOOSE NOT TO.
             </span>
           </h1>
           <div className="max-w-[760px] mx-auto mt-4">
