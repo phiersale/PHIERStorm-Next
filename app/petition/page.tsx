@@ -107,7 +107,7 @@ export default function PetitionPage() {
               ⚡ TAKE ACTION
             </a>
             <a
-              href="/?skip=slides"
+              href="/mainhomepage"
               className="bg-green text-black font-semibold py-1.5 px-3 rounded-md hover:bg-green-600 transition text-sm text-center"
             >
               🏠 GO TO MAIN HOMEPAGE
