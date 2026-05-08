@@ -77,7 +77,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           className="block text-gray-400 text-xs underline mt-3 text-center"
           style={{ opacity: 0, animation: "fadeIn 2.6s ease forwards" }}
         >
-          Go directly to homepage
+          Skip Intro...
         </a>
       </div>
 
