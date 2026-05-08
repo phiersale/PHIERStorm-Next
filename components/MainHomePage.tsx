@@ -232,11 +232,16 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
           </div>
 
-          {/* Two intro videos – stacked on mobile, side by side on larger screens */}
+          {/* Two intro videos – mobile‑optimized: invitation lines, spacing, overlays */}
           <div className="max-w-4xl mx-auto mt-8 mb-6 px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div>
-                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md">
+              {/* Video 1 */}
+              <div className="mb-8 sm:mb-0">
+                {/* Mobile‑only invitation line */}
+                <p className="text-center text-green text-sm font-semibold mb-2 sm:hidden">
+                  Watch: The Tipping Point Explained
+                </p>
+                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md group cursor-pointer">
                   <iframe
                     src="https://www.youtube.com/embed/SFW9fhUBEwE?rel=0"
                     title="PHIERS – The Movement That Forces Congress to Respond"
@@ -246,11 +251,29 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
                     loading="lazy"
                     className="absolute top-0 left-0 w-full h-full"
                   />
+                  {/* Mobile overlay + play button (only visible on touch devices) */}
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 sm:opacity-0 group-hover:opacity-100 transition-opacity md:hidden">
+                    <div className="w-12 h-12 rounded-full bg-black/70 flex items-center justify-center border-2 border-white/60">
+                      <span className="text-white text-xl ml-0.5">▶</span>
+                    </div>
+                  </div>
                 </div>
                 <p className="text-center text-gray-400 text-xs sm:text-sm mt-1">How leverage works</p>
               </div>
-              <div>
-                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md">
+
+              {/* Mobile‑only section break between videos (only visible on mobile) */}
+              <div className="sm:hidden">
+                <div className="border-t border-neutral-700/40 my-4"></div>
+                <p className="text-center text-gray-500 text-xs pt-2">— Next chapter —</p>
+              </div>
+
+              {/* Video 2 */}
+              <div className="mt-4 sm:mt-0">
+                {/* Mobile‑only invitation line */}
+                <p className="text-center text-green text-sm font-semibold mb-2 sm:hidden">
+                  Watch: How Leverage Works
+                </p>
+                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md group cursor-pointer">
                   <iframe
                     src="https://www.youtube.com/embed/ihTa_2CLmvk?rel=0"
                     title="Short Intro to PHIERS"
@@ -260,6 +283,12 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
                     loading="lazy"
                     className="absolute top-0 left-0 w-full h-full"
                   />
+                  {/* Mobile overlay + play button */}
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 sm:opacity-0 group-hover:opacity-100 transition-opacity md:hidden">
+                    <div className="w-12 h-12 rounded-full bg-black/70 flex items-center justify-center border-2 border-white/60">
+                      <span className="text-white text-xl ml-0.5">▶</span>
+                    </div>
+                  </div>
                 </div>
                 <p className="text-center text-gray-400 text-xs sm:text-sm mt-1">The PHIERS framework</p>
               </div>
