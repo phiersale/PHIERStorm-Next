@@ -334,17 +334,18 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
                   </button>
                   <button
                     onClick={() => setStage('main')}
-                    className="px-6 py-2 text-base font-bold rounded-lg shadow-md transition"
+                    className="px-6 py-2 text-base font-bold rounded-lg transition"
                     style={{
-                      backgroundColor: '#eab308',
-                      color: 'black'
+                      backgroundColor: '#F5C542',
+                      color: 'black',
+                      boxShadow: '0 0 20px rgba(245,197,66,0.35)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#ca8a04';
+                      e.currentTarget.style.backgroundColor = '#E0B032';
                       e.currentTarget.style.color = 'black';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#eab308';
+                      e.currentTarget.style.backgroundColor = '#F5C542';
                       e.currentTarget.style.color = 'black';
                     }}
                   >
