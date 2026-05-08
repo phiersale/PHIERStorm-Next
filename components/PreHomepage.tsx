@@ -420,7 +420,7 @@ export default function PreHomepage({
         }`}
       >
         {isLastSlide && (
-          <div className="flex flex-col gap-1 w-full max-w-xs mx-auto mb-2">
+          <div className="flex flex-col gap-1 w-full max-w-xs mx-auto mb-2 -mt-4">
             <button onClick={onGoToHomepage} className="border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition">
               → SEE WHAT THE EXPERTS SAY
             </button>
@@ -490,3 +490,5 @@ export default function PreHomepage({
     </div>
   )
 }
+
+// FILE: components/PreHomepage.tsx
