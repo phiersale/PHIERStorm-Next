@@ -9,8 +9,12 @@ export default function UnforgettablePage() {
     <div className="min-h-screen bg-[#050b19] text-white px-6 py-16 md:px-12 lg:px-24">
       <div className="max-w-3xl mx-auto">
 
-        <div className="mb-6">
-          <Image src="/images/PHIERS_Logo.png" alt="PHIERS" width={120} height={120} className="w-16 h-auto opacity-80" />
+        {/* Glowing PHIERS Logo */}
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-green-400 blur-2xl opacity-60 animate-pulse"></div>
+            <Image src="/images/PHIERS_Logo.png" alt="PHIERS" width={120} height={120} className="w-16 h-auto relative z-10" />
+          </div>
         </div>
 
         <div className="mb-8">
@@ -92,3 +96,5 @@ export default function UnforgettablePage() {
     </div>
   )
 }
+
+// FILE: app/4daBros/unforgettable/page.tsx

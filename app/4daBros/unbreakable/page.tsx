@@ -10,15 +10,18 @@ export default function UnbreakablePage() {
 
       <div className="max-w-3xl mx-auto">
 
-        {/* PHIERS Logo (header) */}
-        <div className="mb-6">
-          <Image
-            src="/images/PHIERS_Logo.png"
-            alt="PHIERS"
-            width={120}
-            height={120}
-            className="w-16 h-auto opacity-80"
-          />
+        {/* Glowing PHIERS Logo */}
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-green-400 blur-2xl opacity-60 animate-pulse"></div>
+            <Image
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS"
+              width={120}
+              height={120}
+              className="w-16 h-auto relative z-10"
+            />
+          </div>
         </div>
 
         {/* Back link */}
