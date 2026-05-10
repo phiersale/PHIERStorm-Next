@@ -1,238 +1,102 @@
-// FILE: app/4daBros/leverage/page.tsx
-// VERSION: 1.0.1 – Added PHIERS logo header
+// FILE: app/Prophecy/leverage/page.tsx
+'use client';
 
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function LeveragePage() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-[#050b19] text-white px-6 py-16 md:px-12 lg:px-24">
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-3xl mx-auto px-5 py-12 md:py-20">
 
-      <div className="max-w-3xl mx-auto">
+        {/* Hero */}
+        <div className="mb-12">
+          <img
+            src="/images/trilogy/leverage-diagram.png"
+            alt="Leverage diagram"
+            className="w-full h-auto rounded-xl shadow-2xl mb-8"
+          />
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">You are not powerless.</h1>
+          <p className="text-gray-300 text-xl">Real leverage starts where real power is concentrated – at the district level.</p>
+        </div>
 
-        {/* Glowing PHIERS Logo */}
-        <div className="flex justify-center mb-6">
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-green-400 blur-2xl opacity-60 animate-pulse"></div>
-            <Image
-              src="/images/PHIERS_Logo.png"
-              alt="PHIERS"
-              width={120}
-              height={120}
-              className="w-16 h-auto relative z-10"
-            />
+        {/* Leverage explanation – same text as approved */}
+        <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+          <p>
+            This isn’t about parties. This isn’t about candidates. It’s about the people who already hold power over your life – and what happens when they know you are organized, watching, and unmovable.
+          </p>
+          <p>
+            Redistricting is decided at the state level. Regulations are set at the state level. Policies that determine whether your family makes it through the next decade – all state level.
+          </p>
+          <p>
+            Representatives make those decisions. And representatives only fear one thing: <span className="text-white font-semibold">losing their seat.</span>
+          </p>
+          <p>
+            The petition and survey tell Congress exactly what we demand – in writing, by district, with names attached. Primary threats are real. Accountability is real.
+          </p>
+          <p className="text-white text-xl font-semibold">
+            That is leverage. That is peaceful, lawful democracy when the people mean it.
+          </p>
+        </div>
+
+        {/* 1,500 dropdown */}
+        <div className="border-t border-gray-800 my-12 pt-8">
+          <div className="text-center mb-4">
+            <div className="text-3xl font-bold text-yellow-400">1,500 people.</div>
+            <div className="text-2xl font-bold text-white">One district.</div>
+            <div className="text-xl text-gray-300">Real leverage.</div>
           </div>
-        </div>
-
-        {/* Back link */}
-        <div className="mb-8">
-          <Link href="/4daBros/trilogy" className="text-gray-500 text-sm underline hover:text-gray-300">
-            ← Back to Trilogy
-          </Link>
-        </div>
-
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Leverage</h1>
-        <p className="text-green text-xl mb-8">A simple way to turn your voice into something that carries weight.</p>
-
-        {/* Opening */}
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          There’s a reason a lot of people feel stuck right now.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          Like their voice doesn’t reach.<br />
-          Like decisions get made without them.<br />
-          Like nothing they do actually moves anything.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          That feeling is real.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          And it’s not just about frustration.<br />
-          It’s about structure.
-        </p>
-
-        {/* Structure */}
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          Most systems don’t respond to individuals.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          They respond to patterns.<br />
-          To volume.<br />
-          To coordination.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          To signals they can’t ignore.
-        </p>
-
-        {/* Leverage definition */}
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          That’s where leverage comes in.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          Not loud.<br />
-          Not chaotic.<br />
-          Not performative.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          Structured.<br />
-          Repeatable.<br />
-          Measurable.
-        </p>
-        <p className="text-green text-xl font-bold mb-12">
-          Leverage is what happens when individual voices move together in a way the system has to recognize.
-        </p>
-
-        {/* Why this matters */}
-        <h2 className="text-2xl font-semibold mb-4">Why this matters</h2>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          When people feel unheard, they disengage.<br />
-          When they disengage, systems get unstable.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          When more people participate in a real way,<br />
-          things get steadier.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          More balanced.<br />
-          More responsive.<br />
-          More accountable.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          This isn’t about forcing anything.<br />
-          It’s about being counted.
-        </p>
-
-        {/* How it works */}
-        <h2 className="text-2xl font-semibold mb-4">How it works (simple version)</h2>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          A small action<br />
-          done by one person<br />
-          doesn’t carry much weight.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          The same action<br />
-          done by thousands of people<br />
-          at the same time<br />
-          becomes something different.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          It becomes a signal.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          That signal creates pressure.<br />
-          That pressure creates response.
-        </p>
-        <p className="text-green text-xl font-bold mb-12">
-          That’s leverage.
-        </p>
-
-        {/* Why this is different */}
-        <h2 className="text-2xl font-semibold mb-4">Why this is different</h2>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          This isn’t about parties.<br />
-          This isn’t about candidates.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          This isn’t about arguing online<br />
-          or shouting into the void.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          This is about:<br />
-          Participation<br />
-          Coordination<br />
-          Consistency
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          A way to move<br />
-          without losing yourself in the noise.
-        </p>
-
-        {/* Why us */}
-        <h2 className="text-2xl font-semibold mb-4">Why us</h2>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          We’ve seen what happens<br />
-          when voices get ignored.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          We’ve lived through moments<br />
-          where showing up didn’t feel like enough.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          We’ve carried systems<br />
-          that didn’t always carry us back.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          So when we move,<br />
-          we move with intention.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          We move with clarity.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          We move with purpose.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          And when we do that,<br />
-          it doesn’t just affect us.<br />
-          It stabilizes everything around us.
-        </p>
-
-        {/* What now */}
-        <h2 className="text-2xl font-semibold mb-4">What now</h2>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          You’ve seen the pattern.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          You’ve felt the pressure.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          You already know something needs to shift.
-        </p>
-        <p className="text-gray-300 text-lg leading-relaxed mb-12">
-          This is one way to do it.<br />
-          Calm.<br />
-          Clear.<br />
-          Structured.
-        </p>
-
-        {/* Primary CTA */}
-        <div className="text-center mt-8 mb-12">
-          <Link
-            href="/petition"
-            className="inline-block bg-green-600 text-white font-bold px-8 py-3 rounded-full text-lg shadow-md hover:bg-green-700 transition"
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="w-full text-left text-gray-400 text-sm uppercase tracking-wider hover:text-white transition flex items-center justify-between py-3 border-b border-gray-700"
           >
-            👉 See how it works
-          </Link>
+            <span>{dropdownOpen ? '−' : '+'} Why does 1,500 matter?</span>
+          </button>
+          {dropdownOpen && (
+            <div className="mt-4 p-5 bg-white/5 border-l-4 border-yellow-400/50 rounded-r-lg text-gray-300 text-base leading-relaxed space-y-3">
+              <p>Most people assume ordinary citizens have no real influence. That’s exactly what they want you to believe.</p>
+              <p>Political researchers, organizers, and strategists – including work examined at institutions like Harvard – have shown for decades that small, organized, coordinated blocs of constituents create outsized political influence. Ralph Nader demonstrated it. Community organizers proved it.</p>
+              <p>Representatives don’t fear noise. They fear organized people who show up – at primaries, at town halls, at the polls, and in the public record.</p>
+              <p>1,500 aligned constituents in a single congressional district can flip a primary, elevate a challenger, force public accountability, and make a sitting representative’s career genuinely uncertain.</p>
+              <p>The full architecture lives at PHIERS.org. But the short version is this: <span className="text-white font-semibold">the power of organized people is the leverage Congress cannot ignore.</span></p>
+            </div>
+          )}
         </div>
 
-        {/* Secondary navigation */}
-        <div className="text-center space-y-2 mb-12">
-          <p className="text-gray-500">Or go back:</p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/4daBros/unforgettable" className="text-green hover:underline">UNFORGETTABLE</Link>
-            <Link href="/4daBros/unbreakable" className="text-green hover:underline">UNBREAKABLE</Link>
-            <Link href="/4daBros/unstoppable" className="text-green hover:underline">UNSTOPPABLE</Link>
-          </div>
+        {/* Closing */}
+        <div className="border-t border-gray-800 my-12 pt-8 text-center space-y-6">
+          <p className="text-gray-300 text-lg leading-relaxed">
+            We built this. Without asking permission. Without waiting for funding. Without needing their approval.
+          </p>
+          <p className="text-gray-300 text-lg leading-relaxed">
+            Black men built a solution that will benefit every ignored, unheard, discarded constituency in this country – not because we were asked, but because we could see what others refused to.
+          </p>
+          <p className="text-white text-xl font-semibold">That is not coincidence. That is prophecy.</p>
         </div>
 
-        {/* Footer trust block */}
-        <div className="border-t border-gray-800 pt-8 mt-8 text-center text-gray-400 text-sm">
-          <p>This is not about parties.</p>
-          <p>This is not about candidates.</p>
-          <p className="mt-2">This is about participation.<br />Representation.<br />Stability.</p>
-          <p className="mt-2">Peaceful.<br />Lawful.<br />Structured.</p>
-          <p className="mt-2">A way to be seen.<br />A way to be counted.<br />A way to matter.</p>
+        <div className="text-center my-12">
+          <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-black font-bold text-lg py-3 px-8 rounded-lg shadow-lg hover:bg-gray-200 transition">
+            → Go to PHIERS.org – The Full Architecture
+          </a>
         </div>
 
-        {/* FOOTER CREDIT */}
-        <div className="border-t border-gray-800 mt-12 pt-6 text-center text-gray-500 text-sm">
-          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
-          <p className="mt-2"><a href="https://phiers.org" className="hover:text-white transition">Go to PHIERS.org →</a></p>
+        <div className="text-center text-gray-500 text-sm space-x-4">
+          <Link href="/Prophecy/trilogy" className="hover:text-white transition">Return to Trilogy</Link>
+          <span>·</span>
+          <Link href="/Prophecy/trilogy#unforgettable" className="hover:text-white transition">UNFORGETTABLE</Link>
+          <span>·</span>
+          <Link href="/Prophecy/trilogy#unbreakable" className="hover:text-white transition">UNBREAKABLE</Link>
+          <span>·</span>
+          <Link href="/Prophecy/trilogy#unstoppable" className="hover:text-white transition">UNSTOPPABLE</Link>
         </div>
 
+        <footer className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-500 text-sm">
+          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Strategic.</p>
+          <p className="mt-2"><a href="https://phiers.org" className="hover:text-white transition">PHIERS.org →</a></p>
+        </footer>
       </div>
     </div>
-  )
+  );
 }
-
-// FILE: app/4daBros/leverage/page.tsx

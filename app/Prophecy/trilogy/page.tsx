@@ -1,313 +1,168 @@
 // FILE: app/Prophecy/trilogy/page.tsx
-// VERSION: 2.3.0 – Collapsible disclaimer, footer credit
-
 'use client';
 
 import Link from 'next/link';
-import { ImageSection } from '@/components/ImageSection';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-
-const FifteenHundredImage = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="relative mx-auto my-12 w-[80%] md:w-[50%] cursor-pointer"
-        onClick={() => setOpen(true)}
-      >
-        <img
-          src="/images/trilogy/Group_of_BlackMen_Talking.jpg"
-          alt="Black professionals lifting a platform that supports a podium"
-          className="rounded-lg shadow-lg object-cover w-full h-auto"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-lg" />
-        <p className="absolute bottom-4 right-5 text-white/55 text-sm md:text-base font-medium tracking-[0.18em] uppercase">
-          Fifteen Hundred Lift One Seat.
-        </p>
-      </motion.div>
-      {open && (
-        <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
-          onClick={() => setOpen(false)}
-        >
-          <img
-            src="/images/trilogy/Group_of_BlackMen_Talking.jpg"
-            alt="Collective leverage"
-            className="max-w-[90%] max-h-[90%] rounded-lg shadow-2xl"
-          />
-        </div>
-      )}
-    </>
-  );
-};
 
 const FadeIn = ({ children }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
+    initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7, ease: 'easeOut' }}
-    viewport={{ once: true, amount: 0.5 }}
+    transition={{ duration: 0.6, ease: 'easeOut' }}
+    viewport={{ once: true, amount: 0.3 }}
   >
     {children}
   </motion.div>
 );
 
 export default function TrilogyPage() {
-  const [disclaimerOpen, setDisclaimerOpen] = useState(false);
-
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0]">
+    <div className="min-h-screen bg-black text-white">
       <div className="max-w-3xl mx-auto px-5 py-12 md:py-20">
 
-        {/* COLLAPSIBLE DISCLAIMER */}
-        <div className="mb-12">
-          <button
-            onClick={() => setDisclaimerOpen(!disclaimerOpen)}
-            className="text-gray-400 text-sm uppercase tracking-wider hover:text-white transition flex items-center gap-2"
-          >
-            {disclaimerOpen ? '−' : '+'} Why this space exists
-          </button>
-          {disclaimerOpen && (
-            <div className="mt-4 p-5 bg-white/5 border-l-4 border-white/20 rounded-r-lg text-gray-300 text-base leading-relaxed">
-              <p>
-                This space speaks directly to Black men. Not to divide — but to protect, to affirm,
-                and to tell the truth about what we’re living through. If you’re here, read with respect.
-                If this isn’t your lived experience, read with care.
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Glowing PHIERS Logo */}
-        <div className="flex justify-center mb-12">
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-green-400 blur-2xl opacity-60 animate-pulse"></div>
-            <img src="/images/PHIERS_Logo.png" alt="PHIERS" className="w-20 h-auto relative z-10" />
-          </div>
-        </div>
-
-        {/* Brief prophecy reminder */}
-        <FadeIn>
-          <div className="text-center mb-12">
-            <p className="text-gray-400 italic">“And afterward they will come out with great substance.”</p>
-          </div>
-        </FadeIn>
-
-        {/* Opening – Dear Black Man */}
-        <FadeIn>
-          <div className="mb-10">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Dear Black Man. Dear Black Woman. Dear Black Family.
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              They didn't break the system. They rebuilt it — without us in mind.
-            </p>
-            <p className="text-gray-400 mt-4">
-              The Voting Rights Act has been gutted. Districts across the South have been redrawn to erase Black representation — deliberately, strategically, and without shame.
-            </p>
-            <p className="text-gray-400 mt-2">
-              Both parties see the imbalance. Both parties are adjusting to it. Neither is fixing it.
-            </p>
-            <p className="text-white font-bold text-2xl mt-6">
-              This is not the end of our story. This is the beginning of our answer.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Historical continuity */}
-        <FadeIn>
-          <div className="my-12">
-            <h2 className="text-2xl font-bold text-white mb-4">This moment is not new.</h2>
-            <p className="text-gray-300 leading-relaxed">
-              Greenwood burned. The 761st fought for a nation that wouldn't fight for them. The Tuskegee Airmen flew with excellence for an Air Force that doubted their humanity.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-4">
-              Every time they tried to erase us, we rebuilt.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-4">
-              This time is no different — except this time, we're not just rebuilding for ourselves. We're building something the entire country needs, and we're the only ones who could see it clearly enough to build it.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Historical grid */}
-        <FadeIn>
-          <div className="grid md:grid-cols-3 gap-4 my-8">
-            <ImageSection src="/images/trilogy/tuskegee.jpg" alt="Tuskegee Airmen" aspectRatio="4/3" />
-            <ImageSection src="/images/trilogy/761st.jpg" alt="761st Tank Battalion" aspectRatio="4/3" />
-            <ImageSection src="/images/trilogy/greenwood.jpg" alt="Greenwood before 1921" aspectRatio="4/3" />
-          </div>
-        </FadeIn>
-
-        {/* COLLAPSE – VRA image */}
-        <ImageSection
-          src="/images/trilogy/vra-collapse.png"
-          alt="Cracked American flag revealing a ballot underneath"
-          overlayText="The System Isn't Broken. It's Been Unbuilt."
-          overlayPosition="top-left"
-        />
-
-        {/* MECHANISM – Why 1,500 works */}
-        <FadeIn>
-          <div className="my-12">
-            <h2 className="text-2xl font-bold text-white mb-4">Why the 1,500 is the answer.</h2>
-            <p className="text-gray-300 leading-relaxed">
-              Here is what most people miss: <strong className="text-white">states control voting laws. States control redistricting.</strong> The attacks on our political power are not coming from Washington. They are coming from your state capitol.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-4">
-              1,500 aligned people in a single congressional district can <strong>force meetings, shape primaries, hold incumbents accountable, and make a representative's seat feel genuinely at risk</strong> — before election day, at the level where the maps are drawn and the rules are written.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-4">
-              PHIERS is not a response to Congress. PHIERS is a response to your statehouse — the real battlefield.
-            </p>
-            <p className="text-white font-semibold mt-4">
-              The Fifteen Hundred was built for the exact level where power is now being concentrated: the states.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Who built this */}
-        <FadeIn>
-          <div className="my-12">
-            <h2 className="text-2xl font-bold text-white mb-4">Who built this.</h2>
-            <p className="text-gray-300 leading-relaxed">Black men did.</p>
-            <p className="text-gray-300 leading-relaxed mt-2">
-              Not because anyone funded us. Not because anyone believed in us. Not because we were invited.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-2">
-              We built it because when every door is locked, you learn the architecture.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-4">
-              We built a solution that will benefit rural white families, immigrants, the uninsured, the unheard — everyone this system has used up and discarded. <strong>We built it without asking for help from those who hate and oppress us.</strong> We built it without waiting for their approval.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-4">
-              That is not a coincidence. The suffering was foretold. The judgment was promised.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FifteenHundredImage />
-
-        {/* POSSIBILITY – Great Substance quote */}
-        <FadeIn>
-          <div className="my-16 text-center">
-            <div className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              “And the people came out with great substance.”
-            </div>
-            <div className="text-gray-400 mt-4 text-lg">
-              That line is the movement. Everything else is the explanation.
-            </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn>
-          <div className="my-6">
-            <p className="text-gray-300 leading-relaxed">
-              FBAs built something that will benefit all of humanity. We did it ourselves. We did it without apology. And the world will be forced to see us not through stereotypes, not through fear — but through contribution, through discipline, through solutions.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* What PHIERS is */}
-        <FadeIn>
-          <div className="my-12">
-            <h2 className="text-2xl font-bold text-white mb-4">What PHIERS is.</h2>
-            <p className="text-xl font-bold text-yellow-400">Power Held In Every Representative's Seat.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">
-              The problem has never been that we don't have a voice. The problem is that our voices are scattered — and scattered voices are easy to ignore.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-2">
-              1,500 aligned people per district. Organized. Coordinated. Unignorable.
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-2">
-              District by district. Seat by seat. Across the entire country.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* REBIRTH triptych */}
-        <FadeIn>
-          <div className="grid md:grid-cols-3 gap-4 my-12">
-            <ImageSection src="/images/trilogy/rebirth1.jpg" alt="Civic renewal" aspectRatio="4/3" />
-            <ImageSection src="/images/trilogy/rebirth2.jpg" alt="Community organizing" aspectRatio="4/3" />
-            <div className="relative">
-              <ImageSection
-                src="/images/trilogy/rebirth3.jpg"
-                alt="Three-panel collage: Greenwood, modern leader, rural family"
-                aspectRatio="4/3"
-                overlayText="The Reconstruction Begins With Those Forced To Survive The Collapse."
-                overlayPosition="bottom-center"
-              />
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* ACTION – Decompression line + CTA buttons */}
-        <FadeIn>
-          <div className="my-20 text-center max-w-3xl mx-auto">
-            <p className="text-white text-2xl md:text-4xl font-semibold leading-tight mb-4">
-              Structure changes outcomes.
-            </p>
-            <p className="text-gray-400 text-lg leading-relaxed mb-10">
-              Choose where you want to continue.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <Link href="/Prophecy/unforgettable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
-                UNFORGETTABLE
-              </Link>
-              <Link href="/Prophecy/unstoppable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
-                UNSTOPPABLE
-              </Link>
-              <Link href="/Prophecy/unbreakable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
-                UNBREAKABLE
-              </Link>
-            </div>
-            <div>
-              <Link href="/Prophecy/leverage" className="inline-block bg-[#F5C542] text-black font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(245,197,66,0.35)] hover:shadow-[0_0_30px_rgba(245,197,66,0.5)] transition text-lg">
-                How 1,500 Signatures Actually Work →
-              </Link>
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* FINAL INVITATION */}
-        <div className="my-16 text-center border-t border-gray-700 pt-12">
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-6">
-            The Sentence Is Over. The Work Begins.
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-            You have walked through the collapse, the mechanism, and the rebirth. Now step into the full PHIERS movement — the architecture, the coalition, and the solution‑proper.
+        {/* Intro */}
+        <div className="mb-16">
+          <p className="text-gray-300 text-lg leading-relaxed">
+            This is a private room. No cameras. No performance. No explaining yourself.
           </p>
-          <a
-            href="https://phiers.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-white text-black font-bold text-lg py-3 px-8 rounded-lg shadow-lg hover:bg-gray-200 transition"
-          >
-            Visit PHIERS.org for the Full Experience
-          </a>
+          <p className="text-gray-300 text-lg leading-relaxed mt-4">
+            Just Black men – seeing the pattern clearly, maybe for the first time without apology.
+          </p>
+          <p className="text-gray-300 text-lg leading-relaxed mt-4">
+            What has been done to us is real.<br />
+            What has <span className="text-white font-semibold">not</span> been taken from us is more real.
+          </p>
+          <p className="text-white text-xl font-semibold mt-8">
+            The Trilogy restores what the last four hundred years tried to erase.
+          </p>
         </div>
 
-        {/* Early exit link */}
-        <div className="mt-8 text-center text-gray-500 text-sm">
-          <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white underline">
-            Already ready? Go to PHIERS.org →
-          </a>
-        </div>
+        {/* UNFORGETTABLE */}
+        <FadeIn>
+          <div className="border-t border-gray-800 pt-12 mt-8">
+            <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Chapter 1 of 3</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">UNFORGETTABLE</h2>
+            <img
+              src="/images/trilogy/unforgettable-1.jpg"
+              alt="Historical memory"
+              className="w-full max-w-md mx-auto rounded-lg shadow-lg my-6"
+            />
+            <p className="text-gray-300 text-lg leading-relaxed">
+              What you are living through is not random. It is not a failure of character. It is not bad luck. It is not your fault.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              It is a <span className="text-white font-semibold">structure</span> – one that has operated for four hundred years.
+              Voting rights gutted. Districts redrawn to erase us. Policies shifting quietly in ways that hit us first and hardest.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              Once you see the structure, something shifts. You stop blaming yourself. You stop shrinking.
+              You stop carrying weight that was never yours.
+            </p>
+            <p className="text-white font-semibold text-xl mt-6">
+              And you start to see your own life differently.
+            </p>
+            <div className="mt-8 text-center">
+              <Link href="#unbreakable" className="inline-block bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-6 rounded-full transition">
+                → UNBREAKABLE
+              </Link>
+            </div>
+          </div>
+        </FadeIn>
 
-        {/* Footer */}
-        <div className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-500 text-sm">
-          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
+        {/* UNBREAKABLE */}
+        <FadeIn>
+          <div id="unbreakable" className="border-t border-gray-800 pt-12 mt-12">
+            <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Chapter 2 of 3</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">UNBREAKABLE</h2>
+            <img
+              src="/images/trilogy/unbreakable-1.jpg"
+              alt="Resilience"
+              className="w-full max-w-md mx-auto rounded-lg shadow-lg my-6"
+            />
+            <p className="text-gray-300 text-lg leading-relaxed">
+              Greenwood burned. They rebuilt it.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              The 761st Tank Battalion fought through six European countries for a nation that wouldn’t let them vote when they came home. They kept going anyway.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              The Tuskegee Airmen flew into the most dangerous airspace in the war – for an Air Force that doubted their humanity – and never lost a single bomber.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              Black men liberated concentration camps. Jewish survivors’ first sight of freedom was a Black face. Then those same men came home to Jim Crow.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              They didn’t break. Neither did you.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              You come from people who refused to disappear. Who rebuilt every time the world tried to erase them. Who carried systems that would not carry them back.
+            </p>
+            <p className="text-white font-semibold text-xl mt-6">
+              That strength is not behind you. It is in you. Right now. It never left.
+            </p>
+            <div className="mt-8 text-center">
+              <Link href="#unstoppable" className="inline-block bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-6 rounded-full transition">
+                → UNSTOPPABLE
+              </Link>
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* UNSTOPPABLE */}
+        <FadeIn>
+          <div id="unstoppable" className="border-t border-gray-800 pt-12 mt-12">
+            <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Chapter 3 of 3</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">UNSTOPPABLE</h2>
+            <img
+              src="/images/trilogy/unstoppable-1.jpg"
+              alt="Forward movement"
+              className="w-full max-w-md mx-auto rounded-lg shadow-lg my-6"
+            />
+            <p className="text-gray-300 text-lg leading-relaxed">
+              The pressure is real. The attacks are real.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              Redistricting. Policy rollbacks. Economic pressure. Quiet decisions made in rooms we’re not invited into.
+              These are not accidents. They are strategies. And strategies can be countered.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              And they are designed to make you feel like there is nothing you can do.
+            </p>
+            <p className="text-white text-xl font-semibold mt-6">
+              There is something you can do. Not noise. Not outrage. Not performance. <span className="text-yellow-400">Structure.</span>
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              States control voting laws. States control redistricting. The battlefield is not Washington – it is your state capitol.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              And <span className="text-white font-bold">1,500 organized people</span> in a single district can make a representative’s seat feel genuinely at risk – before election day.
+              That’s not a theory. That’s leverage. Peaceful. Lawful. Democracy.
+            </p>
+            <div className="mt-10 text-center">
+              <Link
+                href="/Prophecy/leverage"
+                className="inline-block bg-[#F5C542] text-black font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-yellow-400 transition text-lg"
+              >
+                → See How Leverage Works
+              </Link>
+            </div>
+            <div className="mt-8 text-center text-gray-500 text-sm space-x-4">
+              <Link href="#unforgettable" className="hover:text-white transition">← UNFORGETTABLE</Link>
+              <span>·</span>
+              <Link href="#unbreakable" className="hover:text-white transition">← UNBREAKABLE</Link>
+              <span>·</span>
+              <a href="https://phiers.org" className="hover:text-white transition">PHIERS.org →</a>
+            </div>
+          </div>
+        </FadeIn>
+
+        <footer className="border-t border-gray-800 mt-20 pt-8 text-center text-gray-500 text-sm">
+          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Strategic.</p>
           <p className="mt-2"><a href="https://phiers.org" className="hover:text-white transition">Go to PHIERS.org →</a></p>
-        </div>
+        </footer>
       </div>
     </div>
   );
 }
+
+// FILE: app/Prophecy/trilogy/page.tsx
