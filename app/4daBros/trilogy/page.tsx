@@ -1,6 +1,5 @@
 // FILE: app/4daBros/trilogy/page.tsx
-// VERSION: 2.1.0
-// Cinematic sequence – Collapse → Mechanism → Rebirth → Invitation
+// VERSION: 2.3.0 – Added collapsible disclaimer, spacing, footer credit
 
 'use client';
 
@@ -9,7 +8,6 @@ import { ImageSection } from '@/components/ImageSection';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-// Fifteen Hundred image component (click‑to‑enlarge)
 const FifteenHundredImage = () => {
   const [open, setOpen] = useState(false);
   return (
@@ -61,9 +59,30 @@ const FadeIn = ({ children }) => (
 );
 
 export default function TrilogyPage() {
+  const [disclaimerOpen, setDisclaimerOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0]">
-      <div className="max-w-[800px] mx-auto px-5 py-12 md:py-20">
+      <div className="max-w-3xl mx-auto px-5 py-12 md:py-20">
+
+        {/* COLLAPSIBLE DISCLAIMER (at the top) */}
+        <div className="mb-12">
+          <button
+            onClick={() => setDisclaimerOpen(!disclaimerOpen)}
+            className="text-gray-400 text-sm uppercase tracking-wider hover:text-white transition flex items-center gap-2"
+          >
+            {disclaimerOpen ? '−' : '+'} Why this space exists
+          </button>
+          {disclaimerOpen && (
+            <div className="mt-4 p-5 bg-white/5 border-l-4 border-white/20 rounded-r-lg text-gray-300 text-base leading-relaxed">
+              <p>
+                This space speaks directly to Black men. Not to divide — but to protect, to affirm,
+                and to tell the truth about what we’re living through. If you’re here, read with respect.
+                If this isn’t your lived experience, read with care.
+              </p>
+            </div>
+          )}
+        </div>
 
         {/* Glowing PHIERS Logo */}
         <div className="flex justify-center mb-12">
@@ -76,12 +95,11 @@ export default function TrilogyPage() {
         {/* Brief prophecy reminder */}
         <FadeIn>
           <div className="text-center mb-12">
-            <p className="text-gray-400 italic max-w-2xl mx-auto">
-              “And afterward they will come out with great substance.”
-            </p>
+            <p className="text-gray-400 italic">“And afterward they will come out with great substance.”</p>
           </div>
         </FadeIn>
 
+        {/* ===== REST OF YOUR ORIGINAL CONTENT (unchanged, only spacing adjusted) ===== */}
         {/* Opening – Dear Black Man */}
         <FadeIn>
           <div className="mb-10">
@@ -175,7 +193,6 @@ export default function TrilogyPage() {
           </div>
         </FadeIn>
 
-        {/* Fifteen Hundred image */}
         <FifteenHundredImage />
 
         {/* POSSIBILITY – Great Substance quote */}
@@ -232,7 +249,7 @@ export default function TrilogyPage() {
           </div>
         </FadeIn>
 
-        {/* ACTION – Decompression line + CTA buttons (Trilogy navigation) */}
+        {/* ACTION – Decompression line + CTA buttons */}
         <FadeIn>
           <div className="my-20 text-center max-w-3xl mx-auto">
             <p className="text-white text-2xl md:text-4xl font-semibold leading-tight mb-4">
@@ -261,7 +278,7 @@ export default function TrilogyPage() {
           </div>
         </FadeIn>
 
-        {/* FINAL INVITATION – after completing the Trilogy sequence */}
+        {/* FINAL INVITATION */}
         <div className="my-16 text-center border-t border-gray-700 pt-12">
           <h2 className="text-3xl md:text-4xl font-semibold text-white mb-6">
             The Sentence Is Over. The Work Begins.
@@ -279,7 +296,7 @@ export default function TrilogyPage() {
           </a>
         </div>
 
-        {/* Early‑exit link (already in sidebar, but repeated for convenience) */}
+        {/* Early exit link */}
         <div className="mt-8 text-center text-gray-500 text-sm">
           <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white underline">
             Already ready? Go to PHIERS.org →
@@ -288,11 +305,12 @@ export default function TrilogyPage() {
 
         {/* Footer */}
         <div className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-500 text-sm">
-          This space is for us. Move through it with the same dignity you deserve.
+          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
+          <p className="mt-2"><a href="https://phiers.org" className="hover:text-white transition">Go to PHIERS.org →</a></p>
         </div>
       </div>
     </div>
   );
 }
 
-// END FILE: app/4daBros/trilogy/page.tsx
+// FILE: app/4daBros/trilogy/page.tsx

@@ -89,8 +89,9 @@ export default function UnforgettablePage() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-6 mt-10 text-center text-gray-400 text-sm">
-          <p>We are inferior to no one. Join us.</p>
+        <div className="border-t border-gray-800 pt-6 mt-10 text-center text-gray-500 text-sm">
+          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
+          <p className="mt-2"><a href="https://phiers.org" className="hover:text-white transition">Go to PHIERS.org →</a></p>
         </div>
       </div>
     </div>

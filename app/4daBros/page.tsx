@@ -1,126 +1,140 @@
 // FILE: app/4daBros/page.tsx
-// VERSION: 2.2.0
-// Homepage – clean hero image, scripture below, primary path to Trilogy
+// VERSION: 3.0.0 – Voice‑first, collapsible context, Start Here cards, footer credit
 
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Homepage() {
+  const [contextOpen, setContextOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-black text-white">
 
-      {/* HERO — 400 Years Sentence Served (clean image, no overlay text) */}
-      <div className="relative w-full h-[85vh] overflow-hidden">
-        <img
-          src="/images/trilogy/400-years-prophesy_sentence-served.jpg"
-          alt="American flag with broken chain symbolizing liberation after four hundred years"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          fetchPriority="high"
-        />
-        {/* Subtle dark gradient for cinematic depth (no text) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+      {/* SECTION 1 – OPENING STATEMENT (FULL WIDTH, VOICE FIRST) */}
+      <div className="max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+          For Da Bros
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+          A private space for Black men navigating pressure, uncertainty, responsibility,
+          and the feeling that our voice is shrinking in the places shaping the future.
+        </p>
+        <p className="text-gray-400 mt-6 text-lg">
+          This space is not for performance.<br />
+          Not for headlines.<br />
+          Not for outrage.<br />
+          Not for algorithms.
+        </p>
+        <p className="text-white text-xl font-semibold mt-8">
+          It’s for us.
+        </p>
+        <p className="text-gray-400 mt-4 italic">
+          Because some conversations hit different when you know people already understand
+          the weight without needing a footnote.
+        </p>
       </div>
 
-      {/* Scripture Block (beneath the image) */}
-      <div className="max-w-3xl mx-auto px-5 py-12 text-center">
-        <div className="text-yellow-400 text-sm tracking-wider mb-4">⭐ Genesis 15:13–14</div>
-        <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
-          <p className="italic">
-            “And He said unto Abram, Know of a surety that thy seed shall be a stranger in a land that is not theirs, and shall serve them; and they shall afflict them four hundred years;
-          </p>
-          <p className="italic">
-            And also that nation, whom they shall serve, will I judge: and afterward shall they come out with great substance.”
-          </p>
-        </div>
-        <div className="mt-8 text-white/40 text-sm tracking-[0.25em] uppercase animate-pulse">
-          ↓ Continue
-        </div>
+      {/* SECTION 2 – COLLAPSIBLE CONTEXT / DISCLAIMER */}
+      <div className="max-w-3xl mx-auto px-6 mb-16">
+        <button
+          onClick={() => setContextOpen(!contextOpen)}
+          className="text-gray-400 text-sm uppercase tracking-wider hover:text-white transition flex items-center gap-2"
+        >
+          {contextOpen ? '−' : '+'} Why this space exists
+        </button>
+        {contextOpen && (
+          <div className="mt-4 p-6 bg-white/5 border-l-4 border-white/20 rounded-r-lg text-gray-300 text-base leading-relaxed space-y-3">
+            <p>
+              This space speaks directly to Black men because our experiences with pressure, representation,
+              erasure, responsibility, and resilience are often discussed publicly but processed privately.
+            </p>
+            <p>
+              The goal is not separation from others. The goal is clarity with each other.
+            </p>
+            <p>
+              This space exists to encourage reflection, dignity, civic participation, constructive action,
+              and long‑term thinking during a moment many people experience as uncertain and destabilizing.
+            </p>
+            <p>
+              Some language here may feel more direct than what appears on public‑facing platforms because
+              this space was built for honest conversation among people with shared lived experience.
+            </p>
+            <p className="text-gray-400">
+              The larger PHIERS mission remains focused on solutions that strengthen participation,
+              stability, representation, and opportunity for everyone.
+            </p>
+          </div>
+        )}
       </div>
 
-      {/* Main content – primary entry to the Trilogy */}
-      <div className="max-w-[800px] mx-auto px-5 py-12 md:py-16">
+      {/* SECTION 3 – START HERE */}
+      <div className="max-w-3xl mx-auto px-6 py-8">
+        <h2 className="text-3xl font-semibold text-white mb-4">Start Here</h2>
+        <p className="text-gray-400 mb-8 text-lg">
+          This space unfolds in stages. Not because everybody’s journey is the same —
+          but because some things need to be felt before they can be built.
+        </p>
 
-        {/* Glowing PHIERS Logo */}
-        <div className="flex justify-center mb-12">
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-green-400 blur-2xl opacity-60 animate-pulse"></div>
-            <img src="/images/PHIERS_Logo.png" alt="PHIERS" className="w-20 h-auto relative z-10" />
+        <div className="space-y-6">
+          {/* TRILOGY CARD */}
+          <div className="border border-gray-800 rounded-xl p-6 hover:border-gray-600 transition">
+            <h3 className="text-2xl font-bold text-white mb-2">TRILOGY</h3>
+            <p className="text-gray-300 mb-4">
+              A message to Black men about memory, pressure, dignity, survival, and hope.
+            </p>
+            <Link
+              href="/4daBros/trilogy"
+              className="inline-block bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-6 rounded-full transition"
+            >
+              Enter Trilogy →
+            </Link>
+          </div>
+
+          {/* LEVERAGE CARD */}
+          <div className="border border-gray-800 rounded-xl p-6 hover:border-gray-600 transition">
+            <h3 className="text-2xl font-bold text-white mb-2">LEVERAGE</h3>
+            <p className="text-gray-300 mb-4">
+              How collective civic participation becomes lawful, peaceful influence
+              that can shape representation and outcomes. What comes after despair.
+            </p>
+            <Link
+              href="/4daBros/leverage"
+              className="inline-block bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-6 rounded-full transition"
+            >
+              Explore Leverage →
+            </Link>
+          </div>
+
+          {/* LEGACY CARD */}
+          <div className="border border-gray-800 rounded-xl p-6 hover:border-gray-600 transition">
+            <h3 className="text-2xl font-bold text-white mb-2">LEGACY</h3>
+            <p className="text-gray-300 mb-4">
+              What remains when we refuse to disappear, disengage, or stop building for the future.
+              Why this work matters long term.
+            </p>
+            <Link
+              href="/4daBros/legacy"
+              className="inline-block bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-6 rounded-full transition"
+            >
+              Explore Legacy →
+            </Link>
           </div>
         </div>
+      </div>
 
-        {/* Primary CTA – begin the Trilogy (the contained experience) */}
-        <div className="text-center mb-16">
-          <Link
-            href="/4daBros/trilogy"
-            className="inline-block bg-white text-black font-bold text-xl py-4 px-12 rounded-lg shadow-lg hover:bg-gray-200 transition"
-          >
-            Begin the Trilogy
-          </Link>
-          <p className="text-gray-400 text-sm mt-3">A cinematic journey of restoration.</p>
-        </div>
-
-        {/* Secondary exploration cards (optional early access) */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-white border-b border-gray-700 pb-2 mb-4">
-            Explore further
-          </h2>
-          <Card
-            title="✊ A MESSAGE FOR BLACK AMERICA"
-            description="Historical proof of Black capability, endurance, and leadership."
-            link="https://phiers.org"
-            external
-          />
-          <Card
-            title="🌐 FIVE CRISES, ONE SOLUTION"
-            description="Healthcare, corruption, voting rights, economic instability, war."
-            link="https://phiersale.github.io/PHIERS-Concept/"
-            external
-          />
-          <Card
-            title="🏥 THE HEALTHCARE SOLUTION"
-            description="The mechanism, the numbers, the cascade – proof of concept."
-            link="https://phiersale.github.io/PHIERS-Concept/healthcare-proof.html"
-            external
-          />
-        </div>
-
-        {/* Early exit link to PHIERS.org (subtle, not primary) */}
-        <div className="mt-16 text-center text-gray-500 text-sm">
-          <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white underline">
-            Visit PHIERS.org for the full movement →
+      {/* FOOTER – Built on PHIERS */}
+      <div className="border-t border-gray-800 mt-20 pt-8 pb-12 text-center text-gray-500 text-sm">
+        <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
+        <p className="mt-2">
+          <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            Go to PHIERS.org →
           </a>
-        </div>
-
-        {/* Footer */}
-        <div className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-500 text-sm">
-          This space is for us. Move through it with the same dignity you deserve.
-        </div>
+        </p>
       </div>
     </div>
   );
 }
 
-function Card({ title, description, link, external }) {
-  const commonClasses = "block p-6 bg-neutral-900 rounded-xl border border-gray-700 hover:border-gray-500 transition";
-  const content = (
-    <>
-      <h2 className="text-xl font-bold text-white mb-2">{title}</h2>
-      <p className="text-gray-400 leading-relaxed">{description}</p>
-    </>
-  );
-  if (external) {
-    return (
-      <a href={link} target="_blank" rel="noopener noreferrer" className={commonClasses}>
-        {content}
-      </a>
-    );
-  }
-  return (
-    <Link href={link} className={commonClasses}>
-      {content}
-    </Link>
-  );
-}
-
-// END FILE: app/4daBros/page.tsx
+// FILE: app/4daBros/page.tsx

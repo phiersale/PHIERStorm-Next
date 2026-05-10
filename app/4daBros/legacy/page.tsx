@@ -50,8 +50,9 @@ export default function LegacyPage() {
           <p className="text-white text-center text-xl font-bold mt-8">We are inferior to no one. And the world is about to remember why they need us.</p>
         </div>
 
-        <div className="border-t border-gray-800 pt-6 mt-10 text-center text-gray-400 text-sm">
-          <a href="https://phiers.org/petition" target="_blank" rel="noopener noreferrer" className="text-green hover:underline">Sign the petition at PHIERS.org</a>
+        <div className="border-t border-gray-800 pt-6 mt-10 text-center text-gray-500 text-sm">
+          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
+          <p className="mt-2"><a href="https://phiers.org" className="hover:text-white transition">Go to PHIERS.org →</a></p>
         </div>
       </div>
     </div>

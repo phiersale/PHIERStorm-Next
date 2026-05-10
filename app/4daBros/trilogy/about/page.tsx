@@ -48,12 +48,8 @@ export default function TrilogyAbout() {
         </div>
 
         <footer className="mt-12 pt-6 border-t border-[#222] text-sm text-[#999999] text-center space-y-2">
-          <p>This space is for us.</p>
-          <p>
-            <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white underline">
-              See what we built → PHIERS.org
-            </a>
-          </p>
+          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
+          <p><a href="https://phiers.org" className="hover:text-white transition">Go to PHIERS.org →</a></p>
         </footer>
       </main>
 

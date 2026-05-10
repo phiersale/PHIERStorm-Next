@@ -31,6 +31,17 @@ export default function UnstoppablePage() {
           </Link>
         </div>
 
+        {/* SCOTUS UPDATE – The Pressure Is Real */}
+        <div className="my-8 p-5 border-l-4 border-yellow-400 bg-yellow-400/5 rounded-r-lg">
+          <span className="text-xs uppercase tracking-wider text-yellow-400 font-bold">NEW — May 3, 2026</span>
+          <p className="text-white text-lg font-semibold mt-2">The Pressure Is Real — And We Move Anyway</p>
+          <p className="text-gray-300 mt-2">
+            The Supreme Court gutted the Voting Rights Act. That’s the pressure. This is the response:
+            <strong className="text-white"> 1,500 people per district</strong>, organized, lawful, and unignorable.
+            We adapt. We build. We move.
+          </p>
+        </div>
+
         <h1 className="text-4xl md:text-5xl font-bold mb-8">UNSTOPPABLE</h1>
 
         {/* Opening */}
@@ -170,6 +181,12 @@ export default function UnstoppablePage() {
               Unbreakable
             </Link>
           </div>
+        </div>
+
+        {/* FOOTER CREDIT */}
+        <div className="border-t border-gray-800 mt-12 pt-6 text-center text-gray-500 text-sm">
+          <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
+          <p className="mt-2"><a href="https://phiers.org" className="hover:text-white transition">Go to PHIERS.org →</a></p>
         </div>
 
       </div>
