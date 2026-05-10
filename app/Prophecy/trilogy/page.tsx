@@ -1,5 +1,5 @@
-// FILE: app/4daBros/trilogy/page.tsx
-// VERSION: 2.3.0 – Added collapsible disclaimer, spacing, footer credit
+// FILE: app/Prophecy/trilogy/page.tsx
+// VERSION: 2.3.0 – Collapsible disclaimer, footer credit
 
 'use client';
 
@@ -65,7 +65,7 @@ export default function TrilogyPage() {
     <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0]">
       <div className="max-w-3xl mx-auto px-5 py-12 md:py-20">
 
-        {/* COLLAPSIBLE DISCLAIMER (at the top) */}
+        {/* COLLAPSIBLE DISCLAIMER */}
         <div className="mb-12">
           <button
             onClick={() => setDisclaimerOpen(!disclaimerOpen)}
@@ -99,7 +99,6 @@ export default function TrilogyPage() {
           </div>
         </FadeIn>
 
-        {/* ===== REST OF YOUR ORIGINAL CONTENT (unchanged, only spacing adjusted) ===== */}
         {/* Opening – Dear Black Man */}
         <FadeIn>
           <div className="mb-10">
@@ -260,18 +259,18 @@ export default function TrilogyPage() {
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <Link href="/4daBros/unforgettable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
+              <Link href="/Prophecy/unforgettable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
                 UNFORGETTABLE
               </Link>
-              <Link href="/4daBros/unstoppable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
+              <Link href="/Prophecy/unstoppable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
                 UNSTOPPABLE
               </Link>
-              <Link href="/4daBros/unbreakable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
+              <Link href="/Prophecy/unbreakable" className="bg-white text-black font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition text-center">
                 UNBREAKABLE
               </Link>
             </div>
             <div>
-              <Link href="/4daBros/leverage" className="inline-block bg-[#F5C542] text-black font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(245,197,66,0.35)] hover:shadow-[0_0_30px_rgba(245,197,66,0.5)] transition text-lg">
+              <Link href="/Prophecy/leverage" className="inline-block bg-[#F5C542] text-black font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(245,197,66,0.35)] hover:shadow-[0_0_30px_rgba(245,197,66,0.5)] transition text-lg">
                 How 1,500 Signatures Actually Work →
               </Link>
             </div>
@@ -312,5 +311,3 @@ export default function TrilogyPage() {
     </div>
   );
 }
-
-// FILE: app/4daBros/trilogy/page.tsx

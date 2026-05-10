@@ -1,25 +1,42 @@
-// FILE: app/4daBros/page.tsx
-// VERSION: 3.0.0 – Voice‑first, collapsible context, Start Here cards, footer credit
+// FILE: app/Prophecy/page.tsx
+// VERSION: 3.1.0 – Voice‑first with You_Are_Not_Powerless_Bro.jpg hero, no scripture
 
 'use client';
 
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function Homepage() {
+export default function ProphecyPage() {
   const [contextOpen, setContextOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-black text-white">
 
-      {/* SECTION 1 – OPENING STATEMENT (FULL WIDTH, VOICE FIRST) */}
-      <div className="max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+      {/* HERO – You_Are_Not_Powerless_Bro.jpg (cinematic, letterboxed) */}
+      <div className="relative w-full pt-12 pb-4 md:pt-20 mb-0 overflow-visible">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="rounded-xl overflow-hidden shadow-2xl">
+            <img
+              src="/images/trilogy/You_Are_Not_Powerless_Bro.jpg"
+              alt="You Are Not Powerless"
+              className="w-full h-[55vh] md:h-[65vh] object-cover object-center"
+              fetchPriority="high"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* SECTION 1 – OPENING STATEMENT (VOICE FIRST) */}
+      <div className="max-w-4xl mx-auto px-6 pt-16 pb-8 md:py-24 text-center">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-          For Da Bros
+          For us. By us. To us.
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
-          A private space for Black men navigating pressure, uncertainty, responsibility,
-          and the feeling that our voice is shrinking in the places shaping the future.
+          Welcome to private space for Black men navigating a harsh reality.  Our voice is shrinking in the places shaping the future. WE can and must do more than cope.  We must change the way we look at things for them to change.<br /><br />
+
+        <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+          Yes We Can.
+        </h3>
         </p>
         <p className="text-gray-400 mt-6 text-lg">
           This space is not for performance.<br />
@@ -37,7 +54,7 @@ export default function Homepage() {
       </div>
 
       {/* SECTION 2 – COLLAPSIBLE CONTEXT / DISCLAIMER */}
-      <div className="max-w-3xl mx-auto px-6 mb-16">
+      <div className="max-w-3xl mx-auto px-6 mt-16 mb-16 relative z-20">
         <button
           onClick={() => setContextOpen(!contextOpen)}
           className="text-gray-400 text-sm uppercase tracking-wider hover:text-white transition flex items-center gap-2"
@@ -85,7 +102,7 @@ export default function Homepage() {
               A message to Black men about memory, pressure, dignity, survival, and hope.
             </p>
             <Link
-              href="/4daBros/trilogy"
+              href="/Prophecy/trilogy"
               className="inline-block bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-6 rounded-full transition"
             >
               Enter Trilogy →
@@ -100,7 +117,7 @@ export default function Homepage() {
               that can shape representation and outcomes. What comes after despair.
             </p>
             <Link
-              href="/4daBros/leverage"
+              href="/Prophecy/leverage"
               className="inline-block bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-6 rounded-full transition"
             >
               Explore Leverage →
@@ -115,7 +132,7 @@ export default function Homepage() {
               Why this work matters long term.
             </p>
             <Link
-              href="/4daBros/legacy"
+              href="/Prophecy/legacy"
               className="inline-block bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-6 rounded-full transition"
             >
               Explore Legacy →
@@ -124,7 +141,7 @@ export default function Homepage() {
         </div>
       </div>
 
-      {/* FOOTER – Built on PHIERS */}
+      {/* FOOTER */}
       <div className="border-t border-gray-800 mt-20 pt-8 pb-12 text-center text-gray-500 text-sm">
         <p>Built on PHIERS — Persevering. Hopeful. Innovative. Enduring. Resilient. Steady under pressure.</p>
         <p className="mt-2">
@@ -137,4 +154,4 @@ export default function Homepage() {
   );
 }
 
-// FILE: app/4daBros/page.tsx
+// FILE: app/Prophecy/page.tsx
