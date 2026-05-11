@@ -26,7 +26,6 @@ export default function ProphecyPage() {
       {/* Opening lines – first words on page */}
       <div className="max-w-3xl mx-auto px-6 py-12 text-center">
         <p className="text-2xl md:text-3xl font-bold text-black">You are not alone.</p>
-        <p className="text-2xl md:text-3xl font-bold text-black mt-2">And you are not powerless.</p>
       </div>
 
       {/* Invitation section – before Genesis */}
