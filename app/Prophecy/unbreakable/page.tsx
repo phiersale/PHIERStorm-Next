@@ -12,7 +12,13 @@ import Link from 'next/link';
 
 export default function UnbreakablePage() {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="relative min-h-screen bg-white text-black">
+      {/* PHIERS Logo */}
+      <div className="absolute top-4 left-4 z-20 md:top-6 md:left-6">
+        <a href="https://phiers.org" target="_blank" rel="noopener noreferrer">
+          <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-16 h-auto md:w-20 opacity-80 hover:opacity-100 transition" />
+        </a>
+      </div>
       <div className="max-w-4xl mx-auto px-6 py-12">
 
         {/* Intro – always expanded */}

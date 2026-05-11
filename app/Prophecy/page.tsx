@@ -12,7 +12,13 @@ import CTASection from './components/CTASection';
 
 export default function ProphecyPage() {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="relative min-h-screen bg-white text-black">
+      {/* PHIERS Logo */}
+      <div className="absolute top-4 left-4 z-20 md:top-6 md:left-6">
+        <a href="https://phiers.org" target="_blank" rel="noopener noreferrer">
+          <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-16 h-auto md:w-20 opacity-80 hover:opacity-100 transition" />
+        </a>
+      </div>
       {/* Hero Image – quiet, no overlay text */}
       <div className="w-full bg-black">
         <img

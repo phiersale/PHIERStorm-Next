@@ -25,7 +25,7 @@ export default function Accordion({ triggerLabel, children, defaultOpen = false,
         {isOpen ? '−' : '+'} {triggerLabel}
       </button>
       {subtleHint && <p className="text-gray-500 text-xs mt-1">{subtleHint}</p>}
-      {isOpen && <div className="mt-3 text-gray-300 space-y-2">{children}</div>}
+      {isOpen && <div className="mt-3 text-black space-y-2">{children}</div>}
     </div>
   );
 }

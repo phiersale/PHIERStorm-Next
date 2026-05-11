@@ -13,7 +13,13 @@ import Link from 'next/link';
 
 export default function UnforgettablePage() {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="relative min-h-screen bg-white text-black">
+      {/* PHIERS Logo */}
+      <div className="absolute top-4 left-4 z-20 md:top-6 md:left-6">
+        <a href="https://phiers.org" target="_blank" rel="noopener noreferrer">
+          <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-16 h-auto md:w-20 opacity-80 hover:opacity-100 transition" />
+        </a>
+      </div>
       <div className="max-w-4xl mx-auto px-6 py-12">
 
         {/* Hero Section – thumbnail + hook */}
@@ -40,8 +46,8 @@ export default function UnforgettablePage() {
         {/* SECTION 1 – CONVICT LEASING */}
         <div className="flex flex-col md:flex-row gap-6 items-start my-12">
           <ImageThumbnail
-            src="/images/trilogy/unforgettable-2.jpg"
-            alt="Archival – convict labor, post‑emancipation South"
+            src="/images/trilogy/convict_leasing.jpg"
+            alt="Convict leasing – chain gang, post‑emancipation South"
             className="md:w-1/3"
           />
           <div className="flex-1">
