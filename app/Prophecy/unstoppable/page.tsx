@@ -1,4 +1,4 @@
-`// FILE: app/Prophecy/unstoppable/page.tsx
+// FILE: app/Prophecy/unstoppable/page.tsx
 // VERSION: 2.0.0
 // The Shift – structural pressure, mechanism, stat card, what we built
 
@@ -140,4 +140,5 @@ export default function UnstoppablePage() {
     </div>
   );
 }
-// END FILE: app/Prophecy/unstoppable/page.tsx`
+
+// END FILE: app/Prophecy/unstoppable/page.tsx
