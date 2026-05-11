@@ -3,6 +3,7 @@
 // Restoration Landing – three cards, no hero image
 
 import Link from 'next/link';
+import CTASection from '../components/CTASection';
 
 export default function TrilogyLanding() {
   return (

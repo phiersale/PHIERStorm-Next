@@ -4,10 +4,10 @@
 
 'use client';
 
-import ImageThumbnail from '@/components/Prophecy/ImageThumbnail';
-import Accordion from '@/components/Prophecy/Accordion';
-import PullQuote from '@/components/Prophecy/PullQuote';
-import CTASection from '@/components/Prophecy/CTASection';
+import ImageThumbnail from '../components/ImageThumbnail';
+import Accordion from '../components/Accordion';
+import PullQuote from '../components/PullQuote';
+import CTASection from '../components/CTASection';
 import Link from 'next/link';
 
 export default function UnbreakablePage() {
