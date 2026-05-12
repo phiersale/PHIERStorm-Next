@@ -6,13 +6,13 @@ export default function MovementPage() {
   return (
     <>
       <div className="sticky-header">
-        <a href="https://phiers.org" target="_blank" rel="noopener noreferrer">
+        <Link href="/Prophecy">
           <img
             src="/images/PHIERS_Logo_BW.png"
             alt="PHIERS"
-            className="w-14 h-auto md:w-16 opacity-60 hover:opacity-80 transition"
+            className="w-14 h-auto md:w-16 opacity-60 hover:opacity-80 transition cursor-pointer"
           />
-        </a>
+        </Link>
       </div>
       <div className="sticky-header-offset min-h-screen bg-black text-white overflow-x-hidden">
 
@@ -49,9 +49,13 @@ export default function MovementPage() {
       {/* HERO IMAGE */}
       <section className="w-full">
         <img
-          src="/images/movement/the-crossing.jpg"
-          alt="Black men moving together through darkness into light"
+          src="/images/trilogy/400-years-prophesy_sentence-served.jpg"
+          alt="The crossing – prophecy fulfilled"
           className="w-full h-auto max-h-[70vh] object-cover"
+          onError={(e) => {
+            console.error('Hero image failed, using fallback');
+            (e.target as HTMLImageElement).src = '/images/trilogy/You_Are_Not_Powerless_Bro.jpg';
+          }}
         />
       </section>
 
@@ -113,11 +117,14 @@ export default function MovementPage() {
               <div className="w-full max-w-[260px] sm:max-w-sm">
 
                 <img
-                  src="/images/trilogy/He_aint_heavy.webp"
-                  alt="One brother lifting another upward"
+                  src="/images/trilogy/convict_leasing.jpg"
+                  alt="Historical burden and brotherhood"
                   className="w-full rounded-lg shadow-2xl object-cover"
                   loading="lazy"
-                  onError={(e) => console.error('Image failed:', (e.target as HTMLImageElement).src)}
+                  onError={(e) => {
+                    console.error('Image failed, using fallback');
+                    (e.target as HTMLImageElement).src = '/images/trilogy/400-years-prophesy_No_Words.jpg';
+                  }}
                 />
 
                 <p className="text-center text-gray-500 text-sm mt-4 italic leading-relaxed px-2">
