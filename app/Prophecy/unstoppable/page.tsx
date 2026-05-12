@@ -55,6 +55,15 @@ export default function UnstoppablePage() {
             </div>
           </div>
 
+          {/* 🔴 NEW – May 2026 Strategic Response */}
+          <div className="my-12 p-6 bg-gray-900 text-white rounded-lg">
+            <p className="text-sm font-bold text-yellow-400 uppercase tracking-wide">NEW — May 2026</p>
+            <p className="mt-2">They made it harder to vote them out.</p>
+            <p className="mt-2">So we don't wait for elections.</p>
+            <p className="mt-2">PHIERS works between elections. It works in every district. It works with 1,500 people on record — because a member of Congress doesn't need a clean election to feel pressure.</p>
+            <p className="mt-2 font-semibold">This is how we move now. This is how we protect ourselves. This is how we protect everybody else.</p>
+          </div>
+
           <PullQuote>
             We know what this is.<br />
             We know who benefits when we're scattered, blamed, and silent.<br />

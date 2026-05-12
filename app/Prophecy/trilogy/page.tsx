@@ -93,6 +93,17 @@ export default function TrilogyLanding() {
             Start with UNFORGETTABLE. The chapters build on each other.
           </div>
 
+          {/* COLLAPSIBLE DISCLAIMER – protects the space */}
+          <div className="max-w-2xl mx-auto my-12">
+            <details className="text-center text-gray-500 text-xs cursor-pointer">
+              <summary className="hover:text-gray-300 transition">A note about this space</summary>
+              <p className="mt-3 text-gray-400 leading-relaxed">
+                This space speaks directly to Black men. Not to divide — but because we're the ones carrying the weight first and hardest.
+                If you're reading this from outside the experience, read with care and respect.
+              </p>
+            </details>
+          </div>
+
           {/* FOOTER */}
           <footer className="border-t border-gray-800 mt-20 pt-8 text-center text-gray-500 text-sm">
             <p>Built on PHIERS</p>
