@@ -1,5 +1,8 @@
 'use client';
 
+// FILE: app/Prophecy/movement/page.tsx
+// VERSION: 5.0.1 - Hero image scaled without cropping, logo internal link
+
 import Link from 'next/link';
 
 export default function MovementPage() {
@@ -51,7 +54,7 @@ export default function MovementPage() {
         <img
           src="/images/trilogy/400-years-prophesy_sentence-served.jpg"
           alt="The crossing – prophecy fulfilled"
-          className="w-full h-auto max-h-[70vh] object-cover"
+          className="w-full h-auto max-h-[70vh] object-contain mx-auto"
           onError={(e) => {
             console.error('Hero image failed, using fallback');
             (e.target as HTMLImageElement).src = '/images/trilogy/You_Are_Not_Powerless_Bro.jpg';
