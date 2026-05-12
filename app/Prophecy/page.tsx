@@ -68,7 +68,7 @@ export default function ProphecyPage() {
           </div>
 
           <p className="text-gray-800 text-lg leading-relaxed mt-4">
-            The cycle ends here.<br />
+            The sentence is served. Now the work begins.<br />
             This is not the end of our story, though.<br />
             This is the beginning of our response.
           </p>
@@ -81,6 +81,9 @@ export default function ProphecyPage() {
             It happens because those who survived the fire<br />
             learned something the comfortable never had to learn.<br />
             We learned the game.
+          </p>
+          <p className="text-gray-400 text-sm mt-4">
+            — As it is written: “The last will be first, and the first last.” (Matthew 20:16)
           </p>
         </div>
 
@@ -120,7 +123,7 @@ export default function ProphecyPage() {
         {/* CTA */}
         <div className="max-w-3xl mx-auto px-6 py-8 text-center">
           <Link
-            href="/Prophecy/trilogy"
+            href="/Prophecy/movement"
             className="inline-block bg-black text-white font-bold text-xl py-4 px-12 rounded-full shadow-lg hover:bg-gray-800 transition"
           >
             → Enter the Trilogy
