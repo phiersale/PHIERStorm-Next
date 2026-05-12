@@ -149,7 +149,7 @@ export default function UnbreakablePage() {
           <p className="mt-2">The Trump administration is shutting down museums and displays that told the truth about our history — enslavement, contributions, the full record. They are whitewashing curricula, removing books, scrubbing federal websites.</p>
           <p className="mt-2">They are erasing the penny. And with it, they intend to erase <strong>Foundational Black Americans</strong> from the story of this country.</p>
           <p className="mt-2">But here is what they cannot erase:</p>
-          <p className="mt-2 font-bold">Crispus Attucks</strong> — the first person to die in the Revolutionary War. A Black man.</p>
+          <p className="mt-2 font-bold">Crispus Attucks — the first person to die in the Revolutionary War. A Black man.</p>
           <p className="mt-2"><strong>Every war since</strong> — we fought. Valiantly. Without citizenship. Without thanks. Without the full history written down.</p>
           <p className="mt-2">The 761st. The Tuskegee Airmen. The Harlem Hellfighters. The Buffalo Soldiers. The Black sailors at Port Chicago. The men who built the Alaska Highway. The men who stormed Normandy in segregated units.</p>
           <p className="mt-2">They are trying to bury us. But we are the ones who built the floor they stand on.</p>
