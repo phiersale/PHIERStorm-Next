@@ -98,9 +98,9 @@ export default function ProphecyPage() {
           {invitationOpen && (
             <div className="mt-4 p-6 bg-gray-100 rounded-lg text-gray-800 text-base leading-relaxed space-y-3">
               <p>
-                The Voting Rights Act — won with blood on the Edmund Pettus Bridge — was first gutted by the Supreme Court in 2013.
-                Last week came the final blow: Section 2 protections were effectively dismantled, making racial vote dilution dramatically harder to challenge.
-                Within hours, states were already moving to redraw maps and weaken Black political representation even further.
+                The Voting Rights Act — won with blood on the Edmund Pettus Bridge — was weakened in 2013.
+                Last week, the final pillar collapsed.
+                The protections that once stopped racial vote dilution were effectively stripped away, clearing the path for aggressive redistricting and the further erosion of Black political power.
               </p>
               <p>The school-to-prison pipeline targeting Black boys before they're teenagers. Same behavior. Different punishment. Documented.</p>
               <p>Convict leasing — slavery by another name — ran in most Southern states until 1941. Nearly 80 years after emancipation.</p>
