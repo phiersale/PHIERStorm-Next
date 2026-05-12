@@ -1,5 +1,5 @@
 // FILE: app/Prophecy/unforgettable/page.tsx
-// VERSION: 5.0.0 – Full rewrite with components, new section for crack/war on drugs, marital home, scapegoating, "cancer"
+// VERSION: 3.0.0 - Final copy edits
 
 'use client';
 
@@ -23,7 +23,13 @@ export default function UnforgettablePage() {
         </a>
       </div>
       <div className="sticky-header-offset min-h-screen bg-white text-black">
+        <div className="absolute top-4 left-4 z-20 md:top-6 md:left-6">
+          <a href="https://phiers.org" target="_blank" rel="noopener noreferrer">
+            <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-16 h-auto md:w-20 opacity-80 hover:opacity-100 transition" />
+          </a>
+        </div>
         <div className="max-w-4xl mx-auto px-6 py-12">
+
           {/* Hero Section */}
           <div className="flex flex-col md:flex-row gap-6 items-start mb-12">
             <ImageThumbnail
@@ -46,58 +52,78 @@ export default function UnforgettablePage() {
 
           {/* SECTION 1 – CONVICT LEASING */}
           <div className="flex flex-col md:flex-row gap-6 items-start my-12">
-            <ImageThumbnail src="/images/trilogy/convict_leasing.jpg" alt="Convict leasing" className="md:w-1/3" />
+            <ImageThumbnail
+              src="/images/trilogy/convict_leasing.jpg"
+              alt="Convict leasing"
+              className="md:w-1/3"
+            />
             <div className="flex-1">
               <p className="text-lg font-semibold mb-2">Slavery ended on paper in 1865.<br />The labor never stopped.</p>
-              <Accordion triggerLabel="The full story">
-                <p>In most Southern states, Black men were immediately re‑arrested after emancipation — on charges like vagrancy, "idleness," or looking at someone wrong — and leased back to plantations and mines as convict labor.</p>
-                <p className="mt-2">The 13th Amendment allowed it. It ran until 1941 in some states. Nearly 80 years after freedom was declared.</p>
-                <p className="mt-2">The men who lived through this were not criminals. They were a workforce — re‑enslaved by another name, documented and legal.</p>
+              <Accordion triggerLabel="▼ The full story">
+                <p>
+                  In most Southern states, Black men were immediately re‑arrested after emancipation — on charges like vagrancy, "idleness," or looking at someone wrong — and leased back to plantations and mines as convict labor.
+                </p>
+                <p className="mt-2">
+                  The 13th Amendment allowed it. It ran until 1941 in some states. Nearly 80 years after freedom was declared.
+                </p>
+                <p className="mt-2">
+                  The men who lived through this were not criminals. They were a workforce — re‑enslaved by another name, documented and legal.
+                </p>
               </Accordion>
             </div>
           </div>
 
           {/* SECTION 2 – REDLINING AND GI BILL */}
           <div className="flex flex-col md:flex-row gap-6 items-start my-12">
-            <ImageThumbnail src="/images/trilogy/unforgettable-3.jpg" alt="Redlining map" className="md:w-1/3" />
+            <ImageThumbnail
+              src="/images/trilogy/unforgettable-3.jpg"
+              alt="Redlining map"
+              className="md:w-1/3"
+            />
             <div className="flex-1">
-              <p className="text-lg font-semibold mb-2">The white middle class was built on a bill that Black veterans were cut out of. By design.</p>
-              <Accordion triggerLabel="The full story">
-                <p>Redlining was federal policy. Banks and the U.S. government drew maps blocking Black families from buying homes in neighborhoods where wealth was being built. Not an accident. Signed and stamped.</p>
-                <p className="mt-2">Then came the GI Bill. Black veterans fought in World War II and came home to find the benefits — college tuition, housing loans, business startup funds — administered by local white officials who simply refused to distribute them to Black men.</p>
-                <p className="mt-2">The wealth gap between Black and white families in America today is a direct mathematical result of those two policies operating together. That gap did not happen. It was built.</p>
+              <p className="text-lg font-semibold mb-2">
+                The white middle class was built on a bill that Black veterans were cut out of. By design.
+              </p>
+              <Accordion triggerLabel="▼ The full story">
+                <p>
+                  Redlining was federal policy. Banks and the U.S. government drew maps blocking Black families from buying homes in neighborhoods where wealth was being built. Not an accident. Signed and stamped.
+                </p>
+                <p className="mt-2">
+                  Then came the GI Bill. Black veterans fought in World War II and came home to find the benefits — college tuition, housing loans, business startup funds — administered by local white officials who simply refused to distribute them to Black men.
+                </p>
+                <p className="mt-2">
+                  The wealth gap between Black and white families in America today is a direct mathematical result of those two policies operating together. That gap did not happen. It was built.
+                </p>
               </Accordion>
             </div>
           </div>
 
           {/* SECTION 3 – VOTING RIGHTS */}
           <div className="flex flex-col md:flex-row gap-6 items-start my-12">
-            <ImageThumbnail src="/images/trilogy/vra-collapse.png" alt="Voting rights" className="md:w-1/3" />
+            <ImageThumbnail
+              src="/images/trilogy/vra-collapse.png"
+              alt="Voting rights"
+              className="md:w-1/3"
+            />
             <div className="flex-1">
               <p className="text-lg font-semibold mb-2">
                 The Voting Rights Act was won with blood on the Edmund Pettus Bridge.<br />
                 Gutted by the Supreme Court in 2013.<br />
                 States started redrawing maps within 24 hours.
               </p>
-              <Accordion triggerLabel="The full story">
-                <p>Shelby County v. Holder removed the enforcement mechanism of the Voting Rights Act — the requirement that states with a history of voter suppression get federal approval before changing voting laws.</p>
-                <p className="mt-2">Within 24 hours of that ruling, Texas announced new voter ID laws. Other states followed immediately.</p>
-                <p className="mt-2">Polling places were closed in Black neighborhoods. Districts were redrawn to split Black communities into multiple majority‑white districts — diluting the vote without technically banning it. The strategy is surgical. The result is the same.</p>
-                <p className="mt-2">Both parties watched it happen. Neither fixed it.</p>
-              </Accordion>
-            </div>
-          </div>
-
-          {/* SECTION 4 – THE CRACK EPIDEMIC, WAR ON DRUGS, MARITAL HOME, SCAPEGOATING, "CANCER" */}
-          <div className="flex flex-col md:flex-row gap-6 items-start my-12">
-            <ImageThumbnail src="/images/trilogy/unforgettable-1.jpg" alt="Crack epidemic era" className="md:w-1/3" />
-            <div className="flex-1">
-              <p className="text-lg font-semibold mb-2">They didn't just lock us out — they locked us up. And blamed us for surviving.</p>
-              <Accordion triggerLabel="The crack epidemic & the war on drugs">
-                <p><strong>The crack epidemic and the war on drugs</strong> — engineered to criminalize us, destroy our families, and lock us away for generations. Mass incarceration was the sequel.</p>
-                <p className="mt-2"><strong>Kicked out of our own homes</strong> — tossed from the marital house, treated as disposable fathers, blamed for the very structures collapsing around us.</p>
-                <p className="mt-2"><strong>Scapegoated and hated</strong> — by people who should have been allies. Pushed aside, demonized, made into the face of every problem while being excluded from every solution.</p>
-                <p className="mt-2"><strong>Straight Black men</strong> — deemed by a gynocratic, misandric society to be a cancer on humanity. Not because of what we did. Because we exist. Because we won't disappear.</p>
+              <Accordion triggerLabel="▼ The full story">
+                <p>
+                  Shelby County v. Holder removed the enforcement mechanism of the Voting Rights Act — the requirement that states with a history of voter suppression get federal approval before changing voting laws.
+                </p>
+                <p className="mt-2">
+                  Within 24 hours of that ruling, Texas announced new voter ID laws. Other states followed immediately.
+                </p>
+                <p className="mt-2">
+                  Polling places were closed in Black neighborhoods. Districts were redrawn to split Black communities into multiple majority‑white districts — diluting the vote without technically banning it. The strategy is surgical. The result is the same.
+                </p>
+                <p className="mt-2">
+                  Both parties watched it happen. Neither fixed it.
+                </p>
               </Accordion>
             </div>
           </div>
@@ -119,7 +145,7 @@ export default function UnforgettablePage() {
             </p>
           </div>
 
-          <CTASection href="/Prophecy/unbreakable" label="→ UNBREAKABLE" />
+          <CTASection href="/Prophecy/unbreakable" label="→ UNBREAKABLE" subtitle="The inheritance" />
 
           {/* Footer citations */}
           <div className="text-center text-gray-500 text-sm mt-8">
@@ -131,4 +157,4 @@ export default function UnforgettablePage() {
     </>
   );
 }
-// FILE: app/Prophecy/unforgettable/page.tsx
+// END FILE: app/Prophecy/unforgettable/page.tsx

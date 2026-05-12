@@ -4,13 +4,20 @@ import Link from 'next/link';
 
 export default function MovementPage() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <>
+      <div className="sticky-header">
+        <a href="https://phiers.org" target="_blank" rel="noopener noreferrer">
+          <img
+            src="/images/PHIERS_Logo_BW.png"
+            alt="PHIERS"
+            className="w-14 h-auto md:w-16 opacity-60 hover:opacity-80 transition"
+          />
+        </a>
+      </div>
+      <div className="sticky-header-offset min-h-screen bg-black text-white overflow-x-hidden">
 
       {/* HERO */}
       <section className="max-w-5xl mx-auto px-5 sm:px-6 pt-20 md:pt-28 pb-14 text-center">
-        <p className="text-[11px] sm:text-sm uppercase tracking-[0.3em] text-gray-500 mb-5">
-          PHIERS
-        </p>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-[0.95] tracking-tight">
           THEY TOLD US
@@ -106,10 +113,11 @@ export default function MovementPage() {
               <div className="w-full max-w-[260px] sm:max-w-sm">
 
                 <img
-                  src="/images/movement/he-aint-heavy.webp"
+                  src="/images/trilogy/He_aint_heavy.webp"
                   alt="One brother lifting another upward"
                   className="w-full rounded-lg shadow-2xl object-cover"
                   loading="lazy"
+                  onError={(e) => console.error('Image failed:', (e.target as HTMLImageElement).src)}
                 />
 
                 <p className="text-center text-gray-500 text-sm mt-4 italic leading-relaxed px-2">
@@ -281,6 +289,7 @@ export default function MovementPage() {
         </div>
       </section>
 
-    </div>
+      </div>
+    </>
   );
 }
