@@ -97,7 +97,11 @@ export default function ProphecyPage() {
           </button>
           {invitationOpen && (
             <div className="mt-4 p-6 bg-gray-100 rounded-lg text-gray-800 text-base leading-relaxed space-y-3">
-              <p>The Voting Rights Act — won with blood on the Edmund Pettus Bridge — gutted by the Supreme Court in 2013. Within 24 hours, states were redrawing maps to erase Black representation.</p>
+              <p>
+                The Voting Rights Act — won with blood on the Edmund Pettus Bridge — was first gutted by the Supreme Court in 2013.
+                Last week came the final blow: Section 2 protections were effectively dismantled, making racial vote dilution dramatically harder to challenge.
+                Within hours, states were already moving to redraw maps and weaken Black political representation even further.
+              </p>
               <p>The school-to-prison pipeline targeting Black boys before they're teenagers. Same behavior. Different punishment. Documented.</p>
               <p>Convict leasing — slavery by another name — ran in most Southern states until 1941. Nearly 80 years after emancipation.</p>
               <p>Redlining. Federal policy that blocked Black families from the housing wealth that built the white middle class. By design.</p>
