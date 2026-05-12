@@ -19,22 +19,6 @@ export default function ProphecyPage() {
         />
       </div>
       <main className="min-h-screen bg-white py-12">
-      {/* DEBUG PANEL – remove after fix */}
-      <div className="bg-yellow-100 border-2 border-red-500 p-4 my-4 max-w-3xl mx-auto">
-        <p className="font-bold text-black">🔍 IMAGE DEBUG (remove me later)</p>
-        <div className="flex flex-col gap-2 mt-2 text-sm">
-          <div>
-            <span className="font-mono">/images/trilogy/400-years-prophesy_sentence-served.jpg</span>
-            <img src="/images/trilogy/400-years-prophesy_sentence-served.jpg" style={{width:100, display:'inline-block', marginLeft:8}} onError={(e)=>{console.error('PROPHECY IMAGE 404', e.target.src); e.currentTarget.style.border='2px solid red'}} onLoad={()=>console.log('PROPHECY IMAGE LOADED')} />
-          </div>
-          <div>
-            <span className="font-mono">/images/trilogy/He_aint_heavy.webp</span>
-            <img src="/images/trilogy/He_aint_heavy.webp" style={{width:100, display:'inline-block', marginLeft:8}} onError={(e)=>{console.error('HE AINT HEAVY IMAGE 404', e.target.src); e.currentTarget.style.border='2px solid red'}} onLoad={()=>console.log('HE AINT HEAVY LOADED')} />
-          </div>
-          <p className="text-gray-700 mt-2">✅ If you see red borders, check browser console for 404 errors.</p>
-        </div>
-      </div>
-
         {/* Opening lines */}
       <div className="max-w-3xl mx-auto px-6 py-12 text-center">
         <p className="text-2xl md:text-3xl font-bold text-black">You are not alone.</p>

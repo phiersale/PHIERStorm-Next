@@ -15,7 +15,7 @@ type Props = {
   onBackToReading?: () => void
 }
 
-const SWIPE_THRESHOLD = 50
+const SWIPE_THRESHOLD = 30
 const TRANSITION_MS = 400
 
 export default function PreHomepage({ 
@@ -29,6 +29,7 @@ export default function PreHomepage({
   const [douglassModalOpen, setDouglassModalOpen] = useState(false)
   const [showNavControls, setShowNavControls] = useState(true)
   const [topBarOpacity, setTopBarOpacity] = useState(1)
+  const [showSwipeHint, setShowSwipeHint] = useState(true)
   const lastScrollY = useRef(0)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -55,6 +56,12 @@ export default function PreHomepage({
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Auto‑hide swipe hint after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSwipeHint(false), 3000)
+    return () => clearTimeout(timer)
   }, [])
 
   // Dim top bar after first 3 slides
@@ -89,12 +96,14 @@ export default function PreHomepage({
       return
     }
     goToSlide(index + 1)
+    setShowSwipeHint(false)
   }, [isTransitioning, index, onGoToHomepage, goToSlide])
 
   const prevNormal = useCallback(() => {
     if (isTransitioning) return
     if (index === 0) return
     goToSlide(index - 1)
+    setShowSwipeHint(false)
   }, [isTransitioning, index, goToSlide])
 
   // Close Douglass modal with Escape key
@@ -456,7 +465,19 @@ export default function PreHomepage({
             ))}
           </div>
         </div>
-        <p className="text-gray-500 text-xs">{index + 1} / {slides.length}</p>
+        <div className="flex items-center justify-center gap-3">
+          {showSwipeHint && (
+            <span className="text-gray-400 text-xs animate-pulse block sm:hidden">
+              ← swipe →
+            </span>
+          )}
+          <p className="text-gray-500 text-xs">{index + 1} / {slides.length}</p>
+          {showSwipeHint && (
+            <span className="text-gray-400 text-xs animate-pulse block sm:hidden">
+              ← swipe →
+            </span>
+          )}
+        </div>
       </div>
 
       <AnimatePresence>
