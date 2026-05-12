@@ -429,6 +429,15 @@ button, .button, a[class*="Button"] {
   animation: fadeOut 3s forwards;
 }
 
+/* New fade-in animation for hero image – does not affect existing animations */
+@keyframes fadeInSlow {
+  0% { opacity: 0; transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-fadeInSlow {
+  animation: fadeInSlow 1.2s ease-out forwards;
+}
+
 @keyframes fadeInModal {
   0% { opacity: 0; transform: scale(0.95); }
   100% { opacity: 1; transform: scale(1); }
@@ -531,4 +540,46 @@ main img:not(.hero-main) {
   word-break: normal !important;
   overflow-wrap: normal !important;
   text-overflow: clip !important;
+}
+
+/* Sticky header – subtle, translucent, no navigation */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Add padding to body to prevent content hiding under fixed header */
+.sticky-header-offset {
+  padding-top: 64px;
+}
+
+/* Sticky header – subtle, translucent, no navigation */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Offset for content to not hide under fixed header */
+.sticky-header-offset {
+  padding-top: 64px;
 }
