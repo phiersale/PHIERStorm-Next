@@ -267,10 +267,35 @@ export default function PreHomepage({
       const handleImageClick = () => {
         if (isDouglassSlide) setDouglassModalOpen(true);
       };
-      let widthClass = 'w-[57%] md:w-[47%]';
+      
+      // Special handling for "You Are Not Powerless" slide
       if (isPowerlessSlide) {
-        widthClass = 'w-[85%] md:w-[70%]';
+        return (
+          <div className="w-full flex flex-col items-center justify-center px-4 pt-8 pb-24">
+            <div onClick={handleImageClick} className="w-full">
+              <Image
+                src={slide.imageSrc}
+                alt={slide.imageAlt || "Slide image"}
+                width={1200}
+                height={800}
+                className="w-[96%] sm:w-[92%] md:w-[78%] max-w-5xl h-auto object-contain mx-auto"
+                priority
+                onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
+              />
+            </div>
+            {/* Instruction and swipe hint – hint fades out after 4 seconds via CSS */}
+            <div className="mt-6 text-center">
+              <p className="text-gray-400 text-xs sm:text-sm">Swipe to continue</p>
+              <div className="mt-2 text-gray-500 text-xs animate-pulse animate-fade-out-4s">
+                ← →
+              </div>
+            </div>
+          </div>
+        )
       }
+      
+      // Original handling for other image slides (Douglass, etc.)
+      let widthClass = 'w-[57%] md:w-[47%]';
       return (
         <div className="w-full flex justify-center">
           <div onClick={handleImageClick} className={`${isDouglassSlide ? 'cursor-pointer w-full mb-8' : ''}`}>
@@ -383,6 +408,11 @@ export default function PreHomepage({
 
       <div
         className={`flex-1 min-h-[65vh] overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : index === 8 || index === 1 ? 'px-6 md:px-12 pt-0 pb-2' : 'px-6 md:px-12 pt-4 pb-2'}`}
+        onClick={!isTransitioning && !isLastSlide ? next : undefined}
+        onKeyDown={!isTransitioning && !isLastSlide ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
+        style={{ cursor: !isTransitioning && !isLastSlide ? 'pointer' : 'default' }}
+        role="button"
+        tabIndex={!isTransitioning && !isLastSlide ? 0 : -1}
       >
         <div className="w-full mx-auto max-w-full">
           <div className="text-center w-full">
@@ -411,7 +441,7 @@ export default function PreHomepage({
         {!isLastSlide && (
           <button
             onClick={next}
-            className="mb-2 text-sm font-medium text-green hover:text-green/80 transition px-4 py-1 rounded-full border border-green/40 bg-black/40"
+            className="mb-2 text-xs text-gray-400 hover:text-gray-300 transition"
           >
             Next →
           </button>
