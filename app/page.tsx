@@ -290,7 +290,7 @@ export default function Page() {
       <PreHomepage
         skipFirstImageSlide={skipFirstImage}
         onGoToHomepage={() => {
-          setSkipFirstImage(true)
+          setSkipFirstImage(false)
           setStage('credibility')
         }}
         onGoToPetition={() => router.push('/petition')}

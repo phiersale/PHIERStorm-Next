@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 8.2 – fixed JSX structure (balanced tags, no duplicate blocks)
+// VERSION: 8.3 – Single history handler, browser back stays inside deck
 
 'use client'
 
@@ -18,9 +18,9 @@ type Props = {
 const SWIPE_THRESHOLD = 30
 const TRANSITION_MS = 400
 
-export default function PreHomepage({ 
-  onGoToHomepage, 
-  onGoToPetition, 
+export default function PreHomepage({
+  onGoToHomepage,
+  onGoToPetition,
   skipFirstImageSlide = false,
   onBackToReading
 }: Props) {
@@ -156,16 +156,16 @@ export default function PreHomepage({
     if (!slide.title) return null
 
     const splitTitle = (text: string) => {
-      const periodSpaceIndex = text.indexOf('. ');
+      const periodSpaceIndex = text.indexOf('. ')
       if (periodSpaceIndex !== -1 && periodSpaceIndex < text.length - 2) {
-        const firstPart = text.substring(0, periodSpaceIndex + 1);
-        const secondPart = text.substring(periodSpaceIndex + 2);
-        return <>{firstPart}<br />{secondPart}</>;
+        const firstPart = text.substring(0, periodSpaceIndex + 1)
+        const secondPart = text.substring(periodSpaceIndex + 2)
+        return <>{firstPart}<br />{secondPart}</>
       }
-      return text;
-    };
+      return text
+    }
 
-    const renderedTitle = splitTitle(slide.title);
+    const renderedTitle = splitTitle(slide.title)
 
     if (slide.title === "PHIERS") {
       return <h1 className="text-3xl md:text-4xl font-bold mb-4 text-green">{renderedTitle}</h1>
@@ -262,43 +262,41 @@ export default function PreHomepage({
     }
 
     if (slide.type === "image" && slide.imageSrc) {
-      const isDouglassSlide = slide.imageSrc.includes('FredDoug');
-      const isPowerlessSlide = slide.imageSrc.includes('You_Are_Not_Powerless');
+      const isDouglassSlide = slide.imageSrc.includes('FredDoug')
+      const isPowerlessSlide = slide.imageSrc.includes('You_Are_Not_Powerless')
       const handleImageClick = () => {
-        if (isDouglassSlide) setDouglassModalOpen(true);
-      };
-      
-      // Special handling for "You Are Not Powerless" slide
-      if (isPowerlessSlide) {
+        if (isDouglassSlide) setDouglassModalOpen(true)
+      }
+
+      // Special handling for slide 0 (You Are Not Powerless)
+      if (isPowerlessSlide || index === 0) {
+        const imageSrc = index === 0 ? "/images/You_Are_Not_Powerless.jpg" : slide.imageSrc
         return (
-          <div className="w-full flex flex-col items-center justify-center px-4 pt-8 pb-24">
+          <div className="w-full flex flex-col items-center justify-center px-4 pt-2 pb-2 sm:pb-4">
             <div onClick={handleImageClick} className="w-full">
               <Image
-                src={slide.imageSrc}
-                alt={slide.imageAlt || "Slide image"}
+                src={imageSrc}
+                alt="You Are Not Powerless"
                 width={1200}
                 height={800}
-                className="w-[96%] sm:w-[92%] md:w-[78%] max-w-5xl h-auto object-contain mx-auto"
+                className="w-[70%] md:w-[50%] max-w-xl h-auto object-contain mx-auto"
                 priority
-                onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
+                onError={(e) => console.error('Image failed to load:', imageSrc)}
               />
             </div>
-            {/* Instruction and swipe hint – hint fades out after 4 seconds via CSS */}
             <div className="mt-6 text-center">
               <p className="text-gray-400 text-xs sm:text-sm">Swipe to continue</p>
-              <div className="mt-2 text-gray-500 text-xs animate-pulse animate-fade-out-4s">
-                ← →
-              </div>
+              <div className="mt-2 text-gray-500 text-xs">← →</div>
             </div>
           </div>
         )
       }
-      
-      // Original handling for other image slides (Douglass, etc.)
-      let widthClass = 'w-[57%] md:w-[47%]';
+
+      // Other image slides (Douglass, etc.)
+      let widthClass = 'w-[57%] md:w-[47%]'
       return (
         <div className="w-full flex justify-center">
-          <div onClick={handleImageClick} className={`${isDouglassSlide ? 'cursor-pointer w-full mb-8' : ''}`}>
+          <div onClick={handleImageClick} className={isDouglassSlide ? 'cursor-pointer w-full mb-8' : ''}>
             <Image
               src={slide.imageSrc}
               alt={slide.imageAlt || "Slide image"}
@@ -318,20 +316,22 @@ export default function PreHomepage({
     const greenLineIndices = slide.greenLines || []
 
     if (isLargeFormatSlide) {
-      const isPunchSlide = slide.body &&
+      const isPunchSlide =
+        slide.body &&
         slide.body.length === 1 &&
         slide.body[0] === "A few minutes. Enough to make Congress listen."
 
-      if (isPunchSlide) {
+      const isPunchSlideByIndex = index === 1
+      if (isPunchSlideByIndex) {
         return (
-          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto space-y-1 md:space-y-2">
-            <p className="text-3xl md:text-5xl font-bold text-green">
+          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto space-y-0 sm:space-y-1 pt-4">
+            <p className="font-bold text-green" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
               A few minutes.
             </p>
-            <p className="text-3xl md:text-5xl font-bold text-white">
+            <p className="font-bold text-white" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
               Enough to make
             </p>
-            <p className="text-3xl md:text-5xl font-bold text-green">
+            <p className="font-bold text-green" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
               Congress listen.
             </p>
           </div>
@@ -398,7 +398,7 @@ export default function PreHomepage({
       >
         {onBackToReading && (
           <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
-            ← Back
+            ← Back to start
           </button>
         )}
         <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
@@ -407,7 +407,15 @@ export default function PreHomepage({
       </div>
 
       <div
-        className={`flex-1 min-h-[65vh] overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : index === 8 || index === 1 ? 'px-6 md:px-12 pt-0 pb-2' : 'px-6 md:px-12 pt-4 pb-2'}`}
+        className={`flex-1 overflow-y-auto flex items-start justify-center ${
+          index === 0 ? 'min-h-[20vh] sm:min-h-[25vh]' : 'min-h-[15vh] sm:min-h-[20vh]'
+        } ${
+          slide.imageSrc && slide.imageSrc.includes('FredDoug')
+            ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8'
+            : index === 8 || index === 1
+            ? 'px-6 md:px-12 pt-0 pb-2'
+            : 'px-6 md:px-12 pt-4 pb-2'
+        }`}
         onClick={!isTransitioning && !isLastSlide ? next : undefined}
         onKeyDown={!isTransitioning && !isLastSlide ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
         style={{ cursor: !isTransitioning && !isLastSlide ? 'pointer' : 'default' }}
@@ -434,21 +442,36 @@ export default function PreHomepage({
       </div>
 
       <div
-        className={`shrink-0 flex flex-col items-center gap-2 py-2 border-t border-gray-800/50 transition-opacity duration-300 ${
+        className={`shrink-0 flex flex-col items-center gap-1 py-1 border-t border-gray-800/50 transition-opacity duration-300 ${
           showNavControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         {!isLastSlide && (
-          <button
-            onClick={next}
-            className="mb-2 text-xs text-gray-400 hover:text-gray-300 transition"
-          >
-            Next →
-          </button>
+          <div className="flex items-center gap-6">
+            {index > 0 && (
+              <button
+                onClick={prevNormal}
+                className="mb-0 text-xs text-gray-400 hover:text-gray-300 transition"
+              >
+                ← Back
+              </button>
+            )}
+
+            <button
+              onClick={next}
+              className="mb-0 text-xs text-gray-400 hover:text-gray-300 transition"
+            >
+              Next →
+            </button>
+          </div>
         )}
+
         {isLastSlide && (
           <div className="flex flex-col gap-1 w-full max-w-xs mx-auto mb-2 -mt-4">
-            <button onClick={onGoToHomepage} className="border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition">
+            <button
+              onClick={onGoToHomepage}
+              className="border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition"
+            >
               → SEE WHAT THE EXPERTS SAY
             </button>
           </div>
@@ -479,15 +502,11 @@ export default function PreHomepage({
         </div>
         <div className="flex items-center justify-center gap-3">
           {showSwipeHint && (
-            <span className="text-gray-400 text-xs animate-pulse block sm:hidden">
-              ← swipe →
-            </span>
+            <span className="text-gray-400 text-xs animate-pulse block sm:hidden">← swipe →</span>
           )}
           <p className="text-gray-500 text-xs">{index + 1} / {slides.length}</p>
           {showSwipeHint && (
-            <span className="text-gray-400 text-xs animate-pulse block sm:hidden">
-              ← swipe →
-            </span>
+            <span className="text-gray-400 text-xs animate-pulse block sm:hidden">← swipe →</span>
           )}
         </div>
       </div>
@@ -523,5 +542,3 @@ export default function PreHomepage({
     </div>
   )
 }
-
-// FILE: components/PreHomepage.tsx
