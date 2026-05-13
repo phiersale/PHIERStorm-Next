@@ -36,7 +36,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         style={{ opacity: 0, animation: "fadeIn 0.5s ease forwards" }}
       >
         Skip Intro
-      </a>
+      </a> 
 
       {/* Cinematic gradient fade (adds depth) */}
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black to-transparent pointer-events-none z-10"></div>
