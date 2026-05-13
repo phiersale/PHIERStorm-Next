@@ -32,7 +32,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
       {/* TOP‑RIGHT SKIP INTRO */}
       <a
         href="/mainhomepage"
-        className="absolute top-4 right-4 z-20 text-gray-400 text-xs underline hover:text-gray-200 transition"
+        className="absolute top-4 right-4 z-20 text-gray-500/60 text-xs underline hover:text-gray-300 transition"
         style={{ opacity: 0, animation: "fadeIn 0.5s ease forwards" }}
       >
         Skip Intro
@@ -48,11 +48,11 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         <div className="pt-12 lg:pt-10 pb-4">
           <div className="relative inline-block mx-auto">
             {/* Gentle green glow behind the logo */}
-            <div className="absolute inset-0 rounded-full blur-2xl bg-green/20 scale-110"></div>
+            <div className="absolute inset-0 rounded-full blur-2xl bfg-green/10 scale-110"></div>
             <img
               src="/images/PHIERS-Pause.png"
               alt="PHIERS Pause"
-              className="relative w-[55%] sm:w-[40%] md:w-[33%] max-w-sm h-auto mx-auto opacity-90"
+              className="relative w-[55%] sm:w-[40%] md:w-[33%] max-w-sm h-auto mx-auto opacity-100"
               style={{
                 opacity: 0,
                 animation: "fadeInScale 1.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards"
@@ -63,7 +63,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
 
         {/* TEXT BLOCK – responsive bottom padding */}
         <div className="max-w-2xl mx-auto pt-2 pb-10 lg:pb-8">
-          <h1 className="text-2xl sm:text-3xl font-semibold leading-tight tracking-tight text-gray-100"
+          <h1 className="text-2xl sm:text-3xl font-semibold leading-relaxed tracking-wide text-gray-100 mb-4"
               style={{ opacity: 0, animation: "fadeIn 1.8s ease forwards" }}>
             Take a deep breath.
           </h1>
@@ -98,7 +98,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         }
         @keyframes fadeInScale {
           0% { opacity: 0; transform: scale(0.96); }
-          100% { opacity: 0.4; transform: scale(1); }
+          100% { opacity: 1; transform: scale(1); }
         }
       `}</style>
     </div>
@@ -157,12 +157,7 @@ export default function Page() {
     }
   }, [stage])
 
-  useEffect(() => {
-    if (stage === 'image') {
-      const el = document.getElementById('powerless-screen')
-      if (el) el.focus()
-    }
-  }, [stage])
+
 
   useEffect(() => {
     if (stage !== 'reading') return
@@ -202,6 +197,15 @@ export default function Page() {
           }
         }}
       >
+        {/* TOP‑RIGHT NEXT BUTTON */}
+        <button
+          onClick={() => setStage('entry')}
+          className="fixed top-4 right-4 z-30 text-gray-500/60 text-xs underline hover:text-gray-300 transition"
+          style={{ opacity: 0, animation: "fadeIn 0.5s ease forwards" }}
+        >
+          Continue →
+        </button>
+
         <motion.div 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
@@ -213,18 +217,18 @@ export default function Page() {
             alt="You Are Not Powerless"
             width={1200}
             height={800}
-            className="w-[80%] md:w-[60%] max-w-2xl h-auto object-contain mx-auto"
+            className="w-[94vw] md:w-[72vw] max-w-5xl h-auto object-contain mx-auto"
             priority
           />
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.6, duration: 0.6 }}
-            className="mt-8 text-gray-500 text-sm text-center"
-          >
-            Tap anywhere, or press space/enter →
-          </motion.p>
         </motion.div>
+
+        {/* LOCAL KEYFRAMES FOR BUTTON FADEIN */}
+        <style>{`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
       </div>
     )
   }
