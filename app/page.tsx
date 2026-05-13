@@ -45,23 +45,30 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
       <div className="relative z-10 flex flex-col items-center text-center px-6 w-full">
 
         {/* Logo – responsive top padding */}
-        <div className="pt-20 lg:pt-16 pb-6">
-          <img
-            src="/images/PHIERS-Pause.png"
-            alt="PHIERS Pause"
-            className="w-24 sm:w-28 md:w-32 h-auto mx-auto opacity-90"
-            style={{ opacity: 0, animation: "fadeIn 0.8s ease forwards" }}
-          />
+        <div className="pt-12 lg:pt-10 pb-4">
+          <div className="relative inline-block mx-auto">
+            {/* Gentle green glow behind the logo */}
+            <div className="absolute inset-0 rounded-full blur-2xl bg-green/20 scale-110"></div>
+            <img
+              src="/images/PHIERS-Pause.png"
+              alt="PHIERS Pause"
+              className="relative w-[55%] sm:w-[40%] md:w-[33%] max-w-sm h-auto mx-auto opacity-90"
+              style={{
+                opacity: 0,
+                animation: "fadeInScale 1.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards"
+              }}
+            />
+          </div>
         </div>
 
         {/* TEXT BLOCK – responsive bottom padding */}
-        <div className="max-w-2xl mx-auto pt-2 pb-24 lg:pb-20">
+        <div className="max-w-2xl mx-auto pt-2 pb-10 lg:pb-8">
           <h1 className="text-2xl sm:text-3xl font-semibold leading-tight tracking-tight text-gray-100"
-              style={{ opacity: 0, animation: "fadeIn 1.2s ease forwards" }}>
+              style={{ opacity: 0, animation: "fadeIn 1.8s ease forwards" }}>
             Take a deep breath.
           </h1>
           <p className="text-lg sm:text-xl font-light leading-relaxed text-gray-300 mt-4 sm:mt-6"
-             style={{ opacity: 0, animation: "fadeIn 1.8s ease forwards" }}>
+             style={{ opacity: 0, animation: "fadeIn 2.5s ease forwards" }}>
             What you're about to see is simple.<br />
             It shifts the balance of power — back to you.
           </p>
@@ -70,12 +77,12 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
         {/* CONTINUE BUTTON */}
         <button
           onClick={onComplete}
-          className="mt-4 lg:mt-6 text-xl font-medium transition-colors duration-300"
-          style={{
-            opacity: 0,
-            color: '#3ddc84',
-            animation: "fadeIn 2.6s ease forwards"
-          }}
+          className="mt-2 lg:mt-3 text-xl font-medium transition-colors duration-300"
+            style={{
+              opacity: 0,
+              color: '#3ddc84',
+              animation: "fadeIn 3.5s ease forwards"
+            }}
           onMouseEnter={(e) => e.currentTarget.style.color = '#2ab568'}
           onMouseLeave={(e) => e.currentTarget.style.color = '#3ddc84'}
         >
@@ -89,6 +96,10 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
           from { opacity: 0; transform: translateY(4px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes fadeInScale {
+          0% { opacity: 0; transform: scale(0.96); }
+          100% { opacity: 0.4; transform: scale(1); }
+        }
       `}</style>
     </div>
   )
@@ -97,7 +108,7 @@ function PhasedText({ onComplete }: { onComplete: () => void }) {
 
 export default function Page() {
   const router = useRouter()
-  const [stage, setStage] = useState<'entry' | 'image' | 'reading' | 'prehome' | 'credibility' | 'main'>('entry')
+  const [stage, setStage] = useState<'entry' | 'image' | 'reading' | 'prehome' | 'credibility' | 'main'>('image')
   const [skipFirstImage, setSkipFirstImage] = useState(true)
 
   useEffect(() => {
@@ -173,7 +184,7 @@ export default function Page() {
   }, [stage, readingComplete])
 
   if (stage === 'entry') {
-    return <PhasedText onComplete={() => setStage('image')} />
+    return <PhasedText onComplete={() => setStage('reading')} />
   }
 
   if (stage === 'image') {
@@ -183,15 +194,20 @@ export default function Page() {
         className="fixed inset-0 bg-black flex items-center justify-center outline-none"
         tabIndex={0}
         autoFocus
-        onClick={() => setStage('reading')}
+        onClick={() => setStage('entry')}
         onKeyDown={(e) => {
           if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowRight') {
             e.preventDefault()
-            setStage('reading')
+            setStage('entry')
           }
         }}
       >
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+        <motion.div 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ duration: 1 }}
+          className="flex flex-col items-center justify-center"
+        >
           <Image
             src="/images/You_Are_Not_Powerless.jpg"
             alt="You Are Not Powerless"
@@ -200,10 +216,15 @@ export default function Page() {
             className="w-[80%] md:w-[60%] max-w-2xl h-auto object-contain mx-auto"
             priority
           />
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.6, duration: 0.6 }}
+            className="mt-8 text-gray-500 text-sm text-center"
+          >
+            Tap anywhere, or press space/enter →
+          </motion.p>
         </motion.div>
-        <p className="absolute bottom-10 text-gray-500 text-sm text-center w-full">
-          Tap anywhere, or press space/enter →
-        </p>
       </div>
     )
   }
@@ -294,7 +315,7 @@ export default function Page() {
           setStage('credibility')
         }}
         onGoToPetition={() => router.push('/petition')}
-        onBackToReading={() => setStage('reading')}
+        onBackToReading={() => setStage('image')}
       />
     )
   }
