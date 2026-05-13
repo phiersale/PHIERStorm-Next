@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 8.1 – mobile‑optimized for 10‑slide deck
+// VERSION: 8.2 – fixed JSX structure (balanced tags, no duplicate blocks)
 
 'use client'
 
@@ -43,7 +43,6 @@ export default function PreHomepage({
     }
   }, [])
 
-  // Hide bottom navigation controls on scroll down, show on scroll up or near top
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
@@ -58,13 +57,11 @@ export default function PreHomepage({
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Auto‑hide swipe hint after 3 seconds
   useEffect(() => {
     const timer = setTimeout(() => setShowSwipeHint(false), 3000)
     return () => clearTimeout(timer)
   }, [])
 
-  // Dim top bar after first 3 slides
   useEffect(() => {
     setTopBarOpacity(index <= 3 ? 1 : 0.4)
   }, [index])
@@ -106,7 +103,6 @@ export default function PreHomepage({
     setShowSwipeHint(false)
   }, [isTransitioning, index, goToSlide])
 
-  // Close Douglass modal with Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && douglassModalOpen) {
@@ -155,7 +151,6 @@ export default function PreHomepage({
   const isLastSlide = index === slides.length - 1
   const isLargeFormatSlide = slide.largeFormat === true
 
-  // ===== TITLE RENDERING =====
   const renderTitle = () => {
     if (slide.customLayout) return null
     if (!slide.title) return null
@@ -165,12 +160,7 @@ export default function PreHomepage({
       if (periodSpaceIndex !== -1 && periodSpaceIndex < text.length - 2) {
         const firstPart = text.substring(0, periodSpaceIndex + 1);
         const secondPart = text.substring(periodSpaceIndex + 2);
-        return (
-          <>
-            {firstPart}<br />
-            {secondPart}
-          </>
-        );
+        return <>{firstPart}<br />{secondPart}</>;
       }
       return text;
     };
@@ -189,7 +179,6 @@ export default function PreHomepage({
     return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-4">{renderedTitle}</h1>
   }
 
-  // ===== BODY RENDERING =====
   const renderBody = () => {
     if (slide.teethImage) {
       return (
@@ -376,7 +365,6 @@ export default function PreHomepage({
     )
   }
 
-  // ===== MAIN RETURN =====
   return (
     <div className="min-h-screen bg-[#050b19] text-white flex flex-col">
       <div
@@ -395,11 +383,6 @@ export default function PreHomepage({
 
       <div
         className={`flex-1 min-h-[65vh] overflow-y-auto flex items-start justify-center ${slide.imageSrc && slide.imageSrc.includes('FredDoug') ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8' : index === 8 || index === 1 ? 'px-6 md:px-12 pt-0 pb-2' : 'px-6 md:px-12 pt-4 pb-2'}`}
-        style={{ cursor: !isLastSlide && !isTransitioning ? 'pointer' : 'default' }}
-        onClick={!isLastSlide && !isTransitioning ? next : undefined}
-        onKeyDown={!isLastSlide && !isTransitioning ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
-        role="button"
-        tabIndex={!isLastSlide ? 0 : -1}
       >
         <div className="w-full mx-auto max-w-full">
           <div className="text-center w-full">
@@ -409,10 +392,7 @@ export default function PreHomepage({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{
-                  duration: 0.3,
-                  ease: "easeInOut"
-                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="relative"
               >
                 {renderTitle()}
@@ -428,6 +408,14 @@ export default function PreHomepage({
           showNavControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
+        {!isLastSlide && (
+          <button
+            onClick={next}
+            className="mb-2 text-sm font-medium text-green hover:text-green/80 transition px-4 py-1 rounded-full border border-green/40 bg-black/40"
+          >
+            Next →
+          </button>
+        )}
         {isLastSlide && (
           <div className="flex flex-col gap-1 w-full max-w-xs mx-auto mb-2 -mt-4">
             <button onClick={onGoToHomepage} className="border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition">
@@ -454,12 +442,6 @@ export default function PreHomepage({
                   transition: 'all 0.3s ease',
                   margin: '0 3px',
                   flexShrink: 0
-                }}
-                onMouseEnter={(e) => {
-                  if (i !== index) e.currentTarget.style.backgroundColor = 'rgba(156, 163, 175, 0.7)';
-                }}
-                onMouseLeave={(e) => {
-                  if (i !== index) e.currentTarget.style.backgroundColor = 'rgba(156, 163, 175, 0.5)';
                 }}
               />
             ))}
