@@ -1,0 +1,66 @@
+{
+  "issue": 2,
+  "date": "May 2026",
+  "breaking": true,
+  "breakingText": "<strong>The Supreme Court just gutted the Voting Rights Act.</strong> The 6-3 ruling in <em>Louisiana v. Callais</em> eliminated Section 2 — the last major protection against racially discriminatory redistricting. Tennessee, Florida, and Louisiana were already redrawing maps within 48 hours. This is Reconstruction all over again. Here's why PHIERS is the only plan built for this moment.",
+  "lede": "<strong>They finished the job on the Voting Rights Act.</strong><br/><br/>States moved immediately — redrawing districts to erase Black political representation at every level: Congress, state legislatures, city councils, school boards. No guardrails left. Both parties watched. Neither stopped it.<br/><br/>The courts are done protecting us. Washington isn't coming. We're not waiting for the midterms.<br/><br/>1,500 organized people per district. That's the lever. That's the plan. Here's what's at stake — and what we do about it.",
+  "sections": [
+    {
+      "title": "The Voting Rights Act is gone. Now what?",
+      "icon": "ti-shield-off",
+      "pillLabel": "Most urgent — act now",
+      "pillVariant": "red",
+      "body": "<p>The Supreme Court's ruling in <em>Louisiana v. Callais</em> didn't just gut one provision. It cleared the way for states to redraw every congressional district, state legislature, county commission, city council, and school board in America — with no requirement to prove they aren't targeting Black voters.</p><p>Tennessee is eliminating the majority-Black Memphis congressional district. Florida eliminated a near-majority Black South Florida district. Louisiana threw out votes already cast to eliminate New Orleans's Black congressional district. The pattern is not subtle.</p><p>As Justice Kagan wrote in dissent: this ruling \"threatens a half-century's worth of gains in voting equality.\"</p>",
+      "note": "What PHIERS does about it: District-level organizing doesn't depend on Section 2 or the courts. 1,500 organized constituents make a representative's seat uncertain — before election day, regardless of how the maps are drawn. That's leverage no court ruling can touch."
+    },
+    {
+      "title": "End the wars. Rebuild the country.",
+      "icon": "ti-world",
+      "pillLabel": "Survival issue #2",
+      "pillVariant": "red",
+      "body": "<p>Senate Republicans have now blocked an Iran War Powers resolution six times — preventing Congress from reining in military strikes being conducted without a single Congressional vote authorizing them. The Pentagon has struck nearly 200 people in the Caribbean and Pacific, claiming without evidence they were all carrying drugs.</p><p>Trillions spent on foreign wars. Zero spent on the communities those soldiers came from. This is not idealism — ending wars is the economic prerequisite for everything else on this list.</p>",
+      "note": "What PHIERS does about it: The petition tells your representative exactly where you stand — in writing, by district, with your name attached. Representatives who ignore it face organized primary challenges and public accountability. That's how we change Congress without waiting two years."
+    },
+    {
+      "title": "Healthcare: the math Congress can't ignore",
+      "icon": "ti-heart-rate-monitor",
+      "pillLabel": "The PHIERS core solution",
+      "pillVariant": "teal",
+      "body": "<p>$600 per year covers telehealth for 234 million Americans. No new legislation required. No tax increase. No deficit spending. Collective buying power — the same leverage corporations use against us, turned around.</p><p>Lower drug prices. Living-wage jobs. A safety net that actually holds. Funded by savings we create together — not by waiting for Congress to act.</p>",
+      "note": "What PHIERS does about it: The survey tells Congress what constituents demand. The petition backs it with names. 1,500 people per district turns a demand into a consequence."
+    },
+    {
+      "title": "Housing, wages & the cost of staying alive",
+      "icon": "ti-home",
+      "pillLabel": "Economic justice",
+      "pillVariant": "amber",
+      "body": "<p>Corporate landlords are buying up neighborhoods. Fair housing enforcement is being gutted under the cover of \"eliminating DEI.\" Wages haven't kept pace with rent, food, or medicine in a decade.</p><p>These are not separate problems. They are one problem: the needs of the few being put ahead of the survival of the many. The same communities losing voting power are the same communities losing housing access. That's not coincidence. That's strategy.</p>",
+      "note": ""
+    },
+    {
+      "title": "Surveillance, civil liberties & the rule of law",
+      "icon": "ti-eye-off",
+      "pillLabel": "Everyone's fight",
+      "pillVariant": "blue",
+      "body": "<p>42 Democrats joined House Republicans to expand warrantless surveillance powers — handing the Trump administration sweeping spy authority that has already been used against Black Lives Matter protesters, journalists, and members of Congress.</p><p>ICE has hired private security accused of torture to track undocumented children. The FEC has been deliberately left understaffed so campaign finance laws can't be enforced. Press freedom is under executive threat. The tools being used against Black and immigrant communities today will be used against everyone else tomorrow.</p>",
+      "note": "What PHIERS does about it: PHIERS' district-by-district model is built to overcome redistricting and voter suppression at the ground level — where the decisions are made and where the consequences land."
+    },
+    {
+      "title": "Protect public institutions before they're gone",
+      "icon": "ti-building-community",
+      "pillLabel": "Public goods",
+      "pillVariant": "teal",
+      "body": "<p>Privatizing the Post Office hits rural, Black, elderly, and low-income communities hardest — cutting access to medicine, ballots, and economic lifelines. Data centers are being placed in low-income communities with massive environmental cost and zero community benefit.</p><p>Public goods exist to serve people. Not to extract from them. Not to be sold to the highest bidder while the communities that need them most get nothing.</p>",
+      "note": ""
+    },
+    {
+      "title": "Stop the authoritarian drift — before it's too late",
+      "icon": "ti-shield-x",
+      "pillLabel": "Accountability",
+      "pillVariant": "red",
+      "body": "<p>Trump has stated publicly that he doesn't care if we survive his policies. Conflicts of interest, self-dealing, and the corporate capture of government are not governing — they are looting. The FEC is understaffed on purpose. The courts have been packed. The Voting Rights Act is gone.</p><p>Fascism always lands hardest on Black, immigrant, disabled, and poor communities first. It always has. Name it. Fight it. Don't normalize it. And don't wait for someone else to stop it.</p>",
+      "note": ""
+    }
+  ],
+  "fettermanBoxContent": "<p>Senator John Fetterman was the only Democrat to vote against ending the war — putting the interests of a foreign government above the survival of his own constituents. That vote is documented. His district knows it.</p><p>PHIERS can hold him accountable through a formal, organized, district-level process — and turn it into a replicable model. Any elected official who votes against the people they represent faces the same organized, documented consequence. That's not protest. That's leverage.</p>"
+}
