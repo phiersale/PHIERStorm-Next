@@ -477,7 +477,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
-              <Button href="/petition/fifteen-hundred" variant="primary" fullWidth>✍ SIGN THE PETITION</Button>
+              <Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="primary" fullWidth>✍ SIGN THE PETITION</Button>
               <Button href="/homepage-teeth" variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
               <Button href="/zoom" variant="secondary" fullWidth>🎥 JOIN THE PUBLIC ZOOM</Button>
             </div>
@@ -607,7 +607,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
             <p className="text-gray-300 text-base mb-4">Or they risk losing their seat.</p>
-            <Button href="/petition/fifteen-hundred" variant="primary" fullWidth>✍ SIGN THE PETITION</Button>
+            <Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="primary" fullWidth>✍ SIGN THE PETITION</Button>
           </div>
         </section>
 
@@ -1134,7 +1134,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
               </Link>
             </div>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto mt-6">
-              <Button href="/petition/fifteen-hundred" variant="primary" fullWidth>✍ BE HEARD</Button>
+              <Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="primary" fullWidth>✍ BE HEARD</Button>
             </div>
           </div>
         </section>

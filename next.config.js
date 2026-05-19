@@ -37,6 +37,20 @@ const nextConfig = {
         destination: '/Prophecy/:path*',
       },
     ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/petition/:path*',
+        destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/:path*',
+        permanent: false,
+      },
+      {
+        source: '/survey',
+        destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/survey',
+        permanent: false,
+      },
+    ];
   }
 };
 
