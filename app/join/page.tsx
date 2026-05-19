@@ -103,8 +103,8 @@ export default function JoinPage() {
           <section className="bg-[#1a1a2e]/90 border-l-4 border-green-500 rounded-lg p-6 mb-12 text-center">
             <h2 className="text-2xl font-bold text-green-400 mb-4">✍️ Ready to Join?</h2>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/petition" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">✏️ Sign Petition</Link>
-              <Link href="/survey" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">📋 Fill Survey</Link>
+              <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">✏️ Sign Petition</Link>
+              <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/survey" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">📋 Fill Survey</Link>
               <a href="https://phiersale.github.io/PHIERS-Concept/Donate.html" target="_blank" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition">💰 Support Mission</a>
             </div>
             <div className="mt-8 bg-green-500/20 border border-green-500 p-6 rounded-lg">
@@ -130,8 +130,8 @@ export default function JoinPage() {
 
       {/* Sticky CTA Bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-green-600/95 border-t-2 border-green-400 p-3 flex flex-wrap gap-2 justify-center z-50">
-        <Link href="/petition" className="bg-white text-green-800 font-bold px-4 py-2 rounded-lg text-sm hover:bg-gray-100">✏️ SIGN PETITION</Link>
-        <Link href="/survey" className="bg-white text-green-800 font-bold px-4 py-2 rounded-lg text-sm hover:bg-gray-100">📋 FILL SURVEY</Link>
+        <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="bg-white text-green-800 font-bold px-4 py-2 rounded-lg text-sm hover:bg-gray-100">✏️ SIGN PETITION</Link>
+        <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/survey" className="bg-white text-green-800 font-bold px-4 py-2 rounded-lg text-sm hover:bg-gray-100">📋 FILL SURVEY</Link>
       </div>
     </>
   )
