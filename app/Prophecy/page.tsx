@@ -1,5 +1,5 @@
 // FILE: app/Prophecy/page.tsx
-// VERSION: 50.0 – Mobile rhythm polished, CTA hierarchy established, clamp() headings, beat lines isolated
+// VERSION: 51.0 – Mid‑page Zoom CTA removed; quiet footer link added; no other deletions
 
 'use client';
 
@@ -42,11 +42,12 @@ export default function ProphecyPage() {
     <div className="bg-black text-white">
       {/* TOP SECTION: LOGO + "For Us. By Us." */}
       <div className="text-center pt-8 pb-6 md:pt-10 md:pb-8">
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-4 relative">
+          <div className="absolute inset-0 bg-green-400 rounded-full blur-3xl opacity-20 scale-110"></div>
           <img
-            src="/images/trilogy/PHIERS_Logo_BW.png"
+            src="/images/trilogy/BW_PHIERS_Logo_NO_Words.png"
             alt="PHIERS Logo"
-            className="w-24 h-auto md:w-32 opacity-80"
+            className="w-24 h-auto md:w-32 relative z-10"
           />
         </div>
         <p className="text-sm md:text-lg tracking-[0.28em] md:tracking-[0.35em] uppercase text-gray-300 font-semibold">
@@ -58,7 +59,6 @@ export default function ProphecyPage() {
       <div className="w-full max-w-full overflow-hidden mt-2 md:mt-4">
         <div className="text-center mb-4 px-6">
           <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-green-400 font-semibold">WATCH THIS FIRST</p>
-          <p className="text-gray-400 text-sm mt-2">This is why we do what we do.</p>
         </div>
         <div className="w-full h-[34vh] sm:h-[42vh] md:h-[70vh] bg-black relative cursor-pointer group rounded-xl overflow-hidden" id="video-click-area">
           <div
@@ -125,9 +125,7 @@ export default function ProphecyPage() {
         </p>
       </div>
 
-{/* THESIS REVEAL */}
-{/* THESIS REVEAL */}
-{/* THESIS REVEAL */}
+      {/* THESIS REVEAL */}
       <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28 text-center">
         <div className="gold-divider mt-8 mb-6" />
 
@@ -175,7 +173,6 @@ export default function ProphecyPage() {
         </p>
       </div>
 
-
       {/* SANKOFA (hinge) */}
       <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-32">
         <p className="text-sm tracking-[0.3em] text-gray-400">SANKOFA</p>
@@ -194,7 +191,7 @@ export default function ProphecyPage() {
         </div>
         <div className="mt-8 space-y-5 text-gray-300 leading-relaxed">
           <p>After Reconstruction, they burned what we built. We rebuilt.</p>
-          <p>After Jim Crow. After COINTELPRO.<br />After every system designed to make us disappear – we rebuilt.</p>
+          <p>After Jim Crow. After Convict Leasing and COINTELPRO.<br />After every system designed to make us disappear – we rebuilt.</p>
           <p className="text-xl md:text-2xl text-white font-semibold text-center py-4">
             Every. Single. Time.
           </p>
@@ -391,51 +388,20 @@ export default function ProphecyPage() {
         <p className="text-2xl font-bold text-white mt-6">Power Held In Every Rep’s Seat.</p>
       </div>
 
-      {/* PRIMARY CTA: ZOOM – dominant */}
-      <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20 text-center">
-        <div className="gold-divider" />
-        <h2 className="text-3xl md:text-4xl font-bold mt-8">We move before July 4.</h2>
-        <p className="text-lg text-gray-300 mt-2">When the Third Reconstruction begins.</p>
-
-        {/* Static image in place of the Zoom video */}
-        <div className="mt-6 w-full max-w-xl md:max-w-2xl mx-auto aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
-          <img
-            src="/images/ZoomCall.jpg"
-            alt="Zoom call image"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <p className="text-md text-gray-400 mt-6 max-w-md mx-auto">
-          No performance. No script.<br />
-          Just the vision, the plan, and your questions answered honestly.
-        </p>
-
-        <a
-          href="https://forms.gle/kqAdfo2dohDaCLuR8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-white text-black font-bold text-lg md:text-xl py-3.5 md:py-4 px-8 md:px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap mt-6 mb-4 mx-auto"
-        >
-          → Register for the Zoom
-        </a>
-        <div className="mt-6">
-        </div>
-        <div className="gold-divider mt-10" />
-      </div>
+      {/* PRIMARY CTA: ZOOM – REMOVED (mid‑page CTA deleted) */}
 
       {/* FOUNDER CREDIBILITY ACCORDION */}
-    <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28">
-      <h2 className="text-3xl md:text-4xl font-bold mb-2">ORIGIN STORY</h2>
-      <p className="text-gray-400 mb-4 italic">
-        PHIERS was not conceived in theory. It was forged under pressure — in the years when one man 
-        was building structure while powerful people, organizations and institutions tried to break him for telling the truth.
-      </p>
-      <Accordion
-        triggerLabel="Open to read the fuller story"
-        className="w-full text-left border border-gray-800 bg-[#0d0d0d] px-5 md:px-6 py-4 md:py-5 rounded-xl hover:border-gray-600 transition"
-      >
-    <div className="space-y-4 text-gray-300 leading-relaxed pt-4 pb-2">
+      <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28">
+        <h2 className="text-3xl md:text-4xl font-bold mb-2">WHY THIS IS NOT THEORY</h2>
+        <p className="text-gray-400 mb-4 italic">
+          PHIERS was not conceived in theory. It was forged under pressure — in the years when one man 
+          was building structure while powerful people, organizations and institutions tried to break him for telling the truth.
+        </p>
+        <Accordion
+          triggerLabel="Open to read the fuller story"
+          className="w-full text-left border border-gray-800 bg-[#0d0d0d] px-5 md:px-6 py-4 md:py-5 rounded-xl hover:border-gray-600 transition"
+        >
+          <div className="space-y-4 text-gray-300 leading-relaxed pt-4 pb-2">
             <p>I have been part of a real-world effort to help bring forward high-impact solutions under extreme pressure.</p>
             <p>I have seen breakthrough work delayed, buried, captured, stripped from the people who built it, and sabotaged.</p>
             <p>That taught me two things:</p>
@@ -561,21 +527,28 @@ export default function ProphecyPage() {
         </div>
       </div>
 
-      {/* MOVED ZOOM CALL VIDEO (now at bottom) */}
+      {/* THRESHOLD: FROM INHERITANCE TO FORGE */}
+      <div className="max-w-2xl mx-auto px-6 mt-28 md:mt-36 text-center">
+        <div className="gold-divider mb-8" />
+        <p className="uppercase tracking-[0.28em] text-gray-500 text-xs md:text-sm">
+          FROM INHERITANCE TO FORGE
+        </p>
+
+        <p className="text-[clamp(1.5rem,5vw,2rem)] text-gray-200 font-light leading-[1.25] mt-6">
+          What you have read so far is the inheritance.<br />
+          What comes next is the forge.
+        </p>
+
+        <p className="text-base md:text-lg text-gray-400 leading-relaxed mt-6 max-w-xl mx-auto">
+          Not branding. Not mythology.<br />
+          The pressure that produced the structure.
+        </p>
+      </div>
+
+      {/* MOVED ZOOM CALL VIDEO (now at bottom) – THIS SECTION REMAINS */}
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20 text-center">
         <div className="gold-divider" />
         <h2 className="text-2xl md:text-3xl font-bold mt-8">Join the Zoom Call</h2>
-        <div className="mt-6 w-full max-w-xl md:max-w-2xl mx-auto aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/2i8zcMZoTZk"
-            title="Zoom call invitation"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </div>
         <div className="gold-divider mt-10" />
       </div>
 
@@ -583,7 +556,7 @@ export default function ProphecyPage() {
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20 text-center">
         <p className="text-xl text-gray-200 mb-2">If this makes sense to you, step closer.</p>
         <a
-          href="https://forms.gle/kqAdfo2dohDaCLuR8"
+          href="/zoom"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold text-base md:text-lg py-3 px-8 rounded-full transition shadow-md whitespace-nowrap mt-4"
@@ -617,8 +590,17 @@ export default function ProphecyPage() {
         </p>
       </div>
 
-      {/* FOOTER */}
+      {/* FOOTER – with quiet Zoom link added */}
       <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
+        <div className="mb-4">
+          <p className="text-gray-400 text-xs uppercase tracking-wide mb-2">Step into the room</p>
+          <Link
+            href="/Prophecy/join"
+            className="text-green-400 text-sm underline hover:text-green-300 transition inline-block"
+          >
+            Join the public working session →
+          </Link>
+        </div>
         <p>Built by Black men. For everyone this country has failed to protect.</p>
         <p className="mt-2">PHIERS.org →</p>
       </footer>

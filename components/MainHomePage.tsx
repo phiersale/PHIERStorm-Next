@@ -427,6 +427,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
               <Button href="/petition" variant="primary" fullWidth>✍ SIGN THE PETITION</Button>
               <Button href="/homepage-teeth" variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
+              <Button href="/zoom" variant="secondary" fullWidth>🎥 JOIN THE PUBLIC ZOOM</Button>
             </div>
             <p className="text-gray-400 text-sm mt-2">Your district. Your number. On record.</p>
           </div>
