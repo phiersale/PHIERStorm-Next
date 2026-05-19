@@ -114,6 +114,14 @@ export default function Page() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [stage])
+
+  // Check URL param to directly show PathosCredibility
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('credibility') === 'true') {
+      setStage('credibility');
+    }
+  }, [])
   const [readingVisibleCount, setReadingVisibleCount] = useState(0)
   const [readingComplete, setReadingComplete] = useState(false)
 
