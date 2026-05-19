@@ -349,8 +349,9 @@ export default function ProphecyPage() {
           Healing is not softness. It is preparation.
         </p>
       </div>
-
-      {/* WHY PHIERS – before Zoom CTA */}
+    <PhiersAcronymBreak />
+    <h2 id="why-phiers">WHY PHIERS</h2>
+      
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
         <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
           Why PHIERS

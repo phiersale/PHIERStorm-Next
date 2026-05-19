@@ -217,7 +217,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
       {/* Petition Button – reduced top spacing */}
       <div className="text-center pt-1 pb-6">
         <Link
-          href="/petition/fifteen-hundred"
+          href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred"
           className="px-8 py-3 bg-green text-black font-bold rounded-lg shadow-md hover:bg-green-dim transition text-center text-base inline-block"
           style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
         >
