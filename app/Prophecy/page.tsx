@@ -577,10 +577,30 @@ export default function ProphecyPage() {
       </div>
 
       {/* FINAL LINE – closing beat */}
-      <div className="text-center mt-20 md:mt-24 mb-20 md:mb-24 px-6">
+      <div className="text-center mt-20 md:mt-24 mb-16 md:mb-20 px-6">
         <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
           If you’re serious – step forward.
         </p>
+      </div>
+
+      {/* PETITION & SURVEY SECTION – professionally integrated */}
+      <div className="max-w-3xl mx-auto px-6 mb-20 md:mb-24 text-center">
+        <div className="gold-divider mb-8" />
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">Add your voice to the record.</h2>
+        <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+          The petition and survey are the foundation of our civic leverage. 
+          Every signature and response builds the case for accountability.
+        </p>
+        <Link
+          href="/petition/fifteen-hundred"
+          className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold text-lg md:text-xl py-3.5 px-8 rounded-full transition shadow-md whitespace-nowrap"
+        >
+          Sign the Petition & Take the Survey →
+        </Link>
+        <p className="text-gray-500 text-sm mt-4">
+          Professionally presented. Built to be counted. Your district needs your voice.
+        </p>
+        <div className="gold-divider mt-8" />
       </div>
 
       {/* FOOTER – with quiet Zoom link added */}

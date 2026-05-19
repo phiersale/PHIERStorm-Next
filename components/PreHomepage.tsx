@@ -542,3 +542,5 @@ export default function PreHomepage({
     </div>
   )
 }
+
+// FILE: components/PreHomepage.tsx

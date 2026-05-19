@@ -5,6 +5,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 type Props = {
   onBackToSlides?: () => void
@@ -215,13 +216,13 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
 
       {/* Petition Button – reduced top spacing */}
       <div className="text-center pt-1 pb-6">
-        <button
-          onClick={() => window.location.href = '/petition'}
-          className="px-8 py-3 bg-green text-black font-bold rounded-lg shadow-md hover:bg-green-dim transition text-center text-base"
+        <Link
+          href="/petition/fifteen-hundred"
+          className="px-8 py-3 bg-green text-black font-bold rounded-lg shadow-md hover:bg-green-dim transition text-center text-base inline-block"
           style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
         >
           ✍ Continue to Petition
-        </button>
+        </Link>
       </div>
 
     </>

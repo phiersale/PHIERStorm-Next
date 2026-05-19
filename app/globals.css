@@ -429,6 +429,14 @@ button, .button, a[class*="Button"] {
   animation: fadeOut 3s forwards;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
 /* New fade-in animation for hero image – does not affect existing animations */
 @keyframes fadeInSlow {
   0% { opacity: 0; transform: scale(1.02); }
@@ -869,3 +877,5 @@ img.phiers-wide {
   color: #1D9E75;
   text-decoration: none;
 }
+
+/* FILE: app/globals.css */

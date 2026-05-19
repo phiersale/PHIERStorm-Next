@@ -1,0 +1,67 @@
+{
+  "lastUpdated": "May 18, 2026",
+  "entries": [
+    {
+      "date": "MAY 18, 2026",
+      "tag": "REDISTRICTING",
+      "pillColor": "red",
+      "headline": "MULTIPLE STATES MOVE TO REDRAW DISTRICTS MID‑DECADE",
+      "whatHappened": "Six states are redrawing congressional maps mid‑cycle, reshaping representation ahead of November. Louisiana suspended its own primary after ballots were already in the mail. Tennessee, Florida, Texas, Missouri, and Ohio are moving rapidly. Primaries paused. Maps rewritten. Major changes underway.",
+      "whyItMatters": "Communities need ways to stay organized and informed when district lines shift. PHIERS focuses on district‑level civic engagement — helping people stay connected to their representatives regardless of how maps change.",
+      "sources": [
+        { "name": "CNN Analysis, May 7, 2026", "url": "https://www.cnn.com" },
+        { "name": "Democracy Docket Redistricting Tracker, May 2026", "url": "https://www.democracydocket.com" }
+      ]
+    },
+    {
+      "date": "MAY 13, 2026",
+      "tag": "CONGRESS",
+      "pillColor": "amber",
+      "headline": "FETTERMAN CASTS DECIDING VOTE ON WAR POWERS RESOLUTION",
+      "whatHappened": "Senator John Fetterman was the only Democrat to vote against the War Powers Resolution — again. This time his vote determined the outcome: 49–50. Pennsylvania polling shows broad public opposition to continued escalation.",
+      "whyItMatters": "When public sentiment and Congressional action diverge, organized civic engagement becomes essential. PHIERS helps constituents stay coordinated, informed, and able to communicate expectations clearly to their representatives.",
+      "sources": [
+        { "name": "Philadelphia Inquirer, May 13, 2026", "url": "https://www.inquirer.com" },
+        { "name": "Spotlight PA, May 2026", "url": "https://www.spotlightpa.org" }
+      ]
+    },
+    {
+      "date": "APRIL 29, 2026",
+      "tag": "URGENT",
+      "pillColor": "red",
+      "headline": "SUPREME COURT ISSUES MAJOR RULING ON VOTING RIGHTS ACT",
+      "whatHappened": "The 6–3 ruling in Louisiana v. Callais eliminated Section 2, a key federal protection against discriminatory redistricting. States began redrawing maps within 48 hours. Louisiana suspended an election mid‑vote.",
+      "whyItMatters": "With fewer federal safeguards, communities need reliable ways to stay engaged at the district level. PHIERS emphasizes local organization — where people still have direct channels to their representatives.",
+      "sources": [
+        { "name": "Brennan Center for Justice", "url": "https://www.brennancenter.org" },
+        { "name": "NAACP Legal Defense Fund", "url": "https://www.naacpldf.org" },
+        { "name": "Campaign Legal Center", "url": "https://campaignlegal.org" }
+      ]
+    },
+    {
+      "date": "MAY 2026 — ONGOING",
+      "tag": "URGENT",
+      "pillColor": "red",
+      "headline": "INTERNATIONAL TENSIONS RISE; CONGRESSIONAL OVERSIGHT UNCERTAIN",
+      "whatHappened": "The Strait of Hormuz blockade continues. Oil prices rise. Statements from federal officials signal potential military actions without clear Congressional authorization. Regional tensions involving Cuba, Mexico, and Colombia remain high.",
+      "whyItMatters": "The Constitution assigns Congress responsibility for authorizing military action. PHIERS supports civic engagement that helps communities communicate expectations and hold representatives accountable to their constitutional role.",
+      "sources": [
+        { "name": "Bloomberg, May 17, 2026", "url": "https://www.bloomberg.com" },
+        { "name": "PBS NewsHour, May 2026", "url": "https://www.pbs.org/newshour" },
+        { "name": "Axios, April 29, 2026", "url": "https://www.axios.com" }
+      ]
+    },
+    {
+      "date": "MAY 2026 — ONGOING",
+      "tag": "REDISTRICTING",
+      "pillColor": "red",
+      "headline": "NATIONWIDE REDISTRICTING ACCELERATES AHEAD OF NOVEMBER",
+      "whatHappened": "Multiple states — across parties — are redrawing maps rapidly. Analysts note that the 2026 landscape looks significantly different than it did six months ago. Representation and district boundaries are shifting in real time.",
+      "whyItMatters": "Regardless of how maps change, constituents still need ways to stay organized and informed. PHIERS focuses on district‑level civic structure — helping people maintain continuity and clarity even as political boundaries move.",
+      "sources": [
+        { "name": "Council on Foreign Relations, May 4, 2026", "url": "https://www.cfr.org" },
+        { "name": "Ballotpedia Redistricting Tracker, May 2026", "url": "https://ballotpedia.org" }
+      ]
+    }
+  ]
+}

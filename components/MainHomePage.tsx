@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
+import entriesData from '@/data/whatsnew/entries.json'
 
 // Helper component for video cards (used inside modal)
 function VideoCard({ id, title }: { id: string; title: string }) {
@@ -40,6 +41,10 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
   const [showArchitectModal, setShowArchitectModal] = useState(false)
   const pathname = usePathname()
   const [showNewsflash, setShowNewsflash] = useState(true)
+  // Banner for /whats-new
+  const [showFullBanner, setShowFullBanner] = useState(false)
+  const [showSmallWhatsNew, setShowSmallWhatsNew] = useState(false)
+  const [bannerTimer, setBannerTimer] = useState<NodeJS.Timeout | null>(null)
   // Only show on the main homepage (path === '/')
   const shouldShowNewsflash = showNewsflash && pathname === '/'
   const modalRef = useRef<HTMLDivElement>(null)
@@ -101,6 +106,26 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
     return () => window.removeEventListener('keydown', handleTab)
   }, [modalImageSrc])
 
+  // Banner initialization (check localStorage for last update)
+  useEffect(() => {
+    const lastSeen = localStorage.getItem('whatsnew_last_seen')
+    const currentVersion = entriesData.lastUpdated
+    if (lastSeen !== currentVersion) {
+      setShowFullBanner(true)
+      const timer = setTimeout(() => {
+        setShowFullBanner(false)
+        setShowSmallWhatsNew(true)
+        localStorage.setItem('whatsnew_last_seen', currentVersion)
+      }, 8000)
+      setBannerTimer(timer)
+    } else {
+      setShowSmallWhatsNew(true)
+    }
+    return () => {
+      if (bannerTimer) clearTimeout(bannerTimer)
+    }
+  }, [])
+
   const [showBackButton, setShowBackButton] = useState(true)
   const lastScrollY = useRef(0)
 
@@ -147,7 +172,48 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
   }
 
   return (
-    <div className="min-h-screen">
+    <>
+      {/* WHAT'S NEW BANNER – full red banner */}
+      {showFullBanner && (
+        <div className="fixed top-16 left-0 right-0 z-50 bg-red-700 text-white py-2 px-4 text-center shadow-lg transition-all duration-500 animate-fadeIn">
+          <div className="container mx-auto flex items-center justify-between gap-4 flex-wrap">
+            <span className="text-sm md:text-base">
+              🔴 LIVE: Major national developments unfolding. See the latest updates
+            </span>
+            <a
+              href="/whats-new"
+              className="bg-white text-red-700 px-3 py-1 rounded-md text-sm font-bold hover:bg-gray-100 transition"
+            >
+              What's New →
+            </a>
+            <button
+              onClick={() => {
+                setShowFullBanner(false)
+                setShowSmallWhatsNew(true)
+                if (bannerTimer) clearTimeout(bannerTimer)
+                localStorage.setItem('whatsnew_last_seen', entriesData.lastUpdated)
+              }}
+              className="text-white/80 hover:text-white text-xl leading-none"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Small persistent button for /whats-new */}
+      {showSmallWhatsNew && (
+        <div className="fixed top-20 right-4 z-50">
+          <a
+            href="/whats-new"
+            className="inline-flex items-center gap-1 bg-black/70 backdrop-blur-sm border border-teal-500/50 rounded-full px-3 py-1.5 text-sm font-mono font-medium text-white hover:bg-black/90 transition shadow-md"
+          >
+            📰 What's New →
+          </a>
+        </div>
+      )}
+
+      <div className="min-h-screen">
       {/* NEWSFLASH button – closable, fade out (only on root path) */}
       {shouldShowNewsflash && (
         <div className="fixed top-16 left-4 z-50 transition-opacity duration-300 opacity-100 hover:opacity-100">
@@ -208,20 +274,6 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
       <Navigation />
 
-      {/* NEWSFLASH button – upper left, more visible, repositioned */}
-      <div className="fixed top-16 left-4 z-50">
-        <a
-          href="/newsflash"
-          className="inline-flex items-center gap-2 bg-[#1a1a1a] border border-amber-500/60 rounded-md px-3 py-2 text-sm font-mono font-semibold text-white hover:bg-[#2a2a2a] transition-colors no-underline shadow-md"
-          style={{ backdropFilter: 'blur(4px)' }}
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-          </span>
-          NEWSFLASH
-        </a>
-      </div>
 
       {/* Dim "BACK" button – only shown if onBackToEntry is provided */}
       {onBackToEntry && (
@@ -425,7 +477,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
-              <Button href="/petition" variant="primary" fullWidth>✍ SIGN THE PETITION</Button>
+              <Button href="/petition/fifteen-hundred" variant="primary" fullWidth>✍ SIGN THE PETITION</Button>
               <Button href="/homepage-teeth" variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
               <Button href="/zoom" variant="secondary" fullWidth>🎥 JOIN THE PUBLIC ZOOM</Button>
             </div>
@@ -555,7 +607,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
             <p className="text-gray-300 text-base mb-4">Or they risk losing their seat.</p>
-            <Button href="/petition" variant="primary" fullWidth>✍ BE COUNTED</Button>
+            <Button href="/petition/fifteen-hundred" variant="primary" fullWidth>✍ SIGN THE PETITION</Button>
           </div>
         </section>
 
@@ -1082,7 +1134,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
               </Link>
             </div>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto mt-6">
-              <Button href="/petition" variant="primary" fullWidth>✍ BE HEARD</Button>
+              <Button href="/petition/fifteen-hundred" variant="primary" fullWidth>✍ BE HEARD</Button>
             </div>
           </div>
         </section>
@@ -1220,6 +1272,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         )}
       </AnimatePresence>
     </div>
+    </>
   )
 }
 

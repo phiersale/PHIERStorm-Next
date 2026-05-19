@@ -8,6 +8,16 @@ import Link from 'next/link';
 export default function ZoomJoinPage() {
   return (
     <div className="bg-black text-white min-h-screen">
+      {/* FLOATING SIGN UP BUTTON – translucent, fixed, top right */}
+      <div className="fixed top-24 right-4 z-50 md:top-28 md:right-6">
+        <Link
+          href="/Prophecy/register"
+          className="inline-block bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm md:text-base font-semibold py-2 px-4 rounded-full hover:bg-white/20 transition shadow-lg"
+        >
+          Sign up here →
+        </Link>
+      </div>
+
       {/* Header with logo (same as main site) */}
       <div className="text-center pt-8 pb-4">
         <div className="flex justify-center mb-4">
