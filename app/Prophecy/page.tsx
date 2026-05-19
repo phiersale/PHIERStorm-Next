@@ -42,14 +42,7 @@ export default function ProphecyPage() {
     <div className="bg-black text-white">
       {/* TOP SECTION: LOGO + "For Us. By Us." */}
       <div className="text-center pt-8 pb-6 md:pt-10 md:pb-8">
-        <div className="flex justify-center mb-4 relative">
-          <div className="absolute inset-0 bg-green-400 rounded-full blur-3xl opacity-20 scale-110"></div>
-          <img
-            src="/images/trilogy/BW_PHIERS_Logo_NO_Words.png"
-            alt="PHIERS Logo"
-            className="w-24 h-auto md:w-32 relative z-10"
-          />
-        </div>
+
         <p className="text-sm md:text-lg tracking-[0.28em] md:tracking-[0.35em] uppercase text-gray-300 font-semibold">
           For Us. By Us.
         </p>
@@ -58,7 +51,7 @@ export default function ProphecyPage() {
       {/* VIDEO HERO – mobile‑optimized height */}
       <div className="w-full max-w-full overflow-hidden mt-2 md:mt-4">
         <div className="text-center mb-4 px-6">
-          <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-green-400 font-semibold">WATCH THIS FIRST</p>
+
         </div>
         <div className="w-full h-[34vh] sm:h-[42vh] md:h-[70vh] bg-black relative cursor-pointer group rounded-xl overflow-hidden" id="video-click-area">
           <div
