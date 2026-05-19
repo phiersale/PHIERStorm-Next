@@ -349,9 +349,8 @@ export default function ProphecyPage() {
           Healing is not softness. It is preparation.
         </p>
       </div>
-    <PhiersAcronymBreak />
-    <h2 id="why-phiers">WHY PHIERS</h2>
-      
+
+      {/* WHY PHIERS – before Zoom CTA */}
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
         <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
           Why PHIERS
@@ -593,7 +592,7 @@ export default function ProphecyPage() {
           Every signature and response builds the case for accountability.
         </p>
         <Link
-          href="/petition/fifteen-hundred"
+          href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred"
           className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold text-lg md:text-xl py-3.5 px-8 rounded-full transition shadow-md whitespace-nowrap"
         >
           Sign the Petition & Take the Survey →
