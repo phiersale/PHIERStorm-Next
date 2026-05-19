@@ -18,15 +18,8 @@ export default function ClientNewsflash() {
   };
 
   const handleClose = () => {
-    const introCompleted = sessionStorage.getItem('phiers-intro-complete');
-    if (introCompleted === 'true') {
-      // User was on main site – go directly to main homepage (bypass intro)
-      router.push('/mainhomepage');
-    } else if (window.history.length > 1) {
-      router.back();
-    } else {
-      router.push('/');
-    }
+    // Always go to the main homepage (bypass intro slides)
+    router.push('/mainhomepage');
   };
 
   const CollapsibleSection = ({ 

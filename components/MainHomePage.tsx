@@ -201,40 +201,27 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         </div>
       )}
 
-      {/* Small persistent button for /whats-new */}
+      {/* Unified situation button (replaces NEWSFLASH and What's New) */}
       {showSmallWhatsNew && (
-        <div className="fixed top-20 right-4 z-50">
+        <div className="fixed top-16 right-4 z-50">
           <a
-            href="/whats-new"
-            className="inline-flex items-center gap-1 bg-black/70 backdrop-blur-sm border border-teal-500/50 rounded-full px-3 py-1.5 text-sm font-mono font-medium text-white hover:bg-black/90 transition shadow-md"
+            href="/situation"
+            className="flex flex-col items-end bg-black/70 backdrop-blur-sm border border-amber-500/50 rounded-full px-3 py-1.5 shadow-md hover:bg-black/90 transition"
           >
-            📰 What's New →
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+              </span>
+              <span className="text-xs sm:text-sm font-bold text-white tracking-wide">THE SITUATION</span>
+            </div>
+            <span className="text-[10px] sm:text-xs text-amber-300/80">as of May 18</span>
           </a>
         </div>
       )}
 
       <div className="min-h-screen">
-      {/* NEWSFLASH button – closable, fade out (only on root path) */}
-      {shouldShowNewsflash && (
-        <div className="fixed top-16 left-4 z-50 transition-opacity duration-300 opacity-100 hover:opacity-100">
-          <div className="relative inline-flex items-center gap-2 bg-[#1a1a1a] border border-amber-500/60 rounded-md pl-3 pr-8 py-2 text-sm font-mono font-semibold text-white shadow-md">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-            </span>
-            <a href="/newsflash" className="text-white no-underline hover:text-white">
-              NEWSFLASH
-            </a>
-            <button
-              onClick={() => setShowNewsflash(false)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-amber-500/70 hover:text-amber-300 text-sm leading-none focus:outline-none"
-              aria-label="Close newsflash alert"
-            >
-              ✕
-            </button>
-          </div>
-        </div>
-      )}
+
       <div className="bg-amber-600 text-black text-center py-2 text-sm font-bold">
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>

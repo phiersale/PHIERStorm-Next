@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Accordion from './components/Accordion';
+import PhiersAcronymBreak from '@/components/PhiersAcronymBreak';
 
 export default function ProphecyPage() {
   // Video play handler – robust version with createElement
@@ -345,10 +346,13 @@ export default function ProphecyPage() {
           Disciplined men can coordinate.<br />
           Clear men can carry weight without collapsing under it.
         </p>
-        <p className="text-xl md:text-2xl font-semibold text-white mt-8 text-center">
+        <p className="text-xl md:text-2xl font-semibold text-white mt-8 text-left">
           Healing is not softness. It is preparation.
         </p>
       </div>
+
+      {/* PHIERS Acronym Visual Break */}
+      <PhiersAcronymBreak />
 
       {/* WHY PHIERS – before Zoom CTA */}
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
