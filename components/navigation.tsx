@@ -58,7 +58,7 @@ export default function Navigation() {
           <div className="hidden md:block text-[#3ddc84] text-xs italic">When Americans coordinate, Congress has no choice.</div>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/petition" className="hidden md:inline-block px-5 py-2 bg-red-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-red-700 transition-all">✍ Sign the Petition</Link>
+          <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="hidden md:inline-block px-5 py-2 bg-red-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-red-700 transition-all">✍ Sign the Petition</Link>
           <Link href="/join" className="hidden md:inline-block px-5 py-2 bg-green-600 text-white font-condensed font-bold text-sm rounded-lg hover:bg-green-700 transition-all ml-2">🤝 Join</Link>
           <button onClick={toggleMenu} className="text-white text-2xl p-2 border border-white/20 rounded-lg" aria-label="Menu" aria-expanded={mobileMenuOpen}>
             {mobileMenuOpen ? '✕' : '☰'}
@@ -110,12 +110,12 @@ export default function Navigation() {
             </MenuSection>
 
             <MenuSection title="Take Action">
-              <Link href="/petition" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>📋 Sign the Petition</Link>
+              <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>📋 Sign the Petition</Link>
               <Link href="/donate" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>💚 Donate</Link>
               <Link href="/action" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>📣 Take Action</Link>
             </MenuSection>
 
-            <Link href="/petition" className="block w-full py-2 bg-[#3ddc84] text-[#080d1a] font-condensed font-bold text-sm text-center rounded-lg mt-2" onClick={closeMenuInstantly}>✍ Sign Now</Link>
+            <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="block w-full py-2 bg-[#3ddc84] text-[#080d1a] font-condensed font-bold text-sm text-center rounded-lg mt-2" onClick={closeMenuInstantly}>✍ Sign Now</Link>
             <Link href="/join" className="block w-full py-2 bg-green-600 text-white font-condensed font-bold text-sm text-center rounded-lg mt-1" onClick={closeMenuInstantly}>🤝 Join the Movement</Link>
           </div>
         </div>

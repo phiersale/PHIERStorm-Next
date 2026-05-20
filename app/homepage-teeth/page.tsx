@@ -219,7 +219,7 @@ export default function HomepageTeethPage() {
           <p className="font-condensed font-bold text-center text-white text-base mt-2">And once it exists, they can't ignore it.</p>
           <p className="text-sm text-gray-500 text-center mt-3">When enough constituents organize in a district, elected officials have to respond. Every time.</p>
           <p className="font-condensed font-bold text-center text-white text-base mt-3">This isn't theory. It's pressure applied in the one place they can't ignore.</p>
-          <div className="text-center mt-6"><Button href="/petition" variant="secondary">✍ Add Your Name →</Button><p className="text-xs text-gray-500 mt-2">It takes less than a minute.</p></div>
+          <div className="text-center mt-6"><Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="secondary">✍ Add Your Name →</Button><p className="text-xs text-gray-500 mt-2">It takes less than a minute.</p></div>
         </section>
 
         <hr className="border-green/20" />
@@ -244,7 +244,7 @@ export default function HomepageTeethPage() {
             <p className="text-body text-base mb-2">The only thing missing is enough organized people to make that unavoidable.</p>
             <p className="font-condensed font-bold text-green text-base mb-4">That's what your name does.</p>
             <p className="text-sm text-gray-500 text-center mb-3">This is how we make it impossible for them not to respond.</p>
-            <div className="text-center my-4"><Button href="/petition" variant="secondary">✍ Add Your Name — Help Make Congress Do Its Job</Button></div>
+            <div className="text-center my-4"><Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="secondary">✍ Add Your Name — Help Make Congress Do Its Job</Button></div>
             <p className="font-condensed font-bold text-white text-base mb-2">Step one: Make Congress do its job.</p>
             <p className="font-condensed text-gray-500 text-sm">This is how action starts — right now.</p>
           </div>

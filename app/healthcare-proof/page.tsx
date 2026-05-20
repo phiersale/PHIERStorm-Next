@@ -80,7 +80,7 @@ export default function FullStoryPage() {
               </div>
             </div>
             <div className="flex flex-wrap justify-center gap-4 mt-5">
-              <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
+              <Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="primary">✍ Sign the Petition</Button>
               <a href="https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform" target="_blank" rel="noopener noreferrer" className="text-green font-condensed font-bold hover:underline">📋 Take the Survey</a>
             </div>
           </div>
@@ -287,7 +287,7 @@ export default function FullStoryPage() {
             <Link href="/action" className="inline-block bg-gradient-to-r from-gold to-[#e0a800] text-black font-bold text-xl px-10 py-4 rounded-lg hover:opacity-90 transition-all">✊ Take Action</Link>
 
             <div className="flex flex-wrap justify-center gap-4 mt-6">
-              <Button href="/petition" variant="primary">✍ Sign the Petition</Button>
+              <Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="primary">✍ Sign the Petition</Button>
               <Button href="/donate" variant="secondary">Support the Movement</Button>
             </div>
 
