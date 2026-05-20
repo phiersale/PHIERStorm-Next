@@ -79,32 +79,7 @@ export default function DonatePage() {
 
         <hr className="border-green/20" />
 
-        {/* Donation Tiers */}
-        <section className="container section">
-          <h2 className="font-display text-3xl text-white text-center mb-6">Donate <span className="text-green">Now</span></h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[800px] mx-auto mb-8">
-            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
-              <div className="font-display text-3xl text-green">$25</div>
-              <p className="text-body text-sm mt-2">Outreach to 100 people in your district</p>
-            </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
-              <div className="font-display text-3xl text-green">$50</div>
-              <p className="text-body text-sm mt-2">Funds a district team for a week</p>
-            </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
-              <div className="font-display text-3xl text-green">$100</div>
-              <p className="text-body text-sm mt-2">Reaches an organizer network in your state</p>
-            </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
-              <div className="font-display text-3xl text-green">$500</div>
-              <p className="text-body text-sm mt-2">Funds media reaching 10,000+ people</p>
-            </div>
-          </div>
-
-          <p className="text-center text-gray-400 text-sm italic mb-8">A movement funded by the people belongs to the people.</p>
-
-          {/* Donation Methods with QR Codes */}
+        {/* Donation Methods with QR Codes */}
           <div className="bg-bg-dark border-2 border-green rounded-xl p-6 max-w-[800px] mx-auto">
             <h3 className="font-display text-2xl text-center text-white mb-6">Donate Securely</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
