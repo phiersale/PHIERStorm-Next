@@ -152,7 +152,7 @@ export default function DonatePage() {
           <div className="container text-center">
             <p className="text-gray-400 mb-4">Your name matters as much as your dollar.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center">
-              <Button href="/petition" variant="primary">✍ SIGN THE PETITION</Button>
+              <Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="primary">✍ SIGN THE PETITION</Button>
               <Button href="/action" variant="secondary">📣 SHARE THE MESSAGE</Button>
             </div>
           </div>
@@ -248,3 +248,5 @@ export default function DonatePage() {
     </>
   )
 }
+
+// FILE: app/donate/page.tsx - WITH QR CODES
