@@ -1,5 +1,5 @@
 // FILE: app/Prophecy/page.tsx
-// VERSION: 56.0 – Final A+ production version (practical realism + copy tightening)
+// VERSION: 58.0 – Final: h-12/h-20 breaks + inheritance line moved
 
 'use client';
 
@@ -298,8 +298,10 @@ export default function ProphecyPage() {
         </p>
       </div>
 
-      {/* PRESSURE FORGED */}
+      {/* h-12 break before Forged Under Pressure */}
       <div className="h-12" />
+
+      {/* PRESSURE FORGED */}
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
         <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
           Pressure did not only wound us. It trained us.
@@ -359,7 +361,7 @@ export default function ProphecyPage() {
       {/* PHIERS ACRONYM BREAK */}
       <PhiersAcronymBreak />
 
-      {/* PRACTICAL REALISM SECTION – NEW */}
+      {/* PRACTICAL REALISM SECTION */}
       <section className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
         <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl px-6 py-10 md:px-8 md:py-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">What does this mean in practice?</h2>
@@ -440,8 +442,10 @@ export default function ProphecyPage() {
         </div>
       </section>
 
-      {/* FOUNDER CREDIBILITY ACCORDION */}
+      {/* h-12 break before Why This Is Not Theory */}
       <div className="h-12" />
+
+      {/* FOUNDER CREDIBILITY ACCORDION */}
       <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28">
         <h2 className="text-3xl md:text-4xl font-bold mb-2">WHY THIS IS NOT THEORY</h2>
         <p className="text-gray-400 mb-4 italic">
@@ -474,8 +478,10 @@ export default function ProphecyPage() {
         </section>
       </div>
 
-      {/* RECORD ACCORDION */}
+      {/* h-12 break before Record Accordion */}
       <div className="h-12" />
+
+      {/* RECORD ACCORDION */}
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20">
         <Accordion
           triggerLabel="THE RECORD THEY THOUGHT TIME WOULD ERASE"
@@ -523,13 +529,15 @@ export default function ProphecyPage() {
         />
       </section>
 
+      {/* h-12 break before Third Reconstruction */}
+      <div className="h-12" />
+
       {/* THIRD RECONSTRUCTION BRIDGE */}
       {/* MICRO-THRESHOLD */}
       <p className="text-center text-gray-400 text-sm md:text-base tracking-wide my-16 md:my-20">
         THE RECORD IS NOT GONE.
       </p>
 
-      <div className="h-12" />
       <div className="max-w-4xl mx-auto px-6 mt-24 md:mt-32 text-center">
         <p className="uppercase tracking-[0.35em] text-gray-500 text-sm mb-6">THE THIRD RECONSTRUCTION</p>
         <h2 className="text-[clamp(2rem,7vw,3.4rem)] font-bold leading-[1.06] text-balance">
@@ -591,7 +599,7 @@ export default function ProphecyPage() {
         />
       </section>
 
-      {/* THRESHOLD – fixed double gold divider */}
+      {/* THRESHOLD with inheritance line moved here */}
       <div className="h-20" />
       <div className="max-w-2xl mx-auto px-6 mt-28 md:mt-36 text-center">
         <p className="text-[clamp(1.5rem,5vw,2rem)] text-gray-200 font-light leading-[1.25] mb-8">
@@ -601,10 +609,6 @@ export default function ProphecyPage() {
         <div className="gold-divider mb-8" />
         <p className="uppercase tracking-[0.28em] text-gray-500 text-xs md:text-sm">
           FROM INHERITANCE TO FORGE
-        </p>
-        <p className="text-[clamp(1.5rem,5vw,2rem)] text-gray-200 font-light leading-[1.25] mt-6">
-          What you have read so far is the inheritance.<br />
-          What comes next is the forge.
         </p>
         <p className="text-base md:text-lg text-gray-400 leading-relaxed mt-6 max-w-xl mx-auto">
           Not branding. Not mythology.<br />
@@ -681,7 +685,7 @@ export default function ProphecyPage() {
         </p>
       </div>
 
-      {/* FOOTER – fixed href */}
+      {/* FOOTER */}
       <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
         <p>Built by Black men. For everyone this country has failed to protect.</p>
         <p className="mt-2">
