@@ -45,6 +45,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
   const [showFullBanner, setShowFullBanner] = useState(false)
   const [showSmallWhatsNew, setShowSmallWhatsNew] = useState(false)
   const [bannerTimer, setBannerTimer] = useState<NodeJS.Timeout | null>(null)
+  const [showSituationButton, setShowSituationButton] = useState(true)
   // Only show on the main homepage (path === '/')
   const shouldShowNewsflash = showNewsflash && pathname === '/'
   const modalRef = useRef<HTMLDivElement>(null)
@@ -126,6 +127,12 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
     }
   }, [])
 
+  // Check if user dismissed the situation button
+  useEffect(() => {
+    const dismissed = localStorage.getItem('situation-button-dismissed')
+    if (dismissed === 'true') setShowSituationButton(false)
+  }, [])
+
   const [showBackButton, setShowBackButton] = useState(true)
   const lastScrollY = useRef(0)
 
@@ -157,6 +164,15 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: prefersReducedMotionRef.current ? 'auto' : 'smooth' })
   }, [])
+
+    const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotionRef.current ? 'auto' : 'smooth' })
+  }, [])
+
+  const dismissSituationButton = () => {
+    setShowSituationButton(false)
+    localStorage.setItem('situation-button-dismissed', 'true')
+  }
 
   const scrollToMechanism = useCallback(() => {
     document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
@@ -201,22 +217,31 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         </div>
       )}
 
-      {/* Unified situation button (replaces NEWSFLASH and What's New) */}
-      {showSmallWhatsNew && (
+      {/* Unified situation button (closable, dismissible) */}
+      {showSmallWhatsNew && showSituationButton && (
         <div className="fixed top-16 right-4 z-50">
-          <a
-            href="/situation"
-            className="flex flex-col items-end bg-black/70 backdrop-blur-sm border border-amber-500/50 rounded-full px-3 py-1.5 shadow-md hover:bg-black/90 transition"
-          >
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-              </span>
-              <span className="text-xs sm:text-sm font-bold text-white tracking-wide">THE SITUATION</span>
-            </div>
-            <span className="text-[10px] sm:text-xs text-amber-300/80">as of May 18</span>
-          </a>
+          <div className="relative inline-flex flex-col items-end">
+            <button
+              onClick={dismissSituationButton}
+              className="absolute -top-2 -right-2 bg-black/80 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition z-10"
+              aria-label="Dismiss situation button"
+            >
+              ✕
+            </button>
+            <a
+              href="/situation"
+              className="flex flex-col items-end bg-black/70 backdrop-blur-sm border border-amber-500/50 rounded-full px-3 py-1.5 shadow-md hover:bg-black/90 transition"
+            >
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-white tracking-wide">THE SITUATION</span>
+              </div>
+              <span className="text-[10px] sm:text-xs text-amber-300/80">as of May 18</span>
+            </a>
+          </div>
         </div>
       )}
 

@@ -1,6 +1,9 @@
 // FILE: app/Prophecy/movement/page.tsx
 // VERSION: 17.0 – Fixed syntax, added Manhattan & Reconstruction images
 
+// FILE: app/Prophecy/movement/page.tsx
+// VERSION: 18.0 – Added five new images, removed duplicates, corrected paths
+
 'use client';
 
 import Link from 'next/link';
@@ -51,6 +54,14 @@ export default function MovementPage() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
             THIS ISN'T A PROTEST. THIS IS A POWER MOVE.
           </h2>
+          {/* Image 1: Collective strength */}
+          <section className="mt-8 mb-12">
+            <img
+              src="/images/trilogy/Organized_men_change_outcomes.jpg"
+              alt="Black men walking in formation through industrial hallway under banner reading Building Stronger Together"
+              className="w-full rounded-lg object-cover shadow-lg"
+            />
+          </section>
           <p className="text-lg text-gray-300 mb-4">Scattered men get ignored. Organized men change the equation.</p>
           <p className="text-lg text-gray-300">
             PHIERS is not a slogan or another room full of frustration. It's structure. A way for Black men to stop moving like isolated individuals and start moving together with purpose.
@@ -69,12 +80,29 @@ export default function MovementPage() {
         {/* WHY STRUCTURE MATTERS */}
         <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">WHY STRUCTURE MATTERS</h2>
+          {/* Image 2: Technical precision */}
+          <section className="my-8">
+            <img
+              src="/images/trilogy/Structure_matters.jpg"
+              alt="Hands drafting blueprints with hammer and books nearby"
+              className="w-full md:w-4/5 mx-auto rounded-lg object-cover shadow-md"
+            />
+          </section>
           <p className="text-lg text-gray-300 mb-4">
             Scattered men get ignored. Talented men without coordination get exhausted. Angry men without direction get used. Wounded men without healing get manipulated.
           </p>
           <p className="text-lg text-gray-300">
             Structure is what turns seriousness into force. That is what PHIERS is trying to build.
           </p>
+        </section>
+
+        {/* Image 3: Moral foundation – before the code */}
+        <section className="my-16 max-w-4xl mx-auto px-5">
+          <img
+            src="/images/trilogy/The_PHIERS_Code.jpg"
+            alt="Close-up of clasped hands with Local 773 Brotherhood shirt"
+            className="w-full md:w-3/4 mx-auto rounded-lg object-cover shadow-md"
+          />
         </section>
 
         {/* THE PHIERS CODE */}
@@ -96,6 +124,14 @@ export default function MovementPage() {
         {/* THE FIFTEEN HUNDRED */}
         <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">THE FIFTEEN HUNDRED</h2>
+          {/* Image 4: Visible unity */}
+          <section className="my-8">
+            <img
+              src="/images/trilogy/The_Fifteen_Hundred.jpg"
+              alt="Large group of Black men standing in formation at sunrise, facing forward toward city skyline"
+              className="w-full rounded-lg object-cover shadow-lg"
+            />
+          </section>
           <p className="text-lg text-gray-300 mb-4">
             Fifteen Hundred is not just a number. It's a standard. It means Black men are no longer carrying pressure alone and in silence.
           </p>
@@ -235,7 +271,7 @@ export default function MovementPage() {
           </Accordion>
         </section>
 
-        {/* He ain't heavy image - full image visible, width constrained */}
+        {/* He ain't heavy image */}
         <div className="max-w-sm mx-auto px-5 py-10">
           <Image
             src="/images/trilogy/He_aint_heavy.webp"
@@ -265,8 +301,16 @@ export default function MovementPage() {
           <p className="text-xl font-semibold mt-6">The future belongs to organized men.</p>
         </section>
 
-        {/* Closing CTA */}
+        {/* Closing CTA with final image */}
         <section className="text-center py-20">
+          {/* Image 5: Forward motion */}
+          <section className="my-12">
+            <img
+              src="/images/trilogy/Final_CTA_image.jpg"
+              alt="Single Black man walking forward toward sunrise and city skyline, symbolizing disciplined forward motion"
+              className="w-full md:w-4/5 mx-auto rounded-lg object-cover shadow-lg"
+            />
+          </section>
           <Link
             href="/Prophecy/trilogy"
             className="inline-block bg-white text-black font-bold text-xl py-4 px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap"
@@ -290,4 +334,5 @@ export default function MovementPage() {
     </motion.div>
   );
 }
+
 // END OF FILE: app/Prophecy/movement/page.tsx
