@@ -299,6 +299,7 @@ export default function ProphecyPage() {
       </div>
 
       {/* PRESSURE FORGED */}
+      <div className="h-12" />
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
         <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
           Pressure did not only wound us. It trained us.
@@ -440,6 +441,7 @@ export default function ProphecyPage() {
       </section>
 
       {/* FOUNDER CREDIBILITY ACCORDION */}
+      <div className="h-12" />
       <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28">
         <h2 className="text-3xl md:text-4xl font-bold mb-2">WHY THIS IS NOT THEORY</h2>
         <p className="text-gray-400 mb-4 italic">
@@ -473,6 +475,7 @@ export default function ProphecyPage() {
       </div>
 
       {/* RECORD ACCORDION */}
+      <div className="h-12" />
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20">
         <Accordion
           triggerLabel="THE RECORD THEY THOUGHT TIME WOULD ERASE"
@@ -526,6 +529,7 @@ export default function ProphecyPage() {
         THE RECORD IS NOT GONE.
       </p>
 
+      <div className="h-12" />
       <div className="max-w-4xl mx-auto px-6 mt-24 md:mt-32 text-center">
         <p className="uppercase tracking-[0.35em] text-gray-500 text-sm mb-6">THE THIRD RECONSTRUCTION</p>
         <h2 className="text-[clamp(2rem,7vw,3.4rem)] font-bold leading-[1.06] text-balance">
@@ -588,7 +592,12 @@ export default function ProphecyPage() {
       </section>
 
       {/* THRESHOLD – fixed double gold divider */}
+      <div className="h-20" />
       <div className="max-w-2xl mx-auto px-6 mt-28 md:mt-36 text-center">
+        <p className="text-[clamp(1.5rem,5vw,2rem)] text-gray-200 font-light leading-[1.25] mb-8">
+          What you have read so far is the inheritance.<br />
+          What comes next is the forge.
+        </p>
         <div className="gold-divider mb-8" />
         <p className="uppercase tracking-[0.28em] text-gray-500 text-xs md:text-sm">
           FROM INHERITANCE TO FORGE
