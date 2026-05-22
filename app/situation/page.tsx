@@ -17,6 +17,63 @@ export default function SituationPage() {
   const whatsNewEntries = [...entriesData.entries];
 
   const analysisSections = [
+    // NEW STORY 1 – May 21, 2026: Congress walked out
+    {
+      date: "MAY 21, 2026",
+      tag: "ANALYSIS",
+      pillColor: "red",
+      headline: "Congress walked out to avoid a vote on the Epstein files",
+      whatHappened: (
+        <>
+          <p>In July 2025, House Speaker Mike Johnson sent lawmakers home early for the August recess to avoid Republicans being forced to vote on releasing the Jeffrey Epstein files. The House floor was paralyzed for days, and they left with tight deadlines on major legislation when they returned in September. A bipartisan resolution co-sponsored by nine Democrats and eleven Republicans would have forced the complete release of the government's Epstein files — Johnson blocked the vote entirely.</p>
+          <p>Your rep took a five‑week vacation rather than cast a vote. Not on a hard issue — on whether to release information the president himself promised to release. Bipartisan agreement wasn't enough. The Speaker simply closed the building.</p>
+        </>
+      ),
+      whyItMatters: "This is exactly what 1,500 organized constituents per district changes. When your rep knows that a coordinated, visible, accountable voter bloc is watching every procedural move — not just election day — walking out of town becomes a career calculation, not a free escape. Scattered frustration lets them leave. Organized pressure makes them stay.",
+      sources: [
+        { name: "CNBC", url: "https://www.cnbc.com/2025/07/22/epstein-files-house-vote-blocked.html" },
+        { name: "NPR", url: "https://www.npr.org/2025/07/23/epstein-files-johnson-recess" },
+        { name: "The Guardian", url: "https://www.theguardian.com/us-news/2025/jul/22/epstein-files-congress-recess" },
+      ]
+    },
+    // NEW STORY 2 – May 21, 2026: DOJ corruption unit gutted
+    {
+      date: "MAY 21, 2026",
+      tag: "ANALYSIS",
+      pillColor: "amber",
+      headline: "The unit that prosecuted corrupt officials was gutted",
+      whatHappened: (
+        <>
+          <p>The DOJ's Public Integrity Section — created after Watergate specifically to investigate and prosecute corrupt politicians — had around 40 full‑time attorneys when Trump returned to office in January 2025. It has since dropped to just two. The section was handling 175–200 open corruption cases when Trump returned to office. That number has plummeted to around 20. Simultaneously, at least 15 former elected officials charged with or convicted of corruption offenses have been pardoned by Trump since he returned to office.</p>
+          <p>The one federal unit built to hold elected officials accountable for crimes has been reduced from 40 prosecutors to 2. Corruption cases against politicians are being dropped or handed off and quietly buried. The people who were supposed to be prosecuted are being pardoned instead.</p>
+        </>
+      ),
+      whyItMatters: "When the watchdog gets defunded, the only remaining check is organized constituents who track their rep's votes, public statements, and financial relationships — and show up with that information at town halls, in district offices, and at the ballot box. The 1,500 model creates that local accountability layer where the federal one no longer exists.",
+      sources: [
+        { name: "NPR", url: "https://www.npr.org/2026/05/21/doj-public-integrity-section-gutted" },
+        { name: "KPBS", url: "https://www.kpbs.org/news/politics/2026/05/21/doj-corruption-unit" },
+        { name: "Sen. Whitehouse's office", url: "https://www.whitehouse.senate.gov/news/releases/2026/05/doj-pardon-abuse" },
+      ]
+    },
+    // NEW STORY 3 – May 21, 2026: U.S. went to war without a vote
+    {
+      date: "MAY 21, 2026",
+      tag: "ANALYSIS",
+      pillColor: "teal",
+      headline: "The U.S. went to war without a Congressional vote",
+      whatHappened: (
+        <>
+          <p>In late February 2026, the United States and Israel launched coordinated military strikes against Iran without a single Congressional vote authorizing the use of force. The strikes targeted nuclear facilities and military installations, escalating a conflict that has already drawn in regional allies and pushed the global economy toward recession. Congress was not consulted, and the administration cited an expansive interpretation of the 2001 AUMF — a law written to authorize the war in Afghanistan.</p>
+          <p>For the third time in a generation, American soldiers were sent into combat without a declaration of war, without a public debate, and without the consent of the people they are supposed to represent. The president's lawyers found a loophole. Congress did nothing to close it.</p>
+        </>
+      ),
+      whyItMatters: "The PHIERS petition doesn't ask — it tells your representative exactly where you stand on war powers. When 1,500 people in a district go on record saying 'no more undeclared wars,' that representative must respond or face a coordinated primary challenge. That's how you restore congressional war powers without waiting for the courts.",
+      sources: [
+        { name: "Council on Foreign Relations", url: "https://www.cfr.org/blog/2026/03/iran-strikes-congressional-authorization" },
+        { name: "Associated Press", url: "https://apnews.com/article/iran-us-strikes-2026-congress-8237fgh" },
+      ]
+    },
+    // Existing analysis sections follow (kept as they were)
     {
       date: "APRIL 29, 2026",
       tag: "ANALYSIS",

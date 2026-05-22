@@ -1,5 +1,5 @@
 // FILE: app/Prophecy/trilogy/page.tsx
-// VERSION: 15.0 – Dark background, no caption, added legacy image, consistent visual world
+// VERSION: 17.0 – Footer consistency + minor polish
 
 'use client';
 
@@ -10,7 +10,7 @@ import Accordion from '../components/Accordion';
 
 function Card({ title, subtitle, description, buttonLabel, link }: { title: string; subtitle: string; description: string; buttonLabel: string; link: string }) {
   return (
-    <div className="flex-1 bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6 hover:border-gray-500 transition flex flex-col">
+    <div className="flex-1 bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6 hover:border-gray-500 active:border-gray-400 transition flex flex-col">
       <h2 className="text-2xl md:text-3xl font-bold leading-tight text-white">{title}</h2>
       <p className="text-gray-400 text-sm uppercase tracking-wide mt-2">{subtitle}</p>
       <p className="text-gray-300 mt-3 text-base leading-relaxed flex-grow">{description}</p>
@@ -27,21 +27,18 @@ export default function TrilogyLanding() {
         <div className="max-w-4xl mx-auto px-6 md:px-12 py-24 md:py-32">
           <p className="uppercase tracking-widest text-gray-500 text-sm mb-8">The Trilogy</p>
 
-          {/* Hero */}
+          {/* Hero – condensed */}
           <div className="py-20 text-center max-w-2xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white">THIS IS WHERE THE FOG LIFTS.</h1>
-            <p className="text-gray-400 text-xl mt-4">Not slogans. Not performance. Not recycled outrage.</p>
-            <p className="text-white text-2xl font-semibold mt-6">Clarity.</p>
-            <p className="text-gray-400 text-md mt-2 italic">This is not a history lesson. It’s preparation.</p>
-            <div className="space-y-2 mt-6 text-lg text-gray-300">
-              <p>Shows the pattern.</p>
-              <p>Recovers the inheritance.</p>
-              <p>Prepares the move.</p>
+            <p className="text-gray-400 text-xl mt-4">No slogans. No recycled outrage. Just clarity.</p>
+            <p className="text-white text-xl mt-6">This is not a history lesson. It’s preparation.</p>
+            <div className="space-y-2 mt-4 text-lg text-gray-300">
+              <p>Shows the pattern.</p><p>Recovers the inheritance.</p><p>Prepares the move.</p>
             </div>
-            <p className="text-gray-300 mt-6">This is not about staying stuck in pain. <strong className="text-white">It's about seeing clearly enough to move forward.</strong></p>
+            <p className="text-gray-300 mt-6">Not to stay stuck in pain. <strong className="text-white">To see clearly enough to move forward.</strong></p>
           </div>
 
-          {/* Accordion – short, plain language */}
+          {/* Accordion */}
           <div className="py-12 max-w-2xl mx-auto">
             <Accordion triggerLabel="THE RECORD THEY EXPECTED US TO FORGET">
               <div className="text-gray-300 text-lg leading-loose space-y-3">
@@ -53,9 +50,9 @@ export default function TrilogyLanding() {
             </Accordion>
           </div>
 
-          {/* Primary anchor image: Tuskegee Airmen – no caption */}
-          <div className="py-12 max-w-3xl mx-auto">
-            <Image src="/images/trilogy/tuskegee.jpg" alt="Tuskegee Airmen – disciplined excellence under pressure" width={1200} height={800} className="w-full rounded-xl object-cover" />
+          {/* Tuskegee image – with spacing */}
+          <div className="py-12 mt-12 mb-12 max-w-3xl mx-auto">
+            <Image src="/images/trilogy/tuskegee.jpg" alt="Tuskegee Airmen" width={1200} height={800} className="w-full rounded-xl object-cover" />
           </div>
 
           {/* Three Cards */}
@@ -65,20 +62,12 @@ export default function TrilogyLanding() {
             <Card title="UNSTOPPABLE" subtitle="Prepare the move" description="What changes when Black men stop moving alone. When clarity becomes structure. When structure becomes trust. When trust becomes momentum." buttonLabel="Prepare the Move →" link="/Prophecy/unstoppable" />
           </div>
 
-          {/* Legacy image – warmth before healing */}
-          <div className="max-w-2xl mx-auto my-12">
-            <Image
-              src="/images/trilogy/legacy-2.jpg"
-              alt="Brotherhood and continuity"
-              width={1000}
-              height={700}
-              className="w-full rounded-xl object-cover"
-            />
-          </div>
-
-          {/* Healing frame */}
+          {/* Healing frame with legacy image moved inside */}
           <div className="py-16 max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4 text-white">HEALING IS PART OF THE SHIFT</h2>
+            <div className="my-8">
+              <Image src="/images/trilogy/legacy-2.jpg" alt="Brotherhood and continuity" width={1000} height={700} className="w-full rounded-xl object-cover" />
+            </div>
             <p className="text-gray-300 text-lg">Some of what Black men carry should never have been ours to carry. But the fact that we are still here matters. Not just because of what happened to us. <strong className="text-white">Because of what survived in us.</strong></p>
             <p className="text-gray-300 text-lg mt-2">Healing is not retreat. It’s preparation.</p>
           </div>
@@ -99,21 +88,15 @@ export default function TrilogyLanding() {
             <p className="text-gray-400 mt-4">Not to look backward. To prepare for what comes next.</p>
           </div>
 
-          {/* Disclaimer – moved to footer area as subtle details, but keeping minimal */}
-          <details className="text-center text-gray-500 text-xs mt-12 cursor-pointer">
-            <summary className="hover:text-gray-400 transition">A note about this space</summary>
-            <p className="mt-3 text-gray-400 leading-relaxed">This space speaks directly to Black men. Not to divide — but because we're the ones carrying the weight first and hardest. If you're reading this from outside the experience, read with care and respect.</p>
-          </details>
-
-          {/* Footer */}
+          {/* Footer – now consistent */}
           <footer className="border-t border-gray-800 mt-20 pt-8 text-center text-gray-500 text-sm">
-            <p>A gift from FBA men to humanity</p>
+            <p>A gift from Foundational Black American men to humanity</p>
             <p className="mt-2"><a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">PHIERS.org →</a></p>
+            <p className="mt-4 text-gray-500 text-xs">This space speaks directly to Black men — because we carry the weight first and hardest. Read with care and respect.</p>
           </footer>
         </div>
       </div>
     </motion.div>
   );
 }
-
-// FILE: app/Prophecy/trilogy/page.tsx
+// END OF FILE: app/Prophecy/trilogy/page.tsx

@@ -1,5 +1,5 @@
 // FILE: app/Prophecy/page.tsx
-// VERSION: 58.0 – Final: h-12/h-20 breaks + inheritance line moved
+// VERSION: 60.0 – Record accordion shortened + breathing pauses + tone cleanup
 
 'use client';
 
@@ -14,14 +14,27 @@ export default function ProphecyPage() {
 
   return (
     <div className="bg-black text-white">
+      {/* STICKY HEADER */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800 py-2">
+        <div className="max-w-7xl mx-auto px-4 flex justify-start">
+          <Link href="/Prophecy">
+            <img
+              src="/images/PHIERS_Logo_BW.png"
+              alt="PHIERS"
+              className="w-10 h-auto md:w-12 opacity-70 hover:opacity-90 transition"
+            />
+          </Link>
+        </div>
+      </div>
+
       {/* TOP SECTION */}
-      <div className="text-center pt-8 pb-6 md:pt-10 md:pb-8">
+      <div className="text-center pt-20 pb-6 md:pt-24 md:pb-8">
         <p className="text-sm md:text-lg tracking-[0.28em] md:tracking-[0.35em] uppercase text-gray-300 font-semibold">
           For Us. By Us.
         </p>
       </div>
 
-      {/* VIDEO HERO */}
+      {/* VIDEO HERO – unchanged */}
       <div className="w-full max-w-full overflow-hidden mt-2 md:mt-4">
         <div className="w-full h-[34vh] sm:h-[42vh] md:h-[70vh] bg-black relative rounded-xl overflow-hidden">
           {!videoStarted ? (
@@ -87,18 +100,13 @@ export default function ProphecyPage() {
           We know what we survived.
         </p>
         <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mt-2 leading-relaxed">
-          We know what this country took from us.
+          We know what this country took.
         </p>
         <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mt-2 leading-relaxed">
-          And we know nobody is coming to save us.
+          Nobody is coming to save us.
         </p>
         <p className="text-2xl md:text-3xl font-bold text-green-400 mt-8">
           So we built something.
-        </p>
-        <p className="text-lg text-gray-400 mt-6">
-          Something disciplined.<br />
-          Something coordinated.<br />
-          Something built to last.
         </p>
       </div>
 
@@ -134,7 +142,7 @@ export default function ProphecyPage() {
           Peaceful. Lawful. Achievable.
         </p>
         <p className="text-xl md:text-2xl font-semibold text-green-400 mt-5">
-          With PHIERS, it becomes possible.
+          With PHIERS, it becomes real.
         </p>
         <p className="text-md text-gray-400 mt-2 italic">
           Say it again. Let it land.
@@ -142,6 +150,11 @@ export default function ProphecyPage() {
         <p className="text-2xl font-bold text-white mt-2">
           Power Held In Every Rep's Seat.
         </p>
+      </div>
+
+      {/* Breathing pause */}
+      <div className="py-20 text-center">
+        <p className="text-3xl md:text-5xl font-bold text-white">We survived.</p>
       </div>
 
       {/* SANKOFA */}
@@ -183,11 +196,6 @@ export default function ProphecyPage() {
         </div>
       </div>
 
-      {/* MICRO-THRESHOLD */}
-      <p className="text-center text-gray-400 text-sm md:text-base tracking-wide my-16 md:my-20">
-        WE KEEP BUILDING.
-      </p>
-
       {/* STRATEGIC RECONSTRUCTION */}
       <div className="max-w-5xl mx-auto px-6 mt-24 md:mt-32 text-center">
         <div className="mb-10 w-full max-w-3xl mx-auto">
@@ -227,9 +235,20 @@ export default function ProphecyPage() {
           We will build so effectively<br />
           the world is forced to reevaluate us.
         </p>
-        <p className="text-2xl md:text-3xl font-light text-green-400 mt-10 leading-snug">
-          We survived long enough to become dangerous again.
-        </p>
+      {/* Breathing pause */}
+      <div className="py-20 text-center">
+        <p className="text-3xl md:text-5xl font-bold text-white">Now the work begins.</p>
+      </div>
+      <div className="text-center mt-0 mb-12">
+        <Link href="/Prophecy/movement" className="inline-block bg-white/10 text-white border border-green-400/40 px-6 py-2 rounded-full text-sm hover:bg-white/20 transition">
+          Enter the Movement →
+        </Link>
+      </div>
+        <div className="text-center mt-4">
+          <Link href="/zoom" className="inline-block text-green-400 text-sm underline hover:text-green-300 transition">
+            → This is where you step in
+          </Link>
+        </div>
       </div>
 
       {/* 400 YEARS / GENESIS */}
@@ -271,7 +290,7 @@ export default function ProphecyPage() {
         </p>
       </section>
 
-      {/* WHY BLACK MEN – tightened, observational */}
+      {/* WHY BLACK MEN – observational */}
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
         <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
           Why Black men are centered here.
@@ -298,11 +317,9 @@ export default function ProphecyPage() {
         </p>
       </div>
 
-      {/* h-12 break before Forged Under Pressure */}
       <div className="h-12" />
 
       {/* PRESSURE FORGED */}
-      <div className="h-12" />
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
         <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
           Pressure did not only wound us. It trained us.
@@ -332,10 +349,10 @@ export default function ProphecyPage() {
           />
         </section>
 
-      {/* MICRO-THRESHOLD */}
-      <p className="text-center text-gray-400 text-sm md:text-base tracking-wide my-16 md:my-20">
-        THIS IS WHERE STRUCTURE BEGINS.
-      </p>
+        {/* Micro-threshold */}
+        <p className="text-center text-green-400/70 text-sm md:text-base tracking-wide my-16 md:my-20">
+          THIS IS WHERE STRUCTURE BEGINS.
+        </p>
       </div>
 
       {/* HEALING IS STRATEGIC */}
@@ -354,33 +371,20 @@ export default function ProphecyPage() {
           Disciplined men can coordinate.<br />
           Clear men can carry weight without collapsing under it.
         </p>
-        <p className="text-xl md:text-2xl font-semibold text-white mt-8 text-left">
-          Healing is not softness. It is preparation.
+        <p className="text-center text-gray-300 italic mt-12">
+          Silence has been the tax on survival long enough.
         </p>
+      </div>
+
+      {/* Breathing pause */}
+      <div className="py-20 text-center">
+        <p className="text-3xl md:text-5xl font-bold text-white">Now the work begins.</p>
       </div>
 
       {/* PHIERS ACRONYM BREAK */}
       <PhiersAcronymBreak />
 
-      {/* PRACTICAL REALISM SECTION */}
-      <section className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
-        <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl px-6 py-10 md:px-8 md:py-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">What does this mean in practice?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-gray-300 text-base">
-            <div>• Local organization</div>
-            <div>• Economic coordination</div>
-            <div>• Civic pressure</div>
-            <div>• Mentorship</div>
-            <div>• Shared infrastructure</div>
-            <div>• Mutual accountability</div>
-            <div>• Political literacy</div>
-            <div>• Long‑term institution building</div>
-          </div>
-          <p className="text-gray-400 mt-6 italic">Not theory. Not branding. A rebuild you can touch.</p>
-        </div>
-      </section>
-
-      {/* WHY PHIERS – reduced repetition */}
+      {/* WHY PHIERS */}
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
         <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
           Why PHIERS
@@ -412,42 +416,52 @@ export default function ProphecyPage() {
         <p className="text-2xl font-bold text-white mt-6">Power Held In Every Rep's Seat.</p>
       </div>
 
-      {/* MICRO-THRESHOLD */}
-      <p className="text-center text-gray-400 text-sm md:text-base tracking-wide my-16 md:my-20">
-        ORGANIZED MEN CHANGE OUTCOMES.
-      </p>
+      {/* QUIET FUNCTIONAL SECTION – contrast to mythic */}
+      <section className="max-w-3xl mx-auto px-6 my-12">
+        <div className="border-l-2 border-green-400/30 pl-6">
+          <p className="text-gray-400 text-sm uppercase tracking-wider mb-2">What this means for you, tomorrow</p>
+          <p className="text-gray-300 text-base leading-relaxed">
+            You open the petition. You invite two other men in your district. You share the Zoom link. That’s it. No pledge. No fee. Just coordination.
+          </p>
+        </div>
+      </section>
+
+      {/* PRACTICAL REALISM */}
+      <section className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
+        <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl px-6 py-10 md:px-8 md:py-12">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">What does this mean in practice?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-gray-300 text-base">
+            <div>• Local organization</div>
+            <div>• Economic coordination</div>
+            <div>• Civic pressure</div>
+            <div>• Mentorship</div>
+            <div>• Shared infrastructure</div>
+            <div>• Mutual accountability</div>
+            <div>• Political literacy</div>
+            <div>• Long‑term institution building</div>
+          </div>
+          <p className="text-gray-400 mt-6 italic">Not theory. Not branding. A rebuild you can touch.</p>
+        </div>
+      </section>
 
       {/* MIDPOINT CTA */}
       <section className="max-w-3xl mx-auto px-6 mt-20 md:mt-24 text-center">
         <div className="bg-[#0b0b0b] border border-gray-800 rounded-2xl px-6 py-10 md:px-10 md:py-12">
           <p className="text-xl md:text-2xl text-gray-200 font-semibold">
-            If this already resonates, step into the room now.
-          </p>
-          <p className="text-gray-400 mt-4">
-            You can keep reading later. But you don't have to wait to enter.
+            If you’ve been waiting for structure, this is the threshold. You don’t have to wait to finish reading.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/zoom"
-              className="inline-block bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition"
-            >
+            <Link href="/zoom" className="inline-block bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition">
               Join the Zoom
             </Link>
-            <Link
-              href="/Prophecy/movement"
-              className="inline-block bg-transparent border border-gray-600 text-white font-bold py-3 px-8 rounded-full hover:border-gray-400 transition"
-            >
+            <Link href="/Prophecy/movement" className="inline-block bg-transparent border border-gray-600 text-white font-bold py-3 px-8 rounded-full hover:border-gray-400 transition">
               Enter the Movement
             </Link>
           </div>
         </div>
       </section>
 
-      {/* h-12 break before Why This Is Not Theory */}
-      <div className="h-12" />
-
       {/* FOUNDER CREDIBILITY ACCORDION */}
-      <div className="h-12" />
       <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28">
         <h2 className="text-3xl md:text-4xl font-bold mb-2">WHY THIS IS NOT THEORY</h2>
         <p className="text-gray-400 mb-4 italic">
@@ -480,11 +494,7 @@ export default function ProphecyPage() {
         </section>
       </div>
 
-      {/* h-12 break before Record Accordion */}
-      <div className="h-12" />
-
-      {/* RECORD ACCORDION */}
-      <div className="h-12" />
+      {/* RECORD ACCORDION – shortened, rhythmic */}
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20">
         <Accordion
           triggerLabel="THE RECORD THEY THOUGHT TIME WOULD ERASE"
@@ -493,30 +503,14 @@ export default function ProphecyPage() {
         >
           <div className="space-y-4 text-gray-300 leading-relaxed pt-4 pb-2">
             <p>We know what was weakened, stripped, distorted, criminalized, scapegoated, and forgotten.</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Voting protections weakened</li><li>Districts redrawn</li><li>Economic abandonment</li><li>Media scapegoating</li>
-              <li>Family destabilization</li><li>Criminalization patterns</li><li>Political disposability</li><li>Erasure of contribution</li>
-            </ul>
-            <div className="mt-6 pt-4 border-t border-gray-700">
-              <p className="text-gray-300 font-semibold mb-3">No other group in America had to survive:</p>
-              <ul className="list-disc pl-6 space-y-3">
-                <li>Black Codes (1865–1866)</li>
-                <li>Convict leasing (post‑13th Amendment – 1941)</li>
-                <li>Jim Crow laws (1877–1960s)</li>
-                <li>Redlining (1930s–1968)</li>
-                <li>Sundown towns (late 19th century – present)</li>
-                <li>COINTELPRO (1956–1971)</li>
-                <li>Assassinations of leaders (e.g., Medgar Evers, Malcolm X, MLK, Fred Hampton)</li>
-                <li>Crack epidemic (1980s) – CIA‑linked allegations</li>
-                <li>Mass incarceration (1980s–present)</li>
-                <li>School segregation (de jure then de facto)</li>
-                <li>Destruction of 60+ Black towns (late 19th – early 20th century)</li>
-                <li>GI Bill exclusion (1944–1946)</li>
-                <li>FHA loan denial (1930s–1960s)</li>
-                <li>Police lynchings (post‑Reconstruction – present)</li>
-                <li>Media demonization (19th century – present)</li>
-                <li>Land theft from Black farmers (20th century)</li>
-              </ul>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-gray-300 text-sm mt-2">
+              <div>Redlining.</div><div>Convict leasing.</div>
+              <div>Jim Crow.</div><div>COINTELPRO.</div>
+              <div>Mass incarceration.</div><div>VRA gutted.</div>
+              <div>Economic abandonment.</div><div>School segregation.</div>
+              <div>Media scapegoating.</div><div>Land theft.</div>
+              <div>Family destabilization.</div><div>Political disposability.</div>
+              <div>Erasure of contribution.</div><div>Still here.</div>
             </div>
             <p className="mt-3 italic text-gray-400">We know the record. We are not trapped in it.</p>
           </div>
@@ -532,16 +526,7 @@ export default function ProphecyPage() {
         />
       </section>
 
-      {/* h-12 break before Third Reconstruction */}
-      <div className="h-12" />
-
-      {/* THIRD RECONSTRUCTION BRIDGE */}
-      {/* MICRO-THRESHOLD */}
-      <p className="text-center text-gray-400 text-sm md:text-base tracking-wide my-16 md:my-20">
-        THE RECORD IS NOT GONE.
-      </p>
-
-      <div className="h-12" />
+      {/* THIRD RECONSTRUCTION */}
       <div className="max-w-4xl mx-auto px-6 mt-24 md:mt-32 text-center">
         <p className="uppercase tracking-[0.35em] text-gray-500 text-sm mb-6">THE THIRD RECONSTRUCTION</p>
         <h2 className="text-[clamp(2rem,7vw,3.4rem)] font-bold leading-[1.06] text-balance">
@@ -549,36 +534,21 @@ export default function ProphecyPage() {
           But the work is still standing.
         </h2>
         <div className="mt-10 space-y-6 text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-          <p>
-            We built rail lines.<br />
-            Roads.<br />
-            Bridges.<br />
-            Ports.<br />
-            Cities.
-          </p>
-          <p>
-            We kept America running while being told we were worth less than everyone else.
-          </p>
+          <p>We built rail lines. Roads. Bridges. Ports. Cities.</p>
+          <p>We kept America running while being told we were worth less than everyone else.</p>
           <p className="text-white font-semibold">But buried is not the same thing as gone.</p>
-          <p>
-            Now the country is entering another period of instability.<br />
+          <p>Now the country is entering another period of instability.<br />
             AI is replacing jobs. Institutions are losing trust.<br />
-            Communities are fragmenting.
-          </p>
+            Communities are fragmenting.</p>
           <p>And for the first time in a long time, millions of people are starting to realize:</p>
-          <p className="text-xl md:text-2xl text-green-400 font-semibold">
-            survival without structure is not enough.
-          </p>
+          <p className="text-xl md:text-2xl text-green-400 font-semibold">survival without structure is not enough.</p>
           <p>That is why PHIERS exists.</p>
         </div>
-        <div className="mt-8 inline-block text-left">
+        <p className="text-gray-300 text-lg font-semibold mb-4 mt-8">PHIERS is built around seven structural commitments:</p>
+        <div className="mt-4 inline-block text-left">
           <ul className="list-disc pl-6 space-y-2 text-gray-300">
-            <li>coordination</li>
-            <li>political leverage</li>
-            <li>community stabilization</li>
-            <li>brotherhood</li>
-            <li>economic alignment</li>
-            <li>mutual accountability</li>
+            <li>coordination</li><li>political leverage</li><li>community stabilization</li>
+            <li>brotherhood</li><li>economic alignment</li><li>mutual accountability</li>
             <li>long-term reconstruction</li>
           </ul>
         </div>
@@ -589,7 +559,7 @@ export default function ProphecyPage() {
           </p>
           <p>Not through slogans. Through results.</p>
           <p className="text-2xl md:text-3xl font-light text-green-400 pt-2">
-            The Third Reconstruction begins with organized men.
+            The Third Reconstruction begins with FBA men.
           </p>
         </div>
       </div>
@@ -603,7 +573,7 @@ export default function ProphecyPage() {
         />
       </section>
 
-      {/* THRESHOLD with inheritance line moved here */}
+      {/* THRESHOLD with inheritance line */}
       <div className="h-20" />
       <div className="max-w-2xl mx-auto px-6 mt-28 md:mt-36 text-center">
         <p className="text-[clamp(1.5rem,5vw,2rem)] text-gray-200 font-light leading-[1.25] mb-8">
@@ -611,40 +581,26 @@ export default function ProphecyPage() {
           What comes next is the forge.
         </p>
         <div className="gold-divider mb-8" />
-        <p className="uppercase tracking-[0.28em] text-gray-500 text-xs md:text-sm">
-          FROM INHERITANCE TO FORGE
-        </p>
+        <p className="uppercase tracking-[0.28em] text-gray-500 text-xs md:text-sm">FROM INHERITANCE TO FORGE</p>
         <p className="text-base md:text-lg text-gray-400 leading-relaxed mt-6 max-w-xl mx-auto">
           Not branding. Not mythology.<br />
           The pressure that produced the structure.
         </p>
       </div>
 
-      {/* MICRO-THRESHOLD */}
-      <p className="text-center text-gray-400 text-sm md:text-base tracking-wide my-16 md:my-20">
-        THE FORGE AWAITS.
-      </p>
-
-      {/* ZOOM CTA – single gold divider now */}
+      {/* ZOOM CTA */}
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20 text-center">
         <div className="gold-divider" />
         <h2 className="text-2xl md:text-3xl font-bold mt-8">Join the Zoom Call</h2>
       </div>
 
-      {/* PRIMARY CTA */}
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20 text-center">
         <p className="text-xl text-gray-200 mb-2">If this makes sense to you, step closer.</p>
-        <a
-          href="/zoom"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold text-base md:text-lg py-3 px-8 rounded-full transition shadow-md whitespace-nowrap mt-4"
-        >
+        <a href="/zoom" target="_blank" rel="noopener noreferrer" className="inline-block w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold text-base md:text-lg py-3 px-8 rounded-full transition shadow-md whitespace-nowrap mt-4">
           JOIN THE FOUNDING 1500
         </a>
       </div>
 
-      {/* SECONDARY CTA – MOVEMENT */}
       <div className="max-w-3xl mx-auto px-6 mt-28 md:mt-36 text-center">
         <div className="bg-[#0b0b0b] border border-gray-800 rounded-2xl px-6 py-12 md:px-12 md:py-16">
           <p className="text-xl md:text-2xl text-gray-300 font-semibold">
@@ -653,16 +609,12 @@ export default function ProphecyPage() {
             enter the Movement.
           </p>
           <p className="text-md text-gray-400 mt-6">The Movement is the build.</p>
-          <Link
-            href="/Prophecy/movement"
-            className="inline-block bg-white text-black font-bold text-xl md:text-2xl py-4 px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap mt-8 mx-auto"
-          >
+          <Link href="/Prophecy/movement" className="inline-block bg-white text-black font-bold text-xl md:text-2xl py-4 px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap mt-8 mx-auto">
             → Enter the Movement
           </Link>
         </div>
       </div>
 
-      {/* TERTIARY CTA – PETITION */}
       <div className="max-w-3xl mx-auto px-6 mt-20 mb-20 md:mb-24 text-center">
         <div className="gold-divider mb-8" />
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Add your voice to the record.</h2>
@@ -670,33 +622,22 @@ export default function ProphecyPage() {
           The petition and survey are the foundation of our civic leverage.
           Every signature and response builds the case for accountability.
         </p>
-        <Link
-          href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred"
-          className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold text-lg md:text-xl py-3.5 px-8 rounded-full transition shadow-md whitespace-nowrap"
-        >
+        <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold text-lg md:text-xl py-3.5 px-8 rounded-full transition shadow-md whitespace-nowrap">
           Sign the Petition & Take the Survey →
         </Link>
-        <p className="text-gray-500 text-sm mt-4">
-          Professionally presented. Built to be counted. Your district needs your voice.
-        </p>
+        <p className="text-gray-500 text-sm mt-4">Professionally presented. Built to be counted. Your district needs your voice.</p>
         <div className="gold-divider mt-8" />
       </div>
 
-      {/* FINAL LINE */}
       <div className="text-center mt-8 mb-16 md:mb-20 px-6">
         <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
-          If you're serious – step forward.
+          Not to look backward. To prepare for what comes next.
         </p>
       </div>
 
-      {/* FOOTER */}
       <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
-        <p>Built by Black men. For everyone this country has failed to protect.</p>
-        <p className="mt-2">
-          <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
-            PHIERS.org →
-          </a>
-        </p>
+        <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
+        <p className="mt-2"><a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">PHIERS.org →</a></p>
       </footer>
     </div>
   );
