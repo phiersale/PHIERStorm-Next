@@ -114,7 +114,7 @@ export default function DonatePage() {
                   <Image src="/images/venmo_qr.png" alt="Venmo QR Code" width={200} height={200} className="max-w-[200px] w-full h-auto" />
                 </div>
                 <p className="text-white font-bold">Venmo</p>
-                <p className="text-gray-400 text-sm">@Will4PHIERS</p>
+                <p className="text-gray-400 text-sm">@PHIERd_Up</p>
               </div>
 
               {/* PayPal */}
