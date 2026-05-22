@@ -165,10 +165,6 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
     window.scrollTo({ top: 0, behavior: prefersReducedMotionRef.current ? 'auto' : 'smooth' })
   }, [])
 
-    const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: prefersReducedMotionRef.current ? 'auto' : 'smooth' })
-  }, [])
-
   const dismissSituationButton = () => {
     setShowSituationButton(false)
     localStorage.setItem('situation-button-dismissed', 'true')
