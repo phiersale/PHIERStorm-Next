@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
+import { useState } from 'react'
 import EarlyStageModal from '@/components/EarlyStageModal'
 
 export default function JoinPage() {
@@ -160,6 +161,7 @@ export default function JoinPage() {
       </div>
       {showEarlyModal && (
         <EarlyStageModal
+          isOpen={showEarlyModal}
           onContinue={handleModalContinue}
           onLater={handleModalLater}
         />

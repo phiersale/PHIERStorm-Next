@@ -1,5 +1,5 @@
 // FILE: components/EarlyStageModal.tsx
-// VERSION: 2.0 – Cinematic threshold modal (inline styles, reliable)
+// VERSION: 2.0 – Early‑stage legitimacy modal with full messaging
 
 'use client';
 
@@ -55,7 +55,6 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
           animation: 'fadeInUp 0.3s ease-out',
         }}
       >
-        {/* subtle top line */}
         <div
           style={{
             width: '64px',
@@ -74,7 +73,7 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
             marginBottom: '0.75rem',
           }}
         >
-          Early Access
+          You're Early
         </p>
 
         <h2
@@ -83,35 +82,38 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
             fontWeight: 'bold',
             color: 'white',
             lineHeight: '1.2',
-            marginBottom: '1.25rem',
+            marginBottom: '1rem',
           }}
         >
-          PHIERS is still being built.
+          Before visibility,
+          <br />
+          there is foundation.
         </h2>
 
-        <p
+        <div
           style={{
             color: '#9ca3af',
             fontSize: '0.9rem',
             lineHeight: '1.5',
             marginBottom: '1.25rem',
+            textAlign: 'left',
           }}
         >
-          You're entering during the early construction phase.
-          Some systems are unfinished.
-          Some pages will evolve over time.
-        </p>
-
-        <p
-          style={{
-            color: '#6b7280',
-            fontSize: '0.85rem',
-            fontStyle: 'italic',
-            marginBottom: '2rem',
-          }}
-        >
-          But the structure is real.
-        </p>
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong style={{ color: '#3ddc84' }}>You're seeing PHIERS before national amplification.</strong>
+          </p>
+          <p style={{ marginBottom: '0.75rem' }}>
+            Most people here found this through direct sharing – not national visibility. 
+            Early movements always look smaller than they are right before amplification hits.
+          </p>
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong style={{ color: '#3ddc84' }}>PHIERS doesn't need millions.</strong><br />
+            It needs structure built early.
+          </p>
+          <p style={{ color: '#6b7280', fontStyle: 'italic' }}>
+            You're seeing the foundation stage.
+          </p>
+        </div>
 
         <div
           style={{
@@ -120,6 +122,7 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
             gap: '0.75rem',
             justifyContent: 'center',
             flexWrap: 'wrap',
+            marginTop: '1.5rem',
           }}
         >
           <button
@@ -175,5 +178,3 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
     document.body
   );
 }
-
-// FILE: components/EarlyStageModal.tsx
