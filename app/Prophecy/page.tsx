@@ -237,7 +237,7 @@ export default function ProphecyPage() {
         </p>
       {/* Breathing pause */}
       <div className="py-20 text-center">
-        <p className="text-3xl md:text-5xl font-bold text-white">Now the work begins.</p>
+        <p className="text-3xl md:text-5xl font-bold text-white">This is where we build.</p>
       </div>
       <div className="text-center mt-0 mb-12">
         <Link href="/Prophecy/movement" className="inline-block bg-white/10 text-white border border-green-400/40 px-6 py-2 rounded-full text-sm hover:bg-white/20 transition">

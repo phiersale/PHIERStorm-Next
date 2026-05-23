@@ -81,7 +81,7 @@ function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: ()
             style={{
               opacity: 0,
               color: '#3ddc84',
-              animation: "fadeIn 3.5s ease forwards"
+              animation: "fadeIn 0.5s ease 4.5s forwards"
             }}
           onMouseEnter={(e) => e.currentTarget.style.color = '#2ab568'}
           onMouseLeave={(e) => e.currentTarget.style.color = '#3ddc84'}

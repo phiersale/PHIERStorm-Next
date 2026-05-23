@@ -878,4 +878,22 @@ img.phiers-wide {
   text-decoration: none;
 }
 
+/* Fade on scroll – cinematic, opt‑in only */
+.fade-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(4px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease,
+    filter 0.9s ease;
+  will-change: opacity, transform, filter;
+}
+
+.fade-on-scroll.opacity-100 {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
 /* FILE: app/globals.css */

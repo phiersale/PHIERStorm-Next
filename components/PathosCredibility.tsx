@@ -88,7 +88,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
               const container = e.currentTarget;
               const iframe = document.createElement('iframe');
               iframe.src = 'https://www.youtube.com/embed/KLu7USN_dao?autoplay=1';
-              iframe.title = 'Pathos Communications explains why they represent PHIERS';
+              iframe.title = 'Pathos Communications explains why they chose to represent PHIERS';
               iframe.className = 'absolute top-0 left-0 w-full h-full';
               iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
               iframe.allowFullscreen = true;
@@ -117,7 +117,10 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           <p className="text-gray-300 text-center text-xs mt-3">
             Pathos Communications — a global research and PR agency listed on the London Stock Exchange — conducted hours of interviews with Will Price and publicly explained on video why they chose to represent PHIERS.
           </p>
-        </div> 
+        </div>
+        <p className="text-center text-gray-400 text-xs mt-2">
+          Recorded: February 3, 2026
+        </p> 
 
         {/* Why this holds up */}
         <div className="mt-2 mb-8 text-center max-w-2xl mx-auto">
@@ -201,6 +204,55 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             </p>
           </div>
         </div>
+
+        {/* DotCom Magazine Interview – click‑to‑play thumbnail */}
+        <div className="mt-20">
+          <h2 className="text-center text-xl md:text-2xl font-semibold text-white mb-4">
+            DotCom Magazine Interview
+          </h2>
+
+          <p className="text-center text-gray-400 text-sm mb-6">
+            Will Price interviewed by Andy Jacob — DotCom Magazine Entrepreneur Spotlight
+          </p>
+
+          <div className="text-center">
+            <div
+              className="relative w-full max-w-lg mx-auto mb-2 cursor-pointer group rounded-xl shadow-md overflow-hidden"
+              style={{ paddingBottom: '56.25%' }}
+              onClick={(e) => {
+                const container = e.currentTarget;
+                const iframe = document.createElement('iframe');
+                iframe.src = 'https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1';
+                iframe.title = 'DotCom Magazine Interview: Will Price on PHIERS';
+                iframe.className = 'absolute top-0 left-0 w-full h-full';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.allowFullscreen = true;
+                container.innerHTML = '';
+                container.appendChild(iframe);
+              }}
+            >
+              <img
+                src="https://img.youtube.com/vi/pUdlWukaLLY/maxresdefault.jpg"
+                alt="Play video: DotCom Magazine Interview with Will Price"
+                className="absolute top-0 left-0 w-full h-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://img.youtube.com/vi/pUdlWukaLLY/hqdefault.jpg"
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition">
+                <div className="w-14 h-14 rounded-full bg-black/70 flex items-center justify-center border-2 border-white/60 group-hover:scale-110 transition shadow-lg">
+                  <span className="text-white text-2xl ml-1">▶</span>
+                </div>
+              </div>
+            </div>
+            <p className="text-center text-gray-400 text-xs mt-3">
+              Recorded: July 2, 2022
+            </p>
+          </div>
+        </div>
+
+        {/* Spacer above Built for Everyone */}
+        <div className="h-32"></div>
 
         {/* SECTION: Built for Everyone */}
         <div className="mb-8">
