@@ -10,12 +10,36 @@ import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
 import JumpToFooter from '@/components/JumpToFooter'
+import EarlyStageModal from '@/components/EarlyStageModal'
 
 export default function HomepageTeethPage() {
   const [activeRing, setActiveRing] = useState<number | null>(null)
   const [ringModalOpen, setRingModalOpen] = useState(false)
   const [selectedRingIndex, setSelectedRingIndex] = useState<number | null>(null)
   const [chenowethModalOpen, setChenowethModalOpen] = useState(false)
+  const [showEarlyModal, setShowEarlyModal] = useState(false)
+
+  const handlePetitionClick = () => {
+    const hasSeen = localStorage.getItem('phiers_early_modal_seen');
+    const sessionSeen = sessionStorage.getItem('phiers_modal_session');
+    if (hasSeen || sessionSeen) {
+      window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+    } else {
+      setShowEarlyModal(true);
+    }
+  };
+
+  const handleModalContinue = () => {
+    setShowEarlyModal(false);
+    localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
+    sessionStorage.setItem('phiers_modal_session', 'true');
+    window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+  };
+
+  const handleModalLater = () => {
+    setShowEarlyModal(false);
+    sessionStorage.setItem('phiers_modal_session', 'true');
+  };
 
   const ringsData = [
     { color: '#e63946', title: '🔥 RING 0 — Stop the War. Right Now.', body: 'There is <strong>no part of your life that doesn\'t run on oil.</strong> Your food, your medicine, your hospital, your house — all of it. The Strait of Hormuz carries 30% of the world\'s seaborne oil. Close it and inflation doesn\'t tick up — it explodes across every supply chain simultaneously.<br><br><strong>Article 25 of the UN Charter</strong> — rules America wrote — prohibits exactly this. It gives Iran a legal off-ramp. It gives Congress a spine. It gives every American — left, right, MAGA — grounds to say: not in our name, not without a vote.', urgent: true },
@@ -219,7 +243,7 @@ export default function HomepageTeethPage() {
           <p className="font-condensed font-bold text-center text-white text-base mt-2">And once it exists, they can't ignore it.</p>
           <p className="text-sm text-gray-500 text-center mt-3">When enough constituents organize in a district, elected officials have to respond. Every time.</p>
           <p className="font-condensed font-bold text-center text-white text-base mt-3">This isn't theory. It's pressure applied in the one place they can't ignore.</p>
-          <div className="text-center mt-6"><Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="secondary">✍ Add Your Name →</Button><p className="text-xs text-gray-500 mt-2">It takes less than a minute.</p></div>
+          <div className="text-center mt-6"><button onClick={handlePetitionClick} className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition">✍ Add Your Name →</button><p className="text-xs text-gray-500 mt-2">It takes less than a minute.</p></div>
         </section>
 
         <hr className="border-green/20" />
@@ -244,7 +268,7 @@ export default function HomepageTeethPage() {
             <p className="text-body text-base mb-2">The only thing missing is enough organized people to make that unavoidable.</p>
             <p className="font-condensed font-bold text-green text-base mb-4">That's what your name does.</p>
             <p className="text-sm text-gray-500 text-center mb-3">This is how we make it impossible for them not to respond.</p>
-            <div className="text-center my-4"><Button href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" variant="secondary">✍ Add Your Name — Help Make Congress Do Its Job</Button></div>
+            <div className="text-center my-4"><button onClick={handlePetitionClick} className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition">✍ Add Your Name — Help Make Congress Do Its Job</button></div>
             <p className="font-condensed font-bold text-white text-base mb-2">Step one: Make Congress do its job.</p>
             <p className="font-condensed text-gray-500 text-sm">This is how action starts — right now.</p>
           </div>
@@ -307,6 +331,12 @@ export default function HomepageTeethPage() {
         .video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
       `}</style>
 
+      {showEarlyModal && (
+        <EarlyStageModal
+          onContinue={handleModalContinue}
+          onLater={handleModalLater}
+        />
+      )}
     </>
   )
 }

@@ -8,9 +8,32 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Accordion from './components/Accordion';
 import PhiersAcronymBreak from '@/components/PhiersAcronymBreak';
+import EarlyStageModal from '@/components/EarlyStageModal';
 
 export default function ProphecyPage() {
   const [videoStarted, setVideoStarted] = useState(false);
+  const [showEarlyModal, setShowEarlyModal] = useState(false);
+    const handlePetitionClick = () => {
+    const hasSeen = localStorage.getItem('phiers_early_modal_seen');
+    const sessionSeen = sessionStorage.getItem('phiers_modal_session');
+    if (hasSeen || sessionSeen) {
+      window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+    } else {
+      setShowEarlyModal(true);
+    }
+  };
+
+  const handleModalContinue = () => {
+    setShowEarlyModal(false);
+    localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
+    sessionStorage.setItem('phiers_modal_session', 'true');
+    window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+  };
+
+  const handleModalLater = () => {
+    setShowEarlyModal(false);
+    sessionStorage.setItem('phiers_modal_session', 'true');
+  };
 
   return (
     <div className="bg-black text-white">
@@ -622,9 +645,9 @@ export default function ProphecyPage() {
           The petition and survey are the foundation of our civic leverage.
           Every signature and response builds the case for accountability.
         </p>
-        <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold text-lg md:text-xl py-3.5 px-8 rounded-full transition shadow-md whitespace-nowrap">
+        <button onClick={handlePetitionClick} className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold text-lg md:text-xl py-3.5 px-8 rounded-full transition shadow-md whitespace-nowrap">
           Sign the Petition & Take the Survey →
-        </Link>
+        </button>
         <p className="text-gray-500 text-sm mt-4">Professionally presented. Built to be counted. Your district needs your voice.</p>
         <div className="gold-divider mt-8" />
       </div>
@@ -639,6 +662,12 @@ export default function ProphecyPage() {
         <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
         <p className="mt-2"><a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">PHIERS.org →</a></p>
       </footer>
+      {showEarlyModal && (
+        <EarlyStageModal
+          onContinue={handleModalContinue}
+          onLater={handleModalLater}
+        />
+      )}
     </div>
   );
 }

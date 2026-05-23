@@ -294,6 +294,9 @@ export default function PreHomepage({
 
       // Other image slides (Douglass, etc.)
       let widthClass = 'w-[57%] md:w-[47%]'
+      if (index === 6) {
+        widthClass = 'w-[85%] md:w-[70%]'
+      }
       return (
         <div className="w-full flex justify-center">
           <div onClick={handleImageClick} className={isDouglassSlide ? 'cursor-pointer w-full mb-8' : ''}>

@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import EarlyStageModal from '@/components/EarlyStageModal'
 
 type Props = {
   onBackToSlides?: () => void
@@ -13,6 +14,7 @@ type Props = {
 
 export default function PathosCredibility({ onBackToSlides }: Props) {
   const [showTopButtons, setShowTopButtons] = useState(true)
+  const [showEarlyModal, setShowEarlyModal] = useState(false);
   const lastScrollY = useRef(0)
 
   useEffect(() => {
@@ -31,25 +33,53 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+    const handlePetitionClick = () => {
+    console.log('handlePetitionClick called');
+    const hasSeen = localStorage.getItem('phiers_early_modal_seen');
+    const sessionSeen = sessionStorage.getItem('phiers_modal_session');
+    console.log('hasSeen:', hasSeen, 'sessionSeen:', sessionSeen);
+    if (hasSeen || sessionSeen) {
+      console.log('Redirecting to petition');
+      window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+    } else {
+      console.log('Setting showEarlyModal to true');
+      setShowEarlyModal(true);
+    }
+  };
+
+  const handleModalContinue = () => {
+    console.log('Modal Continue clicked');
+    setShowEarlyModal(false);
+    localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
+    sessionStorage.setItem('phiers_modal_session', 'true');
+    window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+  };
+
+  const handleModalLater = () => {
+    console.log('Modal Later clicked');
+    setShowEarlyModal(false);
+    sessionStorage.setItem('phiers_modal_session', 'true');
+  };
+
   return (
     <>
       {/* Top buttons container – fades out on scroll down */}
       <div
-        className={`fixed top-2 left-0 right-0 z-50 flex justify-between px-4 transition-opacity duration-300 ${
-          showTopButtons ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`fixed top-2 left-0 right-0 z-50 flex justify-between px-4 transition-opacity duration-300 pointer-events-none ${
+          showTopButtons ? 'opacity-100' : 'opacity-0'
         }`}
       >
         {/* Back to Slides button - left side */}
         {onBackToSlides && (
           <button
             onClick={onBackToSlides}
-            className="text-gray-500 text-sm underline transition hover:text-gray-300"
+            className="pointer-events-auto text-gray-500 text-sm underline transition hover:text-gray-300"
             style={{ opacity: 0.6 }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
           >
             ← Back
-          </button>
+          </button> 
         )}
 
         {/* Skip button - right side */}
@@ -58,7 +88,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             const buttons = document.getElementById('credibility-buttons');
             if (buttons) buttons.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="text-gray-500 text-sm underline transition hover:text-gray-300"
+          className="pointer-events-auto text-gray-500 text-sm underline transition hover:text-gray-300"
           style={{ opacity: 0.6 }}
           onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
           onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -267,16 +297,23 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
       </motion.div>
 
       {/* Petition Button – reduced top spacing */}
-      <div className="text-center pt-1 pb-6">
-        <Link
-          href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred"
+      <div className="text-center pt-1 pb-6" id="credibility-buttons">
+        <button
+          onClick={handlePetitionClick}
           className="px-8 py-3 bg-green text-black font-bold rounded-lg shadow-md hover:bg-green-dim transition text-center text-base inline-block"
           style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
         >
           ✍ Continue to Petition
-        </Link>
+        </button>
       </div>
 
+      {showEarlyModal && (
+        <EarlyStageModal
+          isOpen={showEarlyModal}
+          onContinue={handleModalContinue}
+          onLater={handleModalLater}
+        />
+      )}
     </>
   )
 }

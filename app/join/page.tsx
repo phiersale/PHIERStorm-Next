@@ -5,8 +5,33 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
+import EarlyStageModal from '@/components/EarlyStageModal'
 
 export default function JoinPage() {
+  const [showEarlyModal, setShowEarlyModal] = useState(false)
+
+  const handlePetitionClick = () => {
+    const hasSeen = localStorage.getItem('phiers_early_modal_seen');
+    const sessionSeen = sessionStorage.getItem('phiers_modal_session');
+    if (hasSeen || sessionSeen) {
+      window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+    } else {
+      setShowEarlyModal(true);
+    }
+  };
+
+  const handleModalContinue = () => {
+    setShowEarlyModal(false);
+    localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
+    sessionStorage.setItem('phiers_modal_session', 'true');
+    window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+  };
+
+  const handleModalLater = () => {
+    setShowEarlyModal(false);
+    sessionStorage.setItem('phiers_modal_session', 'true');
+  };
+
   return (
     <>
       <Navigation />
@@ -103,7 +128,7 @@ export default function JoinPage() {
           <section className="bg-[#1a1a2e]/90 border-l-4 border-green-500 rounded-lg p-6 mb-12 text-center">
             <h2 className="text-2xl font-bold text-green-400 mb-4">✍️ Ready to Join?</h2>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">✏️ Sign Petition</Link>
+              <button onClick={handlePetitionClick} className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">✏️ Sign Petition</button>
               <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/survey" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">📋 Fill Survey</Link>
               <a href="https://phiersale.github.io/PHIERS-Concept/Donate.html" target="_blank" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition">💰 Support Mission</a>
             </div>
@@ -130,9 +155,17 @@ export default function JoinPage() {
 
       {/* Sticky CTA Bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-green-600/95 border-t-2 border-green-400 p-3 flex flex-wrap gap-2 justify-center z-50">
-        <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred" className="bg-white text-green-800 font-bold px-4 py-2 rounded-lg text-sm hover:bg-gray-100">✏️ SIGN PETITION</Link>
+        <button onClick={handlePetitionClick} className="bg-white text-green-800 font-bold px-4 py-2 rounded-lg text-sm hover:bg-gray-100">✏️ SIGN PETITION</button>
         <Link href="https://phiers-civic-engagem-vopm05.abacusai.app/survey" className="bg-white text-green-800 font-bold px-4 py-2 rounded-lg text-sm hover:bg-gray-100">📋 FILL SURVEY</Link>
       </div>
+      {showEarlyModal && (
+        <EarlyStageModal
+          onContinue={handleModalContinue}
+          onLater={handleModalLater}
+        />
+      )}
     </>
   )
 }
+
+// app/join/page.tsx
