@@ -1,5 +1,5 @@
 // FILE: components/EarlyStageModal.tsx
-// VERSION: 2.0 – Early‑stage legitimacy modal with full messaging
+// VERSION: 3.0 – Kitchen table / barbershop / union hall tone
 
 'use client';
 
@@ -73,7 +73,7 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
             marginBottom: '0.75rem',
           }}
         >
-          You're Early
+          Pull up a chair.
         </p>
 
         <h2
@@ -85,9 +85,9 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
             marginBottom: '1rem',
           }}
         >
-          Before visibility,
+          You're early.
           <br />
-          there is foundation.
+          That's a good thing.
         </h2>
 
         <div
@@ -100,18 +100,21 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
           }}
         >
           <p style={{ marginBottom: '0.75rem' }}>
-            <strong style={{ color: '#3ddc84' }}>You're seeing PHIERS before national amplification.</strong>
+            Most folks coming through right now found this place the same way you did — word of mouth, 
+            somebody they trust, a conversation that stuck.
           </p>
           <p style={{ marginBottom: '0.75rem' }}>
-            Most people here found this through direct sharing – not national visibility. 
-            Early movements always look smaller than they are right before amplification hits.
+            <strong style={{ color: '#3ddc84' }}>Movements don't start loud. They start in kitchens, barbershops, union halls, and group chats.</strong>
           </p>
           <p style={{ marginBottom: '0.75rem' }}>
-            <strong style={{ color: '#3ddc84' }}>PHIERS doesn't need millions.</strong><br />
-            It needs structure built early.
+            Right now, you're seeing the foundation. Not the crowd. The first few people who show up 
+            before everybody else figures out something is happening.
+          </p>
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong style={{ color: '#3ddc84' }}>PHIERS doesn't need millions. It needs people who see the door and walk through.</strong>
           </p>
           <p style={{ color: '#6b7280', fontStyle: 'italic' }}>
-            You're seeing the foundation stage.
+            That's what you're doing right now.
           </p>
         </div>
 
@@ -140,7 +143,7 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
             onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
           >
-            Continue
+            I'm in
           </button>
           <button
             onClick={onLater}
@@ -157,7 +160,7 @@ export default function EarlyStageModal({ isOpen, onContinue, onLater }: EarlySt
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
-            Maybe Later
+            Not yet
           </button>
         </div>
       </div>
