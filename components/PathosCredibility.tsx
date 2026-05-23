@@ -1,5 +1,5 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 7.11 - added step-by-step pressure summary box
+// VERSION: 9.0 – Clean page component, no outer overlay
 
 'use client'
 
@@ -20,8 +20,6 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-
-      // Hide top buttons when scrolling down past 100px, show when scrolling up or near top
       if (currentScrollY > 100 && (lastScrollY.current === undefined || currentScrollY > lastScrollY.current)) {
         setShowTopButtons(false)
       } else if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
@@ -33,7 +31,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-    const handlePetitionClick = () => {
+  const handlePetitionClick = () => {
     console.log('handlePetitionClick called');
     const hasSeen = localStorage.getItem('phiers_early_modal_seen');
     const sessionSeen = sessionStorage.getItem('phiers_modal_session');
@@ -69,7 +67,6 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           showTopButtons ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        {/* Back to Slides button - left side */}
         {onBackToSlides && (
           <button
             onClick={onBackToSlides}
@@ -79,10 +76,8 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
           >
             ← Back
-          </button> 
+          </button>
         )}
-
-        {/* Skip button - right side */}
         <button
           onClick={() => {
             const buttons = document.getElementById('credibility-buttons');
@@ -150,13 +145,11 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         </div>
         <p className="text-center text-gray-400 text-xs mt-2">
           Recorded: February 3, 2026
-        </p> 
+        </p>
 
         {/* Why this holds up */}
         <div className="mt-2 mb-8 text-center max-w-2xl mx-auto">
-          <h3 className="text-white text-lg font-semibold mb-2">
-            Why this holds up
-          </h3>
+          <h3 className="text-white text-lg font-semibold mb-2">Why this holds up</h3>
           <div className="text-gray-300 space-y-2 text-xs md:text-sm">
             <p>Real people. Verified. District‑level.</p>
             <p>Not one moment — patterns over time.</p>
@@ -183,15 +176,11 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           <h2 className="text-xl md:text-2xl font-bold text-green mb-3">What We Know Works</h2>
           <div className="mb-3">
             <p className="text-white font-bold text-sm md:text-base mb-1">Harvard Kennedy School</p>
-            <p className="text-gray-400 text-xs md:text-sm">
-              Research shows that when about 3.5% of people get involved, things change. Governments move. Congress listens.
-            </p>
+            <p className="text-gray-400 text-xs md:text-sm">Research shows that when about 3.5% of people get involved, things change. Governments move. Congress listens.</p>
           </div>
           <div className="mb-3">
             <p className="text-white font-bold text-sm md:text-base mb-1">Ralph Nader</p>
-            <p className="text-gray-400 text-xs md:text-sm">
-              Decades of work inside Congress point to a clear number: When 1,500 people in a district speak up together, a representative can’t ignore them.
-            </p>
+            <p className="text-gray-400 text-xs md:text-sm">Decades of work inside Congress point to a clear number: When 1,500 people in a district speak up together, a representative can’t ignore them.</p>
           </div>
           <p className="text-gray-300 text-sm italic mt-2">These aren’t theories.<br />They’re patterns that repeat.</p>
         </div>
@@ -199,52 +188,31 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         {/* SECTION: Independent Validation. Real‑World Confirmation. */}
         <div className="mb-8">
           <h2 className="text-xl md:text-2xl font-bold text-green mb-4">Independent Validation. Real‑World Confirmation.</h2>
-
           <div className="mb-3">
             <p className="text-white font-bold text-sm md:text-base mb-1">Pathos Communications</p>
-            <p className="text-gray-400 text-xs md:text-sm">
-              A global research and PR firm listed on the London Stock Exchange. After hours of interviews with Will Price, they publicly staked their professional reputation on PHIERS — on video.
-            </p>
+            <p className="text-gray-400 text-xs md:text-sm">A global research and PR firm listed on the London Stock Exchange. After hours of interviews with Will Price, they publicly staked their professional reputation on PHIERS — on video.</p>
           </div>
-
-          <p className="text-gray-300 text-sm mb-4">
-            Years later, the real world independently confirmed what the model predicted — without knowing PHIERS existed.
-          </p>
-
+          <p className="text-gray-300 text-sm mb-4">Years later, the real world independently confirmed what the model predicted — without knowing PHIERS existed.</p>
           <div className="mb-4 pl-3 border-l-2 border-green/30">
             <p className="text-white font-bold text-sm md:text-base mb-1">Mark Cuban's Cost Plus Drugs</p>
-            <p className="text-gray-400 text-xs md:text-sm">
-              In 2022, Cuban launched direct‑to‑consumer pharmaceuticals at cost, no middlemen. PHIERS documented this exact model in 2009. He built it thirteen years later. Seven million customers proved it works.
-            </p>
+            <p className="text-gray-400 text-xs md:text-sm">In 2022, Cuban launched direct‑to‑consumer pharmaceuticals at cost, no middlemen. PHIERS documented this exact model in 2009. He built it thirteen years later. Seven million customers proved it works.</p>
             <p className="text-green text-xs font-semibold mt-1">We didn't need his endorsement. He built our proof.</p>
           </div>
-
           <div className="mb-4 pl-3 border-l-2 border-green/30">
             <p className="text-white font-bold text-sm md:text-base mb-1">Telehealth Industry — Teladoc, Zocdoc, Zortt and others</p>
-            <p className="text-gray-400 text-xs md:text-sm">
-              The entire telehealth industry is built on the delivery model PHIERS designed over a decade before it went mainstream. The math was always there. The industry eventually caught up.
-            </p>
+            <p className="text-gray-400 text-xs md:text-sm">The entire telehealth industry is built on the delivery model PHIERS designed over a decade before it went mainstream. The math was always there. The industry eventually caught up.</p>
             <p className="text-green text-xs font-semibold mt-1">The model was right in 2009. The market confirmed it in 2020.</p>
           </div>
-
           <div className="mt-3 p-3 bg-green/5 border border-green/20 rounded-lg">
             <p className="text-white text-xs font-semibold">The pattern is clear:</p>
-            <p className="text-gray-400 text-xs mt-1">
-              Every major validation of the PHIERS model came from institutions and entrepreneurs who arrived at the same conclusions independently — without knowing PHIERS existed. That's not coincidence. That's what being a decade early looks like.
-            </p>
+            <p className="text-gray-400 text-xs mt-1">Every major validation of the PHIERS model came from institutions and entrepreneurs who arrived at the same conclusions independently — without knowing PHIERS existed. That's not coincidence. That's what being a decade early looks like.</p>
           </div>
         </div>
 
         {/* DotCom Magazine Interview – click‑to‑play thumbnail */}
         <div className="mt-20">
-          <h2 className="text-center text-xl md:text-2xl font-semibold text-white mb-4">
-            DotCom Magazine Interview
-          </h2>
-
-          <p className="text-center text-gray-400 text-sm mb-6">
-            Will Price interviewed by Andy Jacob — DotCom Magazine Entrepreneur Spotlight
-          </p>
-
+          <h2 className="text-center text-xl md:text-2xl font-semibold text-white mb-4">DotCom Magazine Interview</h2>
+          <p className="text-center text-gray-400 text-sm mb-6">Will Price interviewed by Andy Jacob — DotCom Magazine Entrepreneur Spotlight</p>
           <div className="text-center">
             <div
               className="relative w-full max-w-lg mx-auto mb-2 cursor-pointer group rounded-xl shadow-md overflow-hidden"
@@ -275,9 +243,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
                 </div>
               </div>
             </div>
-            <p className="text-center text-gray-400 text-xs mt-3">
-              Recorded: July 2, 2022
-            </p>
+            <p className="text-center text-gray-400 text-xs mt-3">Recorded: July 2, 2022</p>
           </div>
         </div>
 
@@ -296,7 +262,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         </div>
       </motion.div>
 
-      {/* Petition Button – reduced top spacing */}
+      {/* Petition Button */}
       <div className="text-center pt-1 pb-6" id="credibility-buttons">
         <button
           onClick={handlePetitionClick}
