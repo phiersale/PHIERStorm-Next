@@ -1,5 +1,5 @@
 // FILE: components/EarlyStageModal.tsx
-// VERSION: 4.0 – Hybrid copy: warm, grounded, human tone
+// VERSION: 4.1 – Final hybrid copy with tweaked opening line
 
 'use client';
 
@@ -116,7 +116,7 @@ export default function EarlyStageModal({
             textAlign: 'center',
           }}
         >
-          Most people arriving here found this through direct sharing — somebody they trust, a conversation that stuck.
+          Most people here learned about PHIERS through somebody they trust — a conversation that stuck.
         </p>
 
         <p
@@ -140,7 +140,7 @@ export default function EarlyStageModal({
             textAlign: 'center',
           }}
         >
-          They begin in kitchens, union halls, barbershops, group chats, and communities long before national visibility arrives.
+          They begin in kitchens, union halls, barbershops, group chats, and communities long before most people even hear about them.
         </p>
 
         <p
@@ -184,11 +184,23 @@ export default function EarlyStageModal({
             color: '#6b7280',
             fontSize: '0.7rem',
             textAlign: 'center',
-            marginBottom: '1.5rem',
+            marginBottom: '1.25rem',
             letterSpacing: '0.3px',
           }}
         >
           Across 435 congressional districts.
+        </p>
+
+        <p
+          style={{
+            color: '#9ca3af',
+            fontSize: '0.85rem',
+            lineHeight: '1.5',
+            textAlign: 'center',
+            marginBottom: '1.25rem',
+          }}
+        >
+          The work has already been reviewed by senior communications professionals and national media figures.
         </p>
 
         <p
@@ -291,3 +303,5 @@ export default function EarlyStageModal({
     document.body
   );
 }
+
+// FILE: components/EarlyStageModal.tsx
