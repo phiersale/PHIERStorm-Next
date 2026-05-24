@@ -240,7 +240,7 @@ export default function ProphecyPage() {
       </div>
       <div className="text-center mt-0 mb-12">
         <Link href="/Prophecy/movement" className="inline-block bg-white/10 text-white border border-green-400/40 px-6 py-2 rounded-full text-sm hover:bg-white/20 transition">
-            
+          Enter the Movement →
         </Link>
       </div>
       </div>
@@ -415,7 +415,7 @@ export default function ProphecyPage() {
         <div className="border-l-2 border-green-400/30 pl-6">
           <p className="text-gray-400 text-sm uppercase tracking-wider mb-2">What this means for you, tomorrow</p>
           <p className="text-gray-300 text-base leading-relaxed">
-            You open the petition. You invite two other men in your district. You share the Zoom link. That’s it. No pledge. No fee. Just coordination.
+            You explore the framework. You ask questions. You decide for yourself. That's it. No pledge. No pressure. Just clarity.
           </p>
         </div>
       </section>
@@ -588,7 +588,7 @@ export default function ProphecyPage() {
           </p>
           <p className="text-md text-gray-400 mt-6">The Movement is the build.</p>
           <Link href="/Prophecy/movement" className="inline-block bg-white text-black font-bold text-xl md:text-2xl py-4 px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap mt-8 mx-auto">
-            → Enter the Movement
+            → Join the Build
           </Link>
         </div>
       </div>
