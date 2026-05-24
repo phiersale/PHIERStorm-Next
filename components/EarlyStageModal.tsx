@@ -138,7 +138,7 @@ export default function EarlyStageModal({
             textAlign: 'center',
           }}
         >
-          Many people first hear about PHIERS through conversations with people they trust.
+          Most people first hear about PHIERS from someone they already know.
         </p>
 
         <p
@@ -150,19 +150,19 @@ export default function EarlyStageModal({
             textAlign: 'center',
           }}
         >
-          Most new civic ideas spread quietly at first — in kitchens, union halls, barbershops, group chats, and trusted circles long before most people even hear about them.
+          Most new ideas spread quietly at first — in kitchens, union halls, barbershops, group chats, and trusted circles long before most people even hear about them.
         </p>
 
         <p
           style={{
             color: '#e5e7eb',
-            fontSize: '1rem',
-            lineHeight: '1.6',
-            marginBottom: '1.5rem',
+            fontSize: '0.95rem',
+            lineHeight: '1.55',
+            marginBottom: '1.25rem',
             textAlign: 'center',
           }}
         >
-          This does not require millions.
+          Most movements people later call "massive" began with surprisingly small circles of trust.
         </p>
 
         <p
@@ -208,7 +208,7 @@ export default function EarlyStageModal({
               margin: 0,
             }}
           >
-            We're not asking for your signature. Just your curiosity.
+            We're not asking for commitment. Just curiosity.
           </p>
         </div>
 
@@ -226,17 +226,17 @@ export default function EarlyStageModal({
             style={{
               width: '100%',
               padding: '0.85rem 1.5rem',
-              backgroundColor: '#3ddc84',
-              color: '#081018',
-              fontWeight: 'bold',
+              backgroundColor: '#2a8f5a',
+              color: '#ffffff',
+              fontWeight: '600',
               fontSize: '1rem',
               border: 'none',
               borderRadius: '8px',
               cursor: 'pointer',
-              transition: 'opacity 0.2s',
+              transition: 'all 0.2s',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#3ddc84')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#2a8f5a')}
           >
             → Ask a question here
           </button>
