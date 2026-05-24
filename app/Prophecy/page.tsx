@@ -8,32 +8,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Accordion from './components/Accordion';
 import PhiersAcronymBreak from '@/components/PhiersAcronymBreak';
-import EarlyStageModal from '@/components/EarlyStageModal';
-
 export default function ProphecyPage() {
   const [videoStarted, setVideoStarted] = useState(false);
-  const [showEarlyModal, setShowEarlyModal] = useState(false);
-    const handlePetitionClick = () => {
-    const hasSeen = localStorage.getItem('phiers_early_modal_seen');
-    const sessionSeen = sessionStorage.getItem('phiers_modal_session');
-    if (hasSeen || sessionSeen) {
-      window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
-    } else {
-      setShowEarlyModal(true);
-    }
-  };
-
-  const handleModalContinue = () => {
-    setShowEarlyModal(false);
-    localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
-    sessionStorage.setItem('phiers_modal_session', 'true');
-    window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
-  };
-
-  const handleModalLater = () => {
-    setShowEarlyModal(false);
-    sessionStorage.setItem('phiers_modal_session', 'true');
-  };
 
   return (
     <div className="bg-black text-white">
@@ -264,14 +240,9 @@ export default function ProphecyPage() {
       </div>
       <div className="text-center mt-0 mb-12">
         <Link href="/Prophecy/movement" className="inline-block bg-white/10 text-white border border-green-400/40 px-6 py-2 rounded-full text-sm hover:bg-white/20 transition">
-          Enter the Movement →
+            
         </Link>
       </div>
-        <div className="text-center mt-4">
-          <Link href="/zoom" className="inline-block text-green-400 text-sm underline hover:text-green-300 transition">
-            → This is where you step in
-          </Link>
-        </div>
       </div>
 
       {/* 400 YEARS / GENESIS */}
@@ -473,10 +444,7 @@ export default function ProphecyPage() {
           <p className="text-xl md:text-2xl text-gray-200 font-semibold">
             If you’ve been waiting for structure, this is the threshold. You don’t have to wait to finish reading.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/zoom" className="inline-block bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition">
-              Join the Zoom
-            </Link>
+          <div className="mt-8 flex justify-center">
             <Link href="/Prophecy/movement" className="inline-block bg-transparent border border-gray-600 text-white font-bold py-3 px-8 rounded-full hover:border-gray-400 transition">
               Enter the Movement
             </Link>
@@ -611,19 +579,6 @@ export default function ProphecyPage() {
         </p>
       </div>
 
-      {/* ZOOM CTA */}
-      <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20 text-center">
-        <div className="gold-divider" />
-        <h2 className="text-2xl md:text-3xl font-bold mt-8">Join the Zoom Call</h2>
-      </div>
-
-      <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20 text-center">
-        <p className="text-xl text-gray-200 mb-2">If this makes sense to you, step closer.</p>
-        <a href="/zoom" target="_blank" rel="noopener noreferrer" className="inline-block w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold text-base md:text-lg py-3 px-8 rounded-full transition shadow-md whitespace-nowrap mt-4">
-          JOIN THE FOUNDING 1500
-        </a>
-      </div>
-
       <div className="max-w-3xl mx-auto px-6 mt-28 md:mt-36 text-center">
         <div className="bg-[#0b0b0b] border border-gray-800 rounded-2xl px-6 py-12 md:px-12 md:py-16">
           <p className="text-xl md:text-2xl text-gray-300 font-semibold">
@@ -638,20 +593,6 @@ export default function ProphecyPage() {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-6 mt-20 mb-20 md:mb-24 text-center">
-        <div className="gold-divider mb-8" />
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">Add your voice to the record.</h2>
-        <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-          The petition and survey are the foundation of our civic leverage.
-          Every signature and response builds the case for accountability.
-        </p>
-        <button onClick={handlePetitionClick} className="inline-block bg-green-600 hover:bg-green-500 text-white font-bold text-lg md:text-xl py-3.5 px-8 rounded-full transition shadow-md whitespace-nowrap">
-          Sign the Petition & Take the Survey →
-        </button>
-        <p className="text-gray-500 text-sm mt-4">Professionally presented. Built to be counted. Your district needs your voice.</p>
-        <div className="gold-divider mt-8" />
-      </div>
-
       <div className="text-center mt-8 mb-16 md:mb-20 px-6">
         <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
           Not to look backward. To prepare for what comes next.
@@ -662,12 +603,6 @@ export default function ProphecyPage() {
         <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
         <p className="mt-2"><a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">PHIERS.org →</a></p>
       </footer>
-      {showEarlyModal && (
-        <EarlyStageModal
-          onContinue={handleModalContinue}
-          onLater={handleModalLater}
-        />
-      )}
     </div>
   );
 }
