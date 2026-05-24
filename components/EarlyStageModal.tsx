@@ -1,5 +1,5 @@
 // FILE: components/EarlyStageModal.tsx
-// VERSION: 4.1 – Final hybrid copy with tweaked opening line
+// VERSION: 6.0 – Quiet orientation, math removed, inquiry-first
 
 'use client';
 
@@ -60,7 +60,8 @@ export default function EarlyStageModal({
     >
       <div
         style={{
-          maxWidth: '420px',
+          position: 'relative',
+          maxWidth: '460px',
           width: '100%',
           backgroundColor: '#0b0b0b',
           border: '1px solid rgba(61, 220, 132, 0.3)',
@@ -70,6 +71,27 @@ export default function EarlyStageModal({
           animation: 'fadeInUp 0.3s ease-out',
         }}
       >
+        {/* Close X button */}
+        <button
+          onClick={onLater}
+          style={{
+            position: 'absolute',
+            top: '12px',
+            right: '16px',
+            background: 'none',
+            border: 'none',
+            color: '#6b7280',
+            fontSize: '1.25rem',
+            cursor: 'pointer',
+            padding: '4px 8px',
+            transition: 'color 0.2s',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = '#9ca3af')}
+          onMouseLeave={(e) => (e.currentTarget.style.color = '#6b7280')}
+        >
+          ✕
+        </button>
+
         {/* Green accent line */}
         <div
           style={{
@@ -116,19 +138,7 @@ export default function EarlyStageModal({
             textAlign: 'center',
           }}
         >
-          Most people here learned about PHIERS through somebody they trust — a conversation that stuck.
-        </p>
-
-        <p
-          style={{
-            color: '#e5e7eb',
-            fontSize: '0.95rem',
-            lineHeight: '1.55',
-            marginBottom: '0.75rem',
-            textAlign: 'center',
-          }}
-        >
-          Real movements rarely begin loudly.
+          Many people first hear about PHIERS through conversations with people they trust.
         </p>
 
         <p
@@ -140,7 +150,7 @@ export default function EarlyStageModal({
             textAlign: 'center',
           }}
         >
-          They begin in kitchens, union halls, barbershops, group chats, and communities long before most people even hear about them.
+          Most new civic ideas spread quietly at first — in kitchens, union halls, barbershops, group chats, and trusted circles long before most people even hear about them.
         </p>
 
         <p
@@ -148,7 +158,7 @@ export default function EarlyStageModal({
             color: '#e5e7eb',
             fontSize: '1rem',
             lineHeight: '1.6',
-            marginBottom: '1rem',
+            marginBottom: '1.5rem',
             textAlign: 'center',
           }}
         >
@@ -157,63 +167,50 @@ export default function EarlyStageModal({
 
         <p
           style={{
-            color: '#3ddc84',
-            fontSize: '1.1rem',
-            fontWeight: 'bold',
+            color: '#9ca3af',
+            fontSize: '0.9rem',
+            lineHeight: '1.55',
             textAlign: 'center',
-            marginBottom: '0.5rem',
+            marginBottom: '1rem',
           }}
         >
-          1,500 per district × 435 districts
-        </p>
-
-        <p
-          style={{
-            color: '#e5e7eb',
-            fontSize: '1.25rem',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            marginBottom: '0.25rem',
-          }}
-        >
-          ≈ 652,500 people nationwide
-        </p>
-
-        <p
-          style={{
-            color: '#6b7280',
-            fontSize: '0.7rem',
-            textAlign: 'center',
-            marginBottom: '1.25rem',
-            letterSpacing: '0.3px',
-          }}
-        >
-          Across 435 congressional districts.
+          Most people are still hearing about this for the first time.
         </p>
 
         <p
           style={{
             color: '#9ca3af',
             fontSize: '0.85rem',
-            lineHeight: '1.5',
-            textAlign: 'center',
-            marginBottom: '1.25rem',
-          }}
-        >
-          The work has already been reviewed by senior communications professionals and national media figures.
-        </p>
-
-        <p
-          style={{
-            color: '#9ca3af',
-            fontSize: '0.9rem',
             fontStyle: 'italic',
             textAlign: 'center',
-            marginBottom: '1.75rem',
+            marginBottom: '1.5rem',
           }}
         >
-          You are witnessing the foundation stage before amplification begins.
+          Right now, this is still a conversation more than a campaign.
         </p>
+
+        {/* Curiosity-first invitation */}
+        <div
+          style={{
+            backgroundColor: 'rgba(61, 220, 132, 0.05)',
+            borderLeft: '2px solid #3ddc84',
+            padding: '1rem 1rem',
+            marginBottom: '1.25rem',
+            borderRadius: '4px',
+          }}
+        >
+          <p
+            style={{
+              color: '#d1d5db',
+              fontSize: '0.9rem',
+              lineHeight: '1.55',
+              textAlign: 'center',
+              margin: 0,
+            }}
+          >
+            We're not asking for your signature. Just your curiosity.
+          </p>
+        </div>
 
         {/* Buttons */}
         <div
@@ -241,7 +238,7 @@ export default function EarlyStageModal({
             onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
           >
-            Continue to Petition
+            → Ask a question here
           </button>
 
           <button
@@ -264,7 +261,7 @@ export default function EarlyStageModal({
           </button>
         </div>
 
-        {/* Credibility link */}
+        {/* Credibility link (optional) */}
         {onViewCredibility && (
           <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
             <button

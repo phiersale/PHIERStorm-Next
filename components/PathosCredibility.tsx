@@ -1,5 +1,5 @@
 // FILE: components/PathosCredibility.tsx
-// VERSION: 9.0 – Clean page component, no outer overlay
+// VERSION: 10.0 – Low-pressure Q&A, softened language, no conversion CTA
 
 'use client'
 
@@ -31,26 +31,17 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handlePetitionClick = () => {
-    console.log('handlePetitionClick called');
-    const hasSeen = localStorage.getItem('phiers_early_modal_seen');
-    const sessionSeen = sessionStorage.getItem('phiers_modal_session');
-    console.log('hasSeen:', hasSeen, 'sessionSeen:', sessionSeen);
-    if (hasSeen || sessionSeen) {
-      console.log('Redirecting to petition');
-      window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
-    } else {
-      console.log('Setting showEarlyModal to true');
-      setShowEarlyModal(true);
-    }
+  const handleQuestionSubmit = () => {
+    console.log('handleQuestionSubmit called');
+    window.open('https://forms.gle/YOUR_FORM_ID', '_blank');
   };
 
   const handleModalContinue = () => {
-    console.log('Modal Continue clicked');
+    console.log('Modal Continue clicked - opening question form');
     setShowEarlyModal(false);
     localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
     sessionStorage.setItem('phiers_modal_session', 'true');
-    window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+    window.open('https://forms.gle/YOUR_FORM_ID', '_blank');
   };
 
   const handleModalLater = () => {
@@ -166,7 +157,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             <li>Representative is called to a public town hall.</li>
             <li>If they refuse or give a corrupt answer → public investigation launched.</li>
             <li>We publish findings: votes, donors, ties to war profiteers.</li>
-            <li>Representative either resigns under pressure or faces a PHIERS‑backed primary challenger who pre‑commits to the district’s demands.</li>
+            <li>Representatives who repeatedly ignore verified district concerns may face sustained public scrutiny, media attention, and organized electoral opposition.</li>
           </ol>
           <p className="text-gray-400 text-xs mt-2 text-center">No recall needed. Just transparency + voting power.</p>
         </div>
@@ -262,24 +253,57 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         </div>
       </motion.div>
 
-      {/* Petition Button */}
-      <div className="text-center pt-1 pb-6" id="credibility-buttons">
-        <button
-          onClick={handlePetitionClick}
-          className="px-8 py-3 bg-green text-black font-bold rounded-lg shadow-md hover:bg-green-dim transition text-center text-base inline-block"
-          style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
-        >
-          ✍ Continue to Petition
-        </button>
+      {/* Transition Section - reduces cognitive fatigue */}
+      <div className="max-w-xl mx-auto text-center mb-8">
+        <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+          PHIERS covers a wide range of national problems and possible solutions.
+        </p>
+        <p className="text-gray-400 text-sm mt-4 leading-relaxed">
+          But before any of that matters, people deserve the chance to ask questions, challenge assumptions, and understand the core mechanism for themselves.
+        </p>
+        <p className="text-gray-500 text-xs mt-4 italic">
+          That's what the nightly Q&A is for.
+        </p>
       </div>
 
-      {showEarlyModal && (
+      {/* Ask a Question - Low Pressure */}
+      <div className="text-center pt-1 pb-6" id="credibility-buttons">
+        <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
+          <p className="text-gray-300 text-sm mb-3">
+            Before you decide what PHIERS is — ask us anything.
+          </p>
+          <p className="text-gray-400 text-xs mb-3">
+            Every night at 9 PM PST, we answer questions from people who are still learning, still deciding, or simply curious.
+          </p>
+          <p className="text-gray-500 text-xs mb-4">
+            Your question may help shape the next conversation.
+          </p>
+          <p className="text-gray-400 text-xs mb-4">
+            We're not asking for commitment. Just curiosity.
+          </p>
+          <a
+            href="https://forms.gle/YOUR_FORM_ID"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-2 bg-green text-black font-bold rounded-lg hover:bg-green-dim transition text-sm"
+            style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
+          >
+            → Ask your question here
+          </a>
+          <p className="text-gray-500 text-xs mt-3">
+            Questions submitted today may be answered in tonight's 9 PM PST video.
+          </p>
+        </div>
+      </div>
+
+      {/* Modal temporarily disabled - will be repurposed for framing, not conversion */}
+      {/* {showEarlyModal && (
         <EarlyStageModal
           isOpen={showEarlyModal}
           onContinue={handleModalContinue}
           onLater={handleModalLater}
         />
-      )}
+      )} */}
     </>
   )
 }
