@@ -91,8 +91,8 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
       >
         {/* Page Title */}
         <h1 className="text-xl md:text-2xl font-bold text-center mb-4">
-          <span className="text-white">Third‑Party Validation:</span><br />
-          <span className="text-green text-lg md:text-xl">Why Pathos Communications Staked Its Reputation on PHIERS</span>
+          <span className="text-white">Why Pathos Put Their Name Behind This</span><br />
+          <span className="text-green text-lg md:text-xl">A global communications firm looked closely — and decided PHIERS was worth representing.</span>
         </h1>
 
         {/* Click‑to‑play video thumbnail */}
@@ -157,7 +157,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             <li>Representative is called to a public town hall.</li>
             <li>If they refuse or give a corrupt answer → public investigation launched.</li>
             <li>We publish findings: votes, donors, ties to war profiteers.</li>
-            <li>Representatives who repeatedly ignore verified district concerns may eventually face public scrutiny, media attention, or organized electoral opposition.</li>
+            <li>Representatives who repeatedly ignore verified district concerns may eventually face public scrutiny, media attention, or organized electoral engagement.</li>
           </ol>
           <p className="text-gray-400 text-xs mt-2 text-center">No recall needed. Just transparency + voting power.</p>
         </div>
@@ -192,7 +192,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           <div className="mb-4 pl-3 border-l-2 border-green/30">
             <p className="text-white font-bold text-sm md:text-base mb-1">Telehealth Industry — Teladoc, Zocdoc, Zortt and others</p>
             <p className="text-gray-400 text-xs md:text-sm">The entire telehealth industry is built on the delivery model PHIERS designed over a decade before it went mainstream. The math was always there. The industry eventually caught up.</p>
-            <p className="text-green text-xs font-semibold mt-1">The model was right in 2009. The market confirmed it in 2020.</p>
+            <p className="text-green text-xs font-semibold mt-1">The broader market eventually moved in the same direction.</p>
           </div>
           <div className="mt-3 p-3 bg-green/5 border border-green/20 rounded-lg">
             <p className="text-white text-xs font-semibold">The pattern is clear:</p>
@@ -266,17 +266,14 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
         </p>
       </div>
 
-      {/* Ask a Question - Low Pressure */}
+      {/* Join the nightly conversation */}
       <div className="text-center pt-1 pb-6" id="credibility-buttons">
         <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
           <p className="text-gray-300 text-sm mb-3">
-            Before forming an opinion about PHIERS — ask anything.
+            Every night at 9 PM PST, people bring questions, disagreements, concerns, and ideas into the conversation.
           </p>
-          <p className="text-gray-400 text-xs mb-3">
-            Every night at 9 PM PST, we answer questions from people who are still learning, still deciding, or simply curious.
-          </p>
-          <p className="text-gray-500 text-xs mb-4">
-            Some questions from the form are selected for the nightly discussion.
+          <p className="text-gray-400 text-xs mb-4">
+            Some are selected for the nightly discussion.
           </p>
           <p className="text-gray-400 text-xs mb-4">
             We're not asking for commitment. Just curiosity.
@@ -288,11 +285,8 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             className="inline-block px-6 py-2 bg-green text-black font-bold rounded-lg hover:bg-green-dim transition text-sm"
             style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
           >
-            → Ask your question here
+            → Join the conversation
           </a>
-          <p className="text-gray-500 text-xs mt-3">
-            Questions submitted today may be answered in tonight's 9 PM PST video.
-          </p>
         </div>
       </div>
 
