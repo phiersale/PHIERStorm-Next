@@ -326,7 +326,6 @@ export default function Page() {
           setSkipFirstImage(false)
           setStage('credibility')
         }}
-        onGoToPetition={() => router.push('/petition')}
         onBackToReading={() => setStage('image')}
       />
     )
