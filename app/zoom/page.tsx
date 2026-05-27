@@ -1,7 +1,42 @@
 // FILE: app/zoom/page.tsx
 // VERSION: 1.2 – Video embed fixed
 
+'use client';
+
+import { useState, useEffect } from 'react';
+
 export default function PublicZoomPage() {
+  const [videoStarted, setVideoStarted] = useState(false);
+  const [textVisible, setTextVisible] = useState(false);
+  const [visibleSections, setVisibleSections] = useState({
+    section1: false,
+    section2: false,
+    section3: false,
+    section4: false,
+    section5: false,
+    footer: false,
+  });
+
+  // Show sections one by one after thumbnail loads
+  useEffect(() => {
+    if (!textVisible) return;
+
+    const sections = ['section1', 'section2', 'section3', 'section4', 'section5', 'footer'];
+    sections.forEach((section, index) => {
+      setTimeout(() => {
+        setVisibleSections(prev => ({ ...prev, [section]: true }));
+      }, index * 500); // 0.5s delay between each section
+    });
+  }, [textVisible]);
+
+  // Fallback: show text after 2 seconds even if onLoad doesn't fire
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTextVisible(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="text-center pt-8 pb-4">
@@ -31,23 +66,52 @@ export default function PublicZoomPage() {
           </p>
         </div>
 
-        {/* VIDEO – fixed embed */}
+        {/* VIDEO – thumbnail loads first */}
         <div className="mt-8">
-          <div className="aspect-video w-full bg-black rounded-lg overflow-hidden shadow-xl">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/2i8zcMZoTZk"
-              title="Zoom call invitation"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
+          <div className="aspect-video w-full bg-black rounded-lg overflow-hidden shadow-xl relative cursor-pointer group">
+            {!videoStarted ? (
+              <button
+                type="button"
+                onClick={() => setVideoStarted(true)}
+                className="absolute inset-0 w-full h-full group"
+                aria-label="Play Zoom invitation video"
+              >
+                <img
+                  src="https://img.youtube.com/vi/2i8zcMZoTZk/maxresdefault.jpg"
+                  alt="Video thumbnail"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  onLoad={() => setTextVisible(true)}
+                />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-black/70 flex items-center justify-center border-2 border-white/60 group-hover:scale-110 transition shadow-lg">
+                    <span className="text-white text-2xl ml-1">▶</span>
+                  </div>
+                  <span className="text-gray-300 text-xs md:text-sm tracking-wide mt-3 opacity-80">
+                    tap to play
+                  </span>
+                </div>
+              </button>
+            ) : (
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/2i8zcMZoTZk?autoplay=1"
+                title="Zoom call invitation"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            )}
           </div>
         </div>
 
-        {/* Rest of the page remains unchanged */}
-        <div className="mt-16 space-y-5 text-center text-gray-300">
+        {/* Rest of the page – fades in after thumbnail loads */}
+        <div
+          id="section1"
+          className="mt-16 space-y-5 text-center text-gray-300 transition-opacity duration-500"
+          style={{ opacity: visibleSections.section1 ? 1 : 0 }}
+        >
           <p>Some of you are coming to this with your arms crossed.<br />Good. You may be exactly who needs to be in the room.</p>
           <p>This is a working session — not a performance.</p>
           <p>Bring your questions. Bring your doubts. Bring your best shot.</p>
@@ -56,7 +120,11 @@ export default function PublicZoomPage() {
           <p>Better to test the structure in the room than talk outside about what should have been done.</p>
         </div>
 
-        <div className="bg-[#111] border border-gray-800 rounded-2xl p-6 md:p-8 mt-16">
+        <div
+          id="section2"
+          className="bg-[#111] border border-gray-800 rounded-2xl p-6 md:p-8 mt-16 transition-opacity duration-500"
+          style={{ opacity: visibleSections.section2 ? 1 : 0 }}
+        >
           <p className="text-green-400 text-sm uppercase tracking-[0.3em] mb-6 text-center">WHAT YOU'LL GET</p>
           <div className="space-y-3 text-gray-300">
             <p>— The PHIERS mechanism — pressure, leverage, 1,500 per district</p>
@@ -66,12 +134,20 @@ export default function PublicZoomPage() {
           </div>
         </div>
 
-        <div className="bg-[#111] border border-gray-800 rounded-2xl p-6 md:p-8 mt-10">
+        <div
+          id="section3"
+          className="bg-[#111] border border-gray-800 rounded-2xl p-6 md:p-8 mt-10 transition-opacity duration-500"
+          style={{ opacity: visibleSections.section3 ? 1 : 0 }}
+        >
           <p className="text-green-400 text-sm uppercase tracking-[0.3em] mb-4 text-center">WHAT WE ASK</p>
           <p className="text-gray-300 text-center">Come serious.<br /><br />If the plan holds, help build it.<br />If it needs sharpening, sharpen it.<br /><br />Either way — move the work forward.</p>
         </div>
 
-         <div className="bg-[#111] border border-gray-800 rounded-2xl p-8 md:p-10 mt-16 text-center">
+        <div
+          id="section4"
+          className="bg-[#111] border border-gray-800 rounded-2xl p-6 md:p-8 mt-16 transition-opacity duration-500"
+          style={{ opacity: visibleSections.section4 ? 1 : 0 }}
+        >
           <p className="text-green-400 text-xs uppercase tracking-[0.35em] mb-2">
             LIVE DISCUSSION · OPEN Q&A
           </p>
@@ -93,11 +169,19 @@ export default function PublicZoomPage() {
             You’ll receive the date and time by email.
           </p>
         </div>
-        <div className="text-center mt-16 mb-20">
+        <div
+          id="section5"
+          className="text-center mt-16 mb-20 transition-opacity duration-500"
+          style={{ opacity: visibleSections.section5 ? 1 : 0 }}
+        >
           <p className="text-xl text-green-400 font-semibold">If you’re serious, step into the room.</p>
         </div>
 
-        <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
+        <footer
+          id="footer"
+          className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm transition-opacity duration-500"
+          style={{ opacity: visibleSections.footer ? 1 : 0 }}
+        >
           <p>Built to solve. For everyone this country has failed to protect.</p>
           <p className="mt-2">PHIERS.org →</p>
         </footer>
@@ -105,3 +189,5 @@ export default function PublicZoomPage() {
     </div>
   );
 }
+
+// FILE: app/zoom/page.tsx

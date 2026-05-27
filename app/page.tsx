@@ -131,13 +131,13 @@ export default function Page() {
     { type: 'spacer' },
     { type: 'spacer' },
     { type: 'spacer' },
-    { type: 'text', content: "Congress doesn't respond to voters." },
-    { type: 'text', content: "They respond to pressure.", isPressureLine: true },
+    { type: 'text', content: "Most people assume Congress listens to voters." },
+    { type: 'text', content: "But historically, they've responded more to organized pressure.", isPressureLine: true },
     { type: 'spacer' },
-    { type: 'html', content: "<strong class='text-green'>PHIERS creates that pressure.</strong>" },
+    { type: 'html', content: "<strong class='text-green'>PHIERS is exploring what that could look like.</strong>" },
     { type: 'spacer' },
     { type: 'spacer' },
-    { type: 'html', content: "<p class='text-white font-semibold text-lg mt-4 mb-8'>Here's how.</p>" },
+    { type: 'html', content: "<p class='text-white font-semibold text-lg mt-4 mb-8'>Here's what we've learned so far.</p>" },
   ]
 
   useEffect(() => {
@@ -350,22 +350,22 @@ export default function Page() {
           </button>
           <button
             onClick={() => setStage('main')}
-            className="px-6 py-2 text-base font-bold rounded-lg transition"
+            className="px-6 py-2 text-base font-semibold rounded-lg transition"
             style={{
               backgroundColor: '#F5C542',
-              color: 'black',
-              boxShadow: '0 0 20px rgba(245,197,66,0.35)'
+              color: '#1a1a1a',
+              boxShadow: '0 0 20px rgba(245,197,66,0.25)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#E0B032'
-              e.currentTarget.style.color = 'black'
+              e.currentTarget.style.boxShadow = '0 0 25px rgba(245,197,66,0.35)'
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = '#F5C542'
-              e.currentTarget.style.color = 'black'
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(245,197,66,0.25)'
             }}
           >
-            Continue to Main Site →
+            Explore the framework →
           </button>
         </div>
       </div>

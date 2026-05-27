@@ -262,18 +262,18 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
           But before any of that matters, people deserve the chance to ask questions, challenge assumptions, and understand the core mechanism for themselves.
         </p>
         <p className="text-gray-500 text-xs mt-4 italic">
-          That's what the nightly Q&A is for.
+          That's what the question intake is for.
         </p>
       </div>
 
-      {/* Join the nightly conversation */}
+`      {/* Ask a question - intake form */}`
       <div className="text-center pt-1 pb-6" id="credibility-buttons">
         <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
           <p className="text-gray-300 text-sm mb-3">
-            Every night at 9 PM PST, people bring questions, disagreements, concerns, and ideas into the conversation.
+            We're collecting questions, feedback, and input from people who are still learning, still deciding, or simply curious.
           </p>
           <p className="text-gray-400 text-xs mb-4">
-            Some are selected for the nightly discussion.
+            Your input helps shape what we build next.
           </p>
           <p className="text-gray-400 text-xs mb-4">
             We're not asking for commitment. Just curiosity.
@@ -285,7 +285,7 @@ export default function PathosCredibility({ onBackToSlides }: Props) {
             className="inline-block px-6 py-2 bg-green text-black font-bold rounded-lg hover:bg-green-dim transition text-sm"
             style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
           >
-            → Join the conversation
+            → Ask a question
           </a>
         </div>
       </div>

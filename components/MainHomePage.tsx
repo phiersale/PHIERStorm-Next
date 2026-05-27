@@ -11,7 +11,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Button from '@/components/Button'
-import EarlyStageModal from '@/components/EarlyStageModal'
+// import EarlyStageModal from '@/components/EarlyStageModal' // Commented out - will restore when new petition/survey online
+import PHIERStormModal from '@/components/PHIERStormModal'
 import entriesData from '@/data/whatsnew/entries.json'
 
 // Helper component for video cards (used inside modal)
@@ -48,8 +49,10 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
   const [bannerTimer, setBannerTimer] = useState<NodeJS.Timeout | null>(null)
   const [showSituationButton, setShowSituationButton] = useState(true)
 
-    // Early-stage modal state
-  const [showEarlyModal, setShowEarlyModal] = useState(false);
+  // Early-stage modal state (petition redirect) - preserved for when new petition/survey online
+  // const [showEarlyModal, setShowEarlyModal] = useState(false);
+  // Question modal state
+  const [showQuestionModal, setShowQuestionModal] = useState(false);
   
   // Only show on the main homepage (path === '/')
   const shouldShowNewsflash = showNewsflash && pathname === '/'
@@ -175,27 +178,21 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
     localStorage.setItem('situation-button-dismissed', 'true')
   }
 
-    const handlePetitionClick = () => {
-    const hasSeen = localStorage.getItem('phiers_early_modal_seen');
-    const sessionSeen = sessionStorage.getItem('phiers_modal_session');
-    if (hasSeen || sessionSeen) {
-      window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
-    } else {
-      setShowEarlyModal(true);
-    }
+    const handleQuestionClick = () => {
+    setShowQuestionModal(true);
   };
 
-  const handleModalContinue = () => {
-    setShowEarlyModal(false);
-    localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
-    sessionStorage.setItem('phiers_modal_session', 'true');
-    window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
-  };
+  // const handleModalContinue = () => {
+  //   setShowEarlyModal(false);
+  //   localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
+  //   sessionStorage.setItem('phiers_modal_session', 'true');
+  //   window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+  // };
 
-  const handleModalLater = () => {
-    setShowEarlyModal(false);
-    sessionStorage.setItem('phiers_modal_session', 'true');
-  };
+  // const handleModalLater = () => {
+  //   setShowEarlyModal(false);
+  //   sessionStorage.setItem('phiers_modal_session', 'true');
+  // };
 
   const scrollToMechanism = useCallback(() => {
     document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
@@ -512,7 +509,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
-              <button onClick={handlePetitionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ SIGN THE PETITION</button>
+              <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ Ask a question →</button>
               <Button href="/homepage-teeth" variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
               <Button href="/zoom" variant="secondary" fullWidth>🎥 JOIN THE PUBLIC ZOOM</Button>
             </div>
@@ -642,7 +639,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
             <p className="text-gray-300 text-base mb-4">Or they risk losing their seat.</p>
-            <button onClick={handlePetitionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ SIGN THE PETITION</button>
+            <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ Ask a question →</button>
           </div>
         </section>
 
@@ -1169,7 +1166,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
               </Link>
             </div>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto mt-6">
-              <button onClick={handlePetitionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ BE HEARD</button>
+              <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ Ask a question →</button>
             </div>
           </div>
         </section>
@@ -1307,10 +1304,17 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         )}
       </AnimatePresence>
     </div>
-      {showEarlyModal && (
+      {/* Commented out - will restore when new petition/survey online */}
+      {/* {showEarlyModal && (
         <EarlyStageModal
           onContinue={handleModalContinue}
           onLater={handleModalLater}
+        />
+      )} */}
+      {showQuestionModal && (
+        <PHIERStormModal
+          open={showQuestionModal}
+          onClose={() => setShowQuestionModal(false)}
         />
       )}
     </>
