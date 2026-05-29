@@ -28,8 +28,41 @@
           </div>
         </div>
 
+        {/* PRIVACY STATEMENT – Trust & Participation Update */}
+        <div className="max-w-2xl mx-auto px-6 pt-24 pb-8">
+          <div className="bg-[#0d0d0d] border border-amber-500/20 rounded-2xl p-6 md:p-8">
+            <p className="text-amber-400 text-sm font-semibold mb-4">First things first — we used to lead with a petition. We don't anymore.</p>
+            <p className="text-gray-300 text-base leading-relaxed mb-4">We changed strategies because too many brothers told us the same thing:</p>
+            <p className="text-white italic text-lg mb-4">"Before I sign anything, I need to know exactly what you're doing with my information."</p>
+            <p className="text-gray-300 text-base leading-relaxed mb-4">And they were right to ask.</p>
+            <p className="text-gray-300 text-base leading-relaxed mb-4">So let's be clear in plain language — no legalese, no fine print, no surprises.</p>
+            <div className="space-y-3 text-gray-300 text-base leading-relaxed mb-6">
+              <p><span className="text-amber-400 font-bold">1.</span> Nothing you share here is public. Not your name. Not your email. Not your answers. Not your business. We don't post it. We don't sell it. We don't hand it around.</p>
+              <p><span className="text-amber-400 font-bold">2.</span> Your email is optional. If you want updates or conversation, cool. If not, leave it blank. You're still welcome here.</p>
+              <p><span className="text-amber-400 font-bold">3.</span> If an elected official ever asks whether Black men in their district are paying attention… We give them a number, not a list. A headcount, not identities. That's it.</p>
+              <p><span className="text-amber-400 font-bold">4.</span> This space is for clarity, not surveillance. We're not tracking you. We're not building profiles on you. We're not trying to pull people into something they don't understand. This is a peaceful, lawful, transparent effort to help regular people — including us — get the accountability we've been denied for generations.</p>
+              <p>
+                <span className="text-amber-400 font-bold">5.</span> If anything feels off, ask. 
+                Push back. Challenge it. You deserve straight answers.
+                <br />
+                <span className="text-gray-300">
+                  You do not need to agree with PHIERS to participate.
+                </span>
+              </p>
+              </div>
+
+              <p className="text-gray-300 text-base leading-relaxed mb-4">
+                Take the survey only when you feel fully comfortable with what we're doing and why we're doing it.
+              </p>
+            <p className="text-gray-300 text-base leading-relaxed">And if you're never comfortable with it — that's okay too. This only works if it's real.</p>
+            <div className="mt-6 text-center">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform" target="_blank" rel="noopener noreferrer" className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 px-6 rounded-lg transition">Take the survey →</a>
+            </div>
+          </div>
+        </div>
+
         {/* TOP SECTION */}
-        <div className="text-center pt-20 pb-6 md:pt-24 md:pb-8">
+        <div className="text-center pt-8 pb-6 md:pt-12 md:pb-8">
           <p className="text-sm md:text-lg tracking-[0.28em] md:tracking-[0.35em] uppercase text-gray-300 font-semibold">
             For Us. By Us.
           </p>
@@ -612,7 +645,8 @@
 
        <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
         <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
-        <p className="mt-2"><a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">PHIERS.org →</a></p>
+         <p><a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">PHIERS.org →</a></p>
+        <p className="mt-3 text-gray-600 text-xs">Participation is voluntary. PHIERS is a peaceful civic engagement effort.</p>
       </footer>
 
       {/* PHIERStorm Modal */}

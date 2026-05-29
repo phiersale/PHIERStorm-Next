@@ -17,6 +17,33 @@ export default function SituationPage() {
   const whatsNewEntries = [...entriesData.entries];
 
   const analysisSections = [
+    // ANCHOR for modal
+    {
+      date: "",
+      tag: "",
+      pillColor: "",
+      headline: "",
+      whatHappened: <div id="trust-update" />,
+      whyItMatters: "",
+      sources: []
+    },
+    // NEW STORY 0 – MAY 2026: Trust & participation update
+    {
+      date: "MAY 2026",
+      tag: "UPDATE",
+      pillColor: "teal",
+      headline: "A change in how we're asking for your participation",
+      whatHappened: (
+        <>
+          <p>PHIERS has been pushing hard for petition signatures. We're pulling back on that — not because the petition doesn't matter, but because we got the sequence wrong.</p>
+          <p>Signatures mean more when the people signing them understand what they're signing and feel genuinely heard. So we're flipping the order: survey first, petition second.</p>
+          <p>We've also corrected language on the petition page that was imprecise about privacy. Your name is never made public. We share only district‑level counts with elected officials who request verification that real constituents in their district are paying attention. Your email is optional. Nothing is sold or shared.</p>
+          <p>If you have questions, the survey is the place to ask them. We respond personally, three nights a week.</p>
+        </>
+      ),
+      whyItMatters: "",
+      sources: []
+    },
     // NEW STORY 1 – May 21, 2026: Congress walked out
     {
       date: "MAY 21, 2026",
@@ -249,7 +276,7 @@ export default function SituationPage() {
 
       {/* Content – dark cards */}
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <div className="space-y-8">
+        <div className="space-y-8" id="after-trust">
           {sortedItems.map((item, idx) => (
             <div key={idx} className="bg-card rounded-xl shadow-md overflow-hidden border border-gray-800">
               <div className="p-5 sm:p-6">
@@ -293,18 +320,9 @@ export default function SituationPage() {
             </div>
           ))}
         </div>
-
-        {/* CTA Footer – dark */}
-        <div className="mt-12 text-center">
-          <a
-            href="https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred"
-            className="inline-block bg-green-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-green-700 transition"
-          >
-            ✍ Sign the PHIERS Petition – 1,500 per district
-          </a>
-          <p className="text-xs text-muted-foreground mt-4">Organized leverage. The kind Congress already fears.</p>
-        </div>
       </div>
     </div>
   );
 }
+
+// app/situation/page.tsx

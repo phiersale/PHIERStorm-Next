@@ -32,6 +32,8 @@ export default function Footer() {
         📧 <a href="mailto:info@phiers.org" className="text-[#3ddc84]">info@phiers.org</a> · 📞 (916) 306-8967<br />
         © PHIERS.org — Original Concept Since 2009. All Rights Reserved.<br />
         <span className="text-[0.7rem]">PHIERS™ · PHIERSale™ · PHIERWorks™ · PHIERPlace™ — Protected marks established 2009–2025.</span>
+<br />
+<span className="text-[0.65rem]">Participation is voluntary. PHIERS is a peaceful civic engagement effort.</span>
       </div>
     </footer>
   )

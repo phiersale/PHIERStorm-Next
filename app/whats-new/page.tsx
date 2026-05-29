@@ -91,3 +91,5 @@ export default function WhatsNewPage() {
     </>
   );
 }
+
+// src/app/whats-new/page.tsx
