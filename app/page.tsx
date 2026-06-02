@@ -2,6 +2,7 @@
 // VERSION: 4.0 – PHIERS-Pause.png, top‑right skip only - REBUILD
 
 'use client'
+export const dynamic = 'force-dynamic'
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
