@@ -305,6 +305,21 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
       </AnimatePresence>
 
       <Navigation />
+      
+      {/* Back to Start button - resets the onboarding journey */}
+      <button
+        onClick={() => {
+          // Clear all session/local storage flags
+          sessionStorage.removeItem('phiers-intro-complete');
+          localStorage.removeItem('firstVisit');
+          localStorage.removeItem('modalSeen');
+          // Reset the stage in page.tsx via URL param
+          window.location.href = '/?reset=true';
+        }}
+        className="fixed top-20 left-4 z-40 text-gray-500 text-xs underline opacity-60 hover:opacity-100 transition"
+      >
+        ← BACK to Start
+      </button>
 
 
       {/* Dim "BACK" button – only shown if onBackToEntry is provided */}
@@ -335,6 +350,12 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             className="w-32 sm:w-40 md:w-48 h-auto"
             priority
           />
+        </div>
+
+        {/* Opening line after transition modal */}
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <p className="text-green text-sm font-mono tracking-wider mb-2">THIS IS WHERE LEVERAGE BECOMES REAL.</p>
+          <p className="text-gray-300 text-base">Your district. Your voice. On the record.</p>
         </div>
 
         {/* HERO */}

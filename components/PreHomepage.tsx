@@ -1,16 +1,15 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 8.3 – Single history handler, browser back stays inside deck
+// VERSION: 8.4 – Perfect vertical centering for Slide 0
 
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import slides from './slides'
 
 type Props = {
   onGoToHomepage: () => void
-  onGoToPetition: () => void
   skipFirstImageSlide?: boolean
   onBackToReading?: () => void
 }
@@ -20,7 +19,6 @@ const TRANSITION_MS = 400
 
 export default function PreHomepage({
   onGoToHomepage,
-  onGoToPetition,
   skipFirstImageSlide = false,
   onBackToReading
 }: Props) {
@@ -30,6 +28,7 @@ export default function PreHomepage({
   const [showNavControls, setShowNavControls] = useState(true)
   const [topBarOpacity, setTopBarOpacity] = useState(1)
   const [showSwipeHint, setShowSwipeHint] = useState(true)
+  const [navVisible, setNavVisible] = useState(false)
   const lastScrollY = useRef(0)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -66,6 +65,13 @@ export default function PreHomepage({
     setTopBarOpacity(index <= 3 ? 1 : 0.4)
   }, [index])
 
+  // Delayed nav appearance for cinematic feel
+  useEffect(() => {
+    setNavVisible(false)
+    const timer = setTimeout(() => setNavVisible(true), 1200)
+    return () => clearTimeout(timer)
+  }, [index])
+
   const clearTimer = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
@@ -92,8 +98,11 @@ export default function PreHomepage({
       onGoToHomepage()
       return
     }
-    goToSlide(index + 1)
+    setNavVisible(false)
     setShowSwipeHint(false)
+    setTimeout(() => {
+      goToSlide(index + 1)
+    }, 200)
   }, [isTransitioning, index, onGoToHomepage, goToSlide])
 
   const prevNormal = useCallback(() => {
@@ -167,14 +176,32 @@ export default function PreHomepage({
 
     const renderedTitle = splitTitle(slide.title)
 
+    // For final slide, show logo at top
+    if (slide.isFinalSlide) {
+      return (
+        <>
+          <div className="pt-4 mb-6">
+            <Image
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              width={120}
+              height={120}
+              className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+              priority
+            />
+          </div>
+          <h1 className="text-2xl md:text-3xl font-bold leading-tight mb-4">{renderedTitle}</h1>
+        </>
+      )
+    }
     if (slide.title === "PHIERS") {
       return <h1 className="text-3xl md:text-4xl font-bold mb-4 text-green">{renderedTitle}</h1>
     }
+    if (slide.titleGreen) {
+      return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-green">{renderedTitle}</h1>
+    }
     if (slide.title.includes("Frederick Douglass")) {
       return <h1 className="text-xl md:text-2xl font-bold leading-tight mb-2">{renderedTitle}</h1>
-    }
-    if (slide.isFinalSlide) {
-      return <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">{renderedTitle}</h1>
     }
     return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-4">{renderedTitle}</h1>
   }
@@ -219,10 +246,177 @@ export default function PreHomepage({
       )
     }
 
-    if (slide.customLayout) {
+    if (slide.customTextLayout) {
       const items = slide.body
       return (
-        <div className="flex flex-col items-center space-y-4 pb-6 pt-0">
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto px-4">
+          {items.map((item: any, idx: number) => {
+            if (item.type === 'spacer') {
+              return <div key={idx} style={{ height: item.height || 16 }} />
+            }
+            if (item.text) {
+              let textColor = 'text-white'
+              if (item.green) textColor = 'text-green'
+              
+              let textSize = 'text-lg md:text-xl'
+              if (item.large) textSize = 'text-4xl md:text-5xl'
+              
+              let fontWeight = item.bold ? 'font-bold' : 'font-normal'
+              
+              let className = item.className || `${textSize} ${textColor} ${fontWeight} leading-tight`
+              
+              return (
+                <p
+                  key={idx}
+                  className={className}
+                >
+                  {item.text}
+                </p>
+              )
+            }
+            if (item === "" || item === " ") return <div key={idx} className="h-0" />
+            if (typeof item === 'string') return <div key={idx} className="h-4" />
+            return null
+          })}
+        </div>
+      )
+    }
+
+    if (slide.compactConsequence) {
+      return (
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto px-4">
+          <p className="text-gray-300 text-2xl md:text-3xl mb-3">Not noise.</p>
+          <p className="text-gray-300 text-2xl md:text-3xl mb-4">Not outrage.</p>
+          <p className="text-green font-bold text-4xl md:text-5xl mt-3 mb-3">Leverage.</p>
+          <p className="text-green font-bold text-2xl md:text-3xl">Leverage = Consequences = Teeth</p>
+        </div>
+      )
+    }
+
+    if (slide.customLayout) {
+      const items = slide.body
+      
+      // Check if this is the text-based custom layout (has type properties)
+      if (items.length > 0 && typeof items[0] === 'object' && 'type' in items[0]) {
+        return (
+          <div className="flex flex-col items-center text-center max-w-md mx-auto px-6 w-full custom-layout-container">
+            <style>{`
+              .leading-tight {
+                line-height: 1.25 !important;
+              }
+              .leading-tight div {
+                line-height: 1.25 !important;
+                margin-bottom: 0 !important;
+              }
+              .animate-logo {
+                animation: fadeInUp 0.6s ease forwards;
+              }
+              .animate-pause {
+                animation: fadeInUp 0.6s ease 0.4s forwards;
+                opacity: 0;
+              }
+              .animate-copy {
+                animation: fadeInUp 0.6s ease 0.8s forwards;
+                opacity: 0;
+              }
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(10px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+            `}</style>
+            {items.map((item: any, idx: number) => {
+              if (item.type === 'logo') {
+                const logoClass = item.className || ''
+                return (
+                  <div key={idx} className={`mb-2 ${logoClass}`}>
+                    <img
+                      src="/images/PHIERS-Pause.png"
+                      alt="PHIERS Pause"
+                      className="w-24 md:w-32 object-contain mx-auto"
+                    />
+                  </div>
+                )
+              }
+              if (item.type === 'spacer') {
+                return <div key={idx} style={{ height: item.height || 16 }} />
+              }
+              if (item.type === 'divider') {
+                return (
+                  <div
+                    key={idx}
+                    className={item.className || "w-12 h-px bg-green-400/40 mx-auto my-2"}
+                  />
+                )
+              }
+              if (item.type === 'text') {
+                // Use className directly from slide if provided
+                if (item.className) {
+                  const content = item.content
+                  const hasNewlines = content && content.includes('\n')
+                  if (hasNewlines) {
+                    return (
+                      <div key={idx} className={item.className}>
+                        {content.split('\n').map((line: string, lineIdx: number) => (
+                          <div key={lineIdx}>{line}</div>
+                        ))}
+                      </div>
+                    )
+                  }
+                  return (
+                    <p key={idx} className={item.className}>
+                      {content}
+                    </p>
+                  )
+                }
+                
+                // Fallback for slides without className
+                let textColor = 'text-gray-300'
+                if (item.green) textColor = 'text-green'
+                if (item.italic) textColor = 'text-gray-400'
+                
+                let fontWeight = item.bold ? 'font-bold' : 'font-normal'
+                let fontStyle = item.italic ? 'italic' : ''
+                
+                let textSize = 'text-base md:text-lg'
+                if (item.large) textSize = 'text-3xl md:text-4xl font-semibold'
+                
+                const content = item.content
+                const hasNewlines = content && content.includes('\n')
+                if (hasNewlines) {
+                  return (
+                    <div key={idx} className={`${textSize} ${textColor} ${fontWeight} ${fontStyle} leading-tight w-full text-center`}>
+                      {content.split('\n').map((line: string, lineIdx: number) => (
+                        <div key={lineIdx}>{line}</div>
+                      ))}
+                    </div>
+                  )
+                }
+                
+                return (
+                  <p
+                    key={idx}
+                    className={`${textSize} ${textColor} ${fontWeight} ${fontStyle} leading-tight w-full text-center`}
+                  >
+                    {content}
+                  </p>
+                )
+              }
+              return null
+            })}
+          </div>
+        )
+      }
+      
+      // Original PHIERS acronym layout
+      const acronymItems = slide.body as { letter: string; word: string }[]
+      return (
+        <div className="flex flex-col items-center space-y-4 pb-6 pt-0 md:pt-0 -mt-8 md:-mt-12">
           <div className="mb-2">
             <Image
               src="/images/PHIERS_Logo.png"
@@ -235,7 +429,7 @@ export default function PreHomepage({
           </div>
           <div className="w-full px-2 sm:px-6">
             <div className="grid grid-cols-6 gap-1 sm:gap-2 justify-items-center mx-auto w-full min-w-full">
-              {items.map((item: { letter: string; word: string }, idx: number) => (
+              {acronymItems.map((item: { letter: string; word: string }, idx: number) => (
                 <div key={idx} className="flex flex-col items-center space-y-1 sm:space-y-2">
                   <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
                     {item.letter}
@@ -361,9 +555,9 @@ export default function PreHomepage({
     const grayClass = "text-gray-300 text-sm md:text-base leading-relaxed"
     const greenClass = "text-green font-bold text-sm md:text-base leading-relaxed"
 
-    let wrapperClass = "space-y-3 md:space-y-4"
+    let wrapperClass = "space-y-0.5 md:space-y-1"
     if (slide.isFinalSlide) {
-      wrapperClass = "space-y-1 md:space-y-2 mt-0 md:mt-0"
+      wrapperClass = "space-y-0.5 md:space-y-1 mt-0 md:mt-0"
     }
 
     return (
@@ -394,10 +588,12 @@ export default function PreHomepage({
   }
 
   return (
-    <div className="min-h-screen bg-[#050b19] text-white flex flex-col">
+    <div className="h-screen max-h-screen bg-[#050b19] text-white flex flex-col overflow-hidden">
+
+      {/* Top bar */}
       <div
-        className="flex justify-between items-center pr-6 pl-6 pt-4 pb-2 shrink-0 z-10 transition-opacity duration-300"
-        style={{ opacity: topBarOpacity }}
+        className="flex justify-between items-center pr-6 pl-6 pt-2 pb-1 shrink-0 z-10 transition-opacity duration-300"
+        style={{ opacity: 0.35 }}
       >
         {onBackToReading && (
           <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
@@ -409,15 +605,16 @@ export default function PreHomepage({
         </button>
       </div>
 
+      {/* MAIN SLIDE AREA */}
       <div
-        className={`flex-1 overflow-y-auto flex items-start justify-center ${
-          index === 0 ? 'min-h-[20vh] sm:min-h-[25vh]' : 'min-h-[15vh] sm:min-h-[20vh]'
+        className={`flex-1 overflow-y-auto touch-auto flex justify-center ${
+          index === 0 ? "items-center" : "items-start"
         } ${
           slide.imageSrc && slide.imageSrc.includes('FredDoug')
-            ? 'px-0 md:px-12 pt-6 md:pt-8 pb-8'
+            ? 'px-0 md:px-12 pt-2 md:pt-4 pb-2'
             : index === 8 || index === 1
-            ? 'px-6 md:px-12 pt-0 pb-2'
-            : 'px-6 md:px-12 pt-4 pb-2'
+            ? 'px-6 md:px-12 pt-0 pb-0'
+            : 'px-6 md:px-12 pt-2 pb-0'
         }`}
         onClick={!isTransitioning && !isLastSlide ? next : undefined}
         onKeyDown={!isTransitioning && !isLastSlide ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
@@ -436,112 +633,100 @@ export default function PreHomepage({
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="relative"
               >
-                {renderTitle()}
-                {renderBody()}
+                <div
+                  className={`
+                    flex flex-col items-center text-center w-full
+                    ${index === 0
+                      ? "min-h-[70vh] sm:min-h-[65vh] md:min-h-[60vh] lg:min-h-[55vh] justify-center -translate-y-12 md:-translate-y-16"
+                      : index === 11
+                      ? "pt-0 -mt-4 md:-mt-6"
+                      : "pt-8"
+                    }
+                  `}
+                >
+                  {renderTitle()}
+                  {renderBody()}
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
       </div>
 
+      {/* Bottom nav - Nav dots only */}
       <div
-        className={`shrink-0 flex flex-col items-center gap-1 py-1 border-t border-gray-800/50 transition-opacity duration-300 ${
-          showNavControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`absolute left-0 right-0 flex flex-col items-center pointer-events-none ${
+          index === 11 ? "bottom-6" : "bottom-4"
+        } ${
+          navVisible ? "fade-in-nav" : "fade-out-nav"
         }`}
+        style={{ pointerEvents: navVisible ? 'auto' : 'none' }}
       >
-        {!isLastSlide && (
-          <div className="flex items-center gap-6">
-            {index > 0 && (
-              <button
-                onClick={prevNormal}
-                className="mb-0 text-xs text-gray-400 hover:text-gray-300 transition"
-              >
-                ← Back
-              </button>
-            )}
+        {/* Nav dots */}
+        <div className="flex space-x-2 pointer-events-auto items-center">
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              onClick={() => goToSlide(i)}
+              style={{
+                width: '4px',
+                height: '4px',
+                borderRadius: '50%',
+                backgroundColor: i === index ? 'rgba(61, 220, 132, 0.8)' : 'rgba(156, 163, 175, 0.4)',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            />
+          ))}
+        </div>
 
-            <button
-              onClick={next}
-              className="mb-0 text-xs text-gray-400 hover:text-gray-300 transition"
-            >
-              Next →
-            </button>
+        {/* Tap hint - only on slide 0 */}
+        {index === 0 && (
+          <div className="text-xs text-gray-500 opacity-60 pointer-events-none mt-2">
+            tap anywhere
           </div>
         )}
+      </div>
 
-        {isLastSlide && (
-          <div className="flex flex-col gap-1 w-full max-w-xs mx-auto mb-2 -mt-4">
+      {/* Back button - independent fixed position */}
+      {index > 0 && (
+        <button
+          onClick={prevNormal}
+          style={{
+            position: 'fixed',
+            bottom: '16px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'fit-content',
+            padding: '8px 16px',
+            fontSize: '14px',
+            color: '#9ca3af',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            zIndex: 9999
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.color = '#d1d5db'}
+          onMouseLeave={(e) => e.currentTarget.style.color = '#9ca3af'}
+        >
+          ← Back
+        </button>
+      )}  
+
+      {/* Final slide CTA - separate from nav */}
+      {isLastSlide && (
+        <div className="absolute bottom-24 left-0 right-0 flex justify-center pointer-events-auto">
+          <div className="w-full max-w-xs mx-auto px-4">
             <button
               onClick={onGoToHomepage}
-              className="border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition"
+              className="w-full border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition"
             >
               → SEE WHAT THE EXPERTS SAY
             </button>
           </div>
-        )}
-
-        <div className="flex items-center gap-4 flex-wrap justify-center">
-          <div className="flex gap-2">
-            {slides.map((_, i) => (
-              <div
-                key={i}
-                onClick={() => goToSlide(i)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToSlide(i); } }}
-                style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  backgroundColor: i === index ? 'rgba(61, 220, 132, 0.7)' : 'rgba(156, 163, 175, 0.5)',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  margin: '0 3px',
-                  flexShrink: 0
-                }}
-              />
-            ))}
-          </div>
         </div>
-        <div className="flex items-center justify-center gap-3">
-          {showSwipeHint && (
-            <span className="text-gray-400 text-xs animate-pulse block sm:hidden">← swipe →</span>
-          )}
-          <p className="text-gray-500 text-xs">{index + 1} / {slides.length}</p>
-          {showSwipeHint && (
-            <span className="text-gray-400 text-xs animate-pulse block sm:hidden">← swipe →</span>
-          )}
-        </div>
-      </div>
+      )}
 
-      <AnimatePresence>
-        {douglassModalOpen && slide.imageSrc && (
-          <motion.div
-            className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setDouglassModalOpen(false)}
-            aria-hidden="true"
-          >
-            <div className="relative max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
-              <button
-                onClick={() => setDouglassModalOpen(false)}
-                className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors"
-                aria-label="Close"
-              >
-                ✕
-              </button>
-              <img
-                src={slide.imageSrc}
-                alt="Frederick Douglass quote – enlarged"
-                className="w-full h-auto object-contain rounded-xl"
-                onError={(e) => console.error('Modal image failed to load:', slide.imageSrc)}
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

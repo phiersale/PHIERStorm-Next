@@ -10,123 +10,38 @@ import Image from 'next/image'
 import PreHomepage from '@/components/PreHomepage'
 import MainHomePage from '@/components/MainHomePage'
 import PathosCredibility from '@/components/PathosCredibility'
+// import OrientationVideo from '@/components/OrientationVideo'
+import TransitionModal from '@/components/TransitionModal'
 
-function PhasedText({ onComplete, onSkip }: { onComplete: () => void; onSkip: () => void }) {
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Space' || e.key === ' ') {
-        e.preventDefault()
-        onComplete()
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [onComplete])
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden">
-
-      {/* Background subtle zoom */}
-      <div className="absolute inset-0 bg-black animate-slowZoom"></div>
-
-      {/* TOP‑RIGHT SKIP INTRO */}
-      <button
-        onClick={onSkip}
-        className="absolute top-4 right-4 z-20 text-gray-500/60 text-xs underline hover:text-gray-300 transition bg-transparent border-none cursor-pointer"
-        style={{ opacity: 0, animation: "fadeIn 0.5s ease forwards" }}
-      >
-        Skip Intro
-      </button> 
-
-      {/* Cinematic gradient fade (adds depth) */}
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black to-transparent pointer-events-none z-10"></div>
-
-      {/* CENTER CONTENT */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 w-full">
-
-        {/* Logo – responsive top padding */}
-        <div className="pt-12 lg:pt-10 pb-4">
-          <div className="relative inline-block mx-auto">
-            {/* Gentle green glow behind the logo */}
-            <div className="absolute inset-0 rounded-full blur-2xl bg-green/10 scale-110"></div>
-            <img
-              src="/images/PHIERS-Pause.png"
-              alt="PHIERS Pause"
-              className="relative w-[55%] sm:w-[40%] md:w-[33%] max-w-sm h-auto mx-auto opacity-100"
-              style={{
-                opacity: 0,
-                animation: "fadeInScale 1.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards"
-              }}
-            />
-          </div>
-        </div>
-
-        {/* TEXT BLOCK – responsive bottom padding */}
-        <div className="max-w-2xl mx-auto pt-2 pb-10 lg:pb-8">
-          <h1 className="text-2xl sm:text-3xl font-semibold leading-relaxed tracking-wide text-gray-100 mb-4"
-              style={{ opacity: 0, animation: "fadeIn 1.8s ease forwards" }}>
-            Take a deep breath.
-          </h1>
-          <p className="text-lg sm:text-xl font-light leading-relaxed text-gray-300 mt-4 sm:mt-6"
-             style={{ opacity: 0, animation: "fadeIn 2.5s ease forwards" }}>
-            What you're about to see is simple.<br />
-            It shifts the balance of power — back to you.
-          </p>
-        </div>
-
-        {/* CONTINUE BUTTON */}
-        <button
-          onClick={onComplete}
-          className="mt-2 lg:mt-3 text-xl font-medium transition-colors duration-300"
-            style={{
-              opacity: 0,
-              color: '#3ddc84',
-              animation: "fadeIn 0.5s ease 4.5s forwards"
-            }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#2ab568'}
-          onMouseLeave={(e) => e.currentTarget.style.color = '#3ddc84'}
-        >
-          Continue →
-        </button>
-      </div>
-
-      {/* ANIMATIONS */}
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInScale {
-          0% { opacity: 0; transform: scale(0.96); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-      `}</style>
-    </div>
-  )
-}
+// PhasedText component removed - flow simplified from image directly to prehome
 
 
 export default function Page() {
   const router = useRouter()
-  const [stage, setStage] = useState<'entry' | 'image' | 'reading' | 'prehome' | 'credibility' | 'main'>('image')
+  const [stage, setStage] = useState<'image' | 'reading' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
   const [skipFirstImage, setSkipFirstImage] = useState(true)
+  const [showTransitionModal, setShowTransitionModal] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [stage])
 
-  // Check URL param to directly show PathosCredibility
+  // Check URL params
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('credibility') === 'true') {
       setStage('credibility');
+    } else if (params.get('reset') === 'true') {
+      setStage('image');
+      setSkipFirstImage(true);
+      window.history.replaceState({}, '', window.location.pathname);
     }
   }, [])
   const [readingVisibleCount, setReadingVisibleCount] = useState(0)
   const [readingComplete, setReadingComplete] = useState(false)
 
   const readingLines = [
-    { type: 'image' },
+    { type: 'spacer' },
     { type: 'spacer' },
     { type: 'spacer' },
     { type: 'spacer' },
@@ -186,9 +101,7 @@ export default function Page() {
     return () => window.removeEventListener('keydown', handler)
   }, [stage, readingComplete])
 
-  if (stage === 'entry') {
-    return <PhasedText onComplete={() => setStage('reading')} onSkip={() => setStage('credibility')} />
-  }
+  // 'entry' stage removed - flow goes directly from image to prehome
 
   if (stage === 'image') {
     return (
@@ -197,17 +110,17 @@ export default function Page() {
         className="fixed inset-0 bg-black flex items-center justify-center outline-none"
         tabIndex={0}
         autoFocus
-        onClick={() => setStage('entry')}
+        onClick={() => setStage('prehome')}
         onKeyDown={(e) => {
           if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowRight') {
             e.preventDefault()
-            setStage('entry')
+            setStage('prehome')
           }
         }}
       >
         {/* TOP‑RIGHT NEXT BUTTON */}
         <button
-          onClick={() => setStage('entry')}
+          onClick={() => setStage('prehome')}
           className="fixed top-4 right-4 z-30 text-gray-500/60 text-xs underline hover:text-gray-300 transition"
           style={{ opacity: 0, animation: "fadeIn 0.5s ease forwards" }}
         >
@@ -230,7 +143,6 @@ export default function Page() {
           />
         </motion.div>
 
-        {/* LOCAL KEYFRAMES FOR BUTTON FADEIN */}
         <style>{`
           @keyframes fadeIn {
             from { opacity: 0; transform: translateY(4px); }
@@ -257,26 +169,6 @@ export default function Page() {
         <div className="max-w-xl space-y-1 w-full text-center">
           {readingLines.map((line, i) => {
             if (i >= readingVisibleCount) return null
-
-            if (line.type === 'image') {
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1.6, ease: "easeOut" }}
-                  className="mb-1 mt-[60px]"
-                >
-                  <Image
-                    src="/images/PHIERS_Things_Changing_Fast.png"
-                    alt="Things Changing Fast"
-                    width={120}
-                    height={120}
-                    className="mx-auto w-[90%] sm:w-[65%] h-auto"
-                  />
-                </motion.div>
-              )
-            }
 
             if (line.type === 'spacer') {
               return <div key={i} className="h-1" />
@@ -321,7 +213,6 @@ export default function Page() {
   if (stage === 'prehome') {
     return (
       <PreHomepage
-        skipFirstImageSlide={skipFirstImage}
         onGoToHomepage={() => {
           setSkipFirstImage(false)
           setStage('credibility')
@@ -334,10 +225,13 @@ export default function Page() {
   if (stage === 'credibility') {
     return (
       <div className="min-h-screen bg-[#050b19] flex flex-col">
-        <PathosCredibility onBackToSlides={() => {
-          setSkipFirstImage(false)
-          setStage('prehome')
-        }} />
+        <PathosCredibility 
+          onBackToSlides={() => {
+            setSkipFirstImage(false)
+            setStage('prehome')
+          }}
+          onOpenTransitionModal={() => setStage('transition')}
+        />
         <div id="credibility-buttons" className="flex justify-center gap-2 pb-2 -mt-4">
           <button
             onClick={() => {
@@ -349,7 +243,7 @@ export default function Page() {
             ← Back to Slides
           </button>
           <button
-            onClick={() => setStage('main')}
+            onClick={() => setStage('transition')}
             className="px-6 py-2 text-base font-semibold rounded-lg transition"
             style={{
               backgroundColor: '#F5C542',
@@ -372,6 +266,10 @@ export default function Page() {
     )
   }
 
+  if (stage === 'transition') {
+    return <TransitionModal onContinue={() => setStage('main')} />
+  }
+
   return (
   <>
     {(() => {
@@ -387,8 +285,8 @@ export default function Page() {
         <span className="ml-2 inline-block">Read the Newsflash →</span>
       </a>
     </div>
-    <MainHomePage onBackToEntry={() => setStage('entry')} />
+    <MainHomePage onBackToEntry={() => setStage('image')} />
   </>
 )
 }
-          // FILE: app/page.tsx
+// FILE: app/page.tsx

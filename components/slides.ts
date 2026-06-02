@@ -1,58 +1,104 @@
 // FILE: components/slides.ts
-// VERSION: 10.0 – Lean deck (10 slides, compressed mechanism)
+// VERSION: 11.0 – Emotional narrative flow: Pause → Problem → Hope → Mechanism
 
 const slides = [
-  // 0 — IMAGE ANCHOR
+  // 0 — SIGNAL SLIDE (cinematic title card)
   {
-    type: "image",
-    imageSrc: "/images/You_Are_Not_Powerless.jpg",
-    imageAlt: "YOU ARE NOT POWERLESS"
+    customLayout: true,
+    body: [
+      {
+        type: "logo",
+        large: false,
+        className: "animate-logo w-16 md:w-24 mt-2 mb-2"
+      },
+      {
+        type: "text",
+        content: "PAUSE.",
+        large: true,
+        green: true,
+        bold: true,
+        className: "text-5xl md:text-6xl font-semibold text-green-400 tracking-tight mt-0 mb-6 animate-pause"
+      },
+      {
+        type: "text",
+        content: "Things are changing fast.",
+        large: false,
+        green: false,
+        bold: false,
+        className: "text-xl md:text-2xl font-medium leading-relaxed text-gray-200 max-w-md animate-copy"
+      },
+      {
+        type: "spacer",
+        height: 12
+      },
+      {
+        type: "text",
+        content: "Before reacting,\nchoose a response\nthat actually works.",
+        large: false,
+        green: false,
+        bold: true,
+        className: "text-lg md:text-xl font-medium leading-relaxed text-gray-300 max-w-md animate-copy"
+      }
+    ]
   },
 
-  // 1 — THE PROMISE
+  // 1 — PROBLEM (billboard style)
+  {
+    title: "Congress works for you.",
+    body: ["They just forgot."],
+    greenLines: []
+  },
+
+  // 2 — PROBLEM (second problem slide)
+  {
+    title: "Ignoring voters became politically safe.",
+    body: [],
+    greenLines: []
+  },
+
+  // 3 — HOPE
+  {
+    title: "PHIERS changes that.",
+    body: [],
+    greenLines: [],
+    titleGreen: true
+  },
+
+  // 4 — PUNCH SLIDE (restored from original)
   {
     title: "",
     body: [
       "", 
       "", 
-      "A few minutes.",
-      "Enough to make",
-      "Congress listen."
+      { text: "A few minutes.", large: true, green: true, bold: true },
+      { text: "Enough to make", large: false, green: false, bold: false },
+      { text: "Congress listen.", large: false, green: true, bold: false }
     ],
-    greenLines: [2],
-    largeFormat: true
+    customTextLayout: true
   },
 
-  // 2 — THE HOOK (merged)
+  // 5 — ORGANIZED PEOPLE
   {
-    title: "Congress works for you.",
+    title: "",
     body: [
-      "They just forgot that.",
-      "Ignoring people became politically safe.",
-      "PHIERS changes the cost of ignoring you.",
-      "Your name. Your district. On the record."
+      { text: "Outrage", large: true, green: false, bold: true },
+      { text: "doesn't move Congress.", large: false, green: false, bold: false },
+      { type: "spacer", height: 24 },
+      { text: "Organized people do.", large: true, green: true, bold: true },
+      { type: "spacer", height: 20 },
+      { text: "Especially in their own district.", large: false, green: false, bold: false, className: "text-gray-400 text-base" }
     ],
-    greenLines: [2]
+    customTextLayout: true
   },
 
-  // 3 — CORE PRINCIPLE
-  {
-    title: "Anger doesn't move them.",
-    body: [
-      "Organized people do.",
-      "Especially in their own district."
-    ],
-    greenLines: [0, 1]
-  },
-
-  // 4 — FREDERICK DOUGLASS IMAGE
+  // 6 — FREDERICK DOUGLASS IMAGE
   {
     type: "image",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 5 — TEETH IMAGE
+  // 7 — TEETH IMAGE
   {
     title: "",
     body: ["A demand that has TEETH."],
@@ -61,37 +107,24 @@ const slides = [
     teethImage: true
   },
 
-  // 6 — CONSEQUENCE
+  // 8 — MECHANISM (shortened, 4 beats)
   {
-    title: "",
+    title: "How to make Congress listen.",
     body: [
-      "Not noise.",
-      "Not outrage.",
-      "Consequence."
+      "1,500 verified people go on record.",
+      "Public town hall demanded.",
+      "Refuse? Investigation.",
+      "Then voters decide."
     ],
-    greenLines: [2],
-    largeFormat: true
+    greenLines: [0, 1, 2, 3]
   },
 
-  // 7 — THE MECHANISM (merged, single escalation)
-  {
-    title: "How pressure becomes unavoidable.",
-    body: [
-      "1,500 verified people in a district go on record.",
-      "A public town hall is demanded.",
-      "If they refuse or lie → investigation.",
-      "Votes. Donors. Financial ties. Published publicly.",
-      "Then voters decide what happens next."
-    ],
-    greenLines: [1, 2, 3]
-  },
-
-  // 8 — ACCOUNTABILITY (cold procedural)
+  // 9 — ACCOUNTABILITY
   {
     replacementLayout: true
   },
 
-   // 9 — PHIERS ACRONYM (original meaning)
+  // 10 — PHIERS ACRONYM
   {
     title: "PHIERS",
     body: [
@@ -106,16 +139,17 @@ const slides = [
     punchLine: "Power Held In Every Representative's Seat"
   },
 
-  // 10 — FINAL CTA
+  // 11 — FINAL CTA
   {
-    title: "Your name. Your district. On the record.",
+    title: "One petition. Your district. On the record.",
     body: [
       "That's how pressure starts.",
       "Name. Email. Zip code.",
       "Make them answer."
     ],
     greenLines: [0, 2],
-    isFinalSlide: true
+    isFinalSlide: true,
+    compactFinal: true
   }
 ]
 

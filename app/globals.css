@@ -896,4 +896,64 @@ img.phiers-wide {
   filter: blur(0);
 }
 
+/* ========================================
+   CINEMATIC NAVIGATION ANIMATIONS (ADDED)
+   Does not affect existing code
+   ======================================== */
+
+@keyframes fadeInNav {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutNav {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.fade-in-nav {
+  animation: fadeInNav 0.8s ease-out 1.2s forwards;
+  opacity: 0;
+}
+
+.fade-out-nav {
+  animation: fadeOutNav 0.3s ease-in forwards;
+}
+
+/* Accessibility: reduced motion = no animation */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-nav,
+  .fade-out-nav {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Override for nav dots - no padding or min-height */
+.nav-dot {
+  padding: 0 !important;
+  min-height: auto !important;
+  width: 4px !important;
+  height: 4px !important;
+  background-color: rgba(156, 163, 175, 0.4) !important;
+  border-radius: 50% !important;
+}
+
+.nav-dot-active {
+  background-color: rgba(61, 220, 132, 0.7) !important;
+}
+
 /* FILE: app/globals.css */
