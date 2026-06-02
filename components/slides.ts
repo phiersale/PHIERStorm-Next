@@ -1,5 +1,5 @@
 // FILE: components/slides.ts
-// VERSION: 11.0 – Emotional narrative flow: Pause → Problem → Hope → Mechanism
+// VERSION: 11.2 – Added divider line between logo and PAUSE for clear separation
 
 const slides = [
   // 0 — SIGNAL SLIDE (cinematic title card)
@@ -12,12 +12,24 @@ const slides = [
         className: "animate-logo w-16 md:w-24 mt-2 mb-2"
       },
       {
+        type: "spacer",
+        height: 16
+      },
+      {
+        type: "divider",
+        className: "w-16 h-px bg-green-400/50 mx-auto"
+      },
+      {
+        type: "spacer",
+        height: 16
+      },
+      {
         type: "text",
         content: "PAUSE.",
         large: true,
         green: true,
         bold: true,
-        className: "text-5xl md:text-6xl font-semibold text-green-400 tracking-tight mt-0 mb-6 animate-pause"
+        className: "text-5xl md:text-6xl font-semibold text-green-400 tracking-tight mb-6 animate-pause"
       },
       {
         type: "text",
@@ -41,6 +53,9 @@ const slides = [
       }
     ]
   },
+
+  // 1 through 11 remain exactly the same as your current file...
+  // (keeping your existing slides 1-11 unchanged)
 
   // 1 — PROBLEM (billboard style)
   {
@@ -136,7 +151,7 @@ const slides = [
       { letter: "S", word: "SEAT" }
     ],
     customLayout: true,
-    punchLine: "Power Held In Every Representative's Seat"
+    punchLine: "Power Held In Every Representative's Seat (pronounced FIRES)"
   },
 
   // 11 — FINAL CTA
@@ -150,7 +165,9 @@ const slides = [
     greenLines: [0, 2],
     isFinalSlide: true,
     compactFinal: true
-  }
+  },
 ]
 
 export default slides
+
+// FILE: components/slides.ts
