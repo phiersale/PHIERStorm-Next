@@ -283,21 +283,6 @@ export default function Page() {
       }
       return null;
     })()}
-
-        {/* Navigation to Movement and Trilogy */}
-    <div className="bg-black py-12 px-6 text-center border-t border-gray-800">
-      <div className="max-w-3xl mx-auto">
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="/Prophecy/movement" className="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-lg transition border border-gray-700">
-            ← THE MOVEMENT
-          </a>
-          <a href="/Prophecy/trilogy" className="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-lg transition border border-gray-700">
-            THE TRILOGY →
-          </a>
-        </div>
-        <p className="text-gray-500 text-sm mt-4">Understand the pattern. Recover the inheritance. Prepare the move.</p>
-      </div>
-    </div>
     
     <MainHomePage onBackToEntry={() => setStage('image')} />
     

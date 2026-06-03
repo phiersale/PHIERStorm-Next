@@ -3,7 +3,7 @@
 
   'use client';
 
-  import { useState } from 'react';
+  import { useState, useEffect } from 'react';
   import Link from 'next/link';
   import Image from 'next/image';
   import Accordion from './components/Accordion';
@@ -13,7 +13,11 @@
   export default function ProphecyPage() {
     const [videoStarted, setVideoStarted] = useState(true);
     const [showModal, setShowModal] = useState(false);
-    const [showTrustModal, setShowTrustModal] = useState(true);
+    const [showPrivacyDrawer, setShowPrivacyDrawer] = useState(true);
+    
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, []);
     return (
     <div className="bg-black text-white">
        {/* TRUST & PARTICIPATION MODAL – appears on load */}

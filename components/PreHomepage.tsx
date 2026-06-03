@@ -180,7 +180,12 @@ export default function PreHomepage({
     if (slide.isFinalSlide) {
       return (
         <>
-          <div className="pt-4 mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="pt-4 mb-4"
+          >
             <Image
               src="/images/PHIERS_Logo.png"
               alt="PHIERS Logo"
@@ -189,8 +194,15 @@ export default function PreHomepage({
               className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
               priority
             />
-          </div>
-          <h1 className="text-2xl md:text-3xl font-bold leading-tight mb-4">{renderedTitle}</h1>
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            className="text-2xl md:text-3xl font-bold leading-tight mb-4"
+          >
+            {renderedTitle}
+          </motion.h1>
         </>
       )
     }
@@ -209,7 +221,12 @@ export default function PreHomepage({
   const renderBody = () => {
     if (slide.teethImage) {
       return (
-        <div className="flex flex-col items-center text-center">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col items-center text-center"
+        >
           <div className="flex justify-center w-full mb-4">
             <img
               src="/images/ORGANIZE_Fish.jpg"
@@ -217,10 +234,15 @@ export default function PreHomepage({
               className="w-2/3 md:w-1/2 max-w-md rounded-lg shadow-md"
             />
           </div>
-          <p className="text-3xl md:text-5xl font-bold text-green mt-2">
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-3xl md:text-5xl font-bold text-green mt-2"
+          >
             A demand that has TEETH.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       )
     }
 
@@ -300,66 +322,23 @@ export default function PreHomepage({
       if (items.length > 0 && typeof items[0] === 'object' && 'type' in items[0]) {
         return (
           <div className="flex flex-col items-center text-center max-w-md mx-auto px-6 w-full custom-layout-container">
-            <style>{`
-              .leading-tight {
-                line-height: 1.25 !important;
-              }
-              .leading-tight div {
-                line-height: 1.25 !important;
-                margin-bottom: 0 !important;
-              }
-              .animate-logo {
-                animation: fadeInDownLogo 1.0s ease forwards;
-                opacity: 0;
-              }
-              .animate-divider {
-                animation: fadeInUp 0.6s ease 0.8s forwards;
-                opacity: 0;
-              }
-              .animate-pause {
-                animation: fadeInUp 0.6s ease 1.2s forwards;
-                opacity: 0;
-              }
-              .animate-copy-1 {
-                animation: fadeInUp 0.6s ease 1.6s forwards;
-                opacity: 0;
-              }
-              .animate-copy-2 {
-                animation: fadeInUp 0.6s ease 2.0s forwards;
-                opacity: 0;
-              }
-              @keyframes fadeInUp {
-                from {
-                  opacity: 0;
-                  transform: translateY(10px);
-                }
-                to {
-                  opacity: 1;
-                  transform: translateY(0);
-                }
-              }
-              @keyframes fadeInDownLogo {
-                from {
-                  opacity: 0;
-                  transform: translateY(-25px);
-                }
-                to {
-                  opacity: 1;
-                  transform: translateY(0);
-                }
-              }
-            `}</style>
             {items.map((item: any, idx: number) => {
               if (item.type === 'logo') {
                 const logoClass = item.className || ''
                 return (
-                  <div key={idx} className={`mb-2 ${logoClass}`}>
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: -30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className={`mb-2 ${logoClass}`}
+                  >
                     <img
                       src="/images/PHIERS-Pause.png"
                       alt="PHIERS Pause"
                       className="w-24 md:w-32 object-contain mx-auto"
                     />
-                  </div>
+                  </motion.div>
                 )
               }
               if (item.type === 'spacer') {
@@ -367,8 +346,11 @@ export default function PreHomepage({
               }
               if (item.type === 'divider') {
                 return (
-                  <div
+                  <motion.div
                     key={idx}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.25, delay: 0.55 }}
                     className={item.className || "w-12 h-px bg-green-400/40 mx-auto my-2"}
                   />
                 )
@@ -378,19 +360,46 @@ export default function PreHomepage({
                 if (item.className) {
                   const content = item.content
                   const hasNewlines = content && content.includes('\n')
+                  
+                  // Determine delay based on content - smooth cinematic reveal
+                  let delay = 0
+                  if (content === "PAUSE.") delay = 0.6
+                  else if (content === "Things are changing fast.") delay = 1.4
+                  else if (content === "Before reacting,") delay = 2.2
+                  else if (content === "choose a response") delay = 2.7
+                  else if (content === "that actually works.") delay = 3.2
+                  else delay = 0.4 // divider or other
+                  
                   if (hasNewlines) {
+                    // Calculate delay based on content (for the multi-line block)
+                    let blockDelay = 0
+                    if (content.includes("Before reacting")) blockDelay = 2.3
+                    else blockDelay = delay
+                    
                     return (
-                      <div key={idx} className={item.className}>
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, maskImage: "linear-gradient(to bottom, transparent 0%, black 0%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 0%)" }}
+                        animate={{ opacity: 1, maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)" }}
+                        transition={{ duration: 1.2, delay: blockDelay, ease: [0.25, 0.1, 0.25, 1] }}
+                        className={item.className}
+                      >
                         {content.split('\n').map((line: string, lineIdx: number) => (
                           <div key={lineIdx}>{line}</div>
                         ))}
-                      </div>
+                      </motion.div>
                     )
                   }
                   return (
-                    <p key={idx} className={item.className}>
+                    <motion.p
+                      key={idx}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.9, delay, ease: [0.25, 0.1, 0.25, 1] }}
+                      className={item.className}
+                    >
                       {content}
-                    </p>
+                    </motion.p>
                   )
                 }
                 
@@ -407,23 +416,45 @@ export default function PreHomepage({
                 
                 const content = item.content
                 const hasNewlines = content && content.includes('\n')
+                
+                let delay = 0
+                if (content === "PAUSE.") delay = 0.6
+                else if (content === "Things are changing fast.") delay = 1.4
+                else if (content === "Before reacting,") delay = 2.2
+                else if (content === "choose a response") delay = 2.7
+                else if (content === "that actually works.") delay = 3.2
+                
                 if (hasNewlines) {
+                  // Calculate delay based on content (for the multi-line block)
+                  let blockDelay = 0
+                  if (content.includes("Before reacting")) blockDelay = 2.3
+                  else blockDelay = delay
+                  
                   return (
-                    <div key={idx} className={`${textSize} ${textColor} ${fontWeight} ${fontStyle} leading-tight w-full text-center`}>
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, maskImage: "linear-gradient(to bottom, transparent 0%, black 0%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 0%)" }}
+                      animate={{ opacity: 1, maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)" }}
+                      transition={{ duration: 1.2, delay: blockDelay, ease: [0.25, 0.1, 0.25, 1] }}
+                      className={`${textSize} ${textColor} ${fontWeight} ${fontStyle} leading-tight w-full text-center`}
+                    >
                       {content.split('\n').map((line: string, lineIdx: number) => (
                         <div key={lineIdx}>{line}</div>
                       ))}
-                    </div>
+                    </motion.div>
                   )
                 }
                 
                 return (
-                  <p
+                  <motion.p
                     key={idx}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.9, delay, ease: [0.25, 0.1, 0.25, 1] }}
                     className={`${textSize} ${textColor} ${fontWeight} ${fontStyle} leading-tight w-full text-center`}
                   >
                     {content}
-                  </p>
+                  </motion.p>
                 )
               }
               return null
@@ -435,7 +466,7 @@ export default function PreHomepage({
       // Original PHIERS acronym layout
       const acronymItems = slide.body as { letter: string; word: string }[]
       return (
-        <div className="flex flex-col items-center space-y-4 pb-6 pt-0 md:pt-0 -mt-8 md:-mt-12">
+        <div className="flex flex-col items-center space-y-4 pb-6 pt-4 md:pt-0 -mt-4 md:-mt-12">
           <div className="mb-2">
             <Image
               src="/images/PHIERS_Logo.png"
@@ -485,7 +516,7 @@ export default function PreHomepage({
       if (isPowerlessSlide || index === 0) {
         const imageSrc = index === 0 ? "/images/You_Are_Not_Powerless.jpg" : slide.imageSrc
         return (
-          <div className="w-full flex flex-col items-center justify-center px-4 pt-2 pb-2 sm:pb-4">
+          <div className="w-full flex flex-col items-center justify-center px-4 pt-0 pb-2 sm:pb-4 -mt-8 md:-mt-12">
             <div onClick={handleImageClick} className="w-full">
               <Image
                 src={imageSrc}
@@ -510,8 +541,11 @@ export default function PreHomepage({
       if (index === 6) {
         widthClass = 'w-[85%] md:w-[70%]'
       }
+      if (index === 9) {
+        widthClass = 'w-[90%] md:w-[75%]'
+      }
       return (
-        <div className="w-full flex justify-center">
+        <div className="w-full flex flex-col items-center">
           <div onClick={handleImageClick} className={isDouglassSlide ? 'cursor-pointer w-full mb-8' : ''}>
             <Image
               src={slide.imageSrc}
@@ -523,6 +557,11 @@ export default function PreHomepage({
               onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
             />
           </div>
+          {index === 9 && slide.caption && (
+            <p className={slide.captionClassName || "text-center text-red-400 text-lg md:text-xl font-medium mt-6 tracking-tight max-w-3xl mx-auto"}>
+              {slide.caption}
+            </p>
+          )}
         </div>
       )
     }
@@ -580,7 +619,12 @@ export default function PreHomepage({
     }
 
     return (
-      <div className={wrapperClass}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        className={wrapperClass}
+      >
         {slide.body.map((line, i) => {
           const isGreen = greenLineIndices.includes(i)
           let greenColorClass = "text-green"
@@ -602,7 +646,22 @@ export default function PreHomepage({
             </p>
           )
         })}
-      </div>
+        
+        {/* Button only on final slide */}
+        {slide.isFinalSlide && (
+          <>
+            <div className="h-12"></div>
+            <div className="mb-4">
+              <button
+                onClick={onGoToHomepage}
+                className="w-full max-w-xs mx-auto block border border-green/40 text-green text-sm md:text-base font-semibold py-3 px-4 rounded-md hover:bg-green/10 transition"
+              >
+                → SEE WHAT THE EXPERTS SAY
+              </button>
+            </div>
+          </>
+        )}
+      </motion.div>
     )
   }
 
@@ -642,30 +701,44 @@ export default function PreHomepage({
         <div className="w-full mx-auto max-w-full">
           <div className="text-center w-full">
             <AnimatePresence mode="popLayout">
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="relative"
-              >
-                <div
-                  className={`
-                    flex flex-col items-center text-center w-full
-                    ${
-                      index === 0 
-                        ? "pt-2 md:pt-4" 
-                        : index === 11 
-                        ? "pt-8 md:pt-12" 
-                        : "pt-6 md:pt-8"
-                    }
-                  `}
-                >
-                  {renderTitle()}
-                  {renderBody()}
+              {index === 0 ? (
+                <div key={index} className="relative">
+                  <div
+                    className={`
+                      flex flex-col items-center text-center w-full
+                      pt-2 md:pt-4
+                    `}
+                  >
+                    {renderTitle()}
+                    {renderBody()}
+                  </div>
                 </div>
-              </motion.div>
+              ) : (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="relative"
+                >
+                  <div
+                    className={`
+                      flex flex-col items-center text-center w-full
+                      ${
+                        index === 11
+                        ? "-mt-4 md:-mt-6 pt-6 md:pt-8"
+                        : index === 12
+                        ? "-mt-8 md:-mt-12 pt-6 md:pt-8"
+                        : "pt-6 md:pt-8"
+                      }
+                    `}
+                  >
+                    {renderTitle()}
+                    {renderBody()}
+                  </div>
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
         </div>
@@ -707,7 +780,7 @@ export default function PreHomepage({
       </div>
 
       {/* Back button - independent fixed position */}
-      {index > 0 && (
+      {index > 0 && !isLastSlide && (
         <button
           onClick={prevNormal}
           style={{
@@ -731,18 +804,7 @@ export default function PreHomepage({
         </button>
       )}  
 
-      {isLastSlide && (
-        <div className="absolute bottom-10 left-0 right-0 flex justify-center pointer-events-auto">
-          <div className="w-full max-w-xs mx-auto px-4">
-            <button
-              onClick={onGoToHomepage}
-              className="w-full border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition"
-            >
-              → SEE WHAT THE EXPERTS SAY
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Button moved inside slide content - see renderBody for final slide */}
 
     </div>
   )

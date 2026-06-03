@@ -209,19 +209,10 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
   return (
     <>
-      {/* WHAT'S NEW BANNER – full red banner */}
+      {/* Closeable Survey Button - top right */}
       {showFullBanner && (
-        <div className="fixed top-16 left-0 right-0 z-50 bg-red-700 text-white py-2 px-4 text-center shadow-lg transition-all duration-500 animate-fadeIn">
-          <div className="container mx-auto flex items-center justify-between gap-4 flex-wrap">
-            <span className="text-sm md:text-base">
-              🔴 LIVE: Major national developments unfolding. See the latest updates
-            </span>
-            <a
-              href="/whats-new"
-              className="bg-white text-red-700 px-3 py-1 rounded-md text-sm font-bold hover:bg-gray-100 transition"
-            >
-              What's New →
-            </a>
+        <div className="fixed top-2 right-2 z-50">
+          <div className="relative inline-flex flex-col items-end">
             <button
               onClick={() => {
                 setShowFullBanner(false)
@@ -229,17 +220,26 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
                 if (bannerTimer) clearTimeout(bannerTimer)
                 localStorage.setItem('whatsnew_last_seen', entriesData.lastUpdated)
               }}
-              className="text-white/80 hover:text-white text-xl leading-none"
+              className="absolute -top-2 -right-2 bg-black/80 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition z-10"
+              aria-label="Close survey button"
             >
               ✕
             </button>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-full shadow-lg transition-all duration-200 text-sm border border-white/20"
+            >
+              📢 Be Heard: Take Survey →
+            </a>
           </div>
         </div>
       )}
 
       {/* Unified situation button (closable, dismissible) */}
       {showSmallWhatsNew && showSituationButton && (
-        <div className="fixed top-16 right-4 z-50">
+        <div className="fixed top-16 left-4 z-[60]">
           <div className="relative inline-flex flex-col items-end">
             <button
               onClick={dismissSituationButton}
@@ -267,7 +267,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
       <div className="min-h-screen">
 
-      <div className="bg-amber-600 text-black text-center py-2 text-sm font-bold">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-amber-600 text-black text-center py-2 text-sm font-bold">
         🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
       </div>
 
@@ -316,9 +316,9 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           // Reset the stage in page.tsx via URL param
           window.location.href = '/?reset=true';
         }}
-        className="fixed top-4 left-4 z-50 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-2 rounded-md border border-green/40 opacity-90 hover:opacity-100 transition"
+        className="fixed top-24 right-4 z-[70] bg-green-600 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-xl hover:bg-green-700 transition-all duration-200 border border-white/20"
       >
-        ← BACK to Slides
+        ← BACK TO SLIDES
       </button>
 
 
