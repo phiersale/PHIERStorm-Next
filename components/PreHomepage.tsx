@@ -1,5 +1,5 @@
 // FILE: components/PreHomepage.tsx
-// VERSION: 8.4 – Perfect vertical centering for Slide 0
+// VERSION: 8.6 – Perfect vertical centering for Slide 0
 
 'use client'
 
@@ -180,7 +180,7 @@ export default function PreHomepage({
     if (slide.isFinalSlide) {
       return (
         <>
-          <div className="pt-4 mb-6">
+          <div className="pt-4 mb-4">
             <Image
               src="/images/PHIERS_Logo.png"
               alt="PHIERS Logo"
@@ -309,20 +309,39 @@ export default function PreHomepage({
                 margin-bottom: 0 !important;
               }
               .animate-logo {
-                animation: fadeInUp 0.6s ease forwards;
-              }
-              .animate-pause {
-                animation: fadeInUp 0.6s ease 0.4s forwards;
+                animation: fadeInDownLogo 1.0s ease forwards;
                 opacity: 0;
               }
-              .animate-copy {
+              .animate-divider {
                 animation: fadeInUp 0.6s ease 0.8s forwards;
+                opacity: 0;
+              }
+              .animate-pause {
+                animation: fadeInUp 0.6s ease 1.2s forwards;
+                opacity: 0;
+              }
+              .animate-copy-1 {
+                animation: fadeInUp 0.6s ease 1.6s forwards;
+                opacity: 0;
+              }
+              .animate-copy-2 {
+                animation: fadeInUp 0.6s ease 2.0s forwards;
                 opacity: 0;
               }
               @keyframes fadeInUp {
                 from {
                   opacity: 0;
                   transform: translateY(10px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              @keyframes fadeInDownLogo {
+                from {
+                  opacity: 0;
+                  transform: translateY(-25px);
                 }
                 to {
                   opacity: 1;
@@ -607,15 +626,13 @@ export default function PreHomepage({
 
       {/* MAIN SLIDE AREA */}
       <div
-        className={`flex-1 overflow-y-auto touch-auto flex justify-center ${
-          index === 0 ? "items-center" : "items-start"
-        } ${
+        className={`flex-1 overflow-y-auto touch-auto flex justify-center items-start ${
           slide.imageSrc && slide.imageSrc.includes('FredDoug')
             ? 'px-0 md:px-12 pt-2 md:pt-4 pb-2'
             : index === 8 || index === 1
             ? 'px-6 md:px-12 pt-0 pb-0'
             : 'px-6 md:px-12 pt-2 pb-0'
-        }`}
+        } ${isLastSlide ? 'relative' : ''}`}
         onClick={!isTransitioning && !isLastSlide ? next : undefined}
         onKeyDown={!isTransitioning && !isLastSlide ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
         style={{ cursor: !isTransitioning && !isLastSlide ? 'pointer' : 'default' }}
@@ -636,11 +653,12 @@ export default function PreHomepage({
                 <div
                   className={`
                     flex flex-col items-center text-center w-full
-                    ${index === 0
-                      ? "min-h-[70vh] sm:min-h-[65vh] md:min-h-[60vh] lg:min-h-[55vh] justify-center -translate-y-12 md:-translate-y-16"
-                      : index === 11
-                      ? "pt-0 -mt-4 md:-mt-6"
-                      : "pt-8"
+                    ${
+                      index === 0 
+                        ? "pt-2 md:pt-4" 
+                        : index === 11 
+                        ? "pt-8 md:pt-12" 
+                        : "pt-6 md:pt-8"
                     }
                   `}
                 >
@@ -713,9 +731,8 @@ export default function PreHomepage({
         </button>
       )}  
 
-      {/* Final slide CTA - separate from nav */}
       {isLastSlide && (
-        <div className="absolute bottom-24 left-0 right-0 flex justify-center pointer-events-auto">
+        <div className="absolute bottom-10 left-0 right-0 flex justify-center pointer-events-auto">
           <div className="w-full max-w-xs mx-auto px-4">
             <button
               onClick={onGoToHomepage}

@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 7.3.0 – added dim "BACK" button with scroll‑hide
+// VERSION: 7.5.0 – added fifteen hundred explanations
 
 'use client'
 
@@ -316,9 +316,9 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           // Reset the stage in page.tsx via URL param
           window.location.href = '/?reset=true';
         }}
-        className="fixed top-20 left-4 z-40 text-gray-500 text-xs underline opacity-60 hover:opacity-100 transition"
+        className="fixed top-4 left-4 z-50 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-2 rounded-md border border-green/40 opacity-90 hover:opacity-100 transition"
       >
-        ← BACK to Start
+        ← BACK to Slides
       </button>
 
 
@@ -370,7 +370,18 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           </h1>
           <div className="max-w-[760px] mx-auto mt-4">
             <p className="text-white text-lg md:text-xl font-semibold mb-2">Alone, you're easy to ignore.</p>
-            <p className="text-green text-base md:text-lg font-medium mb-4">1,500 people in your congressional district are not.</p>
+            <p className="text-green text-base md:text-lg font-medium mb-4">
+              <span className="inline-flex items-center gap-2">
+                <span>1,500 people</span>
+                <button 
+                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                >
+                  Why 1,500?
+                </button>
+              </span>
+              {" "}in your congressional district are not.
+            </p>
             <p className="text-gray-300 text-base mb-2">We don't ask Congress to care.</p>
             <p className="text-gray-300 text-base mb-4">
               We make ignoring constituents <span className="text-green font-semibold">politically costly</span>.
@@ -450,7 +461,18 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
             <p className="text-green text-xl font-bold mb-3">They just don’t have people forcing action.</p>
             <p className="text-gray-300 text-base mb-2">That’s where leverage comes in.</p>
-            <p className="text-white text-lg font-semibold mb-2">1,500 people in your district – on record – creates leverage.</p>
+            <p className="text-white text-lg font-semibold mb-2">
+              <span className="inline-flex items-center gap-2">
+                <span>1,500 people</span>
+                <button 
+                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                >
+                  Why 1,500?
+                </button>
+              </span>
+              {" "}in your district – on record – creates leverage.
+            </p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
             <p className="text-gray-300 text-base mb-2">If they don’t end the wars immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
             <p className="text-white text-lg font-bold mt-2">That's how we make Congress do its job.</p>
@@ -495,7 +517,15 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
           {/* Why 1,500 Matters */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Why 1,500 Matters</h3>
+            <div className="flex flex-wrap items-baseline gap-2 mb-3">
+              <h3 className="text-3xl md:text-4xl font-bold text-white">Why 1,500 Matters</h3>
+              <button 
+                onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                className="text-sm text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+              >
+                Why 1,500?
+              </button>
+            </div>
             <p className="text-gray-300 text-base mb-3">
               Congress doesn't respond to national percentages — it responds to pressure inside each district.
             </p>
@@ -608,8 +638,27 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         {/* WHY 1,500 PEOPLE MATTER */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY 1,500 PEOPLE MATTER</h2>
-            <p className="text-green text-xl font-semibold mb-3">1,500 people in one congressional district is the tipping point.</p>
+            <div className="flex flex-wrap items-baseline justify-center gap-2 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-white">WHY 1,500 PEOPLE MATTER</h2>
+              <button 
+                onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                className="text-sm text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+              >
+                Why 1,500?
+              </button>
+            </div>
+            <p className="text-green text-xl font-semibold mb-3">
+              <span className="inline-flex items-center gap-2">
+                <span>1,500 people</span>
+                <button 
+                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                >
+                  Why 1,500?
+                </button>
+              </span>
+              {" "}in one congressional district is the tipping point.
+            </p>
             <p className="text-gray-300 text-base mb-2">Not millions. Not a national wave.</p>
             <p className="text-gray-300 text-base mb-2">Just enough people — in the right place — at the same time.</p>
             <p className="text-gray-300 text-base mb-3">Because it's not about size. It's about placement.</p>
@@ -658,7 +707,19 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         {/* MID-PAGE ACTION */}
         <section className="container py-8 text-center">
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
-            <p className="text-white text-lg font-bold mb-2">If your district reaches 1,500, your representative has to respond.</p>
+            <p className="text-white text-lg font-bold mb-2">
+              If your district reaches 
+              <span className="inline-flex items-center gap-1 mx-1">
+                <span>1,500</span>
+                <button 
+                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                >
+                  Why 1,500?
+                </button>
+              </span>
+              , your representative has to respond.
+            </p>
             <p className="text-gray-300 text-base mb-4">Or they risk losing their seat.</p>
             <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ Ask a question →</button>
           </div>
@@ -771,7 +832,18 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-red-500">
               <div className="text-3xl mb-2">⚡</div>
               <div className="font-display text-2xl text-white mb-1">Political Power</div>
-              <p className="text-gray-400 text-sm">1,500 constituents on the record forces a choice: act, or face replacement.</p>
+              <p className="text-gray-400 text-sm">
+                <span className="inline-flex items-center gap-1">
+                  <span>1,500 constituents</span>
+                  <button 
+                    onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                    className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                  >
+                    Why 1,500?
+                  </button>
+                </span>
+                {" "}on the record forces a choice: act, or face replacement.
+              </p>
             </div>
             <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-yellow-400">
               <div className="text-3xl mb-2">💰</div>

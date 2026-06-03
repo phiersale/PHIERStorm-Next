@@ -17,7 +17,7 @@ const slides = [
       },
       {
         type: "divider",
-        className: "w-16 h-px bg-green-400/50 mx-auto"
+        className: "w-16 h-px bg-green-400/50 mx-auto animate-divider"
       },
       {
         type: "spacer",
@@ -37,7 +37,7 @@ const slides = [
         large: false,
         green: false,
         bold: false,
-        className: "text-xl md:text-2xl font-medium leading-relaxed text-gray-200 max-w-md animate-copy"
+        className: "text-xl md:text-2xl font-medium leading-relaxed text-gray-200 max-w-md animate-copy-1"
       },
       {
         type: "spacer",
@@ -49,7 +49,7 @@ const slides = [
         large: false,
         green: false,
         bold: true,
-        className: "text-lg md:text-xl font-medium leading-relaxed text-gray-300 max-w-md animate-copy"
+        className: "text-lg md:text-xl font-medium leading-relaxed text-gray-300 max-w-md animate-copy-2"
       }
     ]
   },

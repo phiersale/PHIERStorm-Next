@@ -1,0 +1,4099 @@
+02 Jun - 300pm
+
+// FILE: app/page.tsx
+// VERSION: 4.0 – PHIERS-Pause.png, top?right skip only - REBUILD
+
+'use client'
+export const dynamic = 'force-dynamic'
+
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import PreHomepage from '@/components/PreHomepage'
+import MainHomePage from '@/components/MainHomePage'
+import PathosCredibility from '@/components/PathosCredibility'
+// import OrientationVideo from '@/components/OrientationVideo'
+import TransitionModal from '@/components/TransitionModal'
+import FifteenHundredModal from '@/components/FifteenHundredModal'
+
+// PhasedText component removed - flow simplified from image directly to prehome
+
+
+export default function Page() {
+  const router = useRouter()
+  const [stage, setStage] = useState<'image' | 'reading' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
+  const [skipFirstImage, setSkipFirstImage] = useState(true)
+  const [showTransitionModal, setShowTransitionModal] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [stage])
+
+  // Check URL params
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('credibility') === 'true') {
+      setStage('credibility');
+    } else if (params.get('reset') === 'true') {
+      setStage('image');
+      setSkipFirstImage(true);
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, [])
+  const [readingVisibleCount, setReadingVisibleCount] = useState(0)
+  const [readingComplete, setReadingComplete] = useState(false)
+
+  const readingLines = [
+    { type: 'spacer' },
+    { type: 'spacer' },
+    { type: 'spacer' },
+    { type: 'spacer' },
+    { type: 'spacer' },
+    { type: 'text', content: "Most people assume Congress listens to voters." },
+    { type: 'text', content: "But historically, they've responded more to organized pressure.", isPressureLine: true },
+    { type: 'spacer' },
+    { type: 'html', content: "<strong class='text-green'>PHIERS is exploring what that could look like.</strong>" },
+    { type: 'spacer' },
+    { type: 'spacer' },
+    { type: 'html', content: "<p class='text-white font-semibold text-lg mt-4 mb-8'>Here's what we've learned so far.</p>" },
+  ]
+
+  useEffect(() => {
+    if (stage !== 'reading') return
+    setReadingVisibleCount(0)
+    setReadingComplete(false)
+
+    let intervalId: NodeJS.Timeout | null = null
+    let timeoutId: NodeJS.Timeout | null = null
+
+    timeoutId = setTimeout(() => {
+      intervalId = setInterval(() => {
+        setReadingVisibleCount(prev => {
+          if (prev < readingLines.length) return prev + 1
+          if (intervalId) clearInterval(intervalId)
+          setReadingComplete(true)
+          return prev
+        })
+      }, 400)
+    }, 200)
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId)
+      if (intervalId) clearInterval(intervalId)
+    }
+  }, [stage])
+
+
+
+  useEffect(() => {
+    if (stage !== 'reading') return
+
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Space') {
+        e.preventDefault()
+        if (!readingComplete) {
+          setReadingVisibleCount(readingLines.length)
+          setReadingComplete(true)
+        } else {
+          setStage('prehome')
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [stage, readingComplete])
+
+  // 'entry' stage removed - flow goes directly from image to prehome
+
+  if (stage === 'image') {
+    return (
+      <div
+        id="powerless-screen"
+        className="fixed inset-0 bg-black flex items-center justify-center outline-none"
+        tabIndex={0}
+        autoFocus
+        onClick={() => setStage('prehome')}
+        onKeyDown={(e) => {
+          if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowRight') {
+            e.preventDefault()
+            setStage('prehome')
+          }
+        }}
+      >
+        {/* TOP?RIGHT NEXT BUTTON */}
+        <button
+          onClick={() => setStage('prehome')}
+          className="fixed top-4 right-4 z-30 text-gray-500/60 text-xs underline hover:text-gray-300 transition"
+          style={{ opacity: 0, animation: "fadeIn 0.5s ease forwards" }}
+        >
+          Continue ?
+        </button>
+
+        <motion.div 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ duration: 1 }}
+          className="flex flex-col items-center justify-center"
+        >
+          <Image
+            src="/images/You_Are_Not_Powerless.jpg"
+            alt="You Are Not Powerless"
+            width={1200}
+            height={800}
+            className="w-[94vw] md:w-[72vw] max-w-5xl h-auto object-contain mx-auto"
+            priority
+          />
+        </motion.div>
+
+        <style>{`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
+      </div>
+    )
+  }
+
+  if (stage === 'reading') {
+    return (
+      <div
+        className="fixed inset-0 bg-black flex flex-col items-center justify-start overflow-y-auto px-6 py-2"
+        onClick={() => {
+          if (!readingComplete) {
+            setReadingVisibleCount(readingLines.length)
+            setReadingComplete(true)
+          } else {
+            setStage('prehome')
+          }
+        }}
+      >
+        <div className="max-w-xl space-y-1 w-full text-center">
+          {readingLines.map((line, i) => {
+            if (i >= readingVisibleCount) return null
+
+            if (line.type === 'spacer') {
+              return <div key={i} className="h-1" />
+            }
+
+            if (line.type === 'html') {
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="text-[1.05rem] md:text-lg text-gray-300 leading-tight"
+                  dangerouslySetInnerHTML={{ __html: line.content }}
+                />
+              )
+            }
+
+            const isPressureLine = line.isPressureLine === true
+            let className = "text-[0.95rem] md:text-lg text-gray-400 leading-tight"
+            if (isPressureLine) {
+              className = "text-gray-200 text-lg md:text-xl font-semibold"
+            }
+
+            return (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className={className}
+              >
+                {line.content}
+              </motion.p>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  if (stage === 'prehome') {
+    return (
+      <>
+        <PreHomepage
+          onGoToHomepage={() => {
+            setSkipFirstImage(false)
+            setStage('credibility')
+          }}
+          onBackToReading={() => setStage('image')}
+        />
+      </>
+    )
+  }
+
+  if (stage === 'credibility') {
+    return (
+      <div className="min-h-screen bg-[#050b19] flex flex-col">
+        <PathosCredibility 
+          onBackToSlides={() => {
+            setSkipFirstImage(false)
+            setStage('prehome')
+          }}
+          onOpenTransitionModal={() => setStage('transition')}
+        />
+        <div id="credibility-buttons" className="flex justify-center gap-2 pb-2 -mt-4">
+          <button
+            onClick={() => {
+              setSkipFirstImage(false)
+              setStage('prehome')
+            }}
+            className="px-4 py-1.5 text-sm border border-green/40 text-green rounded-md hover:bg-green/10 transition"
+          >
+            ? Back to Slides
+          </button>
+          <button
+            onClick={() => setStage('transition')}
+            className="px-6 py-2 text-base font-semibold rounded-lg transition"
+            style={{
+              backgroundColor: '#F5C542',
+              color: '#1a1a1a',
+              boxShadow: '0 0 20px rgba(245,197,66,0.25)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#E0B032'
+              e.currentTarget.style.boxShadow = '0 0 25px rgba(245,197,66,0.35)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#F5C542'
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(245,197,66,0.25)'
+            }}
+          >
+            Explore the framework ?
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  if (stage === 'transition') {
+    return <TransitionModal onContinue={() => setStage('main')} />
+  }
+
+  return (
+  <>
+    {(() => {
+      // Mark that the user has completed the intro when main page loads
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('phiers-intro-complete', 'true');
+      }
+      return null;
+    })()}
+
+        {/* Navigation to Movement and Trilogy */}
+    <div className="bg-black py-12 px-6 text-center border-t border-gray-800">
+      <div className="max-w-3xl mx-auto">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="/Prophecy/movement" className="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-lg transition border border-gray-700">
+            ? THE MOVEMENT
+          </a>
+          <a href="/Prophecy/trilogy" className="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-lg transition border border-gray-700">
+            THE TRILOGY ?
+          </a>
+        </div>
+        <p className="text-gray-500 text-sm mt-4">Understand the pattern. Recover the inheritance. Prepare the move.</p>
+      </div>
+    </div>
+    
+    <MainHomePage onBackToEntry={() => setStage('image')} />
+    
+    <FifteenHundredModal />
+  </>
+)
+}
+// FILE: app/page.tsx
+
+<<<>>>
+
+// FILE: components/PreHomepage.tsx
+// VERSION: 8.4 – Perfect vertical centering for Slide 0
+
+'use client'
+
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
+import slides from './slides'
+
+type Props = {
+  onGoToHomepage: () => void
+  skipFirstImageSlide?: boolean
+  onBackToReading?: () => void
+}
+
+const SWIPE_THRESHOLD = 30
+const TRANSITION_MS = 400
+
+export default function PreHomepage({
+  onGoToHomepage,
+  skipFirstImageSlide = false,
+  onBackToReading
+}: Props) {
+  const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [douglassModalOpen, setDouglassModalOpen] = useState(false)
+  const [showNavControls, setShowNavControls] = useState(true)
+  const [topBarOpacity, setTopBarOpacity] = useState(1)
+  const [showSwipeHint, setShowSwipeHint] = useState(true)
+  const [navVisible, setNavVisible] = useState(false)
+  const lastScrollY = useRef(0)
+  const touchStartX = useRef<number | null>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const mounted = useRef(true)
+
+  useEffect(() => {
+    mounted.current = true
+    return () => {
+      mounted.current = false
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
+        setShowNavControls(false)
+      } else if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
+        setShowNavControls(true)
+      }
+      lastScrollY.current = currentScrollY
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSwipeHint(false), 3000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    setTopBarOpacity(index <= 3 ? 1 : 0.4)
+  }, [index])
+
+  // Delayed nav appearance for cinematic feel
+  useEffect(() => {
+    setNavVisible(false)
+    const timer = setTimeout(() => setNavVisible(true), 1200)
+    return () => clearTimeout(timer)
+  }, [index])
+
+  const clearTimer = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+  }
+
+  const goToSlide = useCallback(
+    (newIndex: number) => {
+      if (isTransitioning) return
+      clearTimer()
+      setIsTransitioning(true)
+      setIndex(newIndex)
+      timeoutRef.current = setTimeout(() => {
+        if (mounted.current) setIsTransitioning(false)
+      }, TRANSITION_MS)
+    },
+    [isTransitioning]
+  )
+
+  const next = useCallback(() => {
+    if (isTransitioning) return
+    if (index >= slides.length - 1) {
+      onGoToHomepage()
+      return
+    }
+    setNavVisible(false)
+    setShowSwipeHint(false)
+    setTimeout(() => {
+      goToSlide(index + 1)
+    }, 200)
+  }, [isTransitioning, index, onGoToHomepage, goToSlide])
+
+  const prevNormal = useCallback(() => {
+    if (isTransitioning) return
+    if (index === 0) return
+    goToSlide(index - 1)
+    setShowSwipeHint(false)
+  }, [isTransitioning, index, goToSlide])
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && douglassModalOpen) {
+        setDouglassModalOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [douglassModalOpen])
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        next()
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        prevNormal()
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [next, prevNormal])
+
+  useEffect(() => {
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX
+    }
+    const onTouchEnd = (e: TouchEvent) => {
+      if (touchStartX.current === null) return
+      const diff = touchStartX.current - e.changedTouches[0].clientX
+      if (Math.abs(diff) < SWIPE_THRESHOLD) return
+      if (diff > 0) next()
+      else prevNormal()
+      touchStartX.current = null
+    }
+    window.addEventListener('touchstart', onTouchStart)
+    window.addEventListener('touchend', onTouchEnd)
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [next, prevNormal])
+
+  const slide = slides[index]
+  const isLastSlide = index === slides.length - 1
+  const isLargeFormatSlide = slide.largeFormat === true
+
+  const renderTitle = () => {
+    if (slide.customLayout) return null
+    if (!slide.title) return null
+
+    const splitTitle = (text: string) => {
+      const periodSpaceIndex = text.indexOf('. ')
+      if (periodSpaceIndex !== -1 && periodSpaceIndex < text.length - 2) {
+        const firstPart = text.substring(0, periodSpaceIndex + 1)
+        const secondPart = text.substring(periodSpaceIndex + 2)
+        return <>{firstPart}<br />{secondPart}</>
+      }
+      return text
+    }
+
+    const renderedTitle = splitTitle(slide.title)
+
+    // For final slide, show logo at top
+    if (slide.isFinalSlide) {
+      return (
+        <>
+          <div className="pt-4 mb-6">
+            <Image
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              width={120}
+              height={120}
+              className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+              priority
+            />
+          </div>
+          <h1 className="text-2xl md:text-3xl font-bold leading-tight mb-4">{renderedTitle}</h1>
+        </>
+      )
+    }
+    if (slide.title === "PHIERS") {
+      return <h1 className="text-3xl md:text-4xl font-bold mb-4 text-green">{renderedTitle}</h1>
+    }
+    if (slide.titleGreen) {
+      return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-green">{renderedTitle}</h1>
+    }
+    if (slide.title.includes("Frederick Douglass")) {
+      return <h1 className="text-xl md:text-2xl font-bold leading-tight mb-2">{renderedTitle}</h1>
+    }
+    return <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-4">{renderedTitle}</h1>
+  }
+
+  const renderBody = () => {
+    if (slide.teethImage) {
+      return (
+        <div className="flex flex-col items-center text-center">
+          <div className="flex justify-center w-full mb-4">
+            <img
+              src="/images/ORGANIZE_Fish.jpg"
+              alt="Organized fish – a demand with teeth"
+              className="w-2/3 md:w-1/2 max-w-md rounded-lg shadow-md"
+            />
+          </div>
+          <p className="text-3xl md:text-5xl font-bold text-green mt-2">
+            A demand that has TEETH.
+          </p>
+        </div>
+      )
+    }
+
+    if (slide.replacementLayout) {
+      return (
+        <div className="flex flex-col items-center text-center px-6 md:px-12 pt-0 pb-12">
+          <div className="space-y-2 mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+              If they refuse the meeting,
+              <br />
+              they lose the seat.
+            </h2>
+          </div>
+          <div className="space-y-1 mb-6">
+            <p className="text-base md:text-lg text-gray-200">Legally.</p>
+            <p className="text-base md:text-lg font-semibold" style={{ color: "#22c55e" }}>
+              Before the next election.
+            </p>
+            <p className="text-base md:text-lg text-gray-200">No heat. No threats.</p>
+            <p className="text-base md:text-lg text-gray-200">Just accountability.</p>
+          </div>
+        </div>
+      )
+    }
+
+    if (slide.customTextLayout) {
+      const items = slide.body
+      return (
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto px-4">
+          {items.map((item: any, idx: number) => {
+            if (item.type === 'spacer') {
+              return <div key={idx} style={{ height: item.height || 16 }} />
+            }
+            if (item.text) {
+              let textColor = 'text-white'
+              if (item.green) textColor = 'text-green'
+              
+              let textSize = 'text-lg md:text-xl'
+              if (item.large) textSize = 'text-4xl md:text-5xl'
+              
+              let fontWeight = item.bold ? 'font-bold' : 'font-normal'
+              
+              let className = item.className || `${textSize} ${textColor} ${fontWeight} leading-tight`
+              
+              return (
+                <p
+                  key={idx}
+                  className={className}
+                >
+                  {item.text}
+                </p>
+              )
+            }
+            if (item === "" || item === " ") return <div key={idx} className="h-0" />
+            if (typeof item === 'string') return <div key={idx} className="h-4" />
+            return null
+          })}
+        </div>
+      )
+    }
+
+    if (slide.compactConsequence) {
+      return (
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto px-4">
+          <p className="text-gray-300 text-2xl md:text-3xl mb-3">Not noise.</p>
+          <p className="text-gray-300 text-2xl md:text-3xl mb-4">Not outrage.</p>
+          <p className="text-green font-bold text-4xl md:text-5xl mt-3 mb-3">Leverage.</p>
+          <p className="text-green font-bold text-2xl md:text-3xl">Leverage = Consequences = Teeth</p>
+        </div>
+      )
+    }
+
+    if (slide.customLayout) {
+      const items = slide.body
+      
+      // Check if this is the text-based custom layout (has type properties)
+      if (items.length > 0 && typeof items[0] === 'object' && 'type' in items[0]) {
+        return (
+          <div className="flex flex-col items-center text-center max-w-md mx-auto px-6 w-full custom-layout-container">
+            <style>{`
+              .leading-tight {
+                line-height: 1.25 !important;
+              }
+              .leading-tight div {
+                line-height: 1.25 !important;
+                margin-bottom: 0 !important;
+              }
+              .animate-logo {
+                animation: fadeInUp 0.6s ease forwards;
+              }
+              .animate-pause {
+                animation: fadeInUp 0.6s ease 0.4s forwards;
+                opacity: 0;
+              }
+              .animate-copy {
+                animation: fadeInUp 0.6s ease 0.8s forwards;
+                opacity: 0;
+              }
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(10px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+            `}</style>
+            {items.map((item: any, idx: number) => {
+              if (item.type === 'logo') {
+                const logoClass = item.className || ''
+                return (
+                  <div key={idx} className={`mb-2 ${logoClass}`}>
+                    <img
+                      src="/images/PHIERS-Pause.png"
+                      alt="PHIERS Pause"
+                      className="w-24 md:w-32 object-contain mx-auto"
+                    />
+                  </div>
+                )
+              }
+              if (item.type === 'spacer') {
+                return <div key={idx} style={{ height: item.height || 16 }} />
+              }
+              if (item.type === 'divider') {
+                return (
+                  <div
+                    key={idx}
+                    className={item.className || "w-12 h-px bg-green-400/40 mx-auto my-2"}
+                  />
+                )
+              }
+              if (item.type === 'text') {
+                // Use className directly from slide if provided
+                if (item.className) {
+                  const content = item.content
+                  const hasNewlines = content && content.includes('\n')
+                  if (hasNewlines) {
+                    return (
+                      <div key={idx} className={item.className}>
+                        {content.split('\n').map((line: string, lineIdx: number) => (
+                          <div key={lineIdx}>{line}</div>
+                        ))}
+                      </div>
+                    )
+                  }
+                  return (
+                    <p key={idx} className={item.className}>
+                      {content}
+                    </p>
+                  )
+                }
+                
+                // Fallback for slides without className
+                let textColor = 'text-gray-300'
+                if (item.green) textColor = 'text-green'
+                if (item.italic) textColor = 'text-gray-400'
+                
+                let fontWeight = item.bold ? 'font-bold' : 'font-normal'
+                let fontStyle = item.italic ? 'italic' : ''
+                
+                let textSize = 'text-base md:text-lg'
+                if (item.large) textSize = 'text-3xl md:text-4xl font-semibold'
+                
+                const content = item.content
+                const hasNewlines = content && content.includes('\n')
+                if (hasNewlines) {
+                  return (
+                    <div key={idx} className={`${textSize} ${textColor} ${fontWeight} ${fontStyle} leading-tight w-full text-center`}>
+                      {content.split('\n').map((line: string, lineIdx: number) => (
+                        <div key={lineIdx}>{line}</div>
+                      ))}
+                    </div>
+                  )
+                }
+                
+                return (
+                  <p
+                    key={idx}
+                    className={`${textSize} ${textColor} ${fontWeight} ${fontStyle} leading-tight w-full text-center`}
+                  >
+                    {content}
+                  </p>
+                )
+              }
+              return null
+            })}
+          </div>
+        )
+      }
+      
+      // Original PHIERS acronym layout
+      const acronymItems = slide.body as { letter: string; word: string }[]
+      return (
+        <div className="flex flex-col items-center space-y-4 pb-6 pt-0 md:pt-0 -mt-8 md:-mt-12">
+          <div className="mb-2">
+            <Image
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              width={120}
+              height={120}
+              className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+              priority
+            />
+          </div>
+          <div className="w-full px-2 sm:px-6">
+            <div className="grid grid-cols-6 gap-1 sm:gap-2 justify-items-center mx-auto w-full min-w-full">
+              {acronymItems.map((item: { letter: string; word: string }, idx: number) => (
+                <div key={idx} className="flex flex-col items-center space-y-1 sm:space-y-2">
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
+                    {item.letter}
+                  </span>
+                  <span className="text-[10px] sm:text-[12px] md:text-sm font-bold text-gray-200 uppercase tracking-wide">
+                    {item.letter === 'R' ? 'REPS' : item.word}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {slide.punchLine && (
+            <>
+              <div style={{ height: '1.5rem' }}></div>
+              <div className="w-full">
+                <p className="text-xs md:text-sm font-normal text-gray-500 text-center px-2">
+                  {slide.punchLine}
+                </p>
+              </div>
+            </>
+          )}
+        </div>
+      )
+    }
+
+    if (slide.type === "image" && slide.imageSrc) {
+      const isDouglassSlide = slide.imageSrc.includes('FredDoug')
+      const isPowerlessSlide = slide.imageSrc.includes('You_Are_Not_Powerless')
+      const handleImageClick = () => {
+        if (isDouglassSlide) setDouglassModalOpen(true)
+      }
+
+      // Special handling for slide 0 (You Are Not Powerless)
+      if (isPowerlessSlide || index === 0) {
+        const imageSrc = index === 0 ? "/images/You_Are_Not_Powerless.jpg" : slide.imageSrc
+        return (
+          <div className="w-full flex flex-col items-center justify-center px-4 pt-2 pb-2 sm:pb-4">
+            <div onClick={handleImageClick} className="w-full">
+              <Image
+                src={imageSrc}
+                alt="You Are Not Powerless"
+                width={1200}
+                height={800}
+                className="w-[70%] md:w-[50%] max-w-xl h-auto object-contain mx-auto"
+                priority
+                onError={(e) => console.error('Image failed to load:', imageSrc)}
+              />
+            </div>
+            <div className="mt-6 text-center">
+              <p className="text-gray-400 text-xs sm:text-sm">Swipe to continue</p>
+              <div className="mt-2 text-gray-500 text-xs">? ?</div>
+            </div>
+          </div>
+        )
+      }
+
+      // Other image slides (Douglass, etc.)
+      let widthClass = 'w-[57%] md:w-[47%]'
+      if (index === 6) {
+        widthClass = 'w-[85%] md:w-[70%]'
+      }
+      return (
+        <div className="w-full flex justify-center">
+          <div onClick={handleImageClick} className={isDouglassSlide ? 'cursor-pointer w-full mb-8' : ''}>
+            <Image
+              src={slide.imageSrc}
+              alt={slide.imageAlt || "Slide image"}
+              width={1200}
+              height={800}
+              className={`mx-auto object-contain ${isDouglassSlide ? 'w-[70%] md:w-[50%]' : widthClass}`}
+              priority
+              onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
+            />
+          </div>
+        </div>
+      )
+    }
+
+    if (!slide.body) return null
+
+    const greenLineIndices = slide.greenLines || []
+
+    if (isLargeFormatSlide) {
+      const isPunchSlide =
+        slide.body &&
+        slide.body.length === 1 &&
+        slide.body[0] === "A few minutes. Enough to make Congress listen."
+
+      const isPunchSlideByIndex = index === 1
+      if (isPunchSlideByIndex) {
+        return (
+          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto space-y-0 sm:space-y-1 pt-4">
+            <p className="font-bold text-green" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
+              A few minutes.
+            </p>
+            <p className="font-bold text-white" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
+              Enough to make
+            </p>
+            <p className="font-bold text-green" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
+              Congress listen.
+            </p>
+          </div>
+        )
+      }
+
+      const largeBodyClass = "text-3xl md:text-5xl font-semibold tracking-tight"
+      const wrapperClass = "space-y-4 md:space-y-6"
+      return (
+        <div className={wrapperClass}>
+          {slide.body.map((line, i) => {
+            const isGreen = greenLineIndices.includes(i)
+            const color = isGreen ? "text-green" : "text-white"
+            return (
+              <p key={i} className={`${largeBodyClass} ${color}`}>
+                {line}
+              </p>
+            )
+          })}
+        </div>
+      )
+    }
+
+    const grayClass = "text-gray-300 text-sm md:text-base leading-relaxed"
+    const greenClass = "text-green font-bold text-sm md:text-base leading-relaxed"
+
+    let wrapperClass = "space-y-0.5 md:space-y-1"
+    if (slide.isFinalSlide) {
+      wrapperClass = "space-y-0.5 md:space-y-1 mt-0 md:mt-0"
+    }
+
+    return (
+      <div className={wrapperClass}>
+        {slide.body.map((line, i) => {
+          const isGreen = greenLineIndices.includes(i)
+          let greenColorClass = "text-green"
+          if (slide.isFinalSlide && isGreen) {
+            if (i === 0) greenColorClass = "text-green-400"
+            else if (i === 1) greenColorClass = "text-green-500"
+            else if (i === 2) greenColorClass = "text-green-600"
+          }
+          if (isGreen) {
+            return (
+              <p key={i} className={`${greenClass} ${greenColorClass}`}>
+                {line}
+              </p>
+            )
+          }
+          return (
+            <p key={i} className={grayClass}>
+              {line}
+            </p>
+          )
+        })}
+      </div>
+    )
+  }
+
+  return (
+    <div className="h-screen max-h-screen bg-[#050b19] text-white flex flex-col overflow-hidden">
+
+      {/* Top bar */}
+      <div
+        className="flex justify-between items-center pr-6 pl-6 pt-2 pb-1 shrink-0 z-10 transition-opacity duration-300"
+        style={{ opacity: 0.35 }}
+      >
+        {onBackToReading && (
+          <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
+            ? Back to start
+          </button>
+        )}
+        <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
+          Skip ?
+        </button>
+      </div>
+
+      {/* MAIN SLIDE AREA */}
+      <div
+        className={`flex-1 overflow-y-auto touch-auto flex justify-center ${
+          index === 0 ? "items-center" : "items-start"
+        } ${
+          slide.imageSrc && slide.imageSrc.includes('FredDoug')
+            ? 'px-0 md:px-12 pt-2 md:pt-4 pb-2'
+            : index === 8 || index === 1
+            ? 'px-6 md:px-12 pt-0 pb-0'
+            : 'px-6 md:px-12 pt-2 pb-0'
+        }`}
+        onClick={!isTransitioning && !isLastSlide ? next : undefined}
+        onKeyDown={!isTransitioning && !isLastSlide ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
+        style={{ cursor: !isTransitioning && !isLastSlide ? 'pointer' : 'default' }}
+        role="button"
+        tabIndex={!isTransitioning && !isLastSlide ? 0 : -1}
+      >
+        <div className="w-full mx-auto max-w-full">
+          <div className="text-center w-full">
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="relative"
+              >
+                <div
+                  className={`
+                    flex flex-col items-center text-center w-full
+                    ${index === 0
+                      ? "min-h-[70vh] sm:min-h-[65vh] md:min-h-[60vh] lg:min-h-[55vh] justify-center -translate-y-12 md:-translate-y-16"
+                      : index === 11
+                      ? "pt-0 -mt-4 md:-mt-6"
+                      : "pt-8"
+                    }
+                  `}
+                >
+                  {renderTitle()}
+                  {renderBody()}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom nav - Nav dots only */}
+      <div
+        className={`absolute left-0 right-0 flex flex-col items-center pointer-events-none ${
+          index === 11 ? "bottom-6" : "bottom-4"
+        } ${
+          navVisible ? "fade-in-nav" : "fade-out-nav"
+        }`}
+        style={{ pointerEvents: navVisible ? 'auto' : 'none' }}
+      >
+        {/* Nav dots */}
+        <div className="flex space-x-2 pointer-events-auto items-center">
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              onClick={() => goToSlide(i)}
+              style={{
+                width: '4px',
+                height: '4px',
+                borderRadius: '50%',
+                backgroundColor: i === index ? 'rgba(61, 220, 132, 0.8)' : 'rgba(156, 163, 175, 0.4)',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Tap hint - only on slide 0 */}
+        {index === 0 && (
+          <div className="text-xs text-gray-500 opacity-60 pointer-events-none mt-2">
+            tap anywhere
+          </div>
+        )}
+      </div>
+
+      {/* Back button - independent fixed position */}
+      {index > 0 && (
+        <button
+          onClick={prevNormal}
+          style={{
+            position: 'fixed',
+            bottom: '16px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'fit-content',
+            padding: '8px 16px',
+            fontSize: '14px',
+            color: '#9ca3af',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            zIndex: 9999
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.color = '#d1d5db'}
+          onMouseLeave={(e) => e.currentTarget.style.color = '#9ca3af'}
+        >
+          ? Back
+        </button>
+      )}  
+
+      {/* Final slide CTA - separate from nav */}
+      {isLastSlide && (
+        <div className="absolute bottom-24 left-0 right-0 flex justify-center pointer-events-auto">
+          <div className="w-full max-w-xs mx-auto px-4">
+            <button
+              onClick={onGoToHomepage}
+              className="w-full border border-green/40 text-green text-sm md:text-base font-semibold py-2 px-4 rounded-md hover:bg-green/10 transition"
+            >
+              ? SEE WHAT THE EXPERTS SAY
+            </button>
+          </div>
+        </div>
+      )}
+
+    </div>
+  )
+}
+
+// FILE: components/PreHomepage.tsx
+
+<<<>>>
+
+// FILE: components/slides.ts
+// VERSION: 11.2 – Added divider line between logo and PAUSE for clear separation
+
+const slides = [
+  // 0 — SIGNAL SLIDE (cinematic title card)
+  {
+    customLayout: true,
+    body: [
+      {
+        type: "logo",
+        large: false,
+        className: "animate-logo w-16 md:w-24 mt-2 mb-2"
+      },
+      {
+        type: "spacer",
+        height: 16
+      },
+      {
+        type: "divider",
+        className: "w-16 h-px bg-green-400/50 mx-auto"
+      },
+      {
+        type: "spacer",
+        height: 16
+      },
+      {
+        type: "text",
+        content: "PAUSE.",
+        large: true,
+        green: true,
+        bold: true,
+        className: "text-5xl md:text-6xl font-semibold text-green-400 tracking-tight mb-6 animate-pause"
+      },
+      {
+        type: "text",
+        content: "Things are changing fast.",
+        large: false,
+        green: false,
+        bold: false,
+        className: "text-xl md:text-2xl font-medium leading-relaxed text-gray-200 max-w-md animate-copy"
+      },
+      {
+        type: "spacer",
+        height: 12
+      },
+      {
+        type: "text",
+        content: "Before reacting,\nchoose a response\nthat actually works.",
+        large: false,
+        green: false,
+        bold: true,
+        className: "text-lg md:text-xl font-medium leading-relaxed text-gray-300 max-w-md animate-copy"
+      }
+    ]
+  },
+
+  // 1 through 11 remain exactly the same as your current file...
+  // (keeping your existing slides 1-11 unchanged)
+
+  // 1 — PROBLEM (billboard style)
+  {
+    title: "Congress works for you.",
+    body: ["They just forgot."],
+    greenLines: []
+  },
+
+  // 2 — PROBLEM (second problem slide)
+  {
+    title: "Ignoring voters became politically safe.",
+    body: [],
+    greenLines: []
+  },
+
+  // 3 — HOPE
+  {
+    title: "PHIERS changes that.",
+    body: [],
+    greenLines: [],
+    titleGreen: true
+  },
+
+  // 4 — PUNCH SLIDE (restored from original)
+  {
+    title: "",
+    body: [
+      "", 
+      "", 
+      { text: "A few minutes.", large: true, green: true, bold: true },
+      { text: "Enough to make", large: false, green: false, bold: false },
+      { text: "Congress listen.", large: false, green: true, bold: false }
+    ],
+    customTextLayout: true
+  },
+
+  // 5 — ORGANIZED PEOPLE
+  {
+    title: "",
+    body: [
+      { text: "Outrage", large: true, green: false, bold: true },
+      { text: "doesn't move Congress.", large: false, green: false, bold: false },
+      { type: "spacer", height: 24 },
+      { text: "Organized people do.", large: true, green: true, bold: true },
+      { type: "spacer", height: 20 },
+      { text: "Especially in their own district.", large: false, green: false, bold: false, className: "text-gray-400 text-base" }
+    ],
+    customTextLayout: true
+  },
+
+  // 6 — FREDERICK DOUGLASS IMAGE
+  {
+    type: "image",
+    imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
+    imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
+  },
+
+  // 7 — TEETH IMAGE
+  {
+    title: "",
+    body: ["A demand that has TEETH."],
+    greenLines: [0],
+    largeFormat: true,
+    teethImage: true
+  },
+
+  // 8 — MECHANISM (shortened, 4 beats)
+  {
+    title: "How to make Congress listen.",
+    body: [
+      "1,500 verified people go on record.",
+      "Public town hall demanded.",
+      "Refuse? Investigation.",
+      "Then voters decide."
+    ],
+    greenLines: [0, 1, 2, 3]
+  },
+
+  // 9 — ACCOUNTABILITY
+  {
+    replacementLayout: true
+  },
+
+  // 10 — PHIERS ACRONYM
+  {
+    title: "PHIERS",
+    body: [
+      { letter: "P", word: "POWER" },
+      { letter: "H", word: "HELD" },
+      { letter: "I", word: "IN" },
+      { letter: "E", word: "EVERY" },
+      { letter: "R", word: "REPS" },
+      { letter: "S", word: "SEAT" }
+    ],
+    customLayout: true,
+    punchLine: "Power Held In Every Representative's Seat (pronounced FIRES)"
+  },
+
+  // 11 — FINAL CTA
+  {
+    title: "One petition. Your district. On the record.",
+    body: [
+      "That's how pressure starts.",
+      "Name. Email. Zip code.",
+      "Make them answer."
+    ],
+    greenLines: [0, 2],
+    isFinalSlide: true,
+    compactFinal: true
+  },
+]
+
+export default slides
+
+// FILE: components/slides.ts
+
+<<<>>>
+
+// FILE: components/PathosCredibility.tsx
+// VERSION: 16.0 – Leads with Independent Validation, structural + tone polish
+
+'use client'
+
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+
+type Props = {
+  onBackToSlides?: () => void
+  onOpenTransitionModal?: () => void
+}
+
+export default function PathosCredibility({ onBackToSlides, onOpenTransitionModal }: Props) {
+  const [showSkipAhead, setShowSkipAhead] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrollPercent = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0
+      setShowSkipAhead(scrollPercent > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const goToMainHomepage = () => {
+    window.location.href = '/?main=true'
+  }
+
+  return (
+    <>
+      {/* Floating skip button – opens transition modal */}
+      {showSkipAhead && (
+        <button
+          onClick={() => onOpenTransitionModal?.()}
+          className="fixed bottom-5 right-5 z-50 bg-[#0f1725]/90 border border-green/20 text-gray-200 text-sm px-4 py-2 rounded-full shadow-lg backdrop-blur-sm hover:border-green/40 hover:text-white transition-all duration-300"
+        >
+          Continue to Solutions ?
+        </button>
+      )}
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-3xl mx-auto px-4 pt-2 pb-6"
+      >
+        {/* Documentary seal */}
+        <div className="flex justify-center mb-2">
+          <img
+            src="/images/PHIERS_Logo.png"
+            alt="PHIERS"
+            className="w-32 h-32 md:w-40 md:h-40 object-contain opacity-90"
+          />
+        </div>
+
+        {/* Bridge paragraph before credibility */}
+        <div className="text-center max-w-2xl mx-auto mb-8 border-b border-green/20 pb-6">
+          <p className="text-gray-300 text-sm leading-relaxed">
+            Before exploring what PHIERS proposes, a reasonable question comes first:
+          </p>
+          <p className="text-green text-lg font-semibold italic mt-2">
+            Why should anyone take this seriously?
+          </p>
+          <p className="text-gray-300 text-sm leading-relaxed mt-2">
+            This section exists to answer that question.
+          </p>
+        </div>
+
+        {/* Page Title */}
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-white mb-2">
+          The Public Record
+        </h1>
+        <p className="text-center text-gray-400 text-sm mb-4 max-w-2xl mx-auto">
+          Why reasonable people took PHIERS seriously — and you can verify it yourself.
+        </p>
+        <p className="text-center text-green text-sm font-semibold mb-8 max-w-2xl mx-auto">
+          Before you explore the solutions layer, here's why serious people took PHIERS seriously.
+        </p>
+
+{/* ========== LAYER 1: INDEPENDENT VALIDATION (LEAD SECTION) ========== */}
+<div className="mb-16">
+
+  <h2 className="text-2xl md:text-3xl font-bold text-green text-center mb-6">
+    Independent Validation
+  </h2>
+
+  {/* Why This Matters intro block */}
+  <div className="max-w-2xl mx-auto text-center mb-10">
+    <p className="text-gray-300 text-sm mb-4">
+      Over the years, PHIERS has been evaluated by people across industries — including Fortune 500 companies, institutions, and government agencies.
+    </p>
+    <p className="text-gray-300 text-sm mb-4">
+      Many initially wanted to work with us, until they understood our goal: reducing the influence of profit over people.
+    </p>
+    <p className="text-gray-300 text-sm mb-4">
+      Separately, leaders in PR, media, and entrepreneurship also approached PHIERS because they believed the idea was serious and nationally relevant.
+    </p>
+    <p className="text-green text-sm font-semibold italic mt-4">
+      PHIERS does not ask for trust — only that you look at the public record and see who believed in it enough to help amplify it.
+    </p>
+  </div>
+
+  {/* Shark-linked firms strip */}
+  <div className="flex flex-col sm:flex-row justify-center items-center gap-6 py-6 border-t border-green/20 mb-2">
+    <div className="flex flex-col items-center">
+      <img
+        src="/images/Kevin_Harrington_Pathos.jpg"
+        alt="Kevin Harrington — Pathos Communications"
+        className="h-24 w-auto rounded-md grayscale opacity-80 border border-green/20"
+      />
+      <p className="text-[10px] text-gray-400 mt-1">Kevin Harrington — Pathos</p>
+    </div>
+
+    <div className="flex flex-col items-center">
+      <img
+        src="/images/Kevin_O'Leary_DotComMag.jpg"
+        alt="Kevin O'Leary — DotCom Magazine"
+        className="h-24 w-auto rounded-md grayscale opacity-80 border border-green/20"
+      />
+      <p className="text-[10px] text-gray-400 mt-1">Kevin O'Leary — DotCom Magazine</p>
+    </div>
+  </div>
+
+  {/* Bridge explanation */}
+  <p className="text-center text-gray-400 text-sm max-w-2xl mx-auto mb-8 leading-relaxed">
+    Kevin Harrington and Kevin O'Leary are each connected to the PR firms that publicly validated PHIERS — 
+    Pathos Communications and DotCom Magazine. The interviews below show how those firms chose to feature and 
+    help amplify the idea because they believed in its credibility and national relevance.
+  </p>
+
+  {/* Three validation videos */}
+  <div className="flex flex-col md:flex-row gap-4 md:gap-3 items-stretch mb-10">
+
+    {/* 1. PATHOS */}
+    <div className="flex-1 bg-[#0a1628]/60 rounded-lg p-4 border border-green/20 hover:border-green/40 hover:-translate-y-[2px] transition-all duration-300">
+      <p className="text-green text-xs sm:text-sm font-semibold mb-2">PATHOS — Global PR</p>
+      <p className="text-gray-300 text-[11px] sm:text-xs mb-3 leading-relaxed">
+        A global PR firm powerful enough to be listed on the London Stock Exchange. Pathos evaluated PHIERS, believed in its
+        <span className="font-medium"> global impact</span>, and secured interest from multiple A?list publications who wanted to help spread it.
+      </p>
+
+      <div
+        className="relative w-full cursor-pointer group rounded-md overflow-hidden mb-3"
+        style={{ paddingBottom: '56.25%' }}
+        onClick={(e) => {
+          const container = e.currentTarget
+          const iframe = document.createElement('iframe')
+          iframe.src = 'https://www.youtube.com/embed/KLu7USN_dao?autoplay=1'
+          iframe.title = 'Pathos Communications on PHIERS'
+          iframe.className = 'absolute top-0 left-0 w-full h-full'
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          iframe.allowFullscreen = true
+          container.innerHTML = ''
+          container.appendChild(iframe)
+        }}
+      >
+        <img src="/images/pathos-thumbnail.jpg" className="absolute top-0 left-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <p className="text-green text-[11px] sm:text-sm font-semibold italic">“If you weren't legit, we wouldn't risk our name.”</p>
+      <p className="text-gray-400 text-[9px] sm:text-[10px] mt-1">Pathos · Feb 2026</p>
+    </div>
+
+    {/* 2. CULTURE */}
+    <div className="flex-1 bg-[#0a1628]/60 rounded-lg p-4 border border-green/20 hover:border-green/40 hover:-translate-y-[2px] transition-all duration-300">
+      <p className="text-green text-xs sm:text-sm font-semibold mb-2">CULTURE — Media & People</p>
+      <p className="text-gray-300 text-[11px] sm:text-xs mb-3 leading-relaxed">
+        A nationally syndicated cultural voice amplified PHIERS because the mechanism made sense to ordinary people. 
+        He connected PHIERS to the frustrations millions feel every day.
+      </p>
+
+      <div
+        className="relative w-full cursor-pointer group rounded-md overflow-hidden mb-3"
+        style={{ paddingBottom: '56.25%' }}
+        onClick={(e) => {
+          const container = e.currentTarget
+          const iframe = document.createElement('iframe')
+          iframe.src = 'https://www.youtube.com/embed/qxcRP8lx9dc?autoplay=1'
+          iframe.title = 'Trusted Voices on PHIERS'
+          iframe.className = 'absolute top-0 left-0 w-full h-full'
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          iframe.allowFullscreen = true
+          container.innerHTML = ''
+          container.appendChild(iframe)
+        }}
+      >
+        <img src="/images/BigC_ THUMBNAIL_w_Karen_Trevor_n_Ralph.jpg" className="absolute top-0 left-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <p className="text-green text-[11px] sm:text-sm font-semibold italic">“This isn't left or right. This is people trying to survive.”</p>
+      <p className="text-gray-400 text-[9px] sm:text-[10px] mt-1">Curry, Nader, Noah, Hunter · May 2026</p>
+    </div>
+
+    {/* 3. DOTCOM */}
+    <div className="flex-1 bg-[#0a1628]/60 rounded-lg p-4 border border-green/20 hover:border-green/40 hover:-translate-y-[2px] transition-all duration-300">
+      <p className="text-green text-xs sm:text-sm font-semibold mb-2">MEDIA — Entrepreneur Spotlight</p>
+      <p className="text-gray-300 text-[11px] sm:text-xs mb-3 leading-relaxed">
+        DotCom Magazine selected PHIERS because the idea met their threshold for “this deserves national attention.” 
+        They spotlight founders whose work is serious, timely, and structurally sound.
+      </p>
+
+      <div
+        className="relative w-full cursor-pointer group rounded-md overflow-hidden mb-3"
+        style={{ paddingBottom: '56.25%' }}
+        onClick={(e) => {
+          const container = e.currentTarget
+          const iframe = document.createElement('iframe')
+          iframe.src = 'https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1'
+          iframe.title = 'DotCom Magazine Interview'
+          iframe.className = 'absolute top-0 left-0 w-full h-full'
+          iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+          iframe.allowFullscreen = true
+          container.innerHTML = ''
+          container.appendChild(iframe)
+        }}
+      >
+        <img src="/images/dotcom-thumbnail.jpg" className="absolute top-0 left-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <p className="text-green text-[11px] sm:text-sm font-semibold italic">“A serious, credible framework.”</p>
+      <p className="text-gray-400 text-[9px] sm:text-[10px] mt-1">DotCom Magazine · July 2022</p>
+    </div>
+
+  </div>
+
+  {/* Sharks archival image — moved BELOW the videos */}
+  <div className="mt-4 flex justify-center">
+    <img
+      src="/images/archive/3_Original_Sharks_Vouch_PATHOS_n_DotCom.jpg"
+      alt="Original Shark Tank investors — Cuban, O'Leary, Harrington"
+      className="rounded-md border border-green/20 shadow-sm w-2/3 sm:w-1/2 md:w-2/5 grayscale opacity-70"
+    />
+  </div>
+
+  {/* Updated caption */}
+  <p className="text-center text-gray-500 text-[10px] italic mt-2 mb-6 max-w-md mx-auto">
+    Each of these men is connected to PR firms or companies that stand to benefit from what PHIERS makes possible — structurally, civically, or economically.
+  </p>
+
+</div>
+
+
+        {/* ========== LAYER 2: OPEN NARRATIVE & MECHANISM ========== */}
+
+        {/* Established teaser - credibility upfront */}
+        <div className="text-center mb-4">
+          <p className="text-green text-sm font-mono tracking-wider">FIRST RECORDED VIDEO 2007</p>
+          <p className="text-gray-500 text-[11px]">18+ years of documented public record</p>
+        </div>
+
+        {/* Enemy system definition */}
+        <div className="mt-6 mb-4 text-center max-w-2xl mx-auto">
+          <p className="text-gray-200 text-sm italic leading-relaxed border-l-2 border-green/30 pl-3">
+            PHIERS exists because too many Americans — left, right, and independent — believe government now responds more consistently to concentrated money than to ordinary people.
+          </p>
+        </div>
+
+        {/* Emotional anchor 1 */}
+        <div className="mb-8 text-center max-w-2xl mx-auto bg-[#0a1628]/40 p-4 rounded-lg border-l-2 border-green/30">
+          <p className="text-gray-200 text-sm leading-relaxed">
+            Most people are not policy experts.
+          </p>
+          <p className="text-gray-300 text-sm leading-relaxed mt-2">
+            They are trying to afford groceries, care for aging parents, survive medical bills, and keep their families intact.
+          </p>
+          <p className="text-green text-base font-semibold mt-3">PHIERS starts there.</p>
+        </div>
+
+        {/* Why PHIERS built quietly */}
+        <div className="mb-10 max-w-2xl mx-auto text-center">
+          <h2 className="text-xl md:text-2xl font-bold text-green mb-3">
+            Why PHIERS built quietly for years
+          </h2>
+          <p className="text-gray-400 text-sm mb-3">
+            Most movements launch before they are ready. PHIERS did the opposite.
+          </p>
+          <p className="text-gray-400 text-sm mb-3">
+            People already knew the system was broken. The problem was this: ordinary people had no organized leverage against billionaires, lobbyists, and political machines.
+          </p>
+          <p className="text-gray-400 text-sm mb-3">
+            PHIERS waited — not because the problems were unclear, but because peaceful, lawful, district?level pressure had to be real before anyone was asked to trust it.
+          </p>
+          <p className="text-green text-sm font-semibold">
+            Now the pieces fit. This is the first time the mechanism can actually work.
+          </p>
+        </div>
+
+        {/* Emotional anchor 2 */}
+        <div className="mb-8 max-w-2xl mx-auto text-center">
+          <p className="text-gray-300 text-sm italic">
+            “People already knew the system was broken.<br />
+            The problem was simple: ordinary people had no organized leverage against billionaires, lobbyists, and political machines.”
+          </p>
+        </div>
+
+        {/* Timeline teaser */}
+        <div className="text-center my-6">
+          <p className="text-gray-500 text-xs">? 22 years of documented public record ?</p>
+        </div>
+
+        {/* Mechanism section */}
+        <div
+          id="mechanism"
+          className="mb-8 bg-[#0a1628] border border-green/20 rounded-lg p-4 max-w-2xl mx-auto"
+        >
+          <h3 className="text-green text-base font-bold mb-2 text-center">
+            How PHIERS creates pressure (step by step)
+          </h3>
+          <ol className="list-decimal list-inside text-gray-300 text-xs md:text-sm space-y-1">
+            <li>1,500 verified people in a district go on record.</li>
+            <li>Representative is called to a public town hall.</li>
+            <li>If they refuse or give a corrupt answer ? public investigation launched.</li>
+            <li>We publish findings: votes, donors, ties to defense contractors.</li>
+            <li>
+              Representatives who repeatedly ignore verified district concerns are publicly exposed — and voters decide what happens next.
+            </li>
+          </ol>
+          <div className="mt-6 pt-4 pb-2 text-center bg-green/5 rounded-lg border border-green/20">
+            <p className="text-green text-xl md:text-2xl font-bold italic tracking-wide">
+              No recall needed. Just transparency + voting power.
+            </p>
+          </div>
+        </div>
+
+        {/* What We Know Works */}
+        <div className="mb-8">
+          <h2 className="text-xl md:text-2xl font-bold text-green mb-3">What We Know Works</h2>
+          <div className="mb-3">
+            <p className="text-white font-bold text-sm md:text-base mb-1">Harvard Kennedy School</p>
+            <p className="text-gray-400 text-xs md:text-sm">
+              Research shows that when about 3.5% of people get involved, things change. Governments move. Congress listens.
+            </p>
+          </div>
+          <div className="mb-3">
+            <p className="text-white font-bold text-sm md:text-base mb-1">Ralph Nader</p>
+            <p className="text-gray-400 text-xs md:text-sm">
+              Decades of work inside Congress point to a clear number: When 1,500 people in a district speak up together, a representative can't ignore them.
+            </p>
+          </div>
+          <p className="text-gray-300 text-sm italic mt-2">
+            These aren't theories.<br />
+            They're patterns that repeat.
+          </p>
+          <p className="text-green text-sm font-bold mt-3">
+            History changes when ordinary people become organized enough that power can no longer ignore them.
+          </p>
+        </div>
+
+        {/* Emotional grounding line */}
+        <div className="my-6 text-center max-w-2xl mx-auto">
+          <p className="text-gray-300 text-sm italic">
+            “People are tired of being told nothing can change.<br />
+            That's usually what power says when it doesn't want to be challenged.”
+          </p>
+        </div>
+
+        {/* Built for Everyone */}
+        <div className="mb-8">
+          <h2 className="text-xl md:text-2xl font-bold text-green mb-3">Built for Everyone</h2>
+          <p className="text-gray-300 text-sm md:text-base">
+            PHIERS isn't left or right.<br />
+            It isn't red or blue.<br />
+            It's neighbors, workers, parents, veterans, caregivers, and small?business owners — anyone tired of being ignored by systems that were supposed to serve them.
+          </p>
+          <p className="text-gray-400 text-base md:text-lg mt-2 italic">
+            Your district.<br />
+            Your voice.<br />
+            Your leverage.
+          </p>
+        </div>
+
+        {/* ========== LAYER 3: RECEIPTS (VIDEOS) ========== */}
+        <div className="mb-12 mt-8">
+          <h2 className="text-xl md:text-2xl font-bold text-green mb-2">Legacy Videos</h2>
+          <p className="text-gray-400 text-sm mb-4">
+            Early documentation (2007–2014) – archival, not promotional
+          </p>
+          <div className="flex flex-wrap justify-center items-start gap-4 max-w-3xl mx-auto">
+            {/* 2007 video */}
+            <div className="w-28 sm:w-36 relative">
+              <div className="absolute -top-2 left-2 z-10 bg-green/80 text-black text-[9px] font-bold px-1.5 py-0.5 rounded-sm">
+                FIRST RECORDING
+              </div>
+              <div
+                className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40"
+                style={{ paddingBottom: '56.25%' }}
+                onClick={(e) => {
+                  const container = e.currentTarget
+                  const iframe = document.createElement('iframe')
+                  iframe.src = 'https://player.vimeo.com/video/11995433?autoplay=1'
+                  iframe.className = 'absolute top-0 left-0 w-full h-full'
+                  iframe.allow = 'autoplay; fullscreen'
+                  iframe.allowFullscreen = true
+                  container.innerHTML = ''
+                  container.appendChild(iframe)
+                }}
+              >
+                <img
+                  src="https://vumbnail.com/11995433.jpg"
+                  className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-gray-500 text-[10px] mt-1">Intro (2007)</p>
+            </div>
+
+            {/* Sizzle Film 2011 */}
+            <div className="w-28 sm:w-36">
+              <div
+                className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40"
+                style={{ paddingBottom: '56.25%' }}
+                onClick={(e) => {
+                  const container = e.currentTarget
+                  const iframe = document.createElement('iframe')
+                  iframe.src = 'https://www.youtube.com/embed/mxDkyFfBnZw?autoplay=1'
+                  iframe.className = 'absolute top-0 left-0 w-full h-full'
+                  iframe.allow =
+                    'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                  iframe.allowFullscreen = true
+                  container.innerHTML = ''
+                  container.appendChild(iframe)
+                }}
+              >
+                <img
+                  src="https://img.youtube.com/vi/mxDkyFfBnZw/mqdefault.jpg"
+                  className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-gray-500 text-[10px] mt-1">Sizzle (c.2011)</p>
+            </div>
+
+            {/* Patriots on PHIERS 2014 */}
+            <div className="w-28 sm:w-36">
+              <div
+                className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40"
+                style={{ paddingBottom: '56.25%' }}
+                onClick={(e) => {
+                  const container = e.currentTarget
+                  const iframe = document.createElement('iframe')
+                  iframe.src = 'https://www.youtube.com/embed/r1_y7MXNt4E?autoplay=1'
+                  iframe.className = 'absolute top-0 left-0 w-full h-full'
+                  iframe.allow =
+                    'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                  iframe.allowFullscreen = true
+                  container.innerHTML = ''
+                  container.appendChild(iframe)
+                }}
+              >
+                <img
+                  src="https://img.youtube.com/vi/r1_y7MXNt4E/mqdefault.jpg"
+                  className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-gray-500 text-[10px] mt-1">Patriots on PHIERS (c.2014)</p>
+            </div>
+
+            {/* Silos to Synergies 2014 */}
+            <div className="w-28 sm:w-36">
+              <div
+                className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40"
+                style={{ paddingBottom: '56.25%' }}
+                onClick={(e) => {
+                  const container = e.currentTarget
+                  const iframe = document.createElement('iframe')
+                  iframe.src = 'https://www.youtube.com/embed/JWC6ztov2sA?autoplay=1'
+                  iframe.className = 'absolute top-0 left-0 w-full h-full'
+                  iframe.allow =
+                    'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                  iframe.allowFullscreen = true
+                  container.innerHTML = ''
+                  container.appendChild(iframe)
+                }}
+              >
+                <img
+                  src="https://img.youtube.com/vi/JWC6ztov2sA/mqdefault.jpg"
+                  className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-gray-500 text-[10px] mt-1">
+                Silos to Synergies (c.2014)
+              </p>
+            </div>
+          </div>
+          <p className="text-center text-gray-500 text-xs italic mt-4">
+            Hundreds more archival videos document the full journey.
+          </p>
+        </div>
+
+        {/* Convergence */}
+        <details className="group mb-8">
+          <summary className="cursor-pointer text-xl md:text-2xl font-bold text-green mb-2 list-none flex items-center">
+            <span className="mr-2 group-open:rotate-90 transition-transform">?</span>
+            Convergence: How independent systems arrived at the same conclusions
+          </summary>
+          <div className="mt-4 space-y-4 relative pl-3 border-l-2 border-green/20">
+            <div className="pl-3 border-l-2 border-green/30">
+              <p className="text-white font-bold text-sm mb-1">
+                Mark Cuban, TrumpRx & Direct?to?Consumer Pharma
+              </p>
+              <p className="text-gray-400 text-xs">
+                PHIERS documented this model with SureSafe Pharma in 2009. Cuban launched Cost Plus Drugs in 2022. Seven million customers later, the savings model is proven. TrumpRx joined with Cuban in 2026 — cross?partisan confirmation of the same structural pressure.
+              </p>
+              <p className="text-green text-xs font-semibold mt-2">
+                Cuban/TrumpRx validate the model. PHIERS completes it.
+              </p>
+            </div>
+            <div className="pl-3 border-l-2 border-green/30">
+              <p className="text-white font-bold text-sm mb-1">
+                Telehealth Industry — Teladoc, Zocdoc, Zortt
+              </p>
+              <p className="text-gray-400 text-xs">
+                PHIERS documented distributed telehealth and coordinated care architecture over a decade before industry mainstream adoption. Zortt launched three years ago — executing the same cooperative access model PHIERS designed years earlier.
+              </p>
+              <p className="text-green text-xs font-semibold mt-2">
+                The significance is not branding. It's documented convergence.
+              </p>
+            </div>
+            <div className="mt-3 p-3 bg-green/5 border border-green/20 rounded-lg">
+              <p className="text-white text-xs font-semibold">The pattern is clear:</p>
+              <p className="text-gray-400 text-xs mt-1">
+                Every major validation came from institutions and entrepreneurs who arrived at the same conclusions independently — without knowing PHIERS existed. That's not coincidence.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        {/* Public Record */}
+        <details className="group mb-8" open>
+          <summary className="cursor-pointer text-xl md:text-2xl font-bold text-green mb-2 list-none flex items-center">
+            <span className="mr-2 group-open:rotate-90 transition-transform">?</span>
+            The Public Record
+          </summary>
+          <div className="mt-4 space-y-4">
+            <div className="text-center py-4 mb-2">
+              <p className="text-5xl font-bold text-green">2004</p>
+              <p className="text-gray-400 text-sm mt-1">Earliest documented PHIERS record</p>
+            </div>
+            <p className="text-gray-300 text-sm">
+              The website launched in{' '}
+              <span className="text-green font-semibold">2009</span> in collaboration with Al Wilson's
+              SureSafe Pharma — a direct?to?consumer pharmaceutical model.
+            </p>
+            <p className="text-gray-300 text-sm">
+              The <span className="text-green font-semibold">September 2011 snapshot</span> (below) was
+              captured two years after launch, showing a fully operational platform addressing health
+              reform, coordinated care, and structural economic pressures.
+            </p>
+            <div className="flex justify-center">
+              <img
+                src="/images/archive/phiers-2011-archive-header-url-v1.jpg"
+                alt="Archived PHIERS.org page from September 22, 2011"
+                className="rounded-md border border-green/20 shadow-md max-w-full md:max-w-2xl"
+              />
+            </div>
+            <p className="text-gray-500 text-xs italic text-center">
+              Archived PHIERS.org page — September?22?2011.
+            </p>
+            <div className="mt-4 p-4 bg-[#0a1628] border border-green/20 rounded-lg">
+              <p className="text-white text-xs font-semibold mb-3">
+                Contemporaneous partnerships (on record):
+              </p>
+              <ul className="text-gray-400 text-xs space-y-1 list-none">
+                <li>? SureSafe Pharma (Al Wilson)</li>
+                <li>? VA Medical Centers & Maryland Veterans Administration</li>
+                <li>? Patriot Medical Transport Systems</li>
+                <li>? Daedalus Systems</li>
+                <li>? MedStar Health</li>
+                <li>? Prince George's County Housing Authority</li>
+                <li>? Maryland CRISP Health Information Exchange</li>
+              </ul>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://web.archive.org/web/20250000000000*/phiers.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green text-xs hover:underline"
+              >
+                Full archive history (50+ captures, 2007–2025) ?
+              </a>
+              <a
+                href="https://web.archive.org/web/20140518210231/http://phiers.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green text-xs hover:underline"
+              >
+                2014 snapshot ?
+              </a>
+              <a
+                href="https://web.archive.org/web/20110922235754/http://www.phiers.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green text-xs hover:underline"
+              >
+                2011 snapshot ?
+              </a>
+            </div>
+            <div className="mt-4 border border-green/10 rounded-lg p-4 bg-[#0a1628]">
+              <p className="text-white text-xs font-semibold mb-3">Timeline</p>
+              <div className="space-y-2">
+                {[
+                  ['2007', 'First recorded video — PHIERS documented framework'],
+                  ['2009', 'PHIERS.org partners with SureSafe Pharma'],
+                  ['2011', 'Archived platform snapshot — health reform coalition'],
+                  ['2014', 'Operational proposals, named partnerships, dated documents'],
+                  ['2022', 'DotCom Magazine Entrepreneur Spotlight'],
+                  ['2026', 'Pathos Communications — London Stock Exchange listed'],
+                  ['2026', 'BigC interview — framework discussed by media, culture, and movement leaders'],
+                  ['Now', 'District organizing model — active'],
+                ].map(([year, label]) => (
+                  <div key={year} className="flex items-start gap-3">
+                    <span className="text-green text-xs font-bold w-10 shrink-0">{year}</span>
+                    <span className="text-gray-400 text-xs">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p className="text-gray-500 text-xs italic mt-4">
+              The point is not retroactive credit. It's that structural pressure recognition, when
+              documented publicly and early, eventually becomes its own form of evidence.
+            </p>
+          </div>
+        </details>
+
+        {/* Momentum & Close */}
+        <div className="max-w-xl mx-auto text-center my-8">
+          <p className="text-gray-300 text-sm italic">
+            For years, most of this remained archival.
+          </p>
+          <p className="text-gray-300 text-sm mt-2">
+            Not anymore. Costs are rising. Trust is collapsing. People are organizing again.
+          </p>
+          <p className="text-green text-sm font-bold mt-2">
+            The conditions that once made this impossible are disappearing.
+          </p>
+        </div>
+
+        {/* Emotional anchor 3 */}
+        <div className="max-w-xl mx-auto text-center mb-6">
+          <div className="bg-[#0a1628] p-4 rounded-lg border border-green/20">
+            <p className="text-gray-200 text-sm leading-relaxed">
+              A lot of people are angry.
+            </p>
+            <p className="text-gray-300 text-sm leading-relaxed mt-2">
+              About rising costs. About endless wars. About corruption. About watching communities collapse while wealth concentrates at the top.
+            </p>
+            <p className="text-green text-sm font-semibold mt-2">
+              PHIERS exists to turn that frustration into organized, peaceful, democratic pressure.
+            </p>
+          </div>
+        </div>
+
+        {/* Killer closer */}
+        <div className="max-w-xl mx-auto text-center my-10">
+          <div className="bg-[#0a1628] p-5 rounded-lg border border-green/20">
+            <p className="text-gray-200 text-sm leading-relaxed">
+              Twenty-two years of public record. Independent validation. A transparent mechanism.
+            </p>
+            <p className="text-gray-200 text-sm leading-relaxed mt-2">
+              No violence. No revolution. No special interests.
+            </p>
+            <p className="text-green text-sm font-semibold mt-3">
+              Just organized citizens applying peaceful democratic pressure.
+            </p>
+            <p className="text-gray-400 text-sm mt-3">
+              If that interests you, keep exploring.
+            </p>
+          </div>
+        </div>
+
+        {/* So what? block */}
+        <div className="max-w-xl mx-auto text-center mb-6">
+          <p className="text-gray-400 text-sm leading-relaxed">
+            What does this mean for you?
+          </p>
+          <p className="text-gray-400 text-sm mt-1">
+            Nothing — unless you choose it.
+          </p>
+          <p className="text-gray-400 text-sm mt-1">
+            PHIERS is a tool, not a demand.
+          </p>
+          <p className="text-gray-400 text-sm mt-1">
+            The record is public. The mechanism is transparent. The next step is yours.
+          </p>
+        </div>
+
+        {/* Question form CTA */}
+        <div className="text-center pt-1 pb-6" id="credibility-buttons">
+          <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
+            <p className="text-gray-300 text-sm mb-3">
+              We're collecting questions, feedback, and input from people who are still learning, still deciding, or simply curious.
+            </p>
+            <p className="text-gray-400 text-xs mb-4">
+              Your input helps shape what we build next.
+            </p>
+            <p className="text-gray-400 text-xs mb-4">
+              We're not asking for commitment. Just curiosity.
+            </p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-2 bg-green text-black font-bold rounded-lg hover:bg-green-dim transition text-sm"
+              style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
+            >
+              ? Ask a question
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </>
+  )
+}
+
+// FILE: components/PathosCredibility.tsx
+
+<<<>>>
+
+// FILE: components/MainHomePage.tsx
+// VERSION: 7.5.0 – added fifteen hundred explanations
+
+'use client'
+
+import { useState, useEffect, useCallback, useRef } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
+import Navigation from '@/components/navigation'
+import Footer from '@/components/footer'
+import Button from '@/components/Button'
+// import EarlyStageModal from '@/components/EarlyStageModal' // Commented out - will restore when new petition/survey online
+import PHIERStormModal from '@/components/PHIERStormModal'
+import entriesData from '@/data/whatsnew/entries.json'
+
+// Helper component for video cards (used inside modal)
+function VideoCard({ id, title }: { id: string; title: string }) {
+  return (
+    <div className="bg-bg-card/80 rounded-xl border border-green/20 overflow-hidden hover:border-green/50 transition-all">
+      <div className="relative pb-[56.25%] h-0">
+        <iframe
+          src={`https://www.youtube.com/embed/${id}?rel=0`}
+          title={title}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          allowFullScreen
+          loading="lazy"
+          className="absolute top-0 left-0 w-full h-full"
+        />
+      </div>
+      <div className="p-2 text-center">
+        <p className="text-gray-300 text-sm font-medium">{title}</p>
+      </div>
+    </div>
+  )
+}
+
+export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => void }) {
+  const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
+  const [showBackToTop, setShowBackToTop] = useState(false)
+  const [showArchitectModal, setShowArchitectModal] = useState(false)
+  const pathname = usePathname()
+  const [showNewsflash, setShowNewsflash] = useState(true)
+  // Banner for /whats-new
+  const [showFullBanner, setShowFullBanner] = useState(false)
+  const [showSmallWhatsNew, setShowSmallWhatsNew] = useState(false)
+  const [bannerTimer, setBannerTimer] = useState<NodeJS.Timeout | null>(null)
+  const [showSituationButton, setShowSituationButton] = useState(true)
+
+  // Early-stage modal state (petition redirect) - preserved for when new petition/survey online
+  // const [showEarlyModal, setShowEarlyModal] = useState(false);
+  // Question modal state
+  const [showQuestionModal, setShowQuestionModal] = useState(false);
+  
+  // Only show on the main homepage (path === '/')
+  const shouldShowNewsflash = showNewsflash && pathname === '/'
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
+  const prefersReducedMotionRef = useRef(false)
+
+  // Scroll to top when page mounts
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  const closeModal = useCallback(() => {
+    setModalImageSrc(null)
+    document.body.style.overflow = ''
+    if (previousFocusRef.current) {
+      previousFocusRef.current.focus()
+      previousFocusRef.current = null
+    }
+  }, [])
+
+  const openModal = useCallback((src: string) => {
+    previousFocusRef.current = document.activeElement as HTMLElement
+    setModalImageSrc(src)
+    document.body.style.overflow = 'hidden'
+  }, [])
+
+  useEffect(() => {
+    if (!modalImageSrc) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeModal()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    if (modalRef.current) modalRef.current.focus()
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [modalImageSrc, closeModal])
+
+  useEffect(() => {
+    if (!modalImageSrc || !modalRef.current) return
+    const focusableElements = modalRef.current.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    const firstElement = focusableElements[0] as HTMLElement
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault()
+          lastElement?.focus()
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault()
+          firstElement?.focus()
+        }
+      }
+    }
+    window.addEventListener('keydown', handleTab)
+    return () => window.removeEventListener('keydown', handleTab)
+  }, [modalImageSrc])
+
+  // Banner initialization (check localStorage for last update)
+  useEffect(() => {
+    const lastSeen = localStorage.getItem('whatsnew_last_seen')
+    const currentVersion = entriesData.lastUpdated
+    if (lastSeen !== currentVersion) {
+      setShowFullBanner(true)
+      const timer = setTimeout(() => {
+        setShowFullBanner(false)
+        setShowSmallWhatsNew(true)
+        localStorage.setItem('whatsnew_last_seen', currentVersion)
+      }, 8000)
+      setBannerTimer(timer)
+    } else {
+      setShowSmallWhatsNew(true)
+    }
+    return () => {
+      if (bannerTimer) clearTimeout(bannerTimer)
+    }
+  }, [])
+
+  // Check if user dismissed the situation button
+  useEffect(() => {
+    const dismissed = localStorage.getItem('situation-button-dismissed')
+    if (dismissed === 'true') setShowSituationButton(false)
+  }, [])
+
+  const [showBackButton, setShowBackButton] = useState(true)
+  const lastScrollY = useRef(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400)
+      const currentScrollY = window.scrollY
+      if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
+        setShowBackButton(false)
+      } else if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
+        setShowBackButton(true)
+      }
+      lastScrollY.current = currentScrollY
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Detect reduced motion preference
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => { prefersReducedMotionRef.current = media.matches }
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotionRef.current ? 'auto' : 'smooth' })
+  }, [])
+
+  const dismissSituationButton = () => {
+    setShowSituationButton(false)
+    localStorage.setItem('situation-button-dismissed', 'true')
+  }
+
+    const handleQuestionClick = () => {
+    setShowQuestionModal(true);
+  };
+
+  // const handleModalContinue = () => {
+  //   setShowEarlyModal(false);
+  //   localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
+  //   sessionStorage.setItem('phiers_modal_session', 'true');
+  //   window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+  // };
+
+  // const handleModalLater = () => {
+  //   setShowEarlyModal(false);
+  //   sessionStorage.setItem('phiers_modal_session', 'true');
+  // };
+
+  const scrollToMechanism = useCallback(() => {
+    document.getElementById('mechanism')?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
+  const makeKeyboardClickable = (handler: () => void) => {
+    return (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        handler()
+      }
+    }
+  }
+
+  return (
+    <>
+      {/* WHAT'S NEW BANNER – full red banner */}
+      {showFullBanner && (
+        <div className="fixed top-16 left-0 right-0 z-50 bg-red-700 text-white py-2 px-4 text-center shadow-lg transition-all duration-500 animate-fadeIn">
+          <div className="container mx-auto flex items-center justify-between gap-4 flex-wrap">
+            <span className="text-sm md:text-base">
+              ?? LIVE: Major national developments unfolding. See the latest updates
+            </span>
+            <a
+              href="/whats-new"
+              className="bg-white text-red-700 px-3 py-1 rounded-md text-sm font-bold hover:bg-gray-100 transition"
+            >
+              What's New ?
+            </a>
+            <button
+              onClick={() => {
+                setShowFullBanner(false)
+                setShowSmallWhatsNew(true)
+                if (bannerTimer) clearTimeout(bannerTimer)
+                localStorage.setItem('whatsnew_last_seen', entriesData.lastUpdated)
+              }}
+              className="text-white/80 hover:text-white text-xl leading-none"
+            >
+              ?
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Unified situation button (closable, dismissible) */}
+      {showSmallWhatsNew && showSituationButton && (
+        <div className="fixed top-16 right-4 z-50">
+          <div className="relative inline-flex flex-col items-end">
+            <button
+              onClick={dismissSituationButton}
+              className="absolute -top-2 -right-2 bg-black/80 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition z-10"
+              aria-label="Dismiss situation button"
+            >
+              ?
+            </button>
+            <a
+              href="/situation"
+              className="flex flex-col items-end bg-black/70 backdrop-blur-sm border border-amber-500/50 rounded-full px-3 py-1.5 shadow-md hover:bg-black/90 transition"
+            >
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-white tracking-wide">THE SITUATION</span>
+              </div>
+              <span className="text-[10px] sm:text-xs text-amber-300/80">as of May 18</span>
+            </a>
+          </div>
+        </div>
+      )}
+
+      <div className="min-h-screen">
+
+      <div className="bg-amber-600 text-black text-center py-2 text-sm font-bold">
+        ?? Site under construction – <Link href="/join" className="underline font-extrabold">Join us ? now hiring</Link>
+      </div>
+
+      <AnimatePresence>
+        {modalImageSrc && (
+          <motion.div
+            ref={modalRef}
+            id="image-modal-container"
+            className="fixed inset-0 bg-black z-[99999] flex items-center justify-center outline-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+            tabIndex={-1}
+            aria-modal="true"
+            role="dialog"
+            aria-label="Image enlarged view"
+          >
+            <div className="relative w-screen h-screen flex items-center justify-center cursor-pointer">
+              <Image
+                src={modalImageSrc}
+                alt="Enlarged view"
+                width={1920}
+                height={1080}
+                className="w-full h-auto max-h-screen object-contain"
+                sizes="100vw"
+                onError={(e) => console.error('Modal image failed to load:', modalImageSrc)}
+              />
+              <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">
+                Click anywhere or press Escape to close
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <Navigation />
+      
+      {/* Back to Start button - resets the onboarding journey */}
+      <button
+        onClick={() => {
+          // Clear all session/local storage flags
+          sessionStorage.removeItem('phiers-intro-complete');
+          localStorage.removeItem('firstVisit');
+          localStorage.removeItem('modalSeen');
+          // Reset the stage in page.tsx via URL param
+          window.location.href = '/?reset=true';
+        }}
+        className="fixed top-20 left-4 z-40 text-gray-500 text-xs underline opacity-60 hover:opacity-100 transition"
+      >
+        ? BACK to Start
+      </button>
+
+
+      {/* Dim "BACK" button – only shown if onBackToEntry is provided */}
+      {onBackToEntry && (
+        <div
+          className={`fixed top-[50px] left-4 z-40 md:top-[60px] transition-opacity duration-300 ${
+            showBackButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          <button
+            onClick={onBackToEntry}
+            className="text-gray-500 text-sm underline hover:text-gray-400 transition-colors focus:outline-none focus:ring-1 focus:ring-green rounded px-1"
+            aria-label="Go back to the beginning of the site"
+          >
+            ? BACK
+          </button>
+        </div>
+      )}
+
+      <main className="font-sans pt-20 md:pt-0">
+        {/* PHIERS Logo at the top of the main content */}
+        <div className="flex justify-center mt-4 mb-6">
+          <Image
+            src="/images/PHIERS_Logo.png"
+            alt="PHIERS – Power Held In Every Representative's Seat"
+            width={160}
+            height={160}
+            className="w-32 sm:w-40 md:w-48 h-auto"
+            priority
+          />
+        </div>
+
+        {/* Opening line after transition modal */}
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <p className="text-green text-sm font-mono tracking-wider mb-2">THIS IS WHERE LEVERAGE BECOMES REAL.</p>
+          <p className="text-gray-300 text-base">Your district. Your voice. On the record.</p>
+        </div>
+
+        {/* HERO */}
+        <section className="container text-center pt-8 md:pt-12 pb-4">
+          <h1 className="mb-8 md:mb-10 text-center">
+            <span className="block text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              CONGRESS CAN FIX MOST OF WHAT'S BROKEN.
+            </span>
+            <span className="block text-xl md:text-2xl lg:text-3xl font-bold text-green mt-2 leading-tight">
+              THEY JUST CHOOSE NOT TO.
+            </span>
+          </h1>
+          <div className="max-w-[760px] mx-auto mt-4">
+            <p className="text-white text-lg md:text-xl font-semibold mb-2">Alone, you're easy to ignore.</p>
+            <p className="text-green text-base md:text-lg font-medium mb-4">
+              <span className="inline-flex items-center gap-2">
+                <span>1,500 people</span>
+                <button 
+                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                >
+                  Why 1,500?
+                </button>
+              </span>
+              {" "}in your congressional district are not.
+            </p>
+            <p className="text-gray-300 text-base mb-2">We don't ask Congress to care.</p>
+            <p className="text-gray-300 text-base mb-4">
+              We make ignoring constituents <span className="text-green font-semibold">politically costly</span>.
+            </p>
+            <p className="text-white text-lg font-bold mt-2">That's the leverage.</p>
+          </div>
+
+          {/* Two intro videos – mobile?optimized: invitation lines, spacing, overlays */}
+          <div className="max-w-4xl mx-auto mt-8 mb-6 px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              {/* Video 1 */}
+              <div className="mb-8 sm:mb-0">
+                {/* Mobile?only invitation line */}
+                <p className="text-center text-green text-sm font-semibold mb-2 sm:hidden">
+                  Watch: The Tipping Point Explained
+                </p>
+                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md group cursor-pointer">
+                  <iframe
+                    src="https://www.youtube.com/embed/SFW9fhUBEwE?rel=0"
+                    title="PHIERS – The Movement That Forces Congress to Respond"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute top-0 left-0 w-full h-full"
+                  />
+                  {/* Mobile overlay + play button (only visible on touch devices) */}
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 sm:opacity-0 group-hover:opacity-100 transition-opacity md:hidden">
+                    <div className="w-12 h-12 rounded-full bg-black/70 flex items-center justify-center border-2 border-white/60">
+                      <span className="text-white text-xl ml-0.5">?</span>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-400 text-xs sm:text-sm mt-1">How leverage works</p>
+              </div>
+
+              {/* Mobile?only section break between videos (only visible on mobile) */}
+              <div className="sm:hidden">
+                <div className="border-t border-neutral-700/40 my-4"></div>
+                <p className="text-center text-gray-500 text-xs pt-2">— Next chapter —</p>
+              </div>
+
+              {/* Video 2 */}
+              <div className="mt-4 sm:mt-0">
+                {/* Mobile?only invitation line */}
+                <p className="text-center text-green text-sm font-semibold mb-2 sm:hidden">
+                  Watch: How Leverage Works
+                </p>
+                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md group cursor-pointer">
+                  <iframe
+                    src="https://www.youtube.com/embed/ihTa_2CLmvk?rel=0"
+                    title="Short Intro to PHIERS"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute top-0 left-0 w-full h-full"
+                  />
+                  {/* Mobile overlay + play button */}
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 sm:opacity-0 group-hover:opacity-100 transition-opacity md:hidden">
+                    <div className="w-12 h-12 rounded-full bg-black/70 flex items-center justify-center border-2 border-white/60">
+                      <span className="text-white text-xl ml-0.5">?</span>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-400 text-xs sm:text-sm mt-1">The PHIERS framework</p>
+              </div>
+            </div>
+            <p className="text-center text-gray-500 text-xs mt-4 animate-pulse">
+              ? Scroll down for the full vision ?
+            </p>
+          </div>
+
+          {/* WAR / LEVERAGE / 1,500 / RECALL BLOCK */}
+          <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
+            <p className="text-white text-2xl md:text-3xl font-bold mb-2">Congress can end the wars. Right now.</p>
+            <p className="text-gray-300 text-base mb-2">They have the power. They’ve always had it.</p>
+            <p className="text-green text-xl font-bold mb-3">They just don’t have people forcing action.</p>
+            <p className="text-gray-300 text-base mb-2">That’s where leverage comes in.</p>
+            <p className="text-white text-lg font-semibold mb-2">
+              <span className="inline-flex items-center gap-2">
+                <span>1,500 people</span>
+                <button 
+                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                >
+                  Why 1,500?
+                </button>
+              </span>
+              {" "}in your district – on record – creates leverage.
+            </p>
+            <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
+            <p className="text-gray-300 text-base mb-2">If they don’t end the wars immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
+            <p className="text-white text-lg font-bold mt-2">That's how we make Congress do its job.</p>
+            <p className="text-gray-300 text-base mt-4">And if they still won't?</p>
+            <p className="text-gray-300 text-base">We investigate how they voted.</p>
+            <p className="text-gray-300 text-base">We publish who paid for those votes.</p>
+            <p className="text-gray-300 text-base">We organize their constituents around what they find.</p>
+            <p className="text-green text-lg font-bold mt-2">And we push for special elections — so the people they abandoned can choose someone who actually represents them.</p>
+            <p className="text-gray-500 text-sm mt-3 italic">That's not a threat. That's democracy. The same rules they use — finally used on them.</p>
+          </div>
+
+          {/* THE MOMENT WE'RE IN */}
+          <div className="max-w-3xl mx-auto mt-8 p-6 bg-yellow-500/10 border border-yellow-500/30 rounded-xl text-center">
+            <p className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-4">The Moment We're In</p>
+            <p className="text-white text-xl md:text-2xl font-bold mb-4">Here's what's actually happening right now.</p>
+
+            <div className="space-y-3 text-left max-w-xl mx-auto mb-6">
+              <p className="text-gray-300 text-base">?? The Supreme Court gutted the Voting Rights Act. The ballot has been narrowed — intentionally.</p>
+              <p className="text-gray-300 text-base">?? The Iran War is breaking the global economy. Gas. Food. Shipping. Everyone is paying.</p>
+              <p className="text-gray-300 text-base">?? Black workers are last hired and first fired — again. Federal agencies with the highest Black employment were cut first.</p>
+              <p className="text-gray-300 text-base">?? The safety net was gutted to pay for tax cuts. The people who needed it most were left to absorb the damage.</p>
+              <p className="text-gray-300 text-base">?? AI is coming for jobs. Nobody in Congress has a real plan for what comes next.</p>
+            </div>
+
+            <p className="text-white text-lg font-bold mb-2">Congress has the power to fix every single one of these. Right now.</p>
+            <p className="text-green text-xl font-bold mb-3">They just don't have the pressure.</p>
+
+            <div className="bg-black/30 rounded-xl p-4 mt-4 text-left max-w-xl mx-auto">
+              <p className="text-white font-bold mb-2">Once we have 1,500 signatures per district — organized nationally — a brand new Congress answers to us.</p>
+              <p className="text-gray-300 text-sm mb-1">That Congress can:</p>
+              <ul className="text-gray-300 text-sm space-y-1 list-disc list-inside">
+                <li>Reverse every harmful executive order</li>
+                <li>End the wars — immediately</li>
+                <li>Restore the Voting Rights Act</li>
+                <li>Impeach those who betrayed the public trust</li>
+                <li>Fix the safety net — sustainably</li>
+                <li>Build a plan for AI that creates more jobs and small businesses than we lose</li>
+              </ul>
+              <p className="text-green font-bold text-sm mt-3">This is not a dream. This is a legislative checklist. PHIERS is the infrastructure that makes it executable.</p>
+            </div>
+          </div>
+
+          {/* Why 1,500 Matters */}
+          <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
+            <div className="flex flex-wrap items-baseline gap-2 mb-3">
+              <h3 className="text-3xl md:text-4xl font-bold text-white">Why 1,500 Matters</h3>
+              <button 
+                onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                className="text-sm text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+              >
+                Why 1,500?
+              </button>
+            </div>
+            <p className="text-gray-300 text-base mb-3">
+              Congress doesn't respond to national percentages — it responds to pressure inside each district.
+            </p>
+            <p className="text-gray-500 text-xs mt-2">— Ralph Nader, proven in civic campaigns</p>
+            <p className="text-gray-300 text-base mb-3">
+              When 1,500 people in a district go on record with the same demand,
+              the representative is <span className="text-green font-semibold">forced to respond publicly</span> — or <span className="text-green font-semibold">risks losing their seat</span>.
+            </p>
+            <p className="text-gray-300 text-base">That's the leverage PHIERS organizes.</p>
+
+            <div
+              className="my-4 cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/District_Accountability_Dashboard.jpg')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/District_Accountability_Dashboard.jpg'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge dashboard image"
+            >
+              <Image
+                src="/images/District_Accountability_Dashboard.jpg"
+                alt="District Accountability Dashboard"
+                width={600}
+                height={400}
+                className="mx-auto rounded-lg border border-green/20"
+                sizes="(max-width: 768px) 90vw, 600px"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+              />
+            </div>
+          </div>
+
+          <div className="max-w-[600px] mx-auto mt-8">
+            <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
+            <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
+            <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
+              <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">? Ask a question ?</button>
+              <Button href="/homepage-teeth" variant="secondary" fullWidth>?? SEE HOW IT WORKS</Button>
+              <Button href="/zoom" variant="secondary" fullWidth>?? JOIN THE PUBLIC ZOOM</Button>
+            </div>
+            <p className="text-gray-400 text-sm mt-2">Your district. Your number. On record.</p>
+          </div>
+        </section>
+
+        {/* THE MECHANISM */}
+        <section id="mechanism" className="container section scroll-mt-24 mb-12">
+          <div className="max-w-[760px] mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-green mb-3">THE MECHANISM</h2>
+            <p className="text-gray-300 text-base mb-3">Congress doesn't respond to opinion.</p>
+            <p className="text-gray-300 text-base mb-4">Congress responds to pressure it can't ignore.</p>
+            <p className="text-white text-lg font-semibold mb-3">Pressure becomes unavoidable when:</p>
+            <div className="bg-green-glow border border-green/20 rounded-xl p-6 my-4">
+              <p className="text-green text-xl font-bold">Savings create growth.</p>
+              <p className="text-green text-xl font-bold my-2">Growth creates pressure, then leverage.</p>
+              <p className="text-green text-xl font-bold">Leverage creates results.</p>
+            </div>
+            <p className="text-white text-lg font-bold mt-2">That's the engine.</p>
+          </div>
+          <div className="flex justify-center mt-8">
+            <div
+              className="w-[45%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/PHIERS_Tablet__Firewall.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/PHIERS_Tablet__Firewall.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge PHIERS mechanism image"
+            >
+              <Image
+                src="/images/PHIERS_Tablet__Firewall.png"
+                alt="PHIERS mechanism"
+                width={500}
+                height={400}
+                className="w-full h-auto"
+                sizes="(max-width: 768px) 90vw, 500px"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+              />
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* HOW IT WORKS */}
+        <section className="container section">
+          <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6">HOW IT WORKS</h2>
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="space-y-5">
+              <div><p className="text-white text-lg font-bold">1. You go on record</p><p className="text-gray-400 text-sm">Not "I agree." You're counted.</p></div>
+              <div><p className="text-white text-lg font-bold mt-3">2. We organize by congressional district</p><p className="text-gray-400 text-sm">Not noise — numbers. Not vibes — leverage.</p></div>
+              <div><p className="text-white text-lg font-bold mt-3">3. Representatives are forced to respond publicly</p><p className="text-gray-400 text-sm">Or face primary challenge or replacement.</p></div>
+              <div><p className="text-white text-lg font-bold mt-3">4. Congress acts — or gets replaced</p><p className="text-gray-400 text-sm">Not later. Now. Before the next election.</p></div>
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <div className="w-full md:w-[80%] bg-bg-card rounded-xl border border-green/20 p-4 text-center">
+                <div className="aspect-video rounded-lg overflow-hidden">
+                  <iframe
+                    src="https://www.youtube.com/embed/xEA5zVium58?rel=0"
+                    title="How district?level organization works"
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <p className="text-gray-400 text-xs mt-2">How district?level organization works</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHY 1,500 PEOPLE MATTER */}
+        <section className="container section">
+          <div className="max-w-[760px] mx-auto text-center">
+            <div className="flex flex-wrap items-baseline justify-center gap-2 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-white">WHY 1,500 PEOPLE MATTER</h2>
+              <button 
+                onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                className="text-sm text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+              >
+                Why 1,500?
+              </button>
+            </div>
+            <p className="text-green text-xl font-semibold mb-3">
+              <span className="inline-flex items-center gap-2">
+                <span>1,500 people</span>
+                <button 
+                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                >
+                  Why 1,500?
+                </button>
+              </span>
+              {" "}in one congressional district is the tipping point.
+            </p>
+            <p className="text-gray-300 text-base mb-2">Not millions. Not a national wave.</p>
+            <p className="text-gray-300 text-base mb-2">Just enough people — in the right place — at the same time.</p>
+            <p className="text-gray-300 text-base mb-3">Because it's not about size. It's about placement.</p>
+            <p className="text-white text-lg font-bold">It turns attention into leverage.</p>
+          </div>
+          <div className="flex justify-center mt-8">
+            <div
+              className="w-[45%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/This_is_what_leverage_looks_like.jpg')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/This_is_what_leverage_looks_like.jpg'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge leverage visual"
+            >
+              <Image
+                src="/images/This_is_what_leverage_looks_like.jpg"
+                alt="Leverage visual"
+                width={800}
+                height={500}
+                className="w-full h-auto rounded-lg border border-green/20"
+                sizes="(max-width: 768px) 90vw, 800px"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+              />
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* How this works */}
+        <section className="container section">
+          <div className="max-w-[760px] mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-green mb-6">How this works</h2>
+            <div className="space-y-4 text-gray-300 text-base">
+              <p>PHIERS tracks how many verified constituents in each district go on record.</p>
+              <p>Not opinions — real people.</p>
+              <p>When enough people speak up in one district, it becomes visible.</p>
+              <p>That visibility creates accountability.</p>
+              <p className="text-white font-semibold">We don’t remove anyone. We make alignment public — and impossible to ignore.</p>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* MID-PAGE ACTION */}
+        <section className="container py-8 text-center">
+          <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
+            <p className="text-white text-lg font-bold mb-2">
+              If your district reaches 
+              <span className="inline-flex items-center gap-1 mx-1">
+                <span>1,500</span>
+                <button 
+                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                >
+                  Why 1,500?
+                </button>
+              </span>
+              , your representative has to respond.
+            </p>
+            <p className="text-gray-300 text-base mb-4">Or they risk losing their seat.</p>
+            <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">? Ask a question ?</button>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* ECONOMIC ENGINE */}
+        <section className="container section">
+          <div className="max-w-[760px] mx-auto">
+            <div className="text-center mb-6"><span className="text-green text-sm font-condensed font-bold tracking-wider">THE ECONOMIC ENGINE</span></div>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <p className="text-gray-300 text-base mb-3">Even using conservative estimates — around $8,000–$10,000 per person annually — the scale is massive.</p>
+                <p className="text-gray-500 text-sm italic mb-3">(Actual costs are often significantly higher depending on coverage and employer contributions.)</p>
+                <p className="text-gray-300 text-base mb-3">But most of the care people actually use — at a fraction of the cost — can be delivered for about $600 through telehealth.</p>
+                <p className="text-gray-300 text-base mb-3">That gap represents <span className="text-green font-semibold">trillions in potential savings</span>.</p>
+                <p className="text-green text-xl font-bold mt-2">That's not a theory. That's math.</p>
+              </div>
+              <div className="flex justify-center">
+                <div
+                  className="w-[80%] md:w-[90%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+                  onClick={() => openModal('/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg')}
+                  onKeyDown={makeKeyboardClickable(() => openModal('/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg'))}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Enlarge cost comparison image"
+                >
+                  <Image
+                    src="/images/80-20_Healthcare_Model_-PHIERS_v_Insurance_Cost.jpg"
+                    alt="Cost comparison"
+                    width={500}
+                    height={300}
+                    className="w-full h-auto"
+                    sizes="(max-width: 768px) 90vw, 500px"
+                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* THE CASCADE */}
+        <section className="container section">
+          <div className="max-w-[760px] mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
+            <p className="text-gray-300 text-base mb-2">One person switching creates enough savings to cover 12 more.</p>
+            <p className="text-gray-300 text-base mb-3">Then it compounds:</p>
+            <p className="text-green text-lg font-mono font-bold mb-4 break-words">1 ? 12 ? 148 ? 1,825 ? 22,000 ? 260,000 ? 3.1M ? 37M ? 450M</p>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-4 my-4"><p className="text-white font-mono text-lg">In nine rounds: • 234 million people covered • 8–13 months</p></div>
+            <p className="text-green text-lg font-bold mb-3">Not a promise. Math.</p>
+            <p className="text-gray-300 text-base">It works because savings fund the next layer.</p>
+          </div>
+          <div className="flex justify-center mt-8">
+            <div
+              className="w-[55%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Cascade_Math.jpg')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Cascade_Math.jpg'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge cascade math diagram"
+            >
+              <Image
+                src="/images/Cascade_Math.jpg"
+                alt="Cascade math"
+                width={600}
+                height={400}
+                className="w-full h-auto"
+                sizes="(max-width: 768px) 90vw, 600px"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+              />
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        <div className="flex justify-center mt-8 mb-8">
+          <div
+            className="w-[70%] md:w-[45%] max-w-[600px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+            onClick={() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg')}
+            onKeyDown={makeKeyboardClickable(() => openModal('/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg'))}
+            role="button"
+            tabIndex={0}
+            aria-label="Enlarge hero image"
+          >
+            <Image
+              src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
+              alt="Congress Ignores You"
+              width={954}
+              height={648}
+              priority
+              className="w-full h-auto object-contain"
+              sizes="(max-width: 768px) 90vw, 600px"
+              onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+            />
+          </div>
+        </div>
+
+        {/* THREE KINDS OF POWER */}
+        <section className="container section">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THREE KINDS OF POWER</h2>
+            <p className="text-gray-300 text-lg">Three ways this changes things — all at once.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5 mb-6">
+            <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-red-500">
+              <div className="text-3xl mb-2">?</div>
+              <div className="font-display text-2xl text-white mb-1">Political Power</div>
+              <p className="text-gray-400 text-sm">
+                <span className="inline-flex items-center gap-1">
+                  <span>1,500 constituents</span>
+                  <button 
+                    onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+                    className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+                  >
+                    Why 1,500?
+                  </button>
+                </span>
+                {" "}on the record forces a choice: act, or face replacement.
+              </p>
+            </div>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-yellow-400">
+              <div className="text-3xl mb-2">??</div>
+              <div className="font-display text-2xl text-white mb-1">Economic Power</div>
+              <p className="text-gray-400 text-sm">We're already spending the money — it's just being wasted. Redirecting it changes outcomes.</p>
+            </div>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-green">
+              <div className="text-3xl mb-2">??</div>
+              <div className="font-display text-2xl text-white mb-1">Market Power</div>
+              <p className="text-gray-400 text-sm">People buying together can get the basics — groceries, medicine, everyday essentials — at cost, without middlemen driving up prices.</p>
+            </div>
+          </div>
+          <p className="font-condensed text-xl text-green font-bold text-center">None of this works alone. It works when people move together.</p>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHY THIS BECOMES UNSTOPPABLE */}
+        <section className="container section">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS BECOMES UNSTOPPABLE</h2>
+              <p className="text-gray-300 text-base mb-3">Once ~12 million people (~3.5%) are organized by congressional district:</p>
+              <ul className="list-disc list-inside text-gray-300 space-y-1 mb-4">
+                <li>The system funds itself</li>
+                <li>Growth accelerates</li>
+                <li>Leverage compounds</li>
+                <li><span className="text-green font-semibold">Political resistance becomes harder to sustain</span></li>
+              </ul>
+              <p className="text-gray-300 text-base mb-2">No donations. No wealthy backers. No corporate strings.</p>
+              <p className="text-green text-lg font-bold">Just math.</p>
+              <p className="text-gray-300 text-base mt-2">The same math that reduces costs is what powers the system.</p>
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <div
+                className="w-[80%] md:w-[90%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+                onClick={() => openModal('/images/3.5pct_Erica_Chenoweth.jpg')}
+                onKeyDown={makeKeyboardClickable(() => openModal('/images/3.5pct_Erica_Chenoweth.jpg'))}
+                role="button"
+                tabIndex={0}
+                aria-label="Enlarge 3.5% threshold image"
+              >
+                <Image
+                  src="/images/3.5pct_Erica_Chenoweth.jpg"
+                  alt="3.5% threshold"
+                  width={400}
+                  height={300}
+                  className="w-full h-auto"
+                  sizes="(max-width: 768px) 90vw, 400px"
+                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHY AFFORDABILITY = LEVERAGE */}
+        <section className="container section">
+          <div className="max-w-[760px] mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY AFFORDABILITY = LEVERAGE</h2>
+            <p className="text-gray-300 text-base mb-3">Affordability isn't a side benefit. It's the power source.</p>
+            <p className="text-gray-300 text-base mb-3">When people can afford their lives again, they gain:</p>
+            <div className="flex flex-wrap justify-center gap-6 my-4">
+              <span className="bg-green-glow px-4 py-2 rounded-full text-white font-bold">Stability</span>
+              <span className="bg-green-glow px-4 py-2 rounded-full text-white font-bold">Time</span>
+              <span className="bg-green-glow px-4 py-2 rounded-full text-white font-bold">Capacity</span>
+              <span className="bg-green-glow px-4 py-2 rounded-full text-white font-bold">Staying power</span>
+            </div>
+            <p className="text-gray-300 text-base mb-3">And staying power is what makes leverage durable.</p>
+            <p className="text-green text-xl font-bold my-4">Affordability ? capacity ? sustained pressure ? response.</p>
+            <p className="text-white text-lg font-bold">That's leverage.</p>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* REALITY ANCHOR */}
+        <section className="bg-bg-dark border-y border-green/10 section">
+          <div className="container text-center">
+            <div className="max-w-[760px] mx-auto">
+              <span className="text-green text-sm font-condensed font-bold tracking-wider">?? REALITY ANCHOR</span>
+              <p className="text-white text-xl font-bold mt-2">This isn't hypothetical.</p>
+              <p className="text-gray-300 text-base mt-2">
+                Congress already has the power to fix most of what's broken.
+                That changes when enough people move from <span className="text-green font-semibold">"I agree"</span> ? <span className="text-green font-semibold">"I'm on record."</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHAT THIS UNLOCKS */}
+        <section className="container section">
+          <div className="text-center max-w-[760px] mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">WHAT THIS UNLOCKS</h2>
+            <p className="text-gray-300 text-base mb-4">The same leverage that can end wars can also be used to:</p>
+            <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6 text-left max-w-md mx-auto">
+              <li>End policies people never voted for</li>
+              <li>Force public accountability from representatives</li>
+              <li>Protect access to healthcare and basic needs</li>
+              <li>Ensure decisions reflect the people they represent</li>
+              <li>Trigger investigations when representatives betray the public trust</li>
+              <li>Organize support for special elections to restore real representation</li>
+            </ul>
+            <p className="text-green text-xl font-bold">Power Held In Every Representative's Seat.</p>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHY THIS WORKS – logos only */}
+        <section className="container section">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHY THIS WORKS</h2>
+            <p className="text-gray-300 text-base max-w-[760px] mx-auto">
+              Research on civic movements — including work by Erica Chenoweth — shows: When participation reaches a critical threshold, systems respond.
+            </p>
+          </div>
+          <div className="max-w-[900px] mx-auto">
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center">
+                <p className="text-white font-bold">Telehealth cost models</p>
+                <p className="text-gray-400 text-sm">Operating today</p>
+              </div>
+              <div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center">
+                <p className="text-white font-bold">Direct?to?consumer pharma</p>
+                <p className="text-gray-400 text-sm">No middlemen</p>
+              </div>
+              <div className="bg-bg-card border border-green/20 rounded-xl p-4 text-center">
+                <p className="text-white font-bold">Coordinated civic pressure</p>
+                <p className="text-gray-400 text-sm">Documented responses</p>
+              </div>
+            </div>
+            <p className="text-gray-300 text-base text-center italic mb-6">
+              They weren't built together. They arrived at the same conclusions independently. That's what makes this credible.
+            </p>
+
+            <div className="space-y-4 text-left">
+              <div className="bg-bg-card/60 rounded-xl p-4 border-l-4 border-green">
+                <p className="text-white font-bold">DotCom Magazine</p>
+                <p className="text-gray-400 text-sm">Associated with Kevin O'Leary (original Shark). Independently interviewed Will Price in 2022 after their team evaluated the model as serious enough for national attention.</p>
+              </div>
+              <div className="bg-bg-card/60 rounded-xl p-4 border-l-4 border-green">
+                <p className="text-white font-bold">Mark Cuban's Cost Plus Drugs</p>
+                <p className="text-gray-400 text-sm">Independently built what PHIERS designed in 2009: direct-to-consumer pharmaceuticals at cost, no middlemen. It works. Seven million customers. The model is proven.</p>
+              </div>
+              <div className="bg-bg-card/60 rounded-xl p-4 border-l-4 border-green">
+                <p className="text-white font-bold">Congressional support since 2009</p>
+                <p className="text-gray-400 text-sm">Before telehealth was mainstream. Before Cost Plus existed. The framework was right then. The moment is now.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Logo row */}
+          <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
+            <div
+              className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Harvard_Logo.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Harvard_Logo.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge Harvard logo"
+            >
+              <Image
+                src="/images/Harvard_Logo.png"
+                alt="Harvard University logo"
+                width={100}
+                height={40}
+                className="w-full h-auto"
+                sizes="100px"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+              />
+            </div>
+            <div
+              className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Mark_Cuban_Cost_Plus_Drug.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Mark_Cuban_Cost_Plus_Drug.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge Cost Plus Drugs logo"
+            >
+              <Image
+                src="/images/Mark_Cuban_Cost_Plus_Drug.png"
+                alt="Mark Cuban Cost Plus Drugs logo"
+                width={100}
+                height={40}
+                className="w-full h-auto"
+                sizes="100px"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+              />
+            </div>
+            <div
+              className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/DotComMag_Logo.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/DotComMag_Logo.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge DotCom Magazine logo"
+            >
+              <Image
+                src="/images/DotComMag_Logo.png"
+                alt="DotCom Magazine logo"
+                width={100}
+                height={40}
+                className="w-full h-auto"
+                sizes="100px"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+              />
+            </div>
+            <div
+              className="w-24 h-auto opacity-70 grayscale cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+              onClick={() => openModal('/images/Pathos_Logo.png')}
+              onKeyDown={makeKeyboardClickable(() => openModal('/images/Pathos_Logo.png'))}
+              role="button"
+              tabIndex={0}
+              aria-label="Enlarge Pathos Communications logo"
+            >
+              <Image
+                src="/images/Pathos_Logo.png"
+                alt="Pathos Communications logo"
+                width={100}
+                height={40}
+                className="w-full h-auto"
+                sizes="100px"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+              />
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHAT THIS IS NOT – ARCHITECT + CREDIBILITY */}
+        <section className="container section text-center">
+          <div className="max-w-[760px] mx-auto">
+            {/* Architect portrait */}
+            <div className="flex justify-center mb-4">
+              <div
+                className="w-32 h-32 rounded-full overflow-hidden border-2 border-green/30 shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                onClick={() => setShowArchitectModal(true)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setShowArchitectModal(true); }}
+              >
+                <Image
+                  src="/images/Will_Price.png"
+                  alt="Will Price – Architect"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover object-[55%_top]"
+                />
+              </div>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHAT THIS IS NOT</h2>
+
+            <p className="text-gray-300 text-base mb-2">This isn't a protest.</p>
+            <p className="text-gray-300 text-base mb-2">This isn't a petition that disappears into a database.</p>
+            <p className="text-gray-300 text-base mb-5">This isn't a campaign.</p>
+
+            <p className="text-green text-xl font-bold mb-8">
+              This is coordinated civic leverage — built district by district.<br />
+              A counted signal tied to real representation.<br />
+              And a standing promise: represent us, or you risk being replaced.<br />
+              <span className="text-gray-400 text-base font-normal">Legally. Democratically. Before the next election if we have to.</span>
+            </p>
+
+            {/* ARCHITECT DESCRIPTION - Updated from LinkedIn bio */}
+            <div className="bg-bg-card border border-green/20 rounded-xl p-5 md:p-6 text-left mb-6">
+              <p className="text-green font-bold text-lg mb-2">Will Price | Chief Solutions Architect</p>
+              <p className="text-gray-300 text-base mb-3">
+                Will Price is an Information Engineer with more than 20 years of experience in healthcare systems integration. He is the co?founder and Chief Solutions Architect of PHIERS, where he focuses on integrating proven healthcare, workforce, and resource?matching models into one coordinated system.
+              </p>
+              <p className="text-gray-300 text-base mb-3">
+                His work includes PHIERSale (a cooperative marketplace), PHIERWorks (AI?resistant job training and placement), and PHIERplace (resource matching). Will’s background spans care coordination systems, health literacy, digital integration, and national?scale operational design.
+              </p>
+              <p className="text-gray-300 text-base mb-3">
+                He was selected as one of five civilian participants in the VA’s Enterprise?wide Reengineering Initiative, working directly with the CIO’s office. In 2019, the Maryland Health Care Commission recognized him as an expert in healthcare systems integration and health information exchange policy.
+              </p>
+              <p className="text-gray-300 text-base mb-3">
+                Will has documented models for integrated healthcare delivery that are now operationalized by organizations such as Mark Cuban Cost Plus and ZORTT Healthcare, demonstrating 60–90% cost reductions at scale. His current work focuses on architecting PHIERS to unify these proven components into a single, accessible mechanism.
+              </p>
+              <p className="text-gray-300 text-base">
+                The journey has not been easy. Much of it unfolded publicly and under pressure, but the work continued. PHIERS reflects that persistence — a system built to give ordinary people clearer access, lower costs, and real leverage in processes that traditionally ignore them.
+              </p>
+            </div>
+
+            {/* PATHOS COMMUNICATIONS BLOCK */}
+            <div className="bg-bg-card border border-green/20 rounded-xl p-5 md:p-6 text-left mb-6">
+              <p className="text-green font-bold text-lg mb-2">Pathos Communications</p>
+              <p className="text-gray-300 text-base mb-3">
+                A London Stock Exchange–associated communications firm involved in shaping narrative structure and strategic messaging for this initiative.
+              </p>
+              <p className="text-gray-300 text-base mb-3">
+                Their role centers on refining message clarity, positioning, and preparing the story for broader media visibility.
+              </p>
+              <p className="text-white text-base font-semibold">
+                Focus: translating public participation into a message that can carry into national and international media spaces.
+              </p>
+            </div>
+
+            {/* PATHOS VIDEO CTA */}
+            <div className="bg-black/50 border border-green/30 rounded-xl p-4 mb-6">
+              <p className="text-green font-bold mb-3">
+                Pathos Communications – Narrative & Strategy Overview
+              </p>
+              <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
+                <iframe
+                  src="https://www.youtube.com/embed/KLu7USN_dao?rel=0"
+                  title="Pathos Communications Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                />
+              </div>
+              <p className="text-gray-500 text-xs mt-2">
+                Communications and narrative strategy context.
+              </p>
+            </div>
+
+            {/* CTA BUTTON */}
+            <button
+              onClick={() => setShowArchitectModal(true)}
+              className="text-green underline hover:text-green-dim transition-colors mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
+            >
+              Meet the architect ?
+            </button>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* WHAT HAPPENS AFTER YOU SIGN */}
+        <section className="container section">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHAT HAPPENS AFTER YOU SIGN</h2>
+              <ul className="list-disc list-inside text-gray-300 space-y-2">
+                <li>You're counted in your district</li>
+                <li>You see your district total grow</li>
+                <li>You see when it reaches the tipping point</li>
+                <li>You see when your representative is notified</li>
+              </ul>
+              <p className="text-white text-lg font-bold mt-6">This isn't abstract. It's visible.</p>
+            </div>
+            <div className="flex justify-center">
+              <div
+                className="w-[80%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
+                onClick={() => openModal('/images/PHIERS_Logo.png')}
+                onKeyDown={makeKeyboardClickable(() => openModal('/images/PHIERS_Logo.png'))}
+                role="button"
+                tabIndex={0}
+                aria-label="Enlarge PHIERS logo"
+              >
+                <Image
+                  src="/images/PHIERS_Logo.png"
+                  alt="PHIERS logo – Power Held In Every Representative's Seat"
+                  width={400}
+                  height={300}
+                  className="w-full h-auto border border-green/20 rounded-lg"
+                  sizes="(max-width: 768px) 80vw, 400px"
+                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* EVIDENCE FOOTER */}
+        <section className="container section bg-bg-dark rounded-xl border border-green/20 p-6 my-6">
+          <div className="max-w-[900px] mx-auto">
+            <h3 className="text-green text-lg font-bold mb-3">?? Everything here is verifiable</h3>
+            <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+              <li>The $8,000–$10,000 vs. $600 healthcare cost comparison comes from CMS published data.</li>
+              <li>The 3.5% tipping point is from Erica Chenoweth's study of 323 campaigns (1900–2006).</li>
+              <li>The cascade math is arithmetic — run it yourself.</li>
+              <li>The congressional authorization gap for undeclared wars is public record.</li>
+              <li>Pathos Communications and DotCom Magazine endorsements are documented and on video.</li>
+              <li>Will Price's 20-year work history inside the VA system is documented.</li>
+            </ul>
+            <p className="text-gray-500 text-sm mt-3">
+              Nothing here requires you to take anyone's word for it. Primary sources and full documentation are on the Full Story and About pages.
+            </p>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* FINAL CLOSE */}
+        <section className="container section text-center">
+          <div className="max-w-[760px] mx-auto">
+            <p className="text-white text-xl font-bold mb-4">Nothing changes until ignoring people costs more than responding.</p>
+            <p className="text-gray-300 text-base mb-3">This is how you change that.</p>
+            <div className="bg-green-glow border border-green/20 rounded-xl p-6 my-6">
+              <p className="text-gray-300 text-base mb-2">Affordability gives the system its fuel.</p>
+              <p className="text-gray-300 text-base mb-2">Organization gives it structure.</p>
+              <p className="text-gray-300 text-base mb-4">Sustained pressure ? leverage produces results.</p>
+              <p className="text-white text-lg font-semibold">And once it reaches scale — it sustains itself.</p>
+            </div>
+            <p className="text-green text-2xl font-bold mb-6">The only variable is you.</p>
+            <div className="mt-6">
+              <Link
+                href="/homepage-teeth"
+                className="inline-block px-8 py-3 bg-green/20 border-2 border-green text-green font-bold rounded-lg hover:bg-green/30 transition text-center text-lg shadow-md"
+              >
+                Next: How It Works ?
+              </Link>
+            </div>
+            <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto mt-6">
+              <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">? Ask a question ?</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 bg-green/70 text-gray-900 w-10 h-10 rounded-full flex items-center justify-center text-xl cursor-pointer transition-all duration-150 hover:bg-green/90 hover:-translate-y-0.5 z-[999] border-none ${
+          showBackToTop ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+        aria-label="Back to top"
+      >
+        ?
+      </button>
+
+      {/* ARCHITECT MODAL – full video library */}
+      <AnimatePresence>
+        {showArchitectModal && (
+          <motion.div
+            className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowArchitectModal(false)}
+            aria-hidden="true"
+          >
+            <div
+              className="relative max-w-4xl w-full bg-[#0a1628] border-2 border-green/35 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Will Price – architect modal with video library"
+            >
+              <button
+                onClick={() => setShowArchitectModal(false)}
+                className="absolute top-3 right-3 bg-[#111d35] text-green border-2 border-green rounded-full w-10 h-10 flex items-center justify-center hover:bg-green hover:text-[#111d35] transition-all z-10 focus:outline-none focus:ring-2 focus:ring-green"
+                aria-label="Close architect modal"
+              >
+                ?
+              </button>
+
+              <div className="flex flex-wrap items-stretch border-b border-green/20">
+                <div className="flex-shrink-0 ml-4 mr-2 mt-8 w-48 sticky top-8 self-start">
+                  <Image
+                    src="/images/Will_Price.png"
+                    alt="Will Price — Founder & Chief Solutions Architect, PHIERS"
+                    width={192}
+                    height={192}
+                    className="w-full h-auto object-cover object-[55%_top] rounded-full"
+                  />
+                </div>
+                <div className="flex-1 min-w-[240px] py-6 pr-6 pl-2 flex flex-col justify-center">
+                  <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-1">The Architect</p>
+                  <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-0">Will Price</h3>
+                  <p className="font-condensed text-sm text-[#ffd60a] font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
+                  <p className="text-body text-sm leading-relaxed">
+                    Will Price is an Information Engineer with more than 20 years of experience in healthcare systems integration. He is the co?founder and Chief Solutions Architect of PHIERS, where he focuses on integrating proven healthcare, workforce, and resource?matching models into one coordinated system.
+                  </p>
+                  <p className="text-body text-sm leading-relaxed mt-3">
+                    His work includes PHIERSale (a cooperative marketplace), PHIERWorks (AI?resistant job training and placement), and PHIERplace (resource matching). Will’s background spans care coordination systems, health literacy, digital integration, and national?scale operational design.
+                  </p>
+                  <p className="text-body text-sm leading-relaxed mt-3">
+                    He was selected as one of five civilian participants in the VA’s Enterprise?wide Reengineering Initiative, working directly with the CIO’s office. In 2019, the Maryland Health Care Commission recognized him as an expert in healthcare systems integration and health information exchange policy.
+                  </p>
+                  <p className="text-body text-sm leading-relaxed mt-3">
+                    Will has documented models for integrated healthcare delivery that are now operationalized by organizations such as Mark Cuban Cost Plus and ZORTT Healthcare, demonstrating 60–90% cost reductions at scale. His current work focuses on architecting PHIERS to unify these proven components into a single, accessible mechanism.
+                  </p>
+                  <p className="text-body text-sm leading-relaxed mt-3">
+                    The journey has not been easy. Much of it unfolded publicly and under pressure, but the work continued. PHIERS reflects that persistence — a system built to give ordinary people clearer access, lower costs, and real leverage in processes that traditionally ignore them.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-6">
+                <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-4">The Vision – Over 20 years of recorded talks</p>
+
+                {/* Short Intros to PHIERS */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Short Intros to PHIERS</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <VideoCard id="ihTa_2CLmvk" title="Intro – The Framework" />
+                    <VideoCard id="2j-dF3hgdeE" title="Intro – The Leverage" />
+                  </div>
+                </div>
+
+                {/* Current Wars & Congress */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Current Wars & Congress</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <VideoCard id="D3RPVoJ93BU" title="The Wars – Congress Must Act" />
+                  </div>
+                </div>
+
+                {/* Healthcare Reform */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Healthcare Reform</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <VideoCard id="jMU6LKEBzbs" title="The Healthcare Cascade" />
+                    <VideoCard id="kd6kTJM_SuM" title="Telehealth Solution" />
+                    <VideoCard id="bEUyDVAYwpk" title="Cost Savings" />
+                    <VideoCard id="xy3F9ZWbgS8" title="Why $600 Works" />
+                    <VideoCard id="453Hf3rgymY" title="Fixing the System" />
+                  </div>
+                </div>
+
+                {/* Tackling Fascism, Authoritarianism and Nazis */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Tackling Fascism and Nazis</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <VideoCard id="h1AqunGaAA0" title="Confronting Authoritarianism" />
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Public Health</h4>
+                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Veterans and Unions</h4>
+                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Mission Oriented</h4>
+                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Foundational</h4>
+                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+      {/* Commented out - will restore when new petition/survey online */}
+      {/* {showEarlyModal && (
+        <EarlyStageModal
+          onContinue={handleModalContinue}
+          onLater={handleModalLater}
+        />
+      )} */}
+      {showQuestionModal && (
+        <PHIERStormModal
+          open={showQuestionModal}
+          onClose={() => setShowQuestionModal(false)}
+        />
+      )}
+    </>
+  )
+}
+
+// FILE: components/MainHomePage.tsx
+
+<<<>>>
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
+  images: { unoptimized: true },
+  // Removed experimental settings to fix memory heap errors
+  webpack: (config, { isServer }) => {
+    // Optimize memory usage
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          minSize: 20000,
+          maxSize: 100000,
+        },
+      };
+    }
+    return config;
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/petition',
+        destination: '/Prophecy',
+      },
+      {
+        source: '/Petition',
+        destination: '/Prophecy',
+      },
+      {
+        source: '/prophecy',
+        destination: '/Prophecy',
+      },
+      {
+        source: '/prophecy/:path*',
+        destination: '/Prophecy/:path*',
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/petition/:path*',
+        destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/:path*',
+        permanent: false,
+      },
+      {
+        source: '/survey',
+        destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/survey',
+        permanent: false,
+      },
+    ];
+  }
+};
+
+module.exports = nextConfig;
+
+<<<>>>
+
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build --no-lint",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "tsx --require dotenv/config scripts/safe-seed.ts"
+  },
+  "devDependencies": {
+    "@next/swc-wasm-nodejs": "13.5.1",
+    "@types/node": "20.6.2",
+    "@types/react": "18.2.22",
+    "@types/react-dom": "18.2.7",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "@typescript-eslint/parser": "6.21.0",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.28",
+    "eslint-plugin-prettier": "5.1.3",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "postcss": "8.4.30",
+    "prisma": "^6.19.3",
+    "tailwind-merge": "2.5.2",
+    "tailwindcss": "3.3.3",
+    "tailwindcss-animate": "1.0.7",
+    "ts-node": "10.9.2",
+    "tsx": "4.20.3",
+    "typescript": "5.2.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@aws-sdk/s3-request-presigner": "^3.0.0",
+    "@azure/storage-blob": "^12.0.0",
+    "@floating-ui/react": "0.26.0",
+    "@headlessui/react": "1.7.18",
+    "@hookform/resolvers": "3.9.0",
+    "@next-auth/prisma-adapter": "1.0.7",
+    "@prisma/client": "^6.19.3",
+    "@radix-ui/react-accordion": "1.2.0",
+    "@radix-ui/react-alert-dialog": "1.1.1",
+    "@radix-ui/react-aspect-ratio": "1.1.0",
+    "@radix-ui/react-avatar": "1.1.0",
+    "@radix-ui/react-checkbox": "1.1.1",
+    "@radix-ui/react-collapsible": "1.1.0",
+    "@radix-ui/react-context-menu": "2.2.1",
+    "@radix-ui/react-dialog": "1.1.1",
+    "@radix-ui/react-dropdown-menu": "2.1.1",
+    "@radix-ui/react-hover-card": "1.1.1",
+    "@radix-ui/react-label": "2.1.0",
+    "@radix-ui/react-menubar": "1.1.1",
+    "@radix-ui/react-navigation-menu": "1.2.0",
+    "@radix-ui/react-popover": "1.1.1",
+    "@radix-ui/react-progress": "1.1.0",
+    "@radix-ui/react-radio-group": "1.2.0",
+    "@radix-ui/react-scroll-area": "1.1.0",
+    "@radix-ui/react-select": "2.1.1",
+    "@radix-ui/react-separator": "1.1.0",
+    "@radix-ui/react-slider": "1.2.0",
+    "@radix-ui/react-slot": "1.1.0",
+    "@radix-ui/react-switch": "1.1.0",
+    "@radix-ui/react-tabs": "1.1.0",
+    "@radix-ui/react-toast": "1.2.1",
+    "@radix-ui/react-toggle": "1.1.0",
+    "@radix-ui/react-toggle-group": "1.1.0",
+    "@radix-ui/react-tooltip": "1.1.2",
+    "@tabler/icons-react": "^3.44.0",
+    "@tanstack/react-query": "5.0.0",
+    "@types/bcryptjs": "2.4.6",
+    "@types/jsonwebtoken": "9.0.5",
+    "@types/plotly.js": "2.35.5",
+    "@types/react-plotly.js": "2.6.3",
+    "autoprefixer": "10.4.15",
+    "bcryptjs": "2.4.3",
+    "chart.js": "4.4.9",
+    "class-variance-authority": "0.7.0",
+    "clsx": "2.1.1",
+    "cmdk": "1.0.0",
+    "cookie": "1.0.2",
+    "csv": "6.3.11",
+    "date-fns": "3.6.0",
+    "dayjs": "1.11.13",
+    "dotenv": "16.5.0",
+    "embla-carousel-react": "8.3.0",
+    "eruda": "^3.4.3",
+    "formik": "2.4.5",
+    "framer-motion": "^10.18.0",
+    "gray-matter": "4.0.3",
+    "input-otp": "1.2.4",
+    "jotai": "2.6.0",
+    "jsonwebtoken": "9.0.2",
+    "lodash": "4.17.21",
+    "lucide-react": "0.446.0",
+    "mapbox-gl": "1.13.3",
+    "next": "14.2.28",
+    "next-auth": "4.24.11",
+    "next-themes": "0.3.0",
+    "plotly.js": "2.35.3",
+    "react": "18.2.0",
+    "react-chartjs-2": "5.3.0",
+    "react-datepicker": "6.1.0",
+    "react-day-picker": "8.10.1",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.53.0",
+    "react-hot-toast": "2.4.1",
+    "react-intersection-observer": "9.8.0",
+    "react-is": "18.3.1",
+    "react-plotly.js": "2.6.0",
+    "react-resizable-panels": "2.1.3",
+    "react-select": "5.8.0",
+    "react-swipeable": "^7.0.2",
+    "react-use": "17.6.0",
+    "recharts": "2.15.3",
+    "resend": "^6.12.2",
+    "sonner": "1.5.0",
+    "swiper": "^12.1.3",
+    "swr": "2.2.4",
+    "tailwind-scrollbar-hide": "1.1.7",
+    "vaul": "0.9.9",
+    "webpack": "5.99.5",
+    "yup": "1.3.0",
+    "zod": "3.23.8",
+    "zustand": "5.0.3"
+  },
+  "browserslist": [
+    "ie >= 11",
+    "> 0.5%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
+
+<<<>>>
+
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es5",
+      "es2020"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".build/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+<<<>>>
+
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es5",
+      "es2020"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".build/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+<<<>>>
+
+    /* FILE: app/layout.tsx */
+
+    import type { Metadata } from 'next'
+    import './globals.css'
+    import SurveyBanner from '@/components/SurveyBanner'
+    import ReturningVisitorModal from '@/components/ReturningVisitorModal'
+
+    export const metadata: Metadata = {
+      title: 'PHIERS.org — The Leverage Congress Can\'t Ignore',
+      description: 'Organized people, by district, with real consequences. That\'s how change actually happens.',
+      icons: {
+        icon: '/images/PHIERS_Logo.png',
+      },
+    }
+
+    export default function RootLayout({
+      children,
+    }: {
+      children: React.ReactNode
+    }) {
+      return (
+        <html lang="en">
+          <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.25, maximum-scale=5.0, user-scalable=yes" />
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet" />
+            
+            <link rel="preconnect" href="https://www.youtube.com" />
+            <link rel="preconnect" href="https://i.ytimg.com" />
+            <link rel="preload" as="image" href="https://img.youtube.com/vi/GwfhH8yDZQo/hqdefault.jpg" />
+
+            {/* Preload images */}
+            <link rel="preload" as="image" href="/images/PHIERS_Logo.png" />
+            <link rel="preload" as="image" href="/images/You_Are_Not_Powerless.jpg" />
+            <link rel="preload" as="image" href="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg" />
+
+            {/* Additional fonts for newsflash (optional) */}
+            <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+          </head>
+          <body>
+          <SurveyBanner />
+          {children}
+          <ReturningVisitorModal />
+          </body>
+        </html>
+      )
+    }
+
+    /* FILE: app/layout.tsx */
+
+
+<<<>>>
+
+// FILE: app/homepage-teeth/page.tsx
+//  Version 1.5.0
+
+'use client'
+
+import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import Navigation from '@/components/navigation'
+import Footer from '@/components/footer'
+import Button from '@/components/Button'
+import JumpToFooter from '@/components/JumpToFooter'
+import EarlyStageModal from '@/components/EarlyStageModal'
+
+export default function HomepageTeethPage() {
+  const [activeRing, setActiveRing] = useState<number | null>(null)
+  const [ringModalOpen, setRingModalOpen] = useState(false)
+  const [selectedRingIndex, setSelectedRingIndex] = useState<number | null>(null)
+  const [chenowethModalOpen, setChenowethModalOpen] = useState(false)
+  const [showEarlyModal, setShowEarlyModal] = useState(false)
+
+  const handlePetitionClick = () => {
+    const hasSeen = localStorage.getItem('phiers_early_modal_seen');
+    const sessionSeen = sessionStorage.getItem('phiers_modal_session');
+    if (hasSeen || sessionSeen) {
+      window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+    } else {
+      setShowEarlyModal(true);
+    }
+  };
+
+  const handleModalContinue = () => {
+    setShowEarlyModal(false);
+    localStorage.setItem('phiers_early_modal_seen', Date.now().toString());
+    sessionStorage.setItem('phiers_modal_session', 'true');
+    window.location.href = 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred';
+  };
+
+  const handleModalLater = () => {
+    setShowEarlyModal(false);
+    sessionStorage.setItem('phiers_modal_session', 'true');
+  };
+
+  const ringsData = [
+    { color: '#e63946', title: '?? RING 0 — Stop the War. Right Now.', body: 'There is <strong>no part of your life that doesn\'t run on oil.</strong> Your food, your medicine, your hospital, your house — all of it. The Strait of Hormuz carries 30% of the world\'s seaborne oil. Close it and inflation doesn\'t tick up — it explodes across every supply chain simultaneously.<br><br><strong>Article 25 of the UN Charter</strong> — rules America wrote — prohibits exactly this. It gives Iran a legal off-ramp. It gives Congress a spine. It gives every American — left, right, MAGA — grounds to say: not in our name, not without a vote.', urgent: true },
+    { color: '#ff6b6b', title: '?? RING 1 — Control Congress', body: 'Congress doesn\'t respond to noise. It responds to consequences.<br><br>Harvard researcher Erica Chenoweth studied 323 campaigns. Movements that reached and sustained <strong>3.5% participation succeeded every time.</strong> That\'s 12 million Americans. Organized by district. Names on the record. With electoral consequences.<br><br>The same lever that forces action on healthcare forces action on war powers. One movement. Every dimension turns.', urgent: false },
+    { color: '#ffd60a', title: '?? RING 2 — $2.7 Trillion in Healthcare Savings', body: 'CMS pays <strong>$8,000/year per person</strong> for traditional insurance. 80% of people need only <strong>$600/year in telehealth.</strong> That frees $7,400 per person.<br><br>One conversion funds 12 more. 12 cascades to 148. 148 to 1,825. <strong>234 million Americans covered. $2.73 trillion freed annually.</strong> The cascade is self-funding and unstoppable once it starts.', urgent: false },
+    { color: '#3ddc84', title: '?? RING 3 — 12 Million New Jobs', body: 'Every $7,400 freed per person stays in the community instead of flowing to shareholders. Every telehealth navigator is a living-wage job. Every cooperative hub is a local employer. Every community health worker is a union-eligible role.<br><br><strong>12 million jobs.</strong> Funded from the savings. In the communities where the savings happen. The moment the conversion begins.', urgent: false },
+    { color: '#3ddc84', title: '?? RING 4 — PHIERSale: Consumer Power', body: '<strong>No markups. No middlemen. No profit extraction.</strong><br><br>100 million organized members = the largest purchasing bloc in America. Market dominance through pure buying power. No legislation required. No permission needed. Just organized people choosing where their money goes.', urgent: false },
+    { color: '#3ddc84', title: '? CENTER — Economic Floor for Every American', body: 'A monthly check for every American. A floor nobody falls through. Wages that cover rent. Veterans fully covered. An economy built for the people who work in it.<br><br><strong>This is what PHIERS was always building toward.</strong> Every ring protects it. The outer rings make it possible.', urgent: false }
+  ]
+
+  useEffect(() => {
+    setTimeout(() => { setActiveRing(0); }, 800)
+  }, [])
+
+  const handleRingClick = (index: number) => {
+    setActiveRing(index);
+    setSelectedRingIndex(index);
+    setRingModalOpen(true);
+  }
+
+  // playVideo wrapped in useCallback
+  const playVideo = useCallback((which: string, src: string) => {
+    const wrap = document.getElementById('wrap-' + which)
+    if (!wrap) return
+    wrap.innerHTML = '<iframe width="100%" height="100%" src="' + src + '" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>'
+  }, [])
+
+  // Scroll to top function with useCallback
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const btt = document.getElementById('back-to-top')
+      if (btt) {
+        if (window.scrollY > 400) btt.classList.add('visible')
+        else btt.classList.remove('visible')
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <>
+      <div className="pt-4 pb-2 text-center">
+        <span className="font-condensed text-xs text-gray-500 tracking-wider uppercase">Step 2 of 3 — How the Leverage Works</span>
+        <p className="font-condensed text-[0.7rem] text-gray-500 opacity-65 mt-1">Three short pages. Enough to understand the whole system.</p>
+      </div>
+
+      <Navigation />
+
+      <main>
+        <section className="container section text-center pt-32">
+          <div className="relative h-[90px] w-auto mb-4 flex justify-center">
+            <Image src="/images/PHIERS_Logo.png" alt="PHIERS.org" width={90} height={90} className="opacity-85" />
+          </div>
+          {/* Two-tone H1 - FIXED */}
+          <h1 className="mb-4">
+            <span className="hero-white" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)' }}>Movements Without Leverage Don't Win.</span>
+            <span className="hero-green" style={{ fontSize: 'clamp(1.4rem, 3.5vw, 1.8rem)' }}>Here's what that looks like in practice.</span>
+          </h1>
+          <div className="max-w-[720px] mx-auto">
+            <p className="font-condensed text-lg text-gray-400 mb-3">Protests create attention. Petitions create signals. Viral moments create headlines.</p>
+            <p className="font-condensed text-lg text-gray-400 mb-5">None of them create consequences.</p>
+            <p className="font-condensed text-lg text-white font-semibold mb-6">Congress ignores them — because nothing forces them to respond.</p>
+            <p className="font-condensed font-bold text-green text-base mt-2 mb-0">Until something does.</p>
+            <p className="font-condensed font-bold text-white text-base mt-2 mb-0">This is that something.</p>
+            <p className="font-semibold text-white text-base mt-2 mb-0">Here's how it changes.</p>
+          </div>
+        </section>
+
+        {/* Onion Rings Diagram */}
+        <section className="bg-[#080d1a] py-12 px-6 text-center">
+          <p className="font-condensed font-bold text-green text-xs uppercase tracking-[3px] mb-2">How PHIERS Works</p>
+          <h2 className="font-display text-2xl md:text-3xl text-white tracking-wide mb-2">One System. Every Layer Already Inside the Last.</h2>
+          <p className="text-body text-sm mb-6">Start with the most urgent threat — because nothing else works until it's stabilized.</p>
+          <p className="font-condensed text-xs text-gray-500 mb-4 tracking-wide">? Tap any ring to see what's inside</p>
+
+          <div className="relative w-[min(380px,85vw)] aspect-square mx-auto mb-8 cursor-pointer">
+            {[0, 1, 2, 3, 4, 5].map((ringIdx) => {
+              const insets = [0, 10, 22, 34, 46, 58]
+              const colors = ['rgba(230,57,70,0.7)', 'rgba(230,57,70,0.5)', 'rgba(255,214,10,0.5)', 'rgba(61,220,132,0.5)', 'rgba(61,220,132,0.7)', '#3ddc84']
+              const bgColors = ['rgba(230,57,70,0.18)', 'rgba(230,57,70,0.12)', 'rgba(255,214,10,0.1)', 'rgba(61,220,132,0.1)', 'rgba(61,220,132,0.18)', 'rgba(61,220,132,0.15)']
+              return ( <div key={ringIdx} onClick={() => handleRingClick(ringIdx)} className={`absolute rounded-full transition-all duration-300 hover:scale-105 ${activeRing === ringIdx ? 'scale-105 brightness-125' : ''} ${ringIdx === 0 ? 'animate-[firePulse_2.5s_ease-in-out_infinite]' : ''}`} style={{ inset: `${insets[ringIdx]}%`, border: `2px solid ${colors[ringIdx]}`, background: `radial-gradient(ellipse at center, transparent 0%, ${bgColors[ringIdx]} 100%)`, boxShadow: ringIdx === 0 ? '0 0 40px rgba(230,57,70,0.25), inset 0 0 40px rgba(230,57,70,0.08)' : `0 0 ${20 - ringIdx * 4}px ${colors[ringIdx]}25`, }} /> )
+            })}
+            <div className="absolute top-[-4%] left-1/2 -translate-x-1/2 font-condensed font-black text-[0.7rem] text-red-500 uppercase tracking-wide whitespace-nowrap pointer-events-none">?? STOP THE WAR</div>
+            <div className="absolute top-[7%] left-1/2 -translate-x-1/2 font-condensed font-black text-[0.65rem] text-red-400 uppercase tracking-wide whitespace-nowrap pointer-events-none">?? CONTROL CONGRESS</div>
+            <div className="absolute top-[18%] left-1/2 -translate-x-1/2 font-condensed font-black text-[0.62rem] text-yellow-400 uppercase tracking-wide whitespace-nowrap pointer-events-none">?? $2.7T SAVINGS</div>
+            <div className="absolute top-[29%] left-1/2 -translate-x-1/2 font-condensed font-black text-[0.6rem] text-green uppercase tracking-wide whitespace-nowrap pointer-events-none">?? 12M JOBS</div>
+            <div className="absolute top-[40%] left-1/2 -translate-x-1/2 font-condensed font-black text-[0.58rem] text-green uppercase tracking-wide whitespace-nowrap pointer-events-none">?? PHIERSALE</div>
+            <div className="absolute top-[51%] left-1/2 -translate-x-1/2 font-condensed font-black text-[0.6rem] text-green-200 uppercase tracking-wide w-[90%] text-center pointer-events-none drop-shadow-md">? ECONOMIC FLOOR</div>
+          </div>
+
+          <div className="text-center mt-4">
+            <p className="text-gray-400 text-sm italic">Tap any ring to see what's inside</p>
+          </div>
+
+          {/* Ring definition modal */}
+          {ringModalOpen && selectedRingIndex !== null && (
+            <div key={selectedRingIndex} className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4 animate-fadeInModal" onClick={() => setRingModalOpen(false)}>
+              <div className="relative max-w-[90vw] max-h-[85vh] overflow-y-auto bg-bg-card rounded-2xl p-6 border border-green/30 shadow-2xl animate-fadeInModal" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setRingModalOpen(false)} className="absolute top-4 right-4 text-white text-2xl cursor-pointer hover:text-green transition-colors">?</button>
+                <div className="font-display text-2xl md:text-3xl mb-4" style={{ color: ringsData[selectedRingIndex].color }}>{ringsData[selectedRingIndex].title}</div>
+                <div className="text-gray-300 text-base md:text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: ringsData[selectedRingIndex].body }} />
+                {ringsData[selectedRingIndex].urgent && (<div className="mt-4 inline-block font-condensed font-bold text-xs uppercase tracking-wide py-1 px-3 rounded bg-red-500/20 text-red-400 border border-red-500/30">?? URGENT — ACT NOW</div>)}
+                <div className="mt-6 text-center">
+                  <button onClick={() => setRingModalOpen(false)} className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Close</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* The Problem */}
+        <section className="container section">
+          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Problem</span>
+          <p className="text-white font-semibold text-xl mb-3">Every movement hits the same wall.</p>
+          <p className="text-body mb-3">You've been loud. You've been right. You've been ignored.</p>
+          <p className="text-body mb-3">They build energy. They get attention. They fill the streets.<br />And then nothing changes.</p>
+          <p className="font-condensed font-bold text-white text-xl mb-3">That's not an accident.</p>
+          <p className="text-body mb-3">Not because the cause wasn't right.<br />Not because the leaders were weak.<br />Not because people didn't care enough.</p>
+          <p className="font-condensed font-bold text-3xl text-red my-4">Because there was no leverage behind the demands.</p>
+          <p className="text-body">The moment fades. The pressure disappears. Everything resets.<br />And Congress goes right back to ignoring you.</p>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Anchor Line */}
+        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
+          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
+            Nothing changes until ignoring people costs more than responding to them.<br />
+            <span className="text-green">PHIERS is how we raise that cost.</span>
+          </p>
+        </div>
+
+        <hr className="border-green/20" />
+
+        {/* Congress Image */}
+        <section className="container section text-center py-5">
+          <div className="max-w-[600px] mx-auto">
+            <Image src="/images/Congress_Dont_Work_4U-WEre_changing_that-BIG.jpg" alt="Congress doesn't work for you. We're changing that." width={600} height={400} className="w-full h-auto rounded-xl border border-red-500/30" />
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* The Truth */}
+        <section className="bg-bg-dark border-y border-green/10 section">
+          <div className="container">
+            <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Truth</span>
+            <p className="text-white font-semibold text-xl mb-3">The missing ingredient isn't passion. It's leverage.</p>
+            <p className="text-body mb-3">Power doesn't come from how many people care.<br />It comes from what happens if they ignore you.</p>
+            <p className="text-body mb-3">Whatever brought you here — rent, wages, war, healthcare, veterans, corruption —<br />leverage is the only thing that moves Congress.</p>
+            <p className="font-condensed font-bold text-green text-xl my-3">Right now, most movements have no answer to that question.<br />PHIERS does.</p>
+            <p className="font-condensed text-sm text-gray-500 mt-2">Tested by a global PR firm. Built since 2009. Already being organized district by district.</p>
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* PHIERStorm Bridge Image */}
+        <section className="container section text-center py-5">
+          <div className="max-w-[500px] mx-auto">
+            <Image src="/images/PHIERStorm_the_Movement.png" alt="PHIERStorm — The Power Behind the Movement" width={500} height={300} className="w-full h-auto opacity-90" />
+          </div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* What PHIERS Is */}
+        <section className="container section">
+          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">What PHIERS Is</span>
+          <p className="font-condensed font-bold text-white text-center mb-2">PHIERS means Power Held In Every Representative's Seat.</p>
+          <p className="text-white font-semibold text-xl mb-3">Not another movement. The thing movements are missing.</p>
+          <p className="text-body mb-3">PHIERS doesn't replace the movements you already believe in.<br />It gives them the one thing they don't have — leverage that lasts after the cameras leave.</p>
+          <p className="text-body mb-3">PHIERS doesn't disappear when the moment passes.<br />District by district. Name by name. On the record.</p>
+          <p className="font-condensed font-bold text-white text-2xl my-4">Congress isn't waiting it out.<br />They're sitting it out.</p>
+          <p className="font-condensed font-bold text-green text-xl mb-3">PHIERS changes that.</p>
+          <p className="text-sm text-gray-500 mt-2">Built by a systems architect who's been working on this since 2009.</p>
+          <p className="font-condensed font-bold text-2xl text-green text-center my-6 leading-tight">A way to make Congress do their job —<br />or we replace them.</p>
+          <p className="font-condensed font-bold text-sm text-gray-500 mt-2">Designed for this moment.</p>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* How It Works */}
+        <section className="container section" id="how-it-works">
+          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">How It Works</span>
+          <p className="text-white font-semibold text-lg mb-3">Here's what that looks like in practice:</p>
+          <div className="space-y-5 max-w-[600px] mx-auto">
+            <div className="flex gap-4"><div className="w-11 h-11 rounded-full bg-green text-bg-deep flex items-center justify-center font-condensed font-black text-xl flex-shrink-0">1</div><div><p className="font-condensed font-bold text-xl text-white mb-1">You add your name</p><p className="text-body text-sm">Not symbolic. Not a petition that disappears. It's how real people are counted — by district.</p></div></div>
+            <div className="flex gap-4"><div className="w-11 h-11 rounded-full bg-green text-bg-deep flex items-center justify-center font-condensed font-black text-xl flex-shrink-0">2</div><div><p className="font-condensed font-bold text-xl text-white mb-1">We organize by district</p><p className="text-body text-sm">Your name becomes part of a coordinated pressure block tied directly to your representative — based on what people in your district actually want.</p></div></div>
+            <div className="flex gap-4"><div className="w-11 h-11 rounded-full bg-green text-bg-deep flex items-center justify-center font-condensed font-black text-xl flex-shrink-0">3</div><div><p className="font-condensed font-bold text-xl text-white mb-1">When enough people are organized</p><p className="text-body text-sm">The pressure becomes public and visible inside the district — creating a moment where your representative has to respond, in front of the people they represent.</p></div></div>
+            <div className="flex gap-4"><div className="w-11 h-11 rounded-full bg-red text-white flex items-center justify-center font-condensed font-black text-xl flex-shrink-0">4</div><div><p className="font-condensed font-bold text-xl text-red-500 mb-1">And when leaders ignore it</p><p className="text-body text-sm">They either respond — or they have to explain why they won't, publicly, on the record.</p></div></div>
+          </div>
+          <p className="font-condensed font-bold text-center text-green text-lg mt-4">That's the leverage.</p>
+          <p className="font-condensed font-bold text-center text-white text-base mt-2">And once it exists, they can't ignore it.</p>
+          <p className="text-sm text-gray-500 text-center mt-3">When enough constituents organize in a district, elected officials have to respond. Every time.</p>
+          <p className="font-condensed font-bold text-center text-white text-base mt-3">This isn't theory. It's pressure applied in the one place they can't ignore.</p>
+          <div className="text-center mt-6"><button onClick={handlePetitionClick} className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition">? Add Your Name ?</button><p className="text-xs text-gray-500 mt-2">It takes less than a minute.</p></div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* Credibility Bridge */}
+        <section className="container section-sm text-center"><p className="font-condensed font-bold text-gray-500 text-base">Before you decide what this is — know this:</p></section>
+
+        {/* Cascade Video */}
+        <section className="container section">
+          <div className="max-w-[760px] mx-auto text-center mb-6">
+            <p className="font-condensed font-bold text-xl text-white mb-2">You are not powerless.</p>
+            <p className="text-sm text-gray-500 mt-2">This isn't theory. It's already in motion.</p>
+            <p className="text-body text-base mb-3">People speak up. They show up. They demand change.<br />And still — nothing happens.</p>
+            <p className="text-body text-base mb-3">Not because people don't care.<br /><strong className="text-white">Because there's nothing forcing Congress to respond.</strong></p>
+            <p className="font-condensed font-bold text-green text-base mb-3">That's what PHIERS does.</p>
+            <div className="h-2.5"></div>
+            <p className="text-body text-base mb-3">Around 1,500 people per district — across the country —<br />hits hundreds of members of Congress at the same time.</p>
+            <p className="font-condensed font-bold text-green text-base mb-3">That's all it takes.</p>
+            <p className="font-condensed font-bold text-white text-base mb-2">That's enough to force Congress to respond to their constituents.</p>
+            <p className="font-condensed font-bold text-red-500 text-base mb-3">Not later. Immediately.</p>
+            <p className="text-body text-base mb-2">Congress can act now.</p>
+            <p className="text-body text-base mb-2">The only thing missing is enough organized people to make that unavoidable.</p>
+            <p className="font-condensed font-bold text-green text-base mb-4">That's what your name does.</p>
+            <p className="text-sm text-gray-500 text-center mb-3">This is how we make it impossible for them not to respond.</p>
+            <div className="text-center my-4"><button onClick={handlePetitionClick} className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition">? Add Your Name — Help Make Congress Do Its Job</button></div>
+            <p className="font-condensed font-bold text-white text-base mb-2">Step one: Make Congress do its job.</p>
+            <p className="font-condensed text-gray-500 text-sm">This is how action starts — right now.</p>
+          </div>
+          <div className="video-container max-w-[800px] mx-auto"><div id="wrap-cascade" className="video-wrapper cursor-pointer group" onClick={() => playVideo('cascade', 'https://www.youtube.com/embed/jMU6LKEBzbs?autoplay=1&rel=0')}><div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://img.youtube.com/vi/jMU6LKEBzbs/hqdefault.jpg')" }}><div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all"><div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-xl">?</div></div></div></div><div className="bg-bg-card p-4 border-x border-b border-green/20 rounded-b-xl text-center"><div className="font-display text-xl text-green mb-1">?? How Pressure Builds — And Why Congress Can't Ignore It</div><div className="font-condensed text-gray-400 text-sm">Why Congress can't ignore organized people — and what happens when pressure builds in one place.</div></div></div>
+        </section>
+
+        <hr className="border-green/20" />
+
+        {/* 3.5% Proof */}
+        <section className="bg-bg-dark border-y border-green/10 section"><div className="container text-center"><span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Tipping Point Is Smaller Than You Think</span><h2 className="font-display text-3xl md:text-4xl text-white mb-3">Around 3.5% — organized and sustained — is enough to tip the balance.</h2><p className="text-body mb-3">The most successful nonviolent movements in modern history crossed this threshold.</p><p className="text-body mb-3">It doesn't take everyone.<br />Just enough people, acting together in the same place.</p><p className="font-condensed font-bold text-2xl text-green my-3">12 million Americans. That's the line.</p><p className="font-condensed font-bold text-white">PHIERS is how we coordinate that — on purpose.</p><div className="max-w-[380px] mx-auto mt-6"><div onClick={() => setChenowethModalOpen(true)} className="cursor-pointer"><Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% — Chenoweth Research" width={380} height={250} className="rounded-lg border border-white/10 hover:scale-[1.02] transition-transform mx-auto" /></div><p className="text-xs text-gray-500 mt-2">Harvard researcher Erica Chenoweth. The data is ironclad. Click to enlarge.</p></div></div></section>
+
+        <hr className="border-green/20" />
+
+        {/* Transition to The-Teeth */}
+        <section className="container section text-center py-12"><div className="max-w-[560px] mx-auto"><p className="font-condensed font-bold text-xl text-white mb-2">You understand the problem. Now see the power.</p><p className="text-gray-400 text-base mb-4">The energy is real. The anger is justified. Here's what we do with it.</p><Button href="/the-teeth" variant="secondary">See What Makes This Unavoidable ?</Button><div className="h-12"></div></div></section>
+
+        <hr className="border-green/20" />
+
+        {/* Go Deeper */}
+        <section className="container section max-w-[640px] mx-auto"><p className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Go Deeper</p><p className="text-gray-400 mb-6">Choose the path you want to understand first.</p><div className="mb-6"><p className="font-condensed font-bold text-xl text-white mb-2">? The Leverage</p><p className="text-gray-400 mb-3">How organized people become impossible to ignore — and why Congress has no choice once the pressure is real.</p><Link href="/leverage" className="font-condensed font-bold text-green no-underline border-b border-green/30 pb-0.5 hover:border-green">Show me the Leverage ?</Link></div><div><p className="font-condensed font-bold text-xl text-white mb-2">?? The Healthcare Proof</p><p className="text-gray-400 mb-3">Why fixing healthcare is the first domino — and the evidence that makes the leverage unavoidable.</p><Link href="/full-story" className="font-condensed font-bold text-green no-underline border-b border-green/30 pb-0.5 hover:border-green">Explore the Deep Dive ?</Link></div></section>
+
+        <hr className="border-green/20" />
+
+        {/* Closing Statement */}
+        <section className="container section text-center pt-12"><p className="font-condensed font-bold text-base text-gray-400 leading-relaxed">PHIERS is built for one purpose:<br />giving the public the leverage we've always deserved.</p><p className="font-condensed font-bold text-white mt-2">Now it's organized.</p></section>
+      </main>
+      <JumpToFooter />
+
+      {/* Navigation – back and forward */}
+        <div className="container py-8 flex flex-col sm:flex-row justify-center gap-4">
+          <Link
+            href="/"
+            className="px-6 py-2 border border-green/40 text-green rounded-md hover:bg-green/10 transition text-center"
+            aria-label="Go back to main home page"
+          >
+            ? Back to How It Works
+          </Link>
+          <Link
+            href="/the-teeth"
+            className="px-6 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition text-center"
+            aria-label="Continue to The Teeth"
+          >
+            Next: The Framework ?
+          </Link>
+        </div>
+      
+      <Footer />
+
+      {chenowethModalOpen && (<div className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4" onClick={() => setChenowethModalOpen(false)}><div className="relative max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}><button onClick={() => setChenowethModalOpen(false)} className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors">?</button><Image src="/images/3.5pct_Erica_Chenoweth.jpg" alt="3.5% — Chenoweth Research" width={800} height={600} className="rounded-xl" /></div></div>)}
+
+      <button onClick={scrollToTop} className="back-to-top" id="back-to-top" aria-label="Back to top">?</button>
+
+      <style jsx global>{`
+        .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--green); color: var(--bg-deep); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; opacity: 0; visibility: hidden; transition: all 150ms ease; z-index: 999; border: none; }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: #2ab568; transform: translateY(-2px); }
+        @keyframes firePulse { 0%,100% { box-shadow: 0 0 40px rgba(230,57,70,0.25), inset 0 0 40px rgba(230,57,70,0.08); } 50% { box-shadow: 0 0 70px rgba(230,57,70,0.45), inset 0 0 60px rgba(230,57,70,0.15); } }
+        .animate-\\[firePulse_2\\.5s_ease-in-out_infinite\\] { animation: firePulse 2.5s ease-in-out infinite; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 2px solid rgba(61, 220, 132, 0.2); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
+        .video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
+      `}</style>
+
+      {showEarlyModal && (
+        <EarlyStageModal
+          onContinue={handleModalContinue}
+          onLater={handleModalLater}
+        />
+      )}
+    </>
+  )
+}
+
+// FILE: app/homepage-teeth/page.tsx

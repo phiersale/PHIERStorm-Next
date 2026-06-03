@@ -1,0 +1,83 @@
+
+> build
+> prisma generate && next build --no-lint
+
+warn The configuration property `package.json#prisma` is deprecated and will be removed in Prisma 7. Please migrate to a Prisma config file (e.g., `prisma.config.ts`).
+For more information, see: https://pris.ly/prisma-config
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v6.19.3) to .\node_modules\@prisma\client in 83ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+ ⚠ Linting is disabled.
+  ▲ Next.js 14.2.28
+  - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Skipping validation of types
+   Collecting page data ...
+   Generating static pages (0/64) ...
+   Generating static pages (16/64) 
+   Generating static pages (32/64) 
+Error: Unsupported Server Component type: [...]
+    at e (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137969)
+    at ek (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138019)
+    at Array.toJSON (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135629)
+    at stringify (<anonymous>)
+    at eP (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142093)
+    at eE (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142572)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:150373)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  digest: '1225541987'
+}
+Error: Unsupported Server Component type: [...]
+    at e (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137969)
+    at ek (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138019)
+    at Array.toJSON (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135629)
+    at stringify (<anonymous>)
+    at eP (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142093)
+    at eE (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142572)
+    at Timeout._onTimeout (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135349)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  digest: '3474253801'
+}
+Error: Unsupported Server Component type: [...]
+    at e (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137969)
+    at ek (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138019)
+    at Array.toJSON (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135629)
+    at stringify (<anonymous>)
+    at eP (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142093)
+    at eE (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142572)
+    at Timeout._onTimeout (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135349)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  digest: '3474253801'
+}
+   Generating static pages (48/64) 
+
+Error occurred prerendering page "/slides". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Unsupported Server Component type: [...]
+    at e (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:137969)
+    at ek (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:138019)
+    at Array.toJSON (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:135629)
+    at stringify (<anonymous>)
+    at eP (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142093)
+    at eE (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:142572)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (C:\Users\WIll\Documents\GitHub\PHIERStorm-Next\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:150373)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+ ✓ Generating static pages (64/64)
+
+> Export encountered errors on following paths:
+	/slides/page: /slides

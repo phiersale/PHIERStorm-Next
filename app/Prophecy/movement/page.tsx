@@ -95,6 +95,17 @@ export default function MovementPage() {
           <p className="text-lg text-gray-300 mb-4">Fifteen Hundred is not just a number. It's a standard. It means Black men are no longer carrying pressure alone and in silence.</p>
           <ul className="list-disc pl-6 text-gray-300 space-y-2 mb-6"><li>discipline</li><li>structure</li><li>coordination</li><li>visible presence</li><li>accountability</li></ul>
           <p className="text-lg text-gray-300"><strong>When fifteen hundred disciplined men move together in a district, the political equation changes.</strong></p>
+          
+          {/* Clarification: 1500 is a signal, not the solution */}
+          <div className="mt-8 p-6 border-l-4 border-amber-500/50 bg-amber-500/5 rounded-r-lg">
+            <p className="text-amber-400 font-semibold mb-2">A signal, not the solution.</p>
+            <p className="text-gray-300 leading-relaxed">
+              Fifteen hundred is not the finish line. It's the threshold where representatives realize 
+              we can organize — and that what we're building can grow into something much more powerful. 
+              It's the number that makes them pay attention. What comes after is the real work.
+            </p>
+          </div>
+          
           <div className="mt-10">
             <Image src="/images/trilogy/fifteen-hundred.jpg" alt="Fifteen Hundred" width={1200} height={700} className="w-full rounded-xl object-cover" />
           </div>
@@ -175,9 +186,14 @@ export default function MovementPage() {
           <section className="my-12">
             <img src="/images/trilogy/Final_CTA_image.jpg" alt="Man walking toward sunrise" className="w-full md:w-4/5 mx-auto rounded-lg object-cover shadow-lg" />
           </section>
-          <Link href="/Prophecy/trilogy" className="inline-block bg-white text-black font-bold text-xl py-4 px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap">
-            ENTER THE TRILOGY →
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/Prophecy" className="inline-block bg-transparent border border-gray-600 text-white font-bold text-xl py-4 px-12 rounded-full hover:bg-white/10 transition shadow-lg whitespace-nowrap">
+              ← BACK TO PROPHECY
+            </Link>
+            <Link href="/Prophecy/trilogy" className="inline-block bg-white text-black font-bold text-xl py-4 px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap">
+              ENTER THE TRILOGY →
+            </Link>
+          </div>
           <p className="text-gray-400 mt-4">Three chapters. One mission. A future we refuse to leave unguarded.</p>
           <p className="text-gray-500 text-sm mt-2">Or <a href="/zoom" className="underline hover:text-white">join the Zoom first</a>.</p>
         </section>

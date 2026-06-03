@@ -11,64 +11,102 @@
   import PHIERStormModal from '@/components/PHIERStormModal';
 
   export default function ProphecyPage() {
-    const [videoStarted, setVideoStarted] = useState(false);
+    const [videoStarted, setVideoStarted] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [showTrustModal, setShowTrustModal] = useState(true);
     return (
-      <div className="bg-black text-white">
-        {/* STICKY HEADER */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800 py-2">
-          <div className="max-w-7xl mx-auto px-4 flex justify-start">
-            <Link href="/Prophecy">
-              <img
-                src="/images/PHIERS_Logo_BW.png"
-                alt="PHIERS"
-                className="w-10 h-auto md:w-12 opacity-70 hover:opacity-90 transition"
-              />
-            </Link>
-          </div>
-        </div>
-
-        {/* PRIVACY STATEMENT – Trust & Participation Update */}
-        <div className="max-w-2xl mx-auto px-6 pt-24 pb-8">
-          <div className="bg-[#0d0d0d] border border-amber-500/20 rounded-2xl p-6 md:p-8">
-            <p className="text-amber-400 text-sm font-semibold mb-4">First things first — we used to lead with a petition. We don't anymore.</p>
-            <p className="text-gray-300 text-base leading-relaxed mb-4">We changed strategies because too many brothers told us the same thing:</p>
-            <p className="text-white italic text-lg mb-4">"Before I sign anything, I need to know exactly what you're doing with my information."</p>
-            <p className="text-gray-300 text-base leading-relaxed mb-4">And they were right to ask.</p>
-            <p className="text-gray-300 text-base leading-relaxed mb-4">So let's be clear in plain language — no legalese, no fine print, no surprises.</p>
-            <div className="space-y-3 text-gray-300 text-base leading-relaxed mb-6">
-              <p><span className="text-amber-400 font-bold">1.</span> Nothing you share here is public. Not your name. Not your email. Not your answers. Not your business. We don't post it. We don't sell it. We don't hand it around.</p>
-              <p><span className="text-amber-400 font-bold">2.</span> Your email is optional. If you want updates or conversation, cool. If not, leave it blank. You're still welcome here.</p>
-              <p><span className="text-amber-400 font-bold">3.</span> If an elected official ever asks whether Black men in their district are paying attention… We give them a number, not a list. A headcount, not identities. That's it.</p>
-              <p><span className="text-amber-400 font-bold">4.</span> This space is for clarity, not surveillance. We're not tracking you. We're not building profiles on you. We're not trying to pull people into something they don't understand. This is a peaceful, lawful, transparent effort to help regular people — including us — get the accountability we've been denied for generations.</p>
-              <p>
-                <span className="text-amber-400 font-bold">5.</span> If anything feels off, ask. 
-                Push back. Challenge it. You deserve straight answers.
-                <br />
-                <span className="text-gray-300">
-                  You do not need to agree with PHIERS to participate.
-                </span>
-              </p>
+    <div className="bg-black text-white">
+       {/* TRUST & PARTICIPATION MODAL – appears on load */}
+      {showTrustModal && (
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/80 p-4">
+          <div className="relative w-full max-w-2xl max-h-[85vh] bg-[#2a2a2a] rounded-lg shadow-xl flex flex-col">
+            {/* Header */}
+            <div className="sticky top-0 bg-[#2a2a2a] border-b border-gray-600 px-6 py-4 rounded-t-lg">
+              <h2 className="text-gray-100 text-lg font-medium">About your privacy</h2>
+              <p className="text-gray-400 text-sm mt-1">How we handle your information</p>
+            </div>
+            
+            {/* Scrollable content */}
+            <div className="overflow-y-auto px-6 py-4 space-y-3 text-gray-300 text-sm leading-relaxed">
+              <p className="text-amber-400 text-sm font-medium mb-2">First things first — we used to lead with a petition. We don't anymore.</p>
+              <p>We changed strategies because too many brothers told us the same thing:</p>
+              <p className="italic text-gray-200">"Before I sign anything, I need to know exactly what you're doing with my information."</p>
+              <p>And they were right to ask.</p>
+              <p>So let's be clear in plain language — no legalese, no fine print, no surprises.</p>
+              
+              <div className="space-y-3 mt-2">
+                <p><span className="font-bold text-amber-400">1.</span> Nothing you share here is public. Not your name. Not your email. Not your answers. Not your business. We don't post it. We don't sell it. We don't hand it around.</p>
+                <p><span className="font-bold text-amber-400">2.</span> Your email is optional. If you want updates or conversation, cool. If not, leave it blank. You're still welcome here.</p>
+                <p><span className="font-bold text-amber-400">3.</span> If an elected official ever asks whether Black men in their district are paying attention… We give them a number, not a list. A headcount, not identities. That's it.</p>
+                <p><span className="font-bold text-amber-400">4.</span> This space is for clarity, not surveillance. We're not tracking you. We're not building profiles on you. We're not trying to pull people into something they don't understand. This is a peaceful, lawful, transparent effort to help regular people — including us — get the accountability we've been denied for generations.</p>
+                <p><span className="font-bold text-amber-400">5.</span> If anything feels off, ask. Push back. Challenge it. You deserve straight answers.<br />
+                <span className="text-gray-400 text-xs">You do not need to agree with PHIERS to participate.</span></p>
               </div>
-
-              <p className="text-gray-300 text-base leading-relaxed mb-4">
-                Take the survey only when you feel fully comfortable with what we're doing and why we're doing it.
-              </p>
-            <p className="text-gray-300 text-base leading-relaxed">And if you're never comfortable with it — that's okay too. This only works if it's real.</p>
-            <div className="mt-6 text-center">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform" target="_blank" rel="noopener noreferrer" className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 px-6 rounded-lg transition">Take the survey →</a>
+              
+              <div className="mt-4 pt-2 border-t border-gray-600">
+                <p className="text-gray-300">Take the survey only when you feel fully comfortable with what we're doing and why we're doing it.</p>
+                <p className="text-gray-400 text-sm mt-2">And if you're never comfortable with it — that's okay too. This only works if it's real.</p>
+              </div>
+            </div>
+            
+            {/* Footer with buttons */}
+            <div className="sticky bottom-0 bg-[#2a2a2a] border-t border-gray-600 px-6 py-4 rounded-b-lg flex flex-col sm:flex-row gap-3 justify-end">
+              <button
+                onClick={() => {
+                  console.log('Continue clicked');
+                  setShowTrustModal(false);
+                }}
+                className="px-5 py-2 text-gray-300 hover:text-white text-sm font-medium transition cursor-pointer"
+                type="button"
+              >
+                Continue to site
+              </button>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white text-sm font-medium rounded transition text-center"
+              >
+                Take the survey →
+              </a>
             </div>
           </div>
         </div>
+      )}
 
-        {/* TOP SECTION */}
-        <div className="text-center pt-8 pb-6 md:pt-12 md:pb-8">
-          <p className="text-sm md:text-lg tracking-[0.28em] md:tracking-[0.35em] uppercase text-gray-300 font-semibold">
-            For Us. By Us.
-          </p>
+      {/* STICKY HEADER */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800 py-2">
+        <div className="max-w-7xl mx-auto px-4 flex justify-star">
+          <Link href="/Prophecy">
+            <img
+              src="/images/PHIERS_Logo_BW.png"
+              alt="PHIERS"
+              className="w-10 h-auto md:w-12 opacity-70 hover:opacity-90 transition"
+            />
+          </Link>
         </div>
+      </div>
 
-        {/* VIDEO HERO – unchanged */}
+      {/* Skip to Movement - quiet top-right link */}
+      <div className="px-6 pt-4">
+        <div className="w-full flex justify-end">
+          <a
+            href="/Prophecy/movement"
+            className="text-xs sm:text-sm opacity-60 hover:opacity-100 transition-opacity duration-200 text-gray-400 hover:text-gray-200"
+          >
+            Skip to the Movement
+          </a>
+        </div>
+      </div>
+
+      {/* TOP SECTION */}
+      <div className="text-center pt-8 pb-6 md:pt-12 md:pb-8">
+        <p className="text-sm md:text-lg tracking-[0.28em] md:tracking-[0.35em] uppercase text-gray-300 font-semibold">
+          For Us. By Us.
+        </p>
+      </div>
+
+      {/* VIDEO HERO – unchanged */}
         <div className="w-full max-w-full overflow-hidden mt-2 md:mt-4">
           <div className="w-full h-[34vh] sm:h-[42vh] md:h-[70vh] bg-black relative rounded-xl overflow-hidden">
             {!videoStarted ? (
@@ -130,18 +168,39 @@
           <h1 className="text-[clamp(2.2rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight">
             Black Men Have Waited Long Enough.
           </h1>
-          <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mt-8 leading-relaxed">
-            We know what we survived.
-          </p>
-          <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mt-2 leading-relaxed">
-            We know what this country took.
-          </p>
-          <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mt-2 leading-relaxed">
-            Nobody is coming to save us.
-          </p>
-          <p className="text-2xl md:text-3xl font-bold text-green-400 mt-8">
-            So we built something.
-          </p>
+          
+                    {/* Doorway to Movement - cinematic portal */}
+          <div className="mt-6 animate-fadeInSlow">
+            <a
+              href="/Prophecy/movement"
+              className="inline-block text-lg font-medium
+                         text-orange-300/90 hover:text-orange-300
+                         bg-orange-300/25 hover:bg-orange-300/30
+                         px-4 py-2 rounded-md
+                         shadow-[0_0_14px_rgba(217,119,6,0.22)]
+                         hover:shadow-[0_0_18px_rgba(217,119,6,0.28)]
+                         backdrop-blur-[1px]
+                         transition-all duration-300 ease-out
+                         hover:-translate-y-[1px]"
+            >
+              Skip ahead to the Movement →
+            </a>
+          </div>
+          
+          <div className="mt-12">
+            <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              We know what we survived.
+            </p>
+            <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mt-2 leading-relaxed">
+              We know what this country took.
+            </p>
+            <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mt-2 leading-relaxed">
+              Nobody is coming to save us.
+            </p>
+            <p className="text-2xl md:text-3xl font-bold text-green-400 mt-8">
+              So we built something.
+            </p>
+          </div>
         </div>
 
         {/* THESIS REVEAL */}
@@ -274,12 +333,20 @@
           <p className="text-3xl md:text-5xl font-bold text-white">This is where we build.</p>
         </div>
         <div className="text-center mt-0 mb-12">
-          <button
-            onClick={() => setShowModal(true)}
-            className="inline-block bg-white/10 text-white border border-green-400/40 px-6 py-2 rounded-full text-sm hover:bg-white/20 transition cursor-pointer"
-          >
-            Ask a question →
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="/Prophecy/movement"
+              className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition text-base"
+            >
+              ← THE MOVEMENT
+            </a>
+            <button
+              onClick={() => setShowModal(true)}
+              className="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-lg transition border border-gray-500 text-base"
+            >
+              Ask a question →
+            </button>
+          </div>
         </div>
         </div>
 
@@ -614,13 +681,34 @@
           </p>
           <div className="gold-divider mb-8" />
           <p className="uppercase tracking-[0.28em] text-gray-500 text-xs md:text-sm">FROM INHERITANCE TO FORGE</p>
-          <p className="text-base md:text-lg text-gray-400 leading-relaxed mt-6 max-w-xl mx-auto">
-            Not branding. Not mythology.<br />
-            The pressure that produced the structure.
-          </p>
+          
+          {/* Highlighted text - cleaner styling */}
+          <div className="mt-12 mb-16">
+            <p className="text-amber-400 font-semibold text-lg md:text-xl leading-relaxed">
+              Not branding. Not mythology.
+            </p>
+            <p className="text-amber-400 font-semibold text-lg md:text-xl leading-relaxed mt-1">
+              The pressure that produced the structure.
+            </p>
+          </div>
+
+          {/* MOVEMENT BUTTON - refined */}
+          <div className="flex flex-col items-center justify-center">
+            <a
+              href="/Prophecy/movement"
+              className="bg-amber-600 hover:bg-amber-500 text-white font-semibold tracking-tight px-8 py-3 rounded-md transition-all duration-200 ease-out hover:-translate-y-[2px] hover:shadow-[0_0_12px_rgba(217,119,6,0.6)] active:opacity-80"
+            >
+              ← GO TO THE MOVEMENT
+            </a>
+            <p className="text-gray-500 text-sm mt-3 opacity-70">
+              Built from pressure.
+            </p>
+          </div>
         </div>
 
-        <div className="max-w-3xl mx-auto px-6 mt-28 md:mt-36 text-center">
+        <div className="border-t border-gray-700 my-12"></div>
+
+        <div className="max-w-3xl mx-auto px-6 mt-8 text-center">
           <div className="bg-[#0b0b0b] border border-gray-800 rounded-2xl px-6 py-12 md:px-12 md:py-16">
             <p className="text-xl md:text-2xl text-gray-300 font-semibold">
               If you want to see how this becomes structure –<br />
@@ -651,6 +739,27 @@
 
       {/* PHIERStorm Modal */}
       <PHIERStormModal open={showModal} onClose={() => setShowModal(false)} />
+
+      <style>{`
+        @keyframes fadeInModal {
+          0% { opacity: 0; transform: scale(0.95); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeInSlow {
+          from { opacity: 0; transform: translateY(4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInSlow {
+          animation: fadeInSlow 0.9s ease-out both;
+        }
+        .animate-bounce {
+          animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(5px); }
+        }
+      `}</style>
     </div>
   );
 }
