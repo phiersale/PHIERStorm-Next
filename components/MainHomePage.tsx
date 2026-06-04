@@ -306,6 +306,22 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
       <Navigation />
       
+      {/* PHIERS Logo - returns to homepage */}
+      <button
+        onClick={() => {
+          window.location.href = '/';
+        }}
+        className="fixed top-24 left-4 z-[70] flex items-center gap-2 bg-black/50 hover:bg-black/70 backdrop-blur-sm px-3 py-2 rounded-full transition-all duration-200 border border-white/10 hover:border-green/30"
+        aria-label="Return to homepage"
+      >
+        <img
+          src="/images/PHIERS_Logo.png"
+          alt="PHIERS"
+          className="w-6 h-6 md:w-7 md:h-7 object-contain"
+        />
+        <span className="text-white text-xs sm:text-sm font-medium hidden sm:inline">PHIERS</span>
+      </button>
+
       {/* Back to Start button - resets the onboarding journey */}
       <button
         onClick={() => {

@@ -52,7 +52,7 @@ const slides = [
         green: false,
         bold: false,
         className:
-          "text-lg md:text-xl font-medium leading-relaxed text-gray-300 max-w-md opacity-0 animate-fadeIn duration-[400ms] delay-[1600ms]"
+          "text-lg md:text-xl font-medium leading-relaxed text-slate-200 max-w-md opacity-0 animate-fadeIn duration-[400ms] delay-[1600ms]"
       }
     ],
     className: "bg-neutral-950 flex flex-col items-center justify-center py-20"
@@ -146,12 +146,13 @@ const slides = [
   className: "bg-neutral-950 flex flex-col items-center justify-center py-20",
 
   // Force image to ~72% width - cinematic presence
-  imageClassName: "w-[72%] max-w-5xl mx-auto",
+  imageClassName: "w-[72%] max-w-5xl mx-auto animate-fadeInSlow",
 
   caption: "Proof that organized people still move power.",
   captionClassName:
-    "text-center text-red-400 text-2xl md:text-3xl font-medium mt-10 tracking-tight max-w-3xl"
+    "text-center text-red-400 text-2xl md:text-3xl font-medium mt-10 tracking-tight max-w-3xl animate-fadeInUp delay-500"
 },
+
 
 
   // 10 — ACCOUNTABILITY

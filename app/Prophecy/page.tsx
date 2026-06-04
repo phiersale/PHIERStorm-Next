@@ -9,11 +9,14 @@
   import Accordion from './components/Accordion';
   import PhiersAcronymBreak from '@/components/PhiersAcronymBreak';
   import PHIERStormModal from '@/components/PHIERStormModal';
+  import OutboundPrivacyModal from '@/components/OutboundPrivacyModal';
 
   export default function ProphecyPage() {
     const [videoStarted, setVideoStarted] = useState(true);
     const [showModal, setShowModal] = useState(false);
-    const [showPrivacyDrawer, setShowPrivacyDrawer] = useState(true);
+    const [showTrustModal, setShowTrustModal] = useState(true);
+    const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
+    const [pendingUrl, setPendingUrl] = useState('');
     
     useEffect(() => {
       window.scrollTo({ top: 0, behavior: 'instant' });
@@ -65,14 +68,16 @@
               >
                 Continue to site
               </button>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white text-sm font-medium rounded transition text-center"
+              <button
+                onClick={() => {
+                  setPendingUrl('https://phiers-civic-engagem-vopm05.abacusai.app/survey');
+                  setPrivacyModalOpen(true);
+                  setShowTrustModal(false);
+                }}
+                className="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white text-sm font-medium rounded transition text-center cursor-pointer"
               >
                 Take the survey →
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -743,6 +748,12 @@
 
       {/* PHIERStorm Modal */}
       <PHIERStormModal open={showModal} onClose={() => setShowModal(false)} />
+
+      <OutboundPrivacyModal
+        open={privacyModalOpen}
+        destinationUrl={pendingUrl}
+        onClose={() => setPrivacyModalOpen(false)}
+      />
 
       <style>{`
         @keyframes fadeInModal {

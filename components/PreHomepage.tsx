@@ -529,8 +529,8 @@ export default function PreHomepage({
               />
             </div>
             <div className="mt-6 text-center">
-              <p className="text-gray-400 text-xs sm:text-sm">Swipe to continue</p>
-              <div className="mt-2 text-gray-500 text-xs">← →</div>
+              <p className="text-gray-300 text-xs sm:text-sm">Swipe to continue</p>
+              <div className="mt-2 text-gray-400 text-xs">← →</div>
             </div>
           </div>
         )
@@ -552,7 +552,7 @@ export default function PreHomepage({
               alt={slide.imageAlt || "Slide image"}
               width={1200}
               height={800}
-              className={`mx-auto object-contain ${isDouglassSlide ? 'w-[70%] md:w-[50%]' : widthClass}`}
+              className={`mx-auto object-contain phiers-slide-image ${isDouglassSlide ? 'w-[70%] md:w-[50%]' : widthClass}`}
               priority
               onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
             />
@@ -674,11 +674,11 @@ export default function PreHomepage({
         style={{ opacity: 0.35 }}
       >
         {onBackToReading && (
-          <button onClick={onBackToReading} className="text-gray-500 text-sm underline hover:text-gray-300">
+          <button onClick={onBackToReading} className="text-gray-400 text-sm underline hover:text-gray-200">
             ← Back to start
           </button>
         )}
-        <button onClick={onGoToHomepage} className="text-gray-500 text-sm underline hover:text-gray-300">
+        <button onClick={onGoToHomepage} className="text-gray-400 text-sm underline hover:text-gray-200">
           Skip →
         </button>
       </div>
@@ -773,7 +773,7 @@ export default function PreHomepage({
 
         {/* Tap hint - only on slide 0 */}
         {index === 0 && (
-          <div className="text-xs text-gray-500 opacity-60 pointer-events-none mt-2">
+          <div className="text-xs text-gray-400 opacity-80 pointer-events-none mt-2">
             tap anywhere
           </div>
         )}

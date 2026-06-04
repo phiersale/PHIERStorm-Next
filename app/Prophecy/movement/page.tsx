@@ -98,11 +98,29 @@ export default function MovementPage() {
           
           {/* Clarification: 1500 is a signal, not the solution */}
           <div className="mt-8 p-6 border-l-4 border-amber-500/50 bg-amber-500/5 rounded-r-lg">
-            <p className="text-amber-400 font-semibold mb-2">A signal, not the solution.</p>
+            <p className="text-amber-400 font-semibold mb-3">A signal, not the solution.</p>
+            <div className="flex items-start gap-4 mb-4">
+              <img
+                src="/images/RalphNader-500-Unstoppable_Change.jpg"
+                alt="Ralph Nader – Unstoppable Change"
+                className="w-16 rounded opacity-75 shrink-0"
+              />
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Ralph Nader documented this from decades inside Congress:
+                <span className="block mt-2 text-gray-300">
+                  <strong className="text-amber-300">500 constituents</strong> compels a Representative to attend a town hall.<br />
+                  <strong className="text-amber-300">1,000</strong> compels a Senator.<br />
+                  <strong className="text-amber-300">1,500</strong> is where the signal becomes undeniable.
+                </span>
+              </p>
+            </div>
             <p className="text-gray-300 leading-relaxed">
-              Fifteen hundred is not the finish line. It's the threshold where representatives realize 
-              we can organize — and that what we're building can grow into something much more powerful. 
-              It's the number that makes them pay attention. What comes after is the real work.
+              If fifteen hundred disciplined men in a district go on record, they almost certainly 
+              speak for the majority of active voters. The representative knows there are far more 
+              where they came from — more who will show up to vote, back a primary, or demand answers.
+            </p>
+            <p className="text-amber-400 font-semibold mt-3">
+              Fifteen hundred gets us to the table. What we bring to that table is the real work.
             </p>
           </div>
           

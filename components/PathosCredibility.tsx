@@ -1,5 +1,5 @@
   // FILE: components/PathosCredibility.tsx
-  // VERSION: 16.1 → 17.0 – Proof‑First, Cinematic UX, No Copy Changes
+  // VERSION: 17.2 – Bottom CTA replaced with journey-forward block
 
   'use client'
 
@@ -65,7 +65,7 @@
             Record
           </a>
           <a href="#cta" className="hover:text-green transition-colors">
-            Questions
+            Next
           </a>
         </div>
 
@@ -276,6 +276,124 @@
               <p className="text-gray-500 text-xs">DotCom Magazine · July 2022</p>
             </div>
           </motion.div>
+
+          {/* ========== SHARK TANK CONNECTION (COLLAPSIBLE) ========== */}
+          <motion.details
+            variants={sectionFade}
+            className="group mb-8 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4"
+          >
+            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-green mb-2 list-none flex items-center">
+              <span className="mr-2 group-open:rotate-90 transition-transform">▶</span>
+              🦈 Shark Tank Connection — Why This Matters Now
+            </summary>
+            <div className="mt-2 text-gray-400 text-sm mb-4">Pathos. DotCom. Kevin Harrington. Kevin O'Leary. Mark Cuban. All roads lead here.</div>
+            
+            <div className="mt-4 space-y-6 relative pl-3 border-l-2 border-green/20">
+              
+              {/* BLOCK 1 — Photo row: two Sharks frame the story */}
+              <div className="grid grid-cols-2 gap-3 md:gap-6 items-end max-w-lg mx-auto">
+                <div className="text-center">
+                  <img
+                    src="/images/Kevin_Harrington_Pathos.jpg"
+                    alt="Kevin Harrington — Original Shark — Pathos Communications"
+                    className="w-full rounded-lg border border-green/30"
+                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
+                  />
+                  <p className="text-gray-400 text-[10px] md:text-xs mt-1">Kevin Harrington · Original Shark · Pathos Communications</p>
+                </div>
+                <div className="text-center">
+                  <img
+                    src="/images/Kevin_O_Leary_DotComMag.jpg"
+                    alt="Kevin O'Leary — Original Shark — DotCom Magazine"
+                    className="w-full rounded-lg border border-green/30"
+                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
+                  />
+                  <p className="text-gray-400 text-[10px] md:text-xs mt-1">Kevin O'Leary · Original Shark · DotCom Magazine</p>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <img
+                  src="/images/3_Original_Sharks_Vouch_PATHOS_n_DotCom.jpg"
+                  alt="Three Original Sharks"
+                  className="w-full max-w-md mx-auto rounded-lg border border-green/30 my-2"
+                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
+                />
+                <p className="text-green text-xs italic">Three Sharks. Two validated PHIERS. One is building exactly what PHIERS designed in 2009.</p>
+              </div>
+
+              {/* BLOCK 2 — The Connection */}
+              <div className="pl-3 border-l-2 border-green/30">
+                <p className="text-white font-bold text-sm mb-1">How We Got Here</p>
+                <p className="text-gray-400 text-xs">
+                  Pathos Communications — who told us on camera "if you weren't legit, we wouldn't risk our name" — is championed by founding Sharks who did the first season of Shark Tank alongside Mark Cuban.
+                </p>
+                <p className="text-gray-400 text-xs mt-2">
+                  DotCom Magazine — whose Kevin O'Leary connection brought Will Price to national attention in 2022 — runs in the same founding Shark ecosystem.
+                </p>
+                <p className="text-green text-xs font-semibold mt-2">This is not name-dropping. These are documented relationships between the people who validated PHIERS and the people who built Shark Tank.</p>
+              </div>
+
+              {/* BLOCK 3 — The Cuban Opportunity */}
+              <div className="pl-3 border-l-2 border-amber-500/50">
+                <p className="text-white font-bold text-sm mb-1">Mark Cuban Wants to Grow. PHIERS Is the Best Path.</p>
+                <ul className="text-gray-400 text-xs space-y-1 list-disc pl-4">
+                  <li>Cuban's Cost Plus Drugs has 7 million customers. TrumpRx is his latest partnership. But neither reaches the full market — Medicare, Medicaid, ACA, uninsured, unemployed.</li>
+                  <li>PHIERS co-op marketplace (founded 2009 model) is a not-for-profit buying cooperative built specifically for that audience. Everyone the current model misses.</li>
+                  <li>SIICDARE will help Cuban compete on specialty drugs — the highest-margin, most underserved category in pharmaceutical access.</li>
+                  <li>The DotCom Magazine interview is documented proof that we identified this opportunity and built toward it years before Cuban's current partners were in the picture.</li>
+                </ul>
+                <p className="text-green text-xs font-semibold mt-2">PHIERS can help Mark Cuban grow faster than the TrumpRx deal — and serve people TrumpRx will never reach.</p>
+              </div>
+
+              {/* Mark Cuban disrupts drug pricing image */}
+              <div className="my-4">
+                <img
+                  src="/images/MarkCuban_Disrupts_Drug_Pricing.jpg"
+                  alt="Mark Cuban disrupts drug pricing for good"
+                  className="w-full max-w-md mx-auto rounded-lg border border-amber-500/30"
+                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
+                />
+                <p className="text-center text-gray-500 text-[10px] mt-1">Mark Cuban — disrupting drug pricing for good</p>
+              </div>
+
+              {/* Trump-Cuban partnership image */}
+              <div className="my-4">
+                <img
+                  src="/images/trump-cuban-trumprx.jpg"
+                  alt="Trump and Mark Cuban join forces to reduce drug costs"
+                  className="w-full max-w-md mx-auto rounded-lg border border-amber-500/30"
+                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
+                />
+                <p className="text-center text-gray-500 text-[10px] mt-1">Trump + Cuban · TrumpRx · 2026 — "Republicans, Independents, Democrats all want cheaper drugs"</p>
+              </div>
+
+              {/* BLOCK 4 — The Bigger Picture */}
+              <div className="mt-3 p-3 bg-green/5 border border-green/20 rounded-lg">
+                <p className="text-white text-xs font-semibold">What This Becomes</p>
+                <p className="text-gray-400 text-xs mt-1">
+                  A not-for-profit cooperative marketplace with no profit motive competing with Amazon and Walmart — and passing every dollar of savings directly to members.
+                </p>
+                <p className="text-gray-400 text-xs mt-2">
+                  Save taxpayers enough to fund healthcare for all. 100% self-sustaining. No government subsidy required.
+                </p>
+                <p className="text-gray-400 text-xs mt-2">
+                  This is a viable business opportunity for Shark Tank to evaluate. Kevin Harrington, Kevin O'Leary, and Mark Cuban can each decide independently whether to support it. The record is public. The model is documented. The timing is now.
+                </p>
+                <p className="text-amber-400 text-xs italic mt-2">"We've been preparing for this moment all our lives. Read on."</p>
+              </div>
+
+              {/* BLOCK 5 — CTA */}
+              <div className="text-center mt-2">
+                <a
+                  href="/homepage-teeth"
+                  className="text-green text-xs hover:underline inline-flex items-center gap-1"
+                >
+                  → Learn more about PHIERSale and the cooperative marketplace
+                </a>
+              </div>
+            </div>
+          </motion.details>
 
           {/* CHAPTER MARKER */}
           <div className="h-[1px] w-full bg-green/10 my-10" />
@@ -828,36 +946,41 @@
               The record is public. The mechanism is transparent. The next step is yours.
             </p>
           </motion.div>
-
-          {/* Question form CTA */}
+{/* Journey-forward CTA */}
           <motion.div
             id="cta"
             variants={sectionFade}
             className="text-center pt-1 pb-6"
           >
             <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
-              <p className="text-gray-300 text-sm mb-3">
-                We're collecting questions, feedback, and input from people who are still learning, still
-                deciding, or simply curious.
+              <p className="text-green text-base font-semibold mb-4">
+                You've seen the evidence. Now see what it builds.
               </p>
-              <p className="text-gray-400 text-xs mb-4">
-                Your input helps shape what we build next.
+              <p className="text-gray-300 text-sm leading-relaxed mb-3">
+                The Credibility page shows you who validated PHIERS and why. The main homepage shows you
+                how it works — the mechanism, the leverage, and what happens when 1,500 people in a
+                district go on record together.
               </p>
-              <p className="text-gray-400 text-xs mb-4">
-                We're not asking for commitment. Just curiosity.
+              <p className="text-gray-400 text-xs leading-relaxed mb-5">
+                Read that first. Then tell us what questions you still have. Your questions will help us
+                build a FAQ that answers what real people actually want to know.
               </p>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-2 bg-green text-black font-bold rounded-lg hover:bg-green-dim transition text-sm"
+              <button
+                onClick={() => onOpenTransitionModal?.()}
+                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3"
                 style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
               >
-                → Ask a question
-              </a>
+                → Continue to the main homepage
+              </button>
+              <button
+                onClick={() => onOpenTransitionModal?.()}
+                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition"
+              >
+                Sign up for updates →
+              </button>
             </div>
           </motion.div>
-        </motion.div>
+       </motion.div>
       </>
     )
   }

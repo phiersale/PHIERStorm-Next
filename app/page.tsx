@@ -1,5 +1,5 @@
 // FILE: app/page.tsx
-// VERSION: 4.0 – PHIERS-Pause.png, top‑right skip only - REBUILD
+// VERSION: 5.0 – Removed dead reading stage, fixed routing, added privacy modal
 
 'use client'
 export const dynamic = 'force-dynamic'
@@ -11,18 +11,16 @@ import Image from 'next/image'
 import PreHomepage from '@/components/PreHomepage'
 import MainHomePage from '@/components/MainHomePage'
 import PathosCredibility from '@/components/PathosCredibility'
-// import OrientationVideo from '@/components/OrientationVideo'
 import TransitionModal from '@/components/TransitionModal'
 import FifteenHundredModal from '@/components/FifteenHundredModal'
-
-// PhasedText component removed - flow simplified from image directly to prehome
-
+import OutboundPrivacyModal from '@/components/OutboundPrivacyModal'
 
 export default function Page() {
   const router = useRouter()
-  const [stage, setStage] = useState<'image' | 'reading' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
+  const [stage, setStage] = useState<'image' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
   const [skipFirstImage, setSkipFirstImage] = useState(true)
-  const [showTransitionModal, setShowTransitionModal] = useState(false)
+  const [privacyModalOpen, setPrivacyModalOpen] = useState(false)
+  const [pendingUrl, setPendingUrl] = useState('')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
@@ -37,73 +35,21 @@ export default function Page() {
       setStage('image');
       setSkipFirstImage(true);
       window.history.replaceState({}, '', window.location.pathname);
+    } else if (params.get('main') === 'true') {
+      setStage('main');
+      window.history.replaceState({}, '', window.location.pathname);
     }
   }, [])
-  const [readingVisibleCount, setReadingVisibleCount] = useState(0)
-  const [readingComplete, setReadingComplete] = useState(false)
 
-  const readingLines = [
-    { type: 'spacer' },
-    { type: 'spacer' },
-    { type: 'spacer' },
-    { type: 'spacer' },
-    { type: 'spacer' },
-    { type: 'text', content: "Most people assume Congress listens to voters." },
-    { type: 'text', content: "But historically, they've responded more to organized pressure.", isPressureLine: true },
-    { type: 'spacer' },
-    { type: 'html', content: "<strong class='text-green'>PHIERS is exploring what that could look like.</strong>" },
-    { type: 'spacer' },
-    { type: 'spacer' },
-    { type: 'html', content: "<p class='text-white font-semibold text-lg mt-4 mb-8'>Here's what we've learned so far.</p>" },
-  ]
+  const handleGoToPetition = () => {
+    setPendingUrl('https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred')
+    setPrivacyModalOpen(true)
+  }
 
-  useEffect(() => {
-    if (stage !== 'reading') return
-    setReadingVisibleCount(0)
-    setReadingComplete(false)
-
-    let intervalId: NodeJS.Timeout | null = null
-    let timeoutId: NodeJS.Timeout | null = null
-
-    timeoutId = setTimeout(() => {
-      intervalId = setInterval(() => {
-        setReadingVisibleCount(prev => {
-          if (prev < readingLines.length) return prev + 1
-          if (intervalId) clearInterval(intervalId)
-          setReadingComplete(true)
-          return prev
-        })
-      }, 400)
-    }, 200)
-
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId)
-      if (intervalId) clearInterval(intervalId)
-    }
-  }, [stage])
-
-
-
-  useEffect(() => {
-    if (stage !== 'reading') return
-
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'Space') {
-        e.preventDefault()
-        if (!readingComplete) {
-          setReadingVisibleCount(readingLines.length)
-          setReadingComplete(true)
-        } else {
-          setStage('prehome')
-        }
-      }
-    }
-
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [stage, readingComplete])
-
-  // 'entry' stage removed - flow goes directly from image to prehome
+  const handleGoToSurvey = () => {
+    setPendingUrl('https://phiers-civic-engagem-vopm05.abacusai.app/survey')
+    setPrivacyModalOpen(true)
+  }
 
   if (stage === 'image') {
     return (
@@ -120,10 +66,9 @@ export default function Page() {
           }
         }}
       >
-        {/* TOP‑RIGHT NEXT BUTTON */}
         <button
           onClick={() => setStage('prehome')}
-          className="fixed top-4 right-4 z-30 text-gray-500/60 text-xs underline hover:text-gray-300 transition"
+          className="fixed top-4 right-4 z-30 text-gray-400/60 text-xs underline hover:text-gray-300 transition"
           style={{ opacity: 0, animation: "fadeIn 0.5s ease forwards" }}
         >
           Continue →
@@ -155,63 +100,6 @@ export default function Page() {
     )
   }
 
-  if (stage === 'reading') {
-    return (
-      <div
-        className="fixed inset-0 bg-black flex flex-col items-center justify-start overflow-y-auto px-6 py-2"
-        onClick={() => {
-          if (!readingComplete) {
-            setReadingVisibleCount(readingLines.length)
-            setReadingComplete(true)
-          } else {
-            setStage('prehome')
-          }
-        }}
-      >
-        <div className="max-w-xl space-y-1 w-full text-center">
-          {readingLines.map((line, i) => {
-            if (i >= readingVisibleCount) return null
-
-            if (line.type === 'spacer') {
-              return <div key={i} className="h-1" />
-            }
-
-            if (line.type === 'html') {
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="text-[1.05rem] md:text-lg text-gray-300 leading-tight"
-                  dangerouslySetInnerHTML={{ __html: line.content }}
-                />
-              )
-            }
-
-            const isPressureLine = line.isPressureLine === true
-            let className = "text-[0.95rem] md:text-lg text-gray-400 leading-tight"
-            if (isPressureLine) {
-              className = "text-gray-200 text-lg md:text-xl font-semibold"
-            }
-
-            return (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className={className}
-              >
-                {line.content}
-              </motion.p>
-            )
-          })}
-        </div>
-      </div>
-    )
-  }
-
   if (stage === 'prehome') {
     return (
       <>
@@ -221,6 +109,8 @@ export default function Page() {
             setStage('credibility')
           }}
           onBackToReading={() => setStage('image')}
+          skipFirstImageSlide={skipFirstImage}
+          onGoToPetition={handleGoToPetition}
         />
       </>
     )
@@ -235,6 +125,7 @@ export default function Page() {
             setStage('prehome')
           }}
           onOpenTransitionModal={() => setStage('transition')}
+          onGoToSurvey={handleGoToSurvey}
         />
         <div id="credibility-buttons" className="flex justify-center gap-2 pb-2 -mt-4">
           <button
@@ -275,19 +166,29 @@ export default function Page() {
   }
 
   return (
-  <>
-    {(() => {
-      // Mark that the user has completed the intro when main page loads
-      if (typeof window !== 'undefined') {
-        sessionStorage.setItem('phiers-intro-complete', 'true');
-      }
-      return null;
-    })()}
-    
-    <MainHomePage onBackToEntry={() => setStage('image')} />
-    
-    <FifteenHundredModal />
-  </>
-)
+    <>
+      {(() => {
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('phiers-intro-complete', 'true');
+        }
+        return null;
+      })()}
+      
+      <MainHomePage 
+        onBackToEntry={() => setStage('image')} 
+        onGoToPetition={handleGoToPetition}
+        onGoToSurvey={handleGoToSurvey}
+      />
+      
+      <FifteenHundredModal />
+      
+      <OutboundPrivacyModal
+        open={privacyModalOpen}
+        destinationUrl={pendingUrl}
+        onClose={() => setPrivacyModalOpen(false)}
+      />
+    </>
+  )
 }
-// FILE: app/page.tsx
+
+// FILE: app/page.tsx (end)

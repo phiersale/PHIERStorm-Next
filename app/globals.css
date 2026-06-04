@@ -47,7 +47,7 @@
 
     --text-bright: #f0f4ff;
     --text-body: #b8c8e8;
-    --text-dim: #7a94b8;
+    --text-dim: #9ab0cf;
 
     --font-display: 'Bebas Neue', sans-serif;
     --font-condensed: 'Barlow Condensed', sans-serif;
@@ -444,6 +444,25 @@ button, .button, a[class*="Button"] {
 }
 .animate-fadeInSlow {
   animation: fadeInSlow 2.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
 }
 
 @keyframes fadeInModal {
@@ -954,6 +973,12 @@ img.phiers-wide {
 
 .nav-dot-active {
   background-color: rgba(61, 220, 132, 0.7) !important;
+}
+
+.phiers-slide-image {
+  filter:
+    drop-shadow(0 0 16px rgba(61,220,132,.20))
+    drop-shadow(0 0 32px rgba(61,220,132,.10));
 }
 
 /* FILE: app/globals.css */
