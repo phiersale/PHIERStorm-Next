@@ -1,11 +1,10 @@
 // FILE: app/page.tsx
-// VERSION: 5.0 – Removed dead reading stage, fixed routing, added privacy modal
+// VERSION: 5.1 – Fixed critical syntax error, added privacy modal to credibility stage
 
 'use client'
 export const dynamic = 'force-dynamic'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import PreHomepage from '@/components/PreHomepage'
@@ -16,9 +15,8 @@ import FifteenHundredModal from '@/components/FifteenHundredModal'
 import OutboundPrivacyModal from '@/components/OutboundPrivacyModal'
 
 export default function Page() {
-  const router = useRouter()
   const [stage, setStage] = useState<'image' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
-  const [skipFirstImage, setSkipFirstImage] = useState(true)
+  const [skipFirstImage, setSkipFirstImage] = useState(false)
   const [privacyModalOpen, setPrivacyModalOpen] = useState(false)
   const [pendingUrl, setPendingUrl] = useState('')
 
@@ -125,7 +123,10 @@ export default function Page() {
             setStage('prehome')
           }}
           onOpenTransitionModal={() => setStage('transition')}
-          onGoToSurvey={handleGoToSurvey}
+          onOpenPrivacyModal={(url) => {
+            setPendingUrl(url)
+            setPrivacyModalOpen(true)
+          }}
         />
         <div id="credibility-buttons" className="flex justify-center gap-2 pb-2 -mt-4">
           <button
@@ -157,6 +158,11 @@ export default function Page() {
             Explore the framework →
           </button>
         </div>
+        <OutboundPrivacyModal
+          open={privacyModalOpen}
+          destinationUrl={pendingUrl}
+          onClose={() => setPrivacyModalOpen(false)}
+        />
       </div>
     )
   }
@@ -168,9 +174,6 @@ export default function Page() {
   return (
     <>
       {(() => {
-        if (typeof window !== 'undefined') {
-          sessionStorage.setItem('phiers-intro-complete', 'true');
-        }
         return null;
       })()}
       

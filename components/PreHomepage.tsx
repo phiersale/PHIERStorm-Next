@@ -25,11 +25,8 @@ export default function PreHomepage({
   const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [douglassModalOpen, setDouglassModalOpen] = useState(false)
-  const [showNavControls, setShowNavControls] = useState(true)
-  const [topBarOpacity, setTopBarOpacity] = useState(1)
   const [showSwipeHint, setShowSwipeHint] = useState(true)
   const [navVisible, setNavVisible] = useState(false)
-  const lastScrollY = useRef(0)
   const touchStartX = useRef<number | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const mounted = useRef(true)
@@ -43,27 +40,9 @@ export default function PreHomepage({
   }, [])
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
-        setShowNavControls(false)
-      } else if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
-        setShowNavControls(true)
-      }
-      lastScrollY.current = currentScrollY
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
     const timer = setTimeout(() => setShowSwipeHint(false), 3000)
     return () => clearTimeout(timer)
   }, [])
-
-  useEffect(() => {
-    setTopBarOpacity(index <= 3 ? 1 : 0.4)
-  }, [index])
 
   // Delayed nav appearance for cinematic feel
   useEffect(() => {
@@ -276,6 +255,25 @@ export default function PreHomepage({
             if (item.type === 'spacer') {
               return <div key={idx} style={{ height: item.height || 16 }} />
             }
+            if (item.type === 'image') {
+              return (
+                <div key={idx} className="w-full my-6">
+                  <img
+                    src={item.imageSrc}
+                    alt={item.alt || "Town hall meeting"}
+                    className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl border border-green/30"
+                    onError={(e) => {
+                      console.error('Image failed to load:', item.imageSrc)
+                      e.currentTarget.src = '/images/placeholder.png'
+                    }}
+                    onLoad={() => console.log('Image loaded:', item.imageSrc)}
+                  />
+                  {item.caption && (
+                    <p className="text-gray-400 text-sm italic mt-3 text-center">{item.caption}</p>
+                  )}
+                </div>
+              )
+            }
             if (item.text) {
               let textColor = 'text-white'
               if (item.green) textColor = 'text-green'
@@ -355,6 +353,27 @@ export default function PreHomepage({
                   />
                 )
               }
+              if (item.type === 'image') {
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: item.delay || 0.5 }}
+                    className="w-full my-4"
+                  >
+                    <img
+                      src={item.imageSrc}
+                      alt={item.alt || "Town hall meeting"}
+                      className="w-full max-w-xl mx-auto rounded-lg shadow-2xl border border-green/30"
+                      onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
+                    />
+                    {item.caption && (
+                      <p className="text-gray-400 text-sm italic mt-3 text-center">{item.caption}</p>
+                    )}
+                  </motion.div>
+                )
+              }
               if (item.type === 'text') {
                 // Use className directly from slide if provided
                 if (item.className) {
@@ -371,23 +390,24 @@ export default function PreHomepage({
                   else delay = 0.4 // divider or other
                   
                   if (hasNewlines) {
-                    // Calculate delay based on content (for the multi-line block)
-                    let blockDelay = 0
-                    if (content.includes("Before reacting")) blockDelay = 2.3
-                    else blockDelay = delay
-                    
+                    const isBeforeReacting = content.includes("Before reacting")
+                    const lines = content.split('\n')
+                    const lineOpacities = isBeforeReacting ? [0.45, 0.75, 1] : [1, 1, 1]
+                    const lineDelays = isBeforeReacting ? [2.3, 2.8, 3.3] : [2.3, 2.6, 2.9]
                     return (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, maskImage: "linear-gradient(to bottom, transparent 0%, black 0%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 0%)" }}
-                        animate={{ opacity: 1, maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)" }}
-                        transition={{ duration: 1.2, delay: blockDelay, ease: [0.25, 0.1, 0.25, 1] }}
-                        className={item.className}
-                      >
-                        {content.split('\n').map((line: string, lineIdx: number) => (
-                          <div key={lineIdx}>{line}</div>
+                      <div key={idx} className="max-w-md text-center mx-auto mt-3">
+                        {lines.map((line: string, lineIdx: number) => (
+                          <motion.div
+                            key={lineIdx}
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: lineOpacities[lineIdx] ?? 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: lineDelays[lineIdx] ?? 2.3, ease: [0.25, 0.1, 0.25, 1] }}
+                            className="text-lg md:text-xl font-medium leading-relaxed text-slate-200"
+                          >
+                            {line}
+                          </motion.div>
                         ))}
-                      </motion.div>
+                      </div>
                     )
                   }
                   return (
@@ -571,28 +591,6 @@ export default function PreHomepage({
     const greenLineIndices = slide.greenLines || []
 
     if (isLargeFormatSlide) {
-      const isPunchSlide =
-        slide.body &&
-        slide.body.length === 1 &&
-        slide.body[0] === "A few minutes. Enough to make Congress listen."
-
-      const isPunchSlideByIndex = index === 1
-      if (isPunchSlideByIndex) {
-        return (
-          <div className="flex flex-col items-center px-4 sm:px-6 text-center max-w-md sm:max-w-lg mx-auto space-y-0 sm:space-y-1 pt-4">
-            <p className="font-bold text-green" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
-              A few minutes.
-            </p>
-            <p className="font-bold text-white" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
-              Enough to make
-            </p>
-            <p className="font-bold text-green" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)' }}>
-              Congress listen.
-            </p>
-          </div>
-        )
-      }
-
       const largeBodyClass = "text-3xl md:text-5xl font-semibold tracking-tight"
       const wrapperClass = "space-y-4 md:space-y-6"
       return (
@@ -665,38 +663,90 @@ export default function PreHomepage({
     )
   }
 
+  // Determine if current slide should show background logo (slides 3, 4, 5 only)
+  const showBackgroundLogo = index === 3 || index === 4 || index === 5
+  
+  // Background logo styles for slides 3, 4, 5
+  const getBackgroundLogoStyle = () => {
+    switch (index) {
+      case 3:
+        return "opacity-[0.20] scale-[1.0] z-0"
+      case 4:
+        return "opacity-[0.25] scale-[1.4] z-0"
+      case 5:
+        return "opacity-[0.30] scale-[1.8] z-0"
+      default:
+        return ""
+    }
+  }
+
+  // Glow intensity increases with each slide
+  const getGlowIntensity = () => {
+    switch (index) {
+      case 3:
+        return "0 0 8px rgba(61, 220, 132, 0.2)"
+      case 4:
+        return "0 0 12px rgba(61, 220, 132, 0.25)"
+      case 5:
+        return "0 0 16px rgba(61, 220, 132, 0.3)"
+      default:
+        return "none"
+    }
+  }
+
   return (
-    <div className="h-screen max-h-screen bg-[#050b19] text-white flex flex-col overflow-hidden">
+    <div className="relative h-screen max-h-screen bg-[#050b19] text-white flex flex-col overflow-hidden">
+
+      {/* Background PHIERS Logo (No Text) - Slides 3, 4, 5 only */}
+      {showBackgroundLogo && (
+        <div
+          className={`
+            absolute inset-0 flex items-center justify-center
+            pointer-events-none select-none
+            transition-all duration-1000 ease-out
+            ${getBackgroundLogoStyle()}
+          `}
+        >
+          <img
+            src="/images/PHIERS_Logo-NoText.png"
+            alt=""
+            className="h-[80px] w-auto object-contain"
+            style={{
+              filter: `drop-shadow(${getGlowIntensity()})`
+            }}
+          />
+        </div>
+      )}
 
       {/* Top bar */}
       <div
         className="flex justify-between items-center pr-6 pl-6 pt-2 pb-1 shrink-0 z-10 transition-opacity duration-300"
-        style={{ opacity: 0.35 }}
+        style={{ opacity: 0.9 }}
       >
         {onBackToReading && (
-          <button onClick={onBackToReading} className="text-gray-400 text-sm underline hover:text-gray-200">
+          <button onClick={onBackToReading} className="text-gray-200 text-sm underline hover:text-white">
             ← Back to start
           </button>
         )}
-        <button onClick={onGoToHomepage} className="text-gray-400 text-sm underline hover:text-gray-200">
+        <button onClick={onGoToHomepage} className="text-gray-200 text-sm underline hover:text-white">
           Skip →
         </button>
       </div>
 
       {/* MAIN SLIDE AREA */}
       <div
-        className={`flex-1 overflow-y-auto touch-auto flex justify-center items-start ${
+        className={`relative z-10 flex-1 overflow-y-auto touch-auto flex justify-center items-start ${
           slide.imageSrc && slide.imageSrc.includes('FredDoug')
             ? 'px-0 md:px-12 pt-2 md:pt-4 pb-2'
             : index === 8 || index === 1
             ? 'px-6 md:px-12 pt-0 pb-0'
             : 'px-6 md:px-12 pt-2 pb-0'
         } ${isLastSlide ? 'relative' : ''}`}
-        onClick={!isTransitioning && !isLastSlide ? next : undefined}
-        onKeyDown={!isTransitioning && !isLastSlide ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
-        style={{ cursor: !isTransitioning && !isLastSlide ? 'pointer' : 'default' }}
+        onClick={index === 0 ? undefined : (!isTransitioning && !isLastSlide ? next : undefined)}
+        onKeyDown={index !== 0 && !isTransitioning && !isLastSlide ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } : undefined}
+        style={{ cursor: index === 0 ? 'default' : (!isTransitioning && !isLastSlide ? 'pointer' : 'default') }}
         role="button"
-        tabIndex={!isTransitioning && !isLastSlide ? 0 : -1}
+        tabIndex={index !== 0 && !isTransitioning && !isLastSlide ? 0 : -1}
       >
         <div className="w-full mx-auto max-w-full">
           <div className="text-center w-full">
@@ -706,11 +756,38 @@ export default function PreHomepage({
                   <div
                     className={`
                       flex flex-col items-center text-center w-full
-                      pt-2 md:pt-4
+                      pt-0 -mt-12 md:-mt-16
                     `}
                   >
                     {renderTitle()}
                     {renderBody()}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.45, delay: 0.45 }}
+                      className="mt-16 md:mt-20 flex flex-col items-center gap-2"
+                    >
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          if (!isTransitioning) next()
+                        }}
+                        className="text-sm transition-all duration-200 text-gray-600 hover:text-gray-400"
+                      >
+                        <span className="font-bold">Continue →</span>
+                      </button>
+                      <div className="w-16 h-px bg-gray-800 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gray-600 rounded-full"
+                          initial={{ width: '100%' }}
+                          animate={{ width: '0%' }}
+                          transition={{ duration: 10, delay: 0.45, ease: 'linear' }}
+                          onAnimationComplete={() => {
+                            if (!isTransitioning) next()
+                          }}
+                        />
+                      </div>
+                    </motion.div>
                   </div>
                 </div>
               ) : (
@@ -771,12 +848,6 @@ export default function PreHomepage({
           ))}
         </div>
 
-        {/* Tap hint - only on slide 0 */}
-        {index === 0 && (
-          <div className="text-xs text-gray-400 opacity-80 pointer-events-none mt-2">
-            tap anywhere
-          </div>
-        )}
       </div>
 
       {/* Back button - independent fixed position */}

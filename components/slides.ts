@@ -21,7 +21,7 @@ const slides = [
       },
       {
         type: "spacer",
-        height: 16
+        height: 40
       },
       {
         type: "text",
@@ -30,7 +30,7 @@ const slides = [
         green: true,
         bold: true,
         className:
-          "text-5xl md:text-6xl font-semibold text-green-400 tracking-[0.02em] mb-6 opacity-0 animate-fadeIn duration-[400ms] delay-[900ms]"
+          "text-5xl md:text-6xl font-semibold text-green-400/60 tracking-[0.02em] mb-6 opacity-0 animate-fadeIn duration-[400ms] delay-[900ms]"
       },
       {
         type: "text",
@@ -126,16 +126,23 @@ const slides = [
     teethImage: true
   },
 
-  // 8 — MECHANISM (shortened, 4 beats)
+  // 8 — MECHANISM (with town hall image and alternated text rhythm)
   {
-    title: "How to make Congress listen.",
+    customTextLayout: true,
     body: [
-      "1,500 verified people go on record.",
-      "Public town hall demanded.",
-      "Refuse? Investigation.",
-      "Then voters decide."
-    ],
-    greenLines: [0, 1, 2, 3]
+      { text: "How to make Congress listen.", large: true, green: false, bold: true, className: "text-2xl md:text-3xl font-bold text-white mb-4" },
+      { type: "spacer", height: 16 },
+      { text: "500 signatures — your Rep shows up.", green: true, bold: true },
+      { text: "1,000 signatures — your Senator shows up.", green: true, bold: true },
+      { text: "1,500 — the district is organized.", green: true, bold: true },
+      { type: "spacer", height: 12 },
+      { text: "Public town hall demanded.", green: false, bold: false },
+      { type: "spacer", height: 20 },
+      { type: "image", imageSrc: "/images/town_hall_meeting.jpg", caption: "When 1,500 people organize, the district listens." },
+      { type: "spacer", height: 20 },
+      { text: "Refuse? Investigation.", green: true, bold: true },
+      { text: "Then voters decide.", green: false, bold: false }
+    ]
   },
 
   // 9 — RALPH NADER (precedent slide)

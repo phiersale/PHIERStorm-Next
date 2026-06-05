@@ -1,14 +1,15 @@
   // FILE: components/PathosCredibility.tsx
-  // VERSION: 17.2 – Bottom CTA replaced with journey-forward block
+  // VERSION: 17.4 – Fixed duplicate keys, removed unused imports
 
   'use client'
 
-  import { useState, useEffect, useRef } from 'react'
+  import { useState, useEffect } from 'react'
   import { motion } from 'framer-motion'
 
   type Props = {
     onBackToSlides?: () => void
     onOpenTransitionModal?: () => void
+    onOpenPrivacyModal?: (url: string) => void
   }
 
   const sectionFade = {
@@ -16,7 +17,7 @@
     visible: { opacity: 1, y: 0 }
   }
 
-  export default function PathosCredibility({ onBackToSlides, onOpenTransitionModal }: Props) {
+  export default function PathosCredibility({ onBackToSlides, onOpenTransitionModal, onOpenPrivacyModal }: Props) {
     const [showSkipAhead, setShowSkipAhead] = useState(false)
 
     useEffect(() => {
@@ -30,9 +31,7 @@
       return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    const goToMainHomepage = () => {
-      window.location.href = '/?main=true'
-    }
+    // goToMainHomepage removed - unused
 
     return (
       <>
@@ -139,7 +138,7 @@
             className="flex flex-col gap-8 mb-12"
           >
             {/* VIDEO CARD 1 - PATHOS */}
-            <div className="w-full bg-[#0a1628] rounded-xl p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="w-[95%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-4 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
               <div className="mb-4">
                 <p className="text-green text-xl md:text-2xl font-bold mb-1">
                   PATHOS Communications
@@ -185,12 +184,12 @@
             </div>
 
             {/* VIDEO CARD 2 - BIGC */}
-            <div className="w-full bg-[#0a1628] rounded-xl p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="w-[80%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-8 border border-green/25 shadow-2xl shadow-black/60">
               <div className="mb-4">
-                <p className="text-green text-xl md:text-2xl font-bold mb-1">
+                <p className="text-green text-2xl md:text-2xl font-bold mb-1">
                   Voices of Accountability
                 </p>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-400 text-base md:text-sm">
                   National Media · Cultural Leadership
                 </p>
               </div>
@@ -224,26 +223,26 @@
                 </div>
               </div>
 
-              <p className="text-green text-lg font-semibold italic mb-2">
+              <p className="text-green text-xl md:text-lg font-semibold italic mb-2">
                 "This isn't left or right. This is people trying to survive."
               </p>
-              <p className="text-gray-500 text-xs">Curry, Nader, Noah, Hunter · May 2026</p>
+              <p className="text-gray-500 text-sm md:text-xs">Curry, Nader, Noah, Hunter · May 2026</p>
             </div>
 
             {/* VIDEO CARD 3 - DOTCOM */}
-            <div className="w-full bg-[#0a1628] rounded-xl p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="w-[80%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-8 border border-green/25 shadow-2xl shadow-black/60">
               <div className="mb-4">
-                <p className="text-green text-xl md:text-2xl font-bold mb-1">
+                <p className="text-green text-2xl md:text-2xl font-bold mb-1">
                   DotCom Magazine
                 </p>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-400 text-base md:text-sm">
                   Entrepreneur Spotlight · National Media
                 </p>
               </div>
 
               <div
                 className="relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
-                style={{ paddingBottom: '56.25%' }}
+                style={{ paddingBottom: '56.25%', width: '100%' }}
                 onClick={(e) => {
                   const container = e.currentTarget
                   const iframe = document.createElement('iframe')
@@ -270,10 +269,10 @@
                 </div>
               </div>
 
-              <p className="text-green text-lg font-semibold italic mb-2">
+              <p className="text-green text-xl md:text-lg font-semibold italic mb-2">
                 "A serious, credible framework."
               </p>
-              <p className="text-gray-500 text-xs">DotCom Magazine · July 2022</p>
+              <p className="text-gray-500 text-sm md:text-xs">DotCom Magazine · July 2022</p>
             </div>
           </motion.div>
 
@@ -854,8 +853,8 @@
                     ['2026', 'Pathos Communications — London Stock Exchange listed'],
                     ['2026', 'BigC interview — framework discussed by media, culture, and movement leaders'],
                     ['Now', 'District organizing model — active']
-                  ].map(([year, label]) => (
-                    <div key={year} className="flex items-start gap-3">
+                  ].map(([year, label], idx) => (
+                    <div key={`${year}-${idx}`} className="flex items-start gap-3">
                       <span className="text-green text-xs font-bold w-10 shrink-0">{year}</span>
                       <span className="text-gray-400 text-xs">{label}</span>
                     </div>
@@ -946,7 +945,36 @@
               The record is public. The mechanism is transparent. The next step is yours.
             </p>
           </motion.div>
-{/* Journey-forward CTA */}
+
+          {/* Petition / Survey CTAs */}
+          <motion.div
+            variants={sectionFade}
+            className="text-center pt-1 pb-2"
+          >
+            <div className="max-w-md mx-auto bg-[#0a1628] border border-green/30 rounded-lg p-6 mb-6">
+              <p className="text-white text-base font-semibold mb-2">
+                You've read the record.
+              </p>
+              <p className="text-green text-lg font-bold mb-5">
+                Now go on record yourself.
+              </p>
+              <button
+                onClick={() => onOpenPrivacyModal?.('https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred')}
+                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3"
+                style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
+              >
+                → Sign the Petition
+              </button>
+              <button
+                onClick={() => onOpenPrivacyModal?.('https://phiers-civic-engagem-vopm05.abacusai.app/survey')}
+                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition"
+              >
+                Take the Survey →
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Journey-forward CTA */}
           <motion.div
             id="cta"
             variants={sectionFade}
@@ -980,9 +1008,9 @@
               </button>
             </div>
           </motion.div>
-       </motion.div>
+        </motion.div>
       </>
     )
   }
 
-  // FILE: components/PathosCredibility.tsx
+  // FILE: components/PathosCredibility.tsx (end)

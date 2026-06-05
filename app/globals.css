@@ -981,4 +981,41 @@ img.phiers-wide {
     drop-shadow(0 0 32px rgba(61,220,132,.10));
 }
 
+/* ========================================
+   PAUSE SLIDE BUTTON PULSE ANIMATION
+   Only affects .animate-pulse class
+   Does not impact any other pages
+   ======================================== */
+
+@keyframes pausePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse {
+  animation: pausePulse 0.6s ease-in-out 2 !important;
+}
+
+/* ========================================
+   PAUSE SLIDE BUTTON PULSE ANIMATION
+   Only affects .animate-pulse class on Slide 0
+   ======================================== */
+
+@keyframes pausePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse {
+  animation: pausePulse 0.6s ease-in-out 2 !important;
+}
+
 /* FILE: app/globals.css */
