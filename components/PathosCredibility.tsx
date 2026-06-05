@@ -149,8 +149,7 @@
               </div>
 
               <div
-                className="relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
-                style={{ paddingBottom: '56.25%' }}
+                className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                 onClick={(e) => {
                   const container = e.currentTarget
                   const iframe = document.createElement('iframe')
@@ -184,7 +183,7 @@
             </div>
 
             {/* VIDEO CARD 2 - BIGC */}
-            <div className="w-[80%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="w-[95%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-4 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
               <div className="mb-4">
                 <p className="text-green text-2xl md:text-2xl font-bold mb-1">
                   Voices of Accountability
@@ -195,8 +194,7 @@
               </div>
 
               <div
-                className="relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
-                style={{ paddingBottom: '56.25%' }}
+                className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                 onClick={(e) => {
                   const container = e.currentTarget
                   const iframe = document.createElement('iframe')
@@ -230,7 +228,7 @@
             </div>
 
             {/* VIDEO CARD 3 - DOTCOM */}
-            <div className="w-[80%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="w-[95%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-4 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
               <div className="mb-4">
                 <p className="text-green text-2xl md:text-2xl font-bold mb-1">
                   DotCom Magazine
@@ -241,8 +239,7 @@
               </div>
 
               <div
-                className="relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
-                style={{ paddingBottom: '56.25%', width: '100%' }}
+                className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                 onClick={(e) => {
                   const container = e.currentTarget
                   const iframe = document.createElement('iframe')
