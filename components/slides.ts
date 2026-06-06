@@ -126,48 +126,55 @@ const slides = [
     teethImage: true
   },
 
-  // 8 — MECHANISM (with town hall image and alternated text rhythm)
+   // 8 — MECHANISM (clean, text-only — matches the centered rhythm of slides 4-5)
   {
-    customTextLayout: true,
+    title: "",
     body: [
-      { text: "How to make Congress listen.", large: true, green: false, bold: true, className: "text-2xl md:text-3xl font-bold text-white mb-4" },
-      { type: "spacer", height: 16 },
+      { text: "How to make Congress listen.", large: false, green: false, bold: true, className: "text-2xl md:text-3xl font-bold text-white" },
+      { type: "spacer", height: 32 },
       { text: "500 signatures — your Rep shows up.", green: true, bold: true },
-      { text: "1,000 signatures — your Senator shows up.", green: true, bold: true },
-      { text: "1,500 — the district is organized.", green: true, bold: true },
       { type: "spacer", height: 12 },
-      { text: "Public town hall demanded.", green: false, bold: false },
-      { type: "spacer", height: 20 },
-      { type: "image", imageSrc: "/images/town_hall_meeting.jpg", caption: "When 1,500 people organize, the district listens." },
-      { type: "spacer", height: 20 },
-      { text: "Refuse? Investigation.", green: true, bold: true },
-      { text: "Then voters decide.", green: false, bold: false }
-    ]
+      { text: "1,000 signatures — your Senator shows up.", green: true, bold: true },
+      { type: "spacer", height: 12 },
+      { text: "1,500 — the district is organized.", green: true, bold: true },
+      { type: "spacer", height: 32 },
+      { text: "Public town hall demanded.", green: true, bold: true, className: "text-xl md:text-2xl text-green font-bold" }
+    ],
+    customTextLayout: true
   },
 
-  // 9 — RALPH NADER (precedent slide)
-{
-  type: "image",
-  imageSrc: "/images/RalphNader-500-Unstoppable_Change.jpg",
-  imageAlt: "Ralph Nader — Unstoppable Change",
-  className: "bg-neutral-950 flex flex-col items-center justify-center py-20",
+  // 9 — TOWN HALL MEETING (image slide - full width on mobile)
+  {
+    type: "image",
+    imageSrc: "/images/town_hall_meeting.jpg",
+    imageAlt: "Town hall meeting — the district organized",
+    className: "bg-neutral-950 flex flex-col items-center justify-center py-4 md:py-12",
+    imageClassName: "w-full md:w-[72%] max-w-5xl mx-auto animate-fadeInSlow",
+    caption: "When 1,500 people organize, the district listens.",
+    captionClassName: "text-center text-green-400 text-base md:text-xl font-medium mt-2 md:mt-4 tracking-tight max-w-3xl mx-auto"
+  },
 
-  // Force image to ~72% width - cinematic presence
-  imageClassName: "w-[72%] max-w-5xl mx-auto animate-fadeInSlow",
+  // 10 — RALPH NADER (click-to-enlarge + fifteen hundred quote)
+  {
+    type: "image",
+    imageSrc: "/images/RalphNader-500-Unstoppable_Change.jpg",
+    imageAlt: "Ralph Nader — Unstoppable Change",
+    className: "bg-neutral-950 flex flex-col items-center justify-center py-4 md:py-12",
+    imageClassName: "w-full md:w-[72%] max-w-5xl mx-auto animate-fadeInSlow cursor-pointer transition-transform hover:scale-[1.02]",
+    imageClickable: true,
+    caption: "1,500 organized people can overcome the influence of money in politics.",
+    captionClassName: "text-center text-green-400 text-lg md:text-2xl font-semibold mt-4 md:mt-6 tracking-tight max-w-3xl mx-auto",
+    subCaption: "— Ralph Nader",
+    subCaptionClassName: "text-center text-gray-400 text-sm md:text-base mt-2",
+    showTapHint: true
+  },
 
-  caption: "Proof that organized people still move power.",
-  captionClassName:
-    "text-center text-red-400 text-2xl md:text-3xl font-medium mt-10 tracking-tight max-w-3xl animate-fadeInUp delay-500"
-},
-
-
-
-  // 10 — ACCOUNTABILITY
+  // 11 — ACCOUNTABILITY
   {
     replacementLayout: true
   },
 
-  // 11 — PHIERS ACRONYM
+  // 12 — PHIERS ACRONYM
   {
     title: "PHIERS",
     body: [
@@ -182,7 +189,7 @@ const slides = [
     punchLine: "Power Held In Every Representative's Seat (pronounced FIRES)"
   },
 
-  // 12 — FINAL CTA
+  // 13 — FINAL CTA
   {
     title: "One petition. Your district. On the record.",
     body: [
@@ -197,5 +204,3 @@ const slides = [
 ]
 
 export default slides
-
-// FILE: components/slides.ts

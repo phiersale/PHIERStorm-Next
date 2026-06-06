@@ -12,13 +12,10 @@ import MainHomePage from '@/components/MainHomePage'
 import PathosCredibility from '@/components/PathosCredibility'
 import TransitionModal from '@/components/TransitionModal'
 import FifteenHundredModal from '@/components/FifteenHundredModal'
-import OutboundPrivacyModal from '@/components/OutboundPrivacyModal'
 
 export default function Page() {
   const [stage, setStage] = useState<'image' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
   const [skipFirstImage, setSkipFirstImage] = useState(false)
-  const [privacyModalOpen, setPrivacyModalOpen] = useState(false)
-  const [pendingUrl, setPendingUrl] = useState('')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
@@ -40,13 +37,11 @@ export default function Page() {
   }, [])
 
   const handleGoToPetition = () => {
-    setPendingUrl('https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred')
-    setPrivacyModalOpen(true)
+    window.open('https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred', '_blank')
   }
 
   const handleGoToSurvey = () => {
-    setPendingUrl('https://phiers-civic-engagem-vopm05.abacusai.app/survey')
-    setPrivacyModalOpen(true)
+    window.open('https://phiers-civic-engagem-vopm05.abacusai.app/survey', '_blank')
   }
 
   if (stage === 'image') {
@@ -123,10 +118,7 @@ export default function Page() {
             setStage('prehome')
           }}
           onOpenTransitionModal={() => setStage('transition')}
-          onOpenPrivacyModal={(url) => {
-            setPendingUrl(url)
-            setPrivacyModalOpen(true)
-          }}
+
         />
         <div id="credibility-buttons" className="flex justify-center gap-2 pb-2 -mt-4">
           <button
@@ -158,11 +150,6 @@ export default function Page() {
             Explore the framework →
           </button>
         </div>
-        <OutboundPrivacyModal
-          open={privacyModalOpen}
-          destinationUrl={pendingUrl}
-          onClose={() => setPrivacyModalOpen(false)}
-        />
       </div>
     )
   }
@@ -185,11 +172,6 @@ export default function Page() {
       
       <FifteenHundredModal />
       
-      <OutboundPrivacyModal
-        open={privacyModalOpen}
-        destinationUrl={pendingUrl}
-        onClose={() => setPrivacyModalOpen(false)}
-      />
     </>
   )
 }

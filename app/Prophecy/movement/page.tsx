@@ -129,6 +129,43 @@ export default function MovementPage() {
           </div>
         </section>
 
+        {/* BIG C VIDEO SECTION — HUMAN PROOF AFTER THE FIFTEEN HUNDRED, BEFORE WHAT PHIERS BUILDS */}
+        <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6 text-white">
+            A real conversation about power, accountability, and what people are feeling right now.
+          </h2>
+
+          <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+            Big C brings together respected voices — Ralph Nader, Trevor Noah, and Karen Hunter — to talk about the exact leverage PHIERS operationalizes.
+            It's funny at moments, but the content is serious. It's the conversation millions of people have been waiting for:
+            why everything feels broken, and what ordinary people can actually do about it.
+          </p>
+
+          <h3 className="text-green-400 font-semibold text-lg md:text-xl mb-2">
+            The conversation that connects the mechanism to real life.
+          </h3>
+
+          <p className="text-gray-400 text-sm italic mb-6">
+            Trusted voices. Real frustration. Real solutions. This is what leverage sounds like when people finally talk honestly.
+          </p>
+
+          <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-green-30">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/qxcRP8lx9dc"
+              title="Big C Interview — Ralph Nader, Trevor Noah, Karen Hunter on PHIERS"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          <p className="text-gray-500 text-xs mt-3 text-center">
+            Big C · May 2026 · Ralph Nader, Trevor Noah, Karen Hunter
+          </p>
+        </section>
+
         {/* WHAT PHIERS BUILDS */}
         <section className="max-w-4xl mx-auto px-5 py-20 border border-gray-800 rounded-2xl bg-[#0b0b0b]">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">What PHIERS Builds</h2>

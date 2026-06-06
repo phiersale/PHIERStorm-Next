@@ -87,6 +87,113 @@
             />
           </motion.div>
 
+          {/* 30-Second Overview: The Purpose of PHIERS (50% size - archival context, not spectacle) */}
+          <motion.div variants={sectionFade} className="max-w-2xl mx-auto my-12">
+            <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/25 shadow-2xl shadow-black/60">
+              <p className="text-green text-sm font-semibold mb-3 tracking-wide text-center">
+                THE PURPOSE OF PHIERS — 2013
+              </p>
+              <div
+                className="relative w-full max-w-2xl mx-auto cursor-pointer group rounded-lg overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.6)]"
+                style={{ paddingBottom: '28.125%' }}
+                onClick={(e) => {
+                  const container = e.currentTarget;
+                  const iframe = document.createElement('iframe');
+                  iframe.src = 'https://player.vimeo.com/video/59460323?autoplay=1&title=0&byline=0&portrait=0';
+                  iframe.title = 'Purpose of PHIERS - 2013';
+                  iframe.className = 'absolute top-0 left-0 w-full h-full';
+                  iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+                  iframe.allowFullscreen = true;
+                  container.innerHTML = '';
+                  container.appendChild(iframe);
+                }}
+              >
+                <img
+                  src="https://vumbnail.com/59460323.jpg"
+                  alt="2013 PHIERS overview video thumbnail"
+                  className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
+                  <div className="w-16 h-16 rounded-full bg-green/30 border border-green/60 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                    <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-400 text-xs italic mt-3 text-center">
+                A short, direct overview of PHIERS — healthcare, coordinated care, jobs, and leverage (2013)
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Spacer before timeline */}
+          <div className="mt-24 md:mt-32" />
+
+          {/* ========== WRITTEN TIMELINE — INSTITUTIONAL RECEIPTS ========== */}
+          <section className="w-full max-w-4xl mx-auto px-6 mt-12 md:mt-16">
+            <div className="text-center mb-4">
+              <p className="text-green text-sm font-mono tracking-wider">THE RECORD</p>
+              <p className="text-gray-500 text-[11px]">22 years of documented public record</p>
+            </div>
+
+            <div className="border border-green/20 rounded-lg p-6 bg-[#0a1628]/40">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2004</span>
+                    <span className="text-gray-300 text-sm">Earliest documented PHIERS record</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2007</span>
+                    <span className="text-gray-300 text-sm">First recorded video — PHIERS documented framework</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2009</span>
+                    <span className="text-gray-300 text-sm">PHIERS.org partners with SureSafe Pharma</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2011</span>
+                    <span className="text-gray-300 text-sm">Archived platform snapshot — health reform coalition</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2013</span>
+                    <span className="text-gray-300 text-sm">First comprehensive articulation of PHIERS mission</span>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2014</span>
+                    <span className="text-gray-300 text-sm">Operational proposals, named partnerships, dated documents</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2022</span>
+                    <span className="text-gray-300 text-sm">DotCom Magazine Entrepreneur Spotlight</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2026</span>
+                    <span className="text-gray-300 text-sm">Pathos Communications — London Stock Exchange listed</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">2026</span>
+                    <span className="text-gray-300 text-sm">BigC interview — framework discussed by media, culture, and movement leaders</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green text-sm font-bold w-12 shrink-0">Now</span>
+                    <span className="text-gray-300 text-sm">District organizing model — active</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-500 text-xs italic mt-6 text-center">
+                The point is not retroactive credit. It's that structural pressure recognition, when
+                documented publicly and early, eventually becomes its own form of evidence.
+              </p>
+            </div>
+          </section>
+
+          {/* Spacer before modern videos */}
+          <div className="mt-24 md:mt-32" />
+
           {/* [2] QUESTION — sets up skepticism */}
           <motion.div variants={sectionFade} className="text-center max-w-2xl mx-auto mb-6">
             <p className="text-gray-300 text-base leading-relaxed">
@@ -271,6 +378,40 @@
               </p>
               <p className="text-gray-500 text-sm md:text-xs">DotCom Magazine · July 2022</p>
             </div>
+
+          {/* TRANSITION SENTENCE + VALIDATOR DROPDOWN */}
+          <div className="max-w-3xl mx-auto my-8 text-center">
+            <p className="text-gray-300 text-sm leading-relaxed mb-2">
+              Three organizations. Three different audiences. Three independent validations.
+            </p>
+            <p className="text-gray-400 text-xs mb-4">
+              For readers unfamiliar with them:
+            </p>
+          </div>
+
+          <details className="group mb-12 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4 max-w-3xl mx-auto">
+            <summary className="cursor-pointer text-lg font-semibold text-green mb-2 list-none flex items-center justify-between">
+              <span>Who are these organizations?</span>
+              <span className="group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <div className="mt-4 space-y-4 text-gray-300 text-sm">
+              <div className="border-l-2 border-green/30 pl-3">
+                <p className="text-white font-bold">Pathos Communications</p>
+                <p className="text-gray-400 text-xs">London Stock Exchange-listed global PR firm. Their reputation is their currency. They don't attach their name to things that aren't real. On camera, they told us: "If you weren't legit, we wouldn't risk our name."</p>
+              </div>
+              <div className="border-l-2 border-green/30 pl-3">
+                <p className="text-white font-bold">DotCom Magazine</p>
+                <p className="text-gray-400 text-xs">National entrepreneur spotlight. Their interview is public record — not a paid placement, not a promotional slot. A journalist asking hard questions about a framework most people said couldn't work.</p>
+              </div>
+              <div className="border-l-2 border-green/30 pl-3">
+                <p className="text-white font-bold">Big C Media</p>
+                <p className="text-gray-400 text-xs">National cultural platform. They brought together Ralph Nader, media leaders, and community voices to examine whether PHIERS actually holds up under scrutiny. The result is on video. Their conclusion: "This isn't left or right. This is people trying to survive."</p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-green/20">
+                <p className="text-green text-xs font-semibold">Three different audiences. Three independent validations. One public record.</p>
+              </div>
+            </div>
+          </details>
           </motion.div>
 
           {/* ========== SHARK TANK CONNECTION (COLLAPSIBLE) ========== */}
@@ -391,6 +532,31 @@
             </div>
           </motion.details>
 
+          {/* EARLY CTA - after Shark section */}
+          <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
+            <div className="bg-[#0a1628] border border-green/30 rounded-lg p-6">
+              <p className="text-white text-base font-semibold mb-2">
+                You've seen the record.
+              </p>
+              <p className="text-green text-lg font-bold mb-5">
+                Now go on record yourself.
+              </p>
+              <button
+                onClick={() => onOpenPrivacyModal?.('https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred')}
+                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3"
+                style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
+              >
+                → Sign the Petition
+              </button>
+              <button
+                onClick={() => onOpenPrivacyModal?.('https://phiers-civic-engagem-vopm05.abacusai.app/survey')}
+                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition"
+              >
+                Take the Survey →
+              </button>
+            </div>
+          </motion.div>
+
           {/* CHAPTER MARKER */}
           <div className="h-[1px] w-full bg-green/10 my-10" />
 
@@ -425,6 +591,58 @@
             <div className="text-center mb-4">
               <p className="text-green text-sm font-mono tracking-wider">FIRST RECORDED VIDEO 2007</p>
               <p className="text-gray-500 text-[11px]">18+ years of documented public record</p>
+            </div>
+
+            {/* FIRST RECORDED VIDEO 2007 - Intro (2007) with Modal */}
+            <div className="max-w-2xl mx-auto my-6">
+              <div
+                className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02] shadow-xl"
+                style={{ paddingBottom: '56.25%' }}
+                onClick={() => {
+                  // Open modal with larger video
+                  const modal = document.createElement('div');
+                  modal.className = 'fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm';
+                  modal.onclick = (e) => {
+                    if (e.target === modal) modal.remove();
+                  };
+                  
+                  const modalContent = document.createElement('div');
+                  modalContent.className = 'relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl';
+                  modalContent.onclick = (e) => e.stopPropagation();
+                  
+                  const closeBtn = document.createElement('button');
+                  closeBtn.className = 'absolute top-4 right-4 z-10 text-white text-2xl bg-black/50 rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/80 transition';
+                  closeBtn.innerHTML = '✕';
+                  closeBtn.onclick = () => modal.remove();
+                  
+                  const iframe = document.createElement('iframe');
+                  iframe.src = 'https://player.vimeo.com/video/11995433?autoplay=1&title=1&byline=1&portrait=1&fullscreen=1';
+                  iframe.className = 'w-full aspect-video';
+                  iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+                  iframe.allowFullscreen = true;
+                  
+                  modalContent.appendChild(closeBtn);
+                  modalContent.appendChild(iframe);
+                  modal.appendChild(modalContent);
+                  document.body.appendChild(modal);
+                }}
+              >
+                <img
+                  src="https://vumbnail.com/11995433.jpg"
+                  alt="First PHIERS recording - 2007"
+                  className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
+                  <div className="w-16 h-16 rounded-full bg-green/30 border border-green/60 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                    <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-400 text-xs italic mt-2 text-center">
+                The earliest recorded articulation of PHIERS — 2007
+              </p>
             </div>
 
             {/* Enemy system definition */}
@@ -507,6 +725,17 @@
               </div>
             </div>
 
+            {/* WHAT THIS MEANS FOR YOU */}
+            <div className="mt-8 max-w-2xl mx-auto text-center bg-[#0a1628]/40 p-5 rounded-lg border border-green/20">
+              <p className="text-green text-sm font-bold mb-2">What This Means For You</p>
+              <p className="text-gray-300 text-sm leading-relaxed mb-2">
+                Nothing — unless you choose it.
+              </p>
+              <p className="text-gray-400 text-xs">
+                PHIERS is a tool. Your district. Your leverage. Your call.
+              </p>
+            </div>
+
             {/* What We Know Works */}
             <div className="mb-8">
               <h2 className="text-xl md:text-2xl font-bold text-green mb-3">What We Know Works</h2>
@@ -572,45 +801,13 @@
             <p className="text-gray-400 text-sm mb-4">
               Early documentation (2007–2014) – archival, not promotional
             </p>
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 justify-items-center max-w-3xl mx-auto">
-              {/* 2007 video */}
-              <div className="w-28 sm:w-36 relative">
-                <div className="absolute -top-2 left-2 z-10 bg-green/80 text-black text-[9px] font-bold px-1.5 py-0.5 rounded-sm">
-                  FIRST RECORDING
-                </div>
-                <div
-                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
-                  style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://player.vimeo.com/video/11995433?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'autoplay; fullscreen'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
-                >
-                  <img
-                    src="https://vumbnail.com/11995433.jpg"
-                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
-                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">Intro (2007)</p>
-              </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center max-w-5xl mx-auto">
+
 
               {/* Sizzle Film 2011 */}
-              <div className="w-28 sm:w-36">
+              <div className="w-28 sm:w-32">
                 <div
-                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 transition-transform hover:scale-[1.02]"
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
                   onClick={(e) => {
                     const container = e.currentTarget
@@ -640,9 +837,9 @@
               </div>
 
               {/* Patriots on PHIERS 2014 */}
-              <div className="w-28 sm:w-36">
+              <div className="w-28 sm:w-32">
                 <div
-                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 transition-transform hover:scale-[1.02]"
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
                   onClick={(e) => {
                     const container = e.currentTarget
@@ -672,9 +869,9 @@
               </div>
 
               {/* Silos to Synergies 2014 */}
-              <div className="w-28 sm:w-36">
+              <div className="w-28 sm:w-32">
                 <div
-                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 transition-transform hover:scale-[1.02]"
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
                   onClick={(e) => {
                     const container = e.currentTarget
@@ -702,6 +899,151 @@
                 </div>
                 <p className="text-center text-gray-500 text-[10px] mt-1">
                   Silos to Synergies (c.2014)
+                </p>
+              </div>
+
+              {/* PHIERS Early Framework (Vimeo 34036317) */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://player.vimeo.com/video/34036317?autoplay=1&title=0&byline=0&portrait=0'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'autoplay; fullscreen'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://vumbnail.com/34036317.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">PHIERS Framework (c.2011)</p>
+              </div>
+
+              {/* PHIERS Strategy (Vimeo 37264685) */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://player.vimeo.com/video/37264685?autoplay=1&title=0&byline=0&portrait=0'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'autoplay; fullscreen'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://vumbnail.com/37264685.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">PHIERS Strategy (c.2012)</p>
+              </div>
+
+              {/* PHIERS Structure (Vimeo 37891922) */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://player.vimeo.com/video/37891922?autoplay=1&title=0&byline=0&portrait=0'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'autoplay; fullscreen'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://vumbnail.com/37891922.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">PHIERS Structure (c.2012)</p>
+              </div>
+
+              {/* A Bold Counterplan — How to Combat Disaster Capitalism (2015) */}
+              <div className="w-28 sm:w-32 relative">
+                {/* Timestamp badge */}
+                <div className="absolute top-1 right-1 z-10 bg-black/70 text-green-300 text-[8px] font-mono px-1 py-0.5 rounded shadow-md">
+                  2015
+                </div>
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget;
+                    const iframe = document.createElement('iframe');
+                    iframe.src = 'https://player.vimeo.com/video/241013858?autoplay=1&title=0&byline=0&portrait=0&dnt=1';
+                    iframe.className = 'absolute top-0 left-0 w-full h-full';
+                    iframe.allow = 'autoplay; fullscreen';
+                    iframe.allowFullscreen = true;
+                    container.innerHTML = '';
+                    container.appendChild(iframe);
+                  }}
+                >
+                  <img
+                    src="https://vumbnail.com/241013858.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                    onError={(e) => {
+                      e.currentTarget.src = '/images/placeholder-video.jpg';
+                    }}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">A Bold Counterplan (2015)</p>
+                {/* Helpful link to bypass verification screen */}
+                <p className="text-center text-[8px] mt-0.5">
+                  <a 
+                    href="https://vimeo.com/241013858" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-green-500/70 hover:text-green-400 transition"
+                  >
+                    Watch on Vimeo →
+                  </a>
+                </p>
+                <p className="text-center text-gray-600 text-[7px] mt-0.5">
+                  If Vimeo asks, just click "Continue"
                 </p>
               </div>
             </div>
@@ -838,26 +1180,7 @@
                   2011 snapshot →
                 </a>
               </div>
-              <div className="mt-4 border border-green/10 rounded-lg p-4 bg-[#0a1628]">
-                <p className="text-white text-xs font-semibold mb-3">Timeline</p>
-                <div className="space-y-2">
-                  {[
-                    ['2007', 'First recorded video — PHIERS documented framework'],
-                    ['2009', 'PHIERS.org partners with SureSafe Pharma'],
-                    ['2011', 'Archived platform snapshot — health reform coalition'],
-                    ['2014', 'Operational proposals, named partnerships, dated documents'],
-                    ['2022', 'DotCom Magazine Entrepreneur Spotlight'],
-                    ['2026', 'Pathos Communications — London Stock Exchange listed'],
-                    ['2026', 'BigC interview — framework discussed by media, culture, and movement leaders'],
-                    ['Now', 'District organizing model — active']
-                  ].map(([year, label], idx) => (
-                    <div key={`${year}-${idx}`} className="flex items-start gap-3">
-                      <span className="text-green text-xs font-bold w-10 shrink-0">{year}</span>
-                      <span className="text-gray-400 text-xs">{label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+
               <p className="text-gray-500 text-xs italic mt-4">
                 The point is not retroactive credit. It's that structural pressure recognition, when
                 documented publicly and early, eventually becomes its own form of evidence.
@@ -919,7 +1242,7 @@
                 Just organized citizens applying peaceful democratic pressure.
               </p>
               <p className="text-gray-400 text-sm mt-3">
-                If that interests you, keep exploring.
+                Three different audiences. Three independent validations. One public record.
               </p>
             </div>
           </motion.div>

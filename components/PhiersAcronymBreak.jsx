@@ -11,13 +11,13 @@ export default function PhiersAcronymBreak() {
 
   return (
     <div className="my-12 flex justify-center">
-      <div className="max-w-md w-full">
+      <div className="w-full max-w-md mx-auto px-4">
         {entries.map(({ letter, word }) => (
-          <div key={letter} className="flex items-baseline gap-4 mb-3">
-            <div className="text-3xl md:text-4xl font-black text-green-400 tracking-tighter w-12">
+          <div key={letter} className="flex items-baseline gap-4 mb-3 justify-start md:justify-center">
+            <div className="text-3xl md:text-4xl font-black text-green-400 tracking-tighter w-12 text-right">
               {letter}
             </div>
-            <div className="text-base md:text-lg text-gray-300 border-l-2 border-green-500/40 pl-4">
+            <div className="text-base md:text-lg text-gray-300 border-l-2 border-green-500/40 pl-4 text-left">
               {word}
             </div>
           </div>
@@ -26,5 +26,3 @@ export default function PhiersAcronymBreak() {
     </div>
   );
 }
-
-// components/PhiersAcronymBreak.tsx

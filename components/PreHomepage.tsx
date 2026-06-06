@@ -25,6 +25,7 @@ export default function PreHomepage({
   const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [douglassModalOpen, setDouglassModalOpen] = useState(false)
+  const [naderModalOpen, setNaderModalOpen] = useState(false)
   const [showSwipeHint, setShowSwipeHint] = useState(true)
   const [navVisible, setNavVisible] = useState(false)
   const touchStartX = useRef<number | null>(null)
@@ -564,6 +565,69 @@ export default function PreHomepage({
       if (index === 9) {
         widthClass = 'w-[90%] md:w-[75%]'
       }
+      
+      // Special handling for Ralph Nader slide (index 10) - click to enlarge
+      if (index === 10) {
+        return (
+          <>
+            <div className="w-full flex flex-col items-center">
+              <div 
+                onClick={() => setNaderModalOpen(true)}
+                className="cursor-pointer w-full group"
+              >
+                <Image
+                  src={slide.imageSrc}
+                  alt={slide.imageAlt || "Slide image"}
+                  width={1200}
+                  height={800}
+                  className={`mx-auto object-contain phiers-slide-image ${slide.imageClassName || 'w-full md:w-[72%]'} transition-transform group-hover:scale-[1.01]`}
+                  priority
+                  onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
+                />
+              </div>
+              {slide.caption && (
+                <p className={slide.captionClassName || "text-center text-green-400 text-lg md:text-2xl font-semibold mt-4 max-w-3xl mx-auto"}>
+                  {slide.caption}
+                </p>
+              )}
+              {slide.subCaption && (
+                <p className={slide.subCaptionClassName || "text-center text-gray-400 text-sm md:text-base mt-2"}>
+                  {slide.subCaption}
+                </p>
+              )}
+              {slide.showTapHint && (
+                <p className="text-center text-gray-500 text-xs mt-4 opacity-70">
+                  tap image to enlarge
+                </p>
+              )}
+            </div>
+            
+            {/* Modal for enlarged image */}
+            {naderModalOpen && (
+              <div 
+                className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-pointer"
+                onClick={() => setNaderModalOpen(false)}
+              >
+                <div className="relative max-w-5xl w-full">
+                  <img
+                    src={slide.imageSrc}
+                    alt={slide.imageAlt || "Ralph Nader"}
+                    className="w-full h-auto rounded-lg"
+                  />
+                  <button
+                    onClick={() => setNaderModalOpen(false)}
+                    className="absolute top-4 right-4 text-white text-2xl bg-black/50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/70 transition"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        )
+      }
+      
+      // Default image slide handling
       return (
         <div className="w-full flex flex-col items-center">
           <div onClick={handleImageClick} className={isDouglassSlide ? 'cursor-pointer w-full mb-8' : ''}>
@@ -806,7 +870,7 @@ export default function PreHomepage({
                         index === 11
                         ? "-mt-4 md:-mt-6 pt-6 md:pt-8"
                         : index === 12
-                        ? "-mt-8 md:-mt-12 pt-6 md:pt-8"
+                        ? "pt-20 md:pt-28"
                         : "pt-6 md:pt-8"
                       }
                     `}
