@@ -1,5 +1,5 @@
 // FILE: app/Prophecy/page.tsx
-// VERSION: 62.0 – Cleaned duplicates, fixed CSS, balanced text layout
+v78.2 — leaner prophecy flow, removed over-explanation, third door points to phiers.org
 
 'use client';
 
@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Accordion from './components/Accordion';
-import PhiersAcronymBreak from '@/components/PhiersAcronymBreak';
+
 // import PHIERStormModal from '@/components/PHIERStormModal'; // removed - trust modal handles CTA
 
 export default function ProphecyPage() {
@@ -40,7 +40,17 @@ export default function ProphecyPage() {
     <div className="bg-black text-white">
       {/* TRUST & PARTICIPATION MODAL – fires when visitor clicks Ask a Question */}
       {showTrustModal && (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4">
+        <div 
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowTrustModal(false);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') setShowTrustModal(false);
+          }}
+        >
           <div className="relative max-w-2xl w-full bg-[#0d0d0d] border border-amber-500/30 rounded-2xl p-6 md:p-8 shadow-2xl overflow-y-auto max-h-[90vh]">
             
             <p className="text-amber-400 text-sm font-semibold mb-4">
@@ -109,10 +119,13 @@ export default function ProphecyPage() {
       <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800 py-2">
         <div className="max-w-7xl mx-auto px-4 flex justify-star">
           <Link href="/Prophecy">
-            <img
+            <Image
               src="/images/PHIERS_Logo_BW.png"
               alt="PHIERS"
+              width={48}
+              height={48}
               className="w-10 h-auto md:w-12 opacity-70 hover:opacity-90 transition"
+              priority
             />
           </Link>
         </div>
@@ -120,13 +133,13 @@ export default function ProphecyPage() {
 
       {/* HERO TITLE - LARGE WORDS */}
       <div className="text-center pt-2 md:pt-4 pb-1">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black text-white tracking-tight leading-[1.1]">
-          FBA Men
-        </h1>
-        <p className="text-gray-400/45 text-[10px] sm:text-xs tracking-wide mt-2">
-          This site is
+        <p className="text-gray-500 text-[10px] sm:text-xs tracking-[0.25em] uppercase mt-8 mb-1">
+          Part I of the PHIERS Trilogy
         </p>
-        <p className="text-green-400 text-base sm:text-lg md:text-xl font-semibold mt-1 tracking-wide">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black text-white tracking-tight leading-[1.1]">
+          The Prophecy
+        </h1>
+        <p className="text-green-400 text-base sm:text-lg md:text-xl font-semibold mt-2 tracking-wide">
           For Us. By Us.
         </p>
       </div>
@@ -184,6 +197,9 @@ export default function ProphecyPage() {
         </div>
       </div>
 
+      {/* Spacer after video */}
+      <div className="h-20 md:h-28" />
+
       {/* GEAR SHIFT CUE */}
       <div className="text-center mt-2 mb-2">
         <p className="text-gray-400/60 text-[9px] sm:text-xs italic tracking-wide">
@@ -194,7 +210,7 @@ export default function ProphecyPage() {
       {/* INTRO SEQUENCE – PRIMARY THRESHOLD */}
       <div id="breath-section" className="text-center mt-24 md:mt-32 mb-10 px-6">
         <h3 className="text-[clamp(2.2rem,8vw,3.5rem)] leading-[1.05] font-light text-gray-200 italic">
-          Take a knee.
+          Take a knee for a minute.
         </h3>
         <div className="mt-8 space-y-3 text-gray-300 text-base md:text-lg max-w-xl mx-auto">
           <p>We've been carrying weight a long time.</p>
@@ -222,6 +238,9 @@ export default function ProphecyPage() {
 
           <p className="text-gray-400 text-sm mt-3">
             Choose the one that speaks to you.
+          </p>
+          <p className="text-gray-500 text-xs mt-2 italic">
+            No wrong door.
           </p>
         </div>
 
@@ -265,7 +284,7 @@ export default function ProphecyPage() {
                 THE MOVEMENT
               </div>
               <div className="text-gray-400 text-xs sm:text-sm mt-1">
-                Who we are
+                Who's showing up
               </div>
             </div>
           </a>
@@ -279,15 +298,19 @@ export default function ProphecyPage() {
           >
             <div className="flex flex-col items-center">
               <img
-                src="/images/trilogy/BW_PHIERS_Logo_NO_Words.png"
+                src="/images/trilogy/PHIERS_Logo_BW.png"
                 alt="PHIERS Logo"
-                className="w-10 h-10 mb-3 opacity-90"
+                className="h-12 w-auto mb-3 opacity-90 brightness-110 mix-blend-screen"
+                style={{ aspectRatio: 'auto', transform: 'scaleX(1.08)' }}
               />
+
+
+
               <div className="text-green-400 text-sm sm:text-base md:text-lg font-black tracking-wide">
-                THE LEVERAGE
+                PHIERS.org
               </div>
               <div className="text-gray-400 text-xs sm:text-sm mt-1">
-                Earned respect.
+                The Solution
               </div>
             </div>
           </a>
@@ -296,7 +319,7 @@ export default function ProphecyPage() {
       </div>
 
       {/* OPENING SECTION – BLACK MEN HAVE WAITED LONG ENOUGH */}
-      <div id="prophecy-content" className="max-w-3xl mx-auto px-6 text-center mt-32 md:mt-48" style={{ scrollMarginTop: '64px' }}>
+      <div id="prophecy-content" className="max-w-3xl mx-auto px-6 text-center mt-32 md:mt-48 scroll-mt-20" style={{ scrollMarginTop: '80px' }}>
         <h1 className="text-[clamp(2.2rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight">
           Black Men Have Waited Long Enough.
         </h1>
@@ -304,17 +327,18 @@ export default function ProphecyPage() {
 
       {/* STRATEGIC RECONSTRUCTION */}
       <div className="max-w-5xl mx-auto px-6 text-center mt-16">
-        <div className="w-full max-w-3xl mx-auto">
+        <div className="w-full max-w-[680px] md:max-w-3xl lg:max-w-4xl mx-auto my-16 md:my-24 px-4">
           <Image
             src="/images/trilogy/Strategic_Brotha_Playing_Chess-Manhattan_Project.jpg"
             alt="Strategic brother playing chess"
             width={1600}
             height={900}
-            className="w-full rounded-lg object-cover shadow-md"
+            className="w-full rounded-lg object-cover shadow-md brightness-110 contrast-105"
+            priority
           />
         </div>
         <h2 className="text-[clamp(2rem,7vw,3rem)] font-bold leading-[1.08]">
-          A Strategic Reconstruction.
+          We Need To Build Again.
         </h2>
         <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
           Not noise. Not drifting. Not looking busy.
@@ -322,76 +346,117 @@ export default function ProphecyPage() {
         <p className="text-white text-xl md:text-2xl font-bold mt-8">
           Not symbolism. <span className="text-green-400">REAL solutions.</span>
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-8 max-w-4xl mx-auto">
-          <div className="text-center">
-            <p className="text-green-400 text-xl md:text-2xl font-bold">Discipline.</p>
+        <div className="flex flex-wrap justify-center gap-3 mt-8 max-w-3xl mx-auto">
+          <div className="bg-[#1a2a3a]/80 border border-green-400/30 rounded-md px-3 py-1 shadow-sm hover:border-green-400/60 transition-all duration-300">
+            <p className="text-green-400 text-base md:text-lg font-bold">Discipline</p>
           </div>
-          <div className="text-center">
-            <p className="text-green-400 text-xl md:text-2xl font-bold">Brotherhood.</p>
+          <div className="bg-[#1a2a3a]/80 border border-green-400/30 rounded-md px-3 py-1 shadow-sm hover:border-green-400/60 transition-all duration-300">
+            <p className="text-green-400 text-base md:text-lg font-bold">Brotherhood</p>
           </div>
-          <div className="text-center">
-            <p className="text-green-400 text-xl md:text-2xl font-bold">Coordination.</p>
+          <div className="bg-[#1a2a3a]/80 border border-green-400/30 rounded-md px-3 py-1 shadow-sm hover:border-green-400/60 transition-all duration-300">
+            <p className="text-green-400 text-base md:text-lg font-bold">Coordination</p>
           </div>
-          <div className="text-center">
-            <p className="text-green-400 text-xl md:text-2xl font-bold">Accountability.</p>
+          <div className="bg-[#1a2a3a]/80 border border-green-400/30 rounded-md px-3 py-1 shadow-sm hover:border-green-400/60 transition-all duration-300">
+            <p className="text-green-400 text-base md:text-lg font-bold">Accountability</p>
           </div>
-          <div className="text-center">
-            <p className="text-green-400 text-xl md:text-2xl font-bold">Structure.</p>
+          <div className="bg-[#1a2a3a]/80 border border-green-400/30 rounded-md px-3 py-1 shadow-sm hover:border-green-400/60 transition-all duration-300">
+            <p className="text-green-400 text-base md:text-lg font-bold">Structure</p>
           </div>
-          <div className="text-center">
-            <p className="text-green-400 text-xl md:text-2xl font-bold">Leverage.</p>
+          <div className="bg-[#1a2a3a]/80 border border-green-400/30 rounded-md px-3 py-1 shadow-sm hover:border-green-400/60 transition-all duration-300">
+            <p className="text-green-400 text-base md:text-lg font-bold">Leverage</p>
           </div>
         </div>
-        <p className="text-white text-lg md:text-xl font-semibold mt-10 max-w-3xl mx-auto leading-tight">
+        <p className="text-white text-xl md:text-2xl font-light mt-10 max-w-3xl mx-auto leading-relaxed">
+          This is where we stop reacting.<br />
           We are building tight enough and clean enough,<br />
           that "those folks" will have to rethink<br />
           everything they thought they knew about us.
         </p>
       </div>
 
-      {/* 400 YEARS / GENESIS */}
-      <section className="max-w-5xl mx-auto px-6 mt-28 md:mt-36 text-center">
-        <div className="mb-12">
+      {/* PROPHECY — SCRIPTURE SEQUENCE */}
+
+      {/* Prophecy Eye Icon */}
+      <div className="flex justify-center mt-28 md:mt-36">
+        <img
+          src="/images/trilogy/Prophecy_Eye.png"
+          alt="Prophecy Eye"
+          className="w-24 h-24 md:w-32 md:h-32 opacity-70"
+        />
+      </div>
+
+      {/* Framing line - plain text, no box */}
+      <div className="max-w-4xl mx-auto px-6 mt-6 text-center">
+        <p className="text-gray-100 text-base sm:text-lg md:text-xl font-medium tracking-wide">
+          The prophecy wasn't metaphor. It was a timeline.
+        </p>
+      </div>
+
+      {/* Scripture block - plain text, no box */}
+      <div className="max-w-4xl mx-auto px-6 mt-12 mb-8 text-center">
+        <p className="text-amber-500/70 text-xs sm:text-sm mb-6 tracking-widest uppercase font-mono">
+          Genesis 15:13–14
+        </p>
+        <div className="max-w-3xl mx-auto">
+          <p className="text-gray-100 text-xl md:text-2xl lg:text-3xl font-light leading-relaxed">
+            “Know for certain<br />
+            that your descendants will be strangers<br />
+            in a land not their own…<br /><br />
+            where they will be enslaved<br />
+            and mistreated<br />
+            for four hundred years.<br /><br />
+            But afterward,<br />
+            they will leave<br />
+            with great substance.”
+          </p>
+        </div>
+      </div>
+
+      {/* Interpretation line - plain text, no box */}
+      <div className="max-w-4xl mx-auto px-6 mt-12 mb-8 text-center">
+        <p className="text-green-400/90 text-sm sm:text-base md:text-lg font-semibold tracking-wide">
+          Substance becomes leverage. Leverage becomes respect.
+        </p>
+      </div>
+
+      {/* 400 Years image — fulfillment */}
+      <div className="w-full max-w-[680px] md:max-w-3xl lg:max-w-4xl mx-auto my-16 md:my-24 px-4">
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-green-400/10">
           <Image
             src="/images/trilogy/400-years-prophesy_sentence-served.jpg"
             alt="400 years — sentence served"
             width={1400}
             height={850}
-            className="w-full rounded-xl object-cover shadow-2xl"
+            className="w-full rounded-2xl object-cover transition-all duration-700 hover:scale-[1.02]"
             priority
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         </div>
-        <div className="mt-10 mb-6">
-          <p className="uppercase tracking-[0.3em] text-gray-300 text-sm mb-6 mt-2">
-            Genesis 15:13–14
-          </p>
-          <div className="max-w-3xl mx-auto border-y border-gray-800 py-12 md:py-14">
-            <p className="text-xl md:text-2xl leading-relaxed text-gray-100 font-light">
-              “Know for certain<br />
-              that your descendants will be strangers<br />
-              in a land not their own…<br /><br />
-              where they will be enslaved<br />
-              and mistreated<br />
-              for four hundred years.<br /><br />
-              But afterward,<br />
-              they will leave<br />
-              with great substance.”
-            </p>
-          </div>
-        </div>
-        <p className="text-gray-300 text-sm mt-6 italic">
+      </div>
+
+      {/* Continuation - plain text, no box */}
+      <div className="max-w-3xl mx-auto px-6 mt-8 mb-16 text-center">
+        <p className="text-gray-400 text-sm italic tracking-wide">
           Four hundred years is a long time to carry a burden.
         </p>
-        <p className="text-white text-xl font-semibold mt-6">
+        <div className="w-16 h-px bg-green-400/30 mx-auto my-6" />
+        <p className="text-white text-2xl md:text-3xl font-semibold">
           We carried it anyway.
         </p>
-        <p className="text-lg md:text-xl text-gray-300 mt-10 max-w-2xl mx-auto leading-relaxed">
-          Endurance turned into structure.<br />
-          Memory turned into coordination.<br />
-          Pressure turned into leverage.<br />
-          Survival turned into forward motion.
+        <p className="text-white text-xl md:text-2xl font-light mt-6">
+          Now, we're here.
         </p>
-      </section>
+        <div className="w-12 h-px bg-green-400/20 mx-auto my-8" />
+        <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p>Endurance turned into structure.</p>
+          <p>Memory turned into coordination.</p>
+          <p>Pressure turned into leverage.</p>
+          <p className="text-green-400/80 font-semibold">Survival turned into forward motion.</p>
+        </div>
+      </div>
+
+      {/* Spacer before the next section */}
+      <div className="h-16 md:h-24" />
 
       {/* WHY BLACK MEN */}
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
@@ -399,23 +464,18 @@ export default function ProphecyPage() {
           Why Black men?
         </h2>
         <p className="text-base md:text-lg text-gray-300 mt-5 leading-relaxed">
-          Because history put weight on us nobody else had to carry.
+          Because we carried weight nobody else was asked to carry.
         </p>
         <p className="text-base md:text-lg text-gray-300 mt-5 leading-relaxed">
-          Used us.<br />
-          Feared us.<br />
-          Threw us away.<br />
-          Still expected us to hold everything up.
+          Used.<br />
+          Feared.<br />
+          Hated.<br />
+          Disposable when convenient.<br />
+          And somehow we still built.
         </p>
         <p className="text-base md:text-lg text-gray-300 mt-5 leading-relaxed">
-          And somehow, we still built.
-        </p>
-        <p className="text-base md:text-lg text-gray-300 mt-5 leading-relaxed">
-          Still adapted.<br />
-          Still held the line.
-        </p>
-        <p className="text-base md:text-lg text-gray-300 mt-5 leading-relaxed">
-          That kind of pressure shapes a certain kind of man.
+          That leaves marks.<br />
+          It also leaves wisdom.
         </p>
       </div>
 
@@ -438,7 +498,7 @@ export default function ProphecyPage() {
           <li>To build without help.</li>
           <li>To read danger early.</li>
           <li>To protect what matters.</li>
-          <li>To improvise when the plan falls apart.</li>
+          <li>To improvise when things change.</li>
           <li>To endure what should've ended us.</li>
         </ul>
         <p className="text-base md:text-lg text-gray-300 mt-6 leading-relaxed">
@@ -458,6 +518,16 @@ export default function ProphecyPage() {
 
       {/* HEALING IS STRATEGIC */}
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
+        <div className="w-full max-w-[680px] md:max-w-3xl lg:max-w-4xl mx-auto my-16 md:my-24 px-4">
+          <Image
+            src="/images/trilogy/healing-is-strategic-reflection.jpg"
+            alt="Reflective stillness — Healing Is Strategic"
+            width={1600}
+            height={900}
+            className="w-full h-auto object-cover rounded-lg animate-fadeInSlow"
+            priority
+          />
+        </div>
         <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
           Healing Is Strategic
         </h2>
@@ -465,15 +535,17 @@ export default function ProphecyPage() {
           Broken men get played.<br />
           Disconnected men drift.<br />
           Unhealed men react.<br />
-          Isolated men forget who they are.
-        </p>
-        <p className="text-base md:text-lg text-gray-300 mt-5 leading-relaxed">
-          But grounded men build.<br />
+          Grounded men build.<br />
           Disciplined men coordinate.<br />
-          Clear men carry weight without folding.
+          Clear men carry weight.
         </p>
-        <p className="text-center text-gray-300 italic mt-12">
-          Silence been the tax on survival long enough.
+        <p className="text-base md:text-lg text-gray-300 mt-6 leading-relaxed">
+          That's why healing matters.<br />
+          Not as self-help.<br />
+          As infrastructure.
+        </p>
+        <p className="text-base md:text-lg text-green-400/60 mt-8 leading-relaxed italic text-center">
+          And infrastructure gets built.
         </p>
       </div>
 
@@ -506,6 +578,16 @@ export default function ProphecyPage() {
           <p className="text-xl md:text-2xl text-white font-semibold text-center py-4">
             Every. Single. Time.
           </p>
+          <div className="w-full max-w-[680px] md:max-w-3xl lg:max-w-4xl mx-auto my-16 md:my-24 px-4">
+            <Image
+              src="/images/trilogy/ancestral-lineage-black-men.jpg"
+              alt="Generational lineage — Every. Single. Time."
+              width={1600}
+              height={900}
+              className="w-full h-auto object-cover rounded-lg animate-fadeInSlow"
+              loading="lazy"
+            />
+          </div>
           <p>That's not myth.</p>
           <p>That's inheritance.</p>
           <p>We're the continuation of them.</p>
@@ -517,49 +599,28 @@ export default function ProphecyPage() {
         </div>
       </div>
 
+      {/* PHIERS seed — names the structure before the reveal */}
+      <div className="max-w-2xl mx-auto px-6 text-center mb-0">
+        <p className="text-gray-500 text-sm tracking-widest uppercase">
+          That structure has a name.
+        </p>
+      </div>
+
       {/* Breathing pause */}
       <div className="py-20 text-center">
+        <div className="w-full max-w-[680px] md:max-w-3xl lg:max-w-4xl mx-auto my-16 md:my-24 px-4">
+          <Image
+            src="/images/trilogy/modern-african-american-strategy-session.jpg"
+            alt="Modern coordination — Now the Work Begins"
+            width={1600}
+            height={900}
+            className="w-full h-auto object-cover rounded-lg animate-fadeInSlow"
+            loading="lazy"
+          />
+        </div>
         <p className="text-3xl md:text-5xl font-bold text-white">Now the work begins.</p>
       </div>
 
-      {/* PHIERS ACRONYM BREAK */}
-      <PhiersAcronymBreak />
-
-      {/* THESIS REVEAL – PHIERS */}
-      <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28 text-center">
-        <div className="gold-divider mt-8 mb-6" />
-        <div className="flex justify-center mt-6 mb-4">
-          <img
-            src="/images/trilogy/BW_PHIERS_Logo_NO_Words.png"
-            alt="PHIERS"
-            className="w-16 h-auto md:w-20 opacity-80"
-          />
-        </div>
-        <p className="text-xl sm:text-2xl md:text-4xl font-black tracking-[0.22em] md:tracking-[0.3em] text-green-400 mt-6">
-          P · H · I · E · R · S
-        </p>
-        <p className="text-base md:text-lg text-gray-300 mt-3 leading-relaxed">
-          Power Held In Every Rep's Seat.
-        </p>
-        <p className="text-lg text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed">
-          The Founders said Congress answers to the people.
-        </p>
-        <p className="text-lg text-gray-300 mt-2 max-w-2xl mx-auto leading-relaxed">
-          We're just making that real again.
-        </p>
-        <p className="text-md text-gray-400 mt-6 max-w-2xl mx-auto leading-relaxed">
-          Organized voters.<br />
-          Visible communities.<br />
-          Coordinated action.<br />
-          Representatives who remember who they work for.
-        </p>
-        <p className="text-xl font-light text-gray-200 mt-8">
-          Peaceful. Lawful. Effective.
-        </p>
-        <p className="text-xl md:text-2xl font-semibold text-green-400 mt-5">
-          With PHIERS, it's real.
-        </p>  
-      </div>
 
       {/* WHY PHIERS */}
       <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
@@ -600,64 +661,11 @@ export default function ProphecyPage() {
         </p>
         <p className="text-2xl font-bold text-white mt-6">Power Held In Every Rep's Seat.</p>
 
-        <div className="mt-12 text-center">
-          <button
-            onClick={() => setShowTrustModal(true)}
-            className="inline-block bg-transparent border border-amber-500/50 text-amber-400 font-semibold py-3 px-8 rounded-full hover:border-amber-400 hover:text-amber-300 transition"
-          >
-            I'm ready to engage →
-          </button>
-        </div>
       </div>
 
-      {/* PRACTICAL REALISM */}
-      <section className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
-        <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl px-6 py-10 md:px-8 md:py-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">What does this look like in real life?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-gray-300 text-base">
-            <div>• Local organization</div>
-            <div>• Economic coordination</div>
-            <div>• Civic pressure</div>
-            <div>• Mentorship</div>
-            <div>• Shared infrastructure</div>
-            <div>• Mutual accountability</div>
-            <div>• Political literacy</div>
-            <div>• Long‑term institution building</div>
-          </div>
-          <p className="text-gray-400 mt-6 italic">Not theory. Not branding. Something you can touch.</p>
-        </div>
-      </section>
 
-      {/* FOUNDER CREDIBILITY ACCORDION */}
-      <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2">WHY THIS IS NOT THEORY</h2>
-        <p className="text-gray-400 mb-4 italic">
-          This ain't theory.
-        </p>
-        <p className="text-gray-400 mb-4 italic">
-          It was built under pressure —<br />
-          real pressure.<br />
-          Years of trying to build something serious<br />
-          while folks tried to bury it, derail it, or steal it.
-        </p>
-        <Accordion
-          triggerLabel="Open to read the fuller story"
-          className="w-full text-left border border-gray-800 bg-[#0d0d0d] px-5 md:px-6 py-4 md:py-5 rounded-xl hover:border-gray-600 transition"
-        >
-          <div className="space-y-4 text-gray-300 leading-relaxed pt-4 pb-2">
-            <p>That taught two things:</p>
-            <ul className="list-disc pl-6 space-y-3">
-              <li>Serious solutions need structure.</li>
-              <li>Truth without organized force gets buried.</li>
-            </ul>
-            <p>PHIERS is built with that in mind.</p>
-            <p>It solves multiple problems at once for people with the same unmet needs.</p>
-            <p className="italic">Power Held In Every Rep's Seat isn't a slogan. It's a structural fix.</p>
-          </div>
-        </Accordion>
-      </div>
-
-      {/* RECORD ACCORDION */}
+      {/* RECORD ACCORDION - TEMPORARILY COMMENTED OUT per feedback (already established historical weight elsewhere) */}
+      {/*
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20">
         <section className="mb-8">
           <img
@@ -686,6 +694,7 @@ export default function ProphecyPage() {
           </div>
         </Accordion>
       </div>
+      */}
 
       {/* LINEAGE IMAGE */}
       <section className="mt-32 mb-32 max-w-4xl mx-auto px-6">
@@ -698,6 +707,16 @@ export default function ProphecyPage() {
 
       {/* THIRD RECONSTRUCTION */}
       <div className="max-w-4xl mx-auto px-6 mt-24 md:mt-32 text-center">
+        <div className="w-full max-w-[680px] md:max-w-3xl lg:max-w-4xl mx-auto my-16 md:my-24 px-4">
+          <Image
+            src="/images/trilogy/third-reconstruction-modern-builders.jpg"
+            alt="Modern builders — Third Reconstruction"
+            width={1600}
+            height={900}
+            className="w-full h-auto object-cover rounded-lg animate-fadeInSlow"
+            loading="lazy"
+          />
+        </div>
         <p className="uppercase tracking-[0.35em] text-gray-500 text-sm mb-6">THE THIRD RECONSTRUCTION</p>
         <h2 className="text-[clamp(2rem,7vw,3.4rem)] font-bold leading-[1.06] text-balance">
           They tried to erase the record.<br />
@@ -707,9 +726,7 @@ export default function ProphecyPage() {
           <p>We built rail lines. Roads. Bridges. Ports. Cities.</p>
           <p>We kept this country running while being told we were worth less.</p>
           <p className="text-white font-semibold">Buried ain't gone.</p>
-          <p>Now the country's unstable.<br />
-            AI taking jobs. Institutions losing trust.<br />
-            Communities breaking apart.</p>
+          <p>Now the country's unstable. AI taking jobs. Institutions losing trust. Communities breaking apart.</p>
           <p>And folks are finally realizing:</p>
           <p className="text-xl md:text-2xl text-green-400 font-semibold">survival without structure ain't enough.</p>
           <p>That's why PHIERS exists.</p>
@@ -735,6 +752,115 @@ export default function ProphecyPage() {
           className="w-full mx-auto rounded-lg object-cover shadow-lg"
         />
       </section>
+
+      {/* BRIDGE: INEVITABILITY FRAMING – Not explanation, just carried forward */}
+      <div className="max-w-3xl mx-auto px-6 mt-40 md:mt-48">
+        <div className="space-y-8 text-center">
+          <p className="text-gray-400 text-sm italic tracking-wide">
+            What you've been feeling has a name.
+          </p>
+
+          <div className="space-y-4">
+            <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
+              Not a movement.
+            </p>
+            <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
+              Not a philosophy.
+            </p>
+            <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
+              A structure.
+            </p>
+          </div>
+
+          <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
+            Built by men who felt the same pressure you feel.
+          </p>
+          <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
+            To turn that pressure into something that doesn't break.
+          </p>
+
+          <div className="w-12 h-px bg-green-400/20 mx-auto mt-8 mb-8" />
+
+          <p className="text-sm text-gray-500 tracking-widest uppercase">
+            What comes next is the blueprint.
+          </p>
+        </div>
+      </div>
+
+      <div className="h-12 md:h-16" />
+
+      {/* NEW THRESHOLD – PHIERS REVEAL */}
+      <div className="max-w-2xl mx-auto px-6 mt-24 md:mt-28 text-center">
+        <div className="flex justify-center mb-8">
+          <Image
+            src="/images/PHIERS_Logo_BW.png"
+            alt="PHIERS"
+            width={64}
+            height={64}
+            className="w-16 h-16 opacity-80"
+          />
+        </div>
+
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-100 mb-4">
+          We built something.
+        </h2>
+        
+        <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-8">
+          It has a name.
+        </p>
+
+        <p className="text-4xl md:text-5xl font-bold text-green-400 mb-8">
+          PHIERS
+        </p>
+
+        <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-6">
+          What you've read explains why.
+        </p>
+
+        <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-8">
+          What comes next explains how.
+        </p>
+
+        <a
+          href="https://phiers.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-green-600 hover:bg-green-500 text-black font-bold py-3 px-8 rounded-lg transition text-lg"
+        >
+          → Enter PHIERS
+        </a>
+      </div>
+
+      <div className="h-12 md:h-16" />
+
+      {/* FOUNDER CREDIBILITY ACCORDION - MOVED HERE */}
+      <div className="max-w-3xl mx-auto px-6 mt-24 md:mt-28">
+        <h2 className="text-3xl md:text-4xl font-bold mb-2">WHY THIS IS NOT THEORY</h2>
+        <p className="text-gray-400 mb-4 italic">
+          This ain't theory.
+        </p>
+        <p className="text-gray-400 mb-4 italic">
+          It was built under pressure —<br />
+          real pressure.<br />
+          Years of trying to build something serious<br />
+          while folks tried to bury it, derail it, or steal it.
+        </p>
+        <Accordion
+          triggerLabel="Open to read the fuller story"
+          className="w-full text-left border border-gray-800 bg-[#0d0d0d] px-5 md:px-6 py-4 md:py-5 rounded-xl hover:border-gray-600 transition"
+        >
+          <div className="space-y-4 text-gray-300 leading-relaxed pt-4 pb-2">
+            <p>That taught two things:</p>
+            <ul className="list-disc pl-6 space-y-3">
+              <li>Serious solutions need structure.</li>
+              <li>Truth without organized force gets buried.</li>
+            </ul>
+            <p>PHIERS is built with that in mind.</p>
+            <p>It solves multiple p`roblems at once for people with the same unmet needs.</p>
+            <p className="italic">Power Held In Every Rep's Seat isn't a slogan. It's a structural fix.</p>
+          </div>
+        </Accordion>
+      </div>
 
       {/* THRESHOLD with inheritance line */}
       <div className="h-20" />
@@ -814,6 +940,10 @@ export default function ProphecyPage() {
           </a>
         </p>
         <p className="mt-3 text-gray-600 text-xs">Participation is voluntary. PHIERS is a peaceful civic engagement effort.</p>
+        {/* Version ID - visible but subtle */}
+        <p className="mt-4 text-gray-700/40 text-[9px] tracking-wide">
+          v78.0 — images wrapped + responsive + prophecy sequence
+        </p>
       </footer>
 
       {/* PHIERStorm Modal removed – trust modal handles survey CTA */}
@@ -823,7 +953,7 @@ export default function ProphecyPage() {
         .sticky-top {
           position: sticky;
           top: 80px;
-          background: linear-gradient(to bottom, #050b19 0%, #050b19 80%, transparent 100%);
+          background: linear-gradient(to bottom, #000000 0%, #000000 80%, transparent 100%);
           z-index: 30;
           padding-top: 1rem;
           margin-top: 0 !important;
