@@ -41,5 +41,3 @@ export default function ProphecyImage({
     </div>
   );
 }
-
-// FILE: app/Prophecy/components/ProphecyImage.tsx
