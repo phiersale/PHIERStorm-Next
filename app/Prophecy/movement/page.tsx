@@ -6,12 +6,28 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Accordion from '../components/Accordion';
 
 export default function MovementPage() {
+  const [showNaderModal, setShowNaderModal] = useState(false);
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="bg-black text-white">
-      <div className="sticky-header">
+      {showNaderModal && (
+  <div
+    className="fixed inset-0 z-[99999] bg-black/95 flex items-center justify-center p-4 cursor-pointer"
+    onClick={() => setShowNaderModal(false)}
+  >
+    <img
+      src="/images/RalphNader-500-Unstoppable_Change.jpg"
+      alt="Ralph Nader – Unstoppable Change"
+      className="max-w-[95vw] max-h-[95vh] rounded-xl shadow-2xl"
+    />
+  </div>
+)}
+
+<div className="sticky-header">
         <Link href="/Prophecy">
           <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-14 h-auto md:w-16 opacity-60 hover:opacity-80 transition cursor-pointer" />
         </Link>
@@ -107,12 +123,13 @@ export default function MovementPage() {
           {/* Clarification: 1500 is a signal, not the solution */}
           <div className="mt-8 p-6 border-l-4 border-amber-500/50 bg-amber-500/5 rounded-r-lg">
             <p className="text-amber-400 font-semibold mb-3">A signal, not the solution.</p>
-            <div className="flex items-start gap-4 mb-4">
-              <img
-                src="/images/RalphNader-500-Unstoppable_Change.jpg"
-                alt="Ralph Nader – Unstoppable Change"
-                className="w-16 rounded opacity-75 shrink-0"
-              />
+              <div className="flex items-start gap-4 mb-4">
+                <img
+                  src="/images/RalphNader-500-Unstoppable_Change.jpg"
+                  alt="Ralph Nader – Unstoppable Change"
+                  onClick={() => setShowNaderModal(true)}
+                  className="w-32 md:w-44 rounded opacity-90 shrink-0 cursor-zoom-in hover:opacity-100 transition"
+                />
               <p className="text-gray-400 text-sm leading-relaxed">
                 Ralph Nader documented this from decades inside Congress:
                 <span className="block mt-2 text-gray-300">
