@@ -526,24 +526,14 @@ export default function ForBlackMenPage() {
             What comes next explains how fifteen hundred becomes a force multiplier.
           </p>
         <div className="flex justify-center mt-2">
-          <a
-            href="https://phiers.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ backgroundColor: '#16a34a', color: 'white', fontWeight: 'bold', padding: '12px 32px', borderRadius: '8px', display: 'inline-block', textDecoration: 'none' }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#22c55e'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#16a34a'}
-          >
-            → Enter PHIERS
-          </a>
         </div>  
       </div>
-      <QuietZone />
+    
       {/* ========== SECTION 11: WHY THIS IS NOT THEORY ========== */}
       <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20">
         <div className="text-gray-500 text-xs tracking-[0.3em] uppercase mb-3">🜂 WHY THIS IS NOT THEORY</div>
         <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-          This isn't theory. It was built under pressure — real pressure. Years of trying to build something serious while folks tried to bury it, derail it, or steal it.
+          It was built under pressure — real pressure. Years of trying to build something serious while folks tried to bury it, derail it, or steal it.
         </p>
         <div className="mt-6">
           <Accordion
