@@ -295,8 +295,14 @@ export default function ForBlackMenPage() {
       </div>
 
       {/* ========== SECTION 5: HEALING IS STRATEGIC ========== */}
-      <div className="max-w-3xl mx-auto px-6">
-        <div className="text-gray-500 text-xs tracking-[0.3em] uppercase mb-3">🜂 HEALING IS STRATEGIC</div>
+      <div className="max-w-3xl mx-auto px-6 mt-16 md:mt-20">
+        <div className="text-center mb-8">
+          <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.1] text-balance text-green-400">
+            Before We Build, We Repair.
+          </h2>
+          <div className="w-16 h-px bg-green-400/30 mx-auto mt-4 mb-6"></div>
+        </div>
+        <div className="text-gray-500 text-xs tracking-[0.3em] uppercase mb-3 text-center">🜂 HEALING IS STRATEGIC</div>
         
                 {/* Image 4 - Healing Is Strategic */}
         <ProphecyImage 

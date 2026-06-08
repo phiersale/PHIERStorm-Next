@@ -26,7 +26,7 @@ export default function MovementPage() {
         <div className="max-w-4xl mx-auto px-5 pt-12 pb-8 text-center">
           <h1 className="text-center font-black leading-[1.05]">
             <span className="block text-[clamp(1.8rem,7vw,2.6rem)] md:text-[clamp(3.2rem,4.5vw,5rem)]">
-              SURVIVING AIN'T ENOUGH
+              SURVIVING ISN'T ENOUGH
             </span>
             <span className="block text-[clamp(1.4rem,6vw,2.2rem)] md:text-[clamp(2.6rem,3.8vw,4rem)]">
               NOW WE’RE MOVING IN FORMATION.
