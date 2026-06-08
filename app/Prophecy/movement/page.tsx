@@ -24,7 +24,15 @@ export default function MovementPage() {
 
         {/* Hero headline */}
         <div className="max-w-4xl mx-auto px-5 pt-12 pb-8 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight">SURVIVING AIN'T ENOUGH<br />NOW WE'RE BUILDING.</h1>
+          <h1 className="text-center font-black leading-tight">
+            <span className="block text-4xl sm:text-5xl md:text-6xl">
+              SURVIVING AIN'T ENOUGH
+            </span>
+            <span className="block text-3xl sm:text-4xl md:text-5xl mt-1">
+              NOW WE’RE MOVING IN FORMATION.
+            </span>
+          </h1>
+
           <p className="text-xl text-gray-300 mt-6 max-w-2xl mx-auto">For too long, survival got mistaken for strategy. Stay quiet. Stay divided. Stay tired. Carry everything. Ask for nothing.</p>
           <p className="text-2xl font-bold mt-4">That era is over. So now we organize.</p>
         </div>
