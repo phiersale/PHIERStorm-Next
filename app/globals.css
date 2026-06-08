@@ -425,6 +425,22 @@ button, .button, a[class*="Button"] {
   80% { opacity: 1; }
   100% { opacity: 0; visibility: hidden; }
 }
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
 .animate-fadeOut {
   animation: fadeOut 3s forwards;
 }

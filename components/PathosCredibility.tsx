@@ -3,7 +3,7 @@
 
   'use client'
 
-  import { useState, useEffect } from 'react'
+  import { useState, useEffect, useRef } from 'react'
   import { motion } from 'framer-motion'
 
   type Props = {
@@ -20,6 +20,11 @@
   export default function PathosCredibility({ onBackToSlides, onOpenTransitionModal, onOpenPrivacyModal }: Props) {
     const [showSkipAhead, setShowSkipAhead] = useState(false)
   const [showSideMenu, setShowSideMenu] = useState(false)
+  const [copiedMessage, setCopiedMessage] = useState('')
+  const [readingTime, setReadingTime] = useState<number | null>(null)
+  const [scrollPercentage, setScrollPercentage] = useState(0)
+  const [showShortcutToast, setShowShortcutToast] = useState(false)
+  const prefersReducedMotion = useRef(false)
 
     useEffect(() => {
       const handleScroll = () => {
@@ -27,11 +32,146 @@
         const docHeight = document.documentElement.scrollHeight - window.innerHeight
         const scrollPercent = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0
         setShowSkipAhead(scrollPercent > 10)
-        setShowSideMenu(scrollPercent > 25)  // <-- ADD THIS LINE
+        setShowSideMenu(scrollPercent > 25)
+        setScrollPercentage(scrollPercent)
       }
       window.addEventListener('scroll', handleScroll)
       return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    // Calculate reading time
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        const mainContent = document.querySelector('#top')?.innerText || ''
+        const wordCount = mainContent.split(/\s+/).length
+        const minutes = Math.ceil(wordCount / 200)
+        setReadingTime(minutes)
+      }, 500)
+      
+      return () => clearTimeout(timer)
+    }, [])
+
+    // Improved details element UX - prevents closing when clicking inside content
+    useEffect(() => {
+      const handleDetailsToggle = (e: MouseEvent) => {
+        const detail = (e.target as Element).closest('details')
+        if (!detail) return
+        
+        const isSummary = (e.target as Element).closest('summary')
+        const isInteractive = (e.target as Element).closest('a, button, [onclick], [role="button"], .cursor-pointer')
+        
+        if (!isSummary && !isInteractive && e.target !== detail) {
+          e.preventDefault()
+        }
+      }
+      
+      document.addEventListener('click', handleDetailsToggle)
+      return () => document.removeEventListener('click', handleDetailsToggle)
+    }, [])
+
+    // Keyboard shortcuts
+    useEffect(() => {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === '?' && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault()
+          setShowShortcutToast(true)
+          setTimeout(() => setShowShortcutToast(false), 3000)
+        }
+        if (e.key === 't' && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault()
+          smoothScrollToElement('#top')
+        }
+        if (e.key === 'c' && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault()
+          onOpenTransitionModal?.()
+        }
+      }
+      
+      window.addEventListener('keydown', handleKeyDown)
+      return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [onOpenTransitionModal])
+
+    // Check for reduced motion preference
+    useEffect(() => {
+      prefersReducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      const handler = (e: MediaQueryListEvent) => {
+        prefersReducedMotion.current = e.matches
+      }
+      mediaQuery.addEventListener('change', handler)
+      return () => mediaQuery.removeEventListener('change', handler)
+    }, [])
+
+    // Keyboard shortcuts
+    useEffect(() => {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === '?' && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault()
+          setShowShortcutToast(true)
+          setTimeout(() => setShowShortcutToast(false), 3000)
+        }
+        if (e.key === 't' && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault()
+          smoothScrollToElement('#top')
+        }
+        if (e.key === 'c' && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault()
+          onOpenTransitionModal?.()
+        }
+      }
+      
+      window.addEventListener('keydown', handleKeyDown)
+      return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [onOpenTransitionModal])
+
+    // Smooth scroll with offset for fixed header
+    const smoothScrollToElement = (elementId: string) => {
+      const element = document.querySelector(elementId)
+      if (!element) return
+      
+      // Close any open mobile keyboard if present
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+      }
+      
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - 80
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: prefersReducedMotion.current ? 'auto' : 'smooth'
+      })
+      
+      // Update URL hash without jumping
+      if (window.history && window.history.pushState) {
+        window.history.pushState({}, '', elementId)
+      }
+    }
+
+    // Load video with loading state
+    const loadVideo = (container: HTMLElement, videoUrl: string, title: string) => {
+      const loadingDiv = document.createElement('div')
+      loadingDiv.className = 'absolute inset-0 flex items-center justify-center bg-black/80 z-10'
+      loadingDiv.innerHTML = `
+        <div class="flex flex-col items-center gap-2">
+          <div class="w-8 h-8 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+          <span class="text-green-400 text-xs">Loading video...</span>
+        </div>
+      `
+      container.appendChild(loadingDiv)
+      
+      setTimeout(() => {
+        const iframe = document.createElement('iframe')
+        iframe.src = videoUrl
+        iframe.title = title
+        iframe.className = 'absolute top-0 left-0 w-full h-full'
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+        iframe.allowFullscreen = true
+        container.innerHTML = ''
+        container.appendChild(iframe)
+      }, 250)
+    }
 
     // goToMainHomepage removed - unused
     return (
@@ -57,28 +197,72 @@
           </div>
         )}
 
+        {/* Scroll progress ring */}
+        {showSkipAhead && (
+          <div className="fixed bottom-5 left-5 z-50">
+            <div className="relative w-10 h-10">
+              <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(61,220,132,0.2)" strokeWidth="2"/>
+                <circle 
+                  cx="18" cy="18" r="16" fill="none" 
+                  stroke="#3ddc84" strokeWidth="2" 
+                  strokeDasharray={`${scrollPercentage * 1.005} 100.5`}
+                  strokeLinecap="round"
+                />
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-[10px] text-green-400">
+                {Math.round(scrollPercentage)}%
+              </span>
+            </div>
+          </div>
+        )}
+
         {/* Optional left spine + anchor nav (desktop only) - fades in after 1/3 of page */}
         <div className="hidden md:block fixed left-8 top-1/2 -translate-y-1/2 h-1/2 w-[2px] bg-green/20 z-30 transition-opacity duration-700" style={{ opacity: showSideMenu ? 1 : 0 }} />
         <div 
           className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 flex-col gap-3 text-[11px] text-gray-500 z-40 transition-all duration-700"
           style={{ opacity: showSideMenu ? 1 : 0, transform: showSideMenu ? 'translateY(-50%)' : 'translateY(-45%)' }}
         >
-          <a href="#top" className="hover:text-green transition-colors">
+          <a 
+            href="#top" 
+            onClick={(e) => { e.preventDefault(); smoothScrollToElement('#top'); }}
+            className="hover:text-green transition-colors"
+          >
             Top
           </a>
-          <a href="#videos" className="hover:text-green transition-colors">
+          <a 
+            href="#videos" 
+            onClick={(e) => { e.preventDefault(); smoothScrollToElement('#videos'); }}
+            className="hover:text-green transition-colors"
+          >
             Validation
           </a>
-          <a href="#layer2" className="hover:text-green transition-colors">
+          <a 
+            href="#layer2" 
+            onClick={(e) => { e.preventDefault(); smoothScrollToElement('#layer2'); }}
+            className="hover:text-green transition-colors"
+          >
             Narrative
           </a>
-          <a href="#legacy" className="hover:text-green transition-colors">
+          <a 
+            href="#legacy" 
+            onClick={(e) => { e.preventDefault(); smoothScrollToElement('#legacy'); }}
+            className="hover:text-green transition-colors"
+          >
             Legacy
           </a>
-          <a href="#record" className="hover:text-green transition-colors">
+          <a 
+            href="#record" 
+            onClick={(e) => { e.preventDefault(); smoothScrollToElement('#record'); }}
+            className="hover:text-green transition-colors"
+          >
             Record
           </a>
-          <a href="#cta" className="hover:text-green transition-colors">
+          <a 
+            href="#cta" 
+            onClick={(e) => { e.preventDefault(); smoothScrollToElement('#cta'); }}
+            className="hover:text-green transition-colors"
+          >
             Next
           </a>
         </div>
@@ -91,7 +275,7 @@
             hidden: {},
             visible: { transition: { staggerChildren: 0.14 } }
           }}
-          className="max-w-4xl mx-auto px-4 pt-2 pb-6"
+          className="max-w-4xl mx-auto px-4 pt-2 pb-20 md:pb-6"
         >
           {/* [1] LOGO — identifier only */}
           <motion.div variants={sectionFade} className="flex justify-center mb-6">
@@ -101,6 +285,15 @@
               className="w-20 h-20 md:w-24 md:h-24 object-contain opacity-80"
             />
           </motion.div>
+
+          {/* Reading time indicator */}
+          {readingTime && (
+            <motion.div variants={sectionFade} className="text-center">
+              <div className="text-gray-500 text-xs mb-4">
+                📖 {readingTime} min read • Updated 2026
+              </div>
+            </motion.div>
+          )}
 
           {/* 30-Second Overview: The Purpose of PHIERS (50% size - archival context, not spectacle) */}
           <motion.div variants={sectionFade} className="max-w-2xl mx-auto my-12">
@@ -274,15 +467,7 @@
                 className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                 onClick={(e) => {
                   const container = e.currentTarget
-                  const iframe = document.createElement('iframe')
-                  iframe.src = 'https://www.youtube.com/embed/KLu7USN_dao?autoplay=1'
-                  iframe.title = 'Pathos Communications on PHIERS'
-                  iframe.className = 'absolute top-0 left-0 w-full h-full'
-                  iframe.allow =
-                    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                  iframe.allowFullscreen = true
-                  container.innerHTML = ''
-                  container.appendChild(iframe)
+                  loadVideo(container, 'https://www.youtube.com/embed/KLu7USN_dao?autoplay=1', 'Pathos Communications on PHIERS')
                 }}
               >
                 <img
@@ -319,15 +504,7 @@
                 className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                 onClick={(e) => {
                   const container = e.currentTarget
-                  const iframe = document.createElement('iframe')
-                  iframe.src = 'https://www.youtube.com/embed/qxcRP8lx9dc?autoplay=1'
-                  iframe.title = 'Trusted Voices on PHIERS'
-                  iframe.className = 'absolute top-0 left-0 w-full h-full'
-                  iframe.allow =
-                    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                  iframe.allowFullscreen = true
-                  container.innerHTML = ''
-                  container.appendChild(iframe)
+                  loadVideo(container, 'https://www.youtube.com/embed/qxcRP8lx9dc?autoplay=1', 'Trusted Voices on PHIERS')
                 }}
               >
                 <img
@@ -364,15 +541,7 @@
                 className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                 onClick={(e) => {
                   const container = e.currentTarget
-                  const iframe = document.createElement('iframe')
-                  iframe.src = 'https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1'
-                  iframe.title = 'DotCom Magazine Interview'
-                  iframe.className = 'absolute top-0 left-0 w-full h-full'
-                  iframe.allow =
-                    'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                  iframe.allowFullscreen = true
-                  container.innerHTML = ''
-                  container.appendChild(iframe)
+                  loadVideo(container, 'https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1', 'DotCom Magazine Interview')
                 }}
               >
                 <img
@@ -626,7 +795,7 @@
                   modalContent.onclick = (e) => e.stopPropagation();
                   
                   const closeBtn = document.createElement('button');
-                  closeBtn.className = 'absolute top-4 right-4 z-10 text-white text-2xl bg-black/50 rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/80 transition';
+                  closeBtn.className = 'absolute top-2 right-2 z-10 text-white/60 text-sm bg-black/30 rounded-full w-5 h-5 flex items-center justify-center hover:bg-black/60 hover:text-white transition-opacity opacity-70 hover:opacity-100';
                   closeBtn.innerHTML = '✕';
                   closeBtn.onclick = () => modal.remove();
                   
@@ -1060,6 +1229,223 @@
                 <p className="text-center text-gray-600 text-[7px] mt-0.5">
                   If Vimeo asks, just click "Continue"
                 </p>
+              </div>
+
+              {/* Pandemic Video 1 */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://www.youtube.com/embed/0CrR7uh9fFk?autoplay=1'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://img.youtube.com/vi/0CrR7uh9fFk/mqdefault.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (1)</p>
+              </div>
+
+              {/* Pandemic Video 2 */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://www.youtube.com/embed/s88nbbiOY-s?autoplay=1'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://img.youtube.com/vi/s88nbbiOY-s/mqdefault.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (2)</p>
+              </div>
+
+              {/* Pandemic Video 3 */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://www.youtube.com/embed/Bj_A2pVXlHo?autoplay=1'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://img.youtube.com/vi/Bj_A2pVXlHo/mqdefault.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (3)</p>
+              </div>
+
+              {/* Pandemic Video 4 */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://www.youtube.com/embed/q0N0n-ET2cM?autoplay=1'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://img.youtube.com/vi/q0N0n-ET2cM/mqdefault.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (4)</p>
+              </div>
+
+              {/* Pandemic Video 5 */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://www.youtube.com/embed/8jXo5-znK4M?autoplay=1'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://img.youtube.com/vi/8jXo5-znK4M/mqdefault.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (5)</p>
+              </div>
+
+              {/* Pandemic Video 6 */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://www.youtube.com/embed/hB3teGHp1ss?autoplay=1'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://img.youtube.com/vi/hB3teGHp1ss/mqdefault.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (6)</p>
+              </div>
+
+              {/* Pandemic Video 7 */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={(e) => {
+                    const container = e.currentTarget
+                    const iframe = document.createElement('iframe')
+                    iframe.src = 'https://www.youtube.com/embed/faF7-En6NWU?autoplay=1'
+                    iframe.className = 'absolute top-0 left-0 w-full h-full'
+                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                    iframe.allowFullscreen = true
+                    container.innerHTML = ''
+                    container.appendChild(iframe)
+                  }}
+                >
+                  <img
+                    src="https://img.youtube.com/vi/faF7-En6NWU/mqdefault.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (7)</p>
               </div>
             </div>
             <p className="text-center text-gray-500 text-xs italic mt-4">
@@ -1588,6 +1974,35 @@
             </div>
           </motion.div>
         </motion.div>
+
+        {/* Mobile bottom navigation */}
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-lg border-t border-green/20 z-50 py-2 px-4">
+          <div className="flex justify-around items-center">
+            {[
+              { id: '#top', label: 'Top', icon: '↑' },
+              { id: '#videos', label: 'Videos', icon: '▶' },
+              { id: '#layer2', label: 'About', icon: 'ℹ' },
+              { id: '#record', label: 'Record', icon: '📋' },
+              { id: '#cta', label: 'Act', icon: '⚡' }
+            ].map(item => (
+              <button
+                key={item.id}
+                onClick={() => smoothScrollToElement(item.id)}
+                className="flex flex-col items-center gap-0.5 text-gray-400 hover:text-green transition-colors py-1 px-3 rounded-lg active:bg-green/10"
+              >
+                <span className="text-base">{item.icon}</span>
+                <span className="text-[10px]">{item.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Shortcut toast */}
+        {showShortcutToast && (
+          <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-4 py-2 rounded-full shadow-xl z-50 animate-fadeIn">
+            ⌨️ Shortcuts: T=Top, C=Continue, ?=Help
+          </div>
+        )}
       </>
     )
   }
