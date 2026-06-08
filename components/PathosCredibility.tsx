@@ -19,6 +19,7 @@
 
   export default function PathosCredibility({ onBackToSlides, onOpenTransitionModal, onOpenPrivacyModal }: Props) {
     const [showSkipAhead, setShowSkipAhead] = useState(false)
+  const [showSideMenu, setShowSideMenu] = useState(false)
 
     useEffect(() => {
       const handleScroll = () => {
@@ -26,28 +27,42 @@
         const docHeight = document.documentElement.scrollHeight - window.innerHeight
         const scrollPercent = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0
         setShowSkipAhead(scrollPercent > 10)
+        setShowSideMenu(scrollPercent > 25)  // <-- ADD THIS LINE
       }
       window.addEventListener('scroll', handleScroll)
       return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
     // goToMainHomepage removed - unused
-
     return (
       <>
         {/* Floating skip button – opens transition modal */}
         {showSkipAhead && (
-          <button
-            onClick={() => onOpenTransitionModal?.()}
-            className="fixed bottom-5 right-5 z-50 bg-[#0f1725]/90 border border-green/20 text-gray-200 text-sm px-4 py-2 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300"
-          >
-            Continue to Solutions →
-          </button>
+          <div className="fixed bottom-5 right-5 z-50">
+            <div className="relative">
+              <button
+                onClick={() => onOpenTransitionModal?.()}
+                className="bg-[#0f1725]/90 border border-green/20 text-gray-200 text-sm px-4 py-2 pr-8 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300"
+              >
+                Continue to Solutions →
+              </button>
+              <button
+                onClick={() => setShowSkipAhead(false)}
+                className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-gray-700/90 border border-gray-500 text-gray-300 hover:bg-red-600/80 hover:border-red-400 hover:text-white transition-all duration-200 flex items-center justify-center text-[10px] font-bold"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
         )}
 
-        {/* Optional left spine + anchor nav (desktop only) */}
-        <div className="hidden md:block fixed left-8 top-1/2 -translate-y-1/2 h-1/2 w-[2px] bg-green/20 z-30" />
-        <div className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 flex-col gap-3 text-[11px] text-gray-500 z-40">
+        {/* Optional left spine + anchor nav (desktop only) - fades in after 1/3 of page */}
+        <div className="hidden md:block fixed left-8 top-1/2 -translate-y-1/2 h-1/2 w-[2px] bg-green/20 z-30 transition-opacity duration-700" style={{ opacity: showSideMenu ? 1 : 0 }} />
+        <div 
+          className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 flex-col gap-3 text-[11px] text-gray-500 z-40 transition-all duration-700"
+          style={{ opacity: showSideMenu ? 1 : 0, transform: showSideMenu ? 'translateY(-50%)' : 'translateY(-45%)' }}
+        >
           <a href="#top" className="hover:text-green transition-colors">
             Top
           </a>
@@ -1051,6 +1066,250 @@
               Hundreds more archival videos document the full journey.
             </p>
           </motion.div>
+
+          {/* CHAPTER MARKER */}
+          <div className="h-[1px] w-full bg-green/10 my-10" />
+
+          {/* ========== WHAT WE BUILT FROM PRESSURE - INTEGRATED SYSTEM ========== */}
+          <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
+            <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
+              What We Built From That Pressure
+            </h2>
+
+            <div className="mt-8 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed">
+              <p>
+                We learned to think under strain. To read danger early. To protect what matters. To improvise when things change. To build without help.
+              </p>
+
+              <p>
+                That's not survival skills. That's architecture. System design. The ability to see how one problem connects to another — and how fixing one creates the conditions for the others to solve themselves.
+              </p>
+
+              <p>
+                PHIERS is what happens when you apply that knowledge to a problem nobody else could see clearly.
+              </p>
+            </div>
+
+            {/* THE PATTERN WE LEARNED */}
+            <div className="mt-12 mb-8 p-6 bg-[#1a2a3a]/40 border border-green-400/30 rounded-lg">
+              <p className="text-green-400/90 text-sm sm:text-base md:text-lg font-semibold tracking-wide mb-4">
+                THE PATTERN WE LEARNED
+              </p>
+
+              <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed">
+                <p>
+                  Healthcare costs break families. A parent working two jobs with no savings can't take time off for a doctor's visit. Can't afford medicine. Chooses between rent and health.
+                </p>
+
+                <p>
+                  That broken person can't organize. Can't participate. Can't show up to demand accountability from Congress.
+                </p>
+
+                <p>
+                  <span className="text-green-400 font-semibold">So Congress doesn't hear them.</span>
+                </p>
+
+                <p className="text-white font-semibold mt-4">
+                  But what if affordability came first?
+                </p>
+
+                <p>
+                  What if healthcare cost $600 instead of $10,000? What if that freed-up money — $7,400 per person per year — went to stability instead of extraction?
+                </p>
+
+                <p>
+                  Then a person has breathing room. Time. Capacity. They can organize. They can show up. They can demand Congress do its job.
+                </p>
+
+                <p className="text-green-400 font-semibold">
+                  And when 1,500 of them move together in a district — Congress has to listen.
+                </p>
+              </div>
+            </div>
+
+            {/* THREE PARTS, ONE MOVEMENT */}
+            <div className="mt-12">
+              <h3 className="text-white text-xl md:text-2xl font-semibold mb-6">
+                Three Problems. One Solution.
+              </h3>
+
+              <div className="space-y-6">
+                {/* PHIERSALE */}
+                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6">
+                  <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
+                    PHIERSale
+                  </p>
+                  <p className="text-gray-400 text-sm italic mb-3">
+                    Affordable Healthcare
+                  </p>
+                  <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                    A cooperative marketplace delivering what people actually need — primary care, chronic disease management, medications — at cost through telehealth. $600/person/year instead of $10,000.
+                  </p>
+                  <p className="text-green-400/80 font-semibold text-base md:text-lg mt-3">
+                    Result: Breathing room.
+                  </p>
+                </div>
+
+                {/* PHIERWORKS */}
+                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6">
+                  <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
+                    PHIERWorks
+                  </p>
+                  <p className="text-gray-400 text-sm italic mb-3">
+                    Job Training & Placement
+                  </p>
+                  <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                    Real-time matching between jobs that are actually hiring and people ready to work. No fake training programs. No jobs that disappear. Just honest alignment. And with affordable healthcare available, a person can actually take the job.
+                  </p>
+                  <p className="text-green-400/80 font-semibold text-base md:text-lg mt-3">
+                    Result: Economic stability.
+                  </p>
+                </div>
+
+                {/* PHIERPLACE */}
+                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6">
+                  <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
+                    PHIERPlace
+                  </p>
+                  <p className="text-gray-400 text-sm italic mb-3">
+                    Resource Matching & Referral
+                  </p>
+                  <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                    Services exist — housing help, food assistance, mental health support, childcare. But they're fragmented across three systems. PHIERPlace is one entry point. One eligibility check. "You qualify for these seven things. Here's how to access them."
+                  </p>
+                  <p className="text-green-400/80 font-semibold text-base md:text-lg mt-3">
+                    Result: Access without bureaucracy.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* HOW THEY WORK TOGETHER */}
+            <div className="mt-12 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed">
+              <p className="text-white text-xl md:text-2xl font-semibold mb-4">
+                How They Work Together
+              </p>
+
+              <p>
+                Affordable healthcare gives a person $7,400 back per year.
+              </p>
+
+              <p>
+                With that money and that breathing room, they can take a better job — one that pays more, or one they actually want.
+              </p>
+
+              <p>
+                With stability, they can access the resources they've always qualified for but never had time to navigate.
+              </p>
+
+              <p>
+                With all three in place, they're no longer fragile. No longer one emergency away from collapse.
+              </p>
+
+              <p className="text-green-400 font-semibold text-lg">
+                Then they have what it takes to organize.
+              </p>
+            </div>
+
+            {/* WHERE CONGRESS COMES IN - THE LEVERAGE */}
+            <div className="mt-12 mb-8 p-6 bg-[#1a2a3a]/40 border border-green-400/30 rounded-lg">
+              <p className="text-white text-xl md:text-2xl font-semibold mb-4">
+                Where Congress Comes In
+              </p>
+
+              <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed">
+                <p>
+                  Congress has the power to authorize all of this — today.
+                </p>
+
+                <p>
+                  Congress can tell Medicare: Authorize telehealth as covered care.
+                </p>
+
+                <p>
+                  Congress can tell Medicaid: Same thing.
+                </p>
+
+                <p>
+                  Congress can open ACA exchanges to direct-to-consumer pharmaceutical pricing.
+                </p>
+
+                <p>
+                  Congress can remove the middleman requirements that drive costs up.
+                </p>
+
+                <p className="text-white font-semibold">
+                  Congress won't do this right now — because the current system generates lobbying dollars from the people who profit from those middlemen.
+                </p>
+
+                <p>
+                  <span className="text-green-400 font-semibold">But Congress moves when constituents make ignoring them politically costly.</span>
+                </p>
+
+                <p>
+                  When 1,500 people in a district go on record saying "authorize this" — and they're organized, visible, and ready to primary or replace representatives who refuse — Congress moves.
+                </p>
+
+                <p className="text-green-400 text-lg md:text-xl font-semibold">
+                  That's the leverage.
+                </p>
+              </div>
+            </div>
+
+            {/* WHY IT HAD TO BE BUILT THIS WAY */}
+            <div className="mt-12 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed">
+              <p className="text-white text-xl md:text-2xl font-semibold mb-4">
+                Why It Had to Be Built This Way
+              </p>
+
+              <p>
+                You can't organize a broken person.
+              </p>
+
+              <p>
+                You can't ask someone working two jobs with no savings to show up and demand accountability.
+              </p>
+
+              <p>
+                You can't build pressure on Congress from people who are one emergency away from homelessness.
+              </p>
+
+              <p className="text-white font-semibold">
+                But you can start with affordability.
+              </p>
+
+              <p>
+                Give people breathing room, they get capacity. Capacity becomes participation. Participation becomes organization. Organization becomes pressure. Pressure becomes results.
+              </p>
+
+              <p>
+                That's not three separate programs competing for attention.
+              </p>
+
+              <p className="text-green-400 font-semibold text-lg md:text-xl">
+                That's one system. Every piece enables the others.
+              </p>
+            </div>
+
+            {/* WHAT THIS PROVES */}
+            <div className="mt-12 text-center">
+              <p className="text-gray-500 text-sm italic tracking-wide mb-4">
+                THIS IS WHAT PRESSURE TAUGHT US.
+              </p>
+              <p className="text-white text-2xl md:text-3xl font-semibold leading-relaxed">
+                That everything is connected.<br />
+                That solutions have to be connected too.<br />
+                That the person who survives pressure<br />
+                knows how to build systems that work together.<br />
+              </p>
+              <p className="text-green-400/80 text-xl md:text-2xl font-semibold mt-6">
+                PHIERS is what happens when you understand that pattern — and apply it at scale.
+              </p>
+            </div>
+
+            {/* Spacer before next section */}
+            <div className="h-16 md:h-24" />
+          </div>
 
           {/* CHAPTER MARKER */}
           <div className="h-[1px] w-full bg-green/10 my-10" />

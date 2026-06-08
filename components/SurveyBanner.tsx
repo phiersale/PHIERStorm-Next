@@ -17,7 +17,10 @@ export default function SurveyBanner({ storagePrefix = 'phiers_' }: SurveyBanner
 
   useEffect(() => {
     setIsMounted(true);
-    if (storagePrefix === 'phiers_' && window.location.pathname.startsWith('/Prophecy')) {
+    if (
+  storagePrefix === 'phiers_' &&
+  window.location.pathname.toLowerCase().startsWith('/prophecy')
+) {
       return;
     }
     const dismissed = sessionStorage.getItem(`${storagePrefix}bannerDismissed`);
