@@ -358,6 +358,15 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         <div className="text-center max-w-2xl mx-auto mb-8">
           <p className="text-green text-sm font-mono tracking-wider mb-2">THIS IS WHERE LEVERAGE BECOMES REAL.</p>
           <p className="text-gray-300 text-base">Your district. Your voice. On the record.</p>
+          {/* Single Why 1,500 link */}
+          <div className="mt-3">
+            <button 
+              onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+              className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
+            >
+              Why 1,500?
+            </button>
+          </div>
         </div>
 
         {/* HERO */}
@@ -373,16 +382,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           <div className="max-w-[760px] mx-auto mt-4">
             <p className="text-white text-lg md:text-xl font-semibold mb-2">Alone, you're easy to ignore.</p>
             <p className="text-green text-base md:text-lg font-medium mb-4">
-              <span className="inline-flex items-center gap-2">
-                <span>1,500 people</span>
-                <button 
-                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
-                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
-                >
-                  Why 1,500?
-                </button>
-              </span>
-              {" "}in your congressional district are not.
+              <span>1,500 people</span> in your congressional district are not.
             </p>
             <p className="text-gray-300 text-base mb-2">We don't ask Congress to care.</p>
             <p className="text-gray-300 text-base mb-4">
@@ -464,16 +464,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <p className="text-green text-xl font-bold mb-3">They just don’t have people forcing action.</p>
             <p className="text-gray-300 text-base mb-2">That’s where leverage comes in.</p>
             <p className="text-white text-lg font-semibold mb-2">
-              <span className="inline-flex items-center gap-2">
-                <span>1,500 people</span>
-                <button 
-                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
-                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
-                >
-                  Why 1,500?
-                </button>
-              </span>
-              {" "}in your district – on record – creates leverage.
+              <span>1,500 people</span> in your district – on record – creates leverage.
             </p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
             <p className="text-gray-300 text-base mb-2">If they don’t end the wars immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
@@ -521,12 +512,6 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <div className="flex flex-wrap items-baseline gap-2 mb-3">
               <h3 className="text-3xl md:text-4xl font-bold text-white">Why 1,500 Matters</h3>
-              <button 
-                onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
-                className="text-sm text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
-              >
-                Why 1,500?
-              </button>
             </div>
             <p className="text-gray-300 text-base mb-3">
               Congress doesn't respond to national percentages — it responds to pressure inside each district.
@@ -642,24 +627,9 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           <div className="max-w-[760px] mx-auto text-center">
             <div className="flex flex-wrap items-baseline justify-center gap-2 mb-4">
               <h2 className="text-3xl md:text-4xl font-bold text-white">WHY 1,500 PEOPLE MATTER</h2>
-              <button 
-                onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
-                className="text-sm text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
-              >
-                Why 1,500?
-              </button>
             </div>
             <p className="text-green text-xl font-semibold mb-3">
-              <span className="inline-flex items-center gap-2">
-                <span>1,500 people</span>
-                <button 
-                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
-                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
-                >
-                  Why 1,500?
-                </button>
-              </span>
-              {" "}in one congressional district is the tipping point.
+              <span>1,500 people</span> in one congressional district is the tipping point.
             </p>
             <p className="text-gray-300 text-base mb-2">Not millions. Not a national wave.</p>
             <p className="text-gray-300 text-base mb-2">Just enough people — in the right place — at the same time.</p>
@@ -710,17 +680,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         <section className="container py-8 text-center">
           <div className="max-w-[600px] mx-auto bg-bg-card border border-green/20 rounded-xl p-6">
             <p className="text-white text-lg font-bold mb-2">
-              If your district reaches 
-              <span className="inline-flex items-center gap-1 mx-1">
-                <span>1,500</span>
-                <button 
-                  onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
-                  className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
-                >
-                  Why 1,500?
-                </button>
-              </span>
-              , your representative has to respond.
+              If your district reaches 1,500, your representative has to respond.
             </p>
             <p className="text-gray-300 text-base mb-4">Or they risk losing their seat.</p>
             <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ Ask a question →</button>
@@ -834,18 +794,9 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-red-500">
               <div className="text-3xl mb-2">⚡</div>
               <div className="font-display text-2xl text-white mb-1">Political Power</div>
-              <p className="text-gray-400 text-sm">
-                <span className="inline-flex items-center gap-1">
-                  <span>1,500 constituents</span>
-                  <button 
-                    onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
-                    className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
-                  >
-                    Why 1,500?
-                  </button>
-                </span>
-                {" "}on the record forces a choice: act, or face replacement.
-              </p>
+                <p className="text-gray-400 text-sm">
+                  <span>1,500 constituents</span> on the record forces a choice: act, or face replacement.
+                </p>
             </div>
             <div className="bg-bg-card border border-green/20 rounded-xl p-6 h-full border-t-4 border-t-yellow-400">
               <div className="text-3xl mb-2">💰</div>

@@ -725,19 +725,23 @@
               <p className="text-green text-lg font-bold mb-5">
                 Now go on record yourself.
               </p>
-              <button
-                onClick={() => onOpenPrivacyModal?.('https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred')}
-                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3"
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 text-center inline-block"
                 style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
               >
-                → Sign the Petition
-              </button>
-              <button
-                onClick={() => onOpenPrivacyModal?.('https://phiers-civic-engagem-vopm05.abacusai.app/survey')}
-                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition"
+                → Ask a Question
+              </a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition text-center inline-block"
               >
-                Take the Survey →
-              </button>
+                Sign Up for Updates →
+              </a>
             </div>
           </motion.div>
 
@@ -1923,19 +1927,23 @@
               <p className="text-green text-lg font-bold mb-5">
                 Now go on record yourself.
               </p>
-              <button
-                onClick={() => onOpenPrivacyModal?.('https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred')}
-                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3"
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 text-center inline-block"
                 style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
               >
-                → Sign the Petition
-              </button>
-              <button
-                onClick={() => onOpenPrivacyModal?.('https://phiers-civic-engagem-vopm05.abacusai.app/survey')}
-                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition"
+                → Ask a Question
+              </a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition text-center inline-block"
               >
-                Take the Survey →
-              </button>
+                Sign Up for Updates →
+              </a>
             </div>
           </motion.div>
 
