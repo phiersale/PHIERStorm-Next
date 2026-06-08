@@ -103,28 +103,6 @@
       return () => mediaQuery.removeEventListener('change', handler)
     }, [])
 
-    // Keyboard shortcuts
-    useEffect(() => {
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === '?' && !e.ctrlKey && !e.metaKey) {
-          e.preventDefault()
-          setShowShortcutToast(true)
-          setTimeout(() => setShowShortcutToast(false), 3000)
-        }
-        if (e.key === 't' && !e.ctrlKey && !e.metaKey) {
-          e.preventDefault()
-          smoothScrollToElement('#top')
-        }
-        if (e.key === 'c' && !e.ctrlKey && !e.metaKey) {
-          e.preventDefault()
-          onOpenTransitionModal?.()
-        }
-      }
-      
-      window.addEventListener('keydown', handleKeyDown)
-      return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [onOpenTransitionModal])
-
     // Smooth scroll with offset for fixed header
     const smoothScrollToElement = (elementId: string) => {
       const element = document.querySelector(elementId)
@@ -1461,7 +1439,7 @@
           <div className="h-[1px] w-full bg-green/10 my-10" />
 
           {/* ========== WHAT WE BUILT FROM PRESSURE - INTEGRATED SYSTEM ========== */}
-          <div className="max-w-3xl mx-auto px-6 mt-20 md:mt-24">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 mt-20 md:mt-24">
             <h2 className="text-[clamp(1.8rem,6.5vw,2.75rem)] font-bold leading-[1.1] text-balance">
               What We Built From That Pressure
             </h2>
@@ -1481,7 +1459,7 @@
             </div>
 
             {/* THE PATTERN WE LEARNED */}
-            <div className="mt-12 mb-8 p-6 bg-[#1a2a3a]/40 border border-green-400/30 rounded-lg">
+            <div className="mt-12 mb-8 p-4 sm:p-6 bg-[#1a2a3a]/40 border border-green-400/30 rounded-lg mx-0">
               <p className="text-green-400/90 text-sm sm:text-base md:text-lg font-semibold tracking-wide mb-4">
                 THE PATTERN WE LEARNED
               </p>
@@ -1525,7 +1503,7 @@
 
               <div className="space-y-6">
                 {/* PHIERSALE */}
-                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6">
+                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6 -mx-4 sm:mx-0">
                   <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
                     PHIERSale
                   </p>
@@ -1541,7 +1519,7 @@
                 </div>
 
                 {/* PHIERWORKS */}
-                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6">
+                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6 -mx-4 sm:mx-0">
                   <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
                     PHIERWorks
                   </p>
@@ -1557,7 +1535,7 @@
                 </div>
 
                 {/* PHIERPLACE */}
-                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6">
+                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6 -mx-4 sm:mx-0">
                   <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
                     PHIERPlace
                   </p>
@@ -1575,7 +1553,7 @@
             </div>
 
             {/* HOW THEY WORK TOGETHER */}
-            <div className="mt-12 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed">
+            <div className="mt-12 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed px-0">
               <p className="text-white text-xl md:text-2xl font-semibold mb-4">
                 How They Work Together
               </p>
@@ -1602,7 +1580,7 @@
             </div>
 
             {/* WHERE CONGRESS COMES IN - THE LEVERAGE */}
-            <div className="mt-12 mb-8 p-6 bg-[#1a2a3a]/40 border border-green-400/30 rounded-lg">
+            <div className="mt-12 mb-8 p-4 sm:p-6 bg-[#1a2a3a]/40 border border-green-400/30 rounded-lg mx-0">
               <p className="text-white text-xl md:text-2xl font-semibold mb-4">
                 Where Congress Comes In
               </p>
@@ -1647,7 +1625,7 @@
             </div>
 
             {/* WHY IT HAD TO BE BUILT THIS WAY */}
-            <div className="mt-12 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed">
+            <div className="mt-12 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed px-0">
               <p className="text-white text-xl md:text-2xl font-semibold mb-4">
                 Why It Had to Be Built This Way
               </p>
