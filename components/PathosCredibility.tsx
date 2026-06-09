@@ -411,7 +411,7 @@
             className="flex flex-col gap-8 mb-12"
           >
             {/* VIDEO CARD 1 - PATHOS */}
-            <div className="w-[95%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-4 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
               <div className="mb-4">
                 <p className="text-green text-xl md:text-2xl font-bold mb-1">
                   PATHOS Communications
@@ -445,7 +445,7 @@
             </div>
 
             {/* VIDEO CARD 2 - BIGC */}
-            <div className="w-[95%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-4 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
               <div className="mb-4">
                 <p className="text-green text-2xl md:text-2xl font-bold mb-1">
                   Voices of Accountability
@@ -479,7 +479,7 @@
             </div>
 
             {/* VIDEO CARD 3 - DOTCOM */}
-            <div className="w-[95%] md:w-full mx-auto bg-[#0a1628] rounded-xl p-4 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
               <div className="mb-4">
                 <p className="text-green text-2xl md:text-2xl font-bold mb-1">
                   DotCom Magazine
@@ -569,7 +569,7 @@
 
                 {/* Horizontal timeline */}
                 <div className="overflow-x-auto pb-2">
-                  <div className="min-w-[700px] flex items-center justify-between relative">
+                  <div className="min-w-full sm:min-w-[700px] flex items-center justify-between relative">
                     
                     <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px] bg-green/20" />
 
@@ -1042,10 +1042,10 @@
             <p className="text-gray-400 text-sm mb-4">
               Early documentation (2007 thru Covid) – archival, not promotional.  Hundreds more exist.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 justify-items-center max-w-5xl mx-auto px-1">
 
               {/* A Spiritual Solution to Every Problem - Intro Only (2016) */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1067,7 +1067,7 @@
               </div>
 
               {/* Sizzle Film 2011 */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1111,7 +1111,7 @@
               </div>
 
               {/* Silos to Synergies 2014 */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1135,7 +1135,7 @@
               </div>
 
               {/* PHIERS Early Framework (Vimeo 34036317) */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1157,7 +1157,7 @@
               </div>
 
               {/* PHIERS Strategy (Vimeo 37264685) */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1179,7 +1179,7 @@
               </div>
 
               {/* PHIERS Structure (Vimeo 37891922) */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1201,7 +1201,7 @@
               </div>
 
               {/* A Bold Counterplan — How to Combat Disaster Capitalism (2015) */}
-              <div className="w-28 sm:w-32 relative">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto relative">
                 {/* Timestamp badge */}
                 <div className="absolute top-1 right-1 z-10 bg-black/70 text-green-300 text-[8px] font-mono px-1 py-0.5 rounded shadow-md">
                   2015
@@ -1244,7 +1244,7 @@
               </div>
 
               {/* Pandemic Video 1 */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1266,7 +1266,7 @@
               </div>
 
               {/* Pandemic Video 2 */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1288,7 +1288,7 @@
               </div>
 
               {/* Pandemic Video 4 */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1310,7 +1310,7 @@
               </div>
 
               {/* Pandemic Video 5 */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
@@ -1332,7 +1332,7 @@
               </div>
 
               {/* Pandemic Video 6 */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}

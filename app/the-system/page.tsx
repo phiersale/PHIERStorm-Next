@@ -202,11 +202,33 @@ export default function PhiersSystemPage() {
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
             <h2 className="text-xl md:text-2xl font-semibold mb-4">Healthcare: The Entry Point</h2>
 
+            <div className="mt-6 flex justify-center cursor-zoom-in"
+                onClick={() => openModal('/images/healthcare-cost-contrast-10k-600.jpg', 'Healthcare cost contrast: $10,000 vs $600')}>
+              <Image
+                src="/images/healthcare-cost-contrast-10k-600.jpg"
+                alt="Healthcare cost contrast: $10,000 vs $600"
+                width={900}
+                height={500}
+                className="rounded-xl object-contain"
+              />
+            </div>
+            <p className="text-gray-500 text-xs mt-2 text-center opacity-70">Click to enlarge</p>
+
             <p className="text-gray-400 text-sm mb-6">
               Most people cannot organize around abstract principles. They organize around survival.
             </p>
 
             <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              <div className="flex justify-center mb-6">
+            <Image
+                  src="/images/phiersale-healthcare-icon.jpg"
+                  alt="PHIERSale healthcare icon"
+                  width={90}
+                  height={90}
+                  className="opacity-80"
+                />
+              </div>
+
               <p>PHIERSale removes the survival pressure.</p>
 
               <p className="font-semibold text-white">How it works:</p>
@@ -244,7 +266,17 @@ export default function PhiersSystemPage() {
             </p>
 
             <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              <p>PHIERWorks connects three things that rarely speak to one another:</p>
+              <div className="flex justify-center mb-6">
+            <Image
+                src="/images/phierworks-jobs-icon.jpg"
+                alt="PHIERWorks jobs icon"
+                width={90}
+                height={90}
+                className="opacity-80"
+              />
+            </div>
+
+          <p>PHIERWorks connects three things that rarely speak to one another:</p>
 
               <div className="pl-4 border-l border-green-400/30 space-y-2">
                 <p>Real demand from employers who need workers</p>
@@ -275,9 +307,19 @@ export default function PhiersSystemPage() {
             </p>
 
             <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              <p>
-                They exist as separate bureaucracies that rarely communicate.
-              </p>
+            <div className="flex justify-center mb-6">
+          <Image
+                src="/images/phierplace-resources-icon.jpg"
+                alt="PHIERPlace resources icon"
+                width={90}
+                height={90}
+                className="opacity-80"
+              />
+            </div>
+
+            <p>
+              They exist as separate bureaucracies that rarely communicate.
+            </p>
 
               <p className="font-semibold text-white">PHIERPlace is the interoperability layer that connects them.</p>
 
@@ -517,6 +559,16 @@ export default function PhiersSystemPage() {
               <p className="text-green-400/80 font-semibold text-base">
                 This is what you control.
               </p>
+            </div>
+
+            <div className="flex justify-center my-10">
+            <Image
+                src="/images/phiers-system-firewall-mini.jpg"
+                alt="PHIERS mini icon"
+                width={120}
+                height={120}
+                className="opacity-70"
+              />
             </div>
 
             <div className="h-px bg-white/10 my-8"></div>
