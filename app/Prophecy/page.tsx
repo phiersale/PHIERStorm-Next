@@ -57,20 +57,20 @@ export default function ProphecyPage() {
               And if you're never comfortable — that's okay too. This only works if it's real.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button
+                onClick={() => setShowTrustModal(false)}
+                className="inline-block bg-transparent border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 font-semibold py-3 px-8 rounded-lg transition whitespace-nowrap text-sm sm:text-base"
+              >
+                Not yet
+              </button>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition text-center"
+                className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition text-center whitespace-nowrap text-sm sm:text-base"
               >
                 I'm ready — ask me →
               </a>
-              <button
-                onClick={() => setShowTrustModal(false)}
-                className="inline-block bg-transparent border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 font-semibold py-3 px-8 rounded-lg transition"
-              >
-                Not yet
-              </button>
             </div>
           </div>
         </div>

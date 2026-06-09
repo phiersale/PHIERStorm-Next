@@ -1127,6 +1127,82 @@ a[href*="forms.google"] {
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
   }
+} 
+
+/* ========================================
+   PREVENT AWKWARD LINE BREAKS - GLOBAL FIX
+   ======================================== */
+
+/* Prevent button text from wrapping to multiple lines */
+button, 
+a[class*="btn"], 
+a[class*="Button"],
+.button,
+[role="button"],
+a[href*="forms.google"],
+a[class*="rounded-lg"],
+button[class*="rounded"] {
+  white-space: nowrap !important;
+  font-size-adjust: none;
+}
+
+/* On very small screens, shrink font size to prevent wrapping */
+@media (max-width: 480px) {
+  button, 
+  a[class*="btn"], 
+  a[class*="Button"],
+  .button,
+  [role="button"],
+  a[href*="forms.google"],
+  a[class*="rounded-lg"],
+  button[class*="rounded"] {
+    white-space: nowrap !important;
+    font-size: 0.7rem !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
+/* On extremely small screens (below 380px), allow wrap but keep it clean */
+@media (max-width: 380px) {
+  button, 
+  a[class*="btn"], 
+  a[class*="Button"],
+  .button,
+  [role="button"],
+  a[href*="forms.google"] {
+    white-space: normal !important;
+    font-size: 0.65rem !important;
+    word-break: keep-all !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* Prevent awkward heading wraps */
+h1, h2, h3, h4, h5, h6 {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: none;
+}
+
+/* Specific fix for "The Fifteen Hundred" and similar headings */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Keep CTA buttons on one line */
+.whitespace-nowrap {
+  white-space: nowrap !important;
+}
+
+/* Mobile bottom nav fixes */
+@media (max-width: 640px) {
+  .md\:hidden.fixed.bottom-0 button span:first-child {
+    font-size: 1rem;
+  }
+  .md\:hidden.fixed.bottom-0 button span:last-child {
+    font-size: 0.6rem;
+  }
 }
 
 /* FILE: app/globals.css */

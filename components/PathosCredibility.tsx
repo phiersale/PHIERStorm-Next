@@ -204,16 +204,6 @@
     // goToMainHomepage removed - unused
     return (
       <>
-        {/* Sticky floating PHIERS logo */}
-        {showSkipAhead && (
-          <div className="fixed top-4 left-4 z-50 md:left-8 md:top-6">
-            <img
-              src="/images/PHIERS_Logo.png"
-              alt="PHIERS"
-              className="w-10 h-10 md:w-12 md:h-12 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-            />
-          </div>
-        )}
 
         {/* Floating skip button – opens transition modal */}
         {showSkipAhead && (
@@ -316,12 +306,12 @@
           }}
           className="max-w-4xl mx-auto px-4 pt-2 pb-20 md:pb-6"
         >
-          {/* [1] LOGO — identifier only - ENLARGED for brand weight */}
+          {/* [1] LOGO — identifier only - ENLARGED 50% MORE */}
           <motion.div variants={sectionFade} className="flex justify-center mb-8 md:mb-10">
             <img
               src="/images/PHIERS_Logo.png"
               alt="PHIERS"
-              className="w-28 h-28 md:w-36 md:h-36 object-contain opacity-90"
+              className="w-42 h-42 md:w-54 md:h-54 object-contain opacity-90"
             />
           </motion.div>
 

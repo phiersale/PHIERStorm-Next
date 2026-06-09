@@ -267,10 +267,10 @@ export default function MovementPage() {
             <img src="/images/trilogy/Final_CTA_image.jpg" alt="Man walking toward sunrise" className="w-full md:w-4/5 mx-auto rounded-lg object-cover shadow-lg" />
           </section>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/Prophecy" className="inline-block bg-transparent border border-gray-600 text-white font-bold text-xl py-4 px-12 rounded-full hover:bg-white/10 transition shadow-lg whitespace-nowrap">
+            <Link href="/Prophecy" className="inline-block bg-transparent border border-gray-600 text-white font-bold text-base sm:text-lg md:text-xl py-3 sm:py-4 px-6 sm:px-12 rounded-full hover:bg-white/10 transition shadow-lg whitespace-nowrap">
               ← BACK TO PROPHECY
             </Link>
-            <Link href="/Prophecy/trilogy" className="inline-block bg-white text-black font-bold text-xl py-4 px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap">
+            <Link href="/Prophecy/trilogy" className="inline-block bg-white text-black font-bold text-base sm:text-lg md:text-xl py-3 sm:py-4 px-6 sm:px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap">
               ENTER THE TRILOGY →
             </Link>
           </div>

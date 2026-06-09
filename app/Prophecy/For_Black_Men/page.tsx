@@ -29,7 +29,7 @@ export default function ForBlackMenPage() {
               priority
             />
           </Link>
-          <Link href="/Prophecy" className="text-gray-400 text-sm hover:text-white transition">
+          <Link href="/Prophecy" className="text-gray-400 text-xs sm:text-sm hover:text-white transition whitespace-nowrap">
             ← Back to doors
           </Link>
         </div>
@@ -80,13 +80,13 @@ export default function ForBlackMenPage() {
                 href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition text-center"
+                className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition text-center whitespace-nowrap text-sm sm:text-base"
               >
                 I'm ready — ask me →
               </a>
               <button
                 onClick={() => setShowTrustModal(false)}
-                className="inline-block bg-transparent border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 font-semibold py-3 px-8 rounded-lg transition"
+                className="inline-block bg-transparent border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 font-semibold py-3 px-8 rounded-lg transition whitespace-nowrap text-sm sm:text-base"
               >
                 Not yet
               </button>
@@ -579,7 +579,7 @@ export default function ForBlackMenPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href="/Prophecy/movement"
-            className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition text-sm whitespace-nowrap"
+            className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition text-xs sm:text-sm whitespace-nowrap"
           >
             ← THE MOVEMENT
           </a>
@@ -587,7 +587,7 @@ export default function ForBlackMenPage() {
             href="https://phiers.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-lg transition border border-gray-500 text-sm whitespace-nowrap"
+            className="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-lg transition border border-gray-500 text-xs sm:text-sm whitespace-nowrap"
           >
             Enter PHIERS →
           </a>
@@ -605,7 +605,7 @@ export default function ForBlackMenPage() {
           <p className="text-sm text-gray-400 mt-4">We're not asking for blind trust. Just enough curiosity to see how the structure works.</p>
           <button
             onClick={() => setShowTrustModal(true)}
-            className="inline-block bg-white text-black font-bold text-xl md:text-2xl py-3 px-10 rounded-full hover:bg-gray-200 transition shadow-lg mt-6 mx-auto cursor-pointer"
+            className="inline-block bg-white text-black font-bold text-lg sm:text-xl md:text-2xl py-3 px-8 sm:px-10 rounded-full hover:bg-gray-200 transition shadow-lg mt-6 mx-auto cursor-pointer whitespace-nowrap"
           >
             → Ask a question
           </button>
