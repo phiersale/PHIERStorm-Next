@@ -170,7 +170,7 @@ export default function ProphecyPage() {
       {/* INTRO SEQUENCE */}
       <div id="breath-section" className="text-center mt-24 md:mt-32 mb-10 px-6">
         <h3 className="text-[clamp(2.2rem,8vw,3.5rem)] leading-[1.05] font-light text-gray-200 italic">
-          Breath slow and deep.
+          Take A Knee.
         </h3>
         <div className="mt-8 space-y-3 text-gray-300 text-base md:text-lg max-w-xl mx-auto">
           <p>We've been carrying weight a long time.</p>
