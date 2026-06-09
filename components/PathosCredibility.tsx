@@ -306,24 +306,27 @@
           }}
           className="max-w-4xl mx-auto px-4 pt-2 pb-20 md:pb-6"
         >
-          {/* [1] LOGO — identifier only - ENLARGED 50% MORE */}
-          <motion.div variants={sectionFade} className="flex justify-center mb-8 md:mb-10">
+          {/* [1] LOGO — small anchor, not hero */}
+          <motion.div variants={sectionFade} className="flex justify-center mb-4">
             <img
               src="/images/PHIERS_Logo.png"
               alt="PHIERS"
-              className="w-42 h-42 md:w-54 md:h-54 object-contain opacity-90"
+              className="w-12 h-12 md:w-14 md:h-14 object-contain opacity-50"
             />
           </motion.div>
 
-          {/* PAGE TITLE */}
-          <motion.div variants={sectionFade} className="text-center max-w-3xl mx-auto mb-12 px-4">
-            <h1 className="text-[clamp(2rem,8vw,4rem)] md:text-[clamp(2.5rem,6vw,4.5rem)] font-black text-white mb-4 tracking-tight leading-[1.2]">
+          {/* PAGE TITLE - HUGE */}
+          <motion.div variants={sectionFade} className="text-center px-4 mt-16 md:mt-20">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
               What Makes Us Credible
             </h1>
-            <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-base md:text-lg text-center mt-3">
               Three independent validators. One public record. Zero hype.
             </p>
           </motion.div> 
+
+          {/* Spacer before validators */}
+          <div className="mt-16 md:mt-20"></div>
 
           {/* Reading time indicator */}
           {readingTime && (
