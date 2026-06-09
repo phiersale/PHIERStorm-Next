@@ -221,7 +221,7 @@
             <div className="relative">
               <button
                 onClick={() => onOpenTransitionModal?.()}
-                className="bg-[#0f1725]/90 border border-green/20 text-gray-200 text-sm px-4 py-2 pr-8 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300"
+                className="bg-[#0f1725]/90 border border-green/20 text-gray-200 text-sm px-4 py-2 pr-8 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300 whitespace-nowrap"
               >
                 Continue to Solutions →
               </button>
@@ -613,7 +613,7 @@
             <div className="mt-4 space-y-4 text-gray-300 text-sm">
               <div className="border-l-2 border-green/30 pl-3">
                 <p className="text-white font-bold flex items-center gap-1">⭐ Pathos Communications</p>
-                <p className="text-gray-400 text-xs">A London Stock Exchange–listed global PR firm known for vetting legitimacy before taking on any client. Their on‑camera statement — <span className="text-green-300 italic">"If you weren't real, we wouldn't risk our name"</span> — became part of the public record validating PHIERS' structural credibility.</p>
+                <p className="text-gray-400 text-xs">A London Stock Exchange–listed global PR firm known for vetting legitimacy before taking on any client. Their on‑camera statement — <span className="text-green-300 italic">"If you weren't legit, we wouldn't risk our name"</span> — became part of the public record validating PHIERS' structural credibility.</p>
               </div>
               <div className="border-l-2 border-green/30 pl-3">
                 <p className="text-white font-bold flex items-center gap-1">⭐ DotCom Magazine</p>
@@ -768,7 +768,7 @@
                 href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 text-center inline-block"
+                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 text-center inline-block whitespace-nowrap"
                 style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
               >
                 → Ask a Question
@@ -777,7 +777,7 @@
                 href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition text-center inline-block"
+                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition text-center inline-block whitespace-nowrap"
               >
                 Sign Up for Updates →
               </a>
@@ -1770,7 +1770,7 @@
                 href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 text-center inline-block"
+                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 text-center inline-block whitespace-nowrap"
                 style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
               >
                 → Ask a Question
@@ -1779,7 +1779,7 @@
                 href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition text-center inline-block"
+                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition text-center inline-block whitespace-nowrap"
               >
                 Sign Up for Updates →
               </a>
@@ -1807,14 +1807,14 @@
               </p>
               <button
                 onClick={() => onOpenTransitionModal?.()}
-                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3"
+                className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 whitespace-nowrap"
                 style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
               >
                 → Continue to the main homepage
               </button>
               <button
                 onClick={() => onOpenTransitionModal?.()}
-                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition"
+                className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition whitespace-nowrap"
               >
                 Sign up for updates →
               </button>
