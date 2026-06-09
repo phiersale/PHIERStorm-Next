@@ -366,72 +366,7 @@
             </div>
           </motion.div>
 
-          {/* Spacer before timeline */}
-          <div className="mt-24 md:mt-32" />
-
-          {/* ========== WRITTEN TIMELINE — INSTITUTIONAL RECEIPTS ========== */}
-          <section className="w-full max-w-4xl mx-auto px-6 mt-12 md:mt-16">
-            <div className="text-center mb-4">
-              <p className="text-green text-sm font-mono tracking-wider">THE RECORD</p>
-              <p className="text-gray-500 text-[11px]">22 years of documented public record</p>
-            </div>
-
-            <div className="border border-green/20 rounded-lg p-6 bg-[#0a1628]/40">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2004</span>
-                    <span className="text-gray-300 text-sm">Earliest documented PHIERS record</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2007</span>
-                    <span className="text-gray-300 text-sm">First recorded video — PHIERS documented framework</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2009</span>
-                    <span className="text-gray-300 text-sm">PHIERS.org partners with SureSafe Pharma</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2011</span>
-                    <span className="text-gray-300 text-sm">Archived platform snapshot — health reform coalition</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2013</span>
-                    <span className="text-gray-300 text-sm">First comprehensive articulation of PHIERS mission</span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2014</span>
-                    <span className="text-gray-300 text-sm">Operational proposals, named partnerships, dated documents</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2022</span>
-                    <span className="text-gray-300 text-sm">DotCom Magazine Entrepreneur Spotlight</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2026</span>
-                    <span className="text-gray-300 text-sm">Pathos Communications — London Stock Exchange listed</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">2026</span>
-                    <span className="text-gray-300 text-sm">BigC interview — framework discussed by media, culture, and movement leaders</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green text-sm font-bold w-12 shrink-0">Now</span>
-                    <span className="text-gray-300 text-sm">District organizing model — active</span>
-                  </div>
-                </div>
-              </div>
-              <p className="text-gray-500 text-xs italic mt-6 text-center">
-                The point is not retroactive credit. It's that structural pressure recognition, when
-                documented publicly and early, eventually becomes its own form of evidence.
-              </p>
-            </div>
-          </section>
-
-          {/* Spacer before modern videos */}
-          <div className="mt-24 md:mt-32" />
+          {/* Timeline moved below validation videos */}
 
           {/* [2] QUESTION — sets up skepticism */}
           <motion.div variants={sectionFade} className="text-center max-w-2xl mx-auto mb-6">
@@ -619,6 +554,130 @@
             </div>
           </details>
           </motion.div>
+
+          {/* ========== COLLAPSIBLE TIMELINE — INSTITUTIONAL RECEIPTS ========== */}
+          <section className="w-full max-w-4xl mx-auto px-6 mt-12 md:mt-16">
+            <div className="text-center mb-4">
+              <p className="text-green text-sm font-mono tracking-wider">THE RECORD</p>
+              <p className="text-gray-500 text-[11px]">22 years of documented public record</p>
+            </div>
+
+            <details className="group border border-green/20 rounded-lg bg-[#0a1628]/40 overflow-hidden">
+              
+              {/* CLOSED VIEW */}
+              <summary className="cursor-pointer list-none p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <p className="text-white font-semibold">
+                    View Full Timeline
+                  </p>
+                  <span className="text-green transition-transform duration-300 group-open:rotate-90">
+                    ▶
+                  </span>
+                </div>
+
+                {/* Horizontal timeline */}
+                <div className="overflow-x-auto pb-2">
+                  <div className="min-w-[700px] flex items-center justify-between relative">
+                    
+                    <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px] bg-green/20" />
+
+                    {[
+                      '2004',
+                      '2007',
+                      '2009',
+                      '2011',
+                      '2013',
+                      '2014',
+                      '2022',
+                      '2026',
+                      'Now'
+                    ].map((year) => (
+                      <div
+                        key={year}
+                        className="relative flex flex-col items-center z-10"
+                      >
+                        <div className="w-4 h-4 rounded-full bg-green border-2 border-[#0a1628]" />
+                        <span className="text-[11px] text-gray-400 mt-2">
+                          {year}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="text-gray-500 text-xs italic mt-5 text-center">
+                  22 years of public documentation. Click to expand.
+                </p>
+              </summary>
+
+              {/* EXPANDED VIEW */}
+              <div className="px-6 pb-6 border-t border-green/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mt-6">
+
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2004</span>
+                      <span className="text-gray-300 text-sm">Earliest documented PHIERS record</span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2007</span>
+                      <span className="text-gray-300 text-sm">First recorded video — PHIERS documented framework</span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2009</span>
+                      <span className="text-gray-300 text-sm">PHIERS.org partners with SureSafe Pharma</span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2011</span>
+                      <span className="text-gray-300 text-sm">Archived platform snapshot — health reform coalition</span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2013</span>
+                      <span className="text-gray-300 text-sm">First comprehensive articulation of PHIERS mission</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2014</span>
+                      <span className="text-gray-300 text-sm">Operational proposals, named partnerships, dated documents</span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2022</span>
+                      <span className="text-gray-300 text-sm">DotCom Magazine Entrepreneur Spotlight</span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2026</span>
+                      <span className="text-gray-300 text-sm">Pathos Communications — London Stock Exchange listed</span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">2026</span>
+                      <span className="text-gray-300 text-sm">BigC interview — framework discussed by media, culture, and movement leaders</span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <span className="text-green text-sm font-bold w-12 shrink-0">Now</span>
+                      <span className="text-gray-300 text-sm">District organizing model — active</span>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-gray-500 text-xs italic mt-6 text-center">
+                  The point is not retroactive credit. It's that structural pressure recognition,
+                  when documented publicly and early, eventually becomes its own form of evidence.
+                </p>
+              </div>
+            </details>
+          </section>
+
+          <div className="mt-12 md:mt-16"></div>
 
           {/* ========== SHARK TANK CONNECTION (COLLAPSIBLE) ========== */}
           <motion.details
@@ -989,9 +1048,31 @@
           >
             <h2 className="text-xl md:text-2xl font-bold text-green mb-2">Legacy Videos</h2>
             <p className="text-gray-400 text-sm mb-4">
-              Early documentation (2007–2014) – archival, not promotional
+              Early documentation (2007 thru Covid) – archival, not promotional.  Hundreds more exist.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center max-w-5xl mx-auto">
+
+              {/* A Spiritual Solution to Every Problem - Intro Only (2016) */}
+              <div className="w-28 sm:w-32">
+                <div
+                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
+                  style={{ paddingBottom: '56.25%' }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/fWsifllWmnY?autoplay=1', 'A Spiritual Solution to Every Problem - Intro Only')}
+                >
+                  <img
+                    src="https://img.youtube.com/vi/fWsifllWmnY/mqdefault.jpg"
+                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 text-[10px] mt-1">A Spiritual Solution to Every Problem (2016)</p>
+              </div>
 
               {/* Sizzle Film 2011 */}
               <div className="w-28 sm:w-32">
@@ -1189,7 +1270,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">Public Health Advicacy & Pandemics</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">Public Health Advocacy & Pandemics (2021)</p>
               </div>
 
               {/* Pandemic Video 2 */}
@@ -1211,7 +1292,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">A Better Pandemic Response</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">A Better Pandemic Response (2022)</p>
               </div>
 
               {/* Pandemic Video 4 */}
@@ -1233,7 +1314,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">Family Matters, Healthcare and YOU</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">Family Matters, Healthcare and YOU (2017)</p>
               </div>
 
               {/* Pandemic Video 5 */}
@@ -1255,7 +1336,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">Great Minds Think Alike</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">Great Minds Think Alike (2018)</p>
               </div>
 
               {/* Pandemic Video 6 */}

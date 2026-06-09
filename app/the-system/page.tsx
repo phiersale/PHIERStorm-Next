@@ -1,5 +1,5 @@
 // FILE: app/the-system/page.tsx
-// VERSION: 2.0 – Cinematic layout, full-width images, click-to-expand modals, centered content
+// VERSION: 3.0 – Rubik's Cube system, mechanism-focused copy, authority tone
 
 'use client';
 
@@ -114,44 +114,47 @@ export default function PhiersSystemPage() {
                 How It All Works Together
               </h1>
 
-              {/* Prophecy visitor acknowledgment */}
-              <p className="text-gray-500 text-sm italic">
-                If you came from the Prophecy — this is what we built.
-              </p>
-
               <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                <p>You can't solve healthcare without solving jobs.</p>
-                <p>You can't solve jobs without solving the economy.</p>
-                <p>You can't solve the economy without congressional action.</p>
-                <p>You can't get congressional action without constituent pressure.</p>
+                <p>You have organized the Fifteen Hundred.</p>
+                <p>Now here's what becomes possible.</p>
 
                 <p className="mt-4 text-gray-200">
-                  They're not separate problems. They're the same problem with different masks.
+                  Every piece of this system affects every other piece.
+                </p>
+
+                <p className="mt-4">
+                  You cannot solve healthcare without affecting employment.
+                  You cannot solve employment without affecting resource access.
+                  You cannot affect resource access without affecting congressional priorities.
+                  You cannot change congressional priorities without the leverage you now hold.
                 </p>
 
                 <p className="mt-4 text-green-400/80">
-                  PHIERS is not a healthcare program, a jobs program, or a political campaign.
-                  It is a leverage system designed to make solutions possible by restoring accountability
-                  between constituents and Congress.
+                  This is not four separate programs. This is one mechanism. Move the center, and everything else resolves.
                 </p>
               </div>
             </div>
 
-            {/* Hero Hub Icon - clickable with modal */}
+            {/* Rubik's Cube - clickable with modal */}
             <div className="md:pt-4 flex md:justify-center">
               <div 
-                className="w-40 h-40 md:w-48 md:h-48 cursor-pointer group bg-gradient-to-br from-green-900/30 to-black rounded-full border border-green-500/30 flex flex-col items-center justify-center p-3 hover:scale-105 transition-transform duration-300 hover:border-green-400/60"
+                className="relative w-40 h-40 md:w-56 md:h-56 cursor-pointer group"
                 onClick={() => openModal(
-                  '/images/phiers-system-hub-icon.jpg',
-                  'PHIERS System Hub - Healthcare, Jobs, and Resources connected to PHIERS'
+                  '/images/5D_Solutions_Rubiks_Cube.jpg',
+                  'The Rubik\'s Cube of Accountability - Every piece affects every other piece'
                 )}
               >
-                <p className="text-green-400 text-[10px] md:text-xs font-bold tracking-wide">HEALTHCARE</p>
-                <p className="text-white text-base md:text-xl font-black tracking-wider my-1">PHIERS</p>
-                <div className="flex gap-3 mt-1">
-                  <p className="text-green-300 text-[10px] md:text-xs font-semibold">JOBS</p>
-                  <p className="text-green-300 text-[10px] md:text-xs font-semibold">RESOURCES</p>
-                </div>
+                <Image
+                  src="/images/5D_Solutions_Rubiks_Cube.jpg"
+                  alt="Rubik's Cube of Accountability"
+                  width={224}
+                  height={224}
+                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  priority
+                />
+                <p className="text-gray-500 text-xs mt-3 text-center opacity-70 group-hover:opacity-100 transition">
+                  Click to enlarge
+                </p>
               </div>
             </div>
           </header>
@@ -161,172 +164,184 @@ export default function PhiersSystemPage() {
             Scroll to see the system ↓
           </div>
 
-          {/* SECTION 1: WHY ONE SYSTEM */}
+          {/* SECTION 1: THE CENTER PIECE */}
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
             <h2 className="text-xl md:text-2xl font-semibold mb-6">
-              Why It Had to Be One System
+              The Fifteen Hundred Organized
             </h2>
 
-            <div className="md:flex md:items-center md:gap-10 md:justify-center">
-              <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                <p>Americans spend $10,000 per year on health insurance with gaps in coverage.</p>
-                <p>Most of what people actually use costs about $600 per year through telehealth.</p>
-                <p>That $7,400 gap drains families. And when families are drained, they can't organize or apply pressure.</p>
-                <p className="text-green-400/80">
-                  Affordability isn't a side benefit. It's the engine that makes participation possible.
-                </p>
+            <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              <p>You are the mechanism.</p>
+
+              <p>Fifteen hundred verified constituents in a single congressional district represent something Congress cannot ignore:</p>
+
+              <div className="pl-4 border-l border-green-400/30 space-y-2">
+                <p>Organized attention.</p>
+                <p>Coordinated demand.</p>
+                <p>Sustained pressure.</p>
+                <p>Accountability made structural.</p>
               </div>
 
-              {/* Cost Contrast Graphic - fixed with fill + aspect-ratio */}
-              <div className="mt-10 md:mt-0 md:w-80">
-                <div className="relative w-full aspect-[4/3] max-w-sm mx-auto">
-                  <Image
-                    src="/images/healthcare-cost-contrast-10k-600.jpg"
-                    alt="Healthcare cost comparison: $10,000 vs $600"
-                    fill
-                    className="object-contain rounded-xl"
-                  />
-                </div>
-              </div>
+              <p>Representatives answer to voters. Voters with organized leverage become impossible to dismiss.</p>
+
+              <p>When Fifteen Hundred of you move together on a single issue, your representative faces a binary choice:</p>
+
+              <p className="italic">Respond to your demand, or explain to their district why they didn't.</p>
+
+              <p className="mt-4 text-green-400/80">
+                This is not a threat. This is mathematics.
+              </p>
+
+              <p className="font-semibold text-white">
+                Everything else in this system exists because you now have this lever.
+              </p>
             </div>
           </section>
 
-          {/* SECTION 2: PHIERSALE */}
+          {/* SECTION 2: THE FIRST FACE — PHIERSALE */}
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
-            <p className="text-gray-400 text-sm mb-4">
-              Healthcare should be a tool, not a trap.
+            <h2 className="text-xl md:text-2xl font-semibold mb-4">Healthcare: The Entry Point</h2>
+
+            <p className="text-gray-400 text-sm mb-6">
+              Most people cannot organize around abstract principles. They organize around survival.
             </p>
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <div 
-                className="relative w-12 h-12 flex-shrink-0 cursor-zoom-in group"
-                onClick={() => openModal(
-                  '/images/phiersale-healthcare-icon.jpg',
-                  'PHIERSale Icon - Healthcare: The Capacity Engine'
-                )}
-              >
-                <Image
-                  src="/images/phiersale-healthcare-icon.jpg"
-                  alt="PHIERSale Icon"
-                  fill
-                  className="object-contain rounded-full transition-transform duration-300 group-hover:scale-105"
-                />
+
+            <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              <p>PHIERSale removes the survival pressure.</p>
+
+              <p className="font-semibold text-white">How it works:</p>
+
+              <div className="pl-4 border-l border-green-400/30 space-y-2">
+                <p>Telehealth costs $40-50 per month.</p>
+                <p>Most medications cost 60-80% less through cooperative purchasing than through traditional insurance.</p>
+                <p>Preventative care becomes affordable, which means people use it before crisis hits.</p>
               </div>
-              <div className="space-y-3 max-w-2xl">
-                <h2 className="text-xl md:text-2xl font-semibold">Healthcare: The Capacity Engine</h2>
-                <p className="text-sm uppercase tracking-[0.2em] text-green-400/70">
-                  PHIERSale — Affordable Care at Cost
-                </p>
-                <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed">
-                  <p>Mark Cuban's Cost Plus Drugs proved the model. 60%+ savings. 7 million customers.</p>
-                  <p>Telehealth platforms already deliver primary care at a fraction of traditional cost.</p>
-                  <p className="text-green-400/80">
-                    PHIERSale delivers what people actually use — at cost.
-                  </p>
-                  <p>Families save $7,400+ per year. Breathing room becomes capacity.</p>
-                </div>
-              </div>
+
+              <p className="mt-4 font-semibold text-white">The result:</p>
+
+              <p>Families gain $7,400+ annually in breathing room.</p>
+
+              <p className="text-green-400/80">
+                That breathing room is not just comfort. It is capacity.
+              </p>
+
+              <p>When someone is not choosing between medicine and rent, they can show up. They can think clearly. They can participate. They can hold their representative accountable.</p>
+
+              <p className="italic">This is why healthcare comes first — not because it is the most important problem, but because it is the permission structure for everything else.</p>
+
+              <p className="font-semibold text-white mt-4">
+                Your Fifteen Hundred will have the resources to be engaged. That changes everything.
+              </p>
             </div>
           </section>
 
-          {/* SECTION 3: PHIERWORKS */}
+          {/* SECTION 3: THE SECOND FACE — PHIERWORKS */}
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
-            <p className="text-gray-400 text-sm mb-4">
-              Stability is impossible when survival costs exceed wages.
+            <h2 className="text-xl md:text-2xl font-semibold mb-4">Employment: The Stability Engine</h2>
+
+            <p className="text-gray-400 text-sm mb-6">
+              Breathing room created by affordable healthcare is not enough. People need income that outpaces costs.
             </p>
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <div 
-                className="relative w-12 h-12 flex-shrink-0 cursor-zoom-in group"
-                onClick={() => openModal(
-                  '/images/phierworks-jobs-icon.jpg',
-                  'PHIERWorks Icon - Jobs: The Stability Engine'
-                )}
-              >
-                <Image
-                  src="/images/phierworks-jobs-icon.jpg"
-                  alt="PHIERWorks Icon"
-                  fill
-                  className="object-contain rounded-full transition-transform duration-300 group-hover:scale-105"
-                />
+
+            <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              <p>PHIERWorks connects three things that rarely speak to one another:</p>
+
+              <div className="pl-4 border-l border-green-400/30 space-y-2">
+                <p>Real demand from employers who need workers</p>
+                <p>Real people who need stable work</p>
+                <p>Real pathways that get them there</p>
               </div>
-              <div className="space-y-3 max-w-2xl">
-                <h2 className="text-xl md:text-2xl font-semibold">Jobs: The Stability Engine</h2>
-                <p className="text-sm uppercase tracking-[0.2em] text-green-400/70">
-                  PHIERWorks — Real Matching for Real Demand
-                </p>
-                <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed">
-                  <p>Jobs exist. But a person earning $31,200/year can't carry a $10,000 healthcare burden.</p>
-                  <p className="text-green-400/80">
-                    PHIERWorks connects real demand with real supply — paired with affordable care so the math works.
-                  </p>
-                  <p>Stability follows. People can plan. People can participate.</p>
-                </div>
-              </div>
+
+              <p className="mt-4">
+                Most job platforms treat employment as a transaction. PHIERWorks treats it as part of your system.
+              </p>
+
+              <p>
+                A person earning $31,200 annually cannot carry a $10,000 healthcare burden. But with PHIERSale reducing that to $600-800, that person can build stability. Stability means they stay engaged. Engaged people hold their representatives accountable.
+              </p>
+
+              <p className="text-green-400/80 font-semibold">
+                This is not charity. This is how you make fifteen hundred people durable enough to sustain pressure on Congress.
+              </p>
             </div>
           </section>
 
-          {/* SECTION 4: PHIERPLACE */}
+          {/* SECTION 4: THE THIRD FACE — PHIERPLACE */}
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
-            <p className="text-gray-400 text-sm mb-4">
-              Access only works when it's unified.
+            <h2 className="text-xl md:text-2xl font-semibold mb-4">Resources: The Coordination Engine</h2>
+
+            <p className="text-gray-400 text-sm mb-6">
+              Housing assistance exists. Food programs exist. Transportation support exists. Childcare subsidies exist. Training programs exist. They do not exist as one system.
             </p>
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <div 
-                className="relative w-12 h-12 flex-shrink-0 cursor-zoom-in group"
-                onClick={() => openModal(
-                  '/images/phierplace-resources-icon.jpg',
-                  'PHIERPlace Icon - Resources: The Access Engine'
-                )}
-              >
-                <Image
-                  src="/images/phierplace-resources-icon.jpg"
-                  alt="PHIERPlace Icon"
-                  fill
-                  className="object-contain rounded-full transition-transform duration-300 group-hover:scale-105"
-                />
+
+            <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              <p>
+                They exist as separate bureaucracies that rarely communicate.
+              </p>
+
+              <p className="font-semibold text-white">PHIERPlace is the interoperability layer that connects them.</p>
+
+              <div className="pl-4 border-l border-green-400/30 space-y-2">
+                <p>One entry.</p>
+                <p>One screening.</p>
+                <p>Shared visibility across all participating organizations.</p>
               </div>
-              <div className="space-y-3 max-w-2xl">
-                <h2 className="text-xl md:text-2xl font-semibold">Resources: The Access Engine</h2>
-                <p className="text-sm uppercase tracking-[0.2em] text-green-400/70">
-                  PHIERPlace — One Entry, Unified Access
-                </p>
-                <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed">
-                  <p>Services exist — housing, food, childcare, mental health, training — but they're fragmented.</p>
-                  <p className="text-green-400/80">
-                    PHIERPlace unifies resource access. One entry. One screening. One coordinated path.
-                  </p>
-                  <p>People get what they qualify for. Prevention becomes real.</p>
-                </div>
-              </div>
+
+              <p className="mt-4 font-semibold text-white">The result:</p>
+
+              <p>
+                What was fragmented becomes coordinated. What was invisible becomes accessible. What was designed to help individuals becomes infrastructure that strengthens communities.
+              </p>
+
+              <p className="text-green-400/80">
+                Your Fifteen Hundred will know what resources exist, where to access them, and how to navigate them without falling through gaps. Stability multiplies. Engagement deepens.
+              </p>
             </div>
           </section>
 
-          {/* CINEMATIC ANCHOR - System Hub Quote */}
+          {/* MECHANISM ANCHOR */}
           <div className="my-24 md:my-32 py-12 border-y border-green-400/20">
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-green-400/80 text-lg md:text-xl italic tracking-wide">
-                “Every piece enables the next. None of them work alone.”
+                "Every piece moves the next. Move one face, and the entire cube rotates."
               </p>
               <p className="text-gray-500 text-xs mt-4 uppercase tracking-wider">
-                — The PHIERS Cascade
+                — The System
               </p>
             </div>
           </div>
 
-          {/* SECTION 5: CONGRESS / LEVERAGE */}
+          {/* SECTION 5: THE AUTHORIZATION POINT */}
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
-            <h2 className="text-xl md:text-2xl font-semibold mb-4">Congress: The Leverage Point</h2>
-            <p className="text-sm uppercase tracking-[0.2em] text-green-400/70 mb-6">
-              Why Congressional Authorization Matters
+            <h2 className="text-xl md:text-2xl font-semibold mb-4">Congress: Why It Has to Be Them</h2>
+
+            <p className="text-gray-400 text-sm mb-6">
+              Telehealth is already legal. But Congress has not authorized insurance companies to offer it competitively.
             </p>
 
             <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              <p>Congress must authorize telehealth, direct-to-consumer pricing, and removal of middleman markup requirements.</p>
-              <p>They have this power today. They don't use it because the current system generates billions in lobbying revenue.</p>
+              <p>Direct pharmaceutical pricing works. But Congress has not authorized bypassing middleman markups for cooperative groups.</p>
+
+              <p>Resource coordination is possible. But Congress has not funded interoperability infrastructure for community organizations.</p>
+
+              <p className="mt-4 font-semibold text-white">The barriers are not technological. They are political.</p>
+
               <p className="text-green-400/80">
-                Money talks. Congress listens to money. Unless something else talks louder.
+                And political barriers move when constituents organize.
               </p>
+
+              <p>
+                When your Fifteen Hundred walks into their representative's office with data, evidence, and organized demand, that representative will move.
+              </p>
+
+              <p className="italic">Not because they suddenly agree with you. Because the mathematics of re-election change.</p>
+
               <p className="font-semibold text-white">
-                When 1,500 verified constituents in a district make the same demand, the representative faces a binary choice.
+                You are no longer abstract constituents. You are Fifteen Hundred verified people asking for one thing.
+              </p>
+
+              <p className="text-green-400/80">
+                Congress responds to that.
               </p>
             </div>
 
@@ -355,14 +370,35 @@ export default function PhiersSystemPage() {
             </div>
           </section>
 
-          {/* SECTION 6: CASCADE (VISUAL TREATMENT) */}
+          {/* SECTION 6: THE MECHANISM */}
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
             <h2 className="text-xl md:text-2xl font-semibold mb-4">
-              Why These Pieces Form One System
+              Every Piece Moves the Next
             </h2>
 
             <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              <p>They're not separate programs. They're one mechanism where each part enables the next.</p>
+              <p className="font-semibold text-white">
+                This is not four separate initiatives.
+              </p>
+
+              <div className="pl-4 border-l border-green-400/30 space-y-2 mt-4">
+                <p>Affordable healthcare creates capacity.</p>
+                <p>Capacity creates stability.</p>
+                <p>Stability creates engagement.</p>
+                <p>Engagement sustains the Fifteen Hundred.</p>
+                <p>The Fifteen Hundred creates congressional pressure.</p>
+                <p>Congressional pressure creates authorization.</p>
+                <p>Authorization scales the system.</p>
+                <p>Scaled systems reduce costs further.</p>
+                <p>Lower costs strengthen the network.</p>
+                <p>Stronger networks sustain more pressure.</p>
+                <p>More pressure creates better outcomes.</p>
+                <p>Better outcomes strengthen communities.</p>
+              </div>
+
+              <p className="mt-4 text-green-400/80 font-semibold">
+                Move one piece, and the entire cube rotates.
+              </p>
             </div>
 
             {/* Cascade Flow - full-width with click-to-expand */}
@@ -428,36 +464,60 @@ export default function PhiersSystemPage() {
             </div>
           </section>
 
-          {/* SECTION 8: CLOSING + CTA */}
+          {/* SECTION 8: WHAT THIS MEANS + CTA */}
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 pb-10 opacity-95 hover:opacity-100 transition-opacity duration-700">
-            {/* Final Mini Icon - fixed with fill + aspect-ratio */}
-            <div className="flex justify-center mb-8">
-              <div className="relative w-16 h-16">
-                <Image
-                  src="/images/phiers-system-firewall-mini.jpg"
-                  alt="PHIERS System"
-                  fill
-                  className="object-contain rounded-full"
-                />
-              </div>
-            </div>
-
-            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-center">
-              So Here's What This Means
+            <h2 className="text-xl md:text-2xl font-semibold mb-6 text-center">
+              What This Means
             </h2>
 
-            <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto text-center">
-              <p>Affordability creates capacity. Capacity creates participation. Participation creates pressure. Pressure creates results.</p>
-              <p>The system scales because it funds itself. It works because the pieces are connected.</p>
-              <p className="text-green-400/80">
-                This is why PHIERS had to be built as one system — not a slogan, not a movement, not a request for permission.
+            <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto text-center">
+              <p>You organized the Fifteen Hundred.</p>
+
+              <p>Now you control four faces of a system that Congress cannot ignore.</p>
+
+              <div className="space-y-2 mt-4">
+                <p>Affordable healthcare creates the breathing room for participation.</p>
+                <p>Stable employment creates the foundation for sustained engagement.</p>
+                <p>Resource coordination creates the infrastructure that prevents collapse.</p>
+                <p>Congressional pressure creates the authorization that makes scale possible.</p>
+              </div>
+
+              <p className="mt-4 text-green-400/80 font-semibold">
+                Each piece strengthens the others.
+              </p>
+
+              <p className="mt-4">
+                You do not need Congress to agree with you philosophically. You need them to authorize the mechanisms that already work.
+              </p>
+
+              <div className="space-y-2 mt-4">
+                <p><span className="font-semibold">Mark Cuban</span> proved direct pricing works.</p>
+                <p><span className="font-semibold">Telehealth platforms</span> prove affordable care works.</p>
+                <p><span className="font-semibold">Community organizations</span> prove resource coordination works.</p>
+                <p><span className="font-semibold">Erica Chenoweth</span> proved that 3.5% organized participation creates measurable political change.</p>
+              </div>
+
+              <p className="mt-4 italic">
+                Nothing here is theoretical. Everything here is mechanically sound.
+              </p>
+
+              <p className="font-semibold text-white">
+                The only missing piece was organization. You now have that.
               </p>
             </div>
 
-            {/* Thesis line */}
-            <p className="text-gray-400 text-sm text-center mt-12 mb-8">
-              This is the architecture of accountability.
-            </p>
+            {/* Thesis lines */}
+            <div className="text-center mt-12 space-y-2">
+              <p className="text-gray-400 text-base">
+                This is the architecture of accountability.
+              </p>
+              <p className="text-gray-400 text-base">
+                This is the system.
+              </p>
+              <p className="text-green-400/80 font-semibold text-base">
+                This is what you control.
+              </p>
+            </div>
 
             <div className="h-px bg-white/10 my-8"></div>
 
