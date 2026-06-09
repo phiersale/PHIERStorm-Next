@@ -153,7 +153,7 @@ export default function ProphecyPage() {
           Gateway to the PHIERS Trilogy
         </p>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black text-white tracking-tight leading-[1.1]">
-          The Reckoning
+          Take A Knee.
         </h1>
         <p className="text-green-400 text-base sm:text-lg md:text-xl font-semibold mt-2 tracking-wide">
           For Us. By Us.
@@ -170,7 +170,7 @@ export default function ProphecyPage() {
       {/* INTRO SEQUENCE */}
       <div id="breath-section" className="text-center mt-24 md:mt-32 mb-10 px-6">
         <h3 className="text-[clamp(2.2rem,8vw,3.5rem)] leading-[1.05] font-light text-gray-200 italic">
-          Take a knee for a minute.
+          Take a deep breath.
         </h3>
         <div className="mt-8 space-y-3 text-gray-300 text-base md:text-lg max-w-xl mx-auto">
           <p>We've been carrying weight a long time.</p>
