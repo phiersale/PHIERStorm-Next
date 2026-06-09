@@ -1419,8 +1419,7 @@
               </h3>
               <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed">
                 <p>
-                  The United States already possesses many of the tools needed to improve healthcare, reduce costs,
-                  strengthen local economies, and expand opportunity.
+                  The United States already possesses many of the tools needed to improve the lives of the American people, it just chooses not to.  Things like ending wars, homelessness, hunger and healthcare profiteering and rationing can become a thing of the past. 
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-5">
                   <div className="flex items-center gap-2">
@@ -1433,11 +1432,11 @@
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-green-400 text-xl">✓</span>
-                    <span>Congress can create incentives.</span>
+                    <span>Congress can end corruption.</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-green-400 text-xl">✓</span>
-                    <span>Congress can stop protecting systems that profit from inefficiency.</span>
+                    <span>Congress can put Constituent's interests FIRST.</span>
                   </div>
                 </div>
                 <p className="text-white font-semibold text-center py-4 border-t border-b border-green-400/20 my-5">
