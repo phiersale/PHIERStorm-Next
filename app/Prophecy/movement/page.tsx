@@ -123,13 +123,17 @@ export default function MovementPage() {
           {/* Clarification: 1500 is a signal, not the solution */}
           <div className="mt-8 p-6 border-l-4 border-amber-500/50 bg-amber-500/5 rounded-r-lg">
             <p className="text-amber-400 font-semibold mb-3">A signal, not the solution.</p>
-              <div className="flex items-start gap-4 mb-4">
-                <img
-                  src="/images/RalphNader-500-Unstoppable_Change.jpg"
-                  alt="Ralph Nader – Unstoppable Change"
-                  onClick={() => setShowNaderModal(true)}
-                  className="w-32 md:w-44 rounded opacity-90 shrink-0 cursor-zoom-in hover:opacity-100 transition"
-                />
+              
+            {/* Image ABOVE text on mobile, side-by-side on desktop */}
+            <div className="flex flex-col md:flex-row items-start gap-4 mb-4">
+              <img
+                src="/images/RalphNader-500-Unstoppable_Change.jpg"
+                alt="Ralph Nader – Unstoppable Change"
+                onClick={() => setShowNaderModal(true)}
+                className="w-32 md:w-44 rounded opacity-90 shrink-0 cursor-zoom-in hover:opacity-100 transition mx-auto md:mx-0"
+                loading="eager"
+                fetchPriority="high"
+              />
               <p className="text-gray-400 text-sm leading-relaxed">
                 Ralph Nader documented this from decades inside Congress:
                 <span className="block mt-2 text-gray-300">
