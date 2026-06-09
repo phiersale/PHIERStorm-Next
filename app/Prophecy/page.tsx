@@ -153,7 +153,7 @@ export default function ProphecyPage() {
           Gateway to the PHIERS Trilogy
         </p>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black text-white tracking-tight leading-[1.1]">
-          The Gateway
+          The Reckoning
         </h1>
         <p className="text-green-400 text-base sm:text-lg md:text-xl font-semibold mt-2 tracking-wide">
           For Us. By Us.

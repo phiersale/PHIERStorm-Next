@@ -151,6 +151,56 @@
       }, 250)
     }
 
+    // Open video in larger modal
+    const openVideoModal = (videoUrl: string, title: string) => {
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', `Video: ${title}`);
+      
+      const modalContent = document.createElement('div');
+      modalContent.className = 'relative w-full max-w-5xl bg-black rounded-xl overflow-hidden shadow-2xl border border-green/30';
+      
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'absolute top-3 right-3 z-10 text-white/80 text-xl bg-black/60 rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all duration-200';
+      closeBtn.innerHTML = '✕';
+      closeBtn.setAttribute('aria-label', 'Close video');
+      closeBtn.onclick = () => {
+        document.body.removeChild(modal);
+        document.body.style.overflow = '';
+      };
+      
+      const iframe = document.createElement('iframe');
+      iframe.src = videoUrl;
+      iframe.title = title;
+      iframe.className = 'w-full aspect-video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      
+      modalContent.appendChild(closeBtn);
+      modalContent.appendChild(iframe);
+      modal.appendChild(modalContent);
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+      
+      // Close on Escape key
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          closeBtn.onclick?.(new MouseEvent('click'));
+          document.removeEventListener('keydown', handleEscape);
+        }
+      };
+      document.addEventListener('keydown', handleEscape);
+      
+      // Close on backdrop click
+      modal.onclick = (e) => {
+        if (e.target === modal) {
+          closeBtn.onclick?.(new MouseEvent('click'));
+        }
+      };
+    }
+
     // goToMainHomepage removed - unused
     return (
       <>
@@ -292,17 +342,7 @@
               <div
                 className="relative w-full max-w-2xl mx-auto cursor-pointer group rounded-lg overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                 style={{ paddingBottom: '28.125%' }}
-                onClick={(e) => {
-                  const container = e.currentTarget;
-                  const iframe = document.createElement('iframe');
-                  iframe.src = 'https://player.vimeo.com/video/59460323?autoplay=1&title=0&byline=0&portrait=0';
-                  iframe.title = 'Purpose of PHIERS - 2013';
-                  iframe.className = 'absolute top-0 left-0 w-full h-full';
-                  iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-                  iframe.allowFullscreen = true;
-                  container.innerHTML = '';
-                  container.appendChild(iframe);
-                }}
+                onClick={() => openVideoModal('https://player.vimeo.com/video/59460323?autoplay=1&title=0&byline=0&portrait=0', 'Purpose of PHIERS - 2013')}
               >
                 <img
                   src="https://vumbnail.com/59460323.jpg"
@@ -453,10 +493,7 @@
 
               <div
                 className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
-                onClick={(e) => {
-                  const container = e.currentTarget
-                  loadVideo(container, 'https://www.youtube.com/embed/KLu7USN_dao?autoplay=1', 'Pathos Communications on PHIERS')
-                }}
+                onClick={() => openVideoModal('https://www.youtube.com/embed/KLu7USN_dao?autoplay=1', 'Pathos Communications on PHIERS')}
               >
                 <img
                   src="/images/pathos-thumbnail.jpg"
@@ -490,10 +527,7 @@
 
               <div
                 className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
-                onClick={(e) => {
-                  const container = e.currentTarget
-                  loadVideo(container, 'https://www.youtube.com/embed/qxcRP8lx9dc?autoplay=1', 'Trusted Voices on PHIERS')
-                }}
+                onClick={() => openVideoModal('https://www.youtube.com/embed/qxcRP8lx9dc?autoplay=1', 'Trusted Voices on PHIERS')}
               >
                 <img
                   src="/images/BigC_ THUMBNAIL_w_Karen_Trevor_n_Ralph.jpg"
@@ -527,10 +561,7 @@
 
               <div
                 className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]"
-                onClick={(e) => {
-                  const container = e.currentTarget
-                  loadVideo(container, 'https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1', 'DotCom Magazine Interview')
-                }}
+                onClick={() => openVideoModal('https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1', 'DotCom Magazine Interview')}
               >
                 <img
                   src="/images/dotcom-thumbnail.jpg"
@@ -707,6 +738,13 @@
           {/* EARLY CTA - after Shark section */}
           <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
             <div className="bg-[#0a1628] border border-green/30 rounded-lg p-6">
+              <div className="flex justify-center mb-4">
+                <img
+                  src="/images/PHIERS_Logo.png"
+                  alt="PHIERS"
+                  className="w-12 h-12 object-contain opacity-70"
+                />
+              </div>
               <p className="text-white text-base font-semibold mb-2">
                 You've seen the record.
               </p>
@@ -774,34 +812,7 @@
               <div
                 className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02] shadow-xl"
                 style={{ paddingBottom: '56.25%' }}
-                onClick={() => {
-                  // Open modal with larger video
-                  const modal = document.createElement('div');
-                  modal.className = 'fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm';
-                  modal.onclick = (e) => {
-                    if (e.target === modal) modal.remove();
-                  };
-                  
-                  const modalContent = document.createElement('div');
-                  modalContent.className = 'relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl';
-                  modalContent.onclick = (e) => e.stopPropagation();
-                  
-                  const closeBtn = document.createElement('button');
-                  closeBtn.className = 'absolute top-2 right-2 z-10 text-white/60 text-sm bg-black/30 rounded-full w-5 h-5 flex items-center justify-center hover:bg-black/60 hover:text-white transition-opacity opacity-70 hover:opacity-100';
-                  closeBtn.innerHTML = '✕';
-                  closeBtn.onclick = () => modal.remove();
-                  
-                  const iframe = document.createElement('iframe');
-                  iframe.src = 'https://player.vimeo.com/video/11995433?autoplay=1&title=1&byline=1&portrait=1&fullscreen=1';
-                  iframe.className = 'w-full aspect-video';
-                  iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-                  iframe.allowFullscreen = true;
-                  
-                  modalContent.appendChild(closeBtn);
-                  modalContent.appendChild(iframe);
-                  modal.appendChild(modalContent);
-                  document.body.appendChild(modal);
-                }}
+                onClick={() => openVideoModal('https://player.vimeo.com/video/11995433?autoplay=1&title=1&byline=1&portrait=1&fullscreen=1', 'First PHIERS recording - 2007')}
               >
                 <img
                   src="https://vumbnail.com/11995433.jpg"
