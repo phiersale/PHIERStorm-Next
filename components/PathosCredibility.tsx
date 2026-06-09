@@ -255,13 +255,23 @@
           }}
           className="max-w-4xl mx-auto px-4 pt-2 pb-20 md:pb-6"
         >
-          {/* [1] LOGO — identifier only */}
-          <motion.div variants={sectionFade} className="flex justify-center mb-6">
+          {/* [1] LOGO — identifier only - ENLARGED for brand weight */}
+          <motion.div variants={sectionFade} className="flex justify-center mb-8 md:mb-10">
             <img
               src="/images/PHIERS_Logo.png"
               alt="PHIERS"
-              className="w-20 h-20 md:w-24 md:h-24 object-contain opacity-80"
+              className="w-28 h-28 md:w-36 md:h-36 object-contain opacity-90"
             />
+          </motion.div>
+
+          {/* NEW PAGE TITLE - Below logo */}
+          <motion.div variants={sectionFade} className="text-center max-w-3xl mx-auto mb-8">
+            <h1 className="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight leading-snug">
+              We didn't ask anyone to vouch for us.<br />They did it anyway.
+            </h1>
+            <p className="text-gray-400 text-sm md:text-base">
+              Three organizations. Three independent validations. One public record.
+            </p>
           </motion.div>
 
           {/* Reading time indicator */}
@@ -558,16 +568,16 @@
             </summary>
             <div className="mt-4 space-y-4 text-gray-300 text-sm">
               <div className="border-l-2 border-green/30 pl-3">
-                <p className="text-white font-bold">Pathos Communications</p>
-                <p className="text-gray-400 text-xs">London Stock Exchange-listed global PR firm. Their reputation is their currency. They don't attach their name to things that aren't real. On camera, they told us: "If you weren't legit, we wouldn't risk our name."</p>
+                <p className="text-white font-bold flex items-center gap-1">⭐ Pathos Communications</p>
+                <p className="text-gray-400 text-xs">A London Stock Exchange–listed global PR firm known for vetting legitimacy before taking on any client. Their on‑camera statement — <span className="text-green-300 italic">"If you weren't real, we wouldn't risk our name"</span> — became part of the public record validating PHIERS' structural credibility.</p>
               </div>
               <div className="border-l-2 border-green/30 pl-3">
-                <p className="text-white font-bold">DotCom Magazine</p>
-                <p className="text-gray-400 text-xs">National entrepreneur spotlight. Their interview is public record — not a paid placement, not a promotional slot. A journalist asking hard questions about a framework most people said couldn't work.</p>
+                <p className="text-white font-bold flex items-center gap-1">⭐ DotCom Magazine</p>
+                <p className="text-gray-400 text-xs">A national business media platform recognized for in‑depth interviews with founders and innovators. Their segment on PHIERS wasn't promotional — it was a rigorous, unscripted examination of the model that documented how it holds up under direct questioning.</p>
               </div>
               <div className="border-l-2 border-green/30 pl-3">
-                <p className="text-white font-bold">Big C Media</p>
-                <p className="text-gray-400 text-xs">National cultural platform. They brought together Ralph Nader, media leaders, and community voices to examine whether PHIERS actually holds up under scrutiny. The result is on video. Their conclusion: "This isn't left or right. This is people trying to survive."</p>
+                <p className="text-white font-bold flex items-center gap-1">⭐ Big C Sports</p>
+                <p className="text-gray-400 text-xs">A national iHeartRadio show hosted by former NFL player Charlton Curry, known for blending sports, culture, news, and civic responsibility. His interview with PHIERS sparked the deeper exploration that led to a composite credibility video featuring aligned commentary from Ralph Nader, Trevor Noah, and Karen Hunter.</p>
               </div>
               <div className="mt-3 pt-2 border-t border-green/20">
                 <p className="text-green text-xs font-semibold">Three different audiences. Three independent validations. One public record.</p>
