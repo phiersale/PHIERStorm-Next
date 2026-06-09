@@ -1590,19 +1590,75 @@
               <p className="text-gray-500 text-xs italic text-center">
                 Archived PHIERS.org page — September 22 2011.
               </p>
-              <div className="mt-4 p-4 bg-[#0a1628] border border-green/20 rounded-lg">
-                <p className="text-white text-xs font-semibold mb-3">
-                  Contemporaneous partnerships (on record):
-                </p>
-                <ul className="text-gray-400 text-xs space-y-1 list-none">
-                  <li>→ SureSafe Pharma (Al Wilson)</li>
-                  <li>→ VA Medical Centers & Maryland Veterans Administration</li>
-                  <li>→ Patriot Medical Transport Systems</li>
-                  <li>→ Daedalus Systems</li>
-                  <li>→ MedStar Health</li>
-                  <li>→ Prince George's County Housing Authority</li>
-                  <li>→ Maryland CRISP Health Information Exchange</li>
-                </ul>
+              <div className="mt-6 space-y-4">
+                <div className="p-4 bg-[#0a1628] border border-green/20 rounded-lg">
+                  <p className="text-white text-xs font-semibold mb-3">
+                    Partnerships that were built (2009–2014):
+                  </p>
+                  <ul className="text-gray-400 text-xs space-y-1 list-none">
+                    <li>→ SureSafe Pharma (Al Wilson)</li>
+                    <li>→ VA Medical Centers & Maryland Veterans Administration</li>
+                    <li>→ Patriot Medical Transport Systems</li>
+                    <li>→ Daedalus Systems</li>
+                    <li>→ MedStar Health</li>
+                    <li>→ Prince George's County Housing Authority</li>
+                    <li>→ Maryland CRISP Health Information Exchange</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-amber-900/20 border border-amber-600/30 rounded-lg">
+                  <p className="text-amber-300/80 text-xs font-semibold mb-2">
+                    Why they didn't survive:
+                  </p>
+                  <p className="text-gray-300 text-xs leading-relaxed">
+                    These partnerships worked. They proved the model — coordinated care, direct pharmaceutical pricing, integrated resource access. But they failed for one reason: the moment these organizations understood PHIERS's actual goal — eliminating the profit motive in healthcare — they faced a choice.
+                  </p>
+                  <p className="text-gray-300 text-xs leading-relaxed mt-2">
+                    Continue building a system that removes profit from the equation, or return to a system that extracts it.
+                  </p>
+                  <p className="text-amber-300/80 text-xs font-semibold mt-2">
+                    Every partnership chose extraction over elimination.
+                  </p>
+                  <p className="text-gray-400 text-xs italic mt-2">
+                    This is not failure. This is evidence. The profiteers understood what we were building — and they couldn't allow it to scale.
+                  </p>
+                </div>
+
+                <div className="p-4 bg-amber-900/20 border border-amber-600/30 rounded-lg">
+                  <p className="text-amber-300/80 text-xs font-semibold mb-2">
+                    2009–2014: Building & Delay
+                  </p>
+                  <p className="text-gray-300 text-xs leading-relaxed">
+                    SureSafe Pharma (2009) operated on the same principle Mark Cuban would validate 13 years later with Cost Plus Drugs: manufacture and import medications without middleman markups. Direct cost. Massive savings.
+                  </p>
+                  <p className="text-gray-300 text-xs leading-relaxed mt-2">
+                    SureSafe's model was contingent on the Panama Free Trade Agreement — signed into law in 2007, but not implemented until 2012. That five-year delay meant we couldn't scale the one partnership that could have proven the pharmaceutical access piece worked at volume.
+                  </p>
+                  <p className="text-gray-300 text-xs leading-relaxed mt-2">
+                    If SureSafe had scaled between 2009–2012, the savings to CMS would have been measurable enough to make healthcare-for-all a self-sustaining fiscal reality. Profiteers understood this. The policy delay gave them time to reposition.
+                  </p>
+                  <p className="text-amber-300/80 text-xs font-semibold mt-2">
+                    When Mark Cuban launched Cost Plus Drugs in 2022 — thirteen years later — he proved the model worked. We had already proven it. We just couldn't say it out loud.
+                  </p>
+                </div>
+
+                <div className="p-4 bg-[#0a1628] border border-green/20 rounded-lg">
+                  <p className="text-white text-xs font-semibold mb-2">
+                    Why 2014 to 2022 was silent:
+                  </p>
+                  <p className="text-gray-300 text-xs leading-relaxed">
+                    Eight years passed. Not because the model was wrong. Because every institution that had the reach to amplify it had a financial interest in keeping it quiet.
+                  </p>
+                  <p className="text-gray-300 text-xs leading-relaxed mt-2">
+                    Hospitals. Insurance companies. Pharmaceutical middlemen. Government agencies tangled with lobbyists. All of them benefit from the current system.
+                  </p>
+                  <p className="text-gray-300 text-xs leading-relaxed mt-2">
+                    But silence didn't mean inaction. We developed a spirit of resilience. We kept finding new ways to create value-adding solutions — testing assumptions, building without permission, preparing infrastructure that would eventually become viable when the moment was right.
+                  </p>
+                  <p className="text-green text-xs font-semibold mt-2">
+                    Then costs got so high that even the people profiting from them couldn't defend the system anymore.
+                  </p>
+                </div>
               </div>
               <div className="flex flex-wrap gap-3">
                 <a
