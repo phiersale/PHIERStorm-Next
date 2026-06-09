@@ -1369,234 +1369,134 @@
             </h2>
 
             <div className="mt-8 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed">
-              <p>
-                We learned to think under strain. To read danger early. To protect what matters. To improvise when things change. To build without help.
+              <p>We learned to think under strain.</p>
+              <p>To see danger before it arrived.</p>
+              <p>To protect what mattered.</p>
+              <p>To adapt when circumstances changed.</p>
+              <p>To build when nobody was coming to help.</p>
+
+              <div className="h-4" />
+
+              <p className="text-green-400 font-semibold text-lg">Over time, those experiences taught us something larger.</p>
+
+              <p>Most problems don't exist alone.</p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                <div className="border-l-2 border-green-400/40 pl-4">
+                  <p className="text-gray-200">Healthcare affects employment.</p>
+                </div>
+                <div className="border-l-2 border-green-400/40 pl-4">
+                  <p className="text-gray-200">Employment affects housing.</p>
+                </div>
+                <div className="border-l-2 border-green-400/40 pl-4">
+                  <p className="text-gray-200">Housing affects education.</p>
+                </div>
+                <div className="border-l-2 border-green-400/40 pl-4">
+                  <p className="text-gray-200">Education affects opportunity.</p>
+                </div>
+              </div>
+
+              <p className="text-center text-white text-xl font-semibold my-4">
+                Everything is connected.
               </p>
 
-              <p>
-                That's not survival skills. That's architecture. System design. The ability to see how one problem connects to another — and how fixing one creates the conditions for the others to solve themselves.
-              </p>
+              <p>The challenge isn't finding isolated solutions.</p>
+              <p>The challenge is understanding how the systems themselves fit together.</p>
 
-              <p>
-                PHIERS is what happens when you apply that knowledge to a problem nobody else could see clearly.
-              </p>
-            </div>
-
-            {/* THE PATTERN WE LEARNED */}
-            <div className="mt-12 mb-8 p-4 sm:p-6 bg-[#1a2a3a]/40 border border-green-400/30 rounded-lg mx-0">
-              <p className="text-green-400/90 text-sm sm:text-base md:text-lg font-semibold tracking-wide mb-4">
-                THE PATTERN WE LEARNED
-              </p>
-
-              <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed">
-                <p>
-                  Healthcare costs break families. A parent working two jobs with no savings can't take time off for a doctor's visit. Can't afford medicine. Chooses between rent and health.
-                </p>
-
-                <p>
-                  That broken person can't organize. Can't participate. Can't show up to demand accountability from Congress.
-                </p>
-
-                <p>
-                  <span className="text-green-400 font-semibold">So Congress doesn't hear them.</span>
-                </p>
-
-                <p className="text-white font-semibold mt-4">
-                  But what if affordability came first?
-                </p>
-
-                <p>
-                  What if healthcare cost $600 instead of $10,000? What if that freed-up money — $7,400 per person per year — went to stability instead of extraction?
-                </p>
-
-                <p>
-                  Then a person has breathing room. Time. Capacity. They can organize. They can show up. They can demand Congress do its job.
-                </p>
-
-                <p className="text-green-400 font-semibold">
-                  And when 1,500 of them move together in a district — Congress has to listen.
+              <div className="bg-[#0a1628]/60 border border-green-400/20 rounded-xl p-6 my-8 text-center">
+                <p className="text-green-400 text-2xl font-bold mb-2">That's what PHIERS became.</p>
+                <p className="text-gray-300">Not a single program. Not a single issue.</p>
+                <p className="text-gray-200 font-semibold mt-2">
+                  A framework for understanding how problems connect — and how leverage can be used to solve them.
                 </p>
               </div>
             </div>
 
-            {/* THREE PARTS, ONE MOVEMENT */}
+            {/* That's Where Congress Comes In */}
             <div className="mt-12">
-              <h3 className="text-white text-xl md:text-2xl font-semibold mb-6">
-                Three Problems. One Solution.
+              <h3 className="text-white text-2xl md:text-3xl font-bold mb-5">
+                That's Where Congress Comes In
               </h3>
-
-              <div className="space-y-6">
-                {/* PHIERSALE */}
-                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6 -mx-4 sm:mx-0">
-                  <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
-                    PHIERSale
-                  </p>
-                  <p className="text-gray-400 text-sm italic mb-3">
-                    Affordable Healthcare
-                  </p>
-                  <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-                    A cooperative marketplace delivering what people actually need — primary care, chronic disease management, medications — at cost through telehealth. $600/person/year instead of $10,000.
-                  </p>
-                  <p className="text-green-400/80 font-semibold text-base md:text-lg mt-3">
-                    Result: Breathing room.
-                  </p>
-                </div>
-
-                {/* PHIERWORKS */}
-                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6 -mx-4 sm:mx-0">
-                  <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
-                    PHIERWorks
-                  </p>
-                  <p className="text-gray-400 text-sm italic mb-3">
-                    Job Training & Placement
-                  </p>
-                  <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-                    Real-time matching between jobs that are actually hiring and people ready to work. No fake training programs. No jobs that disappear. Just honest alignment. And with affordable healthcare available, a person can actually take the job.
-                  </p>
-                  <p className="text-green-400/80 font-semibold text-base md:text-lg mt-3">
-                    Result: Economic stability.
-                  </p>
-                </div>
-
-                {/* PHIERPLACE */}
-                <div className="bg-[#0a1628]/40 border border-green-400/20 rounded-lg p-5 md:p-6 -mx-4 sm:mx-0">
-                  <p className="text-green-400 font-bold text-lg md:text-xl mb-2">
-                    PHIERPlace
-                  </p>
-                  <p className="text-gray-400 text-sm italic mb-3">
-                    Resource Matching & Referral
-                  </p>
-                  <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-                    Services exist — housing help, food assistance, mental health support, childcare. But they're fragmented across three systems. PHIERPlace is one entry point. One eligibility check. "You qualify for these seven things. Here's how to access them."
-                  </p>
-                  <p className="text-green-400/80 font-semibold text-base md:text-lg mt-3">
-                    Result: Access without bureaucracy.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* HOW THEY WORK TOGETHER */}
-            <div className="mt-12 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed px-0">
-              <p className="text-white text-xl md:text-2xl font-semibold mb-4">
-                How They Work Together
-              </p>
-
-              <p>
-                Affordable healthcare gives a person $7,400 back per year.
-              </p>
-
-              <p>
-                With that money and that breathing room, they can take a better job — one that pays more, or one they actually want.
-              </p>
-
-              <p>
-                With stability, they can access the resources they've always qualified for but never had time to navigate.
-              </p>
-
-              <p>
-                With all three in place, they're no longer fragile. No longer one emergency away from collapse.
-              </p>
-
-              <p className="text-green-400 font-semibold text-lg">
-                Then they have what it takes to organize.
-              </p>
-            </div>
-
-            {/* WHERE CONGRESS COMES IN - THE LEVERAGE */}
-            <div className="mt-12 mb-8 p-4 sm:p-6 bg-[#1a2a3a]/40 border border-green-400/30 rounded-lg mx-0">
-              <p className="text-white text-xl md:text-2xl font-semibold mb-4">
-                Where Congress Comes In
-              </p>
-
               <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed">
                 <p>
-                  Congress has the power to authorize all of this — today.
+                  The United States already possesses many of the tools needed to improve healthcare, reduce costs,
+                  strengthen local economies, and expand opportunity.
                 </p>
-
-                <p>
-                  Congress can tell Medicare: Authorize telehealth as covered care.
-                </p>
-
-                <p>
-                  Congress can tell Medicaid: Same thing.
-                </p>
-
-                <p>
-                  Congress can open ACA exchanges to direct-to-consumer pharmaceutical pricing.
-                </p>
-
-                <p>
-                  Congress can remove the middleman requirements that drive costs up.
-                </p>
-
-                <p className="text-white font-semibold">
-                  Congress won't do this right now — because the current system generates lobbying dollars from the people who profit from those middlemen.
-                </p>
-
-                <p>
-                  <span className="text-green-400 font-semibold">But Congress moves when constituents make ignoring them politically costly.</span>
-                </p>
-
-                <p>
-                  When 1,500 people in a district go on record saying "authorize this" — and they're organized, visible, and ready to primary or replace representatives who refuse — Congress moves.
-                </p>
-
-                <p className="text-green-400 text-lg md:text-xl font-semibold">
-                  That's the leverage.
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-400 text-xl">✓</span>
+                    <span>Congress can authorize change.</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-400 text-xl">✓</span>
+                    <span>Congress can remove barriers.</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-400 text-xl">✓</span>
+                    <span>Congress can create incentives.</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-400 text-xl">✓</span>
+                    <span>Congress can stop protecting systems that profit from inefficiency.</span>
+                  </div>
+                </div>
+                <p className="text-white font-semibold text-center py-4 border-t border-b border-green-400/20 my-5">
+                  The obstacle is rarely a lack of solutions.<br />
+                  The obstacle is a lack of political pressure.
                 </p>
               </div>
             </div>
 
-            {/* WHY IT HAD TO BE BUILT THIS WAY */}
-            <div className="mt-12 space-y-5 text-gray-300 text-base md:text-lg leading-relaxed px-0">
-              <p className="text-white text-xl md:text-2xl font-semibold mb-4">
-                Why It Had to Be Built This Way
-              </p>
-
-              <p>
-                You can't organize a broken person.
-              </p>
-
-              <p>
-                You can't ask someone working two jobs with no savings to show up and demand accountability.
-              </p>
-
-              <p>
-                You can't build pressure on Congress from people who are one emergency away from homelessness.
-              </p>
-
-              <p className="text-white font-semibold">
-                But you can start with affordability.
-              </p>
-
-              <p>
-                Give people breathing room, they get capacity. Capacity becomes participation. Participation becomes organization. Organization becomes pressure. Pressure becomes results.
-              </p>
-
-              <p>
-                That's not three separate programs competing for attention.
-              </p>
-
-              <p className="text-green-400 font-semibold text-lg md:text-xl">
-                That's one system. Every piece enables the others.
-              </p>
+            {/* Why 1,500 Matters */}
+            <div className="mt-12 bg-gradient-to-r from-green-400/5 to-transparent border-l-4 border-green-400 pl-6 py-5 rounded-r-xl">
+              <h3 className="text-green-400 text-2xl md:text-3xl font-bold mb-4">
+                Why 1,500 Matters
+              </h3>
+              <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed">
+                <p>A single voter is easy to ignore.</p>
+                <p className="font-semibold text-white">An organized district is not.</p>
+                <p>
+                  When 1,500 verified constituents go on record together, representatives know those voters
+                  are paying attention.
+                </p>
+                <p>
+                  When those voters stay organized and engaged, the political calculation changes.
+                </p>
+                <div className="bg-[#0a1628]/60 rounded-lg p-5 mt-4 text-center">
+                  <p className="text-green-400 text-xl font-bold">That's the leverage.</p>
+                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-3 text-gray-400 text-sm">
+                    <span>✗ Not violence</span>
+                    <span>✗ Not chaos</span>
+                    <span>✗ Not partisan warfare</span>
+                  </div>
+                  <p className="text-white font-semibold mt-3">
+                    Organized citizens making it politically costly to ignore them.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* WHAT THIS PROVES */}
-            <div className="mt-12 text-center">
-              <p className="text-gray-500 text-sm italic tracking-wide mb-4">
-                THIS IS WHAT PRESSURE TAUGHT US.
-              </p>
-              <p className="text-white text-2xl md:text-3xl font-semibold leading-relaxed">
-                That everything is connected.<br />
-                That solutions have to be connected too.<br />
-                That the person who survives pressure<br />
-                knows how to build systems that work together.<br />
-              </p>
-              <p className="text-green-400/80 text-xl md:text-2xl font-semibold mt-6">
-                PHIERS is what happens when you understand that pattern — and apply it at scale.
-              </p>
+            {/* Why It Had To Be Built This Way */}
+            <div className="mt-12">
+              <h3 className="text-white text-2xl md:text-3xl font-bold mb-5">
+                Why It Had To Be Built This Way
+              </h3>
+              <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed">
+                <p>
+                  PHIERS was never built to become another organization asking people to trust it.
+                </p>
+                <p className="text-green-400 font-semibold text-xl italic">
+                  It was built to help ordinary people create leverage of their own.
+                </p>
+                <p>
+                  Because once people regain leverage, solutions that seemed impossible suddenly become
+                  politically possible.
+                </p>
+                <div className="h-px bg-green-400/20 my-6" />
+                <p className="text-white text-xl font-semibold text-center">
+                  And that's where the real work begins.
+                </p>
+              </div>
             </div>
 
             {/* Spacer before next section */}
