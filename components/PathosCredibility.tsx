@@ -315,17 +315,15 @@
             />
           </motion.div>
 
-          {/* NEW PAGE TITLE - Below logo */}
-          <motion.div variants={sectionFade} className="text-center max-w-3xl mx-auto mb-8 px-4">
-            <h1 className="text-[clamp(1.5rem,6vw,2.5rem)] md:text-[clamp(2rem,5vw,3rem)] font-black text-white mb-3 tracking-tight leading-[1.2]">
-              <span className="whitespace-normal break-words">We didn't ask anyone to vouch for us.</span>
-              <br />
-              <span className="whitespace-nowrap md:whitespace-normal break-words">They did it anyway.</span>
+          {/* PAGE TITLE */}
+          <motion.div variants={sectionFade} className="text-center max-w-3xl mx-auto mb-12 px-4">
+            <h1 className="text-[clamp(2rem,8vw,4rem)] md:text-[clamp(2.5rem,6vw,4.5rem)] font-black text-white mb-4 tracking-tight leading-[1.2]">
+              What Makes Us Credible
             </h1>
-            <p className="text-gray-400 text-sm md:text-base">
-              Three organizations. Three independent validations. One public record.
+            <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+              Three independent validators. One public record. Zero hype.
             </p>
-          </motion.div>
+          </motion.div> 
 
           {/* Reading time indicator */}
           {readingTime && (
@@ -394,16 +392,7 @@
           {/* [5] BREATHING ROOM #2 — bigger pause before big reveal */}
           <div className="h-8" />
 
-          {/* [6] PAGE TITLE + SUBTITLE — announce the page */}
-          <motion.div variants={sectionFade} className="text-center max-w-3xl mx-auto mb-6">
-            <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">
-              The Public Record
-            </h1>
-            <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
-              Three independent validations.<br />
-              On video. On the record.
-            </p>
-          </motion.div>
+          {/* [6] PAGE TITLE + SUBTITLE — removed (redundant) */}
 
           {/* [7] SECTION LABEL + BREATHING ROOM #3 */}
           <motion.div variants={sectionFade} className="mb-4">
