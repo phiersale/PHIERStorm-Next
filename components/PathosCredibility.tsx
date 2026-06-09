@@ -204,6 +204,17 @@
     // goToMainHomepage removed - unused
     return (
       <>
+        {/* Sticky floating PHIERS logo */}
+        {showSkipAhead && (
+          <div className="fixed top-4 left-4 z-50 md:left-8 md:top-6">
+            <img
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS"
+              className="w-10 h-10 md:w-12 md:h-12 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+            />
+          </div>
+        )}
+
         {/* Floating skip button – opens transition modal */}
         {showSkipAhead && (
           <div className="fixed bottom-5 right-5 z-50">
@@ -315,9 +326,11 @@
           </motion.div>
 
           {/* NEW PAGE TITLE - Below logo */}
-          <motion.div variants={sectionFade} className="text-center max-w-3xl mx-auto mb-8">
-            <h1 className="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight leading-snug">
-              We didn't ask anyone to vouch for us.<br />They did it anyway.
+          <motion.div variants={sectionFade} className="text-center max-w-3xl mx-auto mb-8 px-4">
+            <h1 className="text-[clamp(1.5rem,6vw,2.5rem)] md:text-[clamp(2rem,5vw,3rem)] font-black text-white mb-3 tracking-tight leading-[1.2]">
+              <span className="whitespace-normal break-words">We didn't ask anyone to vouch for us.</span>
+              <br />
+              <span className="whitespace-nowrap md:whitespace-normal break-words">They did it anyway.</span>
             </h1>
             <p className="text-gray-400 text-sm md:text-base">
               Three organizations. Three independent validations. One public record.
@@ -624,7 +637,7 @@
           >
             <summary className="cursor-pointer text-xl md:text-2xl font-bold text-green mb-2 list-none flex items-center">
               <span className="mr-2 group-open:rotate-90 transition-transform">▶</span>
-              🦈 Shark Tank Connection — Why This Matters Now
+              Shark Tank Connection — Why This Matters Now
             </summary>
             <div className="mt-2 text-gray-400 text-sm mb-4">Pathos. DotCom. Kevin Harrington. Kevin O'Leary. Mark Cuban. All roads lead here.</div>
             
@@ -742,7 +755,7 @@
                 <img
                   src="/images/PHIERS_Logo.png"
                   alt="PHIERS"
-                  className="w-12 h-12 object-contain opacity-70"
+                  className="w-20 h-20 object-contain opacity-70"
                 />
               </div>
               <p className="text-white text-base font-semibold mb-2">
@@ -990,23 +1003,12 @@
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center max-w-5xl mx-auto">
 
-
               {/* Sizzle Film 2011 */}
               <div className="w-28 sm:w-32">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/mxDkyFfBnZw?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow =
-                      'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/mxDkyFfBnZw?autoplay=1', 'PHIERS Sizzle Film 2011')}
                 >
                   <img
                     src="https://img.youtube.com/vi/mxDkyFfBnZw/mqdefault.jpg"
@@ -1028,17 +1030,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/r1_y7MXNt4E?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow =
-                      'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/r1_y7MXNt4E?autoplay=1', 'Patriots on PHIERS 2014')}
                 >
                   <img
                     src="https://img.youtube.com/vi/r1_y7MXNt4E/mqdefault.jpg"
@@ -1060,17 +1052,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/JWC6ztov2sA?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow =
-                      'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/JWC6ztov2sA?autoplay=1', 'Silos to Synergies 2014')}
                 >
                   <img
                     src="https://img.youtube.com/vi/JWC6ztov2sA/mqdefault.jpg"
@@ -1094,16 +1076,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://player.vimeo.com/video/34036317?autoplay=1&title=0&byline=0&portrait=0'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'autoplay; fullscreen'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://player.vimeo.com/video/34036317?autoplay=1&title=0&byline=0&portrait=0', 'PHIERS Framework 2011')}
                 >
                   <img
                     src="https://vumbnail.com/34036317.jpg"
@@ -1125,16 +1098,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://player.vimeo.com/video/37264685?autoplay=1&title=0&byline=0&portrait=0'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'autoplay; fullscreen'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://player.vimeo.com/video/37264685?autoplay=1&title=0&byline=0&portrait=0', 'PHIERS Strategy 2012')}
                 >
                   <img
                     src="https://vumbnail.com/37264685.jpg"
@@ -1156,16 +1120,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://player.vimeo.com/video/37891922?autoplay=1&title=0&byline=0&portrait=0'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'autoplay; fullscreen'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://player.vimeo.com/video/37891922?autoplay=1&title=0&byline=0&portrait=0', 'PHIERS Structure 2012')}
                 >
                   <img
                     src="https://vumbnail.com/37891922.jpg"
@@ -1179,7 +1134,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">PHIERS Structure (c.2012)</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">School-based Solutions (c.2012)</p>
               </div>
 
               {/* A Bold Counterplan — How to Combat Disaster Capitalism (2015) */}
@@ -1191,16 +1146,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget;
-                    const iframe = document.createElement('iframe');
-                    iframe.src = 'https://player.vimeo.com/video/241013858?autoplay=1&title=0&byline=0&portrait=0&dnt=1';
-                    iframe.className = 'absolute top-0 left-0 w-full h-full';
-                    iframe.allow = 'autoplay; fullscreen';
-                    iframe.allowFullscreen = true;
-                    container.innerHTML = '';
-                    container.appendChild(iframe);
-                  }}
+                  onClick={() => openVideoModal('https://player.vimeo.com/video/241013858?autoplay=1&title=0&byline=0&portrait=0&dnt=1', 'A Bold Counterplan 2015')}
                 >
                   <img
                     src="https://vumbnail.com/241013858.jpg"
@@ -1239,16 +1185,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/0CrR7uh9fFk?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/0CrR7uh9fFk?autoplay=1', 'On Pandemics (1)')}
                 >
                   <img
                     src="https://img.youtube.com/vi/0CrR7uh9fFk/mqdefault.jpg"
@@ -1262,7 +1199,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (1)</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">Public Health Advicacy & Pandemics</p>
               </div>
 
               {/* Pandemic Video 2 */}
@@ -1270,16 +1207,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/s88nbbiOY-s?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/s88nbbiOY-s?autoplay=1', 'On Pandemics (2)')}
                 >
                   <img
                     src="https://img.youtube.com/vi/s88nbbiOY-s/mqdefault.jpg"
@@ -1293,38 +1221,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (2)</p>
-              </div>
-
-              {/* Pandemic Video 3 */}
-              <div className="w-28 sm:w-32">
-                <div
-                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
-                  style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/Bj_A2pVXlHo?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
-                >
-                  <img
-                    src="https://img.youtube.com/vi/Bj_A2pVXlHo/mqdefault.jpg"
-                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
-                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (3)</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">A Better Pandemic Response</p>
               </div>
 
               {/* Pandemic Video 4 */}
@@ -1332,16 +1229,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/q0N0n-ET2cM?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/q0N0n-ET2cM?autoplay=1', 'On Pandemics (4)')}
                 >
                   <img
                     src="https://img.youtube.com/vi/q0N0n-ET2cM/mqdefault.jpg"
@@ -1355,7 +1243,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (4)</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">Family Matters, Healthcare and YOU</p>
               </div>
 
               {/* Pandemic Video 5 */}
@@ -1363,16 +1251,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/8jXo5-znK4M?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/8jXo5-znK4M?autoplay=1', 'On Pandemics (5)')}
                 >
                   <img
                     src="https://img.youtube.com/vi/8jXo5-znK4M/mqdefault.jpg"
@@ -1386,7 +1265,7 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (5)</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">Great Minds Think Alike</p>
               </div>
 
               {/* Pandemic Video 6 */}
@@ -1394,16 +1273,7 @@
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/hB3teGHp1ss?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/hB3teGHp1ss?autoplay=1', 'On Pandemics (6)')}
                 >
                   <img
                     src="https://img.youtube.com/vi/hB3teGHp1ss/mqdefault.jpg"
@@ -1417,39 +1287,9 @@
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (6)</p>
+                <p className="text-center text-gray-500 text-[10px] mt-1">A Peaceful Warrior: On Health & Race</p>
               </div>
 
-              {/* Pandemic Video 7 */}
-              <div className="w-28 sm:w-32">
-                <div
-                  className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
-                  style={{ paddingBottom: '56.25%' }}
-                  onClick={(e) => {
-                    const container = e.currentTarget
-                    const iframe = document.createElement('iframe')
-                    iframe.src = 'https://www.youtube.com/embed/faF7-En6NWU?autoplay=1'
-                    iframe.className = 'absolute top-0 left-0 w-full h-full'
-                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                    iframe.allowFullscreen = true
-                    container.innerHTML = ''
-                    container.appendChild(iframe)
-                  }}
-                >
-                  <img
-                    src="https://img.youtube.com/vi/faF7-En6NWU/mqdefault.jpg"
-                    className="absolute top-0 left-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
-                      <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-center text-gray-500 text-[10px] mt-1">On Pandemics (7)</p>
-              </div>
             </div>
             <p className="text-center text-gray-500 text-xs italic mt-4">
               Hundreds more archival videos document the full journey.
