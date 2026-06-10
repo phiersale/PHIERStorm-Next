@@ -324,13 +324,13 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
             <button
-              onClick={onBackToHome}
+              onClick={() => window.location.href = '/credibility'}
               className="text-green-400 border border-green-400/30 hover:bg-green-400/10 px-6 py-2 rounded-full text-sm transition"
             >
               ← Back to Credibility
             </button>
             <button
-              onClick={() => window.location.href = '/MainHomePage'}
+              onClick={() => window.location.href = '/the-system'}
               className="text-white border border-white/20 hover:bg-white/10 px-6 py-2 rounded-full text-sm transition"
             >
               See the Full System →
@@ -360,14 +360,14 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
             <span className="text-[10px]">Top</span>
           </button>
           <button
-            onClick={() => window.location.href = '/?credibility=true'}
+            onClick={() => window.location.href = '/credibility'}
             className="flex flex-col items-center gap-0.5 text-gray-400 hover:text-green-400 transition-colors py-1 px-3"
           >
             <span className="text-base">←</span>
             <span className="text-[10px]">Credibility</span>
           </button>
           <button
-            onClick={() => window.location.href = '/MainHomePage'}
+            onClick={() => window.location.href = '/the-system'}
             className="flex flex-col items-center gap-0.5 text-gray-400 hover:text-green-400 transition-colors py-1 px-3"
           >
             <span className="text-base">→</span>
