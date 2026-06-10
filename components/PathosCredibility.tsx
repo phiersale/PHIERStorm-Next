@@ -684,18 +684,21 @@
             
             <div className="mt-4 space-y-6 relative pl-3 border-l-2 border-green/20">
               
-              {/* BLOCK 1 — Photo row: two Sharks frame the story */}
-              <div className="grid grid-cols-2 gap-3 md:gap-6 items-end max-w-lg mx-auto">
-                <div className="text-center">
+              {/* BLOCK 1 — Sharks stacked vertically: Cuban → O'Leary → Harrington */}
+              <div className="flex flex-col items-center gap-6 max-w-xs mx-auto">
+                {/* Mark Cuban - Top */}
+                <div className="text-center w-full">
                   <img
-                    src="/images/Kevin_Harrington_Pathos.jpg"
-                    alt="Kevin Harrington — Original Shark — Pathos Communications"
+                    src="/images/Mark_Cuban_Disrupts_Drug_Pricing.jpg"
+                    alt="Mark Cuban — Disrupting drug pricing for good"
                     className="w-full rounded-lg border border-green/30"
                     onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
                   />
-                  <p className="text-gray-400 text-[10px] md:text-xs mt-1">Kevin Harrington · Original Shark · Pathos Communications</p>
+                  <p className="text-gray-400 text-[10px] md:text-xs mt-1">Mark Cuban · Cost Plus Drugs · Disrupting drug pricing for good</p>
                 </div>
-                <div className="text-center">
+                
+                {/* Kevin O'Leary - Middle */}
+                <div className="text-center w-full">
                   <img
                     src="/images/Kevin_O_Leary_DotComMag.jpg"
                     alt="Kevin O'Leary — Original Shark — DotCom Magazine"
@@ -703,6 +706,17 @@
                     onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
                   />
                   <p className="text-gray-400 text-[10px] md:text-xs mt-1">Kevin O'Leary · Original Shark · DotCom Magazine</p>
+                </div>
+                
+                {/* Kevin Harrington - Bottom */}
+                <div className="text-center w-full">
+                  <img
+                    src="/images/Kevin_Harrington_Pathos.jpg"
+                    alt="Kevin Harrington — Original Shark — Pathos Communications"
+                    className="w-full rounded-lg border border-green/30"
+                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
+                  />
+                  <p className="text-gray-400 text-[10px] md:text-xs mt-1">Kevin Harrington · Original Shark · Pathos Communications</p>
                 </div>
               </div>
               
