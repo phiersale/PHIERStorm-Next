@@ -420,7 +420,7 @@
               <div className="bg-[#0a1628] rounded-lg p-4 space-y-2">
                 <p>✓ A country where healthcare doesn't bankrupt families.</p>
                 <p>✓ A country where work provides dignity and opportunity.</p>
-                <p>✓ A country where communities are stronger than the forces trying to divide them.</p>
+                <p>✓ A country where elected officials abide the will of the voters.</p>
                 <p>✓ A country where our government serves the People, not the elites.</p>
                 <p>✓ A country where solutions are paid for by rescinding tax breaks for the wealthy.</p>
                 <p>✓ A country where public servants are held accountable.</p>
