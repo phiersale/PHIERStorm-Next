@@ -168,7 +168,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
               from volunteers to staff, from supporters to organized districts, and from frustration to measurable results.
             </p>
             <p className="text-amber-400 text-sm italic mt-4">
-              Because solutions only matter if enough people survive long enough to implement them.
+              The team building this has been at it for 22 years. Your donation helps us survive long enough to see it through.
             </p>
           </div>
         </motion.div>
@@ -257,7 +257,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
                 </div>
                 <p className="text-green-400 text-base tracking-wide mt-3 font-semibold">Zelle</p>
                 <button
-                  onClick={() => copyToClipboard('phiers@protonmail.com', 'Zelle')}
+                  onClick={() => copyToClipboard('(301)919-0970', 'Zelle')}
                   className="text-gray-400 text-sm hover:text-green-400 underline transition mt-1"
                 >
                   (301)919-0970
