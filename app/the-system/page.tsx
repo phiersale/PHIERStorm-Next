@@ -418,6 +418,85 @@ export default function PhiersSystemPage() {
               Every Piece Moves the Next
             </h2>
 
+          {/* End of SECTION 6 - duplicate removed */}
+
+          {/* ========== NEW SECTION: ECONOMIC COORDINATION INFRASTRUCTURE ========== */}
+          <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
+            <details className="group cursor-pointer mb-8">
+              <summary className="flex items-center justify-between font-semibold text-white text-xl md:text-2xl mb-4 list-none">
+                <span className="flex items-center gap-2">
+                  <span className="group-open:rotate-90 transition-transform">▶</span>
+                  Economic Coordination Infrastructure (PHIERSale)
+                </span>
+              </summary>
+
+              <div className="mt-6 space-y-6 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto pl-6 border-l-2 border-green-400/20">
+                
+                <div>
+                  <h3 className="text-green-400 font-semibold text-lg mb-3">The People's Marketplace</h3>
+                  <p>
+                    PHIERS is not only organizing people politically. We're helping communities organize economically.
+                  </p>
+                </div>
+
+                <div className="bg-[#0a1628]/60 rounded-lg p-6 border border-green-400/20">
+                  <p className="text-white font-semibold mb-3">How PHIERSale Works:</p>
+                  <div className="space-y-2 text-sm">
+                    <p>✓ Mutual-assistance groups buy collectively</p>
+                    <p>✓ Local organizations coordinate resources</p>
+                    <p>✓ Civic networks reduce costs through volume</p>
+                    <p>✓ Communities strengthen local resilience</p>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-white font-semibold mb-2">What This Enables:</p>
+                  <div className="pl-4 border-l border-green-400/30 space-y-2">
+                    <p>Healthcare access through cooperative purchasing</p>
+                    <p>Food security through regional supply coordination</p>
+                    <p>Housing assistance through community networks</p>
+                    <p>Job training through skill-share infrastructure</p>
+                    <p>Childcare support through mutual-aid systems</p>
+                  </div>
+                </div>
+
+                <div className="bg-green/5 rounded-lg p-4 border border-green/20">
+                  <p className="text-white font-semibold mb-2">PHIERSale Timeline:</p>
+                  <p className="text-gray-400 text-sm">
+                    PHIERSale will go live once enough Americans show support to hold Congress accountable for allowing PHIERS to participate in the ACA Exchange and the government sales registry.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-white font-semibold mb-3">The Multiplier Effect:</p>
+                  <div className="space-y-2 text-sm">
+                    <p className="text-green-400">→ Affordable healthcare removes survival pressure</p>
+                    <p className="text-green-400">→ Stable employment creates durability</p>
+                    <p className="text-green-400">→ Resource coordination strengthens communities</p>
+                    <p className="text-green-400">→ Organized communities create political pressure</p>
+                    <p className="text-green-400">→ Political pressure creates authorization</p>
+                    <p className="text-green-400">→ Authorization scales the system nationally</p>
+                  </div>
+                </div>
+
+                <div className="bg-amber-600/10 border border-amber-600/30 rounded-lg p-4">
+                  <p className="text-white font-semibold mb-2">Not Charity. Infrastructure.</p>
+                  <p className="text-gray-300 text-sm">
+                    A not-for-profit cooperative marketplace with no profit motive. Every dollar of savings goes directly to members. Every layer of the system strengthens the next.
+                  </p>
+                </div>
+
+                <div className="text-center pt-4 border-t border-green-400/20">
+                  <p className="text-green-400 font-semibold text-lg italic">
+                    Inject trust back into the process.<br />
+                    Help neighbors help neighbors.<br />
+                    Help Americans rebuild together.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </section>
+
             <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
               <p className="font-semibold text-white">
                 This is not four separate initiatives.

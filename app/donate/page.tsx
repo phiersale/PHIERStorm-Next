@@ -96,15 +96,15 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
         </button>
       </div>
 
-      {/* Floating Donate Now button - appears after scrolling 100px */}
-      {showSkipButton && (
+      {/* Donate Now button - top right, matches Back button style */}
+      <div className="fixed top-5 right-5 z-50">
         <button
           onClick={scrollToQRCodes}
-          className="fixed bottom-24 right-5 z-50 bg-green-500/90 text-black font-semibold px-4 py-2 rounded-full shadow-lg text-sm tracking-wide hover:bg-green-400 transition"
+          className="bg-[#0f1725]/80 border border-green/30 text-gray-300 text-xs px-3 py-1.5 rounded-full backdrop-blur-sm hover:border-green/50 hover:text-white transition-all duration-300"
         >
           Donate Now →
         </button>
-      )}
+      </div>
 
       <motion.div
         id="top"
@@ -170,145 +170,11 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
           </div>
         </motion.div>
 
-        {/* CREDIBILITY ANCHOR: Patriotic Homecoming Vision */}
-        <motion.section
-          variants={sectionFade}
-          className="max-w-4xl mx-auto px-6 py-16"
-        >
-          <div className="border border-green-400/20 bg-[#1A2634] rounded-xl p-8 md:p-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
-              A Patriotic Homecoming for American Democracy
-            </h2>
+        {/* Patriotic Homecoming moved to /credibility */}
 
-            <div className="space-y-5 text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              <p>The goal is simple.</p>
+        {/* MABSHA moved to /credibility */}
 
-              <p>Have PHIERS fully operational by June 13.</p>
-
-              <p>Demonstrate organized civic participation by June 14.</p>
-
-              <p>
-                And by Independence Day, show that representative government
-                can still answer to the people.
-              </p>
-
-              <div className="text-center py-4 space-y-2 font-semibold">
-                <p>Not through violence.</p>
-                <p>Not through chaos.</p>
-                <p>Through organization.</p>
-                <p>Through accountability.</p>
-                <p>Through participation.</p>
-              </div>
-
-              <p>The First Reconstruction rebuilt the Union.</p>
-
-              <p>The Second Reconstruction expanded civil rights.</p>
-
-              <p className="font-semibold text-white">
-                The Third Reconstruction rebuilds accountability between
-                citizens and government.
-              </p>
-
-              <p>PHIERS is not asking Americans to agree on everything.</p>
-
-              <p>
-                We're asking Americans to remember that elected officials
-                work for the people—not the other way around.
-              </p>
-
-              <p className="font-semibold text-green-400">
-                Fifteen Hundred is not the destination.
-                It is the proof.
-              </p>
-
-              <p>Proof that ordinary people can still organize.</p>
-              <p>Proof that citizens can still be heard.</p>
-              <p>Proof that democracy still belongs to the people.</p>
-
-              <p className="text-center text-xl font-bold text-white pt-4">
-                A patriotic homecoming for American democracy.
-              </p>
-
-              <p className="text-center text-white font-semibold">
-                The beginning of a Third Reconstruction.
-              </p>
-
-              <p className="text-center text-sm text-gray-500 mt-8">
-                Every contribution helps move PHIERS toward full operational readiness.
-              </p>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* VALUES ANCHOR: MABSHA — mission standard, not marketing */}
-        <motion.div variants={sectionFade} className="mt-24 mb-16 max-w-3xl mx-auto">
-          <div className="bg-gradient-to-r from-green-400/5 to-transparent border-l-4 border-green-400 pl-6 py-6 rounded-r-xl">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-green-400 text-xl opacity-70">⭐</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
-                MAKE AMERICA BETTER: HEALTHIER, SAFER, AND AFFORDABLE
-              </h2>
-            </div>
-            <p className="text-green-400 text-xl font-semibold mb-2">MABSHA.</p>
-            <p className="text-gray-400 text-sm mb-6">Not a slogan. A standard.</p>
-            <div className="space-y-3 text-gray-300">
-              <p>✓ A country where healthcare doesn't bankrupt families.</p>
-              <p>✓ A country where work provides dignity and opportunity.</p>
-              <p>✓ A country where communities are stronger than the forces trying to divide them.</p>
-              <p>✓ A country where our government serves the People, not the elites.</p>
-              <p>✓ A country where solutions are paid for by rescinding tax breaks for the wealthy.</p>
-              <p>✓ A country where public servants are held accountable.</p>
-              <p>✓ A country where we rise from the ashes borne anew, like the Phoenix.</p>
-            </div>
-            <p className="text-white font-semibold mt-6">
-              That's what we're building.
-              <span className="text-gray-500 text-sm block mt-1">
-                And unlike the people arguing on television — we're actually doing the work.
-              </span>
-            </p>
-          </div>
-        </motion.div>
-
-        {/* EX-MAGA HOMECOMING: Direct appeal to people who came for change */}
-        <motion.div variants={sectionFade} className="mt-24 mb-16 max-w-3xl mx-auto">
-          <div className="bg-[#1A2634] border border-green-400/20 rounded-xl p-8 md:p-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
-              ⭐ FOR THOSE WHO CAME TO MAGA LOOKING FOR CHANGE
-            </h2>
-
-            <div className="space-y-4 text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              <p>
-                MAGA promised change.
-              </p>
-
-              <p>
-                It didn't deliver — because the people making those promises don't have the structure to build it.
-              </p>
-
-              <div className="border-l-4 border-green-400 pl-4 py-2 my-6">
-                <p className="text-white font-semibold text-lg">
-                  PHIERS is the structure they should have built.
-                </p>
-              </div>
-
-              <p>
-                Not left or right. Not Democrat or Republican.
-              </p>
-
-              <p>
-                Just organized citizens holding elected officials accountable, and building economic resilience when they won't.
-              </p>
-
-              <p className="text-white font-semibold mt-6">
-                If you're looking for the real thing — not the slogan, the mechanism — you're in the right place.
-              </p>
-
-              <p className="text-green-400 text-sm italic mt-6">
-                Your money funds the team that will actually deliver what MAGA promised.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+        {/* Ex-MAGA addressing moved to /credibility */}
 
         {/* OPERATIONAL ANCHOR: WHAT YOUR DONATION FUNDS — placed just before ask */}
         <motion.div variants={sectionFade} className="mt-24 mb-16 max-w-3xl mx-auto">
@@ -345,6 +211,18 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
           </div>
         </motion.div>
 
+{/* URGENCY ANCHOR: The number that changes everything */}
+        <motion.div variants={sectionFade} className="mt-12 mb-12 max-w-3xl mx-auto text-center">
+          <div className="bg-green/10 border-l-4 border-l-green rounded-r-lg p-6">
+            <p className="text-white font-semibold text-lg">
+              We need 1,500 organized supporters per district to unlock the leverage Congress cannot ignore.
+            </p>
+            <p className="text-gray-400 text-sm mt-2">
+              Your donation builds the infrastructure that makes that possible.
+            </p>
+          </div>
+        </motion.div>
+
         {/* PRIMARY ASK: DONATE NOW — calmer, tighter, directly after operational clarity */}
         <motion.div id="qr-codes" variants={sectionFade} className="mt-24 mb-16 max-w-3xl mx-auto">
           <div className="bg-[#1A2634] rounded-xl p-8 text-center">
@@ -366,7 +244,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
                   onClick={() => onOpenPrivacyModal?.('/images/zelle_qr.png')}
                 >
                   <img
-                    src="/images/qr-zelle.png"
+                    src="/images/zelle_qr.png"
                     alt="Zelle QR Code"
                     className="w-full h-full object-contain"
                     onError={(e) => {
@@ -379,7 +257,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
                   onClick={() => copyToClipboard('phiers@protonmail.com', 'Zelle')}
                   className="text-gray-400 text-sm hover:text-green-400 underline transition mt-1"
                 >
-                  phiers@protonmail.com
+                  (301)919-0970
                 </button>
               </div>
 
@@ -390,7 +268,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
                   onClick={() => onOpenPrivacyModal?.('/images/venmo_qr.png')}
                 >
                   <img
-                    src="/images/qr-venmo.png"
+                    src="/images/venmo_qr.png"
                     alt="Venmo QR Code"
                     className="w-full h-full object-contain"
                     onError={(e) => {
@@ -400,10 +278,10 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
                 </div>
                 <p className="text-green-400 text-base tracking-wide mt-3 font-semibold">Venmo</p>
                 <button
-                  onClick={() => copyToClipboard('@PHIERS', 'Venmo')}
+                  onClick={() => copyToClipboard('@PHIERd_Up', 'Venmo')}
                   className="text-gray-400 text-sm hover:text-green-400 underline transition mt-1"
                 >
-                  @PHIERS
+                  @PHIERd_Up
                 </button>
               </div>
 
@@ -414,7 +292,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
                   onClick={() => onOpenPrivacyModal?.('/images/paypal_qr.png')}
                 >
                   <img
-                    src="/images/qr-paypal.png"
+                    src="/images/paypal_qr.png"
                     alt="PayPal QR Code"
                     className="w-full h-full object-contain"
                     onError={(e) => {
@@ -424,54 +302,17 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
                 </div>
                 <p className="text-green-400 text-base tracking-wide mt-3 font-semibold">PayPal</p>
                 <button
-                  onClick={() => copyToClipboard('paypal.me/phiers', 'PayPal')}
+                  onClick={() => copyToClipboard('will@phiers.org', 'PayPal')}
                   className="text-gray-400 text-sm hover:text-green-400 underline transition mt-1"
                 >
-                  paypal.me/phiers
+                  will@phiers.org
                 </button>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* SECONDARY INFRASTRUCTURE: THE PEOPLE'S MARKETPLACE — after primary ask */}
-        <motion.div variants={sectionFade} className="mt-24 mb-16 max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-green-400 mb-4">⭐ THE PEOPLE'S MARKETPLACE</h2>
-          <div className="bg-[#1A2634] rounded-xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                />
-              </svg>
-              <span className="text-gray-400 text-sm">Economic coordination infrastructure</span>
-            </div>
-            <p className="text-gray-300 mb-3">
-              PHIERS is not only organizing people politically.
-            </p>
-            <p className="text-gray-300 mb-6">
-              We're helping communities organize economically.
-            </p>
-            <p className="text-white mb-6">
-              Through <span className="text-green-400 font-semibold">PHIERSale — The People's Marketplace</span> — mutual‑assistance groups,
-              local organizations, and civic networks will be able to purchase collectively, coordinate resources, reduce costs, and
-              strengthen local resilience.
-            </p>
-
-            <p className="text-gray-400 text-sm mb-4">
-              PHIERSale will go live as soon as enough Americans show support to hold Congress accountable for allowing PHIERS to participate in the exchange and the government sales registry.
-            </p>
-
-            <div className="space-y-3 text-center mt-8 pt-6 border-t border-white/10">
-              <p className="text-white font-semibold text-lg">Inject trust back into the process.</p>
-              <p className="text-white font-semibold text-lg">Help neighbors help neighbors.</p>
-              <p className="text-white font-semibold text-lg">Help Americans rebuild together.</p>
-            </div>
-          </div>
-        </motion.div>
+        {/* PHIERSale moved to /the-system */}
 
         {/* Two-path navigation: back to Credibility OR forward to main homepage */}
         <motion.div variants={sectionFade} className="mt-12 text-center max-w-2xl mx-auto">
