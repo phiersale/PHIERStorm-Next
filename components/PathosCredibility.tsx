@@ -895,21 +895,31 @@
               </p>
 
               <div className="bg-[#0a1628] rounded-lg p-4 space-y-2">
-                <p>✓ A country where healthcare doesn't bankrupt families.</p>
+                <p>✓ A country where healthcare doesn't bankrupt people.</p>
                 <p>✓ A country where work provides dignity and opportunity.</p>
                 <p>✓ A country where elected officials abide the will of the voters.</p>
                 <p>✓ A country where our government serves the People, not the elites.</p>
-                <p>✓ A country where solutions are paid for by rescinding tax breaks for the wealthy.</p>
+                <p>✓ A country where solutions are paid for cutting tax breaks for the wealthy.</p>
                 <p>✓ A country where public servants are held accountable.</p>
-                <p>✓ A country where we rise from the ashes borne anew, like the Phoenix.</p>
+                <p>✓ A country where we rise from the ashes victorious, like the Phoenix.</p>
               </div>
 
               <p className="text-white font-semibold mt-4">
-                That's what we're building.
+                That's why we're here. That's what we're building.
               </p>
 
               <p className="text-gray-400 text-sm italic">
-                And unlike the people arguing on television — we're actually doing the work.
+                While others are talking — we're doing the work.
+              </p>
+
+              <p className="text-gray-400 text-sm mt-4">
+                If this is the country you believe in too, you can support the work at{' '}
+                <a
+                  href="/donate"
+                  className="text-green hover:text-white underline transition-colors"
+                >
+                  phiers.org/donate
+                </a>.
               </p>
             </div>
           </motion.details>
