@@ -89,7 +89,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
       {/* Back to Credibility button */}
       <div className="fixed top-5 left-5 z-50">
         <button
-          onClick={onBackToHome}
+          onClick={() => window.location.href = '/?credibility=true'}
           className="bg-[#0f1725]/80 border border-green/30 text-gray-300 text-xs px-3 py-1.5 rounded-full backdrop-blur-sm hover:border-green/50 hover:text-white transition-all duration-300"
         >
           ← Back to Credibility
@@ -360,7 +360,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
             <span className="text-[10px]">Top</span>
           </button>
           <button
-            onClick={onBackToHome}
+            onClick={() => window.location.href = '/?credibility=true'}
             className="flex flex-col items-center gap-0.5 text-gray-400 hover:text-green-400 transition-colors py-1 px-3"
           >
             <span className="text-base">←</span>
