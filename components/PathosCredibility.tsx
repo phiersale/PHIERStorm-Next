@@ -304,7 +304,7 @@
             hidden: {},
             visible: { transition: { staggerChildren: 0.14 } }
           }}
-          className="max-w-4xl mx-auto px-4 pt-2 pb-20 md:pb-6"
+          className="w-full max-w-4xl mx-auto px-3 sm:px-4 pt-2 pb-20 md:pb-6 overflow-x-hidden"
         >
           {/* [1] LOGO — small anchor, not hero */}
           <motion.div variants={sectionFade} className="flex justify-center mb-4">
@@ -1244,7 +1244,7 @@
               </div>
 
               {/* Patriots on PHIERS 2014 */}
-              <div className="w-28 sm:w-32">
+              <div className="w-full max-w-[110px] sm:max-w-[128px] mx-auto">
                 <div
                   className="relative cursor-pointer group rounded-lg overflow-hidden bg-black/40 border-2 border-green/40 transition-transform hover:scale-[1.02]"
                   style={{ paddingBottom: '56.25%' }}
