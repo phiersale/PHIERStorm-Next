@@ -5,6 +5,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   onBackToHome?: () => void
@@ -20,7 +21,9 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
   const [scrollPercentage, setScrollPercentage] = useState(0)
   const [copiedMessage, setCopiedMessage] = useState('')
   const [showSkipButton, setShowSkipButton] = useState(false)
+  const [modalImage, setModalImage] = useState<{ src: string; alt: string } | null>(null)
   const prefersReducedMotion = useRef(false)
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -241,7 +244,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
               <div className="flex flex-col items-center">
                 <div
                   className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-xl p-2 cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => onOpenPrivacyModal?.('/images/zelle_qr.png')}
+                  onClick={() => setModalImage({ src: '/images/zelle_qr.png', alt: 'Zelle QR Code' })}
                 >
                   <img
                     src="/images/zelle_qr.png"
@@ -265,7 +268,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
               <div className="flex flex-col items-center">
                 <div
                   className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-xl p-2 cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => onOpenPrivacyModal?.('/images/venmo_qr.png')}
+                  onClick={() => setModalImage({ src: '/images/venmo_qr.png', alt: 'Venmo QR Code' })}
                 >
                   <img
                     src="/images/venmo_qr.png"
@@ -289,7 +292,7 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
               <div className="flex flex-col items-center">
                 <div
                   className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-xl p-2 cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => onOpenPrivacyModal?.('/images/paypal_qr.png')}
+                  onClick={() => setModalImage({ src: '/images/paypal_qr.png', alt: 'PayPal QR Code' })}
                 >
                   <img
                     src="/images/paypal_qr.png"
@@ -324,13 +327,13 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
             <button
-              onClick={() => window.location.href = '/credibility'}
+              onClick={() => window.location.href = '/?credibility=true'}
               className="text-green-400 border border-green-400/30 hover:bg-green-400/10 px-6 py-2 rounded-full text-sm transition"
             >
               ← Back to Credibility
             </button>
             <button
-              onClick={() => window.location.href = '/the-system'}
+              onClick={() => router.push('/the-system')}
               className="text-white border border-white/20 hover:bg-white/10 px-6 py-2 rounded-full text-sm transition"
             >
               See the Full System →
@@ -349,6 +352,27 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
         )}
       </motion.div>
 
+      {/* Image Modal */}
+      {modalImage && (
+        <div 
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
+          onClick={() => setModalImage(null)}
+        >
+          <div className="relative max-w-5xl w-full max-h-[90vh]">
+            <button
+              onClick={() => setModalImage(null)}
+              className="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition"
+            >
+              ✕
+            </button>
+            <div className="relative w-full aspect-[16/9]">
+              <img src={modalImage.src} alt={modalImage.alt} className="w-full h-full object-contain" />
+            </div>
+            <p className="text-gray-400 text-xs text-center mt-4">Click anywhere to close</p>
+          </div>
+        </div>
+      )}
+
       {/* Mobile bottom navigation */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-lg border-t border-white/10 z-50 py-2 px-4">
         <div className="flex justify-around items-center">
@@ -360,14 +384,14 @@ export default function DonatePage({ onBackToHome, onOpenPrivacyModal }: Props) 
             <span className="text-[10px]">Top</span>
           </button>
           <button
-            onClick={() => window.location.href = '/credibility'}
+            onClick={() => window.location.href = '/?credibility=true'}
             className="flex flex-col items-center gap-0.5 text-gray-400 hover:text-green-400 transition-colors py-1 px-3"
           >
             <span className="text-base">←</span>
             <span className="text-[10px]">Credibility</span>
           </button>
           <button
-            onClick={() => window.location.href = '/the-system'}
+            onClick={() => router.push('/the-system')}
             className="flex flex-col items-center gap-0.5 text-gray-400 hover:text-green-400 transition-colors py-1 px-3"
           >
             <span className="text-base">→</span>

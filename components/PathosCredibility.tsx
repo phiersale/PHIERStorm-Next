@@ -316,23 +316,28 @@
           </motion.div>
 
           {/* PAGE TITLE - HUGE */}
-          <motion.div variants={sectionFade} className="text-center px-4 mt-16 md:mt-20">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
+          <motion.div
+            variants={sectionFade}
+            className="text-center px-4 mt-16 md:mt-20"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight">
               What Makes Us Credible
             </h1>
-            <p className="text-gray-400 text-base md:text-lg text-center mt-3">
+
+            <p className="text-gray-400 text-base md:text-lg text-center mt-3 leading-relaxed">
               Three independent validators. One public record. Zero hype.
             </p>
-          </motion.div> 
+          </motion.div>
 
-          {/* Spacer before validators - sections moved to bottom */}
-          <div className="mt-8 md:mt-12"></div>
+          {/* Spacer before validators */}
+          <div className="mt-10 md:mt-14"></div>
+
 
           {/* Reading time indicator */}
           {readingTime && (
             <motion.div variants={sectionFade} className="text-center">
               <div className="text-gray-500 text-xs mb-4">
-                📖 {readingTime} min read • Updated 2026
+                📖 {readingTime} min read • Updated 09 June, 2026  
               </div>
             </motion.div>
           )}
@@ -920,160 +925,6 @@
                 >
                   phiers.org/donate
                 </a>.
-              </p>
-            </div>
-          </motion.details>
-
-          {/* SECTION: FOR THOSE WHO CAME LOOKING FOR CHANGE */}
-          <motion.details
-            variants={sectionFade}
-            className="group mb-12 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4 max-w-3xl mx-auto"
-          >
-            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center">
-              <span className="mr-3 group-open:rotate-90 transition-transform">▶</span>
-              For Americans Who Were Promised Change
-            </summary>
-
-            <div className="mt-6 space-y-4 text-gray-300 leading-relaxed pl-3 border-l-2 border-amber-600/50">
-              <p>
-                MAGA promised change.
-              </p>
-
-              <p>
-                It didn't deliver — because the people making those promises don't have the structure to build it.
-              </p>
-
-              <div className="bg-[#0a1628] border border-green-400/20 rounded-lg p-4 my-4">
-                <p className="text-white font-semibold text-base">
-                  PHIERS is the structure they should have built.
-                </p>
-              </div>
-
-              <p>
-                Not left or right. Not Democrat or Republican.
-              </p>
-
-              <p>
-                Just organized citizens holding elected officials accountable, and building economic resilience when they won't.
-              </p>
-
-              <p className="text-white font-semibold mt-4">
-                If you're looking for the real thing — not the slogan, the mechanism — you're in the right place.
-              </p>
-
-              <p className="text-green-400 text-sm italic mt-4 bg-green/5 p-3 rounded-lg border border-green/20">
-                Your support funds the team that will actually deliver what was promised.
-              </p>
-            </div>
-          </motion.details>
-
-          {/* ========== VISION & VALUES SECTIONS ========== */}
-          
-          {/* SECTION: PATRIOTIC HOMECOMING */}
-          <motion.details
-            variants={sectionFade}
-            className="group mb-12 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4 max-w-3xl mx-auto"
-          >
-            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center">
-              <span className="mr-3 group-open:rotate-90 transition-transform">▶</span>
-              A Patriotic Homecoming for American Democracy
-            </summary>
-
-            <div className="mt-6 space-y-5 text-gray-300 leading-relaxed max-w-3xl mx-auto pl-3 border-l-2 border-green/30">
-              <p>The goal is simple.</p>
-
-              <p>Have PHIERS fully operational by June 13.</p>
-
-              <p>Demonstrate organized civic participation by June 14.</p>
-
-              <p>
-                And by Independence Day, show that representative government
-                can still answer to the people.
-              </p>
-
-              <div className="text-center py-4 space-y-2 font-semibold bg-[#0a1628] rounded-lg px-4 my-4">
-                <p>Not through violence.</p>
-                <p>Not through chaos.</p>
-                <p>Through organization.</p>
-                <p>Through accountability.</p>
-                <p>Through participation.</p>
-              </div>
-
-              <p>The First Reconstruction rebuilt the Union.</p>
-
-              <p>The Second Reconstruction expanded civil rights.</p>
-
-              <p className="font-semibold text-white">
-                The Third Reconstruction rebuilds accountability between
-                citizens and government.
-              </p>
-
-              <p>PHIERS is not asking Americans to agree on everything.</p>
-
-              <p>
-                We're asking Americans to remember that elected officials
-                work for the people—not the other way around.
-              </p>
-
-              <p className="font-semibold text-green-400">
-                Fifteen Hundred is not the destination.
-                It is the proof.
-              </p>
-
-              <p>Proof that ordinary people can still organize.</p>
-              <p>Proof that citizens can still be heard.</p>
-              <p>Proof that democracy still belongs to the people.</p>
-
-              <p className="text-center text-xl font-bold text-white pt-4">
-                A patriotic homecoming for American democracy.
-              </p>
-
-              <p className="text-center text-white font-semibold">
-                The beginning of a Third Reconstruction.
-              </p>
-
-              <p className="text-center text-sm text-gray-500 mt-4">
-                Every contribution helps move PHIERS toward full operational readiness.
-              </p>
-            </div>
-          </motion.details>
-
-          {/* SECTION: MABSHA VALUES */}
-          <motion.details
-            variants={sectionFade}
-            className="group mb-12 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4 max-w-3xl mx-auto"
-          >
-            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center">
-              <span className="mr-3 group-open:rotate-90 transition-transform">▶</span>
-              Our Standard: MABSHA
-            </summary>
-
-            <div className="mt-6 space-y-3 text-gray-300 pl-3 border-l-2 border-green/30">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-green-400 text-2xl">⭐</span>
-                <p className="text-green-400 text-base md:text-lg font-semibold italic">Make America Better: Healthier, Safer, Affordable</p>
-              </div>
-
-              <p className="text-gray-400 text-sm mb-4">
-                Not a slogan. A standard.
-              </p>
-
-              <div className="bg-[#0a1628] rounded-lg p-4 space-y-2">
-                <p>✓ A country where healthcare doesn't bankrupt families.</p>
-                <p>✓ A country where work provides dignity and opportunity.</p>
-                <p>✓ A country where elected officials abide the will of the voters.</p>
-                <p>✓ A country where our government serves the People, not the elites.</p>
-                <p>✓ A country where solutions are paid for by rescinding tax breaks for the wealthy.</p>
-                <p>✓ A country where public servants are held accountable.</p>
-                <p>✓ A country where we rise from the ashes borne anew, like the Phoenix.</p>
-              </div>
-
-              <p className="text-white font-semibold mt-4">
-                That's what we're building.
-              </p>
-
-              <p className="text-gray-400 text-sm italic">
-                And unlike the people arguing on television — we're actually doing the work.
               </p>
             </div>
           </motion.details>
