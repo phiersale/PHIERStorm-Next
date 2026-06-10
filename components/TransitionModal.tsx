@@ -1,5 +1,5 @@
 // FILE: components/TransitionModal.tsx
-// VERSION: 1.1 – Orientation video bridge between credibility and main homepage
+// VERSION: 1.2 – Two distinct navigation paths
 
 'use client'
 
@@ -7,10 +7,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 type Props = {
-  onContinue: () => void
+  onShowFramework: () => void   // Changed
+  onSkipVideo: () => void       // Added
 }
 
-export default function TransitionModal({ onContinue }: Props) {
+export default function TransitionModal({ onShowFramework, onSkipVideo }: Props) {
   const [videoStarted, setVideoStarted] = useState(false)
 
   return (
@@ -32,7 +33,7 @@ export default function TransitionModal({ onContinue }: Props) {
           healthcare, housing, veterans' care, education, and more.
         </p>
 
-        {/* Orientation video thumbnail */}
+        {/* Video thumbnail - same as before */}
         <div
           className="relative w-full cursor-pointer group rounded-xl shadow-md overflow-hidden mb-4"
           style={{ paddingBottom: '56.25%' }}
@@ -68,20 +69,22 @@ export default function TransitionModal({ onContinue }: Props) {
 
         <div className="flex flex-col gap-2">
           <button
-            onClick={onContinue}
+            onClick={onShowFramework}  // ← Changed: goes to /the-system
             className="w-full text-center font-bold py-3 px-4 rounded-lg transition text-sm"
             style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}
           >
             I'm ready — show me the framework →
           </button>
           <button
-            onClick={onContinue}
+            onClick={onSkipVideo}      // ← Changed: goes to /home
             className="w-full text-center text-gray-500 text-xs py-2 hover:text-gray-400 transition"
           >
-            Skip video
+            Goto Main Homepage
           </button>
         </div>
       </motion.div>
     </div>
   )
 }
+
+// FILE: components/TransitionModal.tsx

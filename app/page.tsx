@@ -155,7 +155,7 @@ export default function Page() {
   }
 
   if (stage === 'transition') {
-    return <TransitionModal onContinue={() => setStage('main')} />
+    return <TransitionModal onShowFramework={() => { window.location.href = '/the-system?from=credibility' }} onSkipVideo={() => setStage('main')} />
   }
 
   return (
