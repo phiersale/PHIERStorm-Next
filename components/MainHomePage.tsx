@@ -37,6 +37,9 @@ function VideoCard({ id, title }: { id: string; title: string }) {
   )
 }
 
+// Local button style override for this page only
+const mobileButtonClass = "px-4 py-1.5 sm:py-2 min-h-[36px] sm:min-h-[40px]"
+
 export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => void }) {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -267,8 +270,8 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
       <div className="min-h-screen">
 
-      <div className="fixed top-0 left-0 right-0 z-50 bg-amber-600 text-black text-center py-2 text-sm font-bold">
-        🚧 Site under construction – <Link href="/join" className="underline font-extrabold">Join us → now hiring</Link>
+      <div className="fixed top-0 left-0 right-0 z-50 bg-amber-600 text-black text-center py-2 px-2 text-xs sm:text-sm font-bold break-words">
+        🚧 Site under construction – <Link href="/join" className="underline font-extrabold whitespace-nowrap sm:whitespace-normal">Join us → now hiring</Link>
       </div>
 
       <AnimatePresence>
@@ -296,8 +299,8 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
                 sizes="100vw"
                 onError={(e) => console.error('Modal image failed to load:', modalImageSrc)}
               />
-              <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-sm">
-                Click anywhere or press Escape to close
+              <p className="absolute bottom-4 left-0 right-0 text-center text-gray-400 text-xs sm:text-sm px-4">
+                Tap anywhere or press Escape to close
               </p>
             </div>
           </motion.div>
@@ -327,7 +330,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
       {/* Dim "BACK" button – only shown if onBackToEntry is provided */}
       {onBackToEntry && (
         <div
-          className={`fixed top-[50px] left-4 z-40 md:top-[60px] transition-opacity duration-300 ${
+          className={`fixed top-[50px] left-2 sm:left-4 z-40 md:top-[60px] transition-opacity duration-300 ${
             showBackButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >
@@ -400,7 +403,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
                 <p className="text-center text-green text-sm font-semibold mb-2 sm:hidden">
                   Watch: The Tipping Point Explained
                 </p>
-                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md group cursor-pointer">
+                <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md group cursor-pointer">
                   <iframe
                     src="https://www.youtube.com/embed/SFW9fhUBEwE?rel=0"
                     title="PHIERS – The Movement That Forces Congress to Respond"
@@ -432,7 +435,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
                 <p className="text-center text-green text-sm font-semibold mb-2 sm:hidden">
                   Watch: How Leverage Works
                 </p>
-                <div className="relative pb-[40%] sm:pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md group cursor-pointer">
+                <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg border border-green/20 shadow-md group cursor-pointer">
                   <iframe
                     src="https://www.youtube.com/embed/ihTa_2CLmvk?rel=0"
                     title="Short Intro to PHIERS"
@@ -547,9 +550,9 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <p className="text-white text-lg font-bold mb-2">You've seen the reality.</p>
             <p className="text-gray-300 text-base mb-4">This is where it becomes real.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto">
-              <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ Ask a question →</button>
-              <Button href="/homepage-teeth" variant="secondary" fullWidth>🤝 SEE HOW IT WORKS</Button>
-              <Button href="/zoom" variant="secondary" fullWidth>🎥 JOIN THE PUBLIC ZOOM</Button>
+              <button onClick={handleQuestionClick} className={`w-full bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg transition text-center ${mobileButtonClass}`}>✍ Ask a question →</button>
+              <Button href="/homepage-teeth" variant="secondary" fullWidth className={mobileButtonClass}>🤝 SEE HOW IT WORKS</Button>
+              <Button href="/zoom" variant="secondary" fullWidth className={mobileButtonClass}>🎥 JOIN THE PUBLIC ZOOM</Button>
             </div>
             <p className="text-gray-400 text-sm mt-2">Your district. Your number. On record.</p>
           </div>
@@ -683,7 +686,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
               If your district reaches 1,500, your representative has to respond.
             </p>
             <p className="text-gray-300 text-base mb-4">Or they risk losing their seat.</p>
-            <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ Ask a question →</button>
+            <button onClick={handleQuestionClick} className={`w-full bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg transition text-center ${mobileButtonClass}`}>✍ Ask a question →</button>
           </div>
         </section>
 
@@ -733,7 +736,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
             <p className="text-gray-300 text-base mb-2">One person switching creates enough savings to cover 12 more.</p>
             <p className="text-gray-300 text-base mb-3">Then it compounds:</p>
-            <p className="text-green text-lg font-mono font-bold mb-4 break-words">1 → 12 → 148 → 1,825 → 22,000 → 260,000 → 3.1M → 37M → 450M</p>
+            <p className="text-green text-base sm:text-lg font-mono font-bold mb-4 break-words overflow-x-auto whitespace-normal">1 → 12 → 148 → 1,825 → 22,000 → 260,000 → 3.1M → 37M → 450M</p>
             <div className="bg-bg-card border border-green/20 rounded-xl p-4 my-4"><p className="text-white font-mono text-lg">In nine rounds: • 234 million people covered • 8–13 months</p></div>
             <p className="text-green text-lg font-bold mb-3">Not a promise. Math.</p>
             <p className="text-gray-300 text-base">It works because savings fund the next layer.</p>
@@ -1212,7 +1215,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
               </Link>
             </div>
             <div className="flex flex-col md:flex-row gap-3 justify-center max-w-md mx-auto mt-6">
-              <button onClick={handleQuestionClick} className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition text-center">✍ Ask a question →</button>
+              <button onClick={handleQuestionClick} className={`w-full bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg transition text-center ${mobileButtonClass}`}>✍ Ask a question →</button>
             </div>
           </div>
         </section>
@@ -1250,7 +1253,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             >
               <button
                 onClick={() => setShowArchitectModal(false)}
-                className="absolute top-3 right-3 bg-[#111d35] text-green border-2 border-green rounded-full w-10 h-10 flex items-center justify-center hover:bg-green hover:text-[#111d35] transition-all z-10 focus:outline-none focus:ring-2 focus:ring-green"
+                className="absolute top-3 right-3 bg-[#111d35] text-green border-2 border-green rounded-full w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center hover:bg-green hover:text-[#111d35] transition-all z-10 focus:outline-none focus:ring-2 focus:ring-green"
                 aria-label="Close architect modal"
               >
                 ✕

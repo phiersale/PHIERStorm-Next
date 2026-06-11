@@ -16,7 +16,7 @@ export default function ProphecyPage() {
   }, []);
 
   return (
-    <div className="bg-black text-white">
+    <div className="bg-black text-white overflow-x-hidden">
       {/* TRUST & PARTICIPATION MODAL */}
       {showTrustModal && (
         <div 
@@ -148,13 +148,13 @@ export default function ProphecyPage() {
       <div className="h-10 md:h-16" />
 
       {/* HERO TITLE */}
-      <div className="text-center pt-2 md:pt-4 pb-1">
+      <div className="text-center pt-2 md:pt-4 pb-1 px-4">
         <p className="text-gray-500 text-[10px] sm:text-xs tracking-[0.25em] uppercase mt-8 mb-1">
           Gateway to the PHIERS Trilogy
         </p>
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black text-white tracking-tight leading-[1.1]">
-          Black Men... Welcome
-        </h1>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold break-words whitespace-normal max-w-full px-4 leading-tight">
+            Black Men<span className="inline-block">…</span> Welcome
+          </h1>
         <p className="text-green-400 text-base sm:text-lg md:text-xl font-semibold mt-2 tracking-wide">
           For Us. By Us.
         </p>
@@ -288,16 +288,26 @@ export default function ProphecyPage() {
         </div>
       </div>
 
-      {/* FOOTER */}
-      <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm mt-16">
-        <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
-        <p>
-          <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
-            PHIERS.org →
-          </a>
+      {/* INCLUSIVE WELCOME NOTE */}
+      <div className="max-w-2xl mx-auto px-6 text-center mt-8 mb-16">
+        <p className="text-gray-500 text-sm leading-relaxed italic">
+          If you are not a Black man, you are still welcome here.
+          Just hold that in mind as we recover and repair —
+          and show respect for the healing that needs to happen.
+          When we get whole, everybody wins.
         </p>
-        <p className="mt-3 text-gray-600 text-xs">Participation is voluntary. PHIERS is a peaceful civic engagement effort.</p>
-      </footer>
+      </div>
+
+      {/* FOOTER */}
+     <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm mt-16">
+    <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
+    <div className="w-16 h-px bg-gray-700 mx-auto my-4" />
+    <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition">
+      <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-8 h-auto" />
+      <span className="text-xs hover:text-white transition">PHIERS.org →</span>
+    </a>
+    <p className="mt-4 text-gray-600 text-xs">Participation is voluntary. PHIERS is a peaceful civic engagement effort.</p>
+  </footer>
     </div>
   );
 }

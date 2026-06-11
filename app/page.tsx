@@ -126,13 +126,13 @@ export default function Page() {
               setSkipFirstImage(false)
               setStage('prehome')
             }}
-            className="px-4 py-1.5 text-sm border border-green/40 text-green rounded-md hover:bg-green/10 transition"
+            className="px-4 py-2 text-sm min-h-[44px] border border-green/40 text-green rounded-md hover:bg-green/10 transition"
           >
             ← Back to Slides
           </button>
           <button
             onClick={() => setStage('transition')}
-            className="px-6 py-2 text-base font-semibold rounded-lg transition"
+            className="px-6 py-2 text-base min-h-[44px] font-semibold rounded-lg transition"
             style={{
               backgroundColor: '#F5C542',
               color: '#1a1a1a',
