@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import PreHomepage from '@/components/PreHomepage'
+import UnifiedPreHomepage from '@/components/UnifiedPreHomepage'
 import MainHomePage from '@/components/MainHomePage'
 import PathosCredibility from '@/components/PathosCredibility'
 import TransitionModal from '@/components/TransitionModal'
@@ -96,7 +96,7 @@ export default function Page() {
   if (stage === 'prehome') {
     return (
       <>
-        <PreHomepage
+        <UnifiedPreHomepage
           onGoToHomepage={() => {
             setSkipFirstImage(false)
             setStage('credibility')

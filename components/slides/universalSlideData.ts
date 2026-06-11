@@ -1,27 +1,31 @@
-// FILE: components/slides.ts
-// VERSION: 11.2 – Added divider line between logo and PAUSE for clear separation
+// FILE: components/slides/universalSlideData.ts
+// VERSION: 1.1 - Fixed slide indices and Nader slide margins
+// SUMMARY: All slides with corrected indices. Removed animate-fadeInSlow from Nader slide. Reduced caption margins.
 
-const slides = [
+import { UniversalSlide } from "./universalSlideTypes"
+
+export const universalSlides: UniversalSlide[] = [
   // 0 — SIGNAL SLIDE (cinematic title card)
   {
+    id: "slide-0",
     customLayout: true,
     body: [
       {
         type: "logo",
         large: false,
-        className: "w-28 md:w-36 mt-2 mb-2 opacity-0 animate-fadeIn duration-[450ms] delay-[0ms]"
+        className: "w-20 md:w-28 mt-1 mb-1 opacity-0 animate-fadeIn duration-[450ms] delay-[0ms]"
+      },
+      {
+        type: "spacer",
+        height: 8
+      },
+      {
+        type: "divider",
+        className: "w-12 h-px bg-green-400/50 mx-auto opacity-0 animate-fadeIn duration-[250ms] delay-[550ms]"
       },
       {
         type: "spacer",
         height: 16
-      },
-      {
-        type: "divider",
-        className: "w-16 h-px bg-green-400/50 mx-auto opacity-0 animate-fadeIn duration-[250ms] delay-[550ms]"
-      },
-      {
-        type: "spacer",
-        height: 40
       },
       {
         type: "text",
@@ -30,7 +34,7 @@ const slides = [
         green: true,
         bold: true,
         className:
-          "text-5xl md:text-6xl font-semibold text-green-400/60 tracking-[0.02em] mb-6 opacity-0 animate-fadeIn duration-[400ms] delay-[900ms]"
+          "text-4xl md:text-5xl font-semibold text-green-400/60 tracking-[0.02em] mb-3 opacity-0 animate-fadeIn duration-[400ms] delay-[900ms]"
       },
       {
         type: "text",
@@ -39,11 +43,11 @@ const slides = [
         green: false,
         bold: true,
         className:
-          "text-xl md:text-2xl font-medium leading-relaxed text-gray-200 max-w-md opacity-0 animate-fadeIn duration-[400ms] delay-[1250ms]"
+          "text-lg md:text-xl font-medium leading-relaxed text-gray-200 max-w-md opacity-0 animate-fadeIn duration-[400ms] delay-[1250ms]"
       },
       {
         type: "spacer",
-        height: 12
+        height: 6
       },
       {
         type: "text",
@@ -52,17 +56,15 @@ const slides = [
         green: false,
         bold: false,
         className:
-          "text-lg md:text-xl font-medium leading-relaxed text-slate-200 max-w-md opacity-0 animate-fadeIn duration-[400ms] delay-[1600ms]"
+          "text-base md:text-lg font-medium leading-relaxed text-slate-200 max-w-md opacity-0 animate-fadeIn duration-[400ms] delay-[1600ms]"
       }
     ],
-    className: "bg-neutral-950 flex flex-col items-center justify-center py-20"
+    className: "bg-neutral-950 flex flex-col items-center justify-center py-12"
   },
-
-  // 1 through 11 remain exactly the same as your current file...
-  // (keeping your existing slides 1-11 unchanged)
 
   // 1 — PROBLEM (billboard style)
   {
+    id: "slide-1",
     title: "Congress works for you.",
     body: ["They just forgot."],
     greenLines: []
@@ -70,6 +72,7 @@ const slides = [
 
   // 2 — PROBLEM (second problem slide)
   {
+    id: "slide-2",
     title: "Ignoring voters became politically safe.",
     body: [],
     greenLines: []
@@ -77,14 +80,16 @@ const slides = [
 
   // 3 — HOPE
   {
+    id: "slide-3",
     title: "PHIERS changes that.",
     body: [],
     greenLines: [],
     titleGreen: true
   },
 
-  // 4 — PUNCH SLIDE (restored from original)
+  // 4 — PUNCH SLIDE
   {
+    id: "slide-4",
     title: "",
     body: [
       "", 
@@ -98,6 +103,7 @@ const slides = [
 
   // 5 — ORGANIZED PEOPLE
   {
+    id: "slide-5",
     title: "",
     body: [
       { text: "Outrage", large: true, green: false, bold: true },
@@ -112,13 +118,15 @@ const slides = [
 
   // 6 — FREDERICK DOUGLASS IMAGE
   {
+    id: "slide-6",
     type: "image",
     imageSrc: "/images/FredDoug-Power_Concedes_Nothing.jpg",
     imageAlt: "Frederick Douglass – Power concedes nothing without a demand"
   },
 
-  // 7 — TEETH IMAGE
+  // 7 — TEETH IMAGE (fish)
   {
+    id: "slide-7",
     title: "",
     body: ["A demand that has TEETH."],
     greenLines: [0],
@@ -126,8 +134,20 @@ const slides = [
     teethImage: true
   },
 
-   // 8 — MECHANISM (clean, text-only — matches the centered rhythm of slides 4-5)
+  // 8 — WE ARE THE TEETH IMAGE
   {
+    id: "slide-8",
+    type: "image",
+    imageSrc: "/images/Power_Concedes_Nothing_TEETH.png",
+    imageAlt: "Power Concedes Nothing Without A Demand That Has Teeth - We Are The Teeth",
+    imageClassName: "w-full md:w-[85%] max-w-4xl mx-auto max-h-[calc(100vh-200px)] object-contain",
+    caption: "",
+    captionClassName: "text-center text-green-400 text-lg md:text-xl font-bold mt-3"
+  },
+
+  // 9 — MECHANISM
+  {
+    id: "slide-9",
     title: "",
     body: [
       { text: "How to make Congress listen.", large: false, green: false, bold: true, className: "text-2xl md:text-3xl font-bold text-white" },
@@ -143,39 +163,39 @@ const slides = [
     customTextLayout: true
   },
 
-  // 9 — TOWN HALL MEETING (image slide - full width on mobile)
+  // 10 — TOWN HALL MEETING (between 45% and 60% = 52%)
   {
+    id: "slide-10",
     type: "image",
     imageSrc: "/images/town_hall_meeting.jpg",
     imageAlt: "Town hall meeting — the district organized",
     className: "bg-neutral-950 flex flex-col items-center justify-center py-4 md:py-12",
-    imageClassName: "w-full md:w-[72%] max-w-5xl mx-auto animate-fadeInSlow",
+    imageClassName: "w-full md:w-[52%] max-w-xl mx-auto",
     caption: "When 1,500 people organize, the district listens.",
-    captionClassName: "text-center text-green-400 text-base md:text-xl font-medium mt-2 md:mt-4 tracking-tight max-w-3xl mx-auto"
+    captionClassName: "text-center text-green-400 text-base md:text-xl font-medium mt-2 md:mt-3 tracking-tight max-w-3xl mx-auto"
   },
 
-  // 10 — RALPH NADER (click-to-enlarge + fifteen hundred quote)
+  // 11 — RALPH NADER (click-to-enlarge) - larger than Town Hall (52% vs 65%)
   {
+    id: "slide-11",
     type: "image",
     imageSrc: "/images/RalphNader-500-Unstoppable_Change.jpg",
-    imageAlt: "Ralph Nader — Unstoppable Change",
+    imageAlt: "Ralph Nader — 1,500 organized voters. Congress remembers who it works for. Unstoppable Change.",
     className: "bg-neutral-950 flex flex-col items-center justify-center py-4 md:py-12",
-    imageClassName: "w-full md:w-[72%] max-w-5xl mx-auto animate-fadeInSlow cursor-pointer transition-transform hover:scale-[1.02]",
+    imageClassName: "w-full md:w-[65%] max-w-3xl mx-auto cursor-pointer transition-transform hover:scale-[1.02]",
     imageClickable: true,
-    caption: "1,500 organized people can overcome the influence of money in politics.",
-    captionClassName: "text-center text-green-400 text-lg md:text-2xl font-semibold mt-4 md:mt-6 tracking-tight max-w-3xl mx-auto",
-    subCaption: "— Ralph Nader",
-    subCaptionClassName: "text-center text-gray-400 text-sm md:text-base mt-2",
     showTapHint: true
   },
 
-  // 11 — ACCOUNTABILITY
+  // 12 — ACCOUNTABILITY
   {
+    id: "slide-12",
     replacementLayout: true
   },
 
-  // 12 — PHIERS ACRONYM
+  // 13 — PHIERS ACRONYM
   {
+    id: "slide-13",
     title: "PHIERS",
     body: [
       { letter: "P", word: "POWER" },
@@ -189,25 +209,19 @@ const slides = [
     punchLine: "Power Held In Every Representative's Seat (pronounced FIRES)"
   },
 
-  // 13 — FINAL CTA
-{
-  title: "One petition. Your district. On the record.",
-  body: [
-    "That's how pressure starts.",
-    "Name. Email. Zip code.",
-    "Make them answer.",
-    "",
-    "This site is under construction.",
-    "Check back often or subscribe to stay informed.",
-    "We are evolving with emerging threats and opportunities.",
-    "Our best is yet to come."
-  ],
-  greenLines: [0, 2, 6],
-  isFinalSlide: true,
-  compactFinal: true
-}
+  // 14 — FINAL CTA
+  {
+    id: "slide-14",
+    title: "One petition. Your district. On the record.",
+    body: [
+      "That's how pressure starts.",
+      "Name. Email. Zip code.",
+      "Make them answer."
+    ],
+    greenLines: [0, 2],
+    isFinalSlide: true,
+    compactFinal: true
+  }
 ]
 
-export default slides
-
-// FILE: components/slides.ts
+// FILE: components/slides/universalSlideData.ts

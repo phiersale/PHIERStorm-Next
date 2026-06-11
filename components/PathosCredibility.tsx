@@ -529,7 +529,7 @@
 
           <details className="group mb-12 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4 max-w-3xl mx-auto">
             <summary className="cursor-pointer text-lg font-semibold text-green mb-2 list-none flex items-center justify-between">
-              <span>Who are these organizations?</span>
+              <span>Who are these organizations?    </span>
               <span className="group-open:rotate-90 transition-transform">▶</span>
             </summary>
             <div className="mt-4 space-y-4 text-gray-300 text-sm">
