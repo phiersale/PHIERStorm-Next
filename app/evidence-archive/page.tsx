@@ -301,13 +301,13 @@ export default function EvidenceArchivePage() {
             <div className="space-y-4 text-gray-300 text-sm">
               
               <div>
-                <p className="text-green font-semibold">2025 – Present — Chief Solutions Architect, HIVEEL</p>
-                <p className="text-gray-400 text-xs ml-4">Leading healthcare innovation in partnership with PHIERS: designing non‑profit healthcare delivery systems, coordinating trusted supplier networks, converting cost savings into community economic development.</p>
+                <p className="text-green font-semibold">2011 – Present — Chief Solutions Architect, PHIERS.org</p>
+                <p className="text-gray-400 text-xs ml-4">Researching, designing, and deploying public‑health interventions; supporting frontline workers; expanding access to coordinated care; building the architecture that became PHIERS.</p>
               </div>
 
               <div>
-                <p className="text-green font-semibold">2011 – Present — Chief Solutions Architect, PHIERS.org</p>
-                <p className="text-gray-400 text-xs ml-4">Researching, designing, and deploying public‑health interventions; supporting frontline workers; expanding access to coordinated care; building the architecture that became PHIERS.</p>
+                <p className="text-green font-semibold">2009 – Present — Chief Solutions Architect, PHIERS.org (Healthcare Innovation)</p>
+                <p className="text-gray-400 text-xs ml-4">Leading healthcare innovation: designing non‑profit healthcare delivery systems, coordinating trusted supplier networks, converting cost savings into community economic development.</p>
               </div>
 
               <div>
@@ -316,13 +316,13 @@ export default function EvidenceArchivePage() {
               </div>
 
               <div>
-                <p className="text-green font-semibold">2007 – Present — President & CEO, Community‑Enabling Solutions, Inc.</p>
-                <p className="text-gray-400 text-xs ml-4">Business Analyst → Senior Business Analyst for the U.S. Department of Veterans Affairs, Registration, Eligibility & Enrollment Systems Group. Focus on community‑based care integration. One of five civilians selected for the VA's Enterprise‑wide reengineering initiative.</p>
+                <p className="text-green font-semibold">2007 – 2018 — U.S. Department of Veterans Affairs (multiple assignments)</p>
+                <p className="text-gray-400 text-xs ml-4">Business Analyst → Senior Business Analyst, Registration, Eligibility & Enrollment Systems Group. Focus on community‑based care integration. One of five civilians selected for the VA's Enterprise‑wide reengineering initiative. Later served as Integration Engineer / EHR Consultant supporting VistA Evolution and EHR Modernization (EHRM).</p>
               </div>
 
               <div>
-                <p className="text-green font-semibold">2018 — Integration Engineer / EHR Consultant, U.S. Dept. of Veterans Affairs (OIT)</p>
-                <p className="text-gray-400 text-xs ml-4">Supported VistA Evolution and EHR Modernization (EHRM).</p>
+                <p className="text-green font-semibold">2007 – Present — President & CEO, Community‑Enabling Solutions, Inc.</p>
+                <p className="text-gray-400 text-xs ml-4">Consulting and senior analyst work supporting U.S. Department of Veterans Affairs and other healthcare integration initiatives.</p>
               </div>
 
             </div>
