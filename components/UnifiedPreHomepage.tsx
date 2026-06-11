@@ -1,6 +1,5 @@
 // FILE: components/UnifiedPreHomepage.tsx
-// VERSION: 1.0 - Complete replacement that makes EVERY slide fit viewport
-// SUMMARY: Uses the universal slide system with a SINGLE viewport wrapper that ensures ALL slides are visible at 100% zoom
+// VERSION: 1.2 - Fixed syntax error, removed duplicate content
 
 'use client'
 
@@ -48,7 +47,6 @@ export default function UnifiedPreHomepage({
     return () => clearTimeout(timer)
   }, [])
 
-  // Delayed nav appearance for cinematic feel
   useEffect(() => {
     setNavVisible(false)
     const timer = setTimeout(() => setNavVisible(true), 1200)
@@ -110,7 +108,6 @@ export default function UnifiedPreHomepage({
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      // Space, ArrowRight, Enter all advance
       if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ' || e.key === 'Space') {
         e.preventDefault()
         if (!isTransitioning && index < universalSlides.length - 1) {
@@ -160,7 +157,6 @@ export default function UnifiedPreHomepage({
     else onGoToHomepage()
   }
 
-  // Determine if current slide should show background logo (slides 3, 4, 5 only)
   const showBackgroundLogo = index === 3 || index === 4 || index === 5
   
   const getBackgroundLogoStyle = () => {
@@ -177,8 +173,6 @@ export default function UnifiedPreHomepage({
   }
 
   const getBackgroundLogoPosition = () => {
-    // Position so top line of text aligns with middle of growing logo
-    // Lowered from top-1/4 to top-1/3 for better text/logo overlap
     return "top-1/3 -translate-y-1/3"
   }
 
@@ -198,7 +192,6 @@ export default function UnifiedPreHomepage({
   return (
     <div className="relative h-dvh w-full bg-[#050b19] text-white flex flex-col overflow-hidden">
 
-      {/* Background PHIERS Logo (No Text) - Slides 3, 4, 5 only */}
       {showBackgroundLogo && (
         <div
           className={`
@@ -219,7 +212,6 @@ export default function UnifiedPreHomepage({
         </div>
       )}
 
-      {/* Top bar */}
       <div
         className="top-bar flex justify-between items-center pr-6 pl-6 pt-1 pb-0 shrink-0 z-30 transition-opacity duration-1000"
         style={{ opacity: 0.9 }}
@@ -242,14 +234,11 @@ export default function UnifiedPreHomepage({
         </button>
       </div>
 
-      {/* MAIN SLIDE AREA - FULL SCREEN CLICKABLE (entire viewport except BACK button area) */}
       <div
         className="fixed inset-0 z-20 cursor-pointer"
         onClick={(e) => {
-          // Don't advance if clicking on buttons, nav dots, back button, or top bar
           const target = e.target as HTMLElement
           if (target.closest('button') || target.closest('.nav-dot') || target.closest('.back-button')) return
-          // Also don't advance if clicking on top bar area
           if (target.closest('.top-bar')) return
           if (!isTransitioning && !isLastSlide) next()
         }}
@@ -340,7 +329,8 @@ export default function UnifiedPreHomepage({
             </div>
           </div>
         </div>
-      {/* Bottom nav - Nav dots + hints - FIXED POSITION on ALL slides */}
+      </div>
+
       <div
         className="fixed left-0 right-0 flex flex-col items-center pointer-events-none"
         style={{ 
@@ -349,7 +339,6 @@ export default function UnifiedPreHomepage({
           zIndex: 60
         }}
       >
-        {/* Nav dots - larger and more spaced */}
         <div className="flex space-x-3 pointer-events-auto items-center mb-1">
           {universalSlides.map((_, i) => (
             <button
@@ -369,13 +358,12 @@ export default function UnifiedPreHomepage({
             />
           ))}
         </div>
-        
       </div>
 
-      {/* Back button */}
       {index > 0 && !isLastSlide && (
         <button
           onClick={prevNormal}
+          className="back-button"
           style={{
             position: 'fixed',
             bottom: '16px',
@@ -404,7 +392,6 @@ export default function UnifiedPreHomepage({
         }
       `}</style>
 
-      {/* Modals */}
       {douglassModalOpen && (
         <div 
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-pointer"
