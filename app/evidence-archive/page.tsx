@@ -59,7 +59,7 @@ export default function EvidenceArchivePage() {
         </div>
 
         {/* ANCHOR LINKS NAVIGATION */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12 pb-4 border-b border-gray-800">
+        <div className="flex flex-wrap justify-center gap-3 mb-8 pb-4 border-b border-gray-800">
           {[
             { id: "healthcare", label: "Healthcare" },
             { id: "congressional", label: "Congressional Leverage" },
@@ -76,6 +76,15 @@ export default function EvidenceArchivePage() {
               {item.label}
             </a>
           ))}
+        </div>
+
+        {/* FLAG DAY 2026 MILESTONE BOX */}
+        <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-8">
+          <p className="text-green-400 text-sm font-semibold mb-1">🇺🇸 Civic Participation Milestone</p>
+          <p className="text-gray-300 text-sm">
+            Our civic participation milestone is 1,500 verified constituents in each district by Flag Day 2026.
+            This is not political advocacy — it is a demonstration of public engagement and district‑level accountability.
+          </p>
         </div>
 
         {/* ========== HEALTHCARE ========== */}
@@ -279,6 +288,56 @@ export default function EvidenceArchivePage() {
                   </div>
                 </div>
               )}
+            </div>
+          </div>
+        </section>
+
+        {/* ========== PROFESSIONAL HISTORY (CREDIBILITY TIMELINE) ========== */}
+        <section id="professional-history" className="mb-16 scroll-mt-24">
+          <h2 className="text-2xl md:text-3xl font-bold text-green mb-4 border-l-4 border-green pl-3">
+            Professional History
+          </h2>
+          <div className="bg-[#0a1628]/40 rounded-lg p-5 border border-gray-800">
+            <div className="space-y-4 text-gray-300 text-sm">
+              
+              <div>
+                <p className="text-green font-semibold">2025 – Present — Chief Solutions Architect, HIVEEL</p>
+                <p className="text-gray-400 text-xs ml-4">Leading healthcare innovation in partnership with PHIERS: designing non‑profit healthcare delivery systems, coordinating trusted supplier networks, converting cost savings into community economic development.</p>
+              </div>
+
+              <div>
+                <p className="text-green font-semibold">2011 – Present — Chief Solutions Architect, PHIERS.org</p>
+                <p className="text-gray-400 text-xs ml-4">Researching, designing, and deploying public‑health interventions; supporting frontline workers; expanding access to coordinated care; building the architecture that became PHIERS.</p>
+              </div>
+
+              <div>
+                <p className="text-green font-semibold">2008 – Present — Chief Solutions Architect, Health Reform Coalition</p>
+                <p className="text-gray-400 text-xs ml-4">Architect of the original PHIERS model (Public Health Information Exchange & Referral Service).</p>
+              </div>
+
+              <div>
+                <p className="text-green font-semibold">2007 – Present — President & CEO, Community‑Enabling Solutions, Inc.</p>
+                <p className="text-gray-400 text-xs ml-4">Business Analyst → Senior Business Analyst for the U.S. Department of Veterans Affairs, Registration, Eligibility & Enrollment Systems Group. Focus on community‑based care integration. One of five civilians selected for the VA's Enterprise‑wide reengineering initiative.</p>
+              </div>
+
+              <div>
+                <p className="text-green font-semibold">2018 — Integration Engineer / EHR Consultant, U.S. Dept. of Veterans Affairs (OIT)</p>
+                <p className="text-gray-400 text-xs ml-4">Supported VistA Evolution and EHR Modernization (EHRM).</p>
+              </div>
+
+            </div>
+            
+            {/* LinkedIn Link */}
+            <div className="mt-5 pt-3 border-t border-green/20 text-center">
+              <a 
+                href="https://www.linkedin.com/in/will-price-phiers" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-green text-xs hover:underline inline-flex items-center gap-1"
+              >
+                📄 Full professional history on LinkedIn →
+              </a>
+              <p className="text-gray-500 text-[10px] mt-1">(Note: LinkedIn login may be required)</p>
             </div>
           </div>
         </section>
