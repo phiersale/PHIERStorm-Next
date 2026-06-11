@@ -100,6 +100,82 @@ export default function SituationPage() {
         { name: "Associated Press", url: "https://apnews.com/article/iran-us-strikes-2026-congress-8237fgh" },
       ]
     },
+    // NEW STORY 4 — Screwworm / Food Safety
+    {
+      date: "JUNE 3, 2026",
+      tag: "ANALYSIS",
+      pillColor: "amber",
+      headline: "Flesh-eating screwworm returns to U.S. for first time since the 1960s",
+      whatHappened: (
+        <>
+          <p>USDA confirmed New World screwworm in Texas cattle on June 3, 2026 — the first domestic detection since the parasite was eradicated decades ago. Parasitologists warn it likely signals reestablishment, not an isolated case, with potentially hundreds to thousands of flies already present. Canada immediately restricted livestock imports from affected areas.</p>
+          <p>The pest spreads through living tissue of warm-blooded animals and can be fatal without treatment. USDA says the food supply is safe — but the livestock industry, already strained, faces a new threat with no quick fix. Ramping sterile-fly production to full capacity could take 18 months to two years.</p>
+        </>
+      ),
+      whyItMatters: "Food safety, livestock health, and supply chain stability are not separate from healthcare and economic security — they are the same system. PHIERPlace exists to connect communities to early warning systems before crises compound. Congress has the tools to fund preparedness infrastructure. Organized constituents are the pressure that makes them use those tools.",
+      sources: [
+        { name: "USDA APHIS", url: "https://www.aphis.usda.gov/news/agency-announcements/usda-confirms-presence-new-world-screwworm-united-states" },
+        { name: "CNBC", url: "https://www.cnbc.com/2026/06/08/texas-screwworm-cases-food-supply-brooke-rollins.html" },
+        { name: "U.S. News", url: "https://www.usnews.com/news/national-news/articles/2026-06-04/the-flesh-eating-screwworm-fly-is-back-heres-what-officials-are-doing-about-it" },
+      ]
+    },
+    // NEW STORY 5 — TrumpRx / Cuban / PHIERSale
+    {
+      date: "MAY 18, 2026",
+      tag: "ANALYSIS",
+      pillColor: "teal",
+      headline: "Trump and Mark Cuban partner on TrumpRx — but 5 million Medicaid patients are still left out",
+      whatHappened: (
+        <>
+          <p>The White House announced a major TrumpRx expansion with Cuban's Cost Plus Drugs, Amazon Pharmacy, and GoodRx — adding 600 generic medications at transparent cash prices. Cuban, who endorsed Kamala Harris in 2024, stood beside Trump at the White House because the goal of lowering drug prices transcends politics.</p>
+          <p>Analysts note the model still doesn't reach Medicare, Medicaid, ACA, or uninsured populations fully. At least 350 branded medications saw price increases at the start of 2026 even as the administration struck deals with individual manufacturers.</p>
+        </>
+      ),
+      whyItMatters: "PHIERS documented this exact model with SureSafe Pharma in 2009 — 13 years before Cuban launched Cost Plus Drugs. PHIERSale is the cooperative marketplace built specifically for the populations TrumpRx still misses: Medicaid, Medicare, ACA, uninsured, unemployed. Cuban's model proves the savings work. PHIERSale completes it for everyone else.",
+      sources: [
+        { name: "Fortune", url: "https://fortune.com/2026/05/19/trump-rx-mark-cuban-prescription-prices-drugs-medicine/" },
+        { name: "AJMC", url: "https://www.ajmc.com/view/trumprx-expands-generic-drug-offerings-with-mark-cuban-partnership-amazon-pharmacy-support" },
+        { name: "American Thinker", url: "https://www.americanthinker.com/blog/2026/05/the_trumprx_expansion_and_the_mark_cuban_partnership.html" },
+      ]
+    },
+    // NEW STORY 6 — Medicaid Work Requirements
+    {
+      date: "MAY 1, 2026",
+      tag: "ANALYSIS",
+      pillColor: "red",
+      headline: "Medicaid work requirements begin — 5 million projected to lose coverage",
+      whatHappened: (
+        <>
+          <p>New federal requirements under the One Big Beautiful Bill Act mandate 80 hours per month of work, community service, or education for Medicaid expansion enrollees. Nebraska became the first state to enforce them on May 1, 2026. Montana, Arkansas, and Iowa follow later this year. All states must comply by January 2027.</p>
+          <p>Health researchers and the Congressional Budget Office project more than 5 million people could lose coverage by 2034 — and most of those people are already working. The requirement adds bureaucratic burden without increasing employment.</p>
+        </>
+      ),
+      whyItMatters: "PHIERWorks was designed exactly for this moment — connecting people to verified employment, training, and community service opportunities that satisfy these requirements while building real economic stability. The people most at risk are the people PHIERS was built to serve. This is not a future problem. It is happening now.",
+      sources: [
+        { name: "GoodRx", url: "https://www.goodrx.com/insurance/medicaid/medicaid-work-requirements" },
+        { name: "KFF", url: "https://www.kff.org/medicaid/an-early-look-at-policy-decisions-as-states-get-ready-to-implement-work-requirements/" },
+        { name: "CBPP", url: "https://www.cbpp.org/research/health/states-need-more-time-to-prepare-for-medicaid-work-requirement" },
+      ]
+    },
+    // NEW STORY 7 — 25th Amendment / Iran War
+    {
+      date: "APRIL 8, 2026",
+      tag: "ANALYSIS",
+      pillColor: "red",
+      headline: "70+ lawmakers called for Trump's removal after he threatened to wipe out 'a whole civilization'",
+      whatHappened: (
+        <>
+          <p>After Trump posted on Truth Social that "a whole civilization will die tonight" if Iran didn't open the Strait of Hormuz by 8 p.m., more than 70 congressional Democrats called for invoking the 25th Amendment or beginning impeachment proceedings. Sen. Chris Murphy called the behavior "completely, utterly unhinged." Rep. Diana DeGette said "25th Amendment proceedings must begin immediately."</p>
+          <p>Republicans in both chambers took no action. The 25th Amendment has never been invoked under Section 4, and doing so would require Vance, a majority of the Cabinet, and ultimately two-thirds of Congress.</p>
+        </>
+      ),
+      whyItMatters: "This is exactly what happens when Congress has no organized constituent pressure. Representatives stay silent because silence has no cost. When 1,500 verified constituents per district go on record demanding their representative act — silence becomes politically impossible. PHIERS is the mechanism that raises the cost of inaction.",
+      sources: [
+        { name: "NBC News", url: "https://www.nbcnews.com/politics/congress/democrats-trump-removal-iran-threats-impeachment-25th-amendment-rcna267194" },
+        { name: "The Hill", url: "https://thehill.com/homenews/house/5819669-democrats-trump-removal-25-amendment-impeachment/" },
+        { name: "Time", url: "https://time.com/article/2026/04/06/25th-amendment-constitution-trump-war-iran-threat-insanity/" },
+      ]
+    },
     // Existing analysis sections follow (kept as they were)
     {
       date: "APRIL 29, 2026",
