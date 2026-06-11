@@ -54,7 +54,7 @@ export default function Navigation() {
       {/* Desktop Navbar (unchanged) */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#080d1a]/95 backdrop-blur-md border-b border-[#3ddc84]/20 px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Link href="/" className="font-condensed font-bold text-xl text-white tracking-wide">PHIERS.org</Link>
+          <Link href="https://phiers.org" className="font-condensed font-bold text-xl text-white tracking-wide">PHIERS.org</Link>
           <div className="hidden md:block text-[#3ddc84] text-xs italic">When Americans coordinate, Congress has no choice.</div>
         </div>
         <div className="flex items-center gap-4">

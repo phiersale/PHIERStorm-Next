@@ -64,7 +64,7 @@ export default function PhiersSystemPage() {
             </Link>
           </div>
           <Link href="/home" className="text-gray-500 text-sm hover:text-gray-300 transition px-3 py-1.5">
-            Home →
+            Main Homepage →
           </Link>
         </div>
       </div>
