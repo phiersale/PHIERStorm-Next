@@ -403,6 +403,9 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
     if (slide.type === "image" && slide.imageSrc) {
       const isDouglassSlide = slide.imageSrc.includes('FredDoug')
       const handleImageClick = () => {
+        // Only open modal on mobile devices (width <= 768px)
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
+        if (!isMobile) return
         if (isDouglassSlide && onImageClick) onImageClick(slide.id)
         if (slide.imageClickable && onImageClick) onImageClick(slide.id)
       }
@@ -568,12 +571,12 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
         })}
         
         {/* Button only on final slide */}
-        {slide.isFinalSlide && onFinalSlideButtonClick && (
+        {slide.isFinalSlide && (
           <>
             <div className="h-12"></div>
             <div className="mb-4">
               <button
-                onClick={onFinalSlideButtonClick}
+                onClick={() => window.location.href = '/credibility'}
                 className="w-full max-w-xs mx-auto block border border-green/40 text-green text-sm md:text-base font-semibold py-3 px-4 rounded-md hover:bg-green/10 transition"
               >
                 → SEE WHAT THE EXPERTS SAY

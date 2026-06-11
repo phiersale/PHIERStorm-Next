@@ -221,26 +221,36 @@ export default function UnifiedPreHomepage({
 
       {/* Top bar */}
       <div
-        className="flex justify-between items-center pr-6 pl-6 pt-1 pb-0 shrink-0 z-10 transition-opacity duration-300"
+        className="top-bar flex justify-between items-center pr-6 pl-6 pt-1 pb-0 shrink-0 z-30 transition-opacity duration-1000"
         style={{ opacity: 0.9 }}
       >
         {onBackToReading && (
-          <button onClick={onBackToReading} className="text-gray-200 text-sm underline hover:text-white">
+          <button 
+            onClick={onBackToReading} 
+            className="text-gray-200 text-sm underline hover:text-white transition-opacity duration-500"
+            style={{ animation: 'dimFade 0.5s ease-in-out 5s forwards' }}
+          >
             ← Back to start
           </button>
         )}
-        <button onClick={onGoToHomepage} className="text-gray-200 text-sm underline hover:text-white">
+        <button 
+          onClick={onGoToHomepage} 
+          className="text-gray-200 text-sm underline hover:text-white transition-opacity duration-500"
+          style={{ animation: 'dimFade 0.5s ease-in-out 5s forwards' }}
+        >
           Skip →
         </button>
       </div>
 
-      {/* MAIN SLIDE AREA - FULL SCREEN CLICKABLE */}
+      {/* MAIN SLIDE AREA - FULL SCREEN CLICKABLE (entire viewport except BACK button area) */}
       <div
-        className="relative z-10 flex-1 min-h-0 overflow-y-auto touch-auto cursor-pointer"
+        className="fixed inset-0 z-20 cursor-pointer"
         onClick={(e) => {
-          // Don't advance if clicking on buttons, nav dots, or back button
+          // Don't advance if clicking on buttons, nav dots, back button, or top bar
           const target = e.target as HTMLElement
           if (target.closest('button') || target.closest('.nav-dot') || target.closest('.back-button')) return
+          // Also don't advance if clicking on top bar area
+          if (target.closest('.top-bar')) return
           if (!isTransitioning && !isLastSlide) next()
         }}
         role="button"
@@ -255,6 +265,82 @@ export default function UnifiedPreHomepage({
           }
         }}
       >
+        <div className="w-full h-full overflow-y-auto">
+          <div className="flex min-h-full items-start justify-center px-4 pt-4 pb-24">
+            <div className="w-full max-w-4xl mx-auto pointer-events-none">
+              <AnimatePresence mode="popLayout">
+                {index === 0 ? (
+                  <div key={index} className="relative pointer-events-auto">
+                    <div
+                      className={`
+                        flex flex-col items-center text-center w-full
+                        -mt-16 pt-4
+                      `}
+                    >
+                      <UniversalSlideRenderer 
+                        slide={slide} 
+                        index={index}
+                        onImageClick={handleImageClick}
+                        onFinalSlideButtonClick={handleFinalSlideButtonClick}
+                      />
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.45, delay: 0.45 }}
+                        className="mt-8 md:mt-10 flex flex-col items-center gap-2"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            if (!isTransitioning) next()
+                          }}
+                          className="text-sm transition-all duration-200 text-gray-600 hover:text-gray-400"
+                        >
+                          <span className="font-bold">Continue →</span>
+                        </button>
+                        <div className="w-16 h-px bg-gray-800 rounded-full overflow-hidden">
+                          <motion.div
+                            className="h-full bg-gray-600 rounded-full"
+                            initial={{ width: '100%' }}
+                            animate={{ width: '0%' }}
+                            transition={{ duration: 10, delay: 0.45, ease: 'linear' }}
+                            onAnimationComplete={() => {
+                              if (!isTransitioning) next()
+                            }}
+                          />
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                ) : (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="relative pointer-events-auto"
+                  >
+                    <div
+                      className={`
+                        flex flex-col items-center text-center w-full
+                        ${index === 14 ? '-mt-5 pt-0' : index === 13 ? 'pt-0 md:pt-0' : index >= 3 && index <= 5 ? 'pt-12 md:pt-16' : index >= 6 && index <= 8 ? 'pt-0 md:pt-1' : 'pt-2 md:pt-4'}
+                      `}
+                    > 
+                      <UniversalSlideRenderer 
+                        slide={slide} 
+                        index={index}
+                        onImageClick={handleImageClick}
+                        onFinalSlideButtonClick={handleFinalSlideButtonClick}
+                      />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </div>
         <div className="flex min-h-full items-start justify-center px-4 pt-4 pb-24">
           <div className="w-full max-w-4xl mx-auto">
             <AnimatePresence mode="popLayout">
@@ -336,7 +422,7 @@ export default function UnifiedPreHomepage({
         style={{ 
           bottom: '4px',
           pointerEvents: navVisible ? 'auto' : 'none',
-          zIndex: 50
+          zIndex: 60
         }}
       >
         {/* Nav dots - larger and more spaced */}
@@ -386,6 +472,13 @@ export default function UnifiedPreHomepage({
           ← Back
         </button>
       )}
+
+      <style jsx>{`
+        @keyframes dimFade {
+          0% { opacity: 1; }
+          100% { opacity: 0.4; }
+        }
+      `}</style>
 
       {/* Modals */}
       {douglassModalOpen && (

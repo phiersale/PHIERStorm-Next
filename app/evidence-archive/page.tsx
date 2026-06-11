@@ -459,39 +459,117 @@ export default function EvidenceArchivePage() {
               onClick={() => toggleSection('videos')}
               className="w-full text-left flex justify-between items-center text-white font-semibold text-lg"
             >
-              <span>📹 Chronological Video Library (2007–Now)</span>
+              <span>📹 Complete Video Library (2007–Now)</span>
               <span className="text-green">{expandedSection === 'videos' ? '−' : '+'}</span>
             </button>
             {expandedSection === 'videos' && (
-              <div className="mt-4 space-y-4 text-gray-300 text-sm">
-                <div>
-                  <p className="text-green font-semibold">2007 — First recorded PHIERS video</p>
-                  <p className="text-gray-400 text-xs">Earliest documented articulation of PHIERS framework</p>
+              <div className="mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  
+                  {/* Video 1 */}
+                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                    <div className="relative pb-[56.25%]">
+                      <iframe
+                        src="https://www.youtube.com/embed/fWsifllWmnY"
+                        title="A Spiritual Solution to Every Problem"
+                        className="absolute top-0 left-0 w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                    <div className="p-2 text-center">
+                      <p className="text-gray-300 text-xs">A Spiritual Solution to Every Problem (2016)</p>
+                    </div>
+                  </div>
+
+                  {/* Video 2 */}
+                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                    <div className="relative pb-[56.25%]">
+                      <iframe
+                        src="https://www.youtube.com/embed/mxDkyFfBnZw"
+                        title="PHIERS Sizzle Film"
+                        className="absolute top-0 left-0 w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                    <div className="p-2 text-center">
+                      <p className="text-gray-300 text-xs">Sizzle Film (2011)</p>
+                    </div>
+                  </div>
+
+                  {/* Video 3 */}
+                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                    <div className="relative pb-[56.25%]">
+                      <iframe
+                        src="https://www.youtube.com/embed/r1_y7MXNt4E"
+                        title="Patriots on PHIERS"
+                        className="absolute top-0 left-0 w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                    <div className="p-2 text-center">
+                      <p className="text-gray-300 text-xs">Patriots on PHIERS (2014)</p>
+                    </div>
+                  </div>
+
+                  {/* Video 4 */}
+                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                    <div className="relative pb-[56.25%]">
+                      <iframe
+                        src="https://www.youtube.com/embed/JWC6ztov2sA"
+                        title="Silos to Synergies"
+                        className="absolute top-0 left-0 w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                    <div className="p-2 text-center">
+                      <p className="text-gray-300 text-xs">Silos to Synergies (2014)</p>
+                    </div>
+                  </div>
+
+                  {/* Video 5 */}
+                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                    <div className="relative pb-[56.25%]">
+                      <iframe
+                        src="https://player.vimeo.com/video/34036317"
+                        title="PHIERS Framework"
+                        className="absolute top-0 left-0 w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                    <div className="p-2 text-center">
+                      <p className="text-gray-300 text-xs">PHIERS Framework (2011)</p>
+                    </div>
+                  </div>
+
+                  {/* Video 6 */}
+                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                    <div className="relative pb-[56.25%]">
+                      <iframe
+                        src="https://player.vimeo.com/video/37264685"
+                        title="PHIERS Strategy"
+                        className="absolute top-0 left-0 w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                    <div className="p-2 text-center">
+                      <p className="text-gray-300 text-xs">PHIERS Strategy (2012)</p>
+                    </div>
+                  </div>
+
                 </div>
-                <div>
-                  <p className="text-green font-semibold">2011-2014 — Sizzle films, Strategy, Structure</p>
-                  <p className="text-gray-400 text-xs">Operational proposals, health reform coalition, coordinated care</p>
-                </div>
-                <div>
-                  <p className="text-green font-semibold">2015 — A Bold Counterplan</p>
-                  <p className="text-gray-400 text-xs">How to combat disaster capitalism</p>
-                </div>
-                <div>
-                  <p className="text-green font-semibold">2016 — A Spiritual Solution to Every Problem</p>
-                </div>
-                <div>
-                  <p className="text-green font-semibold">2020-2022 — Pandemic response videos</p>
-                  <p className="text-gray-400 text-xs">Public health advocacy, telehealth, coordinated care</p>
-                </div>
-                <div>
-                  <p className="text-green font-semibold">2022 — DotCom Magazine Interview</p>
-                  <p className="text-gray-400 text-xs">Kevin O'Leary connection, national media attention</p>
-                </div>
-                <div>
-                  <p className="text-green font-semibold">2026 — Pathos Communications, BigC Interview</p>
-                  <p className="text-gray-400 text-xs">Current validations from London Stock Exchange-listed firm and national media</p>
-                </div>
-                <p className="text-gray-500 text-xs mt-4 italic">Hundreds more archival videos document the full journey. Full access available upon request for researchers and journalists.</p>
+                <p className="text-gray-500 text-xs text-center mt-4 italic">Hundreds more archival videos document the full journey. Full access available upon request for researchers and journalists.</p>
               </div>
             )}
           </div>

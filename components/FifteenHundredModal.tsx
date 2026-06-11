@@ -48,7 +48,18 @@ export default function FifteenHundredModal() {
             <img
               src="/images/RalphNader-500-Unstoppable_Change.jpg"
               alt="Ralph Nader – Unstoppable Change"
-              className="w-24 mx-auto rounded opacity-80 mb-2"
+              className="w-40 sm:w-48 mx-auto rounded opacity-80 mb-2 cursor-pointer hover:opacity-100 transition"
+              onClick={() => {
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 p-4 cursor-pointer';
+                modal.onclick = () => document.body.removeChild(modal);
+                const img = document.createElement('img');
+                img.src = '/images/RalphNader-500-Unstoppable_Change.jpg';
+                img.alt = 'Ralph Nader – Unstoppable Change';
+                img.className = 'max-w-[95vw] max-h-[95vh] rounded-xl shadow-2xl';
+                modal.appendChild(img);
+                document.body.appendChild(modal);
+              }}
             />
           </div>
 
