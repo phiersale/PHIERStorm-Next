@@ -56,8 +56,8 @@ export default function MovementPage() {
         {/* This Isn't a Protest */}
         <section className="max-w-4xl mx-auto px-5 py-20">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">THIS ISN'T A PROTEST. THIS IS A POWER MOVE.</h2>
-          <section className="mt-8 mb-12">
-            <img src="/images/trilogy/Organized_men_change_outcomes.jpg" alt="Black men walking in formation" className="w-full rounded-lg object-cover shadow-lg" />
+          <section className="my-8">
+            <img src="/images/trilogy/Organized_men_change_outcomes.jpg" alt="Black men walking in formation" className="w-full rounded-lg object-cover shadow-lg max-w-full h-auto" />
           </section>
           <p className="text-lg text-gray-300 mb-4">Alone you're noise. Together you're leverage.</p>
           <p className="text-lg text-gray-300">PHIERS is not a slogan or another room full of frustration. It's structure. A way for Black men to stop moving like isolated individuals and start moving together with purpose.</p>
@@ -74,7 +74,7 @@ export default function MovementPage() {
         <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">WHY STRUCTURE MATTERS</h2>
           <section className="my-8">
-            <img src="/images/trilogy/Structure_matters.jpg" alt="Hands drafting blueprints" className="w-full md:w-4/5 mx-auto rounded-lg object-cover shadow-md" />
+            <img src="/images/trilogy/Structure_matters.jpg" alt="Hands drafting blueprints" className="w-full md:w-4/5 mx-auto rounded-lg object-cover shadow-md max-w-full h-auto" />
           </section>
           <p className="text-lg text-gray-300 mb-4">Disconnected men drift. Talented men without coordination get exhausted. Angry men without direction get used. Wounded men without healing get manipulated.</p>
           <p className="text-lg text-gray-300">Structure is what turns seriousness into force. That is what PHIERS is trying to build.</p>
@@ -96,7 +96,7 @@ export default function MovementPage() {
         </div>
 
         <section className="my-16 max-w-4xl mx-auto px-5">
-          <img src="/images/trilogy/The_PHIERS_Code.jpg" alt="Clasped hands" className="w-full md:w-3/4 mx-auto rounded-lg object-cover shadow-md" />
+          <img src="/images/trilogy/The_PHIERS_Code.jpg" alt="Clasped hands" className="w-full md:w-3/4 mx-auto rounded-lg object-cover shadow-md max-w-full h-auto" />
         </section>
 
         <div className="h-16" />
@@ -114,7 +114,7 @@ export default function MovementPage() {
         <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">THE FIFTEEN HUNDRED</h2>
           <section className="my-8">
-            <img src="/images/trilogy/The_Fifteen_Hundred.jpg" alt="Group of men at sunrise" className="w-full rounded-lg object-cover shadow-lg" />
+            <img src="/images/trilogy/The_Fifteen_Hundred.jpg" alt="Group of men at sunrise" className="w-full rounded-lg object-cover shadow-lg max-w-full h-auto" />
           </section>
           <p className="text-lg text-gray-300 mb-4">Fifteen Hundred is not just a number. It's a standard. It means Black men are no longer carrying pressure alone and in silence.</p>
           <ul className="list-disc pl-6 text-gray-300 space-y-2 mb-6"><li>discipline</li><li>structure</li><li>coordination</li><li>visible presence</li><li>accountability</li></ul>

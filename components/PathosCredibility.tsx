@@ -681,8 +681,8 @@
             variants={sectionFade}
             className="group mb-8 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4"
           >
-            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-green mb-2 list-none flex items-center">
-              <span className="mr-2 group-open:rotate-90 transition-transform">▶</span>
+            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-green mb-2 list-none flex items-center py-2">
+              <span className="mr-3 group-open:rotate-90 transition-transform">▶</span>
               Shark Tank Connection — Why This Matters Now
             </summary>
             <div className="mt-2 text-gray-400 text-sm mb-4">Pathos. DotCom. Kevin Harrington. Kevin O'Leary. Mark Cuban. All roads lead here.</div>
@@ -690,7 +690,7 @@
             <div className="mt-4 space-y-6 relative pl-3 border-l-2 border-green/20">
               
               {/* BLOCK 1 — Sharks stacked vertically: Cuban → O'Leary → Harrington */}
-              <div className="flex flex-col items-center gap-6 max-w-xs mx-auto">
+              <div className="flex flex-col items-center gap-6 max-w-xs sm:max-w-sm mx-auto w-full">
                 {/* Mark Cuban - Top */}
                 <div className="text-center w-full">
                   <img
@@ -815,7 +815,7 @@
             variants={sectionFade}
             className="group mb-12 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4 max-w-3xl mx-auto"
           >
-            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center">
+            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center py-2">
               <span className="mr-3 group-open:rotate-90 transition-transform">▶</span>
               A Patriotic Homecoming for American Democracy
             </summary>
@@ -884,7 +884,7 @@
             variants={sectionFade}
             className="group mb-12 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4 max-w-3xl mx-auto"
           >
-            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center">
+            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center py-2">
               <span className="mr-3 group-open:rotate-90 transition-transform">▶</span>
               Our Standard: MABSHA
             </summary>
@@ -934,7 +934,7 @@
             variants={sectionFade}
             className="group mb-12 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4 max-w-3xl mx-auto"
           >
-            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center">
+            <summary className="cursor-pointer text-xl md:text-2xl font-bold text-white mb-2 list-none flex items-center py-2">
               <span className="mr-3 group-open:rotate-90 transition-transform">▶</span>
               For Americans Who Were Promised Change
             </summary>
@@ -1767,7 +1767,7 @@
                 <img
                   src="/images/archive/phiers-2011-archive-header-url-v1.jpg"
                   alt="Archived PHIERS.org page from September 22, 2011"
-                  className="rounded-md border border-green/20 shadow-md max-w-full md:max-w-2xl"
+                  className="rounded-md border border-green/20 shadow-md max-w-full h-auto"
                 />
               </div>
               <p className="text-gray-500 text-xs italic text-center">

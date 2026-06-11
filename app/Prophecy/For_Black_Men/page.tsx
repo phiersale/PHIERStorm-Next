@@ -432,9 +432,9 @@ export default function ForBlackMenPage() {
         
       <h2 className="text-[clamp(2rem,7vw,3.4rem)] font-bold leading-[1.06] text-balance">
         They tried to erase the record.<br /><br />
-        <span className="block text-[clamp(1.4rem,5vw,2.4rem)] font-semibold whitespace-nowrap">
-          Our work is still standing.
-        </span>
+          <span className="block text-[clamp(1.4rem,5vw,2.4rem)] font-semibold whitespace-normal">
+            Our work is still standing.
+          </span>
       </h2>
 
         
