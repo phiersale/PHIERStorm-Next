@@ -155,7 +155,7 @@ export default function ProphecyPage() {
       </div>
       <div className="w-full max-w-3xl mx-auto px-4 mb-6">
         <div className="w-full h-[25vh] sm:h-[30vh] md:h-[40vh] bg-black relative rounded-xl overflow-hidden">
-          
+          <a
             href="https://youtu.be/EWWzHhS1is4"
             target="_blank"
             rel="noopener noreferrer"

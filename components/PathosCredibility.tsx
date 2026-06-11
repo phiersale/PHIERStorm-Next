@@ -1893,12 +1893,13 @@
             <p className="text-gray-400 text-sm leading-relaxed mb-5 max-w-lg mx-auto">
               Medicaid work requirements. TrumpRx. The Iran war. Screwworm. Congressional walkouts. PHIERS identified every one of these pressure points years ago. We track the news and show you exactly why PHIERS is the proper response.
             </p>
-            
+            <a
               href="/situation"
               className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition"
             >
-              Read THE SITUATION → Check back often.
+              Read THE SITUATION →
             </a>
+            <p className="text-gray-500 text-xs mt-3">Check back often.</p>
           </motion.div>
 
           {/* NEWSLETTER SIGNUP */}
