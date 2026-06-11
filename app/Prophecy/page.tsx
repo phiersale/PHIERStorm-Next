@@ -180,12 +180,11 @@ export default function ProphecyPage() {
 
 
       <div className="text-center mt-12 mb-6 px-6">
-        <p className="text-gray-400 text-lg md:text-xl">
-          We learned something from that.
-
-          Power doesn't come from shouting louder.
-          It comes from enough disciplined people moving together.
-        </p>
+        <div className="text-gray-400 text-lg md:text-xl space-y-3">
+          <p>We learned something from that.</p>
+          <p>Power doesn't come from shouting louder.</p>
+          <p>It comes from enough disciplined people moving together.</p>
+        </div>
       </div>
 
 
