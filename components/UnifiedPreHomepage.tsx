@@ -313,7 +313,7 @@ export default function UnifiedPreHomepage({
                   <div
                     className={`
                       flex flex-col items-center text-center w-full
-                      ${index === 14 ? '-mt-5 pt-0' : index === 13 ? 'pt-0 md:pt-0' : index >= 6 && index <= 8 ? 'pt-0 md:pt-1' : 'pt-2 md:pt-4'}
+                      ${index === 14 ? '-mt-5 pt-0' : index === 13 ? 'pt-0 md:pt-0' : index >= 3 && index <= 5 ? 'pt-12 md:pt-16' : index >= 6 && index <= 8 ? 'pt-0 md:pt-1' : 'pt-2 md:pt-4'}
                     `}
                   > 
                     <UniversalSlideRenderer 
