@@ -79,28 +79,28 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
   const renderBody = () => {
     if (slide.teethImage) {
       return (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col items-center text-center"
-        >
-          <div className="flex justify-center w-full mb-4">
+        <div className="flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="w-full flex justify-center mb-4"
+          >
             <img
               src="/images/ORGANIZE_Fish.jpg"
               alt="Organized fish – a demand with teeth"
-              className="w-2/3 md:w-1/2 max-w-md rounded-lg shadow-md"
+              className="w-full md:w-[80%] max-w-4xl rounded-lg shadow-md"
             />
-          </div>
+          </motion.div>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="text-3xl md:text-5xl font-bold text-green mt-2"
           >
             A demand that has TEETH.
           </motion.p>
-        </motion.div>
+        </div>
       )
     }
 
@@ -412,14 +412,20 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
         return (
           <div className="w-full flex flex-col items-center justify-center px-4 pt-0 pb-2 sm:pb-4 -mt-8 md:-mt-12">
             <div onClick={handleImageClick} className="w-full">
-              <Image
-                src="/images/You_Are_Not_Powerless.jpg"
-                alt="You Are Not Powerless"
-                width={1200}
-                height={800}
-                className="w-[70%] md:w-[50%] max-w-xl h-auto object-contain mx-auto"
-                priority
-              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              >
+                <Image
+                  src="/images/You_Are_Not_Powerless.jpg"
+                  alt="You Are Not Powerless"
+                  width={1200}
+                  height={800}
+                  className="w-[70%] md:w-[50%] max-w-xl h-auto object-contain mx-auto"
+                  priority
+                />
+              </motion.div>
             </div>
             <div className="mt-6 text-center">
               <p className="text-gray-300 text-xs sm:text-sm">Swipe to continue</p>
@@ -439,36 +445,63 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
       
       return (
         <div className="w-full flex flex-col items-center max-h-[calc(100vh-180px)] overflow-visible">
-          <div onClick={handleImageClick} className={isDouglassSlide || slide.imageClickable ? 'cursor-pointer w-full mb-4' : ''}>
-            <Image
-              src={slide.imageSrc}
-              alt={slide.imageAlt || "Slide image"}
-              width={1200}
-              height={800}
-              className={`mx-auto object-contain phiers-slide-image ${slide.imageClassName || widthClass} max-h-[calc(100vh-200px)] w-auto`}
-              priority
-              onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
-            />
+          <div onClick={handleImageClick} className={isDouglassSlide || slide.imageClickable ? 'cursor-pointer w-full mb-0' : ''}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="w-full"
+            >
+              <Image
+                src={slide.imageSrc}
+                alt={slide.imageAlt || "Slide image"}
+                width={1200}
+                height={800}
+                className={`mx-auto object-contain phiers-slide-image ${slide.imageClassName || widthClass} max-h-[calc(100vh-200px)] w-auto`}
+                priority
+                onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
+              />
+            </motion.div>
           </div>  
           {index === 9 && slide.caption && (
-            <p className={slide.captionClassName || "text-center text-red-400 text-lg md:text-xl font-medium mt-6 tracking-tight max-w-3xl mx-auto"}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              className={slide.captionClassName || "text-center text-red-400 text-lg md:text-xl font-medium mt-6 tracking-tight max-w-3xl mx-auto"}
+            >
               {slide.caption}
-            </p>
+            </motion.p>
           )}
           {slide.caption && index !== 9 && (
-            <p className={slide.captionClassName || "text-center text-green-400 text-lg md:text-2xl font-semibold mt-4 max-w-3xl mx-auto"}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              className={slide.captionClassName || "text-center text-green-400 text-lg md:text-2xl font-semibold mt-4 max-w-3xl mx-auto"}
+            >
               {slide.caption}
-            </p>
+            </motion.p>
           )}
           {slide.subCaption && (
-            <p className={slide.subCaptionClassName || "text-center text-gray-400 text-sm md:text-base mt-2"}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+              className={slide.subCaptionClassName || "text-center text-gray-400 text-sm md:text-base mt-2"}
+            >
               {slide.subCaption}
-            </p>
+            </motion.p>
           )}
           {slide.showTapHint && (
-            <p className="text-center text-gray-500 text-xs mt-4 opacity-70">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+              className="text-center text-gray-500 text-xs mt-4 opacity-70"
+            >
               tap image to enlarge
-            </p>
+            </motion.p>
           )}
         </div>
       )
