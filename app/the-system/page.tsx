@@ -318,6 +318,7 @@ export default function PhiersSystemPage() {
               <p>Direct-to-consumer pharmaceuticals like Mark Cuban Cost Plus Drugs show 60%+ savings.</p>
               <p>Civic pressure research from Ralph Nader and Erica Chenoweth documents how organized participation moves systems.</p>
               <p className="text-green-400/80 mt-4">Nothing here is hypothetical. The pieces already exist. PHIERS integrates them.</p>
+              <p className="text-gray-300 mt-4">PHIERS does not ask you to trust PHIERS. It asks you to look at the public record and decide for yourself.</p>
             </div>
 
             {/* Evidence Strip */}

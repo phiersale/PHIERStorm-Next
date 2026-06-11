@@ -288,6 +288,12 @@
             Record
           </a>
           <a 
+            href="/situation"
+            className="hover:text-green transition-colors"
+          >
+            News
+          </a>
+          <a 
             href="#cta" 
             onClick={(e) => { e.preventDefault(); smoothScrollToElement('#cta'); }}
             className="hover:text-green transition-colors"
@@ -1876,6 +1882,40 @@
               </p>
             </div>
           </motion.details>
+
+          {/* CHAPTER MARKER */}
+          <div className="h-[1px] w-full bg-green/10 my-10" />
+
+          {/* IN THE NEWS — teaser + link to /situation */}
+          <motion.div variants={sectionFade} className="max-w-2xl mx-auto text-center my-10">
+            <p className="text-green text-xs tracking-widest font-mono mb-2">IN THE NEWS</p>
+            <p className="text-white text-xl font-bold mb-3">The world is catching up.</p>
+            <p className="text-gray-400 text-sm leading-relaxed mb-5 max-w-lg mx-auto">
+              Medicaid work requirements. TrumpRx. The Iran war. Screwworm. Congressional walkouts. PHIERS identified every one of these pressure points years ago. We track the news and show you exactly why PHIERS is the proper response.
+            </p>
+            
+              href="/situation"
+              className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition"
+            >
+              Read THE SITUATION → Check back often.
+            </a>
+          </motion.div>
+
+          {/* NEWSLETTER SIGNUP */}
+          <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
+            <div className="bg-[#0a1628] border border-green/20 rounded-xl p-6">
+              <p className="text-white font-semibold mb-1">Stay informed.</p>
+              <p className="text-gray-400 text-sm mb-4">Get THE PHIERS BRIEF — updates on what organized constituents need to know.</p>
+              
+                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full py-2 px-6 rounded-lg text-sm font-semibold border border-green/30 text-green hover:bg-green/10 transition text-center"
+              >
+                Sign up for updates →
+              </a>
+            </div>
+          </motion.div>
 
           {/* CHAPTER MARKER */}
           <div className="h-[1px] w-full bg-green/10 my-10" />
