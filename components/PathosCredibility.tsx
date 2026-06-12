@@ -1,14 +1,20 @@
+'use client'
+
 // FILE: components/PathosCredibility.tsx
 // VERSION: 18.0 – Streamlined Tier 1 Credibility Highlights
 // SUMMARY: Removed: MABSHA, Patriotic Homecoming, For Americans, Public Record deep dive, emotional anchors.
 // KEPT: Validators, timeline (collapsed), Shark Tank, CTA, 2013 video, three validator videos.
 // ADDED: "View the Evidence Archive" button linking to /evidence-archive
 
-'use client'
-
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
+
+// Type for MediaQueryListEvent
+type MediaQueryListEvent = {
+  matches: boolean
+}
 
 type Props = {
   onBackToSlides?: () => void
@@ -137,6 +143,32 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
 
   return (
     <>
+      {/* Sticky Banner - Home (restarts journey), Logo, Skip */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-sm border-b border-white/5 py-1 px-4">
+        <div className="flex justify-between items-center">
+          <Link href="https://phiers.org" className="text-gray-400 text-[10px] sm:text-xs hover:text-white transition">
+            Home
+          </Link>
+          <Link href="https://phiers.org" className="opacity-40 hover:opacity-70 transition">
+            <Image
+              src="/images/PHIERS_Logo_BW.png"
+              alt="PHIERS"
+              width={16}
+              height={16}
+              className="w-3 h-3 sm:w-4 sm:h-4"
+            />
+          </Link>
+          <button
+            onClick={() => {
+              const mainContent = document.querySelector('main') || document.body
+              mainContent.scrollIntoView({ behavior: 'smooth' })
+            }}
+            className="text-gray-400 text-[10px] sm:text-xs hover:text-white transition"
+          >
+            Skip
+          </button>
+        </div>
+      </div>
 
       {showSkipAhead && (
         <div className="fixed bottom-5 right-5 z-50">
@@ -376,6 +408,38 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           <Link href="/evidence-archive" className="inline-block bg-transparent border-2 border-green/50 text-green font-semibold text-sm md:text-base px-6 py-3 rounded-full hover:bg-green/10 hover:border-green transition">
             📚 Want the complete record? → View the Evidence Archive
           </Link>
+        </motion.div>
+
+           {/* IN THE NEWS — teaser + link to /situation */}
+          <motion.div variants={sectionFade} className="max-w-2xl mx-auto text-center my-10">
+            <p className="text-green text-xs tracking-widest font-mono mb-2">IN THE NEWS</p>
+            <p className="text-white text-xl font-bold mb-3">The world is catching up.</p>
+            <p className="text-gray-400 text-sm leading-relaxed mb-5 max-w-lg mx-auto">
+              Medicaid work requirements. TrumpRx. The Iran war. Screwworm. Congressional walkouts. PHIERS identified every one of these pressure points years ago. We track the news and show you exactly why PHIERS is the proper response.
+            </p>
+            <a
+              href="/situation"
+              className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition"
+            >
+              Read THE SITUATION →
+            </a>
+            <p className="text-gray-500 text-xs mt-3">Check back often.</p>
+          </motion.div>
+
+        {/* NEWSLETTER SIGNUP */}
+        <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
+          <div className="bg-[#0a1628] border border-green/20 rounded-xl p-6">
+            <p className="text-white font-semibold mb-1">Stay informed.</p>
+            <p className="text-gray-400 text-sm mb-4">Get THE PHIERS BRIEF — updates on what organized constituents need to know.</p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block w-full py-2 px-6 rounded-lg text-sm font-semibold border border-green/30 text-green hover:bg-green/10 transition text-center"
+            >
+              Sign up for updates →
+            </a>
+          </div>
         </motion.div>
 
         <motion.div id="cta" variants={sectionFade} className="text-center pt-1 pb-6">

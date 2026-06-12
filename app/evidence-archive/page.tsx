@@ -1,8 +1,7 @@
-// FILE: app/evidence-archive/page.tsx
-// VERSION: 1.0 – Evidence Archive (Tier 2)
-// SUMMARY: Complete public record behind PHIERS. Documentary style. Organized by domain. No persuasion.
-
 'use client';
+
+// FILE: app/evidence-archive/page.tsx
+// VERSION: 2.0 - COMPLETE restoration. All content from two-tier agreement.
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,7 +10,7 @@ import { useState } from 'react';
 export default function EvidenceArchivePage() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
-  const toggleSection = (section: string) => {
+  const toggleSection = (section: string) => {  
     if (expandedSection === section) {
       setExpandedSection(null);
     } else {
@@ -20,6 +19,7 @@ export default function EvidenceArchivePage() {
   };
 
   return (
+    <>
     <div className="bg-black text-white min-h-screen">
       {/* STICKY HEADER */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800 py-2">
@@ -58,11 +58,21 @@ export default function EvidenceArchivePage() {
           <p>Start with <a href="#healthcare" className="text-green hover:underline transition">Healthcare</a> or <a href="#congressional" className="text-green hover:underline transition">Congressional Leverage</a> — two of our strongest evidence domains.</p>
         </div>
 
+        {/* FLAG DAY 2026 MILESTONE BOX */}
+        <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-8">
+          <p className="text-green-400 text-sm font-semibold mb-1">🇺🇸 Civic Participation Milestone</p>
+          <p className="text-gray-300 text-sm">
+            Our civic participation milestone is 1,500 verified constituents in each district by Flag Day 2026.
+            This is not political advocacy — it is a demonstration of public engagement and district‑level accountability.
+          </p>
+        </div>
+
         {/* ANCHOR LINKS NAVIGATION */}
-        <div className="flex flex-wrap justify-center gap-3 mb-8 pb-4 border-b border-gray-800">
+        <div className="flex flex-wrap justify-center gap-3 mb-12 pb-4 border-b border-gray-800">
           {[
             { id: "healthcare", label: "Healthcare" },
             { id: "congressional", label: "Congressional Leverage" },
+            { id: "professional-history", label: "Professional History" },
             { id: "public-health", label: "Public Health" },
             { id: "archived-websites", label: "Archived Websites" },
             { id: "video-archive", label: "Video Archive" },
@@ -76,15 +86,6 @@ export default function EvidenceArchivePage() {
               {item.label}
             </a>
           ))}
-        </div>
-
-        {/* FLAG DAY 2026 MILESTONE BOX */}
-        <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-8">
-          <p className="text-green-400 text-sm font-semibold mb-1">🇺🇸 Civic Participation Milestone</p>
-          <p className="text-gray-300 text-sm">
-            Our civic participation milestone is 1,500 verified constituents in each district by Flag Day 2026.
-            This is not political advocacy — it is a demonstration of public engagement and district‑level accountability.
-          </p>
         </div>
 
         {/* ========== HEALTHCARE ========== */}
@@ -169,8 +170,12 @@ export default function EvidenceArchivePage() {
                 <div className="mt-4 space-y-2 text-gray-300 text-sm">
                   <p><span className="text-green">2004</span> — Earliest documented PHIERS record</p>
                   <p><span className="text-green">2007</span> — First recorded video of PHIERS framework</p>
+                  <p><span className="text-green">2007</span> — VistA EHR Business/Senior Analyst, Intake/Eligibility/Enrollment Systems </p>
+                  <p><span className="text-green">2007</span> — VA Enterprise-wide Reengineering Initiative, 1 of 5 Civilians in OCIO</p>
                   <p><span className="text-green">2009</span> — PHIERS.org launches with SureSafe Pharma partnership</p>
-                  <p><span className="text-green">2011-2014</span> — Active partnerships with VA, MedStar, CRISP</p>
+                  <p><span className="text-green">2011-2014</span> — Partnership negotiations with NASN, VA, MedStar, CRISP HIE</p>
+                  <p><span className="text-green">2018</span> — VA HQ - Lead integration engineed for EHRM/Community Care Initiative</p>
+                  <p><span className="text-green">2018</span> — Recruited for Maryland Healthcare Commission expert panels</p>
                   <p><span className="text-green">2022</span> — Mark Cuban validates model with Cost Plus Drugs</p>
                   <p><span className="text-green">2026</span> — TrumpRx + Cuban partnership; PHIERS evidence archive launched</p>
                 </div>
@@ -205,6 +210,14 @@ export default function EvidenceArchivePage() {
           <h2 className="text-2xl md:text-3xl font-bold text-green mb-4 border-l-4 border-green pl-3">
             Congressional Leverage
           </h2>
+          
+          {/* FRAMING PARAGRAPH */}
+          <p className="text-gray-400 text-sm mb-6">
+            This archive contains the full public record behind PHIERS — organized by domain, documented, and sourced.
+            It includes examples of how verified constituent participation interacts with congressional procedures,
+            illustrating what becomes possible when 1,500 people in a district are on the record.
+          </p>
+          
           <div className="space-y-6">
             
             {/* Ralph Nader Research */}
@@ -228,7 +241,18 @@ export default function EvidenceArchivePage() {
                     <img
                       src="/images/RalphNader-500-Unstoppable_Change.jpg"
                       alt="Ralph Nader — Unstoppable Change"
-                      className="w-48 rounded-lg border border-green/30"
+                      className="w-48 rounded-lg border border-green/30 cursor-pointer hover:opacity-90 transition"
+                      onClick={() => {
+                        const modal = document.createElement('div');
+                        modal.className = 'fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 p-4 cursor-pointer';
+                        modal.onclick = () => document.body.removeChild(modal);
+                        const img = document.createElement('img');
+                        img.src = '/images/RalphNader-500-Unstoppable_Change.jpg';
+                        img.alt = 'Ralph Nader – Unstoppable Change';
+                        img.className = 'max-w-[95vw] max-h-[95vh] rounded-xl shadow-2xl';
+                        modal.appendChild(img);
+                        document.body.appendChild(modal);
+                      }}
                     />
                   </div>
                   <p className="text-gray-500 text-xs mt-2">Source: Ralph Nader, documented in multiple civic campaigns and congressional testimony.</p>
@@ -289,10 +313,47 @@ export default function EvidenceArchivePage() {
                 </div>
               )}
             </div>
+
+            {/* DISTRICT OUTCOMES — The Power of Being Counted */}
+            <div className="bg-[#0a1628]/40 rounded-lg p-5 border border-gray-800">
+              <details className="group">
+                <summary className="cursor-pointer text-lg font-semibold text-green-400 list-none flex items-center justify-between">
+                  <span>🎯 District Outcomes — The Power of Being Counted</span>
+                  <span className="group-open:rotate-90 transition-transform">▶</span>
+                </summary>
+                <div className="mt-4 space-y-4 text-gray-300 text-sm">
+                  <p>
+                    This video explains how district-level civic participation interacts with congressional
+                    procedures. It focuses on institutional mechanics, not political advocacy, and demonstrates
+                    how constituent engagement can shape outcomes within established rules.
+                  </p>
+                  <p className="text-green-300 text-xs font-semibold">
+                    "The Power of Being Counted" — A clear explanation of how 500, 1,000, and 1,500 verified
+                    constituents can force Congress to show up, answer questions, and act. This is the structure
+                    that turns public attention into real leverage — and why PHIERS exists.
+                  </p>
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-gray-700">
+                    <iframe
+                      className="absolute top-0 left-0 w-full h-full"
+                      src="https://www.youtube.com/embed/EWWzHhS1is4"
+                      title="The Power of Being Counted"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <p className="text-xs text-gray-500">
+                    Note: This example is provided for civic education and structural understanding only.
+                    It does not advocate for or against any individual or political outcome.
+                  </p>
+                </div>
+              </details>
+            </div>
           </div>
         </section>
 
-        {/* ========== PROFESSIONAL HISTORY (CREDIBILITY TIMELINE) ========== */}
+        {/* ========== PROFESSIONAL HISTORY ========== */}
         <section id="professional-history" className="mb-16 scroll-mt-24">
           <h2 className="text-2xl md:text-3xl font-bold text-green mb-4 border-l-4 border-green pl-3">
             Professional History
@@ -449,7 +510,7 @@ export default function EvidenceArchivePage() {
           </div>
         </section>
 
-        {/* ========== VIDEO ARCHIVE ========== */}
+        {/* ========== VIDEO ARCHIVE (COMPLETE LIBRARY) ========== */}
         <section id="video-archive" className="mb-16 scroll-mt-24">
           <h2 className="text-2xl md:text-3xl font-bold text-green mb-4 border-l-4 border-green pl-3">
             Video Archive
@@ -458,120 +519,121 @@ export default function EvidenceArchivePage() {
             <button
               onClick={() => toggleSection('videos')}
               className="w-full text-left flex justify-between items-center text-white font-semibold text-lg"
-            >
-              <span>📹 Complete Video Library (2007–Now)</span>
-              <span className="text-green">{expandedSection === 'videos' ? '−' : '+'}</span>
-            </button>
-            {expandedSection === 'videos' && (
-              <div className="mt-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  
-                  {/* Video 1 */}
-                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
-                    <div className="relative pb-[56.25%]">
-                      <iframe
-                        src="https://www.youtube.com/embed/fWsifllWmnY"
-                        title="A Spiritual Solution to Every Problem"
-                        className="absolute top-0 left-0 w-full h-full"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+              >
+                <span>📹 Complete Video Library (2007–Now)</span>
+                <span className="text-green">{expandedSection === 'videos' ? '−' : '+'}</span>
+              </button>
+              {expandedSection === 'videos' && (
+                <div className="mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    {/* Video 1 */}
+                    <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                      <div className="relative pb-[56.25%]">
+                        <iframe
+                          src="https://www.youtube.com/embed/fWsifllWmnY"
+                          title="A Spiritual Solution to Every Problem"
+                          className="absolute top-0 left-0 w-full h-full"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="p-2 text-center">
+                        <p className="text-gray-300 text-xs">A Spiritual Solution to Every Problem (2016)</p>
+                      </div>
                     </div>
-                    <div className="p-2 text-center">
-                      <p className="text-gray-300 text-xs">A Spiritual Solution to Every Problem (2016)</p>
-                    </div>
-                  </div>
 
-                  {/* Video 2 */}
-                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
-                    <div className="relative pb-[56.25%]">
-                      <iframe
-                        src="https://www.youtube.com/embed/mxDkyFfBnZw"
-                        title="PHIERS Sizzle Film"
-                        className="absolute top-0 left-0 w-full h-full"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                    {/* Video 2 */}
+                    <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                      <div className="relative pb-[56.25%]">
+                        <iframe
+                          src="https://www.youtube.com/embed/mxDkyFfBnZw"
+                          title="PHIERS Sizzle Film"
+                          className="absolute top-0 left-0 w-full h-full"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="p-2 text-center">
+                        <p className="text-gray-300 text-xs">Sizzle Film (2011)</p>
+                      </div>
                     </div>
-                    <div className="p-2 text-center">
-                      <p className="text-gray-300 text-xs">Sizzle Film (2011)</p>
-                    </div>
-                  </div>
 
-                  {/* Video 3 */}
-                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
-                    <div className="relative pb-[56.25%]">
-                      <iframe
-                        src="https://www.youtube.com/embed/r1_y7MXNt4E"
-                        title="Patriots on PHIERS"
-                        className="absolute top-0 left-0 w-full h-full"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                    {/* Video 3 */}
+                    <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                      <div className="relative pb-[56.25%]">
+                        <iframe
+                          src="https://www.youtube.com/embed/r1_y7MXNt4E"
+                          title="Patriots on PHIERS"
+                          className="absolute top-0 left-0 w-full h-full"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="p-2 text-center">
+                        <p className="text-gray-300 text-xs">Patriots on PHIERS (2014)</p>
+                      </div>
                     </div>
-                    <div className="p-2 text-center">
-                      <p className="text-gray-300 text-xs">Patriots on PHIERS (2014)</p>
-                    </div>
-                  </div>
 
-                  {/* Video 4 */}
-                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
-                    <div className="relative pb-[56.25%]">
-                      <iframe
-                        src="https://www.youtube.com/embed/JWC6ztov2sA"
-                        title="Silos to Synergies"
-                        className="absolute top-0 left-0 w-full h-full"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                    {/* Video 4 */}
+                    <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                      <div className="relative pb-[56.25%]">
+                        <iframe
+                          src="https://www.youtube.com/embed/JWC6ztov2sA"
+                          title="Silos to Synergies"
+                          className="absolute top-0 left-0 w-full h-full"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="p-2 text-center">
+                        <p className="text-gray-300 text-xs">Silos to Synergies (2014)</p>
+                      </div>
                     </div>
-                    <div className="p-2 text-center">
-                      <p className="text-gray-300 text-xs">Silos to Synergies (2014)</p>
-                    </div>
-                  </div>
 
-                  {/* Video 5 */}
-                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
-                    <div className="relative pb-[56.25%]">
-                      <iframe
-                        src="https://player.vimeo.com/video/34036317"
-                        title="PHIERS Framework"
-                        className="absolute top-0 left-0 w-full h-full"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                    {/* Video 5 */}
+                    <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                      <div className="relative pb-[56.25%]">
+                        <iframe
+                          src="https://player.vimeo.com/video/34036317"
+                          title="PHIERS Framework"
+                          className="absolute top-0 left-0 w-full h-full"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="p-2 text-center">
+                        <p className="text-gray-300 text-xs">PHIERS Framework (2011)</p>
+                      </div>
                     </div>
-                    <div className="p-2 text-center">
-                      <p className="text-gray-300 text-xs">PHIERS Framework (2011)</p>
-                    </div>
-                  </div>
 
-                  {/* Video 6 */}
-                  <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
-                    <div className="relative pb-[56.25%]">
-                      <iframe
-                        src="https://player.vimeo.com/video/37264685"
-                        title="PHIERS Strategy"
-                        className="absolute top-0 left-0 w-full h-full"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                    {/* Video 6 */}
+                    <div className="bg-[#0a1628] rounded-lg overflow-hidden border border-gray-700">
+                      <div className="relative pb-[56.25%]">
+                        <iframe
+                          src="https://player.vimeo.com/video/37264685"
+                          title="PHIERS Strategy"
+                          className="absolute top-0 left-0 w-full h-full"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="p-2 text-center">
+                        <p className="text-gray-300 text-xs">PHIERS Strategy (2012)</p>
+                      </div>
                     </div>
-                    <div className="p-2 text-center">
-                      <p className="text-gray-300 text-xs">PHIERS Strategy (2012)</p>
-                    </div>
-                  </div>
 
+                  </div>
+                  <p className="text-gray-500 text-xs text-center mt-4 italic">Hundreds more archival videos document the full journey. Full access available upon request for researchers and journalists.</p>
                 </div>
-                <p className="text-gray-500 text-xs text-center mt-4 italic">Hundreds more archival videos document the full journey. Full access available upon request for researchers and journalists.</p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </section>
 
@@ -611,6 +673,7 @@ export default function EvidenceArchivePage() {
         </footer>
       </div>
     </div>
+    </>
   );
 }
 

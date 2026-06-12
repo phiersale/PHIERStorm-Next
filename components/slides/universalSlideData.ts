@@ -175,16 +175,17 @@ export const universalSlides: UniversalSlide[] = [
     captionClassName: "text-center text-green-400 text-base md:text-xl font-medium mt-2 md:mt-3 tracking-tight max-w-3xl mx-auto"
   },
 
-  // 11 — RALPH NADER (click-to-enlarge) - larger than Town Hall (52% vs 65%)
+  // 11 — RALPH NADER (click-to-enlarge) - reduced 20% from 65% to 52%
   {
     id: "slide-11",
     type: "image",
     imageSrc: "/images/RalphNader-500-Unstoppable_Change.jpg",
     imageAlt: "Ralph Nader — 1,500 organized voters. Congress remembers who it works for. Unstoppable Change.",
     className: "bg-neutral-950 flex flex-col items-center justify-center py-4 md:py-12",
-    imageClassName: "w-full md:w-[65%] max-w-3xl mx-auto cursor-pointer transition-transform hover:scale-[1.02]",
+    imageClassName: "w-full md:w-[52%] max-w-2xl mx-auto cursor-pointer transition-transform hover:scale-[1.02]",
     imageClickable: true,
-    showTapHint: true
+    showTapHint: true,
+    title: "A Proven Strategy"
   },
 
   // 12 — ACCOUNTABILITY

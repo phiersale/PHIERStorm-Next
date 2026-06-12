@@ -1,5 +1,6 @@
 // FILE: components/UnifiedPreHomepage.tsx
-// VERSION: 1.2 - Fixed syntax error, removed duplicate content
+// VERSION: 1.0 - Complete replacement that makes EVERY slide fit viewport
+// SUMMARY: Uses the universal slide system with a SINGLE viewport wrapper that ensures ALL slides are visible at 100% zoom
 
 'use client'
 
@@ -10,6 +11,7 @@ import UniversalSlideRenderer from './slides/UniversalSlideRenderer'
 
 type Props = {
   onGoToHomepage: () => void
+  onGoToCredibility?: () => void
   skipFirstImageSlide?: boolean
   onBackToReading?: () => void
   onGoToPetition?: () => void
@@ -20,6 +22,7 @@ const TRANSITION_MS = 400
 
 export default function UnifiedPreHomepage({
   onGoToHomepage,
+  onGoToCredibility,
   skipFirstImageSlide = false,
   onBackToReading,
   onGoToPetition
@@ -47,6 +50,7 @@ export default function UnifiedPreHomepage({
     return () => clearTimeout(timer)
   }, [])
 
+  // Delayed nav appearance for cinematic feel
   useEffect(() => {
     setNavVisible(false)
     const timer = setTimeout(() => setNavVisible(true), 1200)
@@ -108,6 +112,7 @@ export default function UnifiedPreHomepage({
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      // Space, ArrowRight, Enter all advance
       if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ' || e.key === 'Space') {
         e.preventDefault()
         if (!isTransitioning && index < universalSlides.length - 1) {
@@ -152,28 +157,38 @@ export default function UnifiedPreHomepage({
     if (slideId === "slide-11") setNaderModalOpen(true)
   }
 
-  const handleFinalSlideButtonClick = () => {
-    if (onGoToPetition) onGoToPetition()
-    else onGoToHomepage()
+const handleFinalSlideButtonClick = () => {
+  if (onGoToCredibility) {
+    onGoToCredibility()
+    return
   }
+  if (onGoToHomepage) {
+    onGoToHomepage()
+  }
+}
 
-  const showBackgroundLogo = index === 3 || index === 4 || index === 5
+  // Determine if current slide should show background logo (slides 3, 4, 5 only)
+  const showBackgroundLogo = index >= 1 && index <= 5
   
   const getBackgroundLogoStyle = () => {
     switch (index) {
+      case 1:
+        return "opacity-[0.05] scale-[0.6] z-0"
+      case 2:
+        return "opacity-[0.08] scale-[0.8] z-0"
       case 3:
-        return "opacity-[0.20] scale-[1.0] z-0"
+        return "opacity-[0.12] scale-[1.0] z-0"
       case 4:
-        return "opacity-[0.25] scale-[1.4] z-0"
+        return "opacity-[0.18] scale-[1.3] z-0"
       case 5:
-        return "opacity-[0.30] scale-[1.8] z-0"
+        return "opacity-[0.25] scale-[1.6] z-0"
       default:
         return ""
     }
   }
 
   const getBackgroundLogoPosition = () => {
-    return "top-1/3 -translate-y-1/3"
+    return "top-[55%] -translate-y-1/2"
   }
 
   const getGlowIntensity = () => {
@@ -192,6 +207,7 @@ export default function UnifiedPreHomepage({
   return (
     <div className="relative h-dvh w-full bg-[#050b19] text-white flex flex-col overflow-hidden">
 
+      {/* Background PHIERS Logo (No Text) - Slides 3, 4, 5 only */}
       {showBackgroundLogo && (
         <div
           className={`
@@ -204,7 +220,7 @@ export default function UnifiedPreHomepage({
           <img
             src="/images/PHIERS_Logo-NoText.png"
             alt=""
-            className="h-[80px] w-auto object-contain"
+            className="h-[260px] md:h-[380px] w-auto object-contain"
             style={{
               filter: `drop-shadow(${getGlowIntensity()})`
             }}
@@ -212,35 +228,29 @@ export default function UnifiedPreHomepage({
         </div>
       )}
 
+      {/* Top bar - dimmed 50% */}
       <div
-        className="top-bar flex justify-between items-center pr-6 pl-6 pt-1 pb-0 shrink-0 z-30 transition-opacity duration-1000"
-        style={{ opacity: 0.9 }}
+        className="flex justify-between items-center pr-6 pl-6 pt-1 pb-0 shrink-0 z-10 transition-opacity duration-300"
+        style={{ opacity: 0.5 }}
       >
         {onBackToReading && (
-          <button 
-            onClick={onBackToReading} 
-            className="text-gray-200 text-sm underline hover:text-white transition-opacity duration-500"
-            style={{ animation: 'dimFade 0.5s ease-in-out 5s forwards' }}
-          >
+          <button onClick={onBackToReading} className="text-gray-400 text-sm underline hover:text-white transition">
             ← Back to start
           </button>
         )}
-        <button 
-          onClick={onGoToHomepage} 
-          className="text-gray-200 text-sm underline hover:text-white transition-opacity duration-500"
-          style={{ animation: 'dimFade 0.5s ease-in-out 5s forwards' }}
-        >
+        <button onClick={onGoToHomepage} className="text-gray-400 text-sm underline hover:text-white transition">
           Skip →
         </button>
       </div>
 
+      {/* MAIN SLIDE AREA - FULL SCREEN CLICKABLE */}
       <div
-        className="fixed inset-0 z-20 cursor-pointer"
+        className="relative z-10 flex-1 min-h-0 overflow-y-auto touch-auto cursor-pointer"
         onClick={(e) => {
+          // Don't advance if clicking on buttons, nav dots, or back button
           const target = e.target as HTMLElement
           if (target.closest('button') || target.closest('.nav-dot') || target.closest('.back-button')) return
-          if (target.closest('.top-bar')) return
-          if (!isTransitioning && !isLastSlide) next()
+          if (!isTransitioning && !isLastSlide && index !== 0) next()
         }}
         role="button"
         tabIndex={0}
@@ -254,91 +264,91 @@ export default function UnifiedPreHomepage({
           }
         }}
       >
-        <div className="w-full h-full overflow-y-auto">
-          <div className="flex min-h-full items-start justify-center px-4 pt-4 pb-24">
-            <div className="w-full max-w-4xl mx-auto pointer-events-none">
-              <AnimatePresence mode="popLayout">
-                {index === 0 ? (
-                  <div key={index} className="relative pointer-events-auto">
-                    <div
-                      className={`
-                        flex flex-col items-center text-center w-full
-                        -mt-16 pt-4
-                      `}
+        <div className="flex min-h-full items-start justify-center px-4 pt-4 pb-24">
+          <div className="w-full max-w-4xl mx-auto">
+            <AnimatePresence mode="popLayout">
+              {index === 0 ? (
+                <div key={index} className="relative">
+                  <div
+                    className={`
+                      flex flex-col items-center text-center w-full
+                      -mt-16 pt-4
+                    `}
+                  >
+                    <UniversalSlideRenderer 
+                      slide={slide} 
+                      index={index}
+                      onImageClick={handleImageClick}
+                      onFinalSlideButtonClick={handleFinalSlideButtonClick}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.45, delay: 0.45 }}
+                      className="mt-8 md:mt-10 flex flex-col items-center gap-2"
                     >
-                      <UniversalSlideRenderer 
-                        slide={slide} 
-                        index={index}
-                        onImageClick={handleImageClick}
-                        onFinalSlideButtonClick={handleFinalSlideButtonClick}
-                      />
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.45, delay: 0.45 }}
-                        className="mt-8 md:mt-10 flex flex-col items-center gap-2"
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          if (!isTransitioning) next()
+                        }}
+                        className="text-sm transition-all duration-200 text-gray-600 hover:text-gray-400"
                       >
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation()
+                        <span className="font-bold">Continue →</span>
+                      </button>
+                      <div className="w-16 h-px bg-gray-800 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gray-600 rounded-full"
+                          initial={{ width: '100%' }}
+                          animate={{ width: '0%' }}
+                          transition={{ duration: 10, delay: 0.45, ease: 'linear' }}
+                          onAnimationComplete={() => {
                             if (!isTransitioning) next()
                           }}
-                          className="text-sm transition-all duration-200 text-gray-600 hover:text-gray-400"
-                        >
-                          <span className="font-bold">Continue →</span>
-                        </button>
-                        <div className="w-16 h-px bg-gray-800 rounded-full overflow-hidden">
-                          <motion.div
-                            className="h-full bg-gray-600 rounded-full"
-                            initial={{ width: '100%' }}
-                            animate={{ width: '0%' }}
-                            transition={{ duration: 10, delay: 0.45, ease: 'linear' }}
-                            onAnimationComplete={() => {
-                              if (!isTransitioning) next()
-                            }}
-                          />
-                        </div>
-                      </motion.div>
-                    </div>
+                        />
+                      </div>
+                    </motion.div>
                   </div>
-                ) : (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="relative pointer-events-auto"
-                  >
-                    <div
-                      className={`
-                        flex flex-col items-center text-center w-full
-                        ${index === 14 ? '-mt-5 pt-0' : index === 13 ? 'pt-0 md:pt-0' : index >= 3 && index <= 5 ? 'pt-12 md:pt-16' : index >= 6 && index <= 8 ? 'pt-0 md:pt-1' : 'pt-2 md:pt-4'}
-                      `}
-                    > 
-                      <UniversalSlideRenderer 
-                        slide={slide} 
-                        index={index}
-                        onImageClick={handleImageClick}
-                        onFinalSlideButtonClick={handleFinalSlideButtonClick}
-                      />
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                </div>
+              ) : (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="relative"
+                >
+                  <div
+                    className={`
+                      flex flex-col items-center text-center w-full
+                      ${index === 14 ? '-mt-5 pt-0' : index === 13 ? 'pt-0 md:pt-0' : index >= 1 && index <= 5 ? 'pt-2 md:pt-4' : index >= 6 && index <= 8 ? 'pt-0 md:pt-1' : 'pt-2 md:pt-4'}
+                    `}
+                  > 
+                    <UniversalSlideRenderer 
+                      slide={slide} 
+                      index={index}
+                      onImageClick={handleImageClick}
+                      onFinalSlideButtonClick={handleFinalSlideButtonClick}
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
 
+      {/* Bottom nav - Nav dots + hints - FIXED POSITION on ALL slides */}
       <div
         className="fixed left-0 right-0 flex flex-col items-center pointer-events-none"
         style={{ 
           bottom: '4px',
           pointerEvents: navVisible ? 'auto' : 'none',
-          zIndex: 60
+          zIndex: 50
         }}
       >
+        {/* Nav dots - larger and more spaced */}
         <div className="flex space-x-3 pointer-events-auto items-center mb-1">
           {universalSlides.map((_, i) => (
             <button
@@ -358,12 +368,19 @@ export default function UnifiedPreHomepage({
             />
           ))}
         </div>
+        
+        {/* Navigation hint text - smaller, more subtle */}
+        <div className="text-center pointer-events-auto">
+          <p className="text-gray-500 text-[10px] md:text-xs tracking-wide opacity-60">
+            ← tap / swipe / arrow keys →
+          </p>
+        </div>
       </div>
 
+      {/* Back button */}
       {index > 0 && !isLastSlide && (
         <button
           onClick={prevNormal}
-          className="back-button"
           style={{
             position: 'fixed',
             bottom: '16px',
@@ -385,13 +402,7 @@ export default function UnifiedPreHomepage({
         </button>
       )}
 
-      <style jsx>{`
-        @keyframes dimFade {
-          0% { opacity: 1; }
-          100% { opacity: 0.4; }
-        }
-      `}</style>
-
+      {/* Modals */}
       {douglassModalOpen && (
         <div 
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-pointer"

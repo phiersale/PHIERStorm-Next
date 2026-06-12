@@ -403,17 +403,15 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
     if (slide.type === "image" && slide.imageSrc) {
       const isDouglassSlide = slide.imageSrc.includes('FredDoug')
       const handleImageClick = () => {
-        // Only open modal on mobile devices (width <= 768px)
-        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
-        if (!isMobile) return
-        if (isDouglassSlide && onImageClick) onImageClick(slide.id)
-        if (slide.imageClickable && onImageClick) onImageClick(slide.id)
+        // Modal functionality completely removed for all devices
+        // No click-to-enlarge on desktop or mobile
+        return
       }
 
       // Special handling for slide 0 (You Are Not Powerless)
       if (index === 0) {
         return (
-          <div className="w-full flex flex-col items-center justify-center px-4 pt-0 pb-2 sm:pb-4 -mt-8 md:-mt-12">
+          <div className="w-full flex flex-col items-center justify-center px-4">
             <div onClick={handleImageClick} className="w-full">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -425,7 +423,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
                   alt="You Are Not Powerless"
                   width={1200}
                   height={800}
-                  className="w-[70%] md:w-[50%] max-w-xl h-auto object-contain mx-auto"
+                  className="w-[70%] md:w-[50%] max-w-xl h-auto object-contain mx-auto max-h-[60vh]"
                   priority
                 />
               </motion.div>
@@ -460,7 +458,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
                 alt={slide.imageAlt || "Slide image"}
                 width={1200}
                 height={800}
-                className={`mx-auto object-contain phiers-slide-image ${slide.imageClassName || widthClass} max-h-[calc(100vh-200px)] w-auto`}
+                className={`mx-auto object-contain phiers-slide-image ${slide.imageClassName || widthClass} max-h-[60vh] w-auto`}
                 priority
                 onError={(e) => console.error('Image failed to load:', slide.imageSrc)}
               />
@@ -496,7 +494,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
               {slide.subCaption}
             </motion.p>
           )}
-          {slide.showTapHint && (
+   {slide.showTapHint && typeof window !== 'undefined' && window.innerWidth <= 768 && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.7 }}
@@ -571,12 +569,12 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
         })}
         
         {/* Button only on final slide */}
-        {slide.isFinalSlide && (
+        {slide.isFinalSlide && onFinalSlideButtonClick && (
           <>
             <div className="h-12"></div>
             <div className="mb-4">
               <button
-                onClick={() => window.location.href = '/credibility'}
+                onClick={onFinalSlideButtonClick}
                 className="w-full max-w-xs mx-auto block border border-green/40 text-green text-sm md:text-base font-semibold py-3 px-4 rounded-md hover:bg-green/10 transition"
               >
                 → SEE WHAT THE EXPERTS SAY
@@ -589,7 +587,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
   }
 
   return (
-    <div className="text-center w-full">
+    <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[50vh]">
       {renderTitle()}
       {renderBody()}
     </div>

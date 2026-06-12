@@ -37,7 +37,8 @@ export default function Page() {
   }, [])
 
   const handleGoToPetition = () => {
-    window.open('https://phiers-civic-engagem-vopm05.abacusai.app/petition/fifteen-hundred', '_blank')
+    // Changed: goes to PathosCredibility component (Tier 1) instead of external petition
+    setStage('credibility')
   }
 
   const handleGoToSurvey = () => {
@@ -96,7 +97,7 @@ export default function Page() {
   if (stage === 'prehome') {
     return (
       <>
-        <UnifiedPreHomepage
+           <UnifiedPreHomepage
           onGoToHomepage={() => {
             setSkipFirstImage(false)
             setStage('credibility')
