@@ -2,41 +2,6 @@
 // VERSION: 5.1 – Fixed critical syntax error, added privacy modal to credibility stage
 
 'use client'
-export const dynamic = 'force-dynamic'
-
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import UnifiedPreHomepage from '@/components/UnifiedPreHomepage'
-import MainHomePage from '@/components/MainHomePage'
-import PathosCredibility from '@/components/PathosCredibility'
-import TransitionModal from '@/components/TransitionModal'
-import FifteenHundredModal from '@/components/FifteenHundredModal'
-
-export default function Page() {
-  const [stage, setStage] = useState<'image' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
-  const [skipFirstImage, setSkipFirstImage] = useState(false)
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [stage])
-
-  // Check URL params
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('credibility') === 'true') {
-      setStage('credibility');
-    } else if (params.get('reset') === 'true') {
-      setStage('image');
-      setSkipFirstImage(true);
-      window.history.replaceState({}, '', window.location.pathname);
-    } else if (params.get('main') === 'true') {
-      setStage('main');
-      window.history.replaceSt// FILE: app/page.tsx
-// VERSION: 5.2 – Fixed component prop binding errors to prevent state crashes
-
-'use client'
-export const dynamic = 'force-dynamic'
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
