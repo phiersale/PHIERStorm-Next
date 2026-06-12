@@ -202,6 +202,7 @@ export default function EvidenceArchivePage() {
                 </div>
               )}
             </div>
+          </div>
         </section>
 
         {/* ========== CONGRESSIONAL LEVERAGE ========== */}
