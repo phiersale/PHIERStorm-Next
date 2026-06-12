@@ -32,12 +32,46 @@ export default function Page() {
       window.history.replaceState({}, '', window.location.pathname);
     } else if (params.get('main') === 'true') {
       setStage('main');
+      window.history.replaceSt// FILE: app/page.tsx
+// VERSION: 5.2 – Fixed component prop binding errors to prevent state crashes
+
+'use client'
+export const dynamic = 'force-dynamic'
+
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import UnifiedPreHomepage from '@/components/UnifiedPreHomepage'
+import MainHomePage from '@/components/MainHomePage'
+import PathosCredibility from '@/components/PathosCredibility'
+import TransitionModal from '@/components/TransitionModal'
+import FifteenHundredModal from '@/components/FifteenHundredModal'
+
+export default function Page() {
+  const [stage, setStage] = useState<'image' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
+  const [skipFirstImage, setSkipFirstImage] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [stage])
+
+  // Check URL params
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('credibility') === 'true') {
+      setStage('credibility');
+      window.history.replaceState({}, '', window.location.pathname);
+    } else if (params.get('reset') === 'true') {
+      setStage('image');
+      setSkipFirstImage(true);
+      window.history.replaceState({}, '', window.location.pathname);
+    } else if (params.get('main') === 'true') {
+      setStage('main');
       window.history.replaceState({}, '', window.location.pathname);
     }
   }, [])
 
   const handleGoToPetition = () => {
-    // Changed: goes to PathosCredibility component (Tier 1) instead of external petition
     setStage('credibility')
   }
 
@@ -97,8 +131,12 @@ export default function Page() {
   if (stage === 'prehome') {
     return (
       <>
-           <UnifiedPreHomepage
+        <UnifiedPreHomepage
           onGoToHomepage={() => {
+            setSkipFirstImage(false)
+            setStage('main')
+          }}
+          onGoToCredibility={() => {
             setSkipFirstImage(false)
             setStage('credibility')
           }}
@@ -119,7 +157,6 @@ export default function Page() {
             setStage('prehome')
           }}
           onOpenTransitionModal={() => setStage('transition')}
-
         />
         <div id="credibility-buttons" className="flex justify-center gap-2 pb-2 -mt-4">
           <button
@@ -156,25 +193,19 @@ export default function Page() {
   }
 
   if (stage === 'transition') {
-    return <TransitionModal onShowFramework={() => { window.location.href = '/the-system?from=credibility' }} onSkipVideo={() => setStage('main')} />
+    return <TransitionModal onShowFramework={() => { window.location.href = '/the-system' }} onSkipVideo={() => setStage('main')} />
   }
 
   return (
     <>
-      {(() => {
-        return null;
-      })()}
-      
       <MainHomePage 
         onBackToEntry={() => setStage('image')} 
         onGoToPetition={handleGoToPetition}
         onGoToSurvey={handleGoToSurvey}
       />
-      
       <FifteenHundredModal />
-      
     </>
   )
 }
 
-// FILE: app/page.tsx (end)
+// FILE: app/page.tsx

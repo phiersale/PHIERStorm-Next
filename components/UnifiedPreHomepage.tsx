@@ -1,7 +1,35 @@
-// FILE: components/UnifiedPreHomepage.tsx
-// VERSION: 1.0 - Complete replacement that makes EVERY slide fit viewport
-// SUMMARY: Uses the universal slide system with a SINGLE viewport wrapper that ensures ALL slides are visible at 100% zoom
+The issue is a collision between your component layout and your click handler logic.
 
+You have the bottom navigation bar and the "← Back" button rendered with `fixed` positioning, but they are placed *outside* the **MAIN SLIDE AREA** container. Because your "← Back" button is absolutely fixed in the viewport over the slide area, users can see it, but clicking it doesn't trigger standard event bubbling in a way that bypasses your overarching event listeners cleanly. More importantly, your condition inside the slide area click handler explicitly states:
+
+```tsx
+if (!isTransitioning && !isLastSlide && index !== 0) next()
+
+```
+
+When you click anywhere on a slide that is *not* slide 0 and *not* the last slide, it calls `next()`.
+
+Even though you have a guard line (`if (target.closest('.back-button')) return`), your back button **does not actually have the `.back-button` class on it.** It is entirely styled using an inline `style={{ ... }}` object. Because the class is missing, `target.closest('.back-button')` returns `null`, the guard fails, and the click on "Back" causes the slider to advance forward instead!
+
+Here are the step-by-step fixes required to clean this up:
+
+### 1. Fix the missing `.back-button` class
+
+Add the `back-button` class string to the back button element so your click-guard actually catches it.
+
+### 2. Add an explicit `e.stopPropagation()` on the Back button
+
+To guarantee that a click on the back button never slips through to background wrappers or window-level listeners, handle its click explicitly and stop propagation.
+
+### 3. Stop background logo logic from breaking rendering
+
+Your `showBackgroundLogo` condition uses `index >= 1 && index <= 5`, but your helper function `getBackgroundLogoStyle()` has cases mapping specifically up to index 5. However, ensure that if `universalSlides` doesn't have that many indices, it fails gracefully.
+
+---
+
+Here is the corrected code for your component:
+
+```tsx
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
@@ -112,7 +140,6 @@ export default function UnifiedPreHomepage({
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      // Space, ArrowRight, Enter all advance
       if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ' || e.key === 'Space') {
         e.preventDefault()
         if (!isTransitioning && index < universalSlides.length - 1) {
@@ -157,33 +184,26 @@ export default function UnifiedPreHomepage({
     if (slideId === "slide-11") setNaderModalOpen(true)
   }
 
-const handleFinalSlideButtonClick = () => {
-  if (onGoToCredibility) {
-    onGoToCredibility()
-    return
+  const handleFinalSlideButtonClick = () => {
+    if (onGoToCredibility) {
+      onGoToCredibility()
+      return
+    }
+    if (onGoToHomepage) {
+      onGoToHomepage()
+    }
   }
-  if (onGoToHomepage) {
-    onGoToHomepage()
-  }
-}
 
-  // Determine if current slide should show background logo (slides 3, 4, 5 only)
   const showBackgroundLogo = index >= 1 && index <= 5
   
   const getBackgroundLogoStyle = () => {
     switch (index) {
-      case 1:
-        return "opacity-[0.05] scale-[0.6] z-0"
-      case 2:
-        return "opacity-[0.08] scale-[0.8] z-0"
-      case 3:
-        return "opacity-[0.12] scale-[1.0] z-0"
-      case 4:
-        return "opacity-[0.18] scale-[1.3] z-0"
-      case 5:
-        return "opacity-[0.25] scale-[1.6] z-0"
-      default:
-        return ""
+      case 1: return "opacity-[0.05] scale-[0.6] z-0"
+      case 2: return "opacity-[0.08] scale-[0.8] z-0"
+      case 3: return "opacity-[0.12] scale-[1.0] z-0"
+      case 4: return "opacity-[0.18] scale-[1.3] z-0"
+      case 5: return "opacity-[0.25] scale-[1.6] z-0"
+      default: return ""
     }
   }
 
@@ -193,21 +213,17 @@ const handleFinalSlideButtonClick = () => {
 
   const getGlowIntensity = () => {
     switch (index) {
-      case 3:
-        return "0 0 8px rgba(61, 220, 132, 0.2)"
-      case 4:
-        return "0 0 12px rgba(61, 220, 132, 0.25)"
-      case 5:
-        return "0 0 16px rgba(61, 220, 132, 0.3)"
-      default:
-        return "none"
+      case 3: return "0 0 8px rgba(61, 220, 132, 0.2)"
+      case 4: return "0 0 12px rgba(61, 220, 132, 0.25)"
+      case 5: return "0 0 16px rgba(61, 220, 132, 0.3)"
+      default: return "none"
     }
   }
 
   return (
     <div className="relative h-dvh w-full bg-[#050b19] text-white flex flex-col overflow-hidden">
 
-      {/* Background PHIERS Logo (No Text) - Slides 3, 4, 5 only */}
+      {/* Background PHIERS Logo */}
       {showBackgroundLogo && (
         <div
           className={`
@@ -228,7 +244,7 @@ const handleFinalSlideButtonClick = () => {
         </div>
       )}
 
-      {/* Top bar - dimmed 50% */}
+      {/* Top bar */}
       <div
         className="flex justify-between items-center pr-6 pl-6 pt-1 pb-0 shrink-0 z-10 transition-opacity duration-300"
         style={{ opacity: 0.5 }}
@@ -243,11 +259,10 @@ const handleFinalSlideButtonClick = () => {
         </button>
       </div>
 
-      {/* MAIN SLIDE AREA - FULL SCREEN CLICKABLE */}
+      {/* MAIN SLIDE AREA */}
       <div
         className="relative z-10 flex-1 min-h-0 overflow-y-auto touch-auto cursor-pointer"
         onClick={(e) => {
-          // Don't advance if clicking on buttons, nav dots, or back button
           const target = e.target as HTMLElement
           if (target.closest('button') || target.closest('.nav-dot') || target.closest('.back-button')) return
           if (!isTransitioning && !isLastSlide && index !== 0) next()
@@ -269,12 +284,7 @@ const handleFinalSlideButtonClick = () => {
             <AnimatePresence mode="popLayout">
               {index === 0 ? (
                 <div key={index} className="relative">
-                  <div
-                    className={`
-                      flex flex-col items-center text-center w-full
-                      -mt-16 pt-4
-                    `}
-                  >
+                  <div className="flex flex-col items-center text-center w-full -mt-16 pt-4">
                     <UniversalSlideRenderer 
                       slide={slide} 
                       index={index}
@@ -339,16 +349,15 @@ const handleFinalSlideButtonClick = () => {
         </div>
       </div>
 
-      {/* Bottom nav - Nav dots + hints - FIXED POSITION on ALL slides */}
+      {/* Bottom nav */}
       <div
         className="fixed left-0 right-0 flex flex-col items-center pointer-events-none"
-        style={{ 
+        style={{
           bottom: '4px',
           pointerEvents: navVisible ? 'auto' : 'none',
           zIndex: 50
         }}
       >
-        {/* Nav dots - larger and more spaced */}
         <div className="flex space-x-3 pointer-events-auto items-center mb-1">
           {universalSlides.map((_, i) => (
             <button
@@ -368,8 +377,7 @@ const handleFinalSlideButtonClick = () => {
             />
           ))}
         </div>
-        
-        {/* Navigation hint text - smaller, more subtle */}
+
         <div className="text-center pointer-events-auto">
           <p className="text-gray-500 text-[10px] md:text-xs tracking-wide opacity-60">
             ← tap / swipe / arrow keys →
@@ -380,7 +388,11 @@ const handleFinalSlideButtonClick = () => {
       {/* Back button */}
       {index > 0 && !isLastSlide && (
         <button
-          onClick={prevNormal}
+          className="back-button"
+          onClick={(e) => {
+            e.stopPropagation()
+            prevNormal()
+          }}
           style={{
             position: 'fixed',
             bottom: '16px',
@@ -395,8 +407,8 @@ const handleFinalSlideButtonClick = () => {
             cursor: 'pointer',
             zIndex: 9999
           }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#d1d5db'}
-          onMouseLeave={(e) => e.currentTarget.style.color = '#9ca3af'}
+          onMouseEnter={(e) => { e.currentTarget.style.color = '#d1d5db' }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = '#9ca3af' }}
         >
           ← Back
         </button>
@@ -404,7 +416,7 @@ const handleFinalSlideButtonClick = () => {
 
       {/* Modals */}
       {douglassModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-pointer"
           onClick={() => setDouglassModalOpen(false)}
         >
@@ -425,7 +437,7 @@ const handleFinalSlideButtonClick = () => {
       )}
 
       {naderModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-pointer"
           onClick={() => setNaderModalOpen(false)}
         >
@@ -447,5 +459,7 @@ const handleFinalSlideButtonClick = () => {
     </div>
   )
 }
+
+```
 
 // FILE: components/UnifiedPreHomepage.tsx
