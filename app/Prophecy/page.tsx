@@ -144,46 +144,6 @@ export default function ProphecyPage() {
         </div>
       </div>
 
-      {/* Spacer after video */}
-      <div className="h-10 md:h-16" />
-
-      {/* BRIDGE VIDEO — The Power of Being Counted */}
-      <div className="text-center mt-4 mb-3 px-6">
-        <p className="text-gray-400 text-sm md:text-base italic">
-          And here's where it's going.
-        </p>
-      </div>
-      <div className="w-full max-w-3xl mx-auto px-4 mb-6">
-        <div className="w-full h-[25vh] sm:h-[30vh] md:h-[40vh] bg-black relative rounded-xl overflow-hidden">
-          <a
-            href="https://youtu.be/EWWzHhS1is4"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute inset-0 w-full h-full group block"
-            aria-label="Watch: The Power of Being Counted"
-          >
-            <div
-              className="absolute inset-0 w-full h-full bg-cover bg-center"
-              style={{
-                backgroundImage: 'url("https://img.youtube.com/vi/EWWzHhS1is4/hqdefault.jpg")',
-                backgroundSize: 'cover',
-              }}
-            />
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-green-400/20 border border-green-400/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <p className="text-white text-sm font-semibold mt-3">The Power of Being Counted</p>
-              <p className="text-gray-300 text-xs mt-1 px-6 text-center max-w-sm">
-                How 500, 1,000, and 1,500 verified constituents force Congress to act
-              </p>
-            </div>
-          </a>
-        </div>
-      </div>
 
       {/* HERO TITLE */}
       <div className="text-center pt-2 md:pt-4 pb-1 px-4">
