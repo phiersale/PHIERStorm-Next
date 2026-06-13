@@ -436,12 +436,12 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
         )
       }
 
-      let widthClass = 'w-[57%] md:w-[47%]'
+      let widthClass = 'w-[85%] md:w-[47%]'
       if (index === 6) {
-        widthClass = 'w-[85%] md:w-[70%]'
+        widthClass = 'w-[95%] md:w-[70%]'
       }
       if (index === 9) {
-        widthClass = 'w-[90%] md:w-[75%]'
+        widthClass = 'w-[95%] md:w-[75%]'
       }
       
       return (
