@@ -392,6 +392,33 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           </div>
         </motion.details>
 
+        {/* Grand Tuhon Video - inserted before "You've seen the record" */}
+        <motion.div variants={sectionFade} className="max-w-2xl mx-auto my-12">
+          <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/30 shadow-xl shadow-green/5">
+            <div className="text-center mb-4">
+              <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">Spiritual & Tactical Validation</span>
+              <h2 className="text-xl font-bold text-white mt-2">The Grand Tuhon Supremo Blessing</h2>
+            </div>
+            <div
+              className="relative aspect-video max-w-2xl mx-auto cursor-pointer group rounded-lg overflow-hidden border border-black shadow-inner"
+              onClick={() => openVideoModal('https://www.youtube.com/embed/hB3teGHp1ss?autoplay=1', 'Grand Tuhon Supremo Blessing & PHIERSale Blueprint')}
+            >
+              <img src="https://img.youtube.com/vi/hB3teGHp1ss/maxresdefault.jpg" alt="Grand Tuhon Supremo" className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition duration-300" onError={(e)=>{e.currentTarget.src='https://img.youtube.com/vi/hB3teGHp1ss/mqdefault.jpg'}} />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20">
+                <div className="w-14 h-14 rounded-full bg-green/20 border border-green flex items-center justify-center text-white font-bold animate-pulse">▶</div>
+              </div>
+            </div>
+            <div className="mt-4 space-y-3 text-xs md:text-sm text-gray-300 px-2 leading-relaxed">
+              <p>
+                <strong className="text-green">The Blessing & The Laws of Nature:</strong> Grand Tuhon Supremo gives PHIERS his blessing because the system works the same way nature works — straight lines, no tricks, no shortcuts. When something is built clean, it balances out the dirty parts of the world automatically.
+              </p>
+              <p className="italic text-gray-400 border-l border-green/40 pl-3 text-xs">
+                This document ties together what people have been doing for generations: standing up in the streets, calling out racism for what it is, and building real solutions that actually help families. And at the end, it shows something nobody saw coming — a simple way for whole groups to get cheaper prescription drugs, the same way big companies already do.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
           <div className="bg-[#0a1628] border border-green/30 rounded-lg p-6">
             <div className="flex justify-center mb-4">
@@ -408,38 +435,6 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           <Link href="/evidence-archive" className="inline-block bg-transparent border-2 border-green/50 text-green font-semibold text-sm md:text-base px-6 py-3 rounded-full hover:bg-green/10 hover:border-green transition">
             📚 Want the complete record? → View the Evidence Archive
           </Link>
-        </motion.div>
-
-           {/* IN THE NEWS — teaser + link to /situation */}
-          <motion.div variants={sectionFade} className="max-w-2xl mx-auto text-center my-10">
-            <p className="text-green text-xs tracking-widest font-mono mb-2">IN THE NEWS</p>
-            <p className="text-white text-xl font-bold mb-3">The world is catching up.</p>
-            <p className="text-gray-400 text-sm leading-relaxed mb-5 max-w-lg mx-auto">
-              Medicaid work requirements. TrumpRx. The Iran war. Screwworm. Congressional walkouts. PHIERS identified every one of these pressure points years ago. We track the news and show you exactly why PHIERS is the proper response.
-            </p>
-            <a
-              href="/situation"
-              className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition"
-            >
-              Read THE SITUATION →
-            </a>
-            <p className="text-gray-500 text-xs mt-3">Check back often.</p>
-          </motion.div>
-
-        {/* NEWSLETTER SIGNUP */}
-        <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
-          <div className="bg-[#0a1628] border border-green/20 rounded-xl p-6">
-            <p className="text-white font-semibold mb-1">Stay informed.</p>
-            <p className="text-gray-400 text-sm mb-4">Get THE PHIERS BRIEF — updates on what organized constituents need to know.</p>
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block w-full py-2 px-6 rounded-lg text-sm font-semibold border border-green/30 text-green hover:bg-green/10 transition text-center"
-            >
-              Sign up for updates →
-            </a>
-          </div>
         </motion.div>
 
         <motion.div id="cta" variants={sectionFade} className="text-center pt-1 pb-6">

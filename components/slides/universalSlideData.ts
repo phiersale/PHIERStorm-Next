@@ -163,14 +163,14 @@ export const universalSlides: UniversalSlide[] = [
     customTextLayout: true
   },
 
-  // 10 — TOWN HALL MEETING (between 45% and 60% = 52%)
+  // 10 — TOWN HALL MEETING (reduced 25% from 52% to 39%)
   {
     id: "slide-10",
     type: "image",
     imageSrc: "/images/town_hall_meeting.jpg",
     imageAlt: "Town hall meeting — the district organized",
     className: "bg-neutral-950 flex flex-col items-center justify-center py-4 md:py-12",
-    imageClassName: "w-full md:w-[52%] max-w-xl mx-auto",
+    imageClassName: "w-full md:w-[39%] max-w-lg mx-auto",
     caption: "When 1,500 people organize, the district listens.",
     captionClassName: "text-center text-green-400 text-base md:text-xl font-medium mt-2 md:mt-3 tracking-tight max-w-3xl mx-auto"
   },

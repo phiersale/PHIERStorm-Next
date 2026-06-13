@@ -99,7 +99,7 @@ export default function Page() {
         <UnifiedPreHomepage
           onGoToHomepage={() => {
             setSkipFirstImage(false)
-            setStage('main')
+            setStage('credibility')
           }}
           onGoToCredibility={() => {
             setSkipFirstImage(false)
