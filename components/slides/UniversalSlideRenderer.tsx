@@ -373,13 +373,13 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
             />
           </div>
           <div className="w-full px-2 sm:px-6">
-            <div className="grid grid-cols-6 gap-1 sm:gap-2 justify-items-center mx-auto w-full min-w-full">
+            <div className="grid grid-cols-6 gap-0.5 sm:gap-2 justify-items-center mx-auto w-full min-w-full px-1">
               {acronymItems.map((item: { letter: string; word: string }, idx: number) => (
                 <div key={idx} className="flex flex-col items-center space-y-1 sm:space-y-2">
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
+                  <span className="text-xl sm:text-3xl md:text-4xl font-extrabold text-green whitespace-nowrap drop-shadow-[0_0_8px_rgba(61,220,132,0.6)]">
                     {item.letter}
                   </span>
-                  <span className="text-[10px] sm:text-[12px] md:text-sm font-bold text-gray-200 uppercase tracking-wide">
+                  <span className="text-[8px] sm:text-[12px] md:text-sm font-bold text-gray-200 uppercase tracking-wide leading-tight">
                     {item.letter === 'R' ? 'REPS' : item.word}
                   </span>
                 </div>
