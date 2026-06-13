@@ -431,12 +431,6 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           </div>
         </motion.div>
 
-        <motion.div variants={sectionFade} className="text-center my-8">
-          <Link href="/evidence-archive" className="inline-block bg-transparent border-2 border-green/50 text-green font-semibold text-sm md:text-base px-6 py-3 rounded-full hover:bg-green/10 hover:border-green transition">
-            📚 Want the complete record? → View the Evidence Archive
-          </Link>
-        </motion.div>
-
         <motion.div id="cta" variants={sectionFade} className="text-center pt-1 pb-6">
           <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
             <p className="text-green text-base font-semibold mb-4">You've seen the evidence. Now see what it builds.</p>
