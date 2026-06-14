@@ -128,8 +128,29 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
 
     if (slide.customTextLayout) {
       const items = slide.body
+      // Check if this is slide-13 (Tools of Accountability)
+      const isToolsOfAccountability = slide.id === "slide-13"
+      
       return (
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto px-4">
+          {/* Logo for slide-13 - same position as slide-14 */}
+          {isToolsOfAccountability && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="mb-6"
+            >
+              <Image
+                src="/images/PHIERS_Logo.png"
+                alt="PHIERS Logo"
+                width={120}
+                height={120}
+                className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+                priority
+              />
+            </motion.div>
+          )}
           {items.map((item: any, idx: number) => {
             if (item.type === 'spacer') {
               return <div key={idx} style={{ height: item.height || 16 }} />
@@ -361,14 +382,14 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
       // Original PHIERS acronym layout
       const acronymItems = slide.body as { letter: string; word: string }[]
       return (
-        <div className="flex flex-col items-center space-y-4 pb-6 pt-4 md:pt-[12vh] -mt-4 md:mt-0">
+        <div className="flex flex-col items-center space-y-4 pb-6 pt-8 md:pt-12">
           <div className="mb-2">
             <Image
               src="/images/PHIERS_Logo.png"
               alt="PHIERS Logo"
-              width={120}
-              height={120}
-              className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+              width={80}
+              height={80}
+              className="w-25 sm:w-30 md:w-24 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
               priority
             />
           </div>

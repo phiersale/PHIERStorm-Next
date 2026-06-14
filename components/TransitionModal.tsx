@@ -58,10 +58,10 @@
               <div className="p-6 pt-4">
                 {/* Primary Text Block - Leverage-Focused Copy */}
                 <div className="mb-6">
-                  {/* THE MOMENT */}
+                  {/* HAPPENING NOW */}
                   <div className="mb-3">
                     <p className="text-gray-500 text-[9px] font-mono tracking-wider text-center border-b border-gray-800 pb-1 inline-block w-full">
-                      THE MOMENT
+                      HAPPENING NOW
                     </p>
                   </div>
 
@@ -113,14 +113,6 @@
                       className="w-full h-auto"
                       unoptimized
                     />
-                    <div className="bg-[#0a1628] text-center py-2">
-                      <p className="text-gray-400 text-[10px] font-mono tracking-wider">
-                        ASSOCIATED PRESS · JUNE 2026
-                      </p>
-                      <p className="text-gray-300 text-xs font-medium">
-                        Speaker Johnson Sends House Back to Districts to Avoid a Vote
-                      </p>
-                    </div>
                   </div>
 
                   {/* WHY THIS MATTERS */}
