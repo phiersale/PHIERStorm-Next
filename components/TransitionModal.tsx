@@ -47,7 +47,7 @@
               {/* HERO IMAGE - Full width, shows full image without cropping */}
               <div className="relative w-full overflow-hidden">
                 <img 
-                  src="/images/Alone_Youre_Easy_To_Ignore-1500_fixes_it.jpg"
+                  src="/images/Alone_Youre_Easy_To_Ignore-500_fixes_it.jpg"
                   alt="Congress ignores you. 1,500 people in your district changes that."
                   className="w-full h-auto max-h-[45vh] object-cover"
                 />
@@ -56,12 +56,12 @@
 
               {/* Content area */}
               <div className="p-6 pt-4">
-                {/* Primary Text Block - Leverage-Focused Copy */}
+                {/* Primary Text Block - Direct, Structural, Clean */}
                 <div className="mb-6">
-                  {/* HAPPENING NOW */}
+                  {/* IN THE NEWS */}
                   <div className="mb-3">
                     <p className="text-gray-500 text-[9px] font-mono tracking-wider text-center border-b border-gray-800 pb-1 inline-block w-full">
-                      HAPPENING NOW
+                      ⚡ IN THE NEWS
                     </p>
                   </div>
 
@@ -69,37 +69,21 @@
                     <p className="text-green text-xs font-mono tracking-wider mb-2">
                       THIS MOMENT IS DIFFERENT
                     </p>
-                    <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                      Congress was just sent home early.
+                    <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                      Speaker Mike Johnson sent House members home early, stopping a scheduled vote.
                     </h2>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      That almost never happens.
-                    </p>
-                    <p className="text-gray-400 text-xs mt-2 leading-relaxed">
-                      Representatives who normally operate behind leadership, schedules, and procedure 
-                      are suddenly back in their districts — where the people who elect them actually live.
+                      This almost never happens.
                     </p>
                   </div>
 
-                  {/* WHAT THE AP CONFIRMED */}
-                  <div className="mb-3 mt-4">
-                    <p className="text-gray-500 text-[9px] font-mono tracking-wider text-center border-b border-gray-800 pb-1 inline-block w-full">
-                      WHAT THE AP CONFIRMED
+                  <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-4">
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      When members are sent home to their districts, they become reachable — 
+                      <span className="text-green font-semibold"> town halls, district offices, local events.</span>
                     </p>
-                  </div>
-
-                  <div className="bg-[#0a1628] rounded-lg p-3 mb-4 text-center border border-green/20">
-                    <p className="text-gray-400 text-[10px] font-mono tracking-wider mb-1">
-                      ASSOCIATED PRESS · JUNE 2026
-                    </p>
-                    <p className="text-gray-300 text-xs leading-relaxed font-medium">
-                      "Speaker Sends House Back to Districts to Avoid a Vote"
-                    </p>
-                    <p className="text-green-400 text-[9px] mt-1 font-semibold">
-                      ✓ Confirmed. Not speculation.
-                    </p>
-                    <p className="text-gray-300 text-xs mt-2 leading-relaxed">
-                      It happened. And moments like this create something rare: leverage.
+                    <p className="text-gray-400 text-xs leading-relaxed mt-2">
+                      That makes this a rare leverage window for regular people.
                     </p>
                   </div>
 
@@ -107,32 +91,17 @@
                   <div className="rounded-lg overflow-hidden mb-4 border border-green/20">
                     <Image
                       src="/images/speaker-johnson-house-districts.jpg"
-                      alt="Speaker Johnson surrounded by press after sending the House home early to avoid a vote"
+                      alt="Speaker Johnson sends House back to districts"
                       width={800}
                       height={450}
                       className="w-full h-auto"
                       unoptimized
                     />
-                  </div>
-
-                  {/* WHY THIS MATTERS */}
-                  <div className="mb-3 mt-4">
-                    <p className="text-gray-500 text-[9px] font-mono tracking-wider text-center border-b border-gray-800 pb-1 inline-block w-full">
-                      WHY THIS MATTERS
-                    </p>
-                  </div>
-
-                  <div className="mb-4">
-                    <p className="text-gray-300 text-sm leading-relaxed">
-                      When Congress is in Washington, lobbyists have the advantage.
-                    </p>
-                    <p className="text-gray-300 text-sm leading-relaxed mt-2">
-                      When Congress is home, <span className="text-green font-semibold">districts matter.</span>
-                    </p>
-                    <p className="text-gray-400 text-xs leading-relaxed mt-2">
-                      Representatives pay attention to what they can see, measure, and politically feel.
-                      That's why organized people matter more than isolated opinions.
-                    </p>
+                    <div className="bg-[#0a1628] text-center py-2">
+                      <p className="text-gray-400 text-[10px] font-mono tracking-wider">
+                        ASSOCIATED PRESS · JUNE 2026
+                      </p>
+                    </div>
                   </div>
 
                   {/* THE FIRST STEP - Elevated petition framing */}
@@ -156,7 +125,7 @@
                     </p>
                   </div>
 
-                  {/* PETITION BUTTON - MOVED HIGHER */}
+                  {/* PETITION BUTTON */}
                   {onSignPetition && (
                     <button
                       onClick={onSignPetition}
@@ -166,7 +135,7 @@
                     </button>
                   )}
 
-                  {/* WHY 500? - Simplified, leverage-focused */}
+                  {/* WHY 500? - Deep dive */}
                   <div className="mb-3 mt-4">
                     <p className="text-gray-500 text-[9px] font-mono tracking-wider text-center border-b border-gray-800 pb-1 inline-block w-full">
                       WHY 500?

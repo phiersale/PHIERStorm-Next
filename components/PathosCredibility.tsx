@@ -10,6 +10,8 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import StatusInterrupt from '@/components/system/StatusInterrupt'
+import TransitionModal from '@/components/TransitionModal'
 
 // Type for MediaQueryListEvent
 type MediaQueryListEvent = {
@@ -32,6 +34,8 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
   const [showSideMenu, setShowSideMenu] = useState(false)
   const [scrollPercentage, setScrollPercentage] = useState(0)
   const [showShortcutToast, setShowShortcutToast] = useState(false)
+  const [showInterrupt, setShowInterrupt] = useState(false)
+  const [showTransitionModal, setShowTransitionModal] = useState(false)
   const prefersReducedMotion = useRef(false)
 
   useEffect(() => {
@@ -109,7 +113,9 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
     closeBtn.innerHTML = '✕';
     closeBtn.setAttribute('aria-label', 'Close video');
     closeBtn.onclick = () => {
-      document.body.removeChild(modal);
+      if (modal && modal.parentNode) {
+        document.body.removeChild(modal);
+      }
       document.body.style.overflow = '';
     };
     
@@ -128,7 +134,10 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
     
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        closeBtn.onclick?.(new MouseEvent('click'));
+        if (modal && modal.parentNode) {
+          document.body.removeChild(modal);
+        }
+        document.body.style.overflow = '';
         document.removeEventListener('keydown', handleEscape);
       }
     };
@@ -136,7 +145,10 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
     
     modal.onclick = (e) => {
       if (e.target === modal) {
-        closeBtn.onclick?.(new MouseEvent('click'));
+        if (modal && modal.parentNode) {
+          document.body.removeChild(modal);
+        }
+        document.body.style.overflow = '';
       }
     };
   }
@@ -171,32 +183,18 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         <div className="fixed bottom-5 right-5 z-50">
           <div className="relative">
             <button
-              onClick={() => onOpenTransitionModal?.()}
-              className="bg-[#0f1725]/90 border border-green/20 text-gray-200 text-sm px-4 py-2 pr-8 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300 whitespace-nowrap"
+              onClick={() => setShowInterrupt(true)}
+              className="bg-[#0f1725]/90 border border-green/20 text-gray-200 text-xs md:text-sm px-3 py-1.5 md:px-4 md:py-2 pr-6 md:pr-8 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300 whitespace-nowrap"
             >
               Continue to Solutions →
             </button>
             <button
               onClick={() => setShowSkipAhead(false)}
-              className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-gray-700/90 border border-gray-500 text-gray-300 hover:bg-red-600/80 hover:border-red-400 hover:text-white transition-all duration-200 flex items-center justify-center text-[10px] font-bold"
+              className="absolute -top-2 -right-2 w-5 h-5 md:w-3 md:h-3 rounded-full bg-gray-700/90 border border-gray-500 text-gray-300 hover:bg-red-600/80 hover:border-red-400 hover:text-white transition-all duration-200 flex items-center justify-center text-[10px] md:text-[6px] font-bold"
               aria-label="Close"
             >
               ✕
             </button>
-          </div>
-        </div>
-      )}
-
-      {showSkipAhead && (
-        <div className="fixed bottom-5 left-5 z-50">
-          <div className="relative w-10 h-10">
-            <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
-              <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(61,220,132,0.2)" strokeWidth="2"/>
-              <circle cx="18" cy="18" r="16" fill="none" stroke="#3ddc84" strokeWidth="2" strokeDasharray={`${scrollPercentage * 1.005} 100.5`} strokeLinecap="round"/>
-            </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-[10px] text-green-400">
-              {Math.round(scrollPercentage)}%
-            </span>
           </div>
         </div>
       )}
@@ -233,9 +231,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             <div className="relative w-full max-w-2xl mx-auto cursor-pointer group rounded-lg overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.6)]" style={{ paddingBottom: '28.125%' }} onClick={() => openVideoModal('https://player.vimeo.com/video/59460323?autoplay=1&title=0&byline=0&portrait=0', 'Purpose of PHIERS - 2013')}>
               <img src="https://vumbnail.com/59460323.jpg" alt="2013 PHIERS overview video thumbnail" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
-                <div className="w-16 h-16 rounded-full bg-green/30 border border-green/60 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                  <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </div>
+                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
               </div>
             </div>
             <p className="text-gray-400 text-xs italic mt-3 text-center">A short, direct overview of PHIERS — healthcare, coordinated care, jobs, and leverage (2013)</p>
@@ -274,9 +270,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/KLu7USN_dao?autoplay=1', 'Pathos Communications on PHIERS')}>
               <img src="/images/pathos-thumbnail.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
-                <div className="w-16 h-16 rounded-full bg-green/30 border border-green/60 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                  <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </div>
+                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
               </div>
             </div>
             <p className="text-green text-lg font-semibold italic mb-2">"If you weren't legit, we wouldn't risk our name."</p>
@@ -291,9 +285,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/qxcRP8lx9dc?autoplay=1', 'Trusted Voices on PHIERS')}>
               <img src="/images/BigC_ THUMBNAIL_w_Karen_Trevor_n_Ralph.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
-                <div className="w-16 h-16 rounded-full bg-green/30 border border-green/60 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                  <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </div>
+                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
               </div>
             </div>
             <p className="text-green text-xl md:text-lg font-semibold italic mb-2">"This isn't left or right. This is people trying to survive."</p>
@@ -308,9 +300,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1', 'DotCom Magazine Interview')}>
               <img src="/images/dotcom-thumbnail.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
-                <div className="w-16 h-16 rounded-full bg-green/30 border border-green/60 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                  <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </div>
+                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
               </div>
             </div>
             <p className="text-green text-xl md:text-lg font-semibold italic mb-2">"A serious, credible framework."</p>
@@ -402,7 +392,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             >
               <img src="https://img.youtube.com/vi/hB3teGHp1ss/maxresdefault.jpg" alt="Grand Tuhon Supremo" className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition duration-300" onError={(e)=>{e.currentTarget.src='https://img.youtube.com/vi/hB3teGHp1ss/mqdefault.jpg'}} />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20">
-                <div className="w-14 h-14 rounded-full bg-green/20 border border-green flex items-center justify-center text-white font-bold animate-pulse">▶</div>
+                <div className="text-white text-5xl font-bold drop-shadow-lg group-hover:scale-110 transition-transform animate-pulse">▶</div>
               </div>
             </div>
             <div className="mt-4 space-y-3 text-xs md:text-sm text-gray-300 px-2 leading-relaxed">
@@ -431,7 +421,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         <motion.div id="cta" variants={sectionFade} className="text-center pt-1 pb-6">
           <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
             <p className="text-green text-base font-semibold mb-4">You've seen the evidence. Now see what it builds.</p>
-            <button onClick={() => onOpenTransitionModal?.()} className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 whitespace-nowrap" style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}>→ Continue to the main homepage</button>
+            <button onClick={() => setShowInterrupt(true)} className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 whitespace-nowrap" style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}>→ Continue to the main homepage</button>
           </div>
         </motion.div>
       </motion.div>
@@ -440,6 +430,29 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-4 py-2 rounded-full shadow-xl z-50 animate-fadeIn">
           ⌨️ Shortcuts: T=Top, C=Continue, ?=Help
         </div>
+      )}
+
+      {showInterrupt && (
+        <StatusInterrupt
+          onComplete={() => {
+            setShowInterrupt(false)
+            setShowTransitionModal(true)
+          }}
+        />
+      )}
+
+      {showTransitionModal && (
+        <TransitionModal
+          onShowFramework={() => {
+            window.location.href = '/the-system'
+          }}
+          onSkipVideo={() => {
+            setShowTransitionModal(false)
+          }}
+          onSignPetition={() => {
+            window.open('https://forms.gle/WrpNNbwdGQG7Ton47', '_blank')
+          }}
+        />
       )}
     </>
   )

@@ -34,15 +34,15 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
 
     const renderedTitle = splitTitle(slide.title)
 
-    // For final slide, show logo at top
+    // For final slide - cinematic fade in with motion
     if (slide.isFinalSlide) {
       return (
         <>
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="pt-4 mb-4"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mb-4"
           >
             <Image
               src="/images/PHIERS_Logo.png"
@@ -56,7 +56,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="text-2xl md:text-3xl font-bold leading-tight mb-4"
           >
             {renderedTitle}
@@ -379,21 +379,36 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
         )
       }
       
-      // Original PHIERS acronym layout
+      // Original PHIERS acronym layout - fade out before switch
       const acronymItems = slide.body as { letter: string; word: string }[]
       return (
-        <div className="flex flex-col items-center space-y-4 pb-6 pt-8 md:pt-12">
-          <div className="mb-2">
+        <motion.div
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className={`flex flex-col items-center space-y-4 pb-6 pt-2 md:pt-4 w-full max-w-[85%] mx-auto ${slide.className || ''}`}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mb-4"
+          >
             <Image
               src="/images/PHIERS_Logo.png"
               alt="PHIERS Logo"
-              width={80}
-              height={80}
-              className="w-25 sm:w-30 md:w-24 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+              width={120}
+              height={120}
+              className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
               priority
             />
-          </div>
-          <div className="w-full px-2 sm:px-6">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            className="w-full px-2 sm:px-6"
+          >
             <div className="grid grid-cols-6 gap-0.5 sm:gap-2 justify-items-center mx-auto w-full min-w-full px-1">
               {acronymItems.map((item: { letter: string; word: string }, idx: number) => (
                 <div key={idx} className="flex flex-col items-center space-y-1 sm:space-y-2">
@@ -406,18 +421,23 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
           {slide.punchLine && (
-            <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+              className="w-full"
+            >
               <div style={{ height: '1.5rem' }}></div>
               <div className="w-full">
                 <p className="text-xs md:text-sm font-normal text-gray-500 text-center px-2">
                   {slide.punchLine}
                 </p>
               </div>
-            </>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       )
     }
 
@@ -460,6 +480,9 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
       let widthClass = 'w-[85%] md:w-[47%]'
       if (index === 6) {
         widthClass = 'w-[95%] md:w-[70%]'
+      }
+      if (index === 8) {
+        widthClass = 'w-[100%] md:w-[75%]'
       }
       if (index === 9) {
         widthClass = 'w-[95%] md:w-[75%]'
@@ -564,7 +587,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
+        transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         className={wrapperClass}
       >
         {slide.body.map((line, i) => {

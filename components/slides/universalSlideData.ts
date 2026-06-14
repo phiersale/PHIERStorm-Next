@@ -140,7 +140,7 @@
       type: "image",
       imageSrc: "/images/Power_Concedes_Nothing_TEETH.png",
       imageAlt: "Power Concedes Nothing Without A Demand That Has Teeth - We Are The Teeth",
-      imageClassName: "w-full md:w-[85%] max-w-4xl mx-auto max-h-[calc(100vh-200px)] object-contain",
+      imageClassName: "w-[90%] md:w-[85%] max-w-4xl mx-auto max-h-[calc(100vh-200px)] object-contain",
       caption: "",
       captionClassName: "text-center text-green-400 text-lg md:text-xl font-bold mt-3"
     },
@@ -236,7 +236,8 @@
         { letter: "S", word: "SEAT" }
       ],
       customLayout: true,
-      punchLine: "Power Held In Every Representative's Seat (pronounced FIRES)"
+      punchLine: "Power Held In Every Representative's Seat (pronounced FIRES)",
+      className: "w-[85%] mx-auto"
     },
 
     // 15 — FINAL CTA
