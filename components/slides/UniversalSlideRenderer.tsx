@@ -361,7 +361,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
       // Original PHIERS acronym layout
       const acronymItems = slide.body as { letter: string; word: string }[]
       return (
-        <div className="flex flex-col items-center space-y-4 pb-6 pt-4 md:pt-0 -mt-4 md:-mt-12">
+        <div className="flex flex-col items-center space-y-4 pb-6 pt-4 md:pt-[12vh] -mt-4 md:mt-0">
           <div className="mb-2">
             <Image
               src="/images/PHIERS_Logo.png"

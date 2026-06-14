@@ -158,7 +158,13 @@ export default function Page() {
   }
 
   if (stage === 'transition') {
-    return <TransitionModal onShowFramework={() => { window.location.href = '/the-system' }} onSkipVideo={() => setStage('main')} />
+    return <TransitionModal 
+      onShowFramework={() => { window.location.href = '/the-system' }}
+      onSkipVideo={() => setStage('main')}
+      onSignPetition={() => {
+        window.open('https://forms.gle/WrpNNbwdGQG7Ton47', '_blank')
+      }}
+    />
   }
 
   return (

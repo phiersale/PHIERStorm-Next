@@ -1309,5 +1309,16 @@ h1, h2, h3, h4, h5, h6 {
   100% { opacity: 0.4; }
 }
 
+/* Mobile bottom menu collapse animation - for PathosCredibility page */
+.mobile-bottom-menu.collapsed {
+  display: none !important;
+}
+
+/* Ensure credibility page scrolls fully to bottom */
+.min-h-screen.bg-\[\#050b19\] {
+  min-height: 100vh;
+  height: auto;
+  overflow-y: visible;
+}
 
 /* FILE: app/globals.css */

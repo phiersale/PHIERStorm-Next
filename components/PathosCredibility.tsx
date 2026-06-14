@@ -159,10 +159,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             />
           </Link>
           <button
-            onClick={() => {
-              const mainContent = document.querySelector('main') || document.body
-              mainContent.scrollIntoView({ behavior: 'smooth' })
-            }}
+            onClick={() => onOpenTransitionModal?.()}
             className="text-gray-400 text-[10px] sm:text-xs hover:text-white transition"
           >
             Skip
@@ -213,7 +210,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         <a href="#cta" onClick={(e) => { e.preventDefault(); smoothScrollToElement('#cta'); }} className="hover:text-green transition-colors">Next</a>
       </div>
 
-      <motion.div id="top" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.14 } } }} className="w-full max-w-4xl mx-auto px-3 sm:px-4 pt-2 pb-20 md:pb-6 overflow-x-hidden">
+      <motion.div id="top" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.14 } } }} className="w-full max-w-4xl mx-auto px-3 sm:px-4 pt-2 pb-32 md:pb-6 overflow-x-hidden">
         
         <motion.div variants={sectionFade} className="flex justify-center mb-4">
           <img src="/images/PHIERS_Logo.png" alt="PHIERS" className="w-12 h-12 md:w-14 md:h-14 object-contain opacity-50" />
@@ -438,23 +435,6 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           </div>
         </motion.div>
       </motion.div>
-
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-lg border-t border-green/20 z-50 py-2 px-4">
-        <div className="flex justify-around items-center">
-          {[
-            { id: '#top', label: 'Top', icon: '↑' },
-            { id: '#videos', label: 'Videos', icon: '▶' },
-            { id: '#timeline', label: 'Timeline', icon: '📅' },
-            { id: '#shark', label: 'Shark', icon: '🦈' },
-            { id: '#cta', label: 'Act', icon: '⚡' }
-          ].map(item => (
-            <button key={item.id} onClick={() => smoothScrollToElement(item.id)} className="flex flex-col items-center gap-0.5 text-gray-400 hover:text-green transition-colors py-1 px-3 rounded-lg active:bg-green/10">
-              <span className="text-base">{item.icon}</span>
-              <span className="text-[10px]">{item.label}</span>
-            </button>
-          ))}
-        </div>
-      </div>
 
       {showShortcutToast && (
         <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-4 py-2 rounded-full shadow-xl z-50 animate-fadeIn">
