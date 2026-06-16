@@ -129,7 +129,7 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                   A petition is a request.
                 </p>
                 <p className="text-green font-bold text-sm sm:text-base">
-                  An organized district is leverage.
+                  An organized district is power.
                 </p>
                 <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-2">
                   500 people gets attention. 1,500 people changes behavior.
@@ -252,7 +252,7 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               <p>
                 They go hand in hand:  
                 500 creates leverage over leadership.  
-                1,500 creates leverage over legislation.
+                1,500 creates power over legislation.
               </p>
               
               <div className="bg-green/5 border-l-4 border-green p-4 my-4 italic">
