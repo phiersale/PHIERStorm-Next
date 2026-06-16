@@ -1,11 +1,11 @@
 // FILE: components/TransitionModal.tsx
-// VERSION: 4.0 – EVERGREEN SOLUTION DOORWAY
-// LAST UPDATED: June 16, 2026
+// VERSION: 4.1 – Mobile text width fix
 
 'use client'
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 type Props = {
   onShowFramework: () => void
@@ -23,20 +23,13 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
     }
   }, [showWhy500Modal])
 
-  // Get current date for timestamp
-  const lastUpdated = new Date().toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  })
-
   return (
     <>
       {/* Main Modal */}
       <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-sm">
         <div className="min-h-screen pt-4 pb-16 px-4">
           <motion.div
-            className="relative bg-[#0d1525] border border-green/20 rounded-2xl max-w-xl mx-auto shadow-2xl"
+            className="relative bg-[#0d1525] border border-green/20 rounded-2xl max-w-2xl mx-auto shadow-2xl"
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.2 }}
@@ -50,7 +43,7 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               />
             </div>
 
-            {/* HERO IMAGE - FIXED: using 500 version */}
+            {/* HERO IMAGE */}
             <div className="relative w-full overflow-hidden">
               <img 
                 src="/images/Alone_Youre_Easy_To_Ignore-500_fixes_it.jpg"
@@ -60,62 +53,124 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               <div className="absolute inset-0 bg-gradient-to-t from-[#0d1525] via-[#0d1525]/40 to-transparent"></div>
             </div>
 
-            {/* Content area */}
-            <div className="p-6 pt-4">
-              {/* TOP TAG */}
-              <div className="text-center mb-3">
-                <p className="text-green text-[10px] font-mono tracking-wider border-b border-green/20 pb-2 inline-block">
+            {/* Content */}
+            <div className="p-4 sm:p-6 pt-4">
+              {/* TAG */}
+              <div className="mb-3">
+                <p className="text-green text-[10px] font-mono tracking-wider text-center border-b border-gray-800 pb-1 inline-block w-full">
                   YOU'VE SEEN THE EVIDENCE
                 </p>
               </div>
 
               {/* HEADLINE */}
-              <h2 className="text-xl sm:text-2xl font-bold text-white text-center mb-2">
-                Now let's talk about the <span className="text-green">solution</span>.
+              <h2 className="text-lg sm:text-2xl font-bold text-white text-center mb-4 leading-snug">
+                Alone, You're Easy To Ignore.<br />
+                <span className="text-green">Organized Districts Are Not.</span>
               </h2>
 
-              {/* SUB-HEADLINE */}
-              <p className="text-gray-300 text-sm text-center leading-relaxed mb-4">
-                Most Americans already agree on what's broken. The challenge isn't identifying the problems — it's creating enough organized pressure to make Congress act.
-              </p>
-
-              {/* VIDEO EMBED */}
-              <div className="rounded-lg overflow-hidden mb-4 border border-green/20 bg-black" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-                <iframe
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                  src="https://www.youtube.com/embed/p0k_VMUDEms"
-                  title="PHIERS - Why This Moment Matters"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+              {/* OPEN */}
+              <div className="text-center mb-4">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  You've seen what's broken.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  Healthcare. Affordability. Corruption. Endless political theater.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-2">
+                  Most Americans agree these problems are real.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  The problem isn't awareness. The problem is leverage.
+                </p>
               </div>
 
-              {/* FINANCIAL SEED */}
+              {/* MOMENT BLOCK — Swappable */}
+              <section className="moment-block bg-red/10 border border-red/30 rounded-lg p-3 sm:p-4 mb-4">
+                <p className="text-red font-bold text-xs font-mono tracking-wider text-center mb-2">
+                  ⚡ THIS MOMENT
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed text-center">
+                  Congress is home right now.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed text-center">
+                  Representatives are back in the districts that elect them.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed text-center">
+                  For a brief moment, organized districts matter more than usual.
+                </p>
+                <p className="text-green font-bold text-sm sm:text-base text-center mt-2">
+                  That's an opportunity.
+                </p>
+              </section>
+
+              {/* VIDEO */}
+              <div className="rounded-lg overflow-hidden mb-4 border border-green/20">
+                <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/p0k_VMUDEms"
+                    title="PHIERS Transition Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+
+              {/* LEVERAGE */}
               <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-4">
-                <p className="text-green font-semibold text-sm mb-1">The math already works.</p>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Congress already spends about <span className="text-white font-semibold">$10,000 per beneficiary</span> each year. Modern telehealth can deliver most routine care for about <span className="text-green font-semibold">$600</span>. PHIERS organizes the political leverage needed to make solutions like that impossible to ignore.
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  Most petitions ask politicians to care.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  PHIERS measures whether a district can act together.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-2">
+                  A petition is a request.
+                </p>
+                <p className="text-green font-bold text-sm sm:text-base">
+                  An organized district is leverage.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-2">
+                  500 people gets attention. 1,500 people changes behavior.
                 </p>
               </div>
 
-              {/* 500/1500 BLOCK - Corrected Framing */}
-              <div className="space-y-3 mb-4">
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  <span className="text-green font-bold">500 signatures isn't the victory — it's the signal.</span>
+              {/* WHAT HAPPENS NEXT */}
+              <div className="border-l-2 border-green pl-3 sm:pl-4 my-4">
+                <p className="text-gray-400 text-xs font-mono tracking-wider mb-1">
+                  WHAT HAPPENS NEXT
                 </p>
-                <p className="text-gray-400 text-sm leading-relaxed pl-3 border-l-2 border-green/40">
-                  Ralph Nader showed that organized citizens can get elected officials to show up and listen. PHIERS uses that same principle to build district-level leverage.
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  The petition tells us who's willing to stand up.
                 </p>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  <span className="text-green font-bold">1,500 isn't the finish line — it's proof</span> a district can organize around what its constituents actually want.
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  The survey tells us what your district actually wants.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-2">
+                  Together they create something Congress almost never faces:
+                </p>
+                <p className="text-green font-bold text-sm sm:text-base">
+                  A measurable constituency.
                 </p>
               </div>
 
-              {/* URGENCY LINE - EVERGREEN (updated per feedback) */}
-              <div className="bg-yellow-950/30 border border-yellow-800/30 rounded-lg p-3 mb-4">
-                <p className="text-yellow-400 text-sm font-semibold text-center">
-                  ⚡ Representatives spend weeks every year back home in the districts that elect them. When they're home, organized constituents matter more than lobbyists.
+              {/* VISION */}
+              <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-4">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  Imagine Representatives knowing exactly what their district demands.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  Imagine knowing they can't pretend they didn't hear it.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-2">
+                  Imagine healthcare, affordability, accountability, and other priorities backed by organized constituents instead of isolated voices.
+                </p>
+                <p className="text-green font-bold text-sm sm:text-base mt-2">
+                  That's what PHIERS is building.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  Not a petition. A constituency.
                 </p>
               </div>
 
@@ -123,52 +178,33 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               {onSignPetition && (
                 <button
                   onClick={onSignPetition}
-                  className="w-full py-3 bg-green text-black rounded-lg text-base font-bold hover:bg-green-dim transition mb-2"
+                  className="w-full py-3 bg-white text-black rounded-lg text-base font-semibold hover:bg-gray-100 transition mb-3"
                 >
-                  Add Your Name — Be Counted in Your District
+                  Add Your Name — Be Counted In Your District
                 </button>
               )}
 
-              href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-2.5 border border-green/30 text-green text-sm font-medium rounded-lg hover:bg-green/10 transition mb-3 text-center block"
-              >
-                Ask a Question →
-              </a>
-
-              {/* TERTIARY CTA */}
-              <div className="text-center">
+              {/* Secondary Links */}
+              <div className="flex flex-col items-center gap-3">
+                <button
+                  onClick={() => setShowWhy500Modal(true)}
+                  className="text-green-400 text-sm sm:text-base underline hover:text-green-300 transition-colors"
+                >
+                  Why 500 Works →
+                </button>
                 <button
                   onClick={onShowFramework}
-                  className="text-gray-400 text-sm underline hover:text-gray-300 transition-colors"
+                  className="text-gray-400 text-sm sm:text-base underline hover:text-gray-300 transition-colors"
                 >
                   Show Me How PHIERS Works →
                 </button>
-              </div>
-
-              {/* WHY 500 LINK */}
-              <div className="text-center mt-3 pt-3 border-t border-gray-800">
-                <button
-                  onClick={() => setShowWhy500Modal(true)}
-                  className="text-gray-500 text-xs underline hover:text-gray-400 transition-colors"
-                >
-                  Why 500 Works (deep dive) →
-                </button>
-              </div>
-
-              {/* TIMESTAMP */}
-              <div className="text-center mt-4 pt-3 border-t border-gray-800/50">
-                <p className="text-gray-600 text-[9px] font-mono tracking-wider">
-                  Last updated: {lastUpdated}
-                </p>
               </div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* WHY 500? POPUP MODAL */}
+      {/* WHY 500? MODAL */}
       {showWhy500Modal && (
         <div
           className="fixed inset-0 z-[99999] bg-black/90 flex items-center justify-center p-4 overflow-y-auto why-500-modal"
@@ -200,40 +236,41 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
 
             <div className="space-y-4 text-gray-300 text-sm md:text-base leading-relaxed max-h-[55vh] sm:max-h-[60vh] overflow-y-auto pr-1">
               <p>
-                <strong className="text-green">500 is the signal that a district is awake.</strong>
+                <strong className="text-green">500 is the number that can change the Speaker in most congressional districts.</strong>
               </p>
               
               <p>
-                It's the first measurable proof that people in a district can move together. 
-                500 people organized around one thing is enough to force a meeting, force a position, and make leadership pay attention.
+                It's the first step — the proof that a district can move together.  
+                500 people organized around one thing is enough to force a meeting, force a position, and make leadership vulnerable.
               </p>
               
               <p>
-                Once a district can organize 500, then 1,500 becomes possible — 
-                and 1,500 is the proof that a district can organize around what its constituents actually want.
+                Once a district can organize 500, then 1,500 becomes possible —  
+                and 1,500 is the number that can turn the people's agenda into law.
               </p>
               
               <p>
-                They go hand in hand: 
-                500 signals attention. 
-                1,500 signals organization.
+                They go hand in hand:  
+                500 creates leverage over leadership.  
+                1,500 creates leverage over legislation.
               </p>
               
               <div className="bg-green/5 border-l-4 border-green p-4 my-4 italic">
-                <p className="mb-2">PHIERS is built on a simple observation:</p>
-                <p className="mb-2"><strong>If 500 people can organize around one thing, they can organize around something larger.</strong></p>
-                <p className="mb-2">A town hall. A public commitment. A vote. Accountability.</p>
-                <p>500 is not the finish line. It's the first measurable demonstration that a district can act together.</p>
+                <p className="mb-2">PHIERS is claiming: <strong>If 500 people can organize around one thing... like electing the next Speaker of the House</strong></p>
+                <p className="mb-2">...then 1,500 can organize around another... like Article 25 or impeachment.</p>
+                <p className="mb-2">Then districts can organize around healthcare, jobs, and rescinding tax cuts for the wealthy.</p>
+                <p className="mb-2">Then around war powers. Then corruption. Then affordability.</p>
+                <p className="mb-2">Everybody wins.</p>
               </div>
               
               <p className="text-yellow-400 text-sm font-semibold">
-                ⚡ When Congress is home, 500 people is enough to force a meeting — 
+                ⚡ When Congress is home, 500 people is enough to force a meeting —  
                 because the House alone chooses its Speaker, and leadership decides what ever gets a vote.
               </p>
 
               <p className="text-gray-300 text-sm leading-relaxed">
-                Once districts can organize 500 together, 1,500 becomes the number that can demand votes 
-                on a public, data‑driven reform package — <span className="text-green font-bold">the-system</span> — 
+                Once districts can organize 500 together, 1,500 becomes the number that can demand votes  
+                on a public, data‑driven reform package — <span className="text-green font-bold">the-system</span> —  
                 built from what Americans say they want fixed.
               </p>
               
@@ -252,13 +289,6 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
             >
               Got it. Let's go.
             </button>
-
-            {/* TIMESTAMP in Why 500 modal */}
-            <div className="text-center mt-4 pt-3 border-t border-gray-800/50">
-              <p className="text-gray-600 text-[9px] font-mono tracking-wider">
-                Last updated: {lastUpdated}
-              </p>
-            </div>
           </motion.div>
         </div>
       )}
