@@ -107,8 +107,8 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               <div className="rounded-lg overflow-hidden mb-4 border border-green/20">
                 <div className="relative" style={{ paddingBottom: '56.25%' }}>
                   <iframe
-                    src="https://www.youtube.com/embed/p0k_VMUDEms"
-                    title="PHIERS Transition Video"
+                    src="https://www.youtube.com/embed/4E21x1kEGnk"
+                    title="Connecting the Dots"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
