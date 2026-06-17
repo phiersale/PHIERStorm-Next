@@ -9,72 +9,13 @@ import Image from 'next/image';
 
 export default function ProphecyPage() {
   const [videoStarted, setVideoStarted] = useState(false);
-  const [showTrustModal, setShowTrustModal] = useState(false);
-
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
   return (
     <div className="bg-black text-white overflow-x-hidden">
-      {/* TRUST & PARTICIPATION MODAL */}
-      {showTrustModal && (
-        <div 
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
-          role="dialog"
-          aria-modal="true"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setShowTrustModal(false);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Escape') setShowTrustModal(false);
-          }}
-        >
-          <div className="relative max-w-2xl w-full bg-[#0d0d0d] border border-amber-500/30 rounded-2xl p-6 md:p-8 shadow-2xl overflow-y-auto max-h-[90vh]">
-            <p className="text-amber-400 text-sm font-semibold mb-4">
-              Before we go further — we used to lead with a petition. We don't anymore.
-            </p>
-            <p className="text-gray-300 text-base leading-relaxed mb-4">
-              Too many brothers said the same thing:
-            </p>
-            <p className="text-white italic text-lg mb-4">
-              "Before I sign anything, I need to know exactly what you're doing with my information."
-            </p>
-            <p className="text-gray-300 text-base leading-relaxed mb-4">
-              They were right to ask. So here it is — plain language, no fine print.
-            </p>
-            <div className="space-y-4 text-gray-300 text-base leading-relaxed mb-6">
-              <p><span className="text-amber-400 font-bold">1.</span> Nothing you share is public. Not a name. Not your email. Not your answers. We don't post it. We don't sell it. We don't pass it around.</p>
-              <p><span className="text-amber-400 font-bold">2.</span> Your email is optional. Want updates? Leave it. Don't? Leave it blank. You're still welcome here either way.</p>
-              <p><span className="text-amber-400 font-bold">3.</span> If an elected official ever asks whether Black men in their district are paying attention — we give them a number, not a list. A headcount, not identities. That's it.</p>
-              <p><span className="text-amber-400 font-bold">4.</span> This is not surveillance. We're not tracking you. We're not building profiles. This is a peaceful, lawful, transparent effort to help regular people get the accountability we've been denied for generations.</p>
-              <p><span className="text-amber-400 font-bold">5.</span> If anything feels off — ask. Push back. Challenge it. You deserve straight answers. You do not need to agree with PHIERS to participate.</p>
-            </div>
-            <p className="text-gray-300 text-base leading-relaxed mb-4">
-              Only engage when you feel fully comfortable with what we're doing and why.
-            </p>
-            <p className="text-gray-400 text-base leading-relaxed mb-6">
-              And if you're never comfortable — that's okay too. This only works if it's real.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => setShowTrustModal(false)}
-                className="inline-block bg-transparent border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 font-semibold py-3 px-8 rounded-lg transition whitespace-nowrap text-sm sm:text-base"
-              >
-                Not yet
-              </button>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition text-center whitespace-nowrap text-sm sm:text-base"
-              >
-                I'm ready — ask me →
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* STICKY HEADER */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800 py-2">
@@ -92,8 +33,8 @@ export default function ProphecyPage() {
         </div>
       </div>
 
-      {/* VIDEO HERO */}
-      <div id="video-section" className="mt-4">
+      {/* VIDEO HERO — FADE IN */}
+      <div id="video-section" className="mt-8 sm:mt-12 opacity-0 animate-prophecyFadeIn">
         <div className="text-center mt-4 mb-1">
           <p className="text-gray-500/50 text-[10px] sm:text-xs tracking-wide italic">
             Watch this first
@@ -145,8 +86,8 @@ export default function ProphecyPage() {
       </div>
 
 
-      {/* HERO TITLE */}
-      <div className="text-center pt-2 md:pt-4 pb-1 px-4">
+      {/* HERO TITLE — DELAYED FADE */}
+      <div className="text-center pt-2 md:pt-4 pb-1 px-4 opacity-0 animate-prophecyFadeInDelay">
         <p className="text-gray-500 text-[10px] sm:text-xs tracking-[0.25em] uppercase mt-8 mb-1">
           Gateway to the PHIERS Trilogy
         </p>
@@ -202,26 +143,46 @@ export default function ProphecyPage() {
           <p className="text-white text-xl md:text-2xl leading-relaxed font-light mt-4">
             When we get whole, everybody wins.
           </p>
-          <p className="text-green-400 text-lg md:text-xl font-semibold mt-8">
-            And it doesn't start with millions.
-            It starts with the first fifteen hundred.
-          </p>
-          <p className="text-green-400 text-lg md:text-xl font-semibold mt-2">
-            There are three doors.
-          </p>
-          <p className="text-gray-400 text-sm mt-3">
-            Choose the one that speaks to you.
-          </p>
-          <p className="text-gray-500 text-xs mt-2 italic">
-            No wrong door.
-          </p>
+       <p className="text-green-400 text-lg md:text-xl font-semibold mt-8">
+          And it doesn't start with millions.
+          It starts with the first fifteen hundred.
+        </p>
+
+        <p className="text-green-400 text-lg md:text-xl font-semibold mt-2">
+          There are three doors.
+        </p>
+
+        <p className="text-gray-400 text-sm mt-3">
+          Choose the one that speaks to you.
+        </p>
+
+        <p className="text-gray-500 text-xs mt-2 italic">
+          No wrong door.
+        </p>
+
+        {/* TRUST CUE — QUIET, HUMAN, NON‑CORPORATE */}
+        <p className="text-gray-600 text-[11px] mt-3">
+          Your choices stay yours. Nothing you do on this page is tracked.
+        </p>
+
+        {/* LEVER IMAGE — FADE‑IN ANIMATION */}
+        <div className="w-full flex justify-center mt-10 mb-10">
+          <img
+            src="/images/OUR_Lever_PHIERS_can_Move_the_World.png"
+            alt="PHIERS leverage illustration"
+            className="
+              w-full max-w-2xl rounded-lg shadow-lg shadow-green-400/10
+              opacity-0 animate-prophecyFadeIn
+            "
+          />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-          
-          {/* DOOR 1 — PROPHECY -> For_Black_Men */}
+        </div>
+
+        {/* THREE DOORS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-6">
           <a
-            href="/Prophecy/For_Black_Men"
+            href="/Prophecy/prophecy"
             className="w-full sm:flex-1 sm:min-w-[160px] bg-[#0a1628]/80 border-2 border-green-400/40 rounded-xl py-4 sm:py-5 px-3 text-center shadow-lg shadow-green-400/10 hover:border-green-400/80 hover:-translate-y-1 transition-all duration-300 cursor-pointer block"
           >
             <div className="flex flex-col items-center">
