@@ -168,7 +168,7 @@ export default function ProphecyPage() {
         {/* LEVER IMAGE — FADE‑IN ANIMATION */}
         <div className="w-full flex justify-center mt-10 mb-10">
           <img
-            src="/images/OUR_Lever_PHIERS_can_Move_the_World.png"
+            src="/images/OUR_Lever_PHIERS_Can_Move_the_World.jpg"
             alt="PHIERS leverage illustration"
             className="
               w-full max-w-2xl rounded-lg shadow-lg shadow-green-400/10

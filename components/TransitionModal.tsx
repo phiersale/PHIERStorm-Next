@@ -117,6 +117,21 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                 </div>
               </div>
 
+              {/* FINANCIAL SEED */}
+              <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-4">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  Congress already commits roughly
+                  <span className="text-green font-bold"> $10,000 per beneficiary</span> for healthcare.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-2">
+                  Telehealth can deliver most routine care for a fraction of that cost.
+                </p>
+                <p className="text-gray-400 text-xs mt-2">
+                  The challenge isn't whether solutions exist.
+                  The challenge is creating enough leverage to make Congress act.
+                </p>
+              </div>
+
               {/* LEVERAGE */}
               <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-4">
                 <p className="text-gray-300 text-sm sm:text-base leading-relaxed">

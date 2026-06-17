@@ -1,275 +1,528 @@
-// FILE: app/organizers/page.tsx - START
-
 'use client'
 
-import { useState, useCallback } from 'react'
-import Image from 'next/image'
+import { useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import UrgencyBanner from '@/components/UrgencyBanner'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
-import Button from '@/components/Button'
+import './organizers.css'
 
 export default function OrganizersPage() {
-  const [modalImage, setModalImage] = useState<string | null>(null)
+  const [showBackToTop, setShowBackToTop] = useState(false)
 
-  const openModal = (src: string) => {
-    setModalImage(src)
-    document.body.style.overflow = 'hidden'
-  }
+  useEffect(() => {
+    const handleScroll = () => setShowBackToTop(window.scrollY > 400)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-  const closeModal = () => {
-    setModalImage(null)
-    document.body.style.overflow = ''
-  }
-
-  // scrollToTop function with useCallback
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
   return (
-    <>
+    <div className="organizers-page">
+      <UrgencyBanner />
       <Navigation />
 
       <main>
-        {/* Hero */}
-        <div className="container section text-center pt-32">
-          <div className="relative h-[80px] w-auto mb-6 flex justify-center">
-            <Image
-              src="/images/PHIERS_Logo.png"
-              alt="PHIERS.org"
-              width={80}
-              height={80}
-              className="opacity-90"
-            />
-          </div>
-          {/* Two-tone H1 - FIXED */}
-          <h1 className="mb-4">
-            <span className="hero-white">You built the movement.</span>
-            <br />
-            <span className="hero-green">PHIERS gives it teeth.</span>
-          </h1>
-          <div className="max-w-[700px] mx-auto space-y-4">
-            <p className="text-gray-400">Every movement needs people on the ground — not as volunteers. As partners in a district-level pressure system Congress cannot ignore.</p>
-            <p className="text-gray-400">You already know what's missing. It's not people. It's not energy. It's the mechanism that converts that energy into something Congress can't wait out.</p>
-            <p className="font-condensed text-xl text-green font-bold">You fill their cup. PHIERS is what they do with the energy the morning after the rally.</p>
-          </div>
-          
-          <div className="max-w-[500px] mx-auto my-6">
-            <button onClick={() => openModal('/images/We_Gotz_Teeth_for_No_Kings.jpg')} className="cursor-pointer">
-              <Image
-                src="/images/We_Gotz_Teeth_for_No_Kings.jpg"
-                alt="We Got Teeth for No Kings — Power concedes nothing without a demand"
-                width={500}
-                height={300}
-                className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
-              />
-            </button>
-          </div>
-        </div>
 
-        <hr className="border-green/20" />
-
-        {/* Anchor Line - ADDED after Hero */}
-        <div className="container py-8 my-4 border-t-2 border-b-2 border-green/30 text-center">
-          <p className="font-display text-xl md:text-2xl text-white font-extrabold">
-            Nothing changes until ignoring people costs more than responding to them.<br />
-            <span className="text-green">PHIERS is how we raise that cost.</span>
+        {/* HERO */}
+        <div className="page-hero">
+          <span className="eyebrow font-condensed uppercase tracking-widest text-xs text-green-400">For Organizers Who Know Protests Aren't Enough</span>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">ORGANIZED PEOPLE CHANGE CONGRESS.<br /><span className="text-green-400">PROTESTS ARE ONLY THE BEGINNING.</span></h1>
+          <p className="font-body text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl">Eight million people marched. Millions more agree something is broken.</p>
+          <p className="hero-sub" style={{color:'var(--text-bright)'}}>
+            The question isn't whether people care.<br />
+            The question is whether that energy becomes leverage.
+          </p>
+          <p className="hero-sub" style={{color:'var(--green)'}}>
+            PHIERS turns attention into pressure.<br />
+            Pressure into accountability.<br />
+            Accountability into outcomes.
           </p>
         </div>
 
-        <hr className="border-green/20" />
+        <hr className="divider" />
 
-        {/* Your Role - Stat Grid */}
-        <section className="container section">
-          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">Your Role</span>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
-              <div className="text-3xl mb-2">🎯</div>
-              <h3 className="font-condensed font-bold text-xl text-gold mb-2">DISTRICT CAPTAIN</h3>
-              <p className="text-body text-sm">Lead the district-level pressure block. Coordinate signature collection. Build your team. Hit the 1,500 threshold that forces your representative to respond publicly — on the record.</p>
+        {/* Congress Is Home Banner */}
+        <section className="section py-12 md:py-16">
+          <div className="banner-block bg-red-600 text-white text-center p-6 md:p-8 rounded-xl">
+            <span className="font-condensed font-bold uppercase tracking-widest text-sm block mb-2">⚡ THE WINDOW IS OPEN</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">Congress Is Home Through June 22</h2>
+            <p className="font-body text-base md:text-lg text-white/90 max-w-2xl mx-auto">For one week, representatives are in their districts instead of Washington.</p>
+            <p className="font-body text-base md:text-lg text-white/90 max-w-2xl mx-auto mt-2">This is when organized constituents have the greatest ability to get noticed.</p>
+            <p className="font-condensed font-bold text-xl md:text-2xl text-yellow-400 mt-4">
+              The goal: 500 people in every district.
+            </p>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
+        {/* No Kings Bridge */}
+        <section className="section-alt bg-[#0a1628] border-y border-white/5 py-16 md:py-20">
+          <div className="inner max-w-3xl mx-auto px-4">
+            <span className="font-condensed uppercase tracking-widest text-xs text-green-400 block mb-2 text-center">The No Kings Bridge</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white text-center leading-tight">The No Kings Rallies Proved<br /><span className="text-yellow-400">Something Important.</span></h2>
+
+            <div className="grid grid-cols-2 gap-4 my-6">
+              {[
+                {icon:'👥', text:'People are ready.'},
+                {icon:'🔥', text:'People are angry.'},
+                {icon:'⚖️', text:'People want accountability.'},
+                {icon:'🗳️', text:'People want representation.'},
+              ].map(({icon,text}) => (
+                <div key={text} className="bg-[#111d35] border border-white/10 rounded-lg p-5 text-center">
+                  <div className="text-4xl mb-1">{icon}</div>
+                  <p className="font-body font-bold text-white text-base md:text-lg">{text}</p>
+                </div>
+              ))}
             </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
-              <div className="text-3xl mb-2">🏛️</div>
-              <h3 className="font-condensed font-bold text-xl text-gold mb-2">TOWN HALL COORDINATOR</h3>
-              <p className="text-body text-sm">Plan and execute the accountability event. Secure the venue. Coordinate media. Create the moment where your representative must answer to the people they represent. No spin. No escape. On the record.</p>
+
+            <div className="border-l-4 border-green-400 pl-4 py-3 my-5">
+              <p className="font-condensed text-xl md:text-2xl font-bold text-white">But protests create attention.<br />Organization creates leverage.</p>
             </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
-              <div className="text-3xl mb-2">📝</div>
-              <h3 className="font-condensed font-bold text-xl text-gold mb-2">SIGNATURE COLLECTOR</h3>
-              <p className="text-body text-sm">Go door-to-door. Attend community events. Gather the names that build district leverage. Every signature moves the needle. Every district closer to the threshold.</p>
+
+            <p className="font-body text-lg text-white mt-4">If you helped organize people into the streets,</p>
+            <p className="font-body text-lg text-white">help organize them into their districts.</p>
+            <p className="font-condensed font-bold text-xl text-green-400 mt-2">That's where Congress feels it.</p>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
+        {/* THIS WEEK'S OBJECTIVE */}
+        <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4">
+          <div className="border-2 border-yellow-400 bg-yellow-400/5 rounded-xl p-8 md:p-10 my-8">
+            <span className="font-condensed uppercase tracking-widest text-sm text-yellow-400 block mb-2 text-center">
+              THIS WEEK'S OBJECTIVE
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-yellow-400 text-center">
+              500 People Per District
+            </h2>
+            <div className="space-y-3 mt-4 text-center">
+              <p className="font-body text-base text-gray-300">PHIERS does not need millions all at once.</p>
+              <p className="font-body text-base text-gray-300">It needs enough people in enough districts to prove those districts can organize.</p>
+              <p className="font-body font-bold text-lg text-white mt-4">500 is not the victory.</p>
+              <p className="font-body font-bold text-lg text-white">500 is proof.</p>
             </div>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-5 text-center hover:border-green transition-all">
-              <div className="text-3xl mb-2">📱</div>
-              <h3 className="font-condensed font-bold text-xl text-gold mb-2">DIGITAL ORGANIZER</h3>
-              <p className="text-body text-sm">Spread the message. Build awareness. Connect people who already care but haven't been counted yet. Your network is the cascade.</p>
+            <div className="border-l-4 border-green-400 pl-4 py-2 mt-6 max-w-md mx-auto">
+              <p className="font-condensed text-xl font-bold text-white">Organized districts create leverage.</p>
             </div>
           </div>
         </section>
 
-        <hr className="border-green/20" />
+        <hr className="divider" />
 
-        {/* What Your Organization Gets */}
-        <section className="bg-bg-dark border-y border-green/10 section">
-          <div className="container text-center">
-            <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">What Your Organization Gets</span>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-[800px] mx-auto">
-              <div className="bg-bg-card border border-green/20 rounded-lg p-3 text-center">
-                <div className="font-display text-2xl text-green">$9,400+</div>
-                <p className="text-body text-xs">Annual savings per member (climbing as war drives up costs)</p>
-              </div>
-              <div className="bg-bg-card border border-green/20 rounded-lg p-3 text-center">
-                <div className="font-display text-2xl text-green">1,500</div>
-                <p className="text-body text-xs">Signatures triggers mandatory public town hall — less than 0.5% of most districts</p>
-              </div>
-              <div className="bg-bg-card border border-green/20 rounded-lg p-3 text-center">
-                <div className="font-display text-2xl text-green">$0</div>
-                <p className="text-body text-xs">Cost to partner with PHIERS</p>
-              </div>
-              <div className="bg-bg-card border border-green/20 rounded-lg p-3 text-center">
-                <div className="font-display text-2xl text-green">3.5%</div>
-                <p className="text-body text-xs">The threshold that has never failed in 323 campaigns</p>
-              </div>
-            </div>
-            
-            <div className="max-w-[500px] mx-auto my-6">
-              <button onClick={() => openModal('/images/Power of the People Stronger than People in Power.jpg')} className="cursor-pointer">
-                <Image
-                  src="/images/Power of the People Stronger than People in Power.jpg"
-                  alt="Power of the People Stronger than People in Power"
-                  width={500}
-                  height={300}
-                  className="w-full h-auto rounded-lg border border-green/20 hover:scale-[1.01] transition-transform"
-                />
-              </button>
-            </div>
-          </div>
-        </section>
+        {/* Accordions */}
+        <div className="accordion-wrapper">
+          {/* Instruction */}
+          <p className="text-sm text-gray-500 mb-4 text-center">
+            Tap any section below to expand.
+          </p>
 
-        <hr className="border-green/20" />
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">Why organizers matter right now</span>
+                <span className="accordion-summary text-gray-400 text-sm">Constitutional crisis, social programs, war powers, authoritarian drift, and disappearing accountability.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
+                <span className="eyebrow">Why Organizers Matter Right Now</span>
+                <h2>You Already Know<br /><span className="red">The Stakes.</span></h2>
+                <ul style={{listStyle:'none',padding:0,margin:'20px 0'}}>
+                  {[
+                    'Congress is failing to protect Social Security, Medicare, Medicaid, and SNAP.',
+                    'Voting rights are being restricted in state after state.',
+                    'War powers are being abused without congressional authorization.',
+                    'Presidents of both parties have expanded executive power beyond constitutional limits.',
+                    'The 25th Amendment has become a political football instead of a safeguard.',
+                    'Corruption, donor capture, and lobbyist influence have replaced representation.',
+                    'Authoritarian drift is accelerating.',
+                    'Congress avoids votes on issues the public overwhelmingly supports.',
+                    'Crises pile up while accountability disappears.',
+                  ].map((item, i) => (
+                    <li key={i} style={{padding:'10px 0 10px 28px',borderBottom:'1px solid rgba(255,255,255,0.05)',position:'relative',color:'var(--text-body)',fontSize:'0.97rem'}}>
+                      <span style={{position:'absolute',left:0,color:'var(--red)'}}>•</span> {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="peer-block" style={{marginTop:'30px'}}>
+                  <span className="peer-label">This Isn't a Moment for Spectators</span>
+                  <p>It's a moment for organizers.</p>
+                  <p>Movements don't fail because people don't care.</p>
+                  <p>Movements fail because they don't convert attention into organized, measurable, district-level pressure.</p>
+                  <p style={{fontFamily:'var(--font-condensed)',fontWeight:700,fontSize:'1.1rem',color:'var(--green)',marginTop:'8px'}}>That's what PHIERS exists to fix.</p>
+                </div>
+              </section>
+            </div>
+          </details>
 
-        {/* The Ask */}
-        <section className="container section">
-          <span className="font-condensed font-bold text-green text-sm uppercase tracking-wider block mb-3">The Ask — Three Things</span>
-          <div className="space-y-4 max-w-[600px] mx-auto">
-            <div className="flex gap-4 items-start">
-              <div className="font-display text-3xl text-green min-w-[50px]">01</div>
-              <div><p className="text-white font-bold">Send your members the petition link.</p><p className="text-body text-sm">One email. You know how to reach them.</p></div>
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">The opportunity</span>
+                <span className="accordion-summary text-gray-400 text-sm">Congress is home. District offices are open. This is when organizers can move districts.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
+                <div className="opportunity-block">
+                  <span className="opp-label">⭐ The Opportunity</span>
+                  <h2>This Is The Window.</h2>
+                  <p>Congress is home. District offices are open. Town halls matter. Local visibility matters. Organized constituents matter.</p>
+                  <p style={{color:'var(--text-bright)',fontWeight:700,marginTop:'16px'}}>When Representatives are in Washington, they're insulated.</p>
+                  <p style={{color:'var(--text-bright)',fontWeight:700}}>When they're home, they're accountable.</p>
+                  <p style={{fontFamily:'var(--font-condensed)',fontWeight:700,fontSize:'1.2rem',color:'var(--gold)',marginTop:'16px'}}>This is when organizers can move districts.</p>
+                </div>
+              </section>
             </div>
-            <div className="flex gap-4 items-start">
-              <div className="font-display text-3xl text-green min-w-[50px]">02</div>
-              <div><p className="text-white font-bold">Tell them why in your words.</p><p className="text-body text-sm">Your credibility is what they trust. The math does the rest.</p></div>
-            </div>
-            <div className="flex gap-4 items-start">
-              <div className="font-display text-3xl text-green min-w-[50px]">03</div>
-              <div><p className="text-white font-bold">Reach out so we can coordinate.</p><p className="text-body text-sm">When your district hits the threshold, your members need to be in the room.</p></div>
-            </div>
-          </div>
-        </section>
+          </details>
 
-        <hr className="border-green/20" />
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">The math</span>
+                <span className="accordion-summary text-gray-400 text-sm">500 proves a district can act together. 1,500 creates sustained leverage.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section-alt" style={{paddingTop:'40px',paddingBottom:'40px'}}>
+                <div className="inner">
+                  <span className="eyebrow">⭐ The Math</span>
+                  <h2>500 People Proves a District<br /><span className="gold">Can Act Together.</span></h2>
+                  <div className="math-grid">
+                    <div className="math-card">
+                      <div className="math-number">500</div>
+                      <h3>Proves a district can act together</h3>
+                      <p>This is the first milestone. It shows your district can organize around shared demands.</p>
+                    </div>
+                    <div className="math-card">
+                      <div className="math-number">1,500</div>
+                      <h3>Creates sustained leverage</h3>
+                      <p>This is when representatives can no longer ignore your district.</p>
+                    </div>
+                  </div>
+                  <p style={{fontSize:'1.05rem',color:'var(--text-bright)',marginTop:'16px'}}>At scale, that's how hearings happen.</p>
+                  <p style={{fontSize:'1.05rem',color:'var(--text-bright)'}}>That's how votes happen.</p>
+                  <p style={{fontSize:'1.05rem',color:'var(--text-bright)'}}>That's how legislation happens.</p>
+                  <div className="pull-quote" style={{marginTop:'20px'}}>
+                    <p>Districts move Congress.<br />Organizers move districts.</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </details>
+
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">Your role</span>
+                <span className="accordion-summary text-gray-400 text-sm">Every district needs captains, digital organizers, signature collectors, town hall coordinators, and community leads.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
+                <span className="eyebrow">⭐ Your Role</span>
+                <h2>Every District Needs<br /><span className="green">Organizers Like You.</span></h2>
+                <div className="role-grid">
+                  {[
+                    {icon:'🏛️', title:'District Captains', desc:"Lead your district's push to 500 and beyond"},
+                    {icon:'📱', title:'Digital Organizers', desc:'Coordinate online outreach and social campaigns'},
+                    {icon:'✍️', title:'Signature Collectors', desc:'Turn conversations into signatures'},
+                    {icon:'🎤', title:'Town Hall Coordinators', desc:'Pack the room and ask the questions'},
+                    {icon:'🤝', title:'Community Leads', desc:'Connect with local groups, unions, and faith communities'},
+                  ].map(({icon,title,desc}) => (
+                    <div key={title} className="role-card">
+                      <div className="role-icon">{icon}</div>
+                      <h3>{title}</h3>
+                      <p>{desc}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="peer-block" style={{marginTop:'20px'}}>
+                  <span className="peer-label">You Are Exactly Who This Moment Needs</span>
+                  <p>If you've ever organized a march, a rally, a protest, a campus action, a union drive, a mutual aid network, or a community group — you have the skills. You have the network. You have the credibility.</p>
+                  <p style={{fontFamily:'var(--font-condensed)',fontWeight:700,fontSize:'1.1rem',color:'var(--green)',marginTop:'8px'}}>This is what you've been training for.</p>
+                </div>
+              </section>
+            </div>
+          </details>
+
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">How to get to 500</span>
+                <span className="accordion-summary text-gray-400 text-sm">The quick-win playbook for proving your district can act together.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section-alt" style={{paddingTop:'40px',paddingBottom:'40px'}}>
+                <div className="inner">
+                  <span className="eyebrow">⭐ The Quick Win Playbook</span>
+                  <h2>How to Get to <span className="gold">500</span></h2>
+                  <p style={{fontSize:'1.05rem',color:'var(--text-bright)',marginBottom:'20px'}}>500 is the first milestone. It proves your district can act together.</p>
+
+                  {/* Organizer Reach Block */}
+                  <div className="peer-block" style={{
+                    borderLeftColor: 'var(--gold)',
+                    marginBottom: '20px'
+                  }}>
+                    <span className="peer-label" style={{color:'var(--gold)'}}>
+                      Most Organizers Already Have Enough Reach
+                    </span>
+                    <p>
+                      If you manage a mailing list, Facebook group, Discord, union chapter,
+                      congregation, activist network, campus group, or community organization,
+                      your network may already contain enough people to move your district toward 500.
+                    </p>
+                    <p>
+                      The challenge is coordination, not awareness.
+                    </p>
+                  </div>
+
+                  <div className="playbook-section">
+                    <h3>Here's how organizers get there fast:</h3>
+                    <ul>
+                      {[
+                        'Send the petition + survey to your list',
+                        'Send it to your group chats',
+                        'Post it in local Facebook groups',
+                        'Share it in community Discords',
+                        'Share it in neighborhood forums',
+                        'Bring it to local events',
+                        'Table at campuses, libraries, and community centers',
+                        'Coordinate with other organizers in your district',
+                        'Run a 48-hour "district push"',
+                        'Celebrate milestones publicly',
+                      ].map((item, i) => <li key={i}>{item}</li>)}
+                    </ul>
+                  </div>
+                  <div className="pull-quote">
+                    <p>500 is not the finish line.<br /><span style={{color:'var(--gold)'}}>It's the signal.</span></p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </details>
+
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">How to get to 1,500</span>
+                <span className="accordion-summary text-gray-400 text-sm">The sustained leverage playbook.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
+                <span className="eyebrow">⭐ The Sustained Leverage Playbook</span>
+                <h2>How to Get to <span className="gold">1,500</span></h2>
+                <p style={{fontSize:'1.05rem',color:'var(--text-bright)',marginBottom:'20px'}}>
+                  1,500 is when your district becomes <span style={{color:'var(--red)',fontWeight:700}}>impossible to ignore.</span>
+                </p>
+                <div className="playbook-section">
+                  <h3>Here's how organizers get there:</h3>
+                  <ul>
+                    {[
+                      'Weekly outreach pushes','Weekly digital blasts','Town hall turnout',
+                      'Local visibility actions','Community partnerships','Campus outreach',
+                      'Faith community outreach','Union outreach','Local press engagement',
+                      'Escalation ladder (below)',
+                    ].map((item, i) => <li key={i}>{item}</li>)}
+                  </ul>
+                </div>
+                <div style={{background:'var(--bg-card)',border:'1px solid var(--green)',borderRadius:'8px',padding:'20px',marginTop:'16px'}}>
+                  {[
+                    '1,500 is when Representatives start paying attention.',
+                    '1,500 is when Senators start paying attention.',
+                    '1,500 is when hearings become possible.',
+                    '1,500 is when votes become possible.',
+                  ].map((item, i) => (
+                    <p key={i} style={{margin:0,fontSize:'0.95rem',color:'var(--text-bright)'}}>
+                      <span style={{color:'var(--green)',fontWeight:700}}>✓</span> {item}
+                    </p>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </details>
+
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">Escalation ladder</span>
+                <span className="accordion-summary text-gray-400 text-sm">How districts escalate pressure in stages.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section-alt" style={{paddingTop:'40px',paddingBottom:'40px'}}>
+                <div className="inner">
+                  <span className="eyebrow">⭐ The Escalation Ladder</span>
+                  <h2>Districts Escalate<br /><span className="gold">In Stages.</span></h2>
+                  <ol className="escalation-list">
+                    {[
+                      ['Visibility','Make your district known'],
+                      ['Town hall turnout','Pack the room'],
+                      ['Public questions','Put them on the record'],
+                      ['Local press','Make it impossible to ignore'],
+                      ['District-wide mobilization','Coordinate across the district'],
+                      ['Coalition pressure','Bring in unions, faith groups, community orgs'],
+                      ['Accountability moments','Document everything'],
+                      ['Hearings + votes','Win'],
+                    ].map(([title, desc], i) => (
+                      <li key={i}>
+                        <span className="escalation-num">{String(i+1).padStart(2,'0')}</span>{' '}
+                        <strong>{title}</strong> — {desc}
+                      </li>
+                    ))}
+                  </ol>
+                  <div className="pull-quote">
+                    <p>Organizers drive every stage.</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </details>
+
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">Outreach kit</span>
+                <span className="accordion-summary text-gray-400 text-sm">Share text, email copy, social copy, and scripts.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
+                <span className="eyebrow">⭐ Outreach Kit</span>
+                <h2>Ready-to-Use<br /><span className="green">Messages.</span></h2>
+                {[
+                  {title:'Share Text', body:'"Add your name. Tell Congress what our district wants. Help make our district impossible to ignore."'},
+                  {title:'Email Copy', body:'"Eight million marched. Now it\'s time to organize. Add your name and complete the district survey so we can show Congress exactly what our district demands."'},
+                  {title:'Social Copy', body:'"Congress is home. This is the moment when district-level pressure works. Add your name and help our district be heard."'},
+                ].map(({title, body}) => (
+                  <div key={title} className="outreach-item">
+                    <h4>{title}</h4>
+                    <p>{body}</p>
+                  </div>
+                ))}
+                <div className="outreach-item">
+                  <h4>Scripts</h4>
+                  <ul>
+                    <li>"Have you seen the PHIERS petition? It's not a petition — it's a measurement tool."</li>
+                    <li>"We're trying to get our district to 500 signatures this week."</li>
+                    <li>"This is how we show Congress what our district actually wants."</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+          </details>
+
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">What happens after 500</span>
+                <span className="accordion-summary text-gray-400 text-sm">District coordination and pressure begin.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section-alt" style={{paddingTop:'40px',paddingBottom:'40px'}}>
+                <div className="inner">
+                  <span className="eyebrow">⭐ What Happens After 500</span>
+                  <h2>500 Is <span className="gold">The Signal.</span></h2>
+                  <div className="happens-grid">
+                    <div className="happens-card">
+                      <h3>After 500</h3>
+                      <ul>
+                        <li>District captain coordination begins</li>
+                        <li>Town hall pressure intensifies</li>
+                        <li>Representative response tracking starts</li>
+                        <li>Local visibility actions launch</li>
+                        <li>Weekly mobilization pushes commence</li>
+                      </ul>
+                      <div className="happens-signal">⚡ It shows your district can act together.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </details>
+
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">What happens after 1,500</span>
+                <span className="accordion-summary text-gray-400 text-sm">Hearings, votes, and legislation become possible.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
+                <span className="eyebrow">⭐ What Happens After 1,500</span>
+                <h2>1,500 Is <span className="gold">Sustained Leverage.</span></h2>
+                <div className="happens-grid">
+                  <div className="happens-card" style={{borderColor:'var(--green)'}}>
+                    <h3>After 1,500</h3>
+                    <ul>
+                      <li>Hearings become possible</li>
+                      <li>Votes become possible</li>
+                      <li>Legislation becomes possible</li>
+                      <li>National coalition building begins</li>
+                      <li>Districts start shaping the national agenda</li>
+                    </ul>
+                    <div className="happens-signal" style={{color:'var(--red)'}}>🔥 It's when Congress can no longer ignore your district.</div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </details>
+
+        </div> {/* end accordion-wrapper */}
 
         {/* Final CTA */}
-        <section className="container section text-center">
-          <div className="bg-bg-dark border border-green/20 rounded-xl p-6 max-w-[600px] mx-auto">
-            <p className="font-condensed text-lg text-gold font-bold mb-3">District counts begin compiling immediately.</p>
-            <p className="text-body mb-4">Start building your district. Add your name. Check "I'm willing to organize." We'll connect you directly with your district team.</p>
-            <div className="flex flex-col gap-3 max-w-md mx-auto">
-              <Button href="/petition" variant="primary" fullWidth>ADD MY NAME + VOLUNTEER</Button>
+        <section className="section py-16 max-w-3xl mx-auto px-4">
+          <div className="border-2 border-green-400 rounded-xl p-8 md:p-12 text-center bg-gradient-to-br from-green-400/5 to-transparent">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-green-400">ORGANIZE YOUR DISTRICT</h2>
+            <p className="font-body text-base text-gray-300 mt-4 max-w-xl mx-auto">Congress is home right now. This is when local pressure matters most.</p>
+            <p className="font-condensed font-bold text-lg text-white mt-3">
+              Help your district become impossible to ignore.
+            </p>
+            <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'24px auto 0'}}>
+              <Link href="/petition" className="btn-primary">✍ Add Your Name — Be Counted</Link>
+              <a href="mailto:info@phiers.org" className="btn-secondary">✉️ Partner With PHIERS — Email Us</a>
+              <Link href="/" className="btn-secondary">← Back to PHIERS Main</Link>
             </div>
-            <p className="text-gray-500 text-sm mt-4">📧 info@phiers.org · 📞 (916) 306-8967<br />We respond to every organizer inquiry.</p>
+            <p className="font-condensed font-bold text-base text-yellow-400 mt-6">
+              📧 <a href="mailto:info@phiers.org" className="text-yellow-400 hover:text-yellow-300 transition">info@phiers.org</a>
+              {' '}·{' '}
+              📞 (916) 306-8967
+            </p>
           </div>
         </section>
+
       </main>
 
       <Footer />
 
-      {/* Image Modal */}
-      <AnimatePresence>
-        {modalImage && (
-          <motion.div
-            className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-          >
-            <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-              <button
-                onClick={closeModal}
-                className="absolute -top-10 right-0 text-white text-3xl cursor-pointer hover:text-green transition-colors"
-              >
-                ✕
-              </button>
-              <Image
-                src={modalImage}
-                alt="Enlarged view"
-                width={800}
-                height={600}
-                className="rounded-xl"
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Back-to-top button - FIXED to use scrollToTop */}
-      <button 
+      <button
         onClick={scrollToTop}
-        className="back-to-top"
-        id="back-to-top"
+        className={`back-to-top${showBackToTop ? ' visible' : ''}`}
         aria-label="Back to top"
       >
         ↑
       </button>
-
-      <style jsx global>{`
-        .back-to-top {
-          position: fixed;
-          bottom: 24px;
-          right: 24px;
-          background: var(--green);
-          color: var(--bg-deep);
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 24px;
-          cursor: pointer;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 150ms ease;
-          z-index: 999;
-          border: none;
-        }
-        .back-to-top.visible {
-          opacity: 1;
-          visibility: visible;
-        }
-        .back-to-top:hover {
-          background: #2ab568;
-          transform: translateY(-2px);
-        }
-      `}</style>
-
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          window.addEventListener('scroll', function() {
-            var btt = document.getElementById('back-to-top');
-            if (btt) {
-              if (window.scrollY > 400) {
-                btt.classList.add('visible');
-              } else {
-                btt.classList.remove('visible');
-              }
-            }
-          });
-        `
-      }} />
-    </>
+    </div>
   )
 }
 
