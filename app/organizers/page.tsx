@@ -30,17 +30,21 @@ export default function OrganizersPage() {
         {/* HERO */}
         <div className="page-hero">
           <span className="eyebrow font-condensed uppercase tracking-widest text-xs text-green-400">For Organizers Who Know Protests Aren't Enough</span>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">ORGANIZED PEOPLE CHANGE CONGRESS.<br /><span className="text-green-400">PROTESTS ARE ONLY THE BEGINNING.</span></h1>
-          <p className="font-body text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl">Eight million people marched. Millions more agree something is broken.</p>
-          <p className="hero-sub" style={{color:'var(--text-bright)'}}>
-            The question isn't whether people care.<br />
-            The question is whether that energy becomes leverage.
-          </p>
-          <p className="hero-sub" style={{color:'var(--green)'}}>
-            PHIERS turns attention into pressure.<br />
-            Pressure into accountability.<br />
-            Accountability into outcomes.
-          </p>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
+            You built the movement.<br />
+            <span className="text-green-400">PHIERS gives it teeth.</span>
+          </h1>
+          <div className="max-w-2xl space-y-4 mt-4">
+            <p className="hero-sub" style={{color:'var(--text-bright)'}}>
+              Every movement needs people on the ground — not as volunteers. As partners in a district-level pressure system Congress cannot ignore.
+            </p>
+            <p className="hero-sub" style={{color:'var(--text-body)'}}>
+              You already know what's missing. It's not people. It's not energy. It's the mechanism that converts that energy into something Congress can't wait out.
+            </p>
+            <p className="hero-sub" style={{color:'var(--green)'}}>
+              You fill their cup. PHIERS is what they do with the energy the morning after the rally.
+            </p>
+          </div>
         </div>
 
         <hr className="divider" />
