@@ -1,9 +1,6 @@
 // FILE: app/Prophecy/layout.tsx
 // VERSION: 1.2 – Added SurveyBanner and ProphecyReturningModal
 
-// import SurveyBanner from '@/components/SurveyBanner'; // REMOVED - banner no longer shows on Prophecy pages
-import ProphecyReturningModal from '@/components/ProphecyReturningModal';
-
 export default function ProphecyLayout({
   children,
 }: {
@@ -21,7 +18,6 @@ export default function ProphecyLayout({
       <div className="relative z-10">
         {/* <SurveyBanner storagePrefix="prophecy_" /> - REMOVED */}
         {children}
-        <ProphecyReturningModal />
       </div>
     </div>
   );
