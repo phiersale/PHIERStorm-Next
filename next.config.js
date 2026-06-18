@@ -28,18 +28,30 @@ const nextConfig = {
         source: '/Petition',
         destination: '/Prophecy',
       },
-      {
-        source: '/prophecy',
-        destination: '/Prophecy',
-      },
-      {
-        source: '/prophecy/:path*',
-        destination: '/Prophecy/:path*',
-      },
     ];
   },
   async redirects() {
     return [
+      {
+        source: '/prophecy',
+        destination: '/Prophecy',
+        permanent: true,
+      },
+      {
+        source: '/prophecy/:path*',
+        destination: '/Prophecy/:path*',
+        permanent: true,
+      },
+      {
+        source: '/prophesy',
+        destination: '/Prophecy',
+        permanent: true,
+      },
+      {
+        source: '/prophesy/:path*',
+        destination: '/Prophecy/:path*',
+        permanent: true,
+      },
       {
         source: '/petition/:path*',
         destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/:path*',
