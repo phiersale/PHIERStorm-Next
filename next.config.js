@@ -3,9 +3,8 @@ const nextConfig = {
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
   images: { unoptimized: true },
-  // Removed experimental settings to fix memory heap errors
+
   webpack: (config, { isServer }) => {
-    // Optimize memory usage
     if (!isServer) {
       config.optimization = {
         ...config.optimization,
@@ -18,20 +17,10 @@ const nextConfig = {
     }
     return config;
   },
-  async rewrites() {
-    return [
-      {
-        source: '/petition',
-        destination: '/Prophecy',
-      },
-      {
-        source: '/Petition',
-        destination: '/Prophecy',
-      },
-    ];
-  },
+
   async redirects() {
     return [
+      // Normalize lowercase "prophecy" to the canonical route
       {
         source: '/prophecy',
         destination: '/Prophecy',
@@ -42,11 +31,15 @@ const nextConfig = {
         destination: '/Prophecy/:path*',
         permanent: true,
       },
+
+      // Petition → external app
       {
         source: '/petition/:path*',
         destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/:path*',
         permanent: false,
       },
+
+      // Survey → external app
       {
         source: '/survey',
         destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/survey',
