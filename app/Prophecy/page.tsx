@@ -1,5 +1,5 @@
 // FILE: app/Prophecy/page.tsx
-// v81 — The Gateway page with Three Doors linking to For_Black_Men
+// v85 — Added LEver picture and note above video best expereinced from the beginning
 
 'use client';
 
@@ -35,6 +35,10 @@ export default function ProphecyPage() {
 
       {/* VIDEO HERO — FADE IN */}
       <div id="video-section" className="mt-8 sm:mt-12 opacity-0 animate-prophecyFadeIn">
+        {/* QUIET CUE — sets expectation without breaking the spell */}
+        <p className="text-gray-400/60 text-xs tracking-wide text-center mb-3 mt-2">
+          Best experienced from the beginning.
+        </p>
         <div className="text-center mt-4 mb-1">
           <p className="text-gray-500/50 text-[10px] sm:text-xs tracking-wide italic">
             Watch this first
