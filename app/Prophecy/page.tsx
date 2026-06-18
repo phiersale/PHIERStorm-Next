@@ -168,16 +168,27 @@ export default function ProphecyPage() {
           Your choices stay yours. Nothing you do on this page is tracked.
         </p>
 
-        {/* LEVER IMAGE — FADE‑IN ANIMATION */}
-        <div className="w-full flex justify-center mt-10 mb-10">
-          <img
-            src="/images/OUR_Lever_PHIERS_Can_Move_the_World.jpg"
-            alt="PHIERS leverage illustration"
-            className="
-              w-full max-w-2xl rounded-lg shadow-lg shadow-green-400/10
-              opacity-0 animate-prophecyFadeIn
-            "
-          />
+           {/* LEVER IMAGE — CINEMATIC WITH CAPTION */}
+        <div className="flex flex-col items-center bg-[#0B0B0B] w-full mt-10 mb-10 opacity-0 animate-prophecyFadeIn">
+          <div className="w-full max-w-3xl mx-auto">
+            <Image
+              src="/images/OUR_Lever_PHIERS_Can_Move_the_World.jpg"
+              alt="PHIERS leverage artwork"
+              width={1200}
+              height={800}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+          <p
+            className="text-white/90 text-center font-black tracking-wider mt-8 mb-4 text-[48px] max-[640px]:text-[34px]"
+            style={{
+              fontFamily: 'Segoe UI Black, Segoe UI, sans-serif',
+              lineHeight: '1.0',
+            }}
+          >
+            PHIERS
+          </p>
         </div>
 
         </div>
