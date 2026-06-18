@@ -1345,4 +1345,13 @@ h1, h2, h3, h4, h5, h6 {
   animation: prophecyFadeIn 1.5s ease-out 0.5s forwards;
 }
 
+@keyframes fadeInDivider {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fadeInDivider {
+  animation: fadeInDivider 1.2s ease-out 0.3s forwards;
+}
+
 /* FILE: app/globals.css */

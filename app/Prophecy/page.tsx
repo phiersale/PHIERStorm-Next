@@ -246,8 +246,13 @@ export default function ProphecyPage() {
         </div>
       </div>
 
+      {/* MOBILE‑ONLY FADE‑IN DIVIDER — clean boundary after the threshold */}
+      <div className="sm:hidden w-full flex justify-center my-12 opacity-0 animate-fadeInDivider">
+        <div className="w-24 h-px bg-gray-800/70"></div>
+      </div>
+
       {/* INCLUSIVE WELCOME NOTE */}
-      <div className="max-w-2xl mx-auto px-6 text-center mt-8 mb-16">
+      <div className="max-w-2xl mx-auto px-6 text-center mt-10 mb-16">
         <p className="text-gray-500 text-sm leading-relaxed italic">
           If you are not a Black man, you are still welcome here.
           Just hold that in mind as we recover and repair —
@@ -257,15 +262,22 @@ export default function ProphecyPage() {
       </div>
 
       {/* FOOTER */}
-     <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm mt-16">
-    <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
-    <div className="w-16 h-px bg-gray-700 mx-auto my-4" />
-    <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition">
-      <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-8 h-auto" />
-      <span className="text-xs hover:text-white transition">PHIERS.org →</span>
-    </a>
-    <p className="mt-4 text-gray-600 text-xs">Participation is voluntary. PHIERS is a peaceful civic engagement effort.</p>
-  </footer>
+      <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm mt-20">
+        <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
+        <div className="w-16 h-px bg-gray-700 mx-auto my-4" />
+        <a
+          href="https://phiers.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition"
+        >
+          <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-8 h-auto" />
+          <span className="text-xs hover:text-white transition">PHIERS.org →</span>
+        </a>
+        <p className="mt-4 text-gray-600 text-xs">
+          Participation is voluntary. PHIERS is a peaceful civic engagement effort.
+        </p>
+      </footer>
     </div>
   );
 }
