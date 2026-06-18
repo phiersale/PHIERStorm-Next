@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .balanced-text {
+    text-wrap: balance;
+    max-width: 42ch;
+    margin-inline: auto;
+  }
+}
+
 /* Base mobile-first settings */
 html, body {
   max-width: 100%;

@@ -143,12 +143,11 @@ export default function ProphecyPage() {
           <p className="text-white text-xl md:text-2xl leading-relaxed font-light mt-4">
             When we get whole, everybody wins.
           </p>
-       <p className="text-green-400 text-lg md:text-xl font-semibold mt-8">
-          And it doesn't start with millions.
-          It starts with the first fifteen hundred.
+       <p className="balanced-text text-green-400 text-lg md:text-xl font-semibold mt-8">
+          And it doesn't start with millions. It starts with the first fifteen hundred.
         </p>
 
-        <p className="text-green-400 text-lg md:text-xl font-semibold mt-2">
+        <p className="balanced-text text-green-400 text-lg md:text-xl font-semibold mt-2">
           There are three doors.
         </p>
 
