@@ -3,7 +3,6 @@ const nextConfig = {
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
   images: { unoptimized: true },
-
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.optimization = {
@@ -17,36 +16,52 @@ const nextConfig = {
     }
     return config;
   },
-
-  async redirects() {
+  async rewrites() {
     return [
-      // Normalize lowercase "prophecy" to the canonical route
       {
         source: '/prophecy',
         destination: '/Prophecy',
-        permanent: true,
       },
       {
         source: '/prophecy/:path*',
         destination: '/Prophecy/:path*',
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/petition',
+        destination: '/Prophecy',
         permanent: true,
       },
-
-      // Petition → external app
+      {
+        source: '/Petition',
+        destination: '/Prophecy',
+        permanent: true,
+      },
+      {
+        source: '/prophesy',
+        destination: '/Prophecy',
+        permanent: true,
+      },
+      {
+        source: '/prophesy/:path*',
+        destination: '/Prophecy/:path*',
+        permanent: true,
+      },
       {
         source: '/petition/:path*',
         destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/petition/:path*',
         permanent: false,
       },
-
-      // Survey → external app
       {
         source: '/survey',
         destination: 'https://phiers-civic-engagem-vopm05.abacusai.app/survey',
         permanent: false,
       },
     ];
-  }
+  },
 };
 
 module.exports = nextConfig;

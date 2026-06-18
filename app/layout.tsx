@@ -3,7 +3,6 @@
     import type { Metadata } from 'next'
     import './globals.css'
     // import SurveyBanner from '@/components/SurveyBanner' - REMOVED
-    import ReturningVisitorModal from '@/components/ReturningVisitorModal'
 
     export const metadata: Metadata = {
       title: 'PHIERS.org — The Leverage Congress Can\'t Ignore',
@@ -40,7 +39,6 @@
           <body>
           {/* <SurveyBanner /> - REMOVED */}
           {children}
-          <ReturningVisitorModal />
           </body>
         </html>
       )

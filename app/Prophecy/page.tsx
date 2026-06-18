@@ -37,11 +37,11 @@ export default function ProphecyPage() {
       <div id="video-section" className="mt-8 sm:mt-12 opacity-0 animate-prophecyFadeIn">
         {/* QUIET CUE — sets expectation without breaking the spell */}
         <p className="text-gray-400/60 text-xs tracking-wide text-center mb-3 mt-2">
-          Best experienced from the beginning.
+          Watch this first
         </p>
         <div className="text-center mt-4 mb-1">
           <p className="text-gray-500/50 text-[10px] sm:text-xs tracking-wide italic">
-            Watch this first
+            Best experienced from the beginning.
           </p>
         </div>
         <div className="w-full max-w-3xl mx-auto overflow-hidden">
@@ -92,7 +92,7 @@ export default function ProphecyPage() {
 
       {/* HERO TITLE — DELAYED FADE */}
       <div className="text-center pt-2 md:pt-4 pb-1 px-4 opacity-0 animate-prophecyFadeInDelay">
-        <p className="text-gray-500 text-[10px] sm:text-xs tracking-[0.25em] uppercase mt-8 mb-1">
+        <p className="text-gray-500 text-[10px] sm:text-xs tracking-[0.25em] uppercase mt-8 mb-6">
           Gateway to the PHIERS Trilogy
         </p>
           <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold break-words whitespace-normal max-w-full px-4 leading-tight">
@@ -164,7 +164,7 @@ export default function ProphecyPage() {
         </p>
 
         {/* TRUST CUE — QUIET, HUMAN, NON‑CORPORATE */}
-        <p className="text-gray-600 text-[11px] mt-3">
+        <p className="text-sm text-neutral-500 mt-2">
           Your choices stay yours. Nothing you do on this page is tracked.
         </p>
 
@@ -196,7 +196,7 @@ export default function ProphecyPage() {
         {/* THREE DOORS GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-6">
           <a
-            href="/Prophecy/prophecy"
+            href="/Prophecy/For_Black_Men"
             className="w-full sm:flex-1 sm:min-w-[160px] bg-[#0a1628]/80 border-2 border-green-400/40 rounded-xl py-4 sm:py-5 px-3 text-center shadow-lg shadow-green-400/10 hover:border-green-400/80 hover:-translate-y-1 transition-all duration-300 cursor-pointer block"
           >
             <div className="flex flex-col items-center">
