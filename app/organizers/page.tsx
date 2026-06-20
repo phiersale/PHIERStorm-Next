@@ -545,7 +545,7 @@ export default function OrganizersPage() {
               Help your district become impossible to ignore.
             </p>
             <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'24px auto 0'}}>
-              <Link href="/petition" className="btn-primary">✍ Add Your Name — Be Counted</Link>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform" className="btn-primary" target="_blank" rel="noopener noreferrer">✍ Add Your Name — Be Counted</a>
               <a href="mailto:info@phiers.org" className="btn-secondary">✉️ Partner With PHIERS — Email Us</a>
               <Link href="/" className="btn-secondary">← Back to PHIERS Main</Link>
             </div>
