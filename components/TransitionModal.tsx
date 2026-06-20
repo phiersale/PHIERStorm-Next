@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 type Props = {
   onShowFramework: () => void
@@ -105,6 +106,61 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                     className="absolute inset-0 w-full h-full"
                   />
                 </div>
+              </div>
+
+              {/* ORGANIZERS BRIDGE — MOBILE OPTIMIZED */}
+              <div className="
+                bg-green/15 
+                border-l-2 border-green/40 
+                rounded-md 
+                p-3 sm:p-4 
+                space-y-2 sm:space-y-3
+              ">
+                <p className="
+                  text-green 
+                  font-bold 
+                  text-[10px] sm:text-xs 
+                  font-mono 
+                  tracking-wider 
+                  text-center
+                ">
+                  → FOR ORGANIZERS
+                </p>
+
+                <p className="
+                  text-gray-300 
+                  text-[13px] sm:text-[17px] 
+                  leading-relaxed 
+                  text-center
+                ">
+                  If you're running a movement, leading a group, or coordinating your district — this moment needs you.
+                </p>
+
+                <p className="
+                  text-green 
+                  font-bold 
+                  text-[13px] sm:text-[17px] 
+                  text-center
+                ">
+                  Full playbook, escalation ladder, and role breakdown →
+                </p>
+
+                <Link
+                  href="/organizers"
+                  className="
+                    block 
+                    w-full 
+                    text-center 
+                    text-green-400 
+                    text-[13px] sm:text-[17px] 
+                    underline 
+                    hover:text-green-300 
+                    transition-colors
+                    pt-1
+                  "
+                >
+                  Organize Your District
+                </Link>
               </div>
 
               {/* FINANCIAL SEED */}

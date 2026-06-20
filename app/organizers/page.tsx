@@ -29,6 +29,14 @@ export default function OrganizersPage() {
 
         {/* HERO */}
         <div className="page-hero">
+          {/* PHIERS Logo — centered like other pages */}
+          <div className="flex justify-center mb-6">
+            <img
+              src="/images/PHIERS_Logo.png"
+              alt="PHIERS Logo"
+              className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain opacity-90"
+            />
+          </div>
           <span className="eyebrow font-condensed uppercase tracking-widest text-xs text-green-400">For Organizers Who Know Protests Aren't Enough</span>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
             You built the movement.<br />
@@ -49,13 +57,43 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
+        {/* HERO IMAGE — Organized Together. Essential Always. */}
+        <section className="w-full">
+          <div className="relative w-full overflow-hidden">
+            <img
+              src="/images/Union_Organizers.jpg"
+              alt="Union organizers standing together in solidarity"
+              className="w-full h-auto max-h-[60vh] object-cover"
+            />
+            {/* Deep blue overlay */}
+            <div className="absolute inset-0 bg-[#0d1525] opacity-40"></div>
+            {/* Green accent gradient at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-green-400/20 to-transparent"></div>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
+        <hr className="divider" />
+
         {/* Congress Is Home Banner */}
         <section className="section py-12 md:py-16">
-          <div className="banner-block bg-red-600 text-white text-center p-6 md:p-8 rounded-xl">
-            <span className="font-condensed font-bold uppercase tracking-widest text-sm block mb-2">⚡ THE WINDOW IS OPEN</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">Congress Is Home Through June 22</h2>
-            <p className="font-body text-base md:text-lg text-white/90 max-w-2xl mx-auto">For one week, representatives are in their districts instead of Washington.</p>
-            <p className="font-body text-base md:text-lg text-white/90 max-w-2xl mx-auto mt-2">This is when organized constituents have the greatest ability to get noticed.</p>
+          <div className="banner-block bg-red-600 text-white text-center p-6 md:p-8 rounded-xl max-w-3xl mx-auto">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1">
+              THE WINDOW IS OPEN
+              <br />
+              <span className="text-yellow-400 text-xl md:text-2xl font-condensed font-bold">
+                Congress is home through June 22
+              </span>
+            </h2>
+            <div className="space-y-2 max-w-2xl mx-auto">
+              <p className="font-body text-base md:text-lg text-white/90">
+                For one week, representatives are in their districts instead of Washington.
+              </p>
+              <p className="font-body text-base md:text-lg text-white/90">
+                This is when organized constituents have the greatest ability to get noticed.
+              </p>
+            </div>
             <p className="font-condensed font-bold text-xl md:text-2xl text-yellow-400 mt-4">
               The goal: 500 people in every district.
             </p>
@@ -66,11 +104,15 @@ export default function OrganizersPage() {
 
         {/* No Kings Bridge */}
         <section className="section-alt bg-[#0a1628] border-y border-white/5 py-16 md:py-20">
-          <div className="inner max-w-3xl mx-auto px-4">
-            <span className="font-condensed uppercase tracking-widest text-xs text-green-400 block mb-2 text-center">The No Kings Bridge</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white text-center leading-tight">The No Kings Rallies Proved<br /><span className="text-yellow-400">Something Important.</span></h2>
+          <div className="inner max-w-4xl mx-auto px-4 text-center">
+            <span className="font-condensed uppercase tracking-widest text-xs text-green-400 block mb-2">The No Kings Bridge</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
+              The No Kings Rallies Proved
+              <br />
+              <span className="text-yellow-400">Something Important.</span>
+            </h2>
 
-            <div className="grid grid-cols-2 gap-4 my-6">
+            <div className="grid grid-cols-2 gap-4 my-6 max-w-2xl mx-auto">
               {[
                 {icon:'👥', text:'People are ready.'},
                 {icon:'🔥', text:'People are angry.'},
