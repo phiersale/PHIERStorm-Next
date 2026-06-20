@@ -71,6 +71,15 @@ export default function OrganizersPage() {
             <div className="absolute inset-0 bg-[#0d1525] opacity-40"></div>
             {/* Green accent gradient at bottom */}
             <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-green-400/20 to-transparent"></div>
+            {/* Text overlay — cinematic callout */}
+            <div className="absolute inset-0 flex flex-col justify-center items-start px-6 sm:px-12 md:px-16 max-w-4xl">
+              <p className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                Organized Together.
+              </p>
+              <p className="text-green-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mt-1">
+                Essential Always.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -201,6 +210,118 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
+        {/* THE MATH — Visible Section */}
+        <section className="section-alt bg-[#0a1628] py-16 md:py-20">
+          <div className="inner max-w-3xl mx-auto px-4 text-center">
+            <span className="eyebrow">⭐ The Math</span>
+            <h2>500 People Proves a District<br /><span className="gold">Can Act Together.</span></h2>
+            <div className="math-grid">
+              <div className="math-card">
+                <div className="math-number">500</div>
+                <h3>Proves a district can act together</h3>
+                <p>This is the first milestone. It shows your district can organize around shared demands.</p>
+              </div>
+              <div className="math-card">
+                <div className="math-number">1,500</div>
+                <h3>Creates sustained leverage</h3>
+                <p>This is when representatives can no longer ignore your district.</p>
+              </div>
+            </div>
+            <p style={{fontSize:'1.05rem',color:'var(--text-bright)',marginTop:'16px'}}>At scale, that's how hearings happen.</p>
+            <p style={{fontSize:'1.05rem',color:'var(--text-bright)'}}>That's how votes happen.</p>
+            <p style={{fontSize:'1.05rem',color:'var(--text-bright)'}}>That's how legislation happens.</p>
+            <div className="pull-quote" style={{marginTop:'20px'}}>
+              <p>Districts move Congress.<br />Organizers move districts.</p>
+            </div>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
+        {/* YOUR ROLE — Visible Section */}
+        <section className="section py-16 md:py-20 max-w-3xl mx-auto px-4">
+          <span className="eyebrow">⭐ Your Role</span>
+          <h2>Every District Needs<br /><span className="green">Organizers Like You.</span></h2>
+          <div className="role-grid">
+            {[
+              {icon:'🏛️', title:'District Captains', desc:"Lead your district's push to 500 and beyond"},
+              {icon:'📱', title:'Digital Organizers', desc:'Coordinate online outreach and social campaigns'},
+              {icon:'✍️', title:'Signature Collectors', desc:'Turn conversations into signatures'},
+              {icon:'🎤', title:'Town Hall Coordinators', desc:'Pack the room and ask the questions'},
+              {icon:'🤝', title:'Community Leads', desc:'Connect with local groups, unions, and faith communities'},
+            ].map(({icon,title,desc}) => (
+              <div key={title} className="role-card">
+                <div className="role-icon">{icon}</div>
+                <h3>{title}</h3>
+                <p>{desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="peer-block" style={{marginTop:'20px'}}>
+            <span className="peer-label">You Are Exactly Who This Moment Needs</span>
+            <p>If you've ever organized a march, a rally, a protest, a campus action, a union drive, a mutual aid network, or a community group — you have the skills. You have the network. You have the credibility.</p>
+            <p style={{fontFamily:'var(--font-condensed)',fontWeight:700,fontSize:'1.1rem',color:'var(--green)',marginTop:'8px'}}>This is what you've been training for.</p>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
+        {/* OUTREACH KIT — Visible Section */}
+        <section className="section py-16 md:py-20 max-w-3xl mx-auto px-4">
+          <span className="eyebrow">⭐ Outreach Kit</span>
+          <h2>Ready-to-Use<br /><span className="green">Messages.</span></h2>
+          {[
+            {title:'Share Text', body:'"Add your name. Tell Congress what our district wants. Help make our district impossible to ignore."'},
+            {title:'Email Copy', body:'"Eight million marched. Now it\'s time to organize. Add your name and complete the district survey so we can show Congress exactly what our district demands."'},
+            {title:'Social Copy', body:'"Congress is home. This is the moment when district-level pressure works. Add your name and help our district be heard."'},
+          ].map(({title, body}) => (
+            <div key={title} className="outreach-item">
+              <h4>{title}</h4>
+              <p>{body}</p>
+            </div>
+          ))}
+          <div className="outreach-item">
+            <h4>Scripts</h4>
+            <ul>
+              <li>"Have you seen the PHIERS petition? It's not a petition — it's a measurement tool."</li>
+              <li>"We're trying to get our district to 500 signatures this week."</li>
+              <li>"This is how we show Congress what our district actually wants."</li>
+            </ul>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
+        {/* ESCALATION LADDER — Visible Section */}
+        <section className="section-alt bg-[#0a1628] py-16 md:py-20">
+          <div className="inner max-w-3xl mx-auto px-4">
+            <span className="eyebrow">⭐ The Escalation Ladder</span>
+            <h2>Districts Escalate<br /><span className="gold">In Stages.</span></h2>
+            <ol className="escalation-list">
+              {[
+                ['Visibility','Make your district known'],
+                ['Town hall turnout','Pack the room'],
+                ['Public questions','Put them on the record'],
+                ['Local press','Make it impossible to ignore'],
+                ['District-wide mobilization','Coordinate across the district'],
+                ['Coalition pressure','Bring in unions, faith groups, community orgs'],
+                ['Accountability moments','Document everything'],
+                ['Hearings + votes','Win'],
+              ].map(([title, desc], i) => (
+                <li key={i}>
+                  <span className="escalation-num">{String(i+1).padStart(2,'0')}</span>{' '}
+                  <strong>{title}</strong> — {desc}
+                </li>
+              ))}
+            </ol>
+            <div className="pull-quote">
+              <p>Organizers drive every stage.</p>
+            </div>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
         {/* Accordions */}
         <div className="accordion-wrapper">
           {/* Instruction */}
@@ -265,78 +386,6 @@ export default function OrganizersPage() {
                   <p style={{color:'var(--text-bright)',fontWeight:700,marginTop:'16px'}}>When Representatives are in Washington, they're insulated.</p>
                   <p style={{color:'var(--text-bright)',fontWeight:700}}>When they're home, they're accountable.</p>
                   <p style={{fontFamily:'var(--font-condensed)',fontWeight:700,fontSize:'1.2rem',color:'var(--gold)',marginTop:'16px'}}>This is when organizers can move districts.</p>
-                </div>
-              </section>
-            </div>
-          </details>
-
-          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
-            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
-              <div className="flex flex-col gap-1 min-w-0">
-                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">The math</span>
-                <span className="accordion-summary text-gray-400 text-sm">500 proves a district can act together. 1,500 creates sustained leverage.</span>
-              </div>
-              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
-            </summary>
-            <div className="accordion-body">
-              <section className="section-alt" style={{paddingTop:'40px',paddingBottom:'40px'}}>
-                <div className="inner">
-                  <span className="eyebrow">⭐ The Math</span>
-                  <h2>500 People Proves a District<br /><span className="gold">Can Act Together.</span></h2>
-                  <div className="math-grid">
-                    <div className="math-card">
-                      <div className="math-number">500</div>
-                      <h3>Proves a district can act together</h3>
-                      <p>This is the first milestone. It shows your district can organize around shared demands.</p>
-                    </div>
-                    <div className="math-card">
-                      <div className="math-number">1,500</div>
-                      <h3>Creates sustained leverage</h3>
-                      <p>This is when representatives can no longer ignore your district.</p>
-                    </div>
-                  </div>
-                  <p style={{fontSize:'1.05rem',color:'var(--text-bright)',marginTop:'16px'}}>At scale, that's how hearings happen.</p>
-                  <p style={{fontSize:'1.05rem',color:'var(--text-bright)'}}>That's how votes happen.</p>
-                  <p style={{fontSize:'1.05rem',color:'var(--text-bright)'}}>That's how legislation happens.</p>
-                  <div className="pull-quote" style={{marginTop:'20px'}}>
-                    <p>Districts move Congress.<br />Organizers move districts.</p>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </details>
-
-          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
-            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
-              <div className="flex flex-col gap-1 min-w-0">
-                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">Your role</span>
-                <span className="accordion-summary text-gray-400 text-sm">Every district needs captains, digital organizers, signature collectors, town hall coordinators, and community leads.</span>
-              </div>
-              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
-            </summary>
-            <div className="accordion-body">
-              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
-                <span className="eyebrow">⭐ Your Role</span>
-                <h2>Every District Needs<br /><span className="green">Organizers Like You.</span></h2>
-                <div className="role-grid">
-                  {[
-                    {icon:'🏛️', title:'District Captains', desc:"Lead your district's push to 500 and beyond"},
-                    {icon:'📱', title:'Digital Organizers', desc:'Coordinate online outreach and social campaigns'},
-                    {icon:'✍️', title:'Signature Collectors', desc:'Turn conversations into signatures'},
-                    {icon:'🎤', title:'Town Hall Coordinators', desc:'Pack the room and ask the questions'},
-                    {icon:'🤝', title:'Community Leads', desc:'Connect with local groups, unions, and faith communities'},
-                  ].map(({icon,title,desc}) => (
-                    <div key={title} className="role-card">
-                      <div className="role-icon">{icon}</div>
-                      <h3>{title}</h3>
-                      <p>{desc}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="peer-block" style={{marginTop:'20px'}}>
-                  <span className="peer-label">You Are Exactly Who This Moment Needs</span>
-                  <p>If you've ever organized a march, a rally, a protest, a campus action, a union drive, a mutual aid network, or a community group — you have the skills. You have the network. You have the credibility.</p>
-                  <p style={{fontFamily:'var(--font-condensed)',fontWeight:700,fontSize:'1.1rem',color:'var(--green)',marginTop:'8px'}}>This is what you've been training for.</p>
                 </div>
               </section>
             </div>
@@ -461,78 +510,6 @@ export default function OrganizersPage() {
                       <span style={{color:'var(--green)',fontWeight:700}}>✓</span> {item}
                     </p>
                   ))}
-                </div>
-              </section>
-            </div>
-          </details>
-
-          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
-            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
-              <div className="flex flex-col gap-1 min-w-0">
-                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">Escalation ladder</span>
-                <span className="accordion-summary text-gray-400 text-sm">How districts escalate pressure in stages.</span>
-              </div>
-              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
-            </summary>
-            <div className="accordion-body">
-              <section className="section-alt" style={{paddingTop:'40px',paddingBottom:'40px'}}>
-                <div className="inner">
-                  <span className="eyebrow">⭐ The Escalation Ladder</span>
-                  <h2>Districts Escalate<br /><span className="gold">In Stages.</span></h2>
-                  <ol className="escalation-list">
-                    {[
-                      ['Visibility','Make your district known'],
-                      ['Town hall turnout','Pack the room'],
-                      ['Public questions','Put them on the record'],
-                      ['Local press','Make it impossible to ignore'],
-                      ['District-wide mobilization','Coordinate across the district'],
-                      ['Coalition pressure','Bring in unions, faith groups, community orgs'],
-                      ['Accountability moments','Document everything'],
-                      ['Hearings + votes','Win'],
-                    ].map(([title, desc], i) => (
-                      <li key={i}>
-                        <span className="escalation-num">{String(i+1).padStart(2,'0')}</span>{' '}
-                        <strong>{title}</strong> — {desc}
-                      </li>
-                    ))}
-                  </ol>
-                  <div className="pull-quote">
-                    <p>Organizers drive every stage.</p>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </details>
-
-          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
-            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
-              <div className="flex flex-col gap-1 min-w-0">
-                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">Outreach kit</span>
-                <span className="accordion-summary text-gray-400 text-sm">Share text, email copy, social copy, and scripts.</span>
-              </div>
-              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
-            </summary>
-            <div className="accordion-body">
-              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
-                <span className="eyebrow">⭐ Outreach Kit</span>
-                <h2>Ready-to-Use<br /><span className="green">Messages.</span></h2>
-                {[
-                  {title:'Share Text', body:'"Add your name. Tell Congress what our district wants. Help make our district impossible to ignore."'},
-                  {title:'Email Copy', body:'"Eight million marched. Now it\'s time to organize. Add your name and complete the district survey so we can show Congress exactly what our district demands."'},
-                  {title:'Social Copy', body:'"Congress is home. This is the moment when district-level pressure works. Add your name and help our district be heard."'},
-                ].map(({title, body}) => (
-                  <div key={title} className="outreach-item">
-                    <h4>{title}</h4>
-                    <p>{body}</p>
-                  </div>
-                ))}
-                <div className="outreach-item">
-                  <h4>Scripts</h4>
-                  <ul>
-                    <li>"Have you seen the PHIERS petition? It's not a petition — it's a measurement tool."</li>
-                    <li>"We're trying to get our district to 500 signatures this week."</li>
-                    <li>"This is how we show Congress what our district actually wants."</li>
-                  </ul>
                 </div>
               </section>
             </div>
