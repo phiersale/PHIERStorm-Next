@@ -208,18 +208,28 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">Not a petition. A constituency.</p>
               </div>
 
-              {/* PRIMARY CTA */}
-              {onSignPetition && (
-                <button
-                  onClick={onSignPetition}
-                  className="w-full py-3 bg-white text-black rounded-lg text-base font-semibold hover:bg-gray-100 transition"
+              {/* PRIMARY CTAs — The Two Mechanisms */}
+              <div className="space-y-3">
+                {onSignPetition && (
+                  <button
+                    onClick={onSignPetition}
+                    className="w-full py-3 bg-white text-black rounded-lg text-base font-semibold hover:bg-gray-100 transition"
+                  >
+                    ✍ Add Your Name — Be Counted In Your District
+                  </button>
+                )}
+                <a
+                  href="https://forms.gle/eDSMYjFbGQwWq96AA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-3 bg-green/20 text-green-400 border border-green/40 rounded-lg text-base font-semibold hover:bg-green/30 transition text-center"
                 >
-                  Add Your Name — Be Counted In Your District
-                </button>
-              )}
+                  📊 Complete The District Survey
+                </a>
+              </div>
 
-              {/* SECONDARY LINKS */}
-              <div className="flex flex-col items-center gap-3">
+              {/* SECONDARY LINKS — Educational */}
+              <div className="flex flex-col items-center gap-3 mt-4">
                 <button
                   onClick={() => setShowWhy500Modal(true)}
                   className="text-green-400 text-sm sm:text-[17px] underline hover:text-green-300 transition-colors"

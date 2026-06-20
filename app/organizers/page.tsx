@@ -1,3 +1,5 @@
+//FILE: app/organizers/page.tsx
+
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
@@ -155,6 +157,44 @@ export default function OrganizersPage() {
             </div>
             <div className="border-l-4 border-green-400 pl-4 py-2 mt-6 max-w-md mx-auto">
               <p className="font-condensed text-xl font-bold text-white">Organized districts create leverage.</p>
+            </div>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
+        {/* THE TWO THINGS THAT MATTER THIS WEEK */}
+        <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white text-center mb-8">
+            The Two Things That Matter This Week
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-green/5 border border-green/20 rounded-lg p-6 text-center">
+              <div className="text-4xl mb-3">✍</div>
+              <h3 className="font-bold text-white text-lg mb-2">Add Your Name</h3>
+              <p className="text-gray-400 text-sm mb-4">Measures who is willing to stand up.</p>
+              <a
+                href="https://forms.gle/etssgWrko4ejWC6Z6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-green text-[#080d1a] font-bold py-2 px-6 rounded-lg hover:bg-green-dim transition"
+              >
+                Sign The Petition
+              </a>
+            </div>
+            <div className="bg-green/5 border border-green/20 rounded-lg p-6 text-center">
+              <div className="text-4xl mb-3">📊</div>
+              <h3 className="font-bold text-white text-lg mb-2">Complete The Survey</h3>
+              <p className="text-gray-400 text-sm mb-4">Measures what your district actually wants.</p>
+              <a
+                href="https://forms.gle/eDSMYjFbGQwWq96AA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-green text-[#080d1a] font-bold py-2 px-6 rounded-lg hover:bg-green-dim transition"
+              >
+                Take The Survey
+              </a>
             </div>
           </div>
         </section>
@@ -336,6 +376,30 @@ export default function OrganizersPage() {
                   </div>
 
                   <div className="playbook-section">
+                    {/* QUICK ACTIONS — visible assets */}
+                    <div className="grid md:grid-cols-2 gap-4 mb-6">
+                      <a
+                        href="https://forms.gle/etssgWrko4ejWC6Z6"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block bg-green/10 border border-green/30 rounded-lg p-4 text-center hover:bg-green/15 transition"
+                      >
+                        <div className="text-2xl mb-2">✍</div>
+                        <p className="font-bold text-white">Share The Petition</p>
+                        <p className="text-gray-400 text-sm mt-1">Get your link to distribute</p>
+                      </a>
+                      <a
+                        href="https://forms.gle/eDSMYjFbGQwWq96AA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block bg-green/10 border border-green/30 rounded-lg p-4 text-center hover:bg-green/15 transition"
+                      >
+                        <div className="text-2xl mb-2">📊</div>
+                        <p className="font-bold text-white">Share The Survey</p>
+                        <p className="text-gray-400 text-sm mt-1">Get your link to distribute</p>
+                      </a>
+                    </div>
+
                     <h3>Here's how organizers get there fast:</h3>
                     <ul>
                       {[
@@ -544,9 +608,15 @@ export default function OrganizersPage() {
             <p className="font-condensed font-bold text-lg text-white mt-3">
               Help your district become impossible to ignore.
             </p>
+            {/* PRIMARY ACTIONS */}
             <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'24px auto 0'}}>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform" className="btn-primary" target="_blank" rel="noopener noreferrer">✍ Add Your Name — Be Counted</a>
-              <a href="mailto:info@phiers.org" className="btn-secondary">✉️ Partner With PHIERS — Email Us</a>
+              <a href="https://forms.gle/etssgWrko4ejWC6Z6" className="btn-primary" target="_blank" rel="noopener noreferrer">✍ Add Your Name — Be Counted</a>
+              <a href="https://forms.gle/eDSMYjFbGQwWq96AA" className="btn-primary" target="_blank" rel="noopener noreferrer">📊 Complete The District Survey</a>
+            </div>
+
+            {/* SECONDARY ACTIONS */}
+            <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'12px auto 0'}}>
+              <a href="mailto:info@phiers.org" className="btn-secondary">🤝 Partner With PHIERS — Email Us</a>
               <Link href="/" className="btn-secondary">← Back to PHIERS Main</Link>
             </div>
             <p className="font-condensed font-bold text-base text-yellow-400 mt-6">
