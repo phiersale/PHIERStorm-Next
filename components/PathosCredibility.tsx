@@ -418,6 +418,23 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           </div>
         </motion.div>
 
+        {/* Self-funded / Donate ask */}
+        <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
+          <div className="bg-[#0a1628] border border-green/30 rounded-lg p-6">
+            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              PHIERS has been entirely self‑funded from day one — no donor influence, no financial obligations to anyone but the membership. That independence is also why progress has been slow. If you believe in what PHIERS is building, you can help carry it forward.
+            </p>
+            <a
+              href="https://www.phiers.org/donate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition"
+            >
+              → Support PHIERS
+            </a>
+          </div>
+        </motion.div>
+
         <motion.div id="cta" variants={sectionFade} className="text-center pt-1 pb-6">
           <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
             <p className="text-green text-base font-semibold mb-4">You've seen the evidence. Now see what it builds.</p>

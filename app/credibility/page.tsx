@@ -1,9 +1,17 @@
+// FILE: app/credibility/page.tsx
+
+
 'use client'
 
 import Link from 'next/link'
 export default function PathosCredibility() {
   return (
     <div className="max-w-2xl mx-auto p-4">
+      <div className="bg-green/10 border border-green/30 rounded-lg px-4 py-3 mb-6 text-center">
+        <Link href="/evidence-archive" className="text-green-400 text-sm md:text-base font-semibold hover:text-white transition">
+          NEW: Deep Dive into Credibility-Building Evidence →
+        </Link>
+      </div>
       <div className="aspect-video mb-4">
         <iframe
           src="https://www.youtube.com/embed/KLu7USN_dao"
@@ -22,7 +30,7 @@ export default function PathosCredibility() {
 
       <div className="mt-8 text-center border-t border-gray-700 pt-8">
         <Link 
-          href="/credibility"
+          href="/?credibility=true"
           className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition"
         >
           → View Full Credibility Highlights
@@ -31,3 +39,5 @@ export default function PathosCredibility() {
     </div>
   )
 }
+
+// FILE: app/credibility/page.tsx
