@@ -221,7 +221,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         {/* NEW Banner - Evidence Archive (sticky, shrinking, dismissible, next to logo) */}
         {showArchiveBanner && (
           <div
-            className={`fixed z-40 transition-all duration-500 ${
+            className={`fixed z-[51] transition-all duration-500 ${
               archiveBannerShrunk ? 'top-2 right-4' : 'top-2 right-4'
             }`}
           >
