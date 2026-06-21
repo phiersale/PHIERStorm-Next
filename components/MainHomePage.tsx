@@ -364,7 +364,15 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           {/* Single Why 1,500 link */}
           <div className="mt-3">
             <button 
-              onClick={() => document.getElementById('fifteen-hundred-modal')?.showModal()}
+              onClick={() => {
+                const modal = document.getElementById('fifteen-hundred-modal') as HTMLDialogElement;
+                if (modal) {
+                  modal.showModal();
+                } else {
+                  // Fallback: open the Why 1,500 section on the page
+                  document.getElementById('why-1500-section')?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               className="text-xs text-amber-400/70 hover:text-amber-400 underline underline-offset-2 transition"
             >
               Why 1,500?
@@ -512,7 +520,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           </div>
 
           {/* Why 1,500 Matters */}
-          <div className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
+          <div id="why-1500-section" className="max-w-3xl mx-auto mt-8 p-6 bg-bg-card border border-green/20 rounded-xl">
             <div className="flex flex-wrap items-baseline gap-2 mb-3">
               <h3 className="text-3xl md:text-4xl font-bold text-white">Why 1,500 Matters</h3>
             </div>
