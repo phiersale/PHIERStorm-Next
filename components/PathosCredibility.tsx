@@ -36,7 +36,15 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
   const [showShortcutToast, setShowShortcutToast] = useState(false)
   const [showInterrupt, setShowInterrupt] = useState(false)
   const [showTransitionModal, setShowTransitionModal] = useState(false)
+  const [showArchiveBanner, setShowArchiveBanner] = useState(true)
+  const [archiveBannerShrunk, setArchiveBannerShrunk] = useState(false)
   const prefersReducedMotion = useRef(false)
+
+  // Shrink banner after 4 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setArchiveBannerShrunk(true), 4000)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -210,6 +218,39 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
 
       <motion.div id="top" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.14 } } }} className="w-full max-w-4xl mx-auto px-3 sm:px-4 pt-2 pb-32 md:pb-6 overflow-x-hidden">
         
+        {/* NEW Banner - Evidence Archive (sticky, shrinking, dismissible) */}
+        {showArchiveBanner && (
+          <div
+            className={`fixed left-0 right-0 z-40 flex justify-center transition-all duration-500 ${
+              archiveBannerShrunk ? 'top-8 md:top-9' : 'top-8 md:top-9'
+            }`}
+          >
+            <div
+              className={`bg-green/10 border border-green/30 rounded-lg text-center flex items-center gap-2 shadow-lg backdrop-blur-sm transition-all duration-500 ${
+                archiveBannerShrunk
+                  ? 'px-3 py-1.5 max-w-[260px] sm:max-w-xs'
+                  : 'px-4 py-3 max-w-[90%] sm:max-w-md'
+              }`}
+            >
+              <Link
+                href="/evidence-archive"
+                className={`text-green-400 font-semibold hover:text-white transition truncate ${
+                  archiveBannerShrunk ? 'text-xs' : 'text-sm md:text-base'
+                }`}
+              >
+                {archiveBannerShrunk ? '📚 Evidence Archive →' : '📚 NEW: Deep Dive into Credibility-Building Evidence →'}
+              </Link>
+              <button
+                onClick={() => setShowArchiveBanner(false)}
+                className="text-gray-400 hover:text-white transition flex-shrink-0 leading-none"
+                aria-label="Dismiss banner"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
+
         <motion.div variants={sectionFade} className="flex justify-center mb-4">
           <img src="/images/PHIERS_Logo.png" alt="PHIERS" className="w-12 h-12 md:w-14 md:h-14 object-contain opacity-50" />
         </motion.div>
@@ -383,7 +424,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         <motion.div variants={sectionFade} className="max-w-2xl mx-auto my-12">
           <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/30 shadow-xl shadow-green/5">
             <div className="text-center mb-4">
-              <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">Spiritual & Tactical Validation</span>
+              <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">Spiritual & Tactical Validation · 2018</span>
               <h2 className="text-xl font-bold text-white mt-2">The Grand Tuhon Supremo Blessing</h2>
             </div>
             <div
