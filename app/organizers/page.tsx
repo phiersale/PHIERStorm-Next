@@ -52,7 +52,7 @@ export default function OrganizersPage() {
               You already know what's missing. It's not people. It's not energy. It's the mechanism that converts that energy into something Congress can't wait out.
             </p>
             <p className="hero-sub" style={{color:'var(--green)'}}>
-              You fill their cup. PHIERS is what they do with the energy the morning after the rally.
+              You filled the streets. PHIERS fills the gap between protest and power.
             </p>
           </div>
         </div>
@@ -65,58 +65,38 @@ export default function OrganizersPage() {
             <img
               src="/images/Union_Organizers.jpg"
               alt="Union organizers standing together in solidarity"
-              className="w-full h-auto max-h-[60vh] object-cover"
+              className="w-full h-auto"
             />
-            {/* Deep blue overlay */}
-            <div className="absolute inset-0 bg-[#0d1525] opacity-40"></div>
-            {/* Green accent gradient at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-green-400/20 to-transparent"></div>
-            {/* Text overlay — cinematic callout */}
-            <div className="absolute inset-0 flex flex-col justify-center items-start px-6 sm:px-12 md:px-16 max-w-4xl">
-              <p className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                Organized Together.
-              </p>
-              <p className="text-green-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mt-1">
-                Essential Always.
-              </p>
-            </div>
           </div>
         </section>
 
         <hr className="divider" />
 
-        <hr className="divider" />
-
-        {/* Congress Is Home Banner */}
+        {/* TRANSITION BRIDGE — FROM MOVEMENT TO POWER */}
         <section className="section py-12 md:py-16">
-          <div className="banner-block bg-red-600 text-white text-center p-6 md:p-8 rounded-xl max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1">
-              THE WINDOW IS OPEN
-              <br />
-              <span className="text-yellow-400 text-xl md:text-2xl font-condensed font-bold">
-                Congress is home through June 22
-              </span>
-            </h2>
-            <div className="space-y-2 max-w-2xl mx-auto">
-              <p className="font-body text-base md:text-lg text-white/90">
-                For one week, representatives are in their districts instead of Washington.
-              </p>
-              <p className="font-body text-base md:text-lg text-white/90">
-                This is when organized constituents have the greatest ability to get noticed.
-              </p>
-            </div>
-            <p className="font-condensed font-bold text-xl md:text-2xl text-yellow-400 mt-4">
-              The goal: 500 people in every district.
+          <div className="inner max-w-3xl mx-auto px-4 text-center">
+
+            <p className="font-body text-xl text-white">
+              Millions marched.
             </p>
+
+            <p className="font-body text-xl text-white mt-2">
+              Millions proved they care.
+            </p>
+
+            <p className="font-condensed text-3xl md:text-4xl font-bold text-green-400 mt-8">
+              The question is what happens next.
+            </p>
+
           </div>
         </section>
 
         <hr className="divider" />
 
-        {/* No Kings Bridge */}
+        {/* From Protest To Power — renamed from No Kings Bridge */}
         <section className="section-alt bg-[#0a1628] border-y border-white/5 py-16 md:py-20">
           <div className="inner max-w-4xl mx-auto px-4 text-center">
-            <span className="font-condensed uppercase tracking-widest text-xs text-green-400 block mb-2">The No Kings Bridge</span>
+            <span className="font-condensed uppercase tracking-widest text-xs text-green-400 block mb-2">From Protest To Power</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
               The No Kings Rallies Proved
               <br />
@@ -136,6 +116,11 @@ export default function OrganizersPage() {
                 </div>
               ))}
             </div>
+
+            <p className="font-body text-lg text-gray-300 mt-6 max-w-2xl mx-auto">
+              The turnout proved the energy exists.
+              The challenge now is converting that energy into measurable district-level leverage.
+            </p>
 
             <div className="border-l-4 border-green-400 pl-4 py-3 my-5">
               <p className="font-condensed text-xl md:text-2xl font-bold text-white">But protests create attention.<br />Organization creates leverage.</p>
@@ -261,32 +246,6 @@ export default function OrganizersPage() {
             <span className="peer-label">You Are Exactly Who This Moment Needs</span>
             <p>If you've ever organized a march, a rally, a protest, a campus action, a union drive, a mutual aid network, or a community group — you have the skills. You have the network. You have the credibility.</p>
             <p style={{fontFamily:'var(--font-condensed)',fontWeight:700,fontSize:'1.1rem',color:'var(--green)',marginTop:'8px'}}>This is what you've been training for.</p>
-          </div>
-        </section>
-
-        <hr className="divider" />
-
-        {/* OUTREACH KIT — Visible Section */}
-        <section className="section py-16 md:py-20 max-w-3xl mx-auto px-4">
-          <span className="eyebrow">⭐ Outreach Kit</span>
-          <h2>Ready-to-Use<br /><span className="green">Messages.</span></h2>
-          {[
-            {title:'Share Text', body:'"Add your name. Tell Congress what our district wants. Help make our district impossible to ignore."'},
-            {title:'Email Copy', body:'"Eight million marched. Now it\'s time to organize. Add your name and complete the district survey so we can show Congress exactly what our district demands."'},
-            {title:'Social Copy', body:'"Congress is home. This is the moment when district-level pressure works. Add your name and help our district be heard."'},
-          ].map(({title, body}) => (
-            <div key={title} className="outreach-item">
-              <h4>{title}</h4>
-              <p>{body}</p>
-            </div>
-          ))}
-          <div className="outreach-item">
-            <h4>Scripts</h4>
-            <ul>
-              <li>"Have you seen the PHIERS petition? It's not a petition — it's a measurement tool."</li>
-              <li>"We're trying to get our district to 500 signatures this week."</li>
-              <li>"This is how we show Congress what our district actually wants."</li>
-            </ul>
           </div>
         </section>
 
@@ -575,16 +534,52 @@ export default function OrganizersPage() {
             </div>
           </details>
 
+          <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
+            <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
+              <div className="flex flex-col gap-1 min-w-0">
+                <span className="accordion-title font-condensed text-xs tracking-[0.2em] uppercase font-semibold text-white">Organizer Messaging Kit</span>
+                <span className="accordion-summary text-gray-400 text-sm">Share text, email copy, social copy, and scripts.</span>
+              </div>
+              <span className="text-gray-400 text-lg transition-transform duration-200 group-open:rotate-90 flex-shrink-0">›</span>
+            </summary>
+            <div className="accordion-body">
+              <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
+                <span className="eyebrow">⭐ Organizer Messaging Kit</span>
+                <h2>Ready-to-Use<br /><span className="green">Messages.</span></h2>
+                {[
+                  {title:'Share Text', body:'"Add your name. Tell Congress what our district wants. Help make our district impossible to ignore."'},
+                  {title:'Email Copy', body:'"Eight million marched. Now it\'s time to organize. Add your name and complete the district survey so we can show Congress exactly what our district demands."'},
+                  {title:'Social Copy', body:'"Congress is home. This is the moment when district-level pressure works. Add your name and help our district be heard."'},
+                ].map(({title, body}) => (
+                  <div key={title} className="outreach-item">
+                    <h4>{title}</h4>
+                    <p>{body}</p>
+                  </div>
+                ))}
+                <div className="outreach-item">
+                  <h4>Scripts</h4>
+                  <ul>
+                    <li>"Have you seen the PHIERS petition? It's not a petition — it's a measurement tool."</li>
+                    <li>"We're trying to get our district to 500 signatures this week."</li>
+                    <li>"This is how we show Congress what our district actually wants."</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+          </details>
+
         </div> {/* end accordion-wrapper */}
 
         {/* Final CTA */}
         <section className="section py-16 max-w-3xl mx-auto px-4">
           <div className="border-2 border-green-400 rounded-xl p-8 md:p-12 text-center bg-gradient-to-br from-green-400/5 to-transparent">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-green-400">ORGANIZE YOUR DISTRICT</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-green-400">BUILD DISTRICT LEVERAGE</h2>
             <p className="font-body text-base text-gray-300 mt-4 max-w-xl mx-auto">Congress is home right now. This is when local pressure matters most.</p>
-            <p className="font-condensed font-bold text-lg text-white mt-3">
-              Help your district become impossible to ignore.
-            </p>
+            <div className="font-condensed font-bold text-lg text-white mt-3 space-y-1">
+              <p>Help your district reach 500.</p>
+              <p>Help your district build leverage.</p>
+              <p>Help your district be heard.</p>
+            </div>
             {/* PRIMARY ACTIONS */}
             <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'24px auto 0'}}>
               <a href="https://forms.gle/etssgWrko4ejWC6Z6" className="btn-primary" target="_blank" rel="noopener noreferrer">✍ Add Your Name — Be Counted</a>
