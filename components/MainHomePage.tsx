@@ -15,35 +15,12 @@ import Button from '@/components/Button'
 import PHIERStormModal from '@/components/PHIERStormModal'
 import entriesData from '@/data/whatsnew/entries.json'
 
-// Helper component for video cards (used inside modal)
-function VideoCard({ id, title }: { id: string; title: string }) {
-  return (
-    <div className="bg-bg-card/80 rounded-xl border border-green/20 overflow-hidden hover:border-green/50 transition-all">
-      <div className="relative pb-[56.25%] h-0">
-        <iframe
-          src={`https://www.youtube.com/embed/${id}?rel=0`}
-          title={title}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-          allowFullScreen
-          loading="lazy"
-          className="absolute top-0 left-0 w-full h-full"
-        />
-      </div>
-      <div className="p-2 text-center">
-        <p className="text-gray-300 text-sm font-medium">{title}</p>
-      </div>
-    </div>
-  )
-}
-
 // Local button style override for this page only
 const mobileButtonClass = "px-4 py-1.5 sm:py-2 min-h-[36px] sm:min-h-[40px]"
 
 export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => void }) {
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
-  const [showArchitectModal, setShowArchitectModal] = useState(false)
   const pathname = usePathname()
   const [showNewsflash, setShowNewsflash] = useState(true)
   // Banner for /whats-new
@@ -1048,12 +1025,10 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
           <div className="max-w-[760px] mx-auto">
             {/* Architect portrait */}
             <div className="flex justify-center mb-4">
-              <div
-                className="w-32 h-32 rounded-full overflow-hidden border-2 border-green/30 shadow-lg cursor-pointer hover:scale-105 transition-transform"
-                onClick={() => setShowArchitectModal(true)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setShowArchitectModal(true); }}
+              <Link
+                href="/credibility"
+                className="w-32 h-32 rounded-full overflow-hidden border-2 border-green/30 shadow-lg cursor-pointer hover:scale-105 transition-transform block"
+                aria-label="View Will Price's full credibility record"
               >
                 <Image
                   src="/images/Will_Price.png"
@@ -1062,7 +1037,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
                   height={128}
                   className="w-full h-full object-cover object-[55%_top]"
                 />
-              </div>
+              </Link>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHAT THIS IS NOT</h2>
@@ -1133,12 +1108,12 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             </div>
 
             {/* CTA BUTTON */}
-            <button
-              onClick={() => setShowArchitectModal(true)}
-              className="text-green underline hover:text-green-dim transition-colors mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2"
+            <Link
+              href="/credibility"
+              className="text-green underline hover:text-green-dim transition-colors mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green rounded px-2 inline-block"
             >
               Meet the architect →
-            </button>
+            </Link>
           </div>
         </section>
 
@@ -1241,125 +1216,6 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         ↑
       </button>
 
-      {/* ARCHITECT MODAL – full video library */}
-      <AnimatePresence>
-        {showArchitectModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/90 z-[99999] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowArchitectModal(false)}
-            aria-hidden="true"
-          >
-            <div
-              className="relative max-w-4xl w-full bg-[#0a1628] border-2 border-green/35 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-              role="dialog"
-              aria-modal="true"
-              aria-label="Will Price – architect modal with video library"
-            >
-              <button
-                onClick={() => setShowArchitectModal(false)}
-                className="absolute top-3 right-3 bg-[#111d35] text-green border-2 border-green rounded-full w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center hover:bg-green hover:text-[#111d35] transition-all z-10 focus:outline-none focus:ring-2 focus:ring-green"
-                aria-label="Close architect modal"
-              >
-                ✕
-              </button>
-
-              <div className="flex flex-wrap items-stretch border-b border-green/20">
-                <div className="flex-shrink-0 ml-4 mr-2 mt-8 w-48 sticky top-8 self-start">
-                  <Image
-                    src="/images/Will_Price.png"
-                    alt="Will Price — Founder & Chief Solutions Architect, PHIERS"
-                    width={192}
-                    height={192}
-                    className="w-full h-auto object-cover object-[55%_top] rounded-full"
-                  />
-                </div>
-                <div className="flex-1 min-w-[240px] py-6 pr-6 pl-2 flex flex-col justify-center">
-                  <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-1">The Architect</p>
-                  <h3 className="font-display text-2xl md:text-3xl text-white leading-tight mb-0">Will Price</h3>
-                  <p className="font-condensed text-sm text-[#ffd60a] font-bold mt-1 mb-3">Founder & Chief Solutions Architect, PHIERS</p>
-                  <p className="text-body text-sm leading-relaxed">
-                    Will Price is an Information Engineer with more than 20 years of experience in healthcare systems integration. He is the co‑founder and Chief Solutions Architect of PHIERS, where he focuses on integrating proven healthcare, workforce, and resource‑matching models into one coordinated system.
-                  </p>
-                  <p className="text-body text-sm leading-relaxed mt-3">
-                    His work includes PHIERSale (a cooperative marketplace), PHIERWorks (AI‑resistant job training and placement), and PHIERplace (resource matching). Will’s background spans care coordination systems, health literacy, digital integration, and national‑scale operational design.
-                  </p>
-                  <p className="text-body text-sm leading-relaxed mt-3">
-                    He was selected as one of five civilian participants in the VA’s Enterprise‑wide Reengineering Initiative, working directly with the CIO’s office. In 2019, the Maryland Health Care Commission recognized him as an expert in healthcare systems integration and health information exchange policy.
-                  </p>
-                  <p className="text-body text-sm leading-relaxed mt-3">
-                    Will has documented models for integrated healthcare delivery that are now operationalized by organizations such as Mark Cuban Cost Plus and ZORTT Healthcare, demonstrating 60–90% cost reductions at scale. His current work focuses on architecting PHIERS to unify these proven components into a single, accessible mechanism.
-                  </p>
-                  <p className="text-body text-sm leading-relaxed mt-3">
-                    The journey has not been easy. Much of it unfolded publicly and under pressure, but the work continued. PHIERS reflects that persistence — a system built to give ordinary people clearer access, lower costs, and real leverage in processes that traditionally ignore them.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <p className="font-condensed text-xs text-green uppercase tracking-[3px] mb-4">The Vision – Over 20 years of recorded talks</p>
-
-                {/* Short Intros to PHIERS */}
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Short Intros to PHIERS</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <VideoCard id="ihTa_2CLmvk" title="Intro – The Framework" />
-                    <VideoCard id="2j-dF3hgdeE" title="Intro – The Leverage" />
-                  </div>
-                </div>
-
-                {/* Current Wars & Congress */}
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Current Wars & Congress</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <VideoCard id="D3RPVoJ93BU" title="The Wars – Congress Must Act" />
-                  </div>
-                </div>
-
-                {/* Healthcare Reform */}
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Healthcare Reform</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <VideoCard id="jMU6LKEBzbs" title="The Healthcare Cascade" />
-                    <VideoCard id="kd6kTJM_SuM" title="Telehealth Solution" />
-                    <VideoCard id="bEUyDVAYwpk" title="Cost Savings" />
-                    <VideoCard id="xy3F9ZWbgS8" title="Why $600 Works" />
-                    <VideoCard id="453Hf3rgymY" title="Fixing the System" />
-                  </div>
-                </div>
-
-                {/* Tackling Fascism, Authoritarianism and Nazis */}
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Tackling Fascism and Nazis</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <VideoCard id="h1AqunGaAA0" title="Confronting Authoritarianism" />
-                  </div>
-                </div>
-
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Public Health</h4>
-                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
-                </div>
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Veterans and Unions</h4>
-                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
-                </div>
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Mission Oriented</h4>
-                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
-                </div>
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-green mb-3 border-l-4 border-green pl-3">Foundational</h4>
-                  <p className="text-gray-400 text-sm italic ml-4">More videos coming soon</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
       {/* Commented out - will restore when new petition/survey online */}
       {/* {showEarlyModal && (
