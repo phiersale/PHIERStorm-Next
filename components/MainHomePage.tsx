@@ -478,7 +478,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
               <span>1,500 people</span> in your district – on record – creates leverage.
             </p>
             <p className="text-green text-xl font-bold mb-3">That’s the tipping point.</p>
-            <p className="text-gray-300 text-base mb-2">If they don’t end the wars immediately,<br />we primary or replace them before July 4th – Independence Day.</p>
+            <p className="text-gray-300 text-base mb-2">If they don't end the wars immediately,<br />we primary or replace them before their next election.</p>
             <p className="text-white text-lg font-bold mt-2">That's how we make Congress do its job.</p>
             <p className="text-gray-300 text-base mt-4">And if they still won't?</p>
             <p className="text-gray-300 text-base">We investigate how they voted.</p>
