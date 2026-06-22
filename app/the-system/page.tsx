@@ -16,6 +16,61 @@ export default function PhiersSystemPage() {
     document.body.style.overflow = 'hidden';
   };
 
+  const openVideoModal = (videoUrl: string, title: string) => {
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', `Video: ${title}`);
+    
+    const modalContent = document.createElement('div');
+    modalContent.className = 'relative w-full max-w-5xl bg-black rounded-xl overflow-hidden shadow-2xl border border-green/30';
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'absolute top-3 right-3 z-10 text-white/80 text-xl bg-black/60 rounded-full w-8 h-8 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all duration-200';
+    closeBtn.innerHTML = '✕';
+    closeBtn.setAttribute('aria-label', 'Close video');
+    closeBtn.onclick = () => {
+      if (modal && modal.parentNode) {
+        document.body.removeChild(modal);
+      }
+      document.body.style.overflow = '';
+    };
+    
+    const iframe = document.createElement('iframe');
+    iframe.src = videoUrl;
+    iframe.title = title;
+    iframe.className = 'w-full aspect-video';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+    iframe.allowFullscreen = true;
+    
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(iframe);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+    
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (modal && modal.parentNode) {
+          document.body.removeChild(modal);
+        }
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', handleEscape);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        if (modal && modal.parentNode) {
+          document.body.removeChild(modal);
+        }
+        document.body.style.overflow = '';
+      }
+    };
+  };
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const from = params.get('from');
@@ -319,6 +374,42 @@ export default function PhiersSystemPage() {
               <p>Civic pressure research from Ralph Nader and Erica Chenoweth documents how organized participation moves systems.</p>
               <p className="text-green-400/80 mt-4">Nothing here is hypothetical. The pieces already exist. PHIERS integrates them.</p>
               <p className="text-gray-300 mt-4">PHIERS does not ask you to trust PHIERS. It asks you to look at the public record and decide for yourself.</p>
+              <p className="text-gray-400 mt-4">
+                This integration work isn't new for the person who built it — 20 years inside VA enrollment systems, EHR modernization, and state healthcare policy.{' '}
+                <Link href="/?credibility=true" className="text-green hover:underline">
+                  See the full record →
+                </Link>
+              </p>
+            </div>
+
+            {/* 2016 Single Payer & Sustainable Jobs Video — dated proof of concept */}
+            <div className="max-w-2xl mx-auto mt-10">
+              <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/25 shadow-xl shadow-green/5">
+                <div className="text-center mb-4">
+                  <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">Recorded 2016</span>
+                  <h3 className="text-lg font-bold text-white mt-2">Single Payer & Sustainable Jobs — Years Ahead</h3>
+                </div>
+                <div
+                  className="relative aspect-video max-w-2xl mx-auto cursor-pointer group rounded-lg overflow-hidden border border-black shadow-inner"
+                  onClick={() => openVideoModal('https://www.youtube.com/embed/IJlXoYOnSJU?autoplay=1', 'Single Payer & Sustainable Jobs Plan — 2016')}
+                >
+                  <img src="https://img.youtube.com/vi/IJlXoYOnSJU/maxresdefault.jpg" alt="Single Payer & Sustainable Jobs Plan thumbnail" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-300" onError={(e)=>{e.currentTarget.src='https://img.youtube.com/vi/IJlXoYOnSJU/mqdefault.jpg'}} />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20">
+                    <div className="text-white text-5xl font-bold drop-shadow-lg group-hover:scale-110 transition-transform">▶</div>
+                  </div>
+                </div>
+                <p className="text-gray-300 text-sm mt-4 leading-relaxed">
+                  Uploaded September 26, 2016, this video lays out a near-term path to the core benefits of single-payer — better outcomes, lower costs, universal access — by training under-employed health and social workers to coordinate care for high-risk patients. The plan: a shared health information exchange, a community referral system, and a membership rewards program, generating enough savings to fund living-wage jobs and expand access — without new taxes or legislation.
+                </p>
+                <p className="text-gray-400 text-xs mt-3">
+                  This is the same coordinated-care, cost-savings, jobs-funding logic the rest of this page describes. The difference is the date.
+                </p>
+                <p className="text-center mt-3">
+                  <a href="https://youtu.be/IJlXoYOnSJU" target="_blank" rel="noopener noreferrer" className="text-green-500/70 hover:text-green-400 text-xs underline">
+                    Watch the original 2016 recording →
+                  </a>
+                </p>
+              </div>
             </div>
 
             {/* Evidence Strip */}

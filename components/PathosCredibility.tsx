@@ -220,11 +220,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         
         {/* NEW Banner - Evidence Archive (sticky, shrinking, dismissible, next to logo) */}
         {showArchiveBanner && (
-          <div
-            className={`fixed z-[51] transition-all duration-500 ${
-              archiveBannerShrunk ? 'top-2 right-4' : 'top-2 right-4'
-            }`}
-          >
+          <div className="fixed z-[51] top-2 right-4 transition-all duration-500">
             <div
               className={`bg-green/10 border border-green/30 rounded-lg flex items-center gap-2 shadow-lg backdrop-blur-sm transition-all duration-500 ${
                 archiveBannerShrunk
@@ -354,7 +350,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             <p className="text-green text-sm font-mono tracking-wider">THE RECORD</p>
             <p className="text-gray-500 text-[11px]">22 years of documented public record</p>
           </div>
-          <details className="group border border-green/20 rounded-lg bg-[#0a1628]/40 overflow-hidden">
+          <details open className="group border border-green/20 rounded-lg bg-[#0a1628]/40 overflow-hidden">
             <summary className="cursor-pointer list-none p-6">
               <div className="flex items-center justify-between mb-6">
                 <p className="text-white font-semibold">View Full Timeline</p>
@@ -363,7 +359,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
               <div className="overflow-x-auto pb-2">
                 <div className="min-w-full sm:min-w-[700px] flex items-center justify-between relative">
                   <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px] bg-green/20" />
-                  {['2004', '2007', '2009', '2011', '2013', '2014', '2022', '2026', 'Now'].map((year) => (
+                  {['2004', '2007', '2009', '2013', '2018', '2019', '2022', '2026', 'Now'].map((year) => (
                     <div key={year} className="relative flex flex-col items-center z-10">
                       <div className="w-4 h-4 rounded-full bg-green border-2 border-[#0a1628]" />
                       <span className="text-[11px] text-gray-400 mt-2">{year}</span>
@@ -374,21 +370,107 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
               <p className="text-gray-500 text-xs italic mt-5 text-center">22 years of public documentation. Click to expand.</p>
             </summary>
             <div className="px-6 pb-6 border-t border-green/10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mt-6">
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2004</span><span className="text-gray-300 text-sm">Earliest documented PHIERS record</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2007</span><span className="text-gray-300 text-sm">First recorded video — PHIERS documented framework</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2009</span><span className="text-gray-300 text-sm">PHIERS.org partners with SureSafe Pharma</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2011</span><span className="text-gray-300 text-sm">Archived platform snapshot — health reform coalition</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2013</span><span className="text-gray-300 text-sm">First comprehensive articulation of PHIERS mission</span></div>
+              <p className="text-gray-400 text-xs italic mt-6 mb-2 text-center">
+                PHIERS has been the constant. The roles below were consulting work done alongside it — using the access and insight from inside the system to build the case for what PHIERS does outside it.
+              </p>
+              <p className="text-gray-400 text-xs text-center mb-6">
+                See how this experience connects to{' '}
+                <Link href="/the-system" className="text-green hover:underline">
+                  the system PHIERS builds →
+                </Link>
+              </p>
+              <div className="space-y-4 mt-2">
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2004</span>
+                  <span className="text-gray-300 text-sm">Earliest documented PHIERS record</span>
                 </div>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2014</span><span className="text-gray-300 text-sm">Operational proposals, named partnerships, dated documents</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2022</span><span className="text-gray-300 text-sm">DotCom Magazine Entrepreneur Spotlight</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2026</span><span className="text-gray-300 text-sm">Pathos Communications — London Stock Exchange listed</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">2026</span><span className="text-gray-300 text-sm">BigC interview — framework discussed</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green text-sm font-bold w-12">Now</span><span className="text-gray-300 text-sm">District organizing model — active</span></div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2006</span>
+                  <span className="text-gray-300 text-sm">
+                    Business Analyst, VA Registration, Eligibility & Enrollment Group — Community Care credentialed
+                    <span className="block text-gray-500 text-xs mt-0.5">Concurrent with PHIERS development</span>
+                  </span>
                 </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2007</span>
+                  <span className="text-gray-300 text-sm">"Our Hero Handbook" — first recorded video; VA recruited Will after watching it</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2008</span>
+                  <span className="text-gray-300 text-sm">
+                    Senior Analyst, VA Administrative Data Repository Group — promoted after designing enrollment workflow diagrams; 1 of 5 civilians selected for VA's Enterprise-wide Reengineering Group, Office of the CIO
+                    <span className="block text-gray-500 text-xs mt-0.5">Concurrent with PHIERS development</span>
+                  </span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2009</span>
+                  <span className="text-gray-300 text-sm">PHIERS.org partners with SureSafe Pharma</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2011</span>
+                  <span className="text-gray-300 text-sm">Archived platform snapshot — health reform coalition</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2013</span>
+                  <span className="text-gray-300 text-sm">First comprehensive articulation of PHIERS mission</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2014</span>
+                  <span className="text-gray-300 text-sm">Operational proposals, named partnerships, dated documents</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2018</span>
+                  <span className="text-gray-300 text-sm">
+                    Integration Engineer, VA's Electronic Health Record Modernization Program
+                    <span className="block text-amber-400/80 text-xs mt-0.5">Departed in 2018, citing concerns about the direction of VA privatization. Continued PHIERS full-time.</span>
+                  </span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2019</span>
+                  <span className="text-gray-300 text-sm">Maryland Health Care Commission, Policy & Advisory Board — school-based telehealth, ePrescriptions, electronic payment systems integration</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2022</span>
+                  <span className="text-gray-300 text-sm">DotCom Magazine Entrepreneur Spotlight</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">2026</span>
+                  <span className="text-gray-300 text-sm">Pathos Communications — London Stock Exchange listed; BigC interview</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="text-green text-sm font-bold w-16 flex-shrink-0">Now</span>
+                  <span className="text-gray-300 text-sm">District organizing model — active</span>
+                </div>
+
+              </div>
+            </div>
+
+            <div className="px-6 pb-6 pt-2 border-t border-green/10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div
+                className="relative w-32 sm:w-40 aspect-video rounded-lg overflow-hidden cursor-pointer group border border-green/20"
+                onClick={() => openVideoModal('https://player.vimeo.com/video/20369973?autoplay=1', 'Our Hero Handbook — 2007')}
+              >
+                <img src="https://vumbnail.com/20369973.jpg" className="absolute inset-0 w-full h-full object-cover group-hover:brightness-110 transition" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
+                  <svg className="w-8 h-8 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </div>
+              </div>
+              <div className="text-center sm:text-left">
+                <p className="text-gray-300 text-sm">"Our Hero Handbook" (2007) — the video that led the VA to recruit Will.</p>
+                <a href="https://www.linkedin.com/in/will-price-phiers/" target="_blank" rel="noopener noreferrer" className="text-green text-xs hover:underline mt-1 inline-block">📄 Full professional history on LinkedIn →</a>
               </div>
             </div>
           </details>
@@ -424,7 +506,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         <motion.div variants={sectionFade} className="max-w-2xl mx-auto my-12">
           <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/30 shadow-xl shadow-green/5">
             <div className="text-center mb-4">
-              <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">Spiritual & Tactical Validation · 2018</span>
+              <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">ORIGINAL FOOTAGE: 2017 · CURRENT EDIT WITH UPDATED OPENING</span>
               <h2 className="text-xl font-bold text-white mt-2">The Grand Tuhon Supremo Blessing</h2>
             </div>
             <div
@@ -442,6 +524,14 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
               </p>
               <p className="italic text-gray-400 border-l border-green/40 pl-3 text-xs">
                 This document ties together what people have been doing for generations: standing up in the streets, calling out racism for what it is, and building real solutions that actually help families. And at the end, it shows something nobody saw coming — a simple way for whole groups to get cheaper prescription drugs, the same way big companies already do.
+              </p>
+              <p className="text-gray-400 text-xs leading-relaxed mt-2">
+                <strong>Note on dating:</strong> The core of this video — Grand Tuhon Supremo's blessing, and the case for cooperative group-purchasing to cut prescription costs to CMS — was recorded in 2017, five years before Mark Cuban's Cost Plus Drugs proved the model at scale. The version above adds a newer opening connecting it to the broader healthcare-for-all movement.
+              </p>
+              <p className="text-gray-500 text-[10px] text-center mt-2">
+                <a href="https://youtu.be/FgYVEd6Rzjo" target="_blank" rel="noopener noreferrer" className="text-green-500/70 hover:text-green-400 underline">
+                  Watch the original 2017 recording →
+                </a>
               </p>
             </div>
           </div>
