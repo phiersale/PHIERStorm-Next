@@ -282,24 +282,24 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
             </h3>
 
             <div className="space-y-4 text-gray-300 text-sm md:text-base leading-relaxed max-h-[60vh] overflow-y-auto pr-1">
-              <p><strong className="text-green">500 is the number that can change the Speaker in most congressional districts.</strong></p>
+              <p><strong className="text-green">500 is the tipping point — the number where a district stops being ignorable.</strong></p>
 
-              <p>It's the first step — the proof that a district can move together. 500 people organized around one thing is enough to force a meeting, force a position, and make leadership vulnerable.</p>
+              <p>It's the first proof that a district can move together. 500 people organized around one demand is enough to force a meeting, force a public position, and put a representative on record.</p>
 
-              <p>Once a district can organize 500, then 1,500 becomes possible — and 1,500 is the number that can turn the people's agenda into law.</p>
+              <p>Once a district can organize 500, then 1,500 becomes possible — and 1,500 is the number that turns sustained pressure into real consequences: primary challenges, public exposure, and replacement.</p>
 
-              <p>They go hand in hand: 500 creates leverage over leadership. 1,500 creates power over legislation.</p>
+              <p>They go hand in hand: 500 creates leverage over your representative. 1,500 creates the power to replace them if they don't respond.</p>
 
               <div className="bg-green/5 border-l-4 border-green p-4 my-4 italic">
-                <p className="mb-2">PHIERS is claiming: <strong>If 500 people can organize around one thing... like electing the next Speaker of the House</strong></p>
-                <p className="mb-2">...then 1,500 can organize around another... like Article 25 or impeachment.</p>
+                <p className="mb-2">PHIERS is claiming: if 500 people can organize around one demand in a district...</p>
+                <p className="mb-2">...then 1,500 can organize around accountability — forcing representatives to answer to constituents instead of donors.</p>
                 <p className="mb-2">Then districts can organize around healthcare, jobs, and rescinding tax cuts for the wealthy.</p>
                 <p className="mb-2">Then around war powers. Then corruption. Then affordability.</p>
-                <p className="mb-2">Everybody wins.</p>
+                <p className="mb-2">When enough representatives are forced to choose between their constituents and the status quo, leadership itself changes — not because PHIERS selects who leads, but because the people who don't respond don't survive re-election.</p>
               </div>
 
               <p className="text-yellow-400 text-sm font-semibold">
-                ⚡ When Congress is home, 500 people is enough to force a meeting — because the House alone chooses its Speaker, and leadership decides what ever gets a vote.
+                ⚡ When Congress is home, 500 people is enough to force a meeting — because no representative can afford to be seen ignoring an organized, on-record district.
               </p>
 
               <p className="text-gray-300 text-sm leading-relaxed">
@@ -309,7 +309,7 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               <p>The petition is the <strong className="text-green">first demonstration of collective action</strong>, not the end goal.</p>
 
               <p className="text-yellow-400 text-sm font-semibold">
-                Once you prove you can move together at scale, Congress stops ignoring you.
+                Once you prove you can move together at scale, Congress stops ignoring you — and stops protecting the people who do.
               </p>
             </div>
 
