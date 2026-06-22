@@ -744,8 +744,8 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
             <p className="text-gray-300 text-base mb-2">One person switching creates enough savings to cover 12 more.</p>
             <p className="text-gray-300 text-base mb-3">Then it compounds:</p>
-            <p className="text-green text-base sm:text-lg font-mono font-bold mb-4 break-words overflow-x-auto whitespace-normal">1 → 12 → 148 → 1,825 → 22,000 → 260,000 → 3.1M → 37M → 450M</p>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-4 my-4"><p className="text-white font-mono text-lg">In nine rounds: • 234 million people covered • 8–13 months</p></div>
+            <p className="text-green text-base sm:text-lg font-mono font-bold mb-4 break-words overflow-x-auto whitespace-normal">1 → 12 → 148 → 1,825 → 22,000 → 260,000 → 3.1M → 37M</p>
+            <div className="bg-bg-card border border-green/20 rounded-xl p-4 my-4"><p className="text-white font-mono text-lg">In seven rounds: • 37 million people covered • Growth continues until it reaches the full 120–150 million CMS-eligible population</p></div>
             <p className="text-green text-lg font-bold mb-3">Not a promise. Math.</p>
             <p className="text-gray-300 text-base">It works because savings fund the next layer.</p>
           </div>
