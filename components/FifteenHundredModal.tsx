@@ -1,5 +1,5 @@
 // FILE: components/FifteenHundredModal.tsx
-// VERSION: 1.3.0
+// VERSION: 1.5.0
 
 'use client';
 
@@ -39,8 +39,11 @@ export default function FifteenHundredModal() {
 
           {/* SOURCE */}
           <p>
-            Ralph Nader — one of the most effective civic organizers in American history — documented
-            a clear pattern from decades of work inside Congress:
+            Ralph Nader — a veteran civic organizer — has documented
+            a clear pattern from decades of work inside Congress:{' '}
+            <a href="https://nader.org/wp-content/uploads/2024/11/riseup.pdf" target="_blank" rel="noopener noreferrer" className="underline text-amber-300 hover:text-amber-200">
+              source
+            </a>
           </p>
 
           {/* BOOK COVER VISUAL CREDIBILITY ANCHOR */}
@@ -139,4 +142,5 @@ export default function FifteenHundredModal() {
   );
 }
 
-// FILE: components/FifteenHundredModal.tsx (end)
+// FILE: components/FifteenHundredModal.tsx
+// VERSION: [CURRENT VERSION + 0.1]

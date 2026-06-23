@@ -1,5 +1,5 @@
 // FILE: components/TransitionModal.tsx
-// VERSION: 4.4 – Mobile-perfect, desktop-best-practice, scroll-lock, spacing & rhythm polish
+// VERSION: 4.5 – Added Nader-related Verification
 
 'use client'
 
@@ -84,15 +84,6 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed mt-2">Most Americans agree these problems are real.</p>
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">The problem isn't awareness. The problem is leverage.</p>
               </div>
-
-              {/* MOMENT BLOCK */}
-              <section className="moment-block bg-red/10 border border-red/40 rounded-lg p-4 sm:p-5 space-y-2">
-                <p className="text-red font-bold text-xs font-mono tracking-wider text-center">⚡ THIS MOMENT</p>
-                <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed text-center">Congress is home right now.</p>
-                <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed text-center">Representatives are back in the districts that elect them.</p>
-                <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed text-center">For a brief moment, organized districts matter more than usual.</p>
-                <p className="text-green font-bold text-sm sm:text-[17px] text-center mt-2">That's an opportunity.</p>
-              </section>
 
               {/* VIDEO */}
               <div className="rounded-lg overflow-hidden border border-green/20">
@@ -290,6 +281,13 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
 
               <p>They go hand in hand: 500 creates leverage over your representative. 1,500 creates the power to replace them if they don't respond.</p>
 
+              <p className="text-gray-500 text-xs italic">
+                These figures come from veteran civic organizer Ralph Nader, who has written that petitions with legible names, occupations, and contact information from local constituents tend to bring a Representative to a town hall at around 500 signatures, or a Senator at around 1,000.{' '}
+                <a href="https://nader.org/wp-content/uploads/2024/11/riseup.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-400">
+                  Source: nader.org
+                </a>
+              </p>
+
               <div className="bg-green/5 border-l-4 border-green p-4 my-4 italic">
                 <p className="mb-2">PHIERS is claiming: if 500 people can organize around one demand in a district...</p>
                 <p className="mb-2">...then 1,500 can organize around accountability — forcing representatives to answer to constituents instead of donors.</p>
@@ -327,3 +325,4 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
 }
 
   // FILE: components/TransitionModal.tsx
+// VERSION: 4.5

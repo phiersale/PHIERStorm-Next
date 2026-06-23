@@ -1,6 +1,6 @@
   // FILE: components/slides/universalSlideData.ts
-  // VERSION: 1.1 - Fixed slide indices and Nader slide margins
-  // SUMMARY: All slides with corrected indices. Removed animate-fadeInSlow from Nader slide. Reduced caption margins.
+  // VERSION: 1.2 - Added Ralph Nader source caption to slide 11
+  // SUMMARY: All slides with corrected indices. Nader slide now includes source attribution.
 
   import { UniversalSlide } from "./universalSlideTypes"
 
@@ -175,7 +175,7 @@
       captionClassName: "text-center text-green-400 text-base md:text-xl font-medium mt-2 md:mt-3 tracking-tight max-w-3xl mx-auto"
     },
 
-    // 11 — RALPH NADER (click-to-enlarge) - reduced 20% from 65% to 52%
+    // 11 — RALPH NADER (click-to-enlarge) - sourced
     {
       id: "slide-11",
       type: "image",
@@ -185,7 +185,9 @@
       imageClassName: "w-full md:w-[52%] max-w-2xl mx-auto cursor-pointer transition-transform hover:scale-[1.02]",
       imageClickable: true,
       showTapHint: true,
-      title: "A Proven Strategy"
+      title: "A Proven Strategy",
+      caption: "Source: Ralph Nader, nader.org — drawing on \"Breaking Through Power: It's Easier Than We Think\"",
+      captionClassName: "text-center text-gray-500 text-xs mt-2 max-w-xl mx-auto"
     },
 
     // 12 — ACCOUNTABILITY
@@ -256,3 +258,4 @@
   ]
 
   // FILE: components/slides/universalSlideData.ts
+  // VERSION: 1.2

@@ -1,5 +1,5 @@
 // FILE: components/MainHomePage.tsx
-// VERSION: 7.5.0 – added fifteen hundred explanations
+// VERSION: 7.5.1 – added Nader attribution
 
 'use client'
 
@@ -504,7 +504,12 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
             <p className="text-gray-300 text-base mb-3">
               Congress doesn't respond to national percentages — it responds to pressure inside each district.
             </p>
-            <p className="text-gray-500 text-xs mt-2">— Ralph Nader, proven in civic campaigns</p>
+            <p className="text-gray-500 text-xs mt-2">
+              — Ralph Nader, veteran civic organizer.{' '}
+              <a href="https://nader.org/wp-content/uploads/2024/11/riseup.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-400">
+                Source: nader.org
+              </a>
+            </p>
             <p className="text-gray-300 text-base mb-3">
               When 1,500 people in a district go on record with the same demand,
               the representative is <span className="text-green font-semibold">forced to respond publicly</span> — or <span className="text-green font-semibold">risks losing their seat</span>.
@@ -1235,3 +1240,4 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 }
 
 // FILE: components/MainHomePage.tsx
+// VERSION: 7.5.1
