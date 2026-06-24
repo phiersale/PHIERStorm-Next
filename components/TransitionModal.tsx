@@ -1,5 +1,5 @@
 // FILE: components/TransitionModal.tsx
-// VERSION: 4.5 – Added Nader-related Verification
+// VERSION: 4.6 – Added cinematic visual break after leverage diagnosis
 
 'use client'
 
@@ -83,7 +83,26 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">Healthcare. Affordability. Corruption. Endless political theater.</p>
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed mt-2">Most Americans agree these problems are real.</p>
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">The problem isn't awareness. The problem is leverage.</p>
+
+                {/* VISUAL BREAK */}
+                <div className="relative w-full overflow-hidden rounded-lg border border-green/20 my-4">
+                  <img
+                    src="/images/Systemic_Absence.jpg"
+                    alt="Quiet empty government hallway at dusk"
+                    className="w-full h-auto object-cover opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1525] via-[#0d1525]/40 to-transparent"></div>
+                </div>
               </div>
+
+              {/* MOMENT BLOCK */}
+              <section className="moment-block bg-red/10 border border-red/40 rounded-lg p-4 sm:p-5 space-y-2">
+                <p className="text-red font-bold text-xs font-mono tracking-wider text-center">⚡ THIS MOMENT</p>
+                <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed text-center">Your representative answers to your district — whether Congress is in session or back home.</p>
+                <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed text-center">When they're home, face-to-face pressure is easiest to apply. When they're in session, the record you build now is what they'll have to answer for.</p>
+                <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed text-center">Every day Congress sits without acting is a day the record grows.</p>
+                <p className="text-green font-bold text-sm sm:text-[17px] text-center mt-2">That's an opportunity.</p>
+              </section>
 
               {/* VIDEO */}
               <div className="rounded-lg overflow-hidden border border-green/20">
@@ -297,7 +316,7 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               </div>
 
               <p className="text-yellow-400 text-sm font-semibold">
-                ⚡ When Congress is home, 500 people is enough to force a meeting — because no representative can afford to be seen ignoring an organized, on-record district.
+                ⚡ Congressional recess is when face-to-face pressure is strongest — 500 people is enough to force a meeting, because no representative can afford to be seen ignoring an organized, on-record district once they're back in the district.
               </p>
 
               <p className="text-gray-300 text-sm leading-relaxed">
@@ -325,4 +344,3 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
 }
 
   // FILE: components/TransitionModal.tsx
-// VERSION: 4.5
