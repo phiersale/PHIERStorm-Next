@@ -38,14 +38,17 @@ export default function LeveragePage() {
               />
             </div>
             <p className="text-2xl font-semibold text-white">You are not powerless.</p>
-            <p className="text-lg text-gray-300 mt-2">Real leverage starts where real power lives: <strong>the district</strong>.</p>
+            <p className="text-lg text-gray-300 mt-3 max-w-xl mx-auto">You've felt it. The exhaustion of carrying weight nobody else carries. The quiet voice that says none of it matters anyway.</p>
+            <p className="text-white text-xl font-semibold mt-4">That voice was lying to you.</p>
           </div>
 
           {/* Opening section */}
           <div className="mb-12">
-            <p className="text-gray-300 leading-relaxed">This isn't about parties. Or candidates.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">It's about the people who already hold power over your life — and what happens when they know you're organized, watching, and not going anywhere.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">Redistricting, voting laws, regulations — all decided at the state level. Policies that determine whether your family survives the next decade: state level.</p>
+            <p className="text-gray-300 leading-relaxed">Real leverage doesn't start in Washington. It starts inside your head, your heart — and your district.</p>
+            <p className="text-gray-300 leading-relaxed mt-4">Inside your head: knowing the system isn't as untouchable as it wants you to believe.</p>
+            <p className="text-gray-300 leading-relaxed mt-4">Inside your heart: refusing to settle for being ignored.</p>
+            <p className="text-gray-300 leading-relaxed mt-4">And in your district: where the actual decisions get made — redistricting, voting laws, regulations, the policies that determine whether your family survives the next decade.</p>
+            <p className="text-gray-300 leading-relaxed mt-4">This isn't about parties. Or candidates. It's about the people who already hold power over your life — and what happens the moment they know you're organized, watching, and not going anywhere.</p>
             <p className="text-gray-300 leading-relaxed mt-4">Representatives make those decisions. They only fear one thing: losing their seat.</p>
             <p className="text-gray-300 leading-relaxed mt-4">The petition and survey tell Congress exactly what we demand — by district, with names attached. Primary threats are real. Investigations are real. Accountability is real.</p>
             <p className="text-white font-bold text-xl mt-4">That is leverage. Peaceful, lawful democracy when the people mean it.</p>
