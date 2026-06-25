@@ -11,11 +11,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function LeveragePage() {
-  const [showArrival, setShowArrival] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-    setShowArrival(true);
   }, []);
 
   return (
@@ -24,38 +21,6 @@ export default function LeveragePage() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
     >
-      {showArrival && (
-        <div
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 overflow-y-auto"
-          role="dialog"
-          aria-modal="true"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setShowArrival(false);
-          }}
-        >
-          <div className="relative max-w-md w-full bg-[#0a0a0a] border border-amber-500/40 rounded-2xl overflow-hidden shadow-2xl my-auto">
-            <div className="w-full h-32 sm:h-44 overflow-hidden">
-              <img
-                src="/images/trilogy/sankofa-arrival.jpg"
-                alt="A man looking forward, the road behind him"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div className="p-8 text-center">
-              <p className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-4">You made it this far</p>
-              <h2 className="text-3xl font-bold text-white mb-4">Congratulations, Black Man.</h2>
-              <p className="text-gray-300 leading-relaxed mb-8">This is where the reward for your effort resides. Go claim it.</p>
-              <button
-                onClick={() => setShowArrival(false)}
-                className="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition"
-              >
-                Claim it →
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       <div className="sticky-header">
         <a href="https://phiers.org" target="_blank" rel="noopener noreferrer">
           <img
@@ -73,8 +38,8 @@ export default function LeveragePage() {
             <p className="text-amber-400 font-bold text-4xl sm:text-5xl tracking-wide mb-6">LEVERAGE</p>
             <div className="max-w-md mx-auto mb-8">
               <img
-                src="/images/OUR_Lever_PHIERS_Can_Move_the_World.jpg"
-                alt="PHIERS leverage artwork"
+                src="/images/trilogy/hand-on-the-lever.jpg"
+                alt="A hand gripping the lever, mid-motion"
                 className="w-full h-auto rounded-lg"
               />
             </div>
@@ -105,6 +70,13 @@ export default function LeveragePage() {
             <div>
               <p className="text-amber-400 font-bold text-sm tracking-wide uppercase mb-2">In Your District</p>
               <p className="text-gray-300 leading-[1.7]">Where the actual decisions get made — redistricting, voting laws, regulations, the policies that determine whether your family survives the next decade.</p>
+              <div className="mt-6 rounded-lg overflow-hidden border border-gray-800">
+                <img
+                  src="/images/District_Accountability_Dashboard.jpg"
+                  alt="District Accountability Dashboard showing verified signatures, endorsements, and progress toward the 1,500 threshold"
+                  className="w-full h-auto"
+                />
+              </div>
             </div>
           </div>
 
@@ -158,13 +130,7 @@ export default function LeveragePage() {
 
           {/* Secondary navigation */}
           <div className="text-center mt-6 text-gray-500 text-sm">
-            <Link href="/Prophecy/trilogy" className="hover:text-white transition">Return to Trilogy</Link>
-            <span className="mx-2">·</span>
-            <Link href="/Prophecy/unforgettable" className="hover:text-white transition">UNFORGETTABLE</Link>
-            <span className="mx-2">·</span>
-            <Link href="/Prophecy/unbreakable" className="hover:text-white transition">UNBREAKABLE</Link>
-            <span className="mx-2">·</span>
-            <Link href="/Prophecy/unstoppable" className="hover:text-white transition">UNSTOPPABLE</Link>
+            <Link href="/Prophecy/movement" className="hover:text-white transition">Back to The Movement</Link>
           </div>
 
           <footer className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">

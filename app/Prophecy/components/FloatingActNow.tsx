@@ -3,8 +3,10 @@
 
 'use client';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function FloatingActNow() {
+  const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [faded, setFaded] = useState(false);
@@ -29,6 +31,7 @@ export default function FloatingActNow() {
   };
 
   if (dismissed) return null;
+  if (pathname === '/Prophecy') return null;
 
   return (
     <div

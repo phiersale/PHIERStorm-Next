@@ -234,12 +234,10 @@ export default function ProphecyPage() {
             </div>
           </a>
 
-          {/* DOOR 3 — LEVERAGE -> PHIERS.org */}
-          <a
-            href="https://phiers.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:flex-1 sm:min-w-[160px] bg-[#0a1628]/80 border-2 border-green-400/40 rounded-xl py-4 sm:py-5 px-3 text-center shadow-lg shadow-green-400/10 hover:border-green-400/80 hover:-translate-y-1 transition-all duration-300"
+{/* DOOR 3 — LEVERAGE -> /Prophecy/leverage (was phiers.org direct) */}
+         <a 
+            href="/Prophecy/leverage"
+            className="w-full sm:flex-1 sm:min-w-[160px] bg-[#0a1628]/80 border-2 border-green-400/40 rounded-xl py-4 sm:py-5 px-3 text-center shadow-lg shadow-green-400/10 hover:border-green-400/80 hover:-translate-y-1 transition-all duration-300 cursor-pointer block"
           >
             <div className="flex flex-col items-center">
               <img
@@ -249,7 +247,7 @@ export default function ProphecyPage() {
                 style={{ aspectRatio: 'auto', transform: 'scaleX(1.08)' }}
               />
               <div className="text-green-400 text-sm sm:text-base md:text-lg font-black tracking-wide">
-                THE SOLUTION
+                LEVERAGE
               </div>
               <div className="text-gray-400 text-xs sm:text-sm mt-1">
                 HOW we build
@@ -280,9 +278,7 @@ export default function ProphecyPage() {
         <p>A gift from Foundational Black American men to humanity. Built by Black men.</p>
         <div className="w-16 h-px bg-gray-700 mx-auto my-4" />
         <a
-          href="https://phiers.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/Prophecy/leverage"
           className="inline-flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition"
         >
           <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-8 h-auto" />

@@ -192,6 +192,38 @@ export default function MovementPage() {
           </p>
         </section>
 
+        {/* FAMILIES — ported from retired Unbreakable page */}
+        <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">Why They Asked Me</h2>
+          <div className="grid md:grid-cols-3 gap-6 items-start">
+            <div className="space-y-4">
+              <img src="/images/trilogy/Me_w_Tuskegee_Airman_George_SpankyRoberts_Family.jpg" alt="Will Price with the family of Tuskegee Airman George 'Spanky' Roberts" className="w-full rounded-lg grayscale" />
+              <img src="/images/trilogy/Me_n_Dad_at_CHURCH.jpg" alt="Will and Dad at the church Dad built" className="w-full rounded-lg grayscale" />
+            </div>
+            <div className="md:col-span-2 space-y-4 text-gray-300 text-lg">
+              <p className="font-semibold text-white">The families of the men of the 761st and the Tuskegee Airmen asked me to speak for them.</p>
+              <p>I have pictures of us together. Real photos. Real people. Real trust.</p>
+              <p>They didn't ask a university. They didn't ask a museum. They didn't ask a politician.</p>
+              <p className="font-bold text-white">They asked me — Will Price, founder of PHIERS.</p>
+              <p>Because they know their fathers and grandfathers — the men of the 761st, the Tuskegee Airmen, the forgotten battalions — never got their full story told. The government erased it. The textbooks left it out.</p>
+              <p>But the families remember. And they chose PHIERS to carry the record.</p>
+              <p className="font-bold text-white">That is not leverage we manufactured. That is leverage we were given.</p>
+              <p>And we will use it to build a future those men would be proud of — not just for Black men, but for all of humanity.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* CONVICT LEASING — ported from retired Unforgettable page */}
+        <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">Freedom on Paper</h2>
+          <div className="space-y-4 text-gray-300 text-lg">
+            <p className="font-semibold text-white">Slavery ended on paper in 1865. The labor never stopped.</p>
+            <p>In most Southern states, Black men were immediately re-arrested after emancipation — on charges like vagrancy, "idleness," or looking at someone wrong — and leased back to plantations and mines as convict labor.</p>
+            <p>The 13th Amendment allowed it. It ran until 1941 in some states. Nearly 80 years after freedom was declared.</p>
+            <p>The men who lived through this were not criminals. They were a workforce — re-enslaved by another name, documented and legal.</p>
+          </div>
+        </section>
+
         {/* WHAT PHIERS BUILDS */}
         <section className="max-w-4xl mx-auto px-5 py-20 border border-gray-800 rounded-2xl bg-[#0b0b0b]">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">What PHIERS Builds</h2>
@@ -351,21 +383,44 @@ export default function MovementPage() {
           <p className="text-xl font-semibold mt-6">The future belongs to organized men.</p>
         </section>
 
-        {/* Closing CTA */}
+        {/* TIMELINE ADVANTAGE — ported from retired Unstoppable page */}
+        <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">Our Timeline, Not Theirs</h2>
+          <div className="space-y-4 text-gray-300 text-lg">
+            <p>Everyone else is focused on the midterms. That means they're playing on their timeline.</p>
+            <p className="font-bold text-white">We're playing on ours.</p>
+            <p>PHIERS works between elections. It works in every district. A member of Congress doesn't need a clean election to feel pressure.</p>
+            <p className="font-semibold text-white">This is how we move now. This is how we protect ourselves. This is how we protect everybody else.</p>
+          </div>
+        </section>
+
+        {/* CLOSING REFRAME — ported from retired Unforgettable page */}
+        <section className="max-w-3xl mx-auto px-5 py-16 text-center">
+          <p className="text-gray-200 text-lg leading-relaxed">
+            Once you see the structure, something shifts.<br />
+            You stop blaming yourself.<br />
+            You stop shrinking.<br />
+            You stop carrying weight that was never yours.
+          </p>
+        </section>
+
+        {/* Closing CTA — now a Step 3 transition to Leverage */}
         <section className="text-center py-20">
-          <section className="my-12">
-            <img src="/images/trilogy/Final_CTA_image.jpg" alt="Man walking toward sunrise" className="w-full md:w-4/5 mx-auto rounded-lg object-cover shadow-lg" />
+          <section className="my-12 max-w-2xl mx-auto">
+            <img src="/images/trilogy/sankofa-arrival.jpg" alt="A man looking forward, the road behind him" className="w-full rounded-lg object-cover shadow-lg" />
           </section>
+          <p className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-3">Step 3 of 3</p>
+          <p className="text-white text-2xl font-bold mb-2">You made it this far.</p>
+          <p className="text-gray-300 leading-relaxed max-w-lg mx-auto mb-8">This is where the reward for your effort resides. Go claim it.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/Prophecy" className="inline-block bg-transparent border border-gray-600 text-white font-bold text-base sm:text-lg md:text-xl py-3 sm:py-4 px-6 sm:px-12 rounded-full hover:bg-white/10 transition shadow-lg whitespace-nowrap">
               ← BACK TO PROPHECY
             </Link>
-            <Link href="/Prophecy/trilogy" className="inline-block bg-white text-black font-bold text-base sm:text-lg md:text-xl py-3 sm:py-4 px-6 sm:px-12 rounded-full hover:bg-gray-200 transition shadow-lg whitespace-nowrap">
-              ENTER THE TRILOGY →
+            <Link href="/Prophecy/leverage" className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold text-base sm:text-lg md:text-xl py-3 sm:py-4 px-6 sm:px-12 rounded-full transition shadow-lg whitespace-nowrap">
+              Claim it →
             </Link>
           </div>
-          <p className="text-gray-400 mt-4">Three chapters. One mission. A future we refuse to leave unguarded.</p>
-          <p className="text-gray-500 text-sm mt-2">Or <a href="/zoom" className="underline hover:text-white">join the Zoom first</a>.</p>
+          <p className="text-gray-500 text-sm mt-4">Or <a href="/zoom" className="underline hover:text-white">join the Zoom first</a>.</p>
         </section>
 
         <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
