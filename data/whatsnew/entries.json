@@ -1,17 +1,91 @@
 {
-  "lastUpdated": "May 18, 2026",
+  "lastUpdated": "JUNE 24, 2026",
   "entries": [
     {
-      "date": "MAY 18, 2026",
-      "tag": "REDISTRICTING",
+      "date": "JUNE 24, 2026",
+      "tag": "ANALYSIS",
       "pillColor": "red",
-      "headline": "MULTIPLE STATES MOVE TO REDRAW DISTRICTS MID‑DECADE",
-      "whatHappened": "Six states are redrawing congressional maps mid‑cycle, reshaping representation ahead of November. Louisiana suspended its own primary after ballots were already in the mail. Tennessee, Florida, Texas, Missouri, and Ohio are moving rapidly. Primaries paused. Maps rewritten. Major changes underway.",
-      "whyItMatters": "Communities need ways to stay organized and informed when district lines shift. PHIERS focuses on district‑level civic engagement — helping people stay connected to their representatives regardless of how maps change.",
+      "headline": "The war paused. The President says he isn't bound by it anyway.",
+      "whatHappened": "On June 17, Trump and Iran's president signed a memorandum of understanding to end the war, with a 60-day roadmap toward a final deal. The Strait of Hormuz reopened and shipping resumed. Four days later, Trump threatened on national television to \"take over the Strait\" and \"collect tolls\" if Iran didn't make a deal — nearly derailing the talks he'd just signed onto. He has separately called the memorandum \"just an option,\" saying \"I can do whatever I want after that option.\" Meanwhile, the Senate passed a war powers resolution for the first time in its history this week, 50-48, directing Trump to remove forces from hostilities absent a formal declaration of war. Three Democrats whose votes could have swung the outcome have taken a combined $1.7 million from AIPAC. Nine senior Democratic leaders — despite collectively taking nearly $9 million from AIPAC — broke from the lobby's position and criticized the strikes anyway, calling for the War Powers Act to be invoked. Trump called the Senate's vote \"poorly timed and meaningless\" and accused the chamber of \"aid and comfort to the Enemy.\"",
+      "whyItMatters": "A signed agreement and a historic congressional vote both happened this week — and the President responded to both by saying neither one binds him. That's not a hypothetical case for organized constituent pressure. It's the case, happening in real time. Even members who took the lobby's money broke from it under enough public pressure — proof the mechanism works in both parties, not just one. A district that's already organized doesn't have to wait for the next crisis to make its representative's vote count.",
       "sources": [
-        { "name": "CNN Analysis, May 7, 2026", "url": "https://www.cnn.com" },
-        { "name": "Democracy Docket Redistricting Tracker, May 2026", "url": "https://www.democracydocket.com" }
+        { "name": "AP / Britannica — 2026 Iran war timeline", "url": "https://www.britannica.com/event/2026-Iran-war" },
+        { "name": "CNN — June 21, 2026 live updates", "url": "https://www.cnn.com/2026/06/21/world/live-news/iran-war-trump-israel-lebanon" },
+        { "name": "CBS News — Senate Iran war powers vote", "url": "https://www.cbsnews.com/live-updates/iran-us-war-trump-nuclear-sites-strait-of-hormuz/" },
+        { "name": "Al Jazeera — Senate votes to halt Iran war", "url": "https://www.aljazeera.com/news/2026/6/23/us-senate-votes-to-halt-iran-war-bucking-trump" }
       ]
+    },
+    {
+      "date": "MAY 2026",
+      "tag": "UPDATE",
+      "pillColor": "teal",
+      "headline": "A change in how we're asking for your participation",
+      "whatHappened": "PHIERS has been pushing hard for petition signatures. We're pulling back on that — not because the petition doesn't matter, but because we got the sequence wrong. Signatures mean more when the people signing them understand what they're signing and feel genuinely heard. So we're flipping the order: survey first, petition second. We've also corrected language on the petition page that was imprecise about privacy. Your name is never made public. We share only district-level counts with elected officials who request verification that real constituents in their district are paying attention. Your email is optional. Nothing is sold or shared. If you have questions, the survey is the place to ask them. We respond personally, three nights a week.",
+      "whyItMatters": "",
+      "sources": []
+    },
+    {
+      "date": "MAY 21, 2026",
+      "tag": "ANALYSIS",
+      "pillColor": "red",
+      "headline": "Congress walked out to avoid a vote on the Epstein files",
+      "whatHappened": "In July 2025, House Speaker Mike Johnson sent lawmakers home early for the August recess to avoid Republicans being forced to vote on releasing the Jeffrey Epstein files. The House floor was paralyzed for days, and they left with tight deadlines on major legislation when they returned in September. A bipartisan resolution co-sponsored by nine Democrats and eleven Republicans would have forced the complete release of the government's Epstein files — Johnson blocked the vote entirely. Your rep took a five-week vacation rather than cast a vote. Not on a hard issue — on whether to release information the president himself promised to release. Bipartisan agreement wasn't enough.",
+      "whyItMatters": "The petition tells your representative exactly where you stand — in writing, by district, with your name attached. Representatives who ignore it face organized primary challenges and public accountability. That's how we change Congress without waiting two years.",
+      "sources": []
+    },
+    {
+      "date": "MAY 18, 2026",
+      "tag": "ANALYSIS",
+      "pillColor": "teal",
+      "headline": "Healthcare: the math Congress can't ignore",
+      "whatHappened": "$600 per year covers telehealth for 234 million Americans. No new legislation required. No tax increase. No deficit spending. Collective buying power — the same leverage corporations use against us, turned around. Lower drug prices. Living-wage jobs. A safety net that actually holds. Funded by savings we create together — not by waiting for Congress to act.",
+      "whyItMatters": "The survey tells Congress what constituents demand. The petition backs it with names. 1,500 people per district turns a demand into a consequence.",
+      "sources": []
+    },
+    {
+      "date": "MAY 18, 2026",
+      "tag": "ANALYSIS",
+      "pillColor": "amber",
+      "headline": "Housing, wages & the cost of staying alive",
+      "whatHappened": "Corporate landlords are buying up neighborhoods. Fair housing enforcement is being gutted under the cover of \"eliminating DEI.\" Wages haven't kept pace with rent, food, or medicine in a decade. These are not separate problems. They are one problem: the needs of the few being put ahead of the survival of the many. The same communities losing voting power are the same communities losing housing access. That's not coincidence. That's strategy.",
+      "whyItMatters": "",
+      "sources": []
+    },
+    {
+      "date": "MAY 18, 2026",
+      "tag": "ANALYSIS",
+      "pillColor": "blue",
+      "headline": "Surveillance, civil liberties & the rule of law",
+      "whatHappened": "42 Democrats joined House Republicans to expand warrantless surveillance powers — handing the Trump administration sweeping spy authority that has already been used against Black Lives Matter protesters, journalists, and members of Congress. ICE has hired private security accused of torture to track undocumented children. The FEC has been deliberately left understaffed so campaign finance laws can't be enforced. Press freedom is under executive threat. The tools being used against Black and immigrant communities today will be used against everyone else tomorrow.",
+      "whyItMatters": "PHIERS' district-by-district model is built to overcome redistricting and voter suppression at the ground level — where the decisions are made and where the consequences land.",
+      "sources": []
+    },
+    {
+      "date": "MAY 18, 2026",
+      "tag": "ANALYSIS",
+      "pillColor": "teal",
+      "headline": "Protect public institutions before they're gone",
+      "whatHappened": "Privatizing the Post Office hits rural, Black, elderly, and low-income communities hardest — cutting access to medicine, ballots, and economic lifelines. Data centers are being placed in low-income communities with massive environmental cost and zero community benefit. Public goods exist to serve people. Not to extract from them. Not to be sold to the highest bidder while the communities that need them most get nothing.",
+      "whyItMatters": "",
+      "sources": []
+    },
+    {
+      "date": "MAY 18, 2026",
+      "tag": "ANALYSIS",
+      "pillColor": "red",
+      "headline": "Stop the authoritarian drift — before it's too late",
+      "whatHappened": "Trump has stated publicly that he doesn't care if we survive his policies. Conflicts of interest, self-dealing, and the corporate capture of government are not governing — they are looting. The FEC is understaffed on purpose. The courts have been packed. The Voting Rights Act is gone. Fascism always lands hardest on Black, immigrant, disabled, and poor communities first. It always has. Name it. Fight it. Don't normalize it.",
+      "whyItMatters": "",
+      "sources": []
+    },
+    {
+      "date": "MAY 18, 2026",
+      "tag": "ANALYSIS",
+      "pillColor": "red",
+      "headline": "End the wars. Rebuild the country.",
+      "whatHappened": "Senate Republicans have now blocked an Iran War Powers resolution six times — preventing Congress from reining in military strikes being conducted without a single Congressional vote authorizing them. The Pentagon has struck nearly 200 people in the Caribbean and Pacific, claiming without evidence they were all carrying drugs. Trillions spent on foreign wars. Zero spent on the communities those soldiers came from. This is not idealism — ending wars is the economic prerequisite for everything else on this list.",
+      "whyItMatters": "The petition tells your representative exactly where you stand — in writing, by district, with your name attached. Representatives who ignore it face organized primary challenges and public accountability. That's how we change Congress without waiting two years.",
+      "sources": []
     },
     {
       "date": "MAY 13, 2026",
@@ -30,7 +104,7 @@
       "tag": "URGENT",
       "pillColor": "red",
       "headline": "SUPREME COURT ISSUES MAJOR RULING ON VOTING RIGHTS ACT",
-      "whatHappened": "The 6–3 ruling in Louisiana v. Callais eliminated Section 2, a key federal protection against discriminatory redistricting. States began redrawing maps within 48 hours. Louisiana suspended an election mid‑vote.",
+      "whatHappened": "The 6–3 ruling in Louisiana v. Callais eliminated Section 2, a key federal protection against discriminatory redistricting. States began redrawing maps within 48 hours. Louisiana suspended an election mid-vote.",
       "whyItMatters": "With fewer federal safeguards, communities need reliable ways to stay engaged at the district level. PHIERS emphasizes local organization — where people still have direct channels to their representatives.",
       "sources": [
         { "name": "Brennan Center for Justice", "url": "https://www.brennancenter.org" },
@@ -55,9 +129,21 @@
       "date": "MAY 2026 — ONGOING",
       "tag": "REDISTRICTING",
       "pillColor": "red",
+      "headline": "MULTIPLE STATES MOVE TO REDRAW DISTRICTS MID-DECADE",
+      "whatHappened": "Six states are redrawing congressional maps mid-cycle, reshaping representation ahead of November. Louisiana suspended its own primary after ballots were already in the mail. Tennessee, Florida, Texas, Missouri, and Ohio are moving rapidly. Primaries paused. Maps rewritten. Major changes underway.",
+      "whyItMatters": "Communities need ways to stay organized and informed when district lines shift. PHIERS focuses on district-level civic engagement — helping people stay connected to their representatives regardless of how maps change.",
+      "sources": [
+        { "name": "CNN Analysis, May 7, 2026", "url": "https://www.cnn.com" },
+        { "name": "Democracy Docket Redistricting Tracker, May 2026", "url": "https://www.democracydocket.com" }
+      ]
+    },
+    {
+      "date": "MAY 2026 — ONGOING",
+      "tag": "REDISTRICTING",
+      "pillColor": "red",
       "headline": "NATIONWIDE REDISTRICTING ACCELERATES AHEAD OF NOVEMBER",
       "whatHappened": "Multiple states — across parties — are redrawing maps rapidly. Analysts note that the 2026 landscape looks significantly different than it did six months ago. Representation and district boundaries are shifting in real time.",
-      "whyItMatters": "Regardless of how maps change, constituents still need ways to stay organized and informed. PHIERS focuses on district‑level civic structure — helping people maintain continuity and clarity even as political boundaries move.",
+      "whyItMatters": "Regardless of how maps change, constituents still need ways to stay organized and informed. PHIERS focuses on district-level civic structure — helping people maintain continuity and clarity even as political boundaries move.",
       "sources": [
         { "name": "Council on Foreign Relations, May 4, 2026", "url": "https://www.cfr.org" },
         { "name": "Ballotpedia Redistricting Tracker, May 2026", "url": "https://ballotpedia.org" }

@@ -72,6 +72,13 @@ export default function EvidenceArchivePage() {
           </p>
         </div>
 
+        {/* TOP CROSS-LINK */}
+        <div className="text-center mb-6">
+          <Link href="/our-standard" className="text-green-400 text-xs sm:text-sm hover:underline">
+            Looking for our mission and values instead? See What PHIERS Stands For →
+          </Link>
+        </div>
+
         {/* COMING SOON MESSAGE */}
         <div className="bg-green/5 border border-green/20 rounded-lg p-6 mb-8 text-center">
           <p className="text-green-400 text-sm font-semibold mb-2">📢 Check back often.</p>
@@ -474,36 +481,12 @@ export default function EvidenceArchivePage() {
           </button>
           {expandedSection === 'vision' && (
             <div className="mt-4 space-y-6 p-5 bg-[#0a1628]/20 rounded-lg">
-              {/* MABSHA */}
-              <div className="bg-[#0a1628]/40 rounded-lg p-5 border border-gray-800">
-                <h3 className="text-green font-semibold mb-3">Our Standard: MABSHA</h3>
-                <div className="flex items-center gap-2 mb-4"><span className="text-green-400 text-2xl">⭐</span><p className="text-green-400 font-semibold italic">Make America Better: Healthier, Safer, Affordable</p></div>
-                <div className="bg-[#0a1628] rounded-lg p-4 space-y-2 text-gray-300 text-sm">
-                  <p>✓ Healthcare doesn't bankrupt families.</p>
-                  <p>✓ Work provides dignity and opportunity.</p>
-                  <p>✓ Elected officials abide the will of the voters.</p>
-                  <p>✓ Government serves the People, not elites.</p>
-                  <p>✓ Solutions paid by rescinding tax breaks for the wealthy.</p>
-                  <p>✓ Public servants held accountable.</p>
-                  <p>✓ We rise from the ashes like the Phoenix.</p>
-                </div>
-              </div>
-              {/* PATRIOTIC HOMECOMING */}
-              <div className="bg-[#0a1628]/40 rounded-lg p-5 border border-gray-800">
-                <h3 className="text-green font-semibold mb-3">A Patriotic Homecoming for American Democracy</h3>
-                <div className="space-y-3 text-gray-300 text-sm">
-                  <p>Have PHIERS operational by June 13. Demonstrate civic participation by June 14. By Independence Day, show representative government can still answer to the people.</p>
-                  <div className="text-center py-3 bg-[#0a1628] rounded-lg"><p>Not through violence. Not through chaos. Through organization. Through accountability. Through participation.</p></div>
-                  <p>The First Reconstruction rebuilt the Union. The Second expanded civil rights. <strong>The Third rebuilds accountability.</strong></p>
-                  <p className="text-green-400 font-semibold">Fifteen Hundred is not the destination. It is the proof.</p>
-                </div>
-              </div>
-              {/* FOR AMERICANS */}
-              <div className="bg-[#0a1628]/40 rounded-lg p-5 border border-gray-800">
-                <h3 className="text-green font-semibold mb-3">For Americans Who Were Promised Change</h3>
-                <p>MAGA promised change. It didn't deliver — because the people making promises don't have the structure to build it.</p>
-                <div className="bg-[#0a1628] border border-green/20 rounded-lg p-3 my-3"><p className="text-white font-semibold">PHIERS is the structure they should have built.</p></div>
-                <p>Not left or right. Just organized citizens holding elected officials accountable.</p>
+              {/* VISION & VALUES MOVED — see /our-standard */}
+              <div className="bg-[#0a1628]/40 rounded-lg p-5 border border-gray-800 text-center">
+                <p className="text-gray-300 text-sm mb-2">Looking for MABSHA, our founding standard, and PHIERS's vision?</p>
+                <Link href="/our-standard" className="text-green hover:underline font-semibold">
+                  What PHIERS Stands For →
+                </Link>
               </div>
               {/* PUBLIC RECORD DEEP DIVE */}
               <div className="bg-[#0a1628]/40 rounded-lg p-5 border border-gray-800">

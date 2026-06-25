@@ -229,7 +229,7 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                   </button>
                 )}
                 <a
-                  href="https://forms.gle/eDSMYjFbGQwWq96AA"
+                  href="https://phiers.abacusai.app/survey"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-3 bg-green/20 text-green-400 border border-green/40 rounded-lg text-base font-semibold hover:bg-green/30 transition text-center"
