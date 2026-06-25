@@ -84,16 +84,41 @@ export default function LeveragePage() {
           </div>
 
           {/* Opening section */}
-          <div className="mb-12">
-            <p className="text-gray-300 leading-relaxed">Real leverage doesn't start in Washington. It starts inside your head, your heart — and your district.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">Inside your head: knowing the system isn't as untouchable as it wants you to believe.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">Inside your heart: refusing to settle for being ignored.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">And in your district: where the actual decisions get made — redistricting, voting laws, regulations, the policies that determine whether your family survives the next decade.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">This isn't about parties. Or candidates. It's about the people who already hold power over your life — and what happens the moment they know you're organized, watching, and not going anywhere.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">Representatives make those decisions. They only fear one thing: losing their seat.</p>
-            <p className="text-gray-300 leading-relaxed mt-4">The petition and survey tell Congress exactly what we demand — by district, with names attached. Primary threats are real. Investigations are real. Accountability is real.</p>
-            <p className="text-white font-bold text-xl mt-4">That is leverage. Peaceful, lawful democracy when the people mean it.</p>
-            <p className="text-gray-300 leading-relaxed mt-4"><strong className="text-white">The PHIERS petition and survey are how we find those 1,500 people in every district — and how we make sure every representative knows we're watching.</strong></p>
+          <div className="mb-12 max-w-xl mx-auto">
+            <p className="text-gray-300 leading-[1.7] text-center">Real leverage doesn't start in Washington.</p>
+            <p className="text-white font-semibold text-lg leading-[1.7] text-center mt-2">It starts inside your head, your heart — and your district.</p>
+          </div>
+
+          <div className="border-t border-gray-800 max-w-xs mx-auto mb-12" />
+
+          <div className="space-y-8 mb-12 max-w-xl mx-auto">
+            <div>
+              <p className="text-amber-400 font-bold text-sm tracking-wide uppercase mb-2">Inside Your Head</p>
+              <p className="text-gray-300 leading-[1.7]">Knowing the system isn't as untouchable as it wants you to believe.</p>
+            </div>
+
+            <div>
+              <p className="text-amber-400 font-bold text-sm tracking-wide uppercase mb-2">Inside Your Heart</p>
+              <p className="text-gray-300 leading-[1.7]">Refusing to settle for being ignored.</p>
+            </div>
+
+            <div>
+              <p className="text-amber-400 font-bold text-sm tracking-wide uppercase mb-2">In Your District</p>
+              <p className="text-gray-300 leading-[1.7]">Where the actual decisions get made — redistricting, voting laws, regulations, the policies that determine whether your family survives the next decade.</p>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 max-w-xs mx-auto mb-12" />
+
+          <div className="space-y-5 mb-12 max-w-xl mx-auto">
+            <p className="text-gray-300 leading-[1.7]">This isn't about parties. Or candidates. It's about the people who already hold power over your life — and what happens the moment they know you're organized, watching, and not going anywhere.</p>
+            <p className="text-gray-300 leading-[1.7]">Representatives make those decisions. They only fear one thing: losing their seat.</p>
+            <p className="text-gray-300 leading-[1.7]">The petition and survey tell Congress exactly what we demand — by district, with names attached. Primary threats are real. Investigations are real. Accountability is real.</p>
+          </div>
+
+          <div className="bg-amber-500/5 border-l-4 border-amber-500/50 rounded-r-lg p-6 max-w-xl mx-auto mb-12">
+            <p className="text-white font-bold text-xl leading-[1.5]">That is leverage. Peaceful, lawful democracy when the people mean it.</p>
+            <p className="text-gray-300 leading-[1.7] mt-4"><strong className="text-white">The PHIERS petition and survey are how we find those 1,500 people in every district — and how we make sure every representative knows we're watching.</strong></p>
           </div>
 
           <StatCard>
