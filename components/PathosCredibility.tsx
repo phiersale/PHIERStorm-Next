@@ -350,7 +350,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             <p className="text-green text-sm font-mono tracking-wider">THE RECORD</p>
             <p className="text-gray-500 text-[11px]">22 years of documented public record</p>
           </div>
-          <details open className="group border border-green/20 rounded-lg bg-[#0a1628]/40 overflow-hidden">
+          <details className="group border border-green/20 rounded-lg bg-[#0a1628]/40 overflow-hidden">
             <summary className="cursor-pointer list-none p-6">
               <div className="flex items-center justify-between mb-6">
                 <p className="text-white font-semibold">View Full Timeline</p>
