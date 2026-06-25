@@ -38,17 +38,29 @@ export default function TrilogyLanding() {
             <p className="text-gray-300 mt-6">Not to stay stuck in pain. <strong className="text-white">To see clearly enough to move forward.</strong></p>
           </div>
 
-          <div className="text-center py-6 max-w-xl mx-auto border-y border-gray-800">
-            <p className="text-gray-400 text-base">Already know what you came to do?</p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-4">
-              <a href="https://phiers.abacusai.app/petition/fifteen-hundred" target="_blank" rel="noopener noreferrer" className="text-white font-semibold underline hover:no-underline">
-                Sign the petition →
-              </a>
-              <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="text-gray-400 font-semibold underline hover:no-underline">
-                Skip to the solution →
-              </a>
+          <div className="py-16 my-4">
+            <div className="text-center max-w-xl mx-auto py-10 px-6 border border-gray-800 rounded-2xl bg-[#0a0a0a]">
+              <p className="text-gray-300 text-lg font-semibold">Already know what you came to do?</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+                
+                  href="https://phiers.abacusai.app/petition/fifteen-hundred"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-white text-black font-bold text-base px-8 py-3.5 rounded-full shadow-lg hover:bg-gray-200 transition whitespace-nowrap"
+                >
+                  Sign the Petition
+                </a>
+                
+                  href="https://phiers.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-transparent border-2 border-gray-500 text-white font-bold text-base px-8 py-3.5 rounded-full hover:bg-white/10 transition whitespace-nowrap"
+                >
+                  Skip to the Solution
+                </a>
+              </div>
+              <p className="text-gray-500 text-sm mt-5 italic">No wrong door. The history will still be here when you're ready.</p>
             </div>
-            <p className="text-gray-500 text-xs mt-3 italic">No wrong door. The history will still be here when you're ready.</p>
           </div>
 
           {/* Accordion */}
