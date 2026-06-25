@@ -30,6 +30,13 @@ export default function LeveragePage() {
 
           {/* Hero */}
           <div className="text-center mb-12">
+            <div className="max-w-md mx-auto mb-8">
+              <img
+                src="/images/OUR_Lever_PHIERS_Can_Move_the_World.jpg"
+                alt="PHIERS leverage artwork"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
             <p className="text-2xl font-semibold text-white">You are not powerless.</p>
             <p className="text-lg text-gray-300 mt-2">Real leverage starts where real power lives: <strong>the district</strong>.</p>
           </div>
