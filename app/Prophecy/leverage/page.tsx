@@ -1,5 +1,5 @@
 // FILE: app/Prophecy/leverage/page.tsx
-// VERSION: 7.0.0 — Converted to dark theme to match site, removed broken image reference
+// VERSION: 7.1.0 — Added arrival modal with Sankofa image, dark theme conversion
 
 'use client';
 
@@ -14,6 +14,7 @@ export default function LeveragePage() {
   const [showArrival, setShowArrival] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setShowArrival(true);
   }, []);
 
@@ -25,24 +26,33 @@ export default function LeveragePage() {
     >
       {showArrival && (
         <div
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 overflow-y-auto"
           role="dialog"
           aria-modal="true"
           onClick={(e) => {
             if (e.target === e.currentTarget) setShowArrival(false);
           }}
         >
-          <div className="relative max-w-md w-full bg-[#0a0a0a] border border-amber-500/40 rounded-2xl p-8 text-center shadow-2xl">
-            <p className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-4">You made it this far</p>
-            <h2 className="text-3xl font-bold text-white mb-4">Congratulations, Black Man.</h2>
-            <p className="text-gray-300 leading-relaxed mb-6">This is where the reward for your effort resides.</p>
-            <p className="text-5xl font-bold text-amber-400 mb-8">LEVERAGE</p>
-            <button
-              onClick={() => setShowArrival(false)}
-              className="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition"
-            >
-              Claim it →
-            </button>
+          <div className="relative max-w-md w-full bg-[#0a0a0a] border border-amber-500/40 rounded-2xl overflow-hidden shadow-2xl my-auto">
+            <div className="w-full h-32 sm:h-44 overflow-hidden">
+              <img
+                src="/images/trilogy/sankofa-arrival.jpg"
+                alt="A man looking forward, the road behind him"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div className="p-8 text-center">
+              <p className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-4">You made it this far</p>
+              <h2 className="text-3xl font-bold text-white mb-4">Congratulations, Black Man.</h2>
+              <p className="text-gray-300 leading-relaxed mb-6">This is where the reward for your effort resides.</p>
+              <p className="text-5xl font-bold text-amber-400 mb-8">LEVERAGE</p>
+              <button
+                onClick={() => setShowArrival(false)}
+                className="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition"
+              >
+                Claim it →
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -142,4 +152,4 @@ export default function LeveragePage() {
 }
 
 // FILE: app/Prophecy/leverage/page.tsx
-// VERSION: 7.0.0
+// VERSION: 7.1.0
