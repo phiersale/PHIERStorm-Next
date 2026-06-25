@@ -260,12 +260,70 @@ export default function MovementPage() {
         {/* PRESSURES WE FACE */}
         <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">THE PRESSURES WE FACE</h2>
+
           <Accordion triggerLabel="Voting power gutted" className="...">
             <p className="text-gray-300"><strong>Pressure:</strong> The Voting Rights Act was completely gutted in 2026. Districts continue to be reshaped around us. Political leverage disappears.</p>
             <p className="text-gray-300 mt-2"><strong>Consequence:</strong> Communities become easier to ignore. Fragmentation increases. Power no longer has to listen.</p>
             <p className="text-gray-300 mt-2"><strong>Response:</strong> Organized men create leverage where isolated frustration cannot. Discipline and coordination restore pressure that redistricting cannot erase.</p>
           </Accordion>
-          {/* other accordions unchanged – same as v19.0 */}
+
+          <Accordion triggerLabel="Black engineers, erased again" className="...">
+            <p className="text-gray-300">In the late 1980s, Palin Johnson Associates — a Black-owned engineering firm — partnered with IBM to modernize TRACON, the system that keeps planes safe on approach and departure. They proved it could run on cheaper, general-purpose computers. It worked. It kept skies safe for decades.</p>
+            <p className="text-gray-300 mt-2">Nobody remembers that. But when a Black mayor's bridge got hit, the conversation turned to race overnight. Watch, then judge for yourself.</p>
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-green-30 mt-4">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/dih6P3gpGJ4"
+                title="Black Engineers Modernized Air Traffic Control"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </Accordion>
+
+          <Accordion triggerLabel="Reconstruction's reversal" className="...">
+            <p className="text-gray-300">Black Codes made unemployment and "insolence" a crime — pretext to arrest freedmen.</p>
+            <p className="text-gray-300 mt-2">Convict leasing fed those arrests straight back into forced labor. No ownership stake in keeping a man alive made it deadlier than slavery.</p>
+            <p className="text-gray-300 mt-2">1877. Federal troops pulled out of the South. Protection ended.</p>
+          </Accordion>
+
+          <Accordion triggerLabel="Jim Crow's machinery" className="...">
+            <p className="text-gray-300">Legal segregation. Poll taxes. Literacy tests. Grandfather clauses. White primaries.</p>
+            <p className="text-gray-300 mt-2">Lynching enforced all of it. Near-total impunity.</p>
+            <p className="text-gray-300 mt-2">Sharecropping ran on debt built so you could never settle the account and leave.</p>
+          </Accordion>
+
+          <Accordion triggerLabel="Locked out of the New Deal" className="...">
+            <p className="text-gray-300">1935. Social Security excluded agricultural and domestic workers — the two largest Black job categories at the time.</p>
+            <p className="text-gray-300 mt-2">Redlining marked our neighborhoods uninsurable. No federally-backed mortgages.</p>
+            <p className="text-gray-300 mt-2">The GI Bill, administered locally, denied Black veterans the same housing and education benefits white veterans got.</p>
+            <p className="text-gray-300 mt-2">Urban renewal and the interstate highways were routed straight through thriving Black neighborhoods. Overtown. Rondo. Demolished, city by city.</p>
+          </Accordion>
+
+          <Accordion triggerLabel="The backlash" className="...">
+            <p className="text-gray-300">Nixon's own aide, John Ehrlichman, admitted on record the War on Drugs was built to target us. The 100:1 crack-to-powder sentencing gap followed.</p>
+            <p className="text-gray-300 mt-2">Incarceration in this country roughly quintupled from the 1970s to the 2000s. We're locked up at about 5 times the rate of white Americans.</p>
+            <p className="text-gray-300 mt-2">Zero-tolerance school discipline. Same pipeline, younger.</p>
+            <p className="text-gray-300 mt-2">2008. Subprime lenders steered us into higher-cost loans even when we qualified for better. We took the foreclosures hardest.</p>
+            <p className="text-gray-300 mt-2">Felon disenfranchisement. Same function as the poll tax. Different paperwork.</p>
+            <p className="text-gray-300 mt-2">Shelby County v. Holder gutted the Voting Rights Act in 2013. This year's ruling went further.</p>
+          </Accordion>
+
+          <Accordion triggerLabel="Guns flowed in. We didn't make them." className="...">
+            <p className="text-gray-300">We don't manufacture firearms. Law enforcement calls it the Iron Pipeline — guns bought cheap in states with weak laws, run up I-95, sold at markup in our cities.</p>
+            <p className="text-gray-300 mt-2">Two-thirds of the guns recovered in Baltimore come from out of state. Same pattern in New York, Chicago, L.A.</p>
+            <p className="text-gray-300 mt-2">A market built the pipeline. We took the gang wars.</p>
+          </Accordion>
+
+          <Accordion triggerLabel="What happened to the music" className="...">
+            <p className="text-gray-300">Conscious rap was here first. Public Enemy. Queen Latifah. De La Soul. The Fugees.</p>
+            <p className="text-gray-300 mt-2">Then the labels found what sold harder. After the L.A. riots, conscious rappers stopped getting signed. Gangster rap took the airwaves.</p>
+            <p className="text-gray-300 mt-2">Charlie Braxton, who covered it from inside the industry, asked the question plainly: "Do you think that's an accident?"</p>
+            <p className="text-gray-300 mt-2">Kim Osorio, who ran The Source, said it too: "I believe that there was an agenda."</p>
+            <p className="text-gray-300 mt-2">We watched what got pushed and what got buried. We know what we saw.</p>
+          </Accordion>
         </section>
 
         {/* ACCOUNTABILITY IS THE BOND with moved image */}
