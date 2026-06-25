@@ -49,6 +49,20 @@ export default function LeveragePage() {
           </div>
 
           {/* Opening section */}
+          <div className="mb-8 max-w-xl mx-auto text-center">
+            <img
+              src="/images/trilogy/sankofa-icon.png"
+              alt="Sankofa — the bird looking back while moving forward"
+              className="w-16 h-16 mx-auto mb-4 opacity-90"
+            />
+            <p className="text-amber-400/80 text-xs tracking-[0.25em] uppercase">Sankofa</p>
+            <p className="text-gray-300 leading-[1.7] mt-2">Look back. Take what still works. Carry it forward.</p>
+            <p className="text-gray-300 leading-[1.7] mt-2">That's not just how we heal. That's how we win.</p>
+            <p className="text-gray-300 leading-[1.7] mt-4"><strong className="text-white">Umoja</strong> — unity. Not 1,500 different voices. One.</p>
+          </div>
+
+          <div className="border-t border-amber-500/20 max-w-xs mx-auto mb-8" />
+
           <div className="mb-12 max-w-xl mx-auto">
             <p className="text-gray-300 leading-[1.7] text-center">Real leverage doesn't start in Washington.</p>
             <p className="text-white font-semibold text-lg leading-[1.7] text-center mt-2">It starts inside your head, your heart — and your district.</p>
@@ -114,6 +128,7 @@ export default function LeveragePage() {
 
           {/* CLOSING */}
           <div className="bg-[#0b0b0b] border border-gray-800 text-white p-8 rounded-lg my-12 text-center">
+            <p className="text-amber-400/80 text-xs tracking-[0.25em] uppercase mb-3">Kujichagulia — Self-Determination</p>
             <p className="text-xl leading-relaxed">We built this.</p>
             <p className="text-gray-300 mt-4">Without asking permission. Without waiting for funding. Without their approval.</p>
             <p className="text-gray-300 mt-2">Black men built a solution that will benefit every ignored, unheard constituency in this country — not because we were asked, but because we could see clearly what others refused to look at.</p>

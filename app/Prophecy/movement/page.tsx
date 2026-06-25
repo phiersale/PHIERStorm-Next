@@ -109,6 +109,7 @@ export default function MovementPage() {
 
         {/* THE FIFTEEN HUNDRED */}
         <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
+          <p className="text-amber-400/80 text-xs tracking-[0.25em] uppercase mb-3">Ujima — Collective Work and Responsibility</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">THE FIFTEEN HUNDRED</h2>
           <section className="my-8">
             <img src="/images/trilogy/The_Fifteen_Hundred.jpg" alt="Group of men at sunrise" className="w-full rounded-lg object-cover shadow-lg max-w-full h-auto" />
@@ -226,6 +227,7 @@ export default function MovementPage() {
 
         {/* WHAT PHIERS BUILDS */}
         <section className="max-w-4xl mx-auto px-5 py-20 border border-gray-800 rounded-2xl bg-[#0b0b0b]">
+          <p className="text-amber-400/80 text-xs tracking-[0.25em] uppercase mb-3">Kuumba — Creativity</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">What PHIERS Builds</h2>
           <p className="text-lg text-gray-300 mb-4">We are building disciplined local brotherhood. Not endless talk. Not online outrage. Real structure that helps men:</p>
           <ul className="list-disc pl-6 text-gray-300 space-y-2 mb-4">
