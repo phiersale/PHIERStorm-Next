@@ -67,7 +67,7 @@ export default function UnbreakablePage() {
                 <p className="text-gray-200">The 761st Tank Battalion. The first all‑Black armored unit to see combat in World War II.</p>
                 <p className="mt-2 text-gray-200">They trained for two years while white units deployed after weeks — because the Army doubted them. Then they fought through France, Belgium, Luxembourg, the Netherlands, Germany, and Austria. Six countries. 183 consecutive days at the front. White units rotated after one or two weeks.</p>
                 <p className="mt-2 text-gray-200">They breached the Siegfried Line — Hitler's fortified western wall — and punched the gap that Patton's 4th Armored Division drove through into Germany.</p>
-                <p className="mt-2 font-semibold text-white">They liberated Jews from three different concentration camps. Gunskirchen. Mauthausen. Others. Many of the survivors went on to help form the modern state of Israel.</p>
+                <p className="mt-2 font-semibold text-white">They liberated Jews from three different concentration camps. Dachau. Mauthausen. Buchenwald. Many of the survivors went on to help form the modern state of Israel.</p>
                 <p className="mt-2 text-gray-200">One of their members was Jackie Robinson. Before he broke the color line in baseball, he was court‑martialed for refusing to move to the back of a military bus. The charges were dropped. He never backed down.</p>
                 <p className="mt-2 text-gray-200">They came home to a country that still wouldn't let them vote in the states they'd bled for. Some were beaten in their uniforms on American soil.</p>
                 <p className="mt-2 text-gray-200">They didn't break.</p>
@@ -96,19 +96,6 @@ export default function UnbreakablePage() {
             </div>
           </div>
 
-          {/* SECTION 4 – RABBI COHEN */}
-          <div className="my-12 p-6 bg-gray-900 border-l-4 border-white">
-            <h3 className="text-xl font-bold mb-2 text-white">A documented debt — from a Chabad rabbi</h3>
-            <p className="mt-2 text-gray-200">In a time‑stamped conversation, with a verifiable text trail on record, <strong className="text-white">Rabbi Cohen of the Chabad Lubavitch movement</strong> reviewed the history of Black soldiers in World War II — specifically the 761st Tank Battalion and the Tuskegee Airmen.</p>
-            <p className="mt-2 italic text-gray-300">"The state of Israel might not even exist if it were not for the contributions of Black soldiers during World War II."</p>
-            <p className="mt-2 text-gray-200">That is not opinion. That is a documented acknowledgment from one of the most influential Orthodox Jewish movements in the world.</p>
-            <p className="mt-2 font-semibold text-white">Here is what that means: A life debt is owed to the Black men who helped liberate the camps — Gunskirchen, Mauthausen, Buchenwald. Those survivors went on to form modern Israel. And without Israel, there would be no Christian Zionism. No white evangelical movement waging wars around the world in the name of prophecy.</p>
-            <p className="mt-2 text-gray-200">The chain of existence runs through <strong className="text-white">us</strong>.</p>
-            <p className="mt-2 text-gray-200">Will Price — founder of PHIERS — has shared many meals and spent many hours with the families of the Tuskegee Airmen and the Original Black Panthers. He has seen the records. He has sat at their tables. He has the text trail with Rabbi Cohen.</p>
-            <p className="mt-2 font-bold text-white">No other organization on this planet has that.</p>
-            <p className="mt-2 text-gray-200">That is not symbolism. That is leverage. And that leverage — properly applied — can overcome AIPAC's outsized influence over Congress. Because when the people who hold that debt are organized and vocal, the political math changes. The representatives who take money from AIPAC suddenly have to answer to a different question:</p>
-            <p className="mt-2 italic text-gray-300">"Why are you opposing the people who made your existence possible?"</p>
-          </div>
 
           {/* SECTION 5 – FAMILIES */}
           <div className="flex flex-col md:flex-row gap-6 items-start my-12">
@@ -117,7 +104,7 @@ export default function UnbreakablePage() {
               <ImageThumbnail src="/images/trilogy/Me_n_Dad_at_CHURCH.jpg" alt="Will and Dad at the Church Dad Built - now the largest Ukranian churh in the world" className="w-full grayscale" />
             </div>
             <div className="flex-1">
-              <p className="text-lg font-semibold mb-2 text-white">The families of the Black soldiers who defeated Hitler and secured the existence of Israel asked me to speak for them.</p>
+              <p className="text-lg font-semibold mb-2 text-white">The families of the men of the 761st and the Tuskegee Airmen asked me to speak for them.</p>
               <p className="mt-2 text-gray-200">I have pictures of us together. Real photos. Real people. Real trust.</p>
               <p className="mt-2 text-gray-200">They didn't ask a university. They didn't ask a museum. They didn't ask a politician.</p>
               <p className="mt-2 font-bold text-white">They asked me — Will Price, founder of PHIERS.</p>
@@ -143,7 +130,7 @@ export default function UnbreakablePage() {
                 <p className="mt-2 text-gray-200">Bomber crews specifically requested them as escorts. Because the Red Tails stayed with the bombers. Other escort groups peeled off chasing individual glory kills. The Red Tails protected the mission.</p>
                 <p className="mt-2 text-gray-200">All of this for a country that called them inferior. For an Air Force that questioned their humanity until their record made that position indefensible.</p>
                 <p className="mt-2 text-gray-200">They came home to Jim Crow anyway. They didn't break.</p>
-                <p className="mt-2 italic text-gray-300">Will Price has sat with their families. He knows what they carried. He built PHIERS to honor that inheritance.</p>
+                <p className="mt-2 italic text-gray-300">The founder of PHIERS has sat with their families. He knows what they carried. He built PHIERS to honor that inheritance.</p>
               </Accordion>
             </div>
           </div>
@@ -154,7 +141,7 @@ export default function UnbreakablePage() {
             <p className="mt-2 text-gray-200">While we build, they are destroying.</p>
             <p className="mt-2 text-gray-200">The Trump administration is shutting down museums and displays that told the truth about our history — enslavement, contributions, the full record. They are whitewashing curricula, removing books, scrubbing federal websites.</p>
             <p className="mt-2 text-gray-200">They are erasing the penny. And with it, they intend to erase <strong className="text-white">Foundational Black Americans</strong> from the story of this country.</p>
-            <p className="mt-2 text-gray-200">But here is what they cannot erase:</p>
+            <p className="mt-2 text-gray-200">A Pentagon portrait of Daniel "Chappie" James Jr. — the first Black four-star general in U.S. history — was recently moved, and officials still haven't said where it went or why the wall stayed empty. The Joint Chiefs Chairman who was the second African American to hold that role was fired. Promotions for Black officers already on track for general got blocked.</p>
             <p className="mt-2 font-bold text-white">Crispus Attucks — the first person to die in the Revolutionary War. A Black man.</p>
             <p className="mt-2 text-gray-200"><strong className="text-white">Every war since</strong> — we fought. Valiantly. Without citizenship. Without thanks. Without the full history written down.</p>
             <p className="mt-2 text-gray-200">The 761st. The Tuskegee Airmen. The Harlem Hellfighters. The Buffalo Soldiers. The Black sailors at Port Chicago. The men who built the Alaska Highway. The men who stormed Normandy in segregated units.</p>
