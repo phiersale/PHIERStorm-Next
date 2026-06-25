@@ -33,7 +33,7 @@ export default function FloatingActNow() {
   return (
     <div
       className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2 transition-opacity duration-500 ${
-        faded && !expanded ? 'opacity-40 hover:opacity-100' : 'opacity-100'
+        faded && !expanded ? 'opacity-40 active:opacity-100' : 'opacity-100'
       }`}
     >
       {expanded && (
