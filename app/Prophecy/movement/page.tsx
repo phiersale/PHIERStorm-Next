@@ -324,6 +324,13 @@ export default function MovementPage() {
             <p className="text-gray-300 mt-2">Kim Osorio, who ran The Source, said it too: "I believe that there was an agenda."</p>
             <p className="text-gray-300 mt-2">We watched what got pushed and what got buried. We know what we saw.</p>
           </Accordion>
+
+          <Accordion triggerLabel="What they don't have a name for — until now" className="...">
+            <p className="text-gray-300">Legal scholar Tommy J. Curry gave it a name: anti-Black misandry. Not a side effect of racism. Its own distinct thing.</p>
+            <p className="text-gray-300 mt-2">Researchers have documented it directly — Black men stereotyped as inherently dangerous, hypersexual, criminal by nature, placed under constant surveillance on campuses, in classrooms, in public space, just for existing.</p>
+            <p className="text-gray-300 mt-2">Curry's work goes further: the belief that it's acceptable — even justified — to kill a Black male has been treated as a social and cultural right in this country, not just a crime that sometimes happens.</p>
+            <p className="text-gray-300 mt-2">We've felt this without always having the word for it. Now we have the word. And the word means it's real, it's documented, and it's not just us being "too sensitive."</p>
+          </Accordion>
         </section>
 
         {/* ACCOUNTABILITY IS THE BOND with moved image */}
