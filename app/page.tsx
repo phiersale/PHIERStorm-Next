@@ -41,7 +41,7 @@ export default function Page() {
   }
 
   const handleGoToSurvey = () => {
-    window.open('https://phiers-civic-engagem-vopm05.abacusai.app/survey', '_blank')
+    window.open('https://phiers.abacusai.app/survey', '_blank')
   }
 
   if (stage === 'image') {
@@ -162,7 +162,7 @@ export default function Page() {
       onShowFramework={() => { window.location.href = '/the-system' }}
       onSkipVideo={() => setStage('main')}
       onSignPetition={() => {
-        window.open('https://forms.gle/WrpNNbwdGQG7Ton47', '_blank')
+        window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')
       }}
     />
   }

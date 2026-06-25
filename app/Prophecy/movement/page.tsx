@@ -73,9 +73,6 @@ export default function MovementPage() {
         {/* WHY STRUCTURE MATTERS */}
         <section className="max-w-4xl mx-auto px-5 py-20 border-t border-gray-800">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">WHY STRUCTURE MATTERS</h2>
-          <section className="my-8">
-            <img src="/images/trilogy/Structure_matters.jpg" alt="Hands drafting blueprints" className="w-full md:w-4/5 mx-auto rounded-lg object-cover shadow-md max-w-full h-auto" />
-          </section>
           <p className="text-lg text-gray-300 mb-4">Disconnected men drift. Talented men without coordination get exhausted. Angry men without direction get used. Wounded men without healing get manipulated.</p>
           <p className="text-lg text-gray-300">Structure is what turns seriousness into force. That is what PHIERS is trying to build.</p>
         </section>
@@ -213,6 +210,30 @@ export default function MovementPage() {
           <p className="text-sm tracking-wide text-gray-400 uppercase mb-4">THE MOMENT THE WORLD SEES WHAT WE BUILT</p>
           <p className="text-base text-gray-300 mb-8">Recognition isn’t requested. It’s earned through structure, discipline, and visible contribution.</p>
           <img src="/images/trilogy/Manhattan.png" alt="The world turning" className="w-full h-auto rounded-lg shadow-lg" />
+
+          <div className="mt-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6 text-white">THE MANHATTAN PROJECT</h2>
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+              An announcement, years in the making: a coordinated effort to restore and redeem the image of Black men on a global stage — not through grievance, but through real solutions and a real record.
+            </p>
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+              In this video, Jesse — Al "Dad" Wilson's longtime handyman of decades — introduces the man behind it: over 30 years of military service, and a life that's changed people around the world.
+            </p>
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-green-30">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/v2V5H_P7aNo"
+                title="The Manhattan Project — PHIERS"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed mt-6">
+              This isn't a slogan. It's the start of a project built the way everything else here is built — person by person, relationship by relationship, proof by proof.
+            </p>
+          </div>
         </div>
 
         {/* HOW THE FIX WORKS */}

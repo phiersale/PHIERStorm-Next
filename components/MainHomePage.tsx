@@ -206,7 +206,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
               ✕
             </button>
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=sharing"
+              href="https://phiers.abacusai.app/survey"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-full shadow-lg transition-all duration-200 text-sm border border-white/20"
@@ -239,7 +239,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
                 </span>
                 <span className="text-xs sm:text-sm font-bold text-white tracking-wide">THE SITUATION</span>
               </div>
-              <span className="text-[10px] sm:text-xs text-amber-300/80">as of May 18</span>
+              <span className="text-[10px] sm:text-xs text-amber-300/80">as of {entriesData.lastUpdated}</span>
             </a>
           </div>
         </div>

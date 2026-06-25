@@ -169,7 +169,7 @@ export default function OrganizersPage() {
               <h3 className="font-bold text-white text-lg mb-2">Add Your Name</h3>
               <p className="text-gray-400 text-sm mb-4">Measures who is willing to stand up.</p>
               <a
-                href="https://forms.gle/etssgWrko4ejWC6Z6"
+                href="https://phiers.abacusai.app/petition/fifteen-hundred"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-green text-[#080d1a] font-bold py-2 px-6 rounded-lg hover:bg-green-dim transition"
@@ -182,7 +182,7 @@ export default function OrganizersPage() {
               <h3 className="font-bold text-white text-lg mb-2">Complete The Survey</h3>
               <p className="text-gray-400 text-sm mb-4">Measures what your district actually wants.</p>
               <a
-                href="https://forms.gle/eDSMYjFbGQwWq96AA"
+                href="https://phiers.abacusai.app/survey"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-green text-[#080d1a] font-bold py-2 px-6 rounded-lg hover:bg-green-dim transition"
@@ -341,7 +341,7 @@ export default function OrganizersPage() {
                 <div className="opportunity-block">
                   <span className="opp-label">⭐ The Opportunity</span>
                   <h2>This Is The Window.</h2>
-                  <p>Congress is home. District offices are open. Town halls matter. Local visibility matters. Organized constituents matter.</p>
+                  <p>When Congress is home, district offices are open and town halls matter most. But organized constituents matter every day Congress is in session too — the record you build now is what your representative answers to either way.</p>
                   <p style={{color:'var(--text-bright)',fontWeight:700,marginTop:'16px'}}>When Representatives are in Washington, they're insulated.</p>
                   <p style={{color:'var(--text-bright)',fontWeight:700}}>When they're home, they're accountable.</p>
                   <p style={{fontFamily:'var(--font-condensed)',fontWeight:700,fontSize:'1.2rem',color:'var(--gold)',marginTop:'16px'}}>This is when organizers can move districts.</p>
@@ -387,7 +387,7 @@ export default function OrganizersPage() {
                     {/* QUICK ACTIONS — visible assets */}
                     <div className="grid md:grid-cols-2 gap-4 mb-6">
                       <a
-                        href="https://forms.gle/etssgWrko4ejWC6Z6"
+                        href="https://phiers.abacusai.app/petition/fifteen-hundred"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block bg-green/10 border border-green/30 rounded-lg p-4 text-center hover:bg-green/15 transition"
@@ -397,7 +397,7 @@ export default function OrganizersPage() {
                         <p className="text-gray-400 text-sm mt-1">Get your link to distribute</p>
                       </a>
                       <a
-                        href="https://forms.gle/eDSMYjFbGQwWq96AA"
+                        href="https://phiers.abacusai.app/survey"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block bg-green/10 border border-green/30 rounded-lg p-4 text-center hover:bg-green/15 transition"
@@ -574,7 +574,7 @@ export default function OrganizersPage() {
         <section className="section py-16 max-w-3xl mx-auto px-4">
           <div className="border-2 border-green-400 rounded-xl p-8 md:p-12 text-center bg-gradient-to-br from-green-400/5 to-transparent">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-green-400">BUILD DISTRICT LEVERAGE</h2>
-            <p className="font-body text-base text-gray-300 mt-4 max-w-xl mx-auto">Congress is home right now. This is when local pressure matters most.</p>
+            <p className="font-body text-base text-gray-300 mt-4 max-w-xl mx-auto">Whether Congress is home or in session, this is when local pressure matters most.</p>
             <div className="font-condensed font-bold text-lg text-white mt-3 space-y-1">
               <p>Help your district reach 500.</p>
               <p>Help your district build leverage.</p>
@@ -582,8 +582,8 @@ export default function OrganizersPage() {
             </div>
             {/* PRIMARY ACTIONS */}
             <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'24px auto 0'}}>
-              <a href="https://forms.gle/etssgWrko4ejWC6Z6" className="btn-primary" target="_blank" rel="noopener noreferrer">✍ Add Your Name — Be Counted</a>
-              <a href="https://forms.gle/eDSMYjFbGQwWq96AA" className="btn-primary" target="_blank" rel="noopener noreferrer">📊 Complete The District Survey</a>
+              <a href="https://phiers.abacusai.app/petition/fifteen-hundred" className="btn-primary" target="_blank" rel="noopener noreferrer">✍ Add Your Name — Be Counted</a>
+              <a href="https://phiers.abacusai.app/survey" className="btn-primary" target="_blank" rel="noopener noreferrer">📊 Complete The District Survey</a>
             </div>
 
             {/* SECONDARY ACTIONS */}

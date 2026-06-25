@@ -598,7 +598,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             setShowTransitionModal(false)
           }}
           onSignPetition={() => {
-            window.open('https://forms.gle/WrpNNbwdGQG7Ton47', '_blank')
+            window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')
           }}
         />
       )}

@@ -97,11 +97,11 @@ export default function EvidenceArchivePage() {
           <p>Start with <a href="#healthcare" className="text-green hover:underline transition">Healthcare</a> or <a href="#congressional" className="text-green hover:underline transition">Congressional Leverage</a> — two of our strongest evidence domains.</p>
         </div>
 
-        {/* FLAG DAY 2026 MILESTONE BOX */}
+        {/* CIVIC PARTICIPATION MILESTONE */}
         <div className="bg-green/5 border border-green/20 rounded-lg p-4 mb-8">
           <p className="text-green-400 text-sm font-semibold mb-1">🇺🇸 Civic Participation Milestone</p>
           <p className="text-gray-300 text-sm">
-            Our civic participation milestone is 1,500 verified constituents in each district by Flag Day 2026.
+            Our civic participation milestone is 1,500 verified constituents in each district.
             This is not political advocacy — it is a demonstration of public engagement and district‑level accountability.
           </p>
         </div>
@@ -332,9 +332,9 @@ export default function EvidenceArchivePage() {
               <div className="bg-[#0a1628]/40 rounded-lg p-5 border border-gray-800">
                 <h3 className="text-green font-semibold mb-3">Ralph Nader — 1,500 Constituents Research</h3>
                 <ul className="list-disc pl-5 space-y-1 text-gray-300 text-sm">
-                  <li><span className="text-amber-300 font-semibold">500 verified constituents</span> — Compels Representative to attend town hall</li>
-                  <li><span className="text-amber-300 font-semibold">1,000 verified constituents</span> — Compels Senator to attend</li>
-                  <li><span className="text-amber-300 font-semibold">1,500 verified constituents</span> — Signal becomes undeniable</li>
+                  <li><span className="text-amber-300 font-semibold">500 verified constituents</span> — the tipping point where a district stops being ignorable; enough to force a meeting and a public position</li>
+                  <li><span className="text-amber-300 font-semibold">1,000 verified constituents</span> — sustained leverage building toward consequences</li>
+                  <li><span className="text-amber-300 font-semibold">1,500 verified constituents</span> — turns pressure into real consequences: primary challenges, public exposure, replacement</li>
                 </ul>
                 <img src="/images/RalphNader-500-Unstoppable_Change.jpg" alt="Ralph Nader" className="w-48 rounded-lg border border-green/30 mt-2" />
               </div>

@@ -69,16 +69,16 @@ export default function FifteenHundredModal() {
           {/* THE LADDER */}
           <div className="bg-black/30 border border-amber-500/30 rounded-lg p-4 space-y-2">
             <p>
-              <span className="text-amber-300 font-bold">500 verified constituents</span> will compel
-              a Representative to attend a town hall meeting.
+              <span className="text-amber-300 font-bold">500 verified constituents</span> is the tipping
+              point — enough to force a meeting and put a Representative on record.
             </p>
             <p>
-              <span className="text-amber-300 font-bold">1,000 verified constituents</span> will compel
-              a Senator to attend.
+              <span className="text-amber-300 font-bold">1,000 verified constituents</span> builds toward
+              sustained leverage.
             </p>
             <p>
-              <span className="text-amber-300 font-bold">1,500</span> is where the signal becomes
-              undeniable.
+              <span className="text-amber-300 font-bold">1,500</span> turns that pressure into real
+              consequences: primary challenges, public exposure, and replacement.
             </p>
           </div>
 
