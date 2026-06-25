@@ -29,6 +29,8 @@ export default function UnbreakablePage() {
         </div>
         <div className="max-w-4xl mx-auto px-6 py-12">
 
+          <h1 className="text-5xl sm:text-6xl font-black text-white text-center tracking-tight mb-12">UNBREAKABLE</h1>
+
           {/* Intro */}
           <div className="bg-black text-white p-8 rounded-lg mb-12 text-center border border-gray-800">
             <p className="text-xl leading-relaxed text-white">What was done to us did not break us.</p>

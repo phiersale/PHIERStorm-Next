@@ -35,6 +35,8 @@ export default function UnforgettablePage() {
         </div>
         <div className="max-w-4xl mx-auto px-6 py-12">
 
+          <h1 className="text-5xl sm:text-6xl font-black text-white text-center tracking-tight mb-12">UNFORGETTABLE</h1>
+
           {/* Hero Section */}
           <div className="flex flex-col md:flex-row gap-6 items-start mb-12">
             <ImageThumbnail
