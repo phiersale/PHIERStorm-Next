@@ -38,6 +38,19 @@ export default function TrilogyLanding() {
             <p className="text-gray-300 mt-6">Not to stay stuck in pain. <strong className="text-white">To see clearly enough to move forward.</strong></p>
           </div>
 
+          <div className="text-center py-6 max-w-xl mx-auto border-y border-gray-800">
+            <p className="text-gray-400 text-base">Already know what you came to do?</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-4">
+              <a href="https://phiers.abacusai.app/petition/fifteen-hundred" target="_blank" rel="noopener noreferrer" className="text-white font-semibold underline hover:no-underline">
+                Sign the petition →
+              </a>
+              <a href="https://phiers.org" target="_blank" rel="noopener noreferrer" className="text-gray-400 font-semibold underline hover:no-underline">
+                Skip to the solution →
+              </a>
+            </div>
+            <p className="text-gray-500 text-xs mt-3 italic">No wrong door. The history will still be here when you're ready.</p>
+          </div>
+
           {/* Accordion */}
           <div className="py-12 max-w-2xl mx-auto">
             <Accordion triggerLabel="THE RECORD THEY EXPECTED US TO FORGET">

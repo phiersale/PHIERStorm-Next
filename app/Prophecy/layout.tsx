@@ -1,5 +1,7 @@
 // FILE: app/Prophecy/layout.tsx
-// VERSION: 1.2 – Added SurveyBanner and ProphecyReturningModal
+// VERSION: 1.3 – Added FloatingActNow
+
+import FloatingActNow from './components/FloatingActNow';
 
 export default function ProphecyLayout({
   children,
@@ -19,8 +21,7 @@ export default function ProphecyLayout({
         {/* <SurveyBanner storagePrefix="prophecy_" /> - REMOVED */}
         {children}
       </div>
+      <FloatingActNow />
     </div>
   );
 }
-
-// FILE: app/Prophecy/layout.tsx
