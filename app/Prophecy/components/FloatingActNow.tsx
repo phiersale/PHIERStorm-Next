@@ -1,18 +1,41 @@
 // FILE: app/Prophecy/components/FloatingActNow.tsx
-// VERSION: 1.1 — switched anchor tags to buttons to avoid build error
+// VERSION: 1.2 — dismissible, fades to translucent after being seen
 
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function FloatingActNow() {
   const [expanded, setExpanded] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const [faded, setFaded] = useState(false);
+
+  useEffect(() => {
+    const wasDismissed = sessionStorage.getItem('prophecy_act_now_dismissed');
+    if (wasDismissed === 'true') {
+      setDismissed(true);
+      return;
+    }
+    const timer = setTimeout(() => setFaded(true), 8000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const openLink = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  const handleDismiss = () => {
+    setDismissed(true);
+    sessionStorage.setItem('prophecy_act_now_dismissed', 'true');
+  };
+
+  if (dismissed) return null;
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div
+      className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2 transition-opacity duration-500 ${
+        faded && !expanded ? 'opacity-40 hover:opacity-100' : 'opacity-100'
+      }`}
+    >
       {expanded && (
         <div className="flex flex-col gap-2 mb-1">
           <button
@@ -35,17 +58,31 @@ export default function FloatingActNow() {
           </button>
         </div>
       )}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm px-6 py-3 rounded-full shadow-2xl transition whitespace-nowrap"
-        aria-label="Act now"
-        aria-expanded={expanded}
-      >
-        {expanded ? 'Close' : 'Act Now'}
-      </button>
+
+      <div className="relative">
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className={`bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-full shadow-2xl transition whitespace-nowrap ${
+            faded && !expanded ? 'text-xs px-4 py-2' : 'text-sm px-6 py-3'
+          }`}
+          aria-label="Act now"
+          aria-expanded={expanded}
+        >
+          {expanded ? 'Close' : 'Act Now'}
+        </button>
+        {!expanded && (
+          <button
+            onClick={handleDismiss}
+            className="absolute -top-2 -right-2 bg-black/80 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition"
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        )}
+      </div>
     </div>
   );
 }
 
 // FILE: app/Prophecy/components/FloatingActNow.tsx
-// VERSION: 1.1
+// VERSION: 1.2
