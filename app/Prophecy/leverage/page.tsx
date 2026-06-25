@@ -80,7 +80,12 @@ export default function LeveragePage() {
             <p className="text-white font-bold text-xl mt-4">That is not coincidence. That is prophecy.</p>
           </div>
 
-          <CTASection href="https://phiers.org" label="→ Enter PHIERS – The Full Architecture" />
+          <div className="text-center max-w-xl mx-auto py-6">
+            <p className="text-gray-400 text-base">You've seen what we built and why.</p>
+            <p className="text-white text-lg font-semibold mt-2">Now it's time to move.</p>
+          </div>
+
+          <CTASection href="https://phiers.org" label="→ Enter PHIERStorm: The Movement" />
 
           {/* Secondary navigation */}
           <div className="text-center mt-6 text-gray-500 text-sm">
