@@ -59,7 +59,16 @@ export default function FloatingActNow() {
         </div>
       )}
 
-      <div className="relative">
+      <div className="flex items-center gap-2">
+        {!expanded && (
+          <button
+            onClick={handleDismiss}
+            className="text-white/70 hover:text-white font-bold text-lg leading-none transition px-1"
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        )}
         <button
           onClick={() => setExpanded(!expanded)}
           className={`bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-full shadow-2xl transition whitespace-nowrap ${
@@ -70,15 +79,6 @@ export default function FloatingActNow() {
         >
           {expanded ? 'Close' : 'Act Now'}
         </button>
-        {!expanded && (
-          <button
-            onClick={handleDismiss}
-            className="absolute -top-2 -right-2 bg-black/80 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition"
-            aria-label="Dismiss"
-          >
-            ✕
-          </button>
-        )}
       </div>
     </div>
   );
