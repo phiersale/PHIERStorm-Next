@@ -29,7 +29,11 @@ export default function UnbreakablePage() {
         </div>
         <div className="max-w-4xl mx-auto px-6 py-12">
 
-          <h1 className="text-5xl sm:text-6xl font-black text-white text-center tracking-tight mb-12">UNBREAKABLE</h1>
+          <h1 className="text-5xl sm:text-6xl font-black text-white text-center tracking-tight mb-6">UNBREAKABLE</h1>
+
+          <div className="max-w-2xl mx-auto mb-8">
+            <ImageThumbnail src="/images/trilogy/greenwood.jpg" alt="Greenwood District, Tulsa, Oklahoma – before 1921" className="w-full grayscale" />
+          </div>
 
           {/* Intro */}
           <div className="bg-black text-white p-8 rounded-lg mb-12 text-center border border-gray-800">
@@ -38,8 +42,7 @@ export default function UnbreakablePage() {
           </div>
 
           {/* SECTION 1 – GREENWOOD */}
-          <div className="flex flex-col md:flex-row gap-6 items-start my-12">
-            <ImageThumbnail src="/images/trilogy/greenwood.jpg" alt="Greenwood District, Tulsa, Oklahoma – before 1921" className="md:w-1/3 grayscale" />
+          <div className="my-12">
             <div className="flex-1">
               <p className="text-lg font-semibold mb-2 text-white">
                 They built an entire world from nothing.<br />

@@ -35,22 +35,23 @@ export default function UnforgettablePage() {
         </div>
         <div className="max-w-4xl mx-auto px-6 py-12">
 
-          <h1 className="text-5xl sm:text-6xl font-black text-white text-center tracking-tight mb-12">UNFORGETTABLE</h1>
+          <h1 className="text-5xl sm:text-6xl font-black text-white text-center tracking-tight mb-6">UNFORGETTABLE</h1>
 
-          {/* Hero Section */}
-          <div className="flex flex-col md:flex-row gap-6 items-start mb-12">
+          <div className="max-w-2xl mx-auto mb-12">
             <ImageThumbnail
               src="/images/trilogy/unforgettable-1.jpg"
               alt="Reflective Black man"
-              className="md:w-1/3 grayscale"
+              className="w-full grayscale"
             />
-            <div className="flex-1">
-              <p className="text-xl md:text-2xl font-semibold leading-relaxed text-white">
-                What you're living through is not random.<br />
-                Not bad luck. Not a character flaw. Not your fault.<br />
-                It's a structure. And it's been running a long time.
-              </p>
-            </div>
+          </div>
+
+          {/* Hero Section */}
+          <div className="mb-12">
+            <p className="text-xl md:text-2xl font-semibold leading-relaxed text-white text-center max-w-2xl mx-auto">
+              What you're living through is not random.<br />
+              Not bad luck. Not a character flaw. Not your fault.<br />
+              It's a structure. And it's been running a long time.
+            </p>
           </div>
 
           <StatCard>

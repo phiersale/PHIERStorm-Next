@@ -30,7 +30,11 @@ export default function UnstoppablePage() {
       <div className="sticky-header-offset min-h-screen bg-black text-white">
         <div className="max-w-4xl mx-auto px-6 py-12">
 
-          <h1 className="text-5xl sm:text-6xl font-black text-white text-center tracking-tight mb-12">UNSTOPPABLE</h1>
+          <h1 className="text-5xl sm:text-6xl font-black text-white text-center tracking-tight mb-6">UNSTOPPABLE</h1>
+
+          <div className="max-w-2xl mx-auto mb-8">
+            <ImageThumbnail src="/images/trilogy/unstoppable-1.jpg" alt="Voting rights & redistricting" className="w-full grayscale" />
+          </div>
 
           {/* Opening */}
           <div className="bg-black text-white p-8 rounded-lg mb-12 text-center border border-gray-800">
@@ -40,8 +44,7 @@ export default function UnstoppablePage() {
           </div>
 
           {/* SECTION 1 – THE GUTTING (Voting Rights) */}
-          <div className="flex flex-col md:flex-row gap-6 items-start my-12">
-            <ImageThumbnail src="/images/trilogy/unstoppable-1.jpg" alt="Voting rights & redistricting" className="md:w-1/3 grayscale" />
+          <div className="my-12">
             <div className="flex-1">
               <p className="text-lg font-semibold mb-2 text-white">
                 The Voting Rights Act was won with blood on the Edmund Pettus Bridge.<br />
@@ -162,7 +165,7 @@ export default function UnstoppablePage() {
 
           {/* Footer citations */}
           <div className="text-center text-gray-400 text-sm mt-8">
-            <p>Sources: Shelby County v. Holder, 570 U.S. 529 (2013) · Children's Defense Fund · Economic Policy Institute · Katznelson, When Affirmative Action Was White (2005)</p>
+            <p>Sources: Shelby County v. Holder, 570 U.S. 529 (2013) · Louisiana v. Callais, 608 U.S. ___ (2026) · Children's Defense Fund · Economic Policy Institute · Katznelson, When Affirmative Action Was White (2005)</p>
           </div>
         </div>
       </div>
