@@ -44,8 +44,7 @@ export default function LeveragePage() {
             <div className="p-8 text-center">
               <p className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-4">You made it this far</p>
               <h2 className="text-3xl font-bold text-white mb-4">Congratulations, Black Man.</h2>
-              <p className="text-gray-300 leading-relaxed mb-6">This is where the reward for your effort resides.</p>
-              <p className="text-5xl font-bold text-amber-400 mb-8">LEVERAGE</p>
+              <p className="text-gray-300 leading-relaxed mb-8">This is where the reward for your effort resides. Go claim it.</p>
               <button
                 onClick={() => setShowArrival(false)}
                 className="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition"
@@ -71,6 +70,7 @@ export default function LeveragePage() {
 
           {/* Hero */}
           <div className="text-center mb-12">
+            <p className="text-amber-400 font-bold text-4xl sm:text-5xl tracking-wide mb-6">LEVERAGE</p>
             <div className="max-w-md mx-auto mb-8">
               <img
                 src="/images/OUR_Lever_PHIERS_Can_Move_the_World.jpg"
