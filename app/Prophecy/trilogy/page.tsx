@@ -42,22 +42,18 @@ export default function TrilogyLanding() {
             <div className="text-center max-w-xl mx-auto py-10 px-6 border border-gray-800 rounded-2xl bg-[#0a0a0a]">
               <p className="text-gray-300 text-lg font-semibold">Already know what you came to do?</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
-                
-                  href="https://phiers.abacusai.app/petition/fifteen-hundred"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank', 'noopener,noreferrer')}
                   className="w-full sm:w-auto bg-white text-black font-bold text-base px-8 py-3.5 rounded-full shadow-lg hover:bg-gray-200 transition whitespace-nowrap"
                 >
                   Sign the Petition
-                </a>
-                
-                  href="https://phiers.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                </button>
+                <button
+                  onClick={() => window.open('https://phiers.org', '_blank', 'noopener,noreferrer')}
                   className="w-full sm:w-auto bg-transparent border-2 border-gray-500 text-white font-bold text-base px-8 py-3.5 rounded-full hover:bg-white/10 transition whitespace-nowrap"
                 >
                   Skip to the Solution
-                </a>
+                </button>
               </div>
               <p className="text-gray-500 text-sm mt-5 italic">No wrong door. The history will still be here when you're ready.</p>
             </div>
