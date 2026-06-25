@@ -1,10 +1,10 @@
+// FILE: app/Prophecy/components/FloatingActNow.tsx
+// VERSION: 1.0
+
 'use client';
-
 import { useState } from 'react';
-
 export default function FloatingActNow() {
   const [expanded, setExpanded] = useState(false);
-
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
       {expanded && (
@@ -46,3 +46,6 @@ export default function FloatingActNow() {
     </div>
   );
 }
+
+// FILE: app/Prophecy/components/FloatingActNow.tsx
+// VERSION: 1.0
