@@ -12,11 +12,6 @@ export default function FloatingActNow() {
   const [faded, setFaded] = useState(false);
 
   useEffect(() => {
-    const wasDismissed = sessionStorage.getItem('prophecy_act_now_dismissed');
-    if (wasDismissed === 'true') {
-      setDismissed(true);
-      return;
-    }
     const timer = setTimeout(() => setFaded(true), 8000);
     return () => clearTimeout(timer);
   }, []);
@@ -27,7 +22,6 @@ export default function FloatingActNow() {
 
   const handleDismiss = () => {
     setDismissed(true);
-    sessionStorage.setItem('prophecy_act_now_dismissed', 'true');
   };
 
   if (dismissed) return null;

@@ -596,22 +596,6 @@ export default function ForBlackMenPage() {
 
       <div className="border-t border-gray-700 my-10 md:my-12"></div>
 
-      {/* ========== SECTION 13: ASK A QUESTION ========== */}
-      <div className="max-w-3xl mx-auto px-6 mt-6 text-center">
-        <div className="bg-[#0b0b0b] border border-gray-800 rounded-2xl px-5 py-10 md:px-10 md:py-14">
-          <p className="text-lg md:text-xl text-gray-300 font-semibold">
-            If you want to see how this becomes structure — the code, the coordination, the accountability — start here.
-          </p>
-          <p className="text-sm text-gray-400 mt-4">We're not asking for blind trust. Just enough curiosity to see how the structure works.</p>
-          <button
-            onClick={() => setShowTrustModal(true)}
-            className="inline-block bg-white text-black font-bold text-lg sm:text-xl md:text-2xl py-3 px-8 sm:px-10 rounded-full hover:bg-gray-200 transition shadow-lg mt-6 mx-auto cursor-pointer whitespace-nowrap"
-          >
-            → Ask a question
-          </button>
-        </div>
-      </div>
-
       <div className="text-center mt-8 mb-12 md:mb-16 px-6">
         <p className="text-xl md:text-2xl font-bold text-white leading-snug">
           Not to look backward. To prepare for what's next.
