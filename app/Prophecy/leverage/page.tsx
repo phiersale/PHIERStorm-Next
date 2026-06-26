@@ -59,6 +59,20 @@ export default function LeveragePage() {
             <p className="text-gray-300 leading-[1.7] mt-2">Look back. Take what still works. Carry it forward.</p>
             <p className="text-gray-300 leading-[1.7] mt-2">That's not just how we heal. That's how we win.</p>
             <p className="text-gray-300 leading-[1.7] mt-4"><strong className="text-white">Umoja</strong> — unity. Not 1,500 different voices. One.</p>
+            <p className="text-gray-300 leading-[1.7] mt-4">You've already seen the rest. <strong className="text-white">Kujichagulia</strong> — building without asking permission. <strong className="text-white">Ujima</strong> — the Fifteen Hundred, carrying it together. <strong className="text-white">Kuumba</strong> — building something new from what we inherited.</p>
+            <p className="text-gray-300 leading-[1.7] mt-4">None of it was new when we started, and none of it stopped being ours.</p>
+            <p className="text-amber-400 font-semibold leading-[1.7] mt-4">This is Sankofa, finished: looked back, took what works, carried it all the way here.</p>
+
+            <div className="max-w-md mx-auto my-8">
+              <img
+                src="/images/trilogy/sankofa-arrival.jpg"
+                alt="A man looking forward, the road behind him"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+
+            <p className="text-gray-300 leading-[1.7] mt-4">We didn't carry all of that just to feel good about it.</p>
+            <p className="text-amber-400 font-semibold leading-[1.7] mt-2">We carried it to build something — a system, not a slogan. PHIERS.</p>
           </div>
 
           <div className="border-t border-amber-500/20 max-w-xs mx-auto mb-8" />
