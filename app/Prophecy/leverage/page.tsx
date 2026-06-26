@@ -77,6 +77,11 @@ export default function LeveragePage() {
 
           <div className="border-t border-amber-500/20 max-w-xs mx-auto mb-8" />
 
+          <div className="text-center mb-12">
+            <p className="text-amber-400/80 text-xs tracking-[0.25em] uppercase mb-2">— Sankofa, Carried Forward —</p>
+            <p className="text-white font-bold text-2xl sm:text-3xl tracking-wide">The Next Chapter</p>
+          </div>
+
           <div className="mb-12 max-w-xl mx-auto">
             <p className="text-gray-300 leading-[1.7] text-center">Real leverage doesn't start in Washington.</p>
             <p className="text-white font-semibold text-lg leading-[1.7] text-center mt-2">It starts inside your head, your heart — and your district.</p>
