@@ -234,7 +234,7 @@ export default function ProphecyPage() {
             </div>
           </a>
 
-{/* DOOR 3 — LEVERAGE -> /Prophecy/leverage (was phiers.org direct) */}
+       {/* DOOR 3 — LEVERAGE -> /Prophecy/leverage (was phiers.org direct) */}
          <a 
             href="/Prophecy/leverage"
             className="w-full sm:flex-1 sm:min-w-[160px] bg-[#0a1628]/80 border-2 border-green-400/40 rounded-xl py-4 sm:py-5 px-3 text-center shadow-lg shadow-green-400/10 hover:border-green-400/80 hover:-translate-y-1 transition-all duration-300 cursor-pointer block"

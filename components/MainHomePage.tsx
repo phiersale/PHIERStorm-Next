@@ -360,10 +360,10 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
         {/* HERO */}
         <section className="container text-center pt-8 md:pt-12 pb-4">
           <h1 className="mb-8 md:mb-10 text-center">
-            <span className="block text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+            <span className="block w-full text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
               CONGRESS CAN FIX MOST OF WHAT'S BROKEN.
             </span>
-            <span className="block text-xl md:text-2xl lg:text-3xl font-bold text-green mt-2 leading-tight">
+            <span className="block w-full text-xl md:text-2xl lg:text-3xl font-bold text-green mt-2 leading-tight">
               THEY JUST CHOOSE NOT TO.
             </span>
           </h1>
@@ -467,8 +467,8 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
           {/* THE MOMENT WE'RE IN */}
           <div className="max-w-3xl mx-auto mt-8 p-6 bg-yellow-500/10 border border-yellow-500/30 rounded-xl text-center">
-            <p className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-4">The Moment We're In</p>
-            <p className="text-white text-xl md:text-2xl font-bold mb-4">Here's what's actually happening right now.</p>
+            <p className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-4 block w-full">The Moment We're In</p>
+            <p className="text-white text-xl md:text-2xl font-bold mb-4 block w-full">Here's what's actually happening right now.</p>
 
             <div className="space-y-3 text-left max-w-xl mx-auto mb-6">
               <p className="text-gray-300 text-base">🗳 The Supreme Court gutted the Voting Rights Act. The ballot has been narrowed — intentionally.</p>
@@ -720,36 +720,17 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
         <hr className="border-green/20" />
 
-        {/* THE CASCADE */}
+        {/* WHERE THE SAVINGS COME FROM */}
         <section className="container section">
           <div className="max-w-[760px] mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">THE CASCADE</h2>
-            <p className="text-gray-300 text-base mb-2">One person switching creates enough savings to cover 12 more.</p>
-            <p className="text-gray-300 text-base mb-3">Then it compounds:</p>
-            <p className="text-green text-base sm:text-lg font-mono font-bold mb-4 break-words overflow-x-auto whitespace-normal">1 → 12 → 148 → 1,825 → 22,000 → 260,000 → 3.1M → 37M</p>
-            <div className="bg-bg-card border border-green/20 rounded-xl p-4 my-4"><p className="text-white font-mono text-lg">In seven rounds: • 37 million people covered • Growth continues until it reaches the full 120–150 million CMS-eligible population</p></div>
-            <p className="text-green text-lg font-bold mb-3">Not a promise. Math.</p>
-            <p className="text-gray-300 text-base">It works because savings fund the next layer.</p>
-          </div>
-          <div className="flex justify-center mt-8">
-            <div
-              className="w-[55%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-green rounded"
-              onClick={() => openModal('/images/Cascade_Math.jpg')}
-              onKeyDown={makeKeyboardClickable(() => openModal('/images/Cascade_Math.jpg'))}
-              role="button"
-              tabIndex={0}
-              aria-label="Enlarge cascade math diagram"
-            >
-              <Image
-                src="/images/Cascade_Math.jpg"
-                alt="Cascade math"
-                width={600}
-                height={400}
-                className="w-full h-auto"
-                sizes="(max-width: 768px) 90vw, 600px"
-                onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; console.error('Dashboard image missing') }}
-              />
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">WHERE THE SAVINGS COME FROM</h2>
+            <p className="text-gray-300 text-base mb-2">CDC data: only about 5.9% of people under 65 are hospitalized in a given year. That means roughly 94% aren't using the catastrophic side of their coverage most years.</p>
+            <p className="text-gray-300 text-base mb-3">Insurance is priced and budgeted for the catastrophic case. Most people's actual care needs cost far less.</p>
+            <p className="text-gray-300 text-base mb-3">Medicaid alone spent $931.7 billion covering 77.1 million people in 2024 — about $12,000 per person, on average. Across Medicare and Medicaid combined, CMS oversees roughly 150 million people at similar rates.</p>
+            <p className="text-gray-300 text-base mb-3">The VA negotiates drug prices 44–54% below what Medicare pays for the same medications — because it buys as one system instead of through fragmented private plans.</p>
+            <p className="text-gray-300 text-base mb-3">Redirect what's already allocated — toward telehealth-first care for routine and primary needs, and group drug purchasing at VA-level prices — and the savings are real: <span className="text-green font-bold">$1.1–1.4 trillion a year</span>, with real catastrophic coverage staying in place for when people actually need it.</p>
+            <p className="text-green text-lg font-bold mb-3">That's the baseline. Not the ceiling.</p>
+            <p className="text-gray-300 text-base">The full PHIERS system adds more as it comes online: PHIERWorks job training and placement, PHIERPlace care coordination and referral, PHIERSale's cooperative marketplace, and a cooperative home-health model built to keep complex, high-cost patients out of the ER instead of cycling through it. Each one is being built and verified the same way this baseline was — with real numbers, not estimates dressed up as facts.</p>
           </div>
         </section>
 

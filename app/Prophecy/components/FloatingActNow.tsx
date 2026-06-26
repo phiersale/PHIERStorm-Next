@@ -12,8 +12,21 @@ export default function FloatingActNow() {
   const [faded, setFaded] = useState(false);
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollableHeight <= 0) return;
+      const scrolledFraction = window.scrollY / scrollableHeight;
+      if (scrolledFraction > 0.2) setFaded(true);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     const timer = setTimeout(() => setFaded(true), 8000);
-    return () => clearTimeout(timer);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
   }, []);
 
   const openLink = (url: string) => {
@@ -56,16 +69,7 @@ export default function FloatingActNow() {
         </div>
       )}
 
-      <div className="flex items-center gap-2">
-        {!expanded && (
-          <button
-            onClick={handleDismiss}
-            className="text-white/70 hover:text-white font-bold text-lg leading-none transition px-1"
-            aria-label="Dismiss"
-          >
-            ✕
-          </button>
-        )}
+      <div className="relative inline-flex items-center">
         <button
           onClick={() => setExpanded(!expanded)}
           className={`bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-full shadow-2xl transition whitespace-nowrap ${
@@ -76,6 +80,15 @@ export default function FloatingActNow() {
         >
           {expanded ? 'Close' : 'Act Now'}
         </button>
+        {!expanded && (
+          <button
+            onClick={handleDismiss}
+            className="absolute -top-2 -right-2 text-white font-bold text-base leading-none transition hover:text-gray-300"
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        )}
       </div>
     </div>
   );
