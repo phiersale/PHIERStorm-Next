@@ -236,7 +236,7 @@ export default function PhiersSystemPage() {
               <p className="font-semibold text-white mt-4">How it works:</p>
               <div className="pl-4 border-l border-green-400/30 space-y-2">
                 <p>✓ Telehealth costs $40-50 per month</p>
-                <p>✓ Most medications cost 60-80% less through cooperative purchasing</p>
+                <p>✓ Most medications cost 40-50% less through cooperative purchasing at VA-level pricing</p>
                 <p>✓ Preventative care becomes affordable before crisis hits</p>
               </div>
               <p className="mt-4 font-semibold text-white">The result:</p>
@@ -370,7 +370,7 @@ export default function PhiersSystemPage() {
             <h2 className="text-xl md:text-2xl font-semibold mb-4">Why This Actually Works</h2>
             <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
               <p>Telehealth models are already operating at scale. Cost structures are proven.</p>
-              <p>Direct-to-consumer pharmaceuticals like Mark Cuban Cost Plus Drugs show 60%+ savings.</p>
+              <p>Direct-to-consumer pharmaceuticals like Mark Cuban Cost Plus Drugs and VA-style group purchasing show 40-50%+ savings, confirmed by GAO and peer-reviewed research.</p>
               <p>Civic pressure research from Ralph Nader and Erica Chenoweth documents how organized participation moves systems.</p>
               <p className="text-green-400/80 mt-4">Nothing here is hypothetical. The pieces already exist. PHIERS integrates them.</p>
               <p className="text-gray-300 mt-4">PHIERS does not ask you to trust PHIERS. It asks you to look at the public record and decide for yourself.</p>
