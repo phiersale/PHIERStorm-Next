@@ -145,14 +145,24 @@ export default function LeveragePage() {
             </Accordion>
           </div>
 
-          {/* CLOSING */}
+{/* CLOSING */}
           <div className="bg-[#0b0b0b] border border-gray-800 text-white p-8 rounded-lg my-12 text-center">
             <p className="text-amber-400/80 text-xs tracking-[0.25em] uppercase mb-3">Kujichagulia — Self-Determination</p>
             <p className="text-xl leading-relaxed">We built this.</p>
             <p className="text-gray-300 mt-4">Without asking permission. Without waiting for funding. Without their approval.</p>
             <p className="text-gray-300 mt-2">Black men built a solution that will benefit every ignored, unheard constituency in this country — not because we were asked, but because we could see clearly what others refused to look at.</p>
             <p className="text-gray-300 mt-2">That is what happens when you survive what we survived. You learn the game. You see the structure. You build the answer.</p>
-            <p className="text-white font-bold text-xl mt-4">That is not coincidence. That is prophecy.</p>
+
+            <div className="my-8">
+              <p className="text-amber-400/80 text-xs tracking-[0.25em] uppercase">— And Now —</p>
+            </div>
+
+            <p className="text-gray-300 leading-relaxed">We did it after slavery. We did it after Jim Crow. We'll do it again.</p>
+            <p className="text-gray-300 mt-3 leading-relaxed">Black people are organizing where they buy and who they buy from, right now — boycotts, group purchasing, dollars staying in the community instead of leaving it. That takes a central place to aggregate the buying power. A people's marketplace. Not-for-profit, no middleman skimming the difference.</p>
+
+            <p className="text-amber-400 font-semibold mt-6 tracking-wide">We started it in 2009. We're carrying it forward now — that's Sankofa.</p>
+
+            <p className="text-white font-bold text-xl mt-6">That is not coincidence. That is prophecy.</p>
           </div>
 
           <div className="text-center max-w-xl mx-auto py-6">
