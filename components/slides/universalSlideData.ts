@@ -201,24 +201,24 @@
   id: "slide-13",
   title: "Tools of Accountability",
   body: [
-    { text: "Recall.", large: false, green: true, bold: true },
-    { type: "spacer", height: 12 },
+    { text: "Recall.", large: false, green: true, bold: true, className: "text-lg md:text-xl font-bold text-green" },
+    { type: "spacer", height: 6 },
 
-    { text: "Primary.", large: false, green: true, bold: true },
-    { type: "spacer", height: 12 },
+    { text: "Primary.", large: false, green: true, bold: true, className: "text-lg md:text-xl font-bold text-green" },
+    { type: "spacer", height: 6 },
 
-    { text: "Investigate.", large: false, green: true, bold: true },
-    { type: "spacer", height: 12 },
+    { text: "Investigate.", large: false, green: true, bold: true, className: "text-lg md:text-xl font-bold text-green" },
+    { type: "spacer", height: 6 },
 
-    { text: "Expose.", large: false, green: true, bold: true },
-    { type: "spacer", height: 24 },
+    { text: "Expose.", large: false, green: true, bold: true, className: "text-lg md:text-xl font-bold text-green" },
+    { type: "spacer", height: 12 },
 
     {
       text: "If they refuse accountability, the public gets the truth.",
       large: false,
       green: false,
       bold: false,
-      className: "text-gray-300 text-base md:text-lg max-w-md"
+      className: "text-gray-300 text-sm md:text-base max-w-md"
     }
   ],
   customTextLayout: true

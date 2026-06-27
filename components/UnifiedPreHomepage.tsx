@@ -25,6 +25,8 @@ export default function UnifiedPreHomepage({
 }: Props) {
   const [index, setIndex] = useState(skipFirstImageSlide ? 1 : 0)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [pauseSlideStage, setPauseSlideStage] = useState(0)
+  const [pauseSlideForceShow, setPauseSlideForceShow] = useState(false)
   const [douglassModalOpen, setDouglassModalOpen] = useState(false)
   const [naderModalOpen, setNaderModalOpen] = useState(false)
   const [showSwipeHint, setShowSwipeHint] = useState(true)
@@ -233,7 +235,20 @@ export default function UnifiedPreHomepage({
         onClick={(e) => {
           const target = e.target as HTMLElement
           if (target.closest('button') || target.closest('.nav-dot') || target.closest('.back-button')) return
-          if (!isTransitioning && !isLastSlide && index !== 0) next()
+          if (index === 0) {
+            if (pauseSlideStage === 0) {
+              setPauseSlideForceShow(true)
+              setPauseSlideStage(1)
+              return
+            }
+            if (pauseSlideStage === 1) {
+              setPauseSlideStage(2)
+              return
+            }
+            if (!isTransitioning) next()
+            return
+          }
+          if (!isTransitioning && !isLastSlide) next()
         }}
         role="button"
         tabIndex={0}
@@ -300,7 +315,7 @@ export default function UnifiedPreHomepage({
                   <div
                     className={`
                       flex flex-col items-center text-center w-full
-                      ${index === 13 ? 'pt-0 md:pt-0' : index >= 1 && index <= 5 ? 'pt-2 md:pt-4' : index >= 6 && index <= 8 ? 'pt-0 md:pt-1' : 'pt-2 md:pt-4'}
+                      ${index === 13 ? 'pt-0 md:pt-0' : index === 14 ? 'pt-0 md:pt-0' : index === universalSlides.length - 1 ? 'pt-0 md:pt-0' : index >= 1 && index <= 5 ? 'pt-2 md:pt-4' : index >= 6 && index <= 8 ? 'pt-0 md:pt-1' : 'pt-2 md:pt-4'}
                     `}
                   > 
                     <UniversalSlideRenderer 

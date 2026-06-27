@@ -42,14 +42,14 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mb-4"
+            className="-mt-2 md:-mt-2 mb-2 md:mb-2"
           >
             <Image
               src="/images/PHIERS_Logo.png"
               alt="PHIERS Logo"
               width={120}
               height={120}
-              className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+              className="w-20 sm:w-28 md:w-28 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
               priority
             />
           </motion.div>
@@ -57,7 +57,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="text-2xl md:text-3xl font-bold leading-tight mb-4"
+            className="text-2xl md:text-2xl font-bold leading-tight mb-2 md:mb-2"
           >
             {renderedTitle}
           </motion.h1>
@@ -66,6 +66,9 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
     }
     if (slide.title === "PHIERS") {
       return <h1 className="text-3xl md:text-4xl font-bold mb-4 text-green">{renderedTitle}</h1>
+    }
+    if (slide.title === "Tools of Accountability") {
+      return <h1 className="text-2xl md:text-3xl font-bold leading-tight mb-2 md:mb-2">{renderedTitle}</h1>
     }
     if (slide.titleGreen) {
       return <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-green">{renderedTitle}</h1>
@@ -84,19 +87,19 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="w-full flex justify-center mb-4"
+            className="w-full flex justify-center mb-2 md:mb-3"
           >
             <img
               src="/images/ORGANIZE_Fish.jpg"
               alt="Organized fish – a demand with teeth"
-              className="w-full md:w-[80%] max-w-4xl rounded-lg shadow-md"
+              className="w-full md:w-[55%] max-w-2xl rounded-lg shadow-md"
             />
           </motion.div>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="text-3xl md:text-5xl font-bold text-green mt-2"
+            className="text-3xl md:text-3xl font-bold text-green mt-2"
           >
             A demand that has TEETH.
           </motion.p>
@@ -139,14 +142,14 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="mb-6"
+              className="mb-2 md:mb-2"
             >
               <Image
                 src="/images/PHIERS_Logo.png"
                 alt="PHIERS Logo"
                 width={120}
                 height={120}
-                className="w-24 sm:w-32 md:w-40 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
+                className="w-20 sm:w-24 md:w-28 h-auto mx-auto drop-shadow-[0_0_15px_rgba(61,220,132,0.4)]"
                 priority
               />
             </motion.div>
@@ -386,7 +389,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className={`flex flex-col items-center space-y-4 pb-6 pt-2 md:pt-4 w-full max-w-[85%] mx-auto ${slide.className || ''}`}
+          className={`flex flex-col items-center space-y-4 pb-6 pt-2 md:pt-2 w-full max-w-[85%] mx-auto ${slide.className || ''}`}
         >
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -615,22 +618,17 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
         {/* Buttons only on final slide */}
         {slide.isFinalSlide && (
           <>
-            <div className="h-12"></div>
-            <div className="mb-3">
-              <a
-                href="https://phiers.abacusai.app/petition/fifteen-hundred"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full max-w-xs mx-auto block bg-green-600 hover:bg-green-500 text-white text-sm md:text-base font-bold py-3 px-4 rounded-md transition text-center"
-              >
+            <div className="h-4 md:h-4"></div>
+<div className="mb-2">
+              <a href="https://phiers.abacusai.app/petition/fifteen-hundred" target="_blank" rel="noopener noreferrer" className="w-full max-w-xs mx-auto block bg-green-600 hover:bg-green-500 text-white text-sm md:text-base font-bold py-2 md:py-2 px-4 rounded-md transition text-center">
                 ✍ SIGN THE PETITION
               </a>
             </div>
             {onFinalSlideButtonClick && (
-              <div className="mb-4">
+              <div className="mb-6 md:mb-6">
                 <button
                   onClick={onFinalSlideButtonClick}
-                  className="w-full max-w-xs mx-auto block border border-green/40 text-green text-sm md:text-base font-semibold py-3 px-4 rounded-md hover:bg-green/10 transition"
+                  className="w-full max-w-xs mx-auto block border border-green/40 text-green text-sm md:text-base font-semibold py-2 md:py-2 px-4 rounded-md hover:bg-green/10 transition"
                 >
                   → SEE WHAT THE EXPERTS SAY
                 </button>
