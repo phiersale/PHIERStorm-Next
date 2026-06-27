@@ -612,18 +612,30 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
           )
         })}
         
-        {/* Button only on final slide */}
-        {slide.isFinalSlide && onFinalSlideButtonClick && (
+        {/* Buttons only on final slide */}
+        {slide.isFinalSlide && (
           <>
             <div className="h-12"></div>
-            <div className="mb-4">
-              <button
-                onClick={onFinalSlideButtonClick}
-                className="w-full max-w-xs mx-auto block border border-green/40 text-green text-sm md:text-base font-semibold py-3 px-4 rounded-md hover:bg-green/10 transition"
+            <div className="mb-3">
+              <a
+                href="https://phiers.abacusai.app/petition/fifteen-hundred"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full max-w-xs mx-auto block bg-green-600 hover:bg-green-500 text-white text-sm md:text-base font-bold py-3 px-4 rounded-md transition text-center"
               >
-                → SEE WHAT THE EXPERTS SAY
-              </button>
+                ✍ SIGN THE PETITION
+              </a>
             </div>
+            {onFinalSlideButtonClick && (
+              <div className="mb-4">
+                <button
+                  onClick={onFinalSlideButtonClick}
+                  className="w-full max-w-xs mx-auto block border border-green/40 text-green text-sm md:text-base font-semibold py-3 px-4 rounded-md hover:bg-green/10 transition"
+                >
+                  → SEE WHAT THE EXPERTS SAY
+                </button>
+              </div>
+            )}
           </>
         )}
       </motion.div>

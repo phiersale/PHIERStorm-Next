@@ -198,7 +198,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             </button>
             <button
               onClick={() => setShowSkipAhead(false)}
-              className="absolute -top-2 -right-2 w-5 h-5 md:w-3 md:h-3 rounded-full bg-gray-700/90 border border-gray-500 text-gray-300 hover:bg-red-600/80 hover:border-red-400 hover:text-white transition-all duration-200 flex items-center justify-center text-[10px] md:text-[6px] font-bold"
+              className="absolute -top-2 -right-2 text-white font-bold text-sm leading-none transition hover:text-gray-300"
               aria-label="Close"
             >
               ✕
@@ -569,7 +569,8 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
         <motion.div id="cta" variants={sectionFade} className="text-center pt-1 pb-6">
           <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
             <p className="text-green text-base font-semibold mb-4">You've seen the evidence. Now see what it builds.</p>
-            <button onClick={() => setShowInterrupt(true)} className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 whitespace-nowrap" style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}>→ Continue to the main homepage</button>
+            <a href="https://phiers.abacusai.app/petition/fifteen-hundred" target="_blank" rel="noopener noreferrer" className="block w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 whitespace-nowrap text-center" style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}>✍ Sign the Petition</a>
+            <button onClick={() => setShowInterrupt(true)} className="w-full py-3 px-6 rounded-lg font-bold text-sm transition whitespace-nowrap border border-green/40 text-green hover:bg-green/10" style={{ backgroundColor: 'transparent' }}>→ Continue to the main homepage</button>
           </div>
         </motion.div>
       </motion.div>

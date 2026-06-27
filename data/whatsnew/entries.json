@@ -1,6 +1,359 @@
 {
-  "lastUpdated": "JUNE 24, 2026",
+  "_file": "data/whatsnew/entries.json",
+  "_version": "1.0.0 -- Added category/id/howPhiersHelps fields, 15 new sourced entries (June 26, 2026)",
+  "lastUpdated": "JUNE 26, 2026",
   "entries": [
+    {
+      "date": "JUNE 26, 2026",
+      "tag": "CONGRESS",
+      "category": "Democracy & Voting Rights",
+      "id": "DV-001",
+      "pillColor": "red",
+      "headline": "House Speaker, on camera, to donors: 'I run the protection program. I'll take care of you.'",
+      "whatHappened": "Speaking Friday at the Faith and Freedom Coalition conference, House Speaker Mike Johnson told Republican donors and allies what's actually at stake in the midterms, in his own words: 'If we were to lose the midterms... these Democrats... will turn every committee of Congress into an investigative body and they will go after the president's family, the cabinet, his donors and friends -- half of you in this room will be targeted. I run the protection program. I'll take care of you.' The remarks were captured on video and confirmed by multiple outlets, including C-SPAN footage.",
+      "whyItMatters": "A sitting Speaker of the House told donors directly that congressional oversight is something he controls and withholds as a favor, not a constitutional duty he's bound to. That's not a hypothetical case for why control of the House matters in 2026 -- it's the Speaker himself confirming, on the record, that oversight only happens if the people who'd be investigated lose power.",
+      "howPhiersHelps": "PHIERS's 1,500-per-district threshold is built to make oversight a structural requirement, not a discretionary favor. Once enough verified constituents are on record in a district, withholding oversight becomes politically costly regardless of who holds the gavel.",
+      "sources": [
+        {
+          "name": "MSNBC -- 'I run the protection program': Johnson vows to shield Trump and allies",
+          "url": "https://www.ms.now/rachel-maddow-show/maddowblog/mike-johnson-protection-program-johnson-trump-midterms"
+        },
+        {
+          "name": "Mediaite -- Mike Johnson vows to 'take care' of GOP if Dems win midterms",
+          "url": "https://www.mediaite.com/media/news/mike-johnson-promises-gop-ill-take-care-of-you-if-democrats-win-midterms-half-of-you-in-this-room-will-be-targeted/"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 26, 2026",
+      "tag": "ACCOUNTABILITY",
+      "category": "Accountability & Government Integrity",
+      "id": "AI-001",
+      "pillColor": "amber",
+      "headline": "A billionaire walked out of his own voluntary Epstein testimony. The committee subpoenaed him on the spot.",
+      "whatHappened": "Leon Black, former CEO of Apollo Global Management, appeared voluntarily before the House Oversight Committee's Epstein investigation Friday -- its 16th closed-door interview in a bipartisan probe that has also included former Attorney General Pam Bondi, former President Bill Clinton, and Commerce Secretary Howard Lutnick. Black opened by saying he 'never abused a woman' and was never blackmailed by Epstein, but then refused to answer specific questions about non-disclosure agreements tied to women in Epstein's circle, citing his lawyer's advice. Republican Chairman James Comer issued two subpoenas on the spot -- one compelling a sworn deposition on July 16, one compelling production of the NDAs themselves -- and Black walked out about an hour into the interview.",
+      "whyItMatters": "This is what real oversight looks like when it's actually used: a bipartisan committee, including the chairman's own party, refused to let a witness's voluntary, unsworn statement substitute for real answers.",
+      "howPhiersHelps": "PHIERS exists to make this standard the baseline, not the exception. 1,500 organized constituents per district keeps pressure on Congress to apply real oversight consistently, on every issue that matters to them, not just when it's politically convenient.",
+      "sources": [
+        {
+          "name": "CNN -- House Oversight subpoenas Leon Black over Epstein NDAs",
+          "url": "https://www.cnn.com/2026/06/26/politics/leon-black-epstein-house-oversight"
+        },
+        {
+          "name": "CBS News -- Leon Black subpoenaed to return under oath",
+          "url": "https://www.cbsnews.com/news/billionaire-leon-black-testify-epstein-panel/"
+        },
+        {
+          "name": "MS NOW -- Comer subpoenas Leon Black",
+          "url": "https://www.ms.now/news/comer-subpoenas-leon-black-says-he-dodged-questions-about-women-tied-to-epstein"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 25-26, 2026",
+      "tag": "WIN",
+      "category": "Economic Fairness & Accountability",
+      "id": "EF-001",
+      "pillColor": "teal",
+      "headline": "Years of organizing. One board vote. A million NYC apartments just got cheaper to keep.",
+      "whatHappened": "New York City's Rent Guidelines Board voted 7-1 to freeze rent for roughly one million rent-stabilized apartments -- about 40% of the city's rental housing -- for new one- and two-year leases starting October 1. The board's nine members are appointed by the mayor; Mayor Zohran Mamdani named six of them and made the freeze a central campaign promise. Tenant organizers who had pushed for the freeze for years packed the public hearing.",
+      "whyItMatters": "This is what sustained, organized pressure on an actual decision-making body looks like when it works: years of tenant organizing, a campaign promise, and then a real, binding vote that changes what a million households pay starting this fall.",
+      "howPhiersHelps": "This is the same mechanism PHIERS is built around -- concentrated, persistent constituent pressure on the people who actually hold the vote -- applied at the city level instead of the congressional district level. It's proof the model works, not just theory.",
+      "sources": [
+        {
+          "name": "Common Dreams -- Mamdani delivers on rent freeze campaign promise",
+          "url": "https://www.commondreams.org/news/mamdani-rent-freeze"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 24, 2026",
+      "tag": "WAR FUNDING",
+      "category": "Ending Wars & Foreign Policy",
+      "id": "WP-001",
+      "pillColor": "amber",
+      "headline": "$87.6B request: mostly an undeclared war, with farm aid and Ebola funding riding along",
+      "whatHappened": "The White House asked Congress for $87.6 billion in emergency funding, the same day the THAAD restock contract was announced. $67.1 billion goes to the Pentagon -- including $21 billion specifically to replenish munitions burned through in the Iran conflict. The rest is bundled with $11.1 billion in farm aid, $1.4 billion for Ebola response in Africa, and infrastructure money for Penn Station and DC restoration -- items with real public support, attached to a war request that doesn't have it.",
+      "whyItMatters": "Bundling popular spending with an unpopular war is a deliberate tactic: it makes 'no' votes look like votes against farmers and Ebola response, not against the war.",
+      "howPhiersHelps": "1,500 organized constituents per district makes this bundling tactic transparent and costly instead of quietly effective, by giving representatives a concrete number of voters who will notice exactly what they voted for.",
+      "sources": [
+        {
+          "name": "Reuters -- White House sends $87.6B supplemental request",
+          "url": "https://www.reuters.com/world/us/trump-administration-sends-congress-876-billion-supplemental-budget-request-2026-06-24/"
+        },
+        {
+          "name": "Common Dreams -- Congress urged to reject $88B Iran war request",
+          "url": "https://www.commondreams.org/news/iran-war-supplemental-funding"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 24, 2026",
+      "tag": "DEFENSE SPENDING",
+      "category": "Ending Wars & Foreign Policy",
+      "id": "WP-002",
+      "pillColor": "amber",
+      "headline": "$35B to refill missiles that cost 1,000x more than what they're shooting down",
+      "whatHappened": "The Pentagon awarded Lockheed Martin a seven-year, up-to-$35 billion contract to quadruple THAAD interceptor production, from 96 to 400 missiles a year, after the Iran conflict burned through as much as 80% of the US stockpile. Each interceptor costs roughly $15.5 million. Replacing just the missiles used in this one conflict costs an estimated $4.5 billion, and even at the new, quadrupled production rate, analysts say it will take three to eight years to fully rebuild the stockpile.",
+      "whyItMatters": "A $15.5 million interceptor shooting down a few-thousand-dollar drone is not a sustainable trade, no matter how high the success rate.",
+      "howPhiersHelps": "This is what an undeclared, unauthorized war costs in practice -- real dollars that could fund healthcare, housing, or jobs at home. Constituent pressure organized by district is what makes ending wars Congress never voted on an actual political cost, not just a talking point.",
+      "sources": [
+        {
+          "name": "BTimes -- Pentagon $35B THAAD deal after Iran war depletion",
+          "url": "https://www.btimesonline.com/articles/177895/20260625/pentagon-awards-35-billion-thaad-deal-after-iran-war-burned-through-up-to-80-of-u-s-missile-stockpile.htm"
+        },
+        {
+          "name": "CSIS -- The Depleting Missile Defense Interceptor Inventory",
+          "url": "https://www.csis.org/analysis/depleting-missile-defense-interceptor-inventory"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 24, 2026",
+      "tag": "HOUSING",
+      "category": "Economic Fairness & Accountability",
+      "id": "EF-002",
+      "pillColor": "amber",
+      "headline": "Congress agreed 85-5 and 358-32. One man canceled the signing anyway.",
+      "whatHappened": "The 21st Century ROAD to Housing Act -- the most significant housing legislation in decades -- passed the Senate 85-5 and the House 358-32. Hours before the scheduled signing, Trump canceled it on Truth Social, declaring he wouldn't sign until Congress passed the unrelated SAVE America Act, a separate voter ID bill that lacks the votes to clear the Senate filibuster. Trump tied his refusal directly to Mamdani-backed candidates winning their primaries the same day.",
+      "whyItMatters": "This is bipartisan supermajority agreement being held hostage by a single person's unrelated political priority.",
+      "howPhiersHelps": "Even here, the math protects the public: if Trump doesn't sign or veto within 10 days, the bill becomes law automatically. But PHIERS exists for the cases where that backstop doesn't exist -- organized constituent pressure is what makes supermajority consensus actually move instead of stalling indefinitely.",
+      "sources": [
+        {
+          "name": "CBS News -- Trump cancels housing bill signing",
+          "url": "https://www.cbsnews.com/news/trump-signs-housing-bill-capitol/"
+        },
+        {
+          "name": "Newsweek -- Trump halts bipartisan housing bill, demands SAVE Act votes",
+          "url": "https://www.newsweek.com/trump-threat-housing-bill-save-america-act-cancels-signing-12114934"
+        },
+        {
+          "name": "Time -- Trump won't sign housing bill until SAVE Act passes",
+          "url": "https://time.com/article/2026/06/24/trump-housing-bill-save-america-act-voting-restrictions/"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 24, 2026",
+      "tag": "CONGRESS",
+      "category": "Ending Wars & Foreign Policy",
+      "id": "WP-003",
+      "pillColor": "red",
+      "headline": "The Senate rebuked the war Tuesday. By Wednesday night, two votes had flipped.",
+      "whatHappened": "On Tuesday, June 23, the Senate voted 50-48 to direct Trump to remove forces from the Iran conflict -- a rare bipartisan rebuke. It didn't last. Wednesday, Trump confronted Senate Republicans at a closed-door lunch that turned into a shouting match -- Cassidy admitted losing his temper, Trump called him a 'lunatic.' Cassidy then received a private White House briefing. That same night, the Senate voted 47-50-1 to block a nearly identical resolution from advancing. Trump posted: 'The Senate just changed its vote on Iran from 50-48 against, to 50-47 for... This vote puts Iran on notice!'",
+      "whyItMatters": "Two senators changed a war-powers vote within 24 hours after one White House lunch and one private briefing. That's a real-time demonstration of how concentrated, personal pressure on individual members works.",
+      "howPhiersHelps": "PHIERS exists to put a comparable, organized weight on the other side of that scale: not two senators feeling presidential heat in a closed room, but every representative knowing 1,500 engaged constituents in their district are watching what they do next.",
+      "sources": [
+        {
+          "name": "CNN -- Senate walks back rebuke of Trump over Iran",
+          "url": "https://www.cnn.com/2026/06/24/politics/senate-walks-back-iran-war-powers-vote"
+        },
+        {
+          "name": "ABC News -- Senate votes to block war powers resolution, delivering Trump a win",
+          "url": "https://abcnews.com/Politics/reversal-senate-votes-block-war-powers-resolution-delivering/story?id=134193814"
+        },
+        {
+          "name": "NBC News -- Senate Republicans reject resolution after clashing with Trump",
+          "url": "https://www.nbcnews.com/politics/congress/senate-republicans-reject-war-powers-resolution-trump-cassidy-clash-rcna351703"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 24, 2026",
+      "tag": "ENVIRONMENT",
+      "category": "Public Health & Safety",
+      "id": "PH-001",
+      "pillColor": "amber",
+      "headline": "$450M PFAS settlement: penalties paid, victims still uncompensated",
+      "whatHappened": "Chemours settled with the EPA and DOJ for $450 million over a decade of illegal 'forever chemical' discharges into the Ohio, Cape Fear, and Delaware Rivers. The deal includes $22.5 million in civil penalties and $90 million over 15 years for mitigation. What it doesn't include: compensation for individuals already harmed, a medical monitoring fund, or river restoration. Chemours keeps operating and keeps making PFAS.",
+      "whyItMatters": "A penalty isn't the same as a remedy. The company pays a fine and keeps producing the chemical that caused the harm; the people actually exposed get nothing individually.",
+      "howPhiersHelps": "PHIERS exists to convert documented, repeated patterns like this into organized district-level pressure for legislative fixes -- not just settlements that let the underlying practice continue.",
+      "sources": [
+        {
+          "name": "Ground News -- Chemours $450M PFAS settlement summary",
+          "url": "https://ground.news/article/trump-administration-settles-water-pollution-case-with-forever-chemicals-company-for-450m"
+        },
+        {
+          "name": "North Carolina Health News -- NC excluded from settlement table",
+          "url": "https://www.northcarolinahealthnews.org/2026/06/25/chemours-pfas-settlement-nc-excluded/"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 23, 2026",
+      "tag": "CIVIL RIGHTS",
+      "category": "Accountability & Government Integrity",
+      "id": "AI-002",
+      "pillColor": "red",
+      "headline": "SCOTUS: your religious rights can be violated with no one held accountable",
+      "whatHappened": "Damon Landor, a Rastafarian serving the final weeks of a Louisiana prison sentence, carried a copy of a federal appeals court ruling protecting his right to keep his dreadlocks. A guard threw the ruling in the trash. Officials handcuffed Landor to a chair and shaved his head anyway. The Supreme Court ruled 6-3 that he cannot sue the officials for damages -- not because his rights weren't violated, but because the law doesn't let individuals sue government employees personally for money.",
+      "whyItMatters": "A right that can be violated with zero consequence isn't a right -- it's a suggestion. Courts can affirm a violation happened and still leave no one accountable.",
+      "howPhiersHelps": "PHIERS's 1,500-constituent threshold per district exists for exactly this gap: when courts can't or won't enforce a remedy, organized constituents can still make Congress legislate one, by turning an unenforceable ruling into a political cost representatives can't ignore.",
+      "sources": [
+        {
+          "name": "NPR -- Supreme Court rules prison guards can't be sued",
+          "url": "https://www.npr.org/2026/06/23/nx-s1-5867684/supreme-court-prison-guards-rastafarian-dreadlocks"
+        },
+        {
+          "name": "CNN -- Landor v. Louisiana opinion",
+          "url": "https://www.cnn.com/2026/06/23/politics/landor-supreme-court-opinion"
+        },
+        {
+          "name": "Washington Post -- Rastafarian can't sue over shorn dreadlocks",
+          "url": "https://www.washingtonpost.com/politics/2026/06/23/supreme-court-says-rastafarian-cant-sue-prison-officials-over-shorn-dreadlocks/"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 25, 2026",
+      "tag": "REGULATORY CAPTURE",
+      "category": "Public Health & Safety",
+      "id": "PH-002",
+      "pillColor": "red",
+      "headline": "Production of a likely carcinogen goes up. The right to sue over it goes away.",
+      "whatHappened": "In February, Trump invoked the Defense Production Act to force increased domestic production of glyphosate -- Bayer is the only US producer -- one day after Bayer proposed a $7 billion settlement over cancer lawsuits, and while the administration was separately backing Bayer's Supreme Court case to block those same lawsuits. On June 25, the Court ruled 7-2 in Monsanto v. Durnell that federal pesticide law preempts state failure-to-warn claims. The WHO's cancer research arm classifies glyphosate as a probable carcinogen; the EPA disagrees, despite a 2000 safety study underlying its position having been formally retracted this year.",
+      "whyItMatters": "More of a chemical the World Health Organization calls a probable carcinogen, made by its only US producer, with the legal path to accountability closed the same year -- that's not balance, that's a one-way deal.",
+      "howPhiersHelps": "PHIERS exists to make 'who has accountability when corporate harm meets regulatory failure' a question Congress has to answer, not the courts alone -- through organized constituent pressure that doesn't depend on any single case's outcome.",
+      "sources": [
+        {
+          "name": "NPR -- Supreme Court backs Monsanto in liability fight",
+          "url": "https://www.npr.org/2026/06/25/g-s1-120233/supreme-court-monsanto-roundup-decision"
+        },
+        {
+          "name": "FreshFruitPortal -- Glyphosate production EO splits MAHA-GOP alliance",
+          "url": "https://www.freshfruitportal.com/news/2026/02/23/glyphosate-executive-order/"
+        },
+        {
+          "name": "Common Dreams -- Lawsuit seeks records on glyphosate EO",
+          "url": "https://www.commondreams.org/newswire/lawsuit-seeks-records-on-trump-executive-order-to-accelerate-glyphosate-production"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 24-25, 2026",
+      "tag": "PUBLIC HEALTH",
+      "category": "Public Health & Safety",
+      "id": "PH-003",
+      "pillColor": "teal",
+      "headline": "One outbreak ended in zero US cases. Another just became the 2nd-largest Ebola outbreak ever. The difference is infrastructure.",
+      "whatHappened": "The CDC officially closed its response to a hantavirus outbreak tied to a cruise ship -- 18 exposed Americans were identified early, monitored in dedicated biocontainment units, and the response ended with zero sustained US transmission. Meanwhile, an Ebola outbreak in the DRC and Uganda has grown to over 1,100 confirmed cases and nearly 300 deaths -- the second-largest outbreak of its kind on record. A former CDC director warned during the hantavirus response that the agency itself is 'much less safe' after mass staff firings.",
+      "whyItMatters": "Early detection and dedicated containment capacity stopped hantavirus cold. The absence of that same infrastructure is exactly why Ebola is spreading at a record pace.",
+      "howPhiersHelps": "PHIERS's survey explicitly asks for independent, unbiased, profit-free academic oversight of public health response -- this side-by-side comparison is the real-world case for why that oversight has to be funded and protected, not left to whichever administration is in power.",
+      "sources": [
+        {
+          "name": "Al Jazeera -- CDC concludes hantavirus response, zero US transmission",
+          "url": "https://www.aljazeera.com/news/2026/6/24/us-public-health-agency-concludes-hantavirus-response-as-outbreak-eases"
+        },
+        {
+          "name": "ECDC -- Ebola Bundibugyo outbreak situation update",
+          "url": "https://www.ecdc.europa.eu/en/ebola-virus-disease-outbreak-democratic-republic-congo-and-uganda"
+        },
+        {
+          "name": "CDC -- Ebola outbreak current situation",
+          "url": "https://www.cdc.gov/ebola/situation-summary/index.html"
+        }
+      ]
+    },
+    {
+      "date": "MAY 30, 2026",
+      "tag": "EXTREMISM",
+      "category": "Accountability & Government Integrity",
+      "id": "AI-003",
+      "pillColor": "red",
+      "headline": "A former Trump deportation chief told a neo-Nazi-organized summit: 'We're on the same sheet of music.'",
+      "whatHappened": "Gregory Bovino, who led Trump's mass deportation operations before being fired after agents under his command fatally shot two American citizens, appeared as a VIP guest at the 2026 Remigration Summit in Portugal -- organized by Martin Sellner, an Austrian former neo-Nazi. Bovino cited Nazi general Erwin Rommel as an inspiration and declared to a standing ovation that the US had already 'proof tested' remigration with Trump's election. Separately, a quietly created Office of Remigration inside the State Department processes deportation-related payments with little public oversight.",
+      "whyItMatters": "Researchers who track this movement called Bovino's appearance a 'major coup,' because it let a former senior US immigration official publicly confirm what critics have said all along.",
+      "howPhiersHelps": "A serious civic platform built on organized accountability can't look away from this kind of overlap. PHIERS's district pressure model is built to make Congress legislate real oversight of agencies like this, regardless of which administration controls them.",
+      "sources": [
+        {
+          "name": "NPR -- What was Gregory Bovino doing at a remigration conference in Portugal?",
+          "url": "https://www.npr.org/2026/06/05/nx-s1-5844714/gregory-bovino-attended-remigration-conference-2026"
+        },
+        {
+          "name": "Politico Europe -- AfD, Vox mingle with ex-US Border Patrol chief at remigration summit",
+          "url": "https://www.lemkininstitute.com/single-post/afd-vox-mingle-with-ex-us-border-patrol-chief-white-nationalist-leader-at-remigration-summit"
+        },
+        {
+          "name": "Global Project Against Hate and Extremism -- Second Annual European Ethnic Cleansing Conference",
+          "url": "https://globalextremism.org/post/the-second-annual-european-ethnic-cleansing-conference/"
+        }
+      ]
+    },
+    {
+      "date": "2026 -- ONGOING",
+      "tag": "INSTITUTIONS",
+      "category": "Democracy & Voting Rights",
+      "id": "DV-002",
+      "pillColor": "red",
+      "headline": "Even a Trump-appointed Supreme Court justice says this would 'shatter' the Fed's independence.",
+      "whatHappened": "Trump pushed to fire Fed Governor Lisa Cook before her term ends -- a case the Supreme Court took up, where Trump-appointed Justice Kavanaugh said the administration's position 'would weaken, if not shatter, the independence of the Federal Reserve.' A DOJ investigation into the Fed's building renovation, which Chair Jerome Powell called a pretext to pressure rate decisions, was dropped in April. Republican Senator Thom Tillis said there's no remaining doubt that administration advisers are 'actively pushing to end the independence of the Federal Reserve.'",
+      "whyItMatters": "When a Republican senator and a Republican-appointed Supreme Court justice both say the same pressure campaign threatens an independent institution, that's not partisan noise.",
+      "howPhiersHelps": "PHIERS's district-by-district organizing model exists to give institutions like the Fed real legislative backup -- codifying independence into law that survives any administration, instead of relying on individual officials' willingness to take the political heat alone.",
+      "sources": [
+        {
+          "name": "NPR -- Trump's feud with the Federal Reserve",
+          "url": "https://www.npr.org/2026/01/13/nx-s1-5674777/trump-federal-reserve-jerome-powell"
+        },
+        {
+          "name": "CNBC -- Powell warns Trump's political 'stress test' will wreck public trust",
+          "url": "https://www.cnbc.com/2026/06/01/federal-reserve-trump-political-pressure-powell-stress-test.html"
+        },
+        {
+          "name": "MS NOW -- Trump pressures Powell ahead of Supreme Court Fed independence ruling",
+          "url": "https://www.ms.now/deadline-white-house/deadline-legal-blog/trump-fire-powell-supreme-court-lisa-cook-fed-independence-ruling"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 25, 2026",
+      "tag": "IMMIGRATION",
+      "category": "Accountability & Government Integrity",
+      "id": "AI-004",
+      "pillColor": "red",
+      "headline": "Same day, two rulings: asylum seekers turned away before they can ask, and the people already here lose protection too.",
+      "whatHappened": "The Supreme Court issued two 6-3 immigration rulings the same day. Mullin v. Al Otro Lado clears the way for 'metering' -- physically blocking asylum seekers at the border before they can file a claim. Mullin v. Doe shields the administration's end of Temporary Protected Status for roughly 350,000 Haitians and 6,100 Syrians from meaningful judicial review. Justice Sotomayor's dissent warned the ruling lets the administration 'circumvent' the law designed to ensure every asylum case gets individually assessed.",
+      "whyItMatters": "Both rulings share the same mechanism: narrowing a law's reach by isolating individual words from the broader purpose Congress intended. That's not unique to immigration -- it's a move that can be applied to any federal protection.",
+      "howPhiersHelps": "PHIERS's 1,500-constituent threshold per district is built to manufacture a different kind of pressure: instead of relying solely on courts to interpret protections charitably, organized constituents can force Congress to write protections explicitly into law, in language too clear to be narrowed away one word at a time.",
+      "sources": [
+        {
+          "name": "Al Jazeera -- Supreme Court paves way to block asylum seekers at border",
+          "url": "https://www.aljazeera.com/news/2026/6/25/us-supreme-court-paves-way-for-government-to-block-asylum-seekers-at-border"
+        },
+        {
+          "name": "Ms. Magazine -- Supreme Court rewrites immigration law one word at a time",
+          "url": "https://msmagazine.com/2026/06/26/supreme-court-immigration-law-asylum-tps/"
+        },
+        {
+          "name": "CNN -- Supreme Court gives Trump major wins on two immigration cases",
+          "url": "https://www.cnn.com/2026/06/25/politics/live-news/supreme-court-issues-opinions"
+        }
+      ]
+    },
+    {
+      "date": "JUNE 16, 2026",
+      "tag": "CIVIL RIGHTS",
+      "category": "Accountability & Government Integrity",
+      "id": "AI-005",
+      "pillColor": "red",
+      "headline": "The first reparations program in the country pays $25,000 to harmed residents. The DOJ just tried to kill it.",
+      "whatHappened": "The Department of Justice moved to intervene against Evanston, Illinois's reparations program -- the first in the nation -- which pays $25,000 to Black residents (or their descendants) who lived in the city between 1919 and 1969, when the city's own zoning and lending policies blocked Black homeownership. The city has paid out over $5 million so far. The DOJ's Civil Rights Division argues the eligibility criteria itself is illegal race discrimination, joining a private lawsuit filed on behalf of six non-Black plaintiffs, none of whom currently live in Evanston.",
+      "whyItMatters": "The DOJ is arguing that compensating people for documented, dated, government-caused harm is itself the discrimination -- while the original harm drew no comparable federal intervention.",
+      "howPhiersHelps": "PHIERS's mission is structural, not symbolic: organized constituent pressure, district by district, is what makes it costly for federal power to be used selectively -- aggressively enforced against remedies for discrimination, while the discrimination itself goes unaddressed.",
+      "sources": [
+        {
+          "name": "Evanston RoundTable -- Evanston's reparations plan faces constitutional challenge",
+          "url": "https://evanstonroundtable.com/2026/06/16/department-of-justice-joins-lawsuit-against-evanstons-reparations-program/"
+        },
+        {
+          "name": "Washington Examiner -- DOJ joins lawsuit challenging Evanston reparations program",
+          "url": "https://www.washingtonexaminer.com/news/justice/4611221/doj-challenge-evanston-illinois-reparations-program/"
+        },
+        {
+          "name": "TheGrio -- Trump DOJ targets Illinois city's reparations program",
+          "url": "https://thegrio.com/2026/06/18/evanston-reparations-doj-trump-illinois-housing-program-2/"
+        }
+      ]
+    },
     {
       "date": "JUNE 24, 2026",
       "tag": "ANALYSIS",
@@ -9,10 +362,22 @@
       "whatHappened": "On June 17, Trump and Iran's president signed a memorandum of understanding to end the war, with a 60-day roadmap toward a final deal. The Strait of Hormuz reopened and shipping resumed. Four days later, Trump threatened on national television to \"take over the Strait\" and \"collect tolls\" if Iran didn't make a deal — nearly derailing the talks he'd just signed onto. He has separately called the memorandum \"just an option,\" saying \"I can do whatever I want after that option.\" Meanwhile, the Senate passed a war powers resolution for the first time in its history this week, 50-48, directing Trump to remove forces from hostilities absent a formal declaration of war. Three Democrats whose votes could have swung the outcome have taken a combined $1.7 million from AIPAC. Nine senior Democratic leaders — despite collectively taking nearly $9 million from AIPAC — broke from the lobby's position and criticized the strikes anyway, calling for the War Powers Act to be invoked. Trump called the Senate's vote \"poorly timed and meaningless\" and accused the chamber of \"aid and comfort to the Enemy.\"",
       "whyItMatters": "A signed agreement and a historic congressional vote both happened this week — and the President responded to both by saying neither one binds him. That's not a hypothetical case for organized constituent pressure. It's the case, happening in real time. Even members who took the lobby's money broke from it under enough public pressure — proof the mechanism works in both parties, not just one. A district that's already organized doesn't have to wait for the next crisis to make its representative's vote count.",
       "sources": [
-        { "name": "AP / Britannica — 2026 Iran war timeline", "url": "https://www.britannica.com/event/2026-Iran-war" },
-        { "name": "CNN — June 21, 2026 live updates", "url": "https://www.cnn.com/2026/06/21/world/live-news/iran-war-trump-israel-lebanon" },
-        { "name": "CBS News — Senate Iran war powers vote", "url": "https://www.cbsnews.com/live-updates/iran-us-war-trump-nuclear-sites-strait-of-hormuz/" },
-        { "name": "Al Jazeera — Senate votes to halt Iran war", "url": "https://www.aljazeera.com/news/2026/6/23/us-senate-votes-to-halt-iran-war-bucking-trump" }
+        {
+          "name": "AP / Britannica — 2026 Iran war timeline",
+          "url": "https://www.britannica.com/event/2026-Iran-war"
+        },
+        {
+          "name": "CNN — June 21, 2026 live updates",
+          "url": "https://www.cnn.com/2026/06/21/world/live-news/iran-war-trump-israel-lebanon"
+        },
+        {
+          "name": "CBS News — Senate Iran war powers vote",
+          "url": "https://www.cbsnews.com/live-updates/iran-us-war-trump-nuclear-sites-strait-of-hormuz/"
+        },
+        {
+          "name": "Al Jazeera — Senate votes to halt Iran war",
+          "url": "https://www.aljazeera.com/news/2026/6/23/us-senate-votes-to-halt-iran-war-bucking-trump"
+        }
       ]
     },
     {
@@ -95,8 +460,14 @@
       "whatHappened": "Senator John Fetterman was the only Democrat to vote against the War Powers Resolution — again. This time his vote determined the outcome: 49–50. Pennsylvania polling shows broad public opposition to continued escalation.",
       "whyItMatters": "When public sentiment and Congressional action diverge, organized civic engagement becomes essential. PHIERS helps constituents stay coordinated, informed, and able to communicate expectations clearly to their representatives.",
       "sources": [
-        { "name": "Philadelphia Inquirer, May 13, 2026", "url": "https://www.inquirer.com" },
-        { "name": "Spotlight PA, May 2026", "url": "https://www.spotlightpa.org" }
+        {
+          "name": "Philadelphia Inquirer, May 13, 2026",
+          "url": "https://www.inquirer.com"
+        },
+        {
+          "name": "Spotlight PA, May 2026",
+          "url": "https://www.spotlightpa.org"
+        }
       ]
     },
     {
@@ -107,9 +478,18 @@
       "whatHappened": "The 6–3 ruling in Louisiana v. Callais eliminated Section 2, a key federal protection against discriminatory redistricting. States began redrawing maps within 48 hours. Louisiana suspended an election mid-vote.",
       "whyItMatters": "With fewer federal safeguards, communities need reliable ways to stay engaged at the district level. PHIERS emphasizes local organization — where people still have direct channels to their representatives.",
       "sources": [
-        { "name": "Brennan Center for Justice", "url": "https://www.brennancenter.org" },
-        { "name": "NAACP Legal Defense Fund", "url": "https://www.naacpldf.org" },
-        { "name": "Campaign Legal Center", "url": "https://campaignlegal.org" }
+        {
+          "name": "Brennan Center for Justice",
+          "url": "https://www.brennancenter.org"
+        },
+        {
+          "name": "NAACP Legal Defense Fund",
+          "url": "https://www.naacpldf.org"
+        },
+        {
+          "name": "Campaign Legal Center",
+          "url": "https://campaignlegal.org"
+        }
       ]
     },
     {
@@ -120,9 +500,18 @@
       "whatHappened": "The Strait of Hormuz blockade continues. Oil prices rise. Statements from federal officials signal potential military actions without clear Congressional authorization. Regional tensions involving Cuba, Mexico, and Colombia remain high.",
       "whyItMatters": "The Constitution assigns Congress responsibility for authorizing military action. PHIERS supports civic engagement that helps communities communicate expectations and hold representatives accountable to their constitutional role.",
       "sources": [
-        { "name": "Bloomberg, May 17, 2026", "url": "https://www.bloomberg.com" },
-        { "name": "PBS NewsHour, May 2026", "url": "https://www.pbs.org/newshour" },
-        { "name": "Axios, April 29, 2026", "url": "https://www.axios.com" }
+        {
+          "name": "Bloomberg, May 17, 2026",
+          "url": "https://www.bloomberg.com"
+        },
+        {
+          "name": "PBS NewsHour, May 2026",
+          "url": "https://www.pbs.org/newshour"
+        },
+        {
+          "name": "Axios, April 29, 2026",
+          "url": "https://www.axios.com"
+        }
       ]
     },
     {
@@ -133,8 +522,14 @@
       "whatHappened": "Six states are redrawing congressional maps mid-cycle, reshaping representation ahead of November. Louisiana suspended its own primary after ballots were already in the mail. Tennessee, Florida, Texas, Missouri, and Ohio are moving rapidly. Primaries paused. Maps rewritten. Major changes underway.",
       "whyItMatters": "Communities need ways to stay organized and informed when district lines shift. PHIERS focuses on district-level civic engagement — helping people stay connected to their representatives regardless of how maps change.",
       "sources": [
-        { "name": "CNN Analysis, May 7, 2026", "url": "https://www.cnn.com" },
-        { "name": "Democracy Docket Redistricting Tracker, May 2026", "url": "https://www.democracydocket.com" }
+        {
+          "name": "CNN Analysis, May 7, 2026",
+          "url": "https://www.cnn.com"
+        },
+        {
+          "name": "Democracy Docket Redistricting Tracker, May 2026",
+          "url": "https://www.democracydocket.com"
+        }
       ]
     },
     {
@@ -145,9 +540,16 @@
       "whatHappened": "Multiple states — across parties — are redrawing maps rapidly. Analysts note that the 2026 landscape looks significantly different than it did six months ago. Representation and district boundaries are shifting in real time.",
       "whyItMatters": "Regardless of how maps change, constituents still need ways to stay organized and informed. PHIERS focuses on district-level civic structure — helping people maintain continuity and clarity even as political boundaries move.",
       "sources": [
-        { "name": "Council on Foreign Relations, May 4, 2026", "url": "https://www.cfr.org" },
-        { "name": "Ballotpedia Redistricting Tracker, May 2026", "url": "https://ballotpedia.org" }
+        {
+          "name": "Council on Foreign Relations, May 4, 2026",
+          "url": "https://www.cfr.org"
+        },
+        {
+          "name": "Ballotpedia Redistricting Tracker, May 2026",
+          "url": "https://ballotpedia.org"
+        }
       ]
     }
-  ]
+  ],
+  "_fileEnd": "data/whatsnew/entries.json"
 }
