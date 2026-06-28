@@ -81,14 +81,7 @@ export default function MamdaniPage() {
           </p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold text-green mb-3">Sacramento DSA</h2>
-          <p className="text-gray-300 text-sm leading-relaxed">
-            The Sacramento DSA chapter held a meeting at our workplace, and we sat in. Afterward, we walked them through this model directly. They asked sharp, serious questions — about public banking, about governance, about who actually benefits — and we answered them honestly. We don't agree with every position in DSA's platform, and we don't expect them to agree with every position of ours. What we share is a real, specific overlap: strengthening the USPS, including its historical role in postal banking, and building economic infrastructure that doesn't depend on extracting profit from people who have the least room to absorb it. They're now looking into PHIERS further on their own.
-          </p>
-        </section>
-
-        <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-6 mb-10">
+                <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-6 mb-10">
           <p className="text-amber-400 text-sm font-semibold mb-2">What we're not claiming</p>
           <p className="text-gray-300 text-sm leading-relaxed">
             We're not claiming PHIERS can fund any single politician's entire platform, in New York or anywhere else. Savings at the scale we're describing depend on participation reaching real numbers first — they're not a blank check sitting somewhere waiting to be spent. What we are saying is that the mechanism is sound, it's documented years before the partnerships that have since validated pieces of it, and it's available to any city, county, or state serious about affordability now, not eventually.
