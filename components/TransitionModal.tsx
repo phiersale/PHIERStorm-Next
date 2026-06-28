@@ -176,10 +176,10 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               {/* FINANCIAL SEED */}
               <div className="bg-green/5 border border-green/20 rounded-lg p-4 space-y-3">
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">
-                  Congress already commits roughly <span className="text-green font-bold">$10,000 per beneficiary</span> for healthcare — for more than <span className="text-green font-bold">150 million people</span>.
+                  Medicaid alone commits roughly <span className="text-green font-bold">$12,000 per beneficiary</span> for healthcare — across more than <span className="text-green font-bold">77 million people</span>. Combined with Medicare, CMS covers roughly 150 million people at similar rates.
                 </p>
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">
-                  Telehealth can deliver most routine care for a fraction of that cost — while saving more than <span className="text-green font-bold">a trillion dollars a year</span>.
+                  Telehealth can deliver most routine care for a fraction of that cost — redirecting <span className="text-green font-bold">$1.1–1.4 trillion a year</span> in real savings, with catastrophic coverage staying in place for when people actually need it.
                 </p>
                 <p className="text-gray-400 text-xs leading-relaxed">
                   Those savings can fund the core services Americans are losing — the things people actually need — and PHIERS makes those savings visible, measurable, and impossible for Congress to ignore.

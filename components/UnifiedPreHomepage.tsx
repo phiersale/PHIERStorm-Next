@@ -287,7 +287,7 @@ export default function UnifiedPreHomepage({
                         }}
                         className="text-sm transition-all duration-200 text-gray-600 hover:text-gray-400"
                       >
-                        <span className="font-bold">Continue →</span>
+                        <span className="font-bold">Tap or Swipe →</span>
                       </button>
                       <div className="w-16 h-px bg-gray-800 rounded-full overflow-hidden">
                         <motion.div

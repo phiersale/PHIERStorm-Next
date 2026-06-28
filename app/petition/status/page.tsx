@@ -7,8 +7,7 @@ import { useRouter } from 'next/navigation'
 
 export default function PetitionStatusPage() {
   const router = useRouter()
-  const surveyURL =
-    'https://docs.google.com/forms/d/e/1FAIpQLSdETA-oNIeOAzEsG4GsYiiws1YBpLunx8ioVJkZac5hzSxaZw/viewform'
+  const surveyURL = 'https://phiers.abacusai.app/survey'
 
   const shareText = encodeURIComponent(
     'I just signed the PHIERS petition. Congress needs to do its job — and we have the plan to make it happen. Add your name: https://www.phiers.org/petition'

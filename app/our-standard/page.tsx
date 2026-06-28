@@ -93,6 +93,14 @@ export default function OurStandardPage() {
           </div>
         </section>
 
+        {/* COOPERATIVE PRINCIPLES LINK */}
+        <div className="text-center mb-10">
+          <p className="text-gray-400 text-sm mb-3">How we govern ourselves, in writing, before launch.</p>
+          <Link href="/our-principles" className="text-green hover:underline font-semibold">
+            The Seven Cooperative Principles →
+          </Link>
+        </div>
+
         {/* CROSS-LINK TO EVIDENCE ARCHIVE */}
         <div className="text-center pt-6 border-t border-gray-800">
           <p className="text-gray-400 text-sm mb-3">Want the documentation behind these commitments?</p>

@@ -525,7 +525,7 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              transition={{ duration: 1.2, delay: 0, ease: "easeOut" }}
               className={slide.captionClassName || "text-center text-green-400 text-lg md:text-2xl font-semibold mt-4 max-w-3xl mx-auto"}
             >
               {slide.caption}

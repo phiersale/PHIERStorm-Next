@@ -458,14 +458,27 @@ export default function PhiersSystemPage() {
 
             <div className="h-px bg-white/10 my-8"></div>
 
-            {/* CTA BUTTONS - matching header style */}
-            <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-               <Link href="/?credibility=true" className="text-gray-500 text-sm hover:text-gray-300 transition px-5 py-2">
-                ← Back to Credibility
-              </Link>
-              <Link href="/home" className="text-gray-500 text-sm hover:text-gray-300 transition px-5 py-2">
-                → Enter PHIERS.org
-              </Link>
+            {/* CTA BUTTONS - primary action restored per funnel audit */}
+            <div className="mt-4 flex flex-col items-center justify-center gap-4">
+              <button
+                onClick={() => window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')}
+                className="px-8 py-3 rounded-lg font-bold text-base transition"
+                style={{
+                  backgroundColor: '#F5C542',
+                  color: '#1a1a1a',
+                  boxShadow: '0 0 20px rgba(245,197,66,0.25)'
+                }}
+              >
+                ✍ Sign the Petition
+              </button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+                <Link href="/?credibility=true" className="text-gray-500 text-sm hover:text-gray-300 transition px-5 py-2">
+                  ← Back to Credibility
+                </Link>
+                <Link href="/home" className="text-gray-500 text-sm hover:text-gray-300 transition px-5 py-2">
+                  → Enter PHIERS.org
+                </Link>
+              </div>
             </div>
           </section>
         </div>

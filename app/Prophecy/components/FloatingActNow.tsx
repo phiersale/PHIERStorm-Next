@@ -10,6 +10,20 @@ export default function FloatingActNow() {
   const [expanded, setExpanded] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [faded, setFaded] = useState(false);
+  const [entranceStage, setEntranceStage] = useState('start');
+
+  useEffect(() => {
+    const travelTimer = setTimeout(() => setEntranceStage('settled'), 50);
+    const fadeTimer = setTimeout(() => {
+      setEntranceStage('done');
+      setFaded(true);
+    }, 1800);
+
+    return () => {
+      clearTimeout(travelTimer);
+      clearTimeout(fadeTimer);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

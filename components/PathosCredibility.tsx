@@ -478,6 +478,12 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
 
         <div className="mt-12 md:mt-16"></div>
 
+        <motion.div variants={sectionFade} className="max-w-2xl mx-auto mb-12 text-center">
+          <Link href="/mamdani" className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition">
+            We Said This Before It Was Proven →
+          </Link>
+        </motion.div>
+
         <motion.details id="shark" variants={sectionFade} className="group mb-8 bg-[#0a1628]/40 border border-green/20 rounded-lg p-4">
           <summary className="cursor-pointer text-xl md:text-2xl font-bold text-green mb-2 list-none flex items-center py-2">
             <span className="mr-3 group-open:rotate-90 transition-transform">▶</span>
