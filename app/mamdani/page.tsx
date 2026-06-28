@@ -47,6 +47,21 @@ export default function MamdaniPage() {
           </p>
         </div>
 
+        <div className="bg-green/5 border border-green/20 rounded-lg p-6 mb-10">
+          <p className="text-green-400 text-sm font-semibold mb-2">January 16, 2026</p>
+          <p className="text-gray-300 text-sm leading-relaxed mb-4">
+            At the time this video posted, Mamdani's affordability agenda was still proposals — tax increases on the wealthy, expanded benefits, a rent freeze that doesn't take effect until next year. Real commitments, but ones that require legislation, implementation timelines, and political fights still ahead. We laid out how PHIERS funds the same outcomes — affordability, relief, redirected savings — now, without waiting on any of that to pass.
+          </p>
+          <div className="aspect-video rounded-lg overflow-hidden">
+            <iframe
+              src="https://www.youtube.com/embed/VdeniYs1QsQ"
+              title="Funding Mamdani's Agenda for a Stronger Future (a National strategy)"
+              className="w-full h-full"
+              allowFullScreen
+            />
+          </div>
+        </div>
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-green mb-3">What We Actually Said</h2>
           <div className="space-y-3 text-gray-300 text-sm leading-relaxed">
