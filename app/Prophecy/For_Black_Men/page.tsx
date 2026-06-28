@@ -76,7 +76,7 @@ export default function ForBlackMenPage() {
               And if you're never comfortable — that's okay too. This only works if it's real.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
+            
                 <button
                 onClick={() => window.open('https://phiers.abacusai.app/survey', '_blank')}
                 className="inline-block bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition text-center whitespace-nowrap text-sm sm:text-base"
