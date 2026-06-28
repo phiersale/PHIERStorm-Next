@@ -357,7 +357,7 @@ export default function SituationPage() {
         <div className="mb-10">
           <p className="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-3">Highlights</p>
           
-            href="/mamdani"
+            <a href="/mamdani"
             className="block bg-gradient-to-br from-teal-950/60 to-card rounded-xl border border-teal-800/60 hover:border-teal-600 transition p-5 sm:p-6"
           >
             <div className="flex flex-wrap items-center gap-2 mb-2">
