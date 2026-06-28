@@ -284,6 +284,12 @@ export default function ProphecyPage() {
           <img src="/images/PHIERS_Logo_BW.png" alt="PHIERS" className="w-8 h-auto" />
           <span className="text-xs hover:text-white transition">PHIERS.org →</span>
         </a>
+        <Link
+          href="/founding-document"
+          className="block mt-3 text-xs text-amber-400/70 hover:text-amber-300 transition"
+        >
+          Read the Founding Document →
+        </Link>
         <p className="mt-4 text-gray-600 text-xs">
           Participation is voluntary. PHIERS is a peaceful civic engagement effort.
         </p>
