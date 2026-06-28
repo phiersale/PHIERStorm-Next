@@ -352,6 +352,29 @@ export default function SituationPage() {
 
       {/* Content – dark cards */}
       <div className="max-w-3xl mx-auto px-4 py-8">
+
+        {/* Highlights rail — manually curated, does not affect chronological sort below */}
+        <div className="mb-10">
+          <p className="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-3">Highlights</p>
+          
+            href="/mamdani"
+            className="block bg-gradient-to-br from-teal-950/60 to-card rounded-xl border border-teal-800/60 hover:border-teal-600 transition p-5 sm:p-6"
+          >
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <span className="text-xs font-mono text-muted-foreground">JUNE 23-24, 2026</span>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-teal-900/50 text-teal-200 border border-teal-800">
+                WIN
+              </span>
+            </div>
+            <h2 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+              All three Mamdani endorsed just won their primaries. See PHIERS's national funding strategy →
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Documented before this win — and ready to fund the agenda now, district by district.
+            </p>
+          </a>
+        </div>
+
         <div className="space-y-8" id="after-trust">
           {sortedItems.map((item, idx) => (
             <div key={idx} className="bg-card rounded-xl shadow-md overflow-hidden border border-gray-800">
