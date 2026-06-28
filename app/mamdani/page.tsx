@@ -84,7 +84,7 @@ export default function MamdaniPage() {
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-green mb-3">Sacramento DSA</h2>
           <p className="text-gray-300 text-sm leading-relaxed">
-            We sat down with the Sacramento DSA chapter and walked through this model directly. They asked sharp, serious questions — about public banking, about governance, about who actually benefits — and we answered them honestly. We don't agree with every position in DSA's platform, and we don't expect them to agree with every position of ours. What we share is a real, specific overlap: strengthening the USPS, including its historical role in postal banking, and building economic infrastructure that doesn't depend on extracting profit from people who have the least room to absorb it.
+            The Sacramento DSA chapter held a meeting at our workplace, and we sat in. Afterward, we walked them through this model directly. They asked sharp, serious questions — about public banking, about governance, about who actually benefits — and we answered them honestly. We don't agree with every position in DSA's platform, and we don't expect them to agree with every position of ours. What we share is a real, specific overlap: strengthening the USPS, including its historical role in postal banking, and building economic infrastructure that doesn't depend on extracting profit from people who have the least room to absorb it. They're now looking into PHIERS further on their own.
           </p>
         </section>
 
