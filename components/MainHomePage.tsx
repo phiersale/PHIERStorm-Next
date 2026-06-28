@@ -247,9 +247,7 @@ export default function MainHomePage({ onBackToEntry }: { onBackToEntry?: () => 
 
       <div className="min-h-screen">
 
-      <div className="fixed top-0 left-0 right-0 z-50 bg-amber-600 text-black text-center py-2 px-2 text-xs sm:text-sm font-bold break-words">
-        🚧 Site under construction – <Link href="/join" className="underline font-extrabold whitespace-nowrap sm:whitespace-normal">Join us → now hiring</Link>
-      </div>
+      {/* Construction/hiring banner retired — site is live; hiring will be raised directly with DSA chapters instead of a permanent site-wide banner */}
 
       <AnimatePresence>
         {modalImageSrc && (
