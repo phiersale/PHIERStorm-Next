@@ -1,8 +1,33 @@
 {
   "_file": "data/whatsnew/entries.json",
   "_version": "1.0.0 -- Added category/id/howPhiersHelps fields, 15 new sourced entries (June 26, 2026)",
-  "lastUpdated": "JUNE 26, 2026",
+  "lastUpdated": "JUNE 28, 2026",
   "entries": [
+    {
+      "date": "JUNE 23-24, 2026",
+      "tag": "WIN",
+      "category": "Economic Fairness & Accountability",
+      "id": "EF-003",
+      "pillColor": "teal",
+      "headline": "All three Mamdani endorsed just won their primaries. Two unseated sitting incumbents.",
+      "whatHappened": "Three congressional candidates endorsed by NYC Mayor Zohran Mamdani -- Claire Valdez (NY-7), Brad Lander (NY-10), and Darializa Avila Chevalier -- swept their Democratic primaries, with Lander and Avila Chevalier unseating sitting incumbents. All three advance to November's general election. Mamdani has since said a democratic socialist 'can get elected anywhere across this country for any position.'",
+      "whyItMatters": "This is a primary win, not a general election win -- but it's a real, dated signal that an affordability-first agenda is winning votes, not just headlines. It also explains the timing of the entry right above this one: the same week Mamdani's coalition swept its primaries, the White House tied a separate, bipartisan housing bill's signing to passage of the SAVE America Act -- legislation congressional Democrats and DSA-aligned candidates have both opposed for over a year, well before this win gave anyone new reason to.",
+      "howPhiersHelps": "PHIERS's telehealth and non-profit drug purchasing mechanism is ready now, in any district, without waiting on a single bill to pass. As more candidates who embrace this kind of agenda win their seats -- in November, in special elections, anywhere between now and then -- PHIERS is the funding mechanism that's already built and documented, not a promise on a future timeline.",
+      "sources": [
+        {
+          "name": "NPR -- Mayor Mamdani endorsed three House candidates. They all won",
+          "url": "https://www.npr.org/2026/06/24/nx-s1-5869469/mayor-mamdani-endorsed-three-house-candidates-they-all-won"
+        },
+        {
+          "name": "NBC News -- Zohran Mamdani's picks take key House primaries",
+          "url": "https://www.nbcnews.com/politics/2026-election/zohran-mamdanis-picks-take-key-house-primaries-broad-battle-democrats-rcna351128"
+        },
+        {
+          "name": "The Hill -- Trump's SAVE America Act push divides his own party ahead of midterms",
+          "url": "https://thehill.com/homenews/administration/5943333-trump-save-america-act/"
+        }
+      ]
+    },
     {
       "date": "JUNE 26, 2026",
       "tag": "CONGRESS",
