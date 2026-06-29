@@ -59,6 +59,38 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
+        {/* PROPHETIC VIDEO — recorded ~5 months before this page, when Mamdani's agenda was still promises */}
+        <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4">
+          <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/25 shadow-xl shadow-green/5">
+            <div className="text-center mb-4">
+              <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">Recorded Before His Agenda Could Pay For Itself</span>
+              <h2 className="font-display text-xl md:text-2xl font-bold text-white mt-2">Funding Mamdani's Agenda for a Stronger Future</h2>
+              <p className="text-gray-400 text-sm mt-1">A National Strategy</p>
+            </div>
+            <div className="aspect-video rounded-lg overflow-hidden border border-black shadow-inner">
+              <iframe
+                src="https://www.youtube.com/embed/VdeniYs1QsQ"
+                title="Funding Mamdani's Agenda for a Stronger Future (a National strategy)"
+                className="w-full h-full"
+                allowFullScreen
+              />
+            </div>
+            <p className="text-gray-300 text-sm mt-4 leading-relaxed">
+              Recorded while Mamdani's affordability agenda was still promises — before his administration had the ability to pay for what he plans to do. PHIERS lays out how telehealth at $600/year instead of roughly $8,000/year, combined with non-profit drug purchasing through models like Mark Cuban's Cost Plus Drugs, frees up enough savings to fund the same outcomes — rent relief, public transportation, affordable food — now, without waiting on legislation or tax increases.
+            </p>
+            <p className="text-gray-300 text-sm mt-3 leading-relaxed">
+              The model isn't new. It traces back to work with Sher Safe Pharmacy starting in 2007–2009, and Senator Chris Van Hollen wrote a letter of support for this approach over a decade ago.
+            </p>
+            <p className="text-center mt-3">
+              <Link href="/mamdani" className="text-green-500/70 hover:text-green-400 text-xs underline">
+                See the full documented timeline →
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
         {/* HERO IMAGE — Organized Together. Essential Always. */}
         <section className="w-full">
           <div className="relative w-full overflow-hidden">
