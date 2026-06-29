@@ -80,6 +80,12 @@ export default function FloatingActNow() {
           >
             See the Solution
           </button>
+          <button
+            onClick={() => openLink('/founding-document')}
+            className="bg-transparent border border-amber-400/50 text-amber-200 font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg hover:bg-amber-400/10 transition whitespace-nowrap"
+          >
+            Read the Founding Document
+          </button>
         </div>
       )}
 

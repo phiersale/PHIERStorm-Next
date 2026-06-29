@@ -49,7 +49,7 @@ export default function FoundingDocumentPage() {
         </p>
 
         
-          <a href="/documents/the-prophecy-founding-document.pdf"
+          <a href="/downloads/the-prophecy-founding-document.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block px-8 py-4 rounded-lg font-bold text-base sm:text-lg transition"
