@@ -29,6 +29,21 @@ export default function PathosCredibility() {
       </p>
 
       <div className="mt-8 text-center border-t border-gray-700 pt-8">
+
+  <div className="mb-8">
+    <a
+      href="/downloads/PHIER-Powered-Solutions-Overview.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block bg-[#F5C542] text-[#111] font-bold px-7 py-3 rounded-full hover:scale-[1.02] transition"
+    >
+      📄 Download the PHIER-Powered Solutions Overview
+    </a>
+
+    <p className="text-gray-400 text-sm mt-3 max-w-md mx-auto">
+      Prefer reading offline? Download the illustrated overview of the complete PHIERS framework.
+    </p>
+  </div>
         <p className="text-gray-300 text-sm max-w-lg mx-auto mb-6">
           We were working on affordability, sustainable jobs, care coordination, and public accountability years before these issues became national campaign slogans.
         </p>
@@ -36,7 +51,7 @@ export default function PathosCredibility() {
           href="/the-system"
           className="inline-block bg-[#3ddc84] text-[#080d1a] font-condensed font-bold text-sm px-6 py-3 rounded-full hover:bg-white transition mb-3"
         >
-          See the System →
+         Explore PHIER-Powered Solutions →
         </Link>
         <div>
           <Link 
