@@ -72,6 +72,83 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
+        {/* OPEN LETTER + OVERVIEW DOWNLOAD */}
+        <section className="section py-16 md:py-20 max-w-3xl mx-auto px-4">
+          <span className="eyebrow">⭐ An Open Letter</span>
+
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">
+            To Organizers, Advocates,<br />and Community Leaders
+          </h2>
+
+          <div className="prose prose-invert text-gray-300 leading-relaxed space-y-6">
+            <p className="text-xl text-white font-semibold">
+              America does not have a shortage of good ideas.
+            </p>
+
+            <p>
+              People are already fighting for affordable healthcare, housing, veterans’ services,
+              transportation, good jobs, public safety, government accountability, and an end to unnecessary wars.
+            </p>
+
+            <p>
+              The question is not whether these priorities matter.
+              The question is whether we can organize enough people to make Congress deliver.
+            </p>
+
+            <p>That is why we built <strong>PHIERS</strong>.</p>
+
+            <p>
+              PHIERS is not another advocacy organization.
+              It is a district-level implementation strategy built to help movements turn public support into
+              organized leverage Congress cannot ignore.
+            </p>
+
+            <p>We help organizations:</p>
+
+            <ul className="list-disc pl-6">
+              <li>organize congressional districts,</li>
+              <li>connect people with practical, affordable solutions,</li>
+              <li>measure what constituents actually want,</li>
+              <li>and create sustained pressure that changes how elected officials behave.</li>
+            </ul>
+
+            <p>
+              Every movement has priorities.
+              PHIERS helps make them affordable, organized, and actionable.
+            </p>
+
+            <p className="font-condensed font-bold text-green text-xl">
+              Let’s organize to make it happen.
+            </p>
+          </div>
+
+          <div className="mt-10 bg-[#0a1628] border border-green/20 rounded-xl p-6 md:p-8 text-center">
+            <span className="font-condensed uppercase tracking-widest text-xs text-green-400 block mb-2">
+              PHIER-Powered Solutions Overview
+            </span>
+
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-white">
+              Want the whole framework in one place?
+            </h3>
+
+            <p className="text-gray-300 mt-3 max-w-xl mx-auto">
+              Download the illustrated overview and see how affordable solutions, organized districts,
+              and public accountability work together.
+            </p>
+
+            <a
+              href="/downloads/PHIER-Powered-Solutions-Overview.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-5 bg-yellow-400 text-[#080d1a] font-bold py-3 px-6 rounded-lg hover:bg-yellow-300 transition"
+            >
+              Download the Overview
+            </a>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
         {/* TRANSITION BRIDGE — FROM MOVEMENT TO POWER */}
         <section className="section py-12 md:py-16">
           <div className="inner max-w-3xl mx-auto px-4 text-center">
@@ -614,4 +691,5 @@ export default function OrganizersPage() {
   )
 }
 
-// END FILE: app/organizers/page.tsx
+// FILE: app/organizers/page.tsx
+// VERSION: 2.1.0

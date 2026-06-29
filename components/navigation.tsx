@@ -1,5 +1,5 @@
 // FILE: components/navigation.tsx
-// VERSION: 2.3.0 – Instant close + dark overlay, no background peek
+// VERSION: 2.4.0 – PHIER-Powered Solutions promoted, legacy pages de-emphasized
 
 'use client'
 
@@ -94,7 +94,7 @@ export default function Navigation() {
               <Link href="/crisis" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>🚨 The Crisis</Link>
               <Link href="/simple-math" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>📊 Simple Math</Link>
               <Link href="/leverage" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>⚡ The Leverage</Link>
-              <Link href="/solutions" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>🔬 5D Solutions</Link>
+              <Link href="/the-system" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>🔬 PHIER-Powered Solutions</Link>
               <Link href="/telecare" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>💡 TeleCARE</Link>
               <Link href="/buying-power" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>💪 Buying Power</Link>
             </MenuSection>
@@ -123,4 +123,4 @@ export default function Navigation() {
 }
 
 // FILE: components/navigation.tsx
-// VERSION: 2.3.0
+// VERSION: 2.4.0

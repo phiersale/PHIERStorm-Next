@@ -1,5 +1,5 @@
 // FILE: app/the-system/page.tsx
-// VERSION: 4.0 – Four Faces architecture, PHIERSale/PHIERWorks/PHIERPlace naming, micro-tuned copy
+// VERSION: 4.1 – PHIER-Powered Solutions CTA cleanup, overview download, duplicate CTA removed
 
 'use client';
 
@@ -161,9 +161,26 @@ export default function PhiersSystemPage() {
           {/* HERO */}
           <header className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
             <div className="space-y-4 max-w-2xl mx-auto">
-              <p className="text-xs tracking-[0.25em] text-green-400/70 uppercase">The PHIERS System</p>
+              <p className="text-xs tracking-[0.25em] text-green-400/70 uppercase">America's Implementation Strategy</p>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">PHIER-Powered Solutions</h1>
               <p className="text-lg md:text-xl text-gray-300 font-medium">Affordable solutions. Organized districts. Public accountability.</p>
+
+<div className="mt-6">
+  <a
+    href="/downloads/PHIER-Powered-Solutions-Overview.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block px-6 py-3 rounded-lg font-bold text-sm md:text-base transition"
+    style={{
+      backgroundColor: '#F5C542',
+      color: '#1a1a1a',
+      boxShadow: '0 0 20px rgba(245,197,66,0.25)'
+    }}
+  >
+    Download the PHIER-Powered Solutions Overview
+  </a>
+  <p className="text-gray-500 text-xs mt-2">A five-minute introduction to the PHIERS framework.</p>
+</div>
               <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
                 <p className="text-gray-200 font-medium">Every movement has priorities. PHIERS helps make them affordable, organized, and actionable.</p>
                 <p>Most solutions fail because they attack symptoms one at a time.</p>
