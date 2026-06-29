@@ -246,6 +246,12 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                 >
                   Why 500 Works →
                 </button>
+                <Link
+                  href="/the-system"
+                  className="text-gray-400 text-sm sm:text-[17px] underline hover:text-gray-300 transition-colors"
+                >
+                  What PHIERS Stands For →
+                </Link>
                 <button
                   onClick={onShowFramework}
                   className="text-gray-400 text-sm sm:text-[17px] underline hover:text-gray-300 transition-colors"

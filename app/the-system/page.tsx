@@ -204,6 +204,30 @@ export default function PhiersSystemPage() {
             </div>
           </header>
 
+          {/* ONE NAME, THREE LAYERS */}
+          <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4">One Name. Three Layers.</h2>
+            <p className="text-gray-400 text-sm mb-6">PHIERS has evolved across 22 years of building. The same letters describe three layers of the same system — not three competing names.</p>
+            <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto text-left">
+              <div className="bg-green/5 border border-green/20 rounded-lg p-5">
+                <p className="text-green-400 text-xs font-mono uppercase tracking-widest mb-2">The Solution</p>
+                <p className="text-white font-semibold mb-2">People's Health Insurance Endowment and Referral Service</p>
+                <p className="text-gray-400 text-sm">What gets delivered — affordable care, coordinated benefits, real savings.</p>
+              </div>
+              <div className="bg-green/5 border border-green/20 rounded-lg p-5">
+                <p className="text-green-400 text-xs font-mono uppercase tracking-widest mb-2">The Mechanism</p>
+                <p className="text-white font-semibold mb-2">Power Held In Every Representative's Seat</p>
+                <p className="text-gray-400 text-sm">How it gets enforced — organized districts holding elected officials accountable.</p>
+              </div>
+              <div className="bg-green/5 border border-green/20 rounded-lg p-5">
+                <p className="text-green-400 text-xs font-mono uppercase tracking-widest mb-2">The Technology</p>
+                <p className="text-white font-semibold mb-2">Public Health Information Exchange and Reporting System</p>
+                <p className="text-gray-400 text-sm">What runs underneath — the data and coordination infrastructure.</p>
+              </div>
+            </div>
+            <p className="text-gray-300 text-sm mt-6 text-center max-w-2xl mx-auto">Same work. Same letters. Different layer, depending on what you're looking at.</p>
+          </section>
+
           {/* SECTION 1: THE FIFTEEN HUNDRED */}
           <section className="mt-24 md:mt-28 border-t border-white/5 pt-12 opacity-95 hover:opacity-100 transition-opacity duration-700">
             <h2 className="text-xl md:text-2xl font-semibold mb-6">The Center Piece</h2>
