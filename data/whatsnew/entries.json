@@ -1,8 +1,71 @@
 {
   "_file": "data/whatsnew/entries.json",
   "_version": "1.0.0 -- Added category/id/howPhiersHelps fields, 15 new sourced entries (June 26, 2026)",
-  "lastUpdated": "JUNE 28, 2026",
+  "lastUpdated": "JUNE 29, 2026",
   "entries": [
+    {
+      "date": "MAY 27-29, 2026",
+      "tag": "IMMIGRATION",
+      "category": "Accountability & Government Integrity",
+      "id": "AI-006",
+      "pillColor": "red",
+      "headline": "A federal office named after a far-right ethnic-cleansing term is moving real money, with no public oversight.",
+      "whatHappened": "The State Department quietly created an Office of Remigration -- a term that originated with European far-right movements and refers to the forced mass removal of immigrants. Wired reported the office processes deportation-related payments worth tens of millions of dollars with no real monitoring. A member of the Congressional Asian Pacific American Caucus said on the record: 'They're not even trying to hide their intentions anymore.' Separately, more than 17,500 people have been forcibly transferred to third countries they have no ties to under similar agreements -- some shackled, some held in conditions Amnesty International says may amount to torture. A federal judge ruled the underlying practice illegal; the Supreme Court allowed it to continue during appeal.",
+      "whyItMatters": "This isn't a slip of the tongue or a single bad actor -- it's a standing federal office, named after a term with a well-documented far-right origin, spending real public money with no disclosed accountability.",
+      "howPhiersHelps": "PHIERS's district-level model exists to make oversight of agencies like this a structural requirement that survives any administration, not a courtesy that depends on which party holds power.",
+      "sources": [
+        {
+          "name": "Wired / The New Republic -- Trump's secret team focused on remigration exposed",
+          "url": "https://newrepublic.com/post/210996/donald-trump-secret-team-remigration"
+        },
+        {
+          "name": "Human Rights First & Refugees International -- Third Country Deportation Watch tracker",
+          "url": "https://www.humanrightsfirst.org/library/human-rights-first-and-refugees-international-third-country-deportation-watch-details-scope-secrecy-and-human-toll-of-third-country-transfer-agreements"
+        }
+      ]
+    },
+    {
+      "date": "JANUARY-APRIL 2026",
+      "tag": "HOUSING",
+      "category": "Accountability & Government Integrity",
+      "id": "AI-007",
+      "pillColor": "amber",
+      "headline": "16 states are suing HUD over its own retreat from enforcing fair housing law.",
+      "whatHappened": "HUD has cut staff and abandoned active investigations in its own Office of Fair Housing and Equal Opportunity, withdrawn its disparate-impact enforcement rule, and pulled guidance covering everything from criminal-record screening to language-access protections. The National Urban League called it 'a grave betrayal of civil rights.' Sixteen states and Washington, D.C. have sued, arguing HUD's new funding conditions undermine state-level enforcement entirely.",
+      "whyItMatters": "Fair housing law hasn't changed -- the federal referee enforcing it has effectively stepped back, leaving discrimination harder to prove and harder to challenge.",
+      "howPhiersHelps": "PHIERS's accountability model doesn't depend on any single administration's enforcement priorities -- organized constituent pressure is built to make Congress legislate protections that survive whoever holds the agency next.",
+      "sources": [
+        {
+          "name": "National Urban League -- HUD has abandoned its responsibility to ensure equitable housing access",
+          "url": "https://nul.org/news/national-urban-league-hud-has-abandoned-its-responsibility-ensure-equitable-housing-access"
+        },
+        {
+          "name": "Government Executive -- States sue HUD over fair housing guidance tied to enforcement funding",
+          "url": "https://www.govexec.com/management/2026/03/states-sue-hud-over-fair-housing-guidance-tied-enforcement-funding/412164/"
+        }
+      ]
+    },
+    {
+      "date": "APRIL 29, 2026",
+      "tag": "VOTING RIGHTS",
+      "category": "Democracy & Voting Rights",
+      "id": "DV-003",
+      "pillColor": "red",
+      "headline": "Justice Kagan's dissent called it exactly right: Section 2 is now 'all but a dead letter.'",
+      "whatHappened": "The Supreme Court's 6-3 ruling in Louisiana v. Callais gutted Section 2 of the Voting Rights Act, making it dramatically harder to prove racial vote dilution in redistricting. States moved within days: Tennessee and Florida have already eliminated majority-Black congressional districts. Louisiana suspended its own primary mid-vote to redraw its map under the new standard.",
+      "whyItMatters": "This is the same protection that's stood since 1965. Removing it doesn't just affect one state's map -- it changes the baseline for every district in the country going forward.",
+      "howPhiersHelps": "District-level organizing doesn't depend on Section 2 or the courts. 1,500 organized constituents make a representative's seat uncertain before election day, regardless of how the maps are drawn -- leverage no court ruling can touch.",
+      "sources": [
+        {
+          "name": "Campaign Legal Center -- The U.S. Supreme Court Has Eviscerated the Voting Rights Act",
+          "url": "https://campaignlegal.org/update/us-supreme-court-has-eviscerated-voting-rights-act-whats-next"
+        },
+        {
+          "name": "NAACP LDF -- Louisiana v. Callais FAQ",
+          "url": "https://www.naacpldf.org/case-issue/louisiana-v-callais-faq/"
+        }
+      ]
+    },
     {
       "date": "JUNE 23-24, 2026",
       "tag": "WIN",

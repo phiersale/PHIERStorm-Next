@@ -83,6 +83,11 @@ export default function Navigation() {
           }}
         >
           <div className="space-y-2">
+            <Link href="/the-system" className="block p-2 bg-[#3ddc84]/10 border border-[#3ddc84]/40 rounded-lg text-[#3ddc84] font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>
+              ⚙ PHIER-POWERED SOLUTIONS
+              <span className="block text-[10px] font-normal text-[#3ddc84]/70 mt-0.5 normal-case tracking-normal">Solutions. Leverage. Accountability.</span>
+            </Link>
+
             <Link href="/no-war" className="block p-2 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>🕊 END THE WAR / NO DRAFT</Link>
 
             <MenuSection title="Understand the Fight">
@@ -102,7 +107,6 @@ export default function Navigation() {
 
             <MenuSection title="Resources">
               <Link href="/resources" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>📚 Resource Hub</Link>
-              <Link href="/real-stories" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>💬 Real Stories</Link>
               <Link href="/faq" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>❓ FAQ</Link>
               <Link href="/about" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>📖 About</Link>
             </MenuSection>

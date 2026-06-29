@@ -29,12 +29,23 @@ export default function PathosCredibility() {
       </p>
 
       <div className="mt-8 text-center border-t border-gray-700 pt-8">
-        <Link 
-          href="/?credibility=true"
-          className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition"
+        <p className="text-gray-300 text-sm max-w-lg mx-auto mb-6">
+          We were working on affordability, sustainable jobs, care coordination, and public accountability years before these issues became national campaign slogans.
+        </p>
+        <Link
+          href="/the-system"
+          className="inline-block bg-[#3ddc84] text-[#080d1a] font-condensed font-bold text-sm px-6 py-3 rounded-full hover:bg-white transition mb-3"
         >
-          → View Full Credibility Highlights
+          See the System →
         </Link>
+        <div>
+          <Link 
+            href="/?credibility=true"
+            className="inline-block bg-[#0a1628] border border-green/40 text-green font-semibold text-sm px-6 py-3 rounded-full hover:border-green hover:text-white transition mt-2"
+          >
+            → View Full Credibility Highlights
+          </Link>
+        </div>
       </div>
     </div>
   )

@@ -162,8 +162,10 @@ export default function PhiersSystemPage() {
           <header className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
             <div className="space-y-4 max-w-2xl mx-auto">
               <p className="text-xs tracking-[0.25em] text-green-400/70 uppercase">The PHIERS System</p>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">How It All Works Together</h1>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">PHIER-Powered Solutions</h1>
+              <p className="text-lg md:text-xl text-gray-300 font-medium">Affordable solutions. Organized districts. Public accountability.</p>
               <div className="space-y-3 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                <p className="text-gray-200 font-medium">Every movement has priorities. PHIERS helps make them affordable, organized, and actionable.</p>
                 <p>Most solutions fail because they attack symptoms one at a time.</p>
                 <p>Healthcare.<br />Employment.<br />Congress.</p>
                 <p className="mt-4 text-center">Each is treated as a separate problem.</p>
@@ -459,6 +461,27 @@ export default function PhiersSystemPage() {
             <div className="h-px bg-white/10 my-8"></div>
 
             {/* CTA BUTTONS - primary action restored per funnel audit */}
+            <div className="mt-4 flex flex-col items-center justify-center gap-4">
+              <button
+                onClick={() => window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')}
+                className="px-8 py-3 rounded-lg font-bold text-base transition"
+                style={{
+                  backgroundColor: '#F5C542',
+                  color: '#1a1a1a',
+                  boxShadow: '0 0 20px rgba(245,197,66,0.25)'
+                }}
+              >
+                ✍ Sign the Petition
+              </button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+                <Link href="/?credibility=true" className="text-gray-500 text-sm hover:text-gray-300 transition px-5 py-2">
+                  ← Back to Credibility
+                </Link>
+                <Link href="/home" className="text-gray-500 text-sm hover:text-gray-300 transition px-5 py-2">
+                  → Enter PHIERS.org
+                </Link>
+              </div>
+            </div>{/* CTA BUTTONS - primary action restored per funnel audit */}
             <div className="mt-4 flex flex-col items-center justify-center gap-4">
               <button
                 onClick={() => window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')}
