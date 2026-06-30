@@ -1,10 +1,11 @@
 'use client'
 
 // FILE: components/PathosCredibility.tsx
-// VERSION: 18.0 – Streamlined Tier 1 Credibility Highlights
-// SUMMARY: Removed: MABSHA, Patriotic Homecoming, For Americans, Public Record deep dive, emotional anchors.
-// KEPT: Validators, timeline (collapsed), Shark Tank, CTA, 2013 video, three validator videos.
-// ADDED: "View the Evidence Archive" button linking to /evidence-archive
+// VERSION: 19.0 – Added Recognition section (Fifteen Years timeline + public official letters)
+// SUMMARY: v18.0 base preserved. NEW: "Fifteen Years of Building" timeline + "Public Recognition"
+// cards (Mayor Kevin Johnson 2009, Senator Chris Van Hollen 2014) inserted between the "Why should
+// anyone take this seriously?" prompt and "INDEPENDENT VALIDATION". Subtitle updated to reflect
+// expanded recognition. Letter links use <button>+window.open() per documented <a>-tag paste bug.
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
@@ -256,7 +257,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             What Makes Us Credible
           </h1>
           <p className="text-gray-400 text-base md:text-lg text-center mt-3 leading-relaxed">
-            Three independent validators. One public record. Zero hype.
+            Fifteen years of recognition. One public record. Zero hype.
           </p>
         </motion.div>
 
@@ -279,6 +280,82 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           <p className="text-gray-300 text-base leading-relaxed">A reasonable question comes first:</p>
           <p className="text-green text-xl font-semibold italic mt-3">Why should anyone take this seriously?</p>
         </motion.div>
+
+        <div className="h-10" />
+
+        {/* ============ NEW: FIFTEEN YEARS OF BUILDING ============ */}
+        <motion.div variants={sectionFade} className="text-center mb-8">
+          <p className="text-green text-xs tracking-widest opacity-70">FIFTEEN YEARS OF BUILDING</p>
+        </motion.div>
+
+        <motion.div variants={sectionFade} className="max-w-3xl mx-auto mb-12">
+          <div className="overflow-x-auto pb-2">
+            <div className="min-w-full sm:min-w-[600px] flex items-start justify-between relative px-4">
+              <div className="absolute left-4 right-4 top-2 h-[2px] bg-green/20" />
+              {[
+                { year: '2009', label: 'Mayor Kevin Johnson' },
+                { year: '2014', label: 'Senator Chris Van Hollen' },
+                { year: '2026', label: 'Pathos Communications' },
+                { year: 'Today', label: 'PHIER-Powered Solutions' },
+              ].map(({ year, label }) => (
+                <div key={year} className="relative flex flex-col items-center z-10 text-center w-1/4 px-1">
+                  <div className="w-3 h-3 rounded-full bg-green border-2 border-[#0a1628]" />
+                  <span className="text-green text-xs font-bold mt-3">{year}</span>
+                  <span className="text-gray-400 text-[11px] mt-1 leading-tight">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div variants={sectionFade} className="mb-4">
+          <p className="text-green text-xs tracking-widest text-center mb-2 opacity-70">PUBLIC RECOGNITION</p>
+        </motion.div>
+
+        <motion.div variants={sectionFade} className="flex flex-col gap-6 mb-12 max-w-2xl mx-auto">
+
+          <div className="w-full bg-[#0a1628] rounded-xl p-5 md:p-6 border border-green/25">
+            <p className="text-gray-500 text-xs font-mono uppercase tracking-widest mb-2">2009 · City of Sacramento, Office of the Mayor</p>
+            <p className="text-white font-bold text-lg mb-2">Mayor Kevin Johnson</p>
+            <p className="text-gray-300 text-sm italic leading-relaxed mb-3">
+              "I strongly support the PHIERS approach because it demonstrates how local community and faith-based organizations can impact and help to reduce the long-term cost of healthcare."
+            </p>
+            <button
+              type="button"
+              onClick={() =>
+                window.open('/downloads/KJ_Letter_of_Support-Redacted.pdf', '_blank', 'noopener,noreferrer')
+              }
+              className="inline-block text-green-400 text-sm font-semibold hover:text-white transition"
+            >
+              📄 Read the letter of support →
+            </button>
+          </div>
+
+          <div className="w-full bg-[#0a1628] rounded-xl p-5 md:p-6 border border-green/25">
+            <p className="text-gray-500 text-xs font-mono uppercase tracking-widest mb-2">2014 · Congress of the United States</p>
+            <p className="text-white font-bold text-lg mb-2">Senator Chris Van Hollen</p>
+            <p className="text-gray-300 text-sm italic leading-relaxed mb-3">
+              "I am pleased to support the work of Public Health Information Exchange &amp; Resource Services (PHIERS.org)... PHIERS.org has the potential to become a vital part of the health care system."
+            </p>
+            <button
+              type="button"
+              onClick={() =>
+                window.open('/downloads/Letter_of_Support-Congressman_Van_Hollen.pdf', '_blank', 'noopener,noreferrer')
+              }
+              className="inline-block text-green-400 text-sm font-semibold hover:text-white transition"
+            >
+              📄 Read the letter of support →
+            </button>
+          </div>
+
+        </motion.div>
+
+        <motion.div variants={sectionFade} className="text-center max-w-2xl mx-auto mb-6">
+          <p className="text-gray-400 text-sm leading-relaxed">
+            PHIERS wasn't built in response to today's political moment. It's been recognized, independently, at the local and federal level, for more than fifteen years.
+          </p>
+        </motion.div>
+        {/* ============ END NEW SECTION ============ */}
 
         <div className="h-6" />
 
@@ -614,3 +691,4 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
 }
 
 // FILE: components/PathosCredibility.tsx (end)
+// VERSION: 19.0
