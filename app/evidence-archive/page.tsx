@@ -114,6 +114,7 @@ export default function EvidenceArchivePage() {
             { id: "telehealth", label: "Telehealth" },
             { id: "public-health", label: "Public Health" },
             { id: "congressional", label: "Congressional Leverage" },
+            { id: "vision", label: "Public Recognition" },
             { id: "professional-history", label: "Professional History" },
             { id: "archived-websites", label: "Archived Websites" },
             { id: "video-archive", label: "Video Archive" },
@@ -496,6 +497,37 @@ export default function EvidenceArchivePage() {
                   <p>Website launched <span className="text-green font-semibold">2009</span> with SureSafe Pharma.</p>
                   <img src="/images/archive/phiers-2011-archive-header-url-v1.jpg" alt="2011 snapshot" className="rounded-lg border border-green/20 max-w-full h-auto" />
                   <div className="p-3 bg-[#0a1628] rounded-lg"><p className="font-semibold">Partnerships built (2009–2014):</p><ul className="text-xs list-none"><li>→ SureSafe Pharma</li><li>→ VA Medical Centers</li><li>→ MedStar Health</li><li>→ Maryland CRISP</li></ul></div>
+                  <div className="p-4 bg-[#0a1628] rounded-lg border border-green/20">
+                    <p className="font-semibold text-green mb-2">Public Recognition — Local & Federal</p>
+                    <div className="space-y-3 text-xs">
+                      <div>
+                        <p className="text-white font-medium">2009 — Mayor Kevin Johnson, City of Sacramento</p>
+                        <p className="text-gray-400 mt-1">"I strongly support the PHIERS approach because it demonstrates how local community and faith-based organizations can impact and help to reduce the long-term cost of healthcare."</p>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            window.open('/downloads/KJ_Letter_of_Support-Redacted.pdf', '_blank', 'noopener,noreferrer')
+                          }
+                          className="text-green hover:underline mt-1 inline-block"
+                        >
+                          📄 Read the full letter →
+                        </button>
+                      </div>
+                      <div>
+                        <p className="text-white font-medium">2014 — Senator Chris Van Hollen, then U.S. Representative, MD-8</p>
+                        <p className="text-gray-400 mt-1">"I am pleased to support the work of Public Health Information Exchange &amp; Resource Services (PHIERS.org)... PHIERS.org has the potential to become a vital part of the health care system."</p>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            window.open('/downloads/Letter_of_Support-Congressman_Van_Hollen.pdf', '_blank', 'noopener,noreferrer')
+                          }
+                          className="text-green hover:underline mt-1 inline-block"
+                        >
+                          📄 Read the full letter →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                   <div className="p-3 bg-amber-900/20 rounded-lg"><p className="text-amber-300 font-semibold">Why they didn't survive:</p><p>Every partnership chose extraction over elimination when they understood PHIERS's goal — eliminating the profit motive in healthcare.</p></div>
                   <div className="p-3 bg-amber-900/20 rounded-lg"><p className="text-amber-300 font-semibold">2009–2014: Building & Delay</p><p>The Panama Free Trade Agreement delay (2007 signed, 2012 implemented) prevented scaling.</p></div>
                   <div className="p-3 bg-[#0a1628] rounded-lg"><p className="font-semibold">Why 2014 to 2022 was silent:</p><p>Every institution that could amplify PHIERS had a financial interest in keeping it quiet.</p><p className="text-green mt-2">Then costs got so high that even the profiteers couldn't defend the system anymore.</p></div>
