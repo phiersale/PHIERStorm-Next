@@ -1,8 +1,9 @@
-//FILE: app/organizers/page.tsx
+// FILE: app/organizers/page.tsx
+// VERSION: 3.0.0 — Emoji cleanup, structural UX fixes, image repositioned
 
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import UrgencyBanner from '@/components/UrgencyBanner'
 import Navigation from '@/components/navigation'
@@ -10,16 +11,14 @@ import Footer from '@/components/footer'
 import './organizers.css'
 
 export default function OrganizersPage() {
-  const [showBackToTop, setShowBackToTop] = useState(false)
+  const [showFloatingCTA, setShowFloatingCTA] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setShowBackToTop(window.scrollY > 400)
+    const handleScroll = () => {
+      setShowFloatingCTA(window.scrollY > 400)
+    }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
   return (
@@ -31,7 +30,8 @@ export default function OrganizersPage() {
 
         {/* HERO */}
         <div className="page-hero">
-          {/* PHIERS Logo — centered like other pages */}
+          <p className="text-gray-500 text-xs font-mono uppercase tracking-widest mb-4 text-center">For Organizers</p>
+          {/* PHIERS Logo */}
           <div className="flex justify-center mb-6">
             <img
               src="/images/PHIERS_Logo.png"
@@ -59,7 +59,7 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* PROPHETIC VIDEO — recorded ~5 months before this page, when Mamdani's agenda was still promises */}
+        {/* PROPHETIC VIDEO */}
         <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4">
           <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/25 shadow-xl shadow-green/5">
             <div className="text-center mb-4">
@@ -91,14 +91,43 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* HERO IMAGE — Organized Together. Essential Always. */}
-        <section className="w-full">
-          <div className="relative w-full overflow-hidden">
-            <img
-              src="/images/Union_Organizers.jpg"
-              alt="Union organizers standing together in solidarity"
-              className="w-full h-auto"
-            />
+        {/* MICRO HERO */}
+        <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4 text-center">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+            Build Your District.<br />
+            <span className="text-green-400">Change Congress.</span>
+          </h2>
+          <p className="text-gray-300 text-base max-w-xl mx-auto">
+            Everything on this page is designed to help you organize your district around practical, affordable solutions and sustained public accountability.
+          </p>
+          <p className="text-gray-400 text-sm mt-3 max-w-xl mx-auto">
+            Everything you need to organize your district is here — strategy, messaging, roles, playbooks, and the escalation ladder.
+          </p>
+        </section>
+
+        <hr className="divider" />
+
+        {/* WHAT HAPPENS NEXT — sits immediately before the Open Letter it describes */}
+        <section className="section py-10 max-w-2xl mx-auto px-4 text-center">
+          <p className="font-condensed font-bold text-white text-sm uppercase tracking-widest mb-8">What Happens Next</p>
+          <div className="flex flex-col items-center gap-2">
+            {[
+              { num: '①', label: 'Read the Open Letter' },
+              { num: '②', label: 'Download the PHIER-Powered Solutions Overview' },
+              { num: '③', label: 'Sign the Petition' },
+              { num: '④', label: 'Complete the District Survey' },
+              { num: '⑤', label: 'Start Organizing' },
+            ].map(({ num, label }, i, arr) => (
+              <div key={num} className="flex flex-col items-center gap-1 w-full max-w-sm">
+                <div className="flex items-center gap-3 bg-[#0a1628] border border-green/20 rounded-lg px-6 py-3 w-full">
+                  <span className="text-green-400 text-lg font-bold">{num}</span>
+                  <span className="text-white text-sm font-medium">{label}</span>
+                </div>
+                {i < arr.length - 1 && (
+                  <span className="text-green-400/40 text-lg">↓</span>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 
@@ -106,7 +135,7 @@ export default function OrganizersPage() {
 
         {/* OPEN LETTER + OVERVIEW DOWNLOAD */}
         <section className="section py-16 md:py-20 max-w-3xl mx-auto px-4">
-          <span className="eyebrow">⭐ An Open Letter</span>
+          <span className="eyebrow">An Open Letter</span>
 
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">
             To Organizers, Advocates,<br />and Community Leaders
@@ -118,7 +147,7 @@ export default function OrganizersPage() {
             </p>
 
             <p>
-              People are already fighting for affordable healthcare, housing, veterans’ services,
+              People are already fighting for affordable healthcare, housing, veterans' services,
               transportation, good jobs, public safety, government accountability, and an end to unnecessary wars.
             </p>
 
@@ -150,7 +179,7 @@ export default function OrganizersPage() {
             </p>
 
             <p className="font-condensed font-bold text-green text-xl">
-              Let’s organize to make it happen.
+              Let's organize to make it happen.
             </p>
           </div>
 
@@ -181,28 +210,94 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* TRANSITION BRIDGE — FROM MOVEMENT TO POWER */}
-        <section className="section py-12 md:py-16">
-          <div className="inner max-w-3xl mx-auto px-4 text-center">
+        {/* DSA PLATFORM MAPPING */}
+        <section className="section py-16 md:py-20 max-w-3xl mx-auto px-4">
+          <span className="eyebrow">Where PHIERS Fits</span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+            Your Platform.<br />
+            <span className="text-green-400">Our Implementation.</span>
+          </h2>
+          <p className="text-gray-300 text-base mb-8">
+            DSA's "Workers Deserve More" platform names the right priorities. The gap every critic points to is funding and implementation. PHIERS was built specifically to close that gap — district by district, before legislation, without new taxes.
+          </p>
 
-            <p className="font-body text-xl text-white">
-              Millions marched.
-            </p>
+          <div className="space-y-4">
 
-            <p className="font-body text-xl text-white mt-2">
-              Millions proved they care.
-            </p>
+            <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
+              <h3 className="font-bold text-white text-base mb-1">Medicare for All / Affordable Healthcare</h3>
+              <p className="text-gray-400 text-sm mt-1">DSA's top priority. PHIERS delivers affordable primary care now — $600/year telehealth instead of $8,000/year traditional insurance — without waiting on congressional authorization. The savings fund the rest of the agenda.</p>
+              <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">PHIERSale → Congressional Authorization</p>
+            </div>
 
-            <p className="font-condensed text-3xl md:text-4xl font-bold text-green-400 mt-8">
-              The question is what happens next.
-            </p>
+            <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
+              <h3 className="font-bold text-white text-base mb-1">Prescription Drug Costs</h3>
+              <p className="text-gray-400 text-sm mt-1">Non-profit drug purchasing through models like Mark Cuban's Cost Plus Drugs eliminates middleman markups. PHIERS organizes collective buying power so communities capture those savings immediately — not after legislation passes.</p>
+              <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">PHIERSale → PHIERPlace</p>
+            </div>
 
+            <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
+              <h3 className="font-bold text-white text-base mb-1">Living Wage Jobs / Labor Rights</h3>
+              <p className="text-gray-400 text-sm mt-1">Healthcare savings redirected into job creation. PHIERWorks connects real employers, real people, and real pathways — generating stable employment that makes sustained civic engagement possible. Stable people stay organized.</p>
+              <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">PHIERWorks → PHIERSale</p>
+            </div>
+
+            <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
+              <h3 className="font-bold text-white text-base mb-1">Housing / Tenant Protections</h3>
+              <p className="text-gray-400 text-sm mt-1">When healthcare costs drop by $7,400+ annually, families gain the breathing room to stay housed, stay engaged, and stay organized. PHIERPlace coordinates housing assistance, food access, and transportation support into one entry point — no one falls through the cracks.</p>
+              <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">PHIERPlace → PHIERSale</p>
+            </div>
+
+            <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
+              <h3 className="font-bold text-white text-base mb-1">Electoral Organizing / Holding Officials Accountable</h3>
+              <p className="text-gray-400 text-sm mt-1">DSA trains candidates and runs chapters. PHIERS gives those chapters the district-level constituent infrastructure that makes elected officials respond — 500 organized constituents creates a tipping point, 1,500 creates consequences. That's the leverage DSA candidates need once they're in office.</p>
+              <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">The 1,500 Model → Congressional Authorization</p>
+            </div>
+
+            <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
+              <h3 className="font-bold text-white text-base mb-1">Anti-War / End Unauthorized Wars</h3>
+              <p className="text-gray-400 text-sm mt-1">PHIERS has pursued congressional accountability on war powers from the beginning. The 1,500 model applies equally to foreign policy votes — organized constituents in every district don't just pressure on healthcare. They pressure on everything.</p>
+              <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">The 1,500 Model → Congressional Authorization</p>
+            </div>
+
+          </div>
+
+          <div className="mt-10 bg-yellow-400/5 border border-yellow-400/30 rounded-xl p-6 text-center">
+            <p className="text-yellow-400 font-condensed font-bold text-lg">The critical difference</p>
+            <p className="text-gray-300 text-sm mt-2 max-w-xl mx-auto">DSA identifies what needs to change. PHIERS shows how to pay for it, organize around it, and deliver results in every voting district — before the 250th anniversary of this country's founding.</p>
+          </div>
+        </section>
+
+        {/* HERO IMAGE — visual break between mapping and movement sections */}
+        <section className="w-full">
+          <div className="relative w-full overflow-hidden">
+            <img
+              src="/images/Union_Organizers.jpg"
+              alt="Union organizers standing together in solidarity"
+              className="w-full h-auto"
+            />
           </div>
         </section>
 
         <hr className="divider" />
 
-        {/* From Protest To Power — renamed from No Kings Bridge */}
+        {/* TRANSITION BRIDGE */}
+        <section className="section py-12 md:py-16">
+          <div className="inner max-w-3xl mx-auto px-4 text-center">
+            <p className="font-body text-xl text-white">
+              Millions marched.
+            </p>
+            <p className="font-body text-xl text-white mt-2">
+              Millions proved they care.
+            </p>
+            <p className="font-condensed text-3xl md:text-4xl font-bold text-green-400 mt-8">
+              The question is what happens next.
+            </p>
+          </div>
+        </section>
+
+        <hr className="divider" />
+
+        {/* FROM PROTEST TO POWER */}
         <section className="section-alt bg-[#0a1628] border-y border-white/5 py-16 md:py-20">
           <div className="inner max-w-4xl mx-auto px-4 text-center">
             <span className="font-condensed uppercase tracking-widest text-xs text-green-400 block mb-2">From Protest To Power</span>
@@ -214,13 +309,12 @@ export default function OrganizersPage() {
 
             <div className="grid grid-cols-2 gap-4 my-6 max-w-2xl mx-auto">
               {[
-                {icon:'👥', text:'People are ready.'},
-                {icon:'🔥', text:'People are angry.'},
-                {icon:'⚖️', text:'People want accountability.'},
-                {icon:'🗳️', text:'People want representation.'},
-              ].map(({icon,text}) => (
+                'People are ready.',
+                'People are angry.',
+                'People want accountability.',
+                'People want representation.',
+              ].map((text) => (
                 <div key={text} className="bg-[#111d35] border border-white/10 rounded-lg p-5 text-center">
-                  <div className="text-4xl mb-1">{icon}</div>
                   <p className="font-body font-bold text-white text-base md:text-lg">{text}</p>
                 </div>
               ))}
@@ -266,15 +360,13 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* THE TWO THINGS THAT MATTER THIS WEEK */}
+        {/* THE TWO THINGS THAT MATTER */}
         <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white text-center mb-8">
             The Two Things That Matter This Week
           </h2>
-          
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-green/5 border border-green/20 rounded-lg p-6 text-center">
-              <div className="text-4xl mb-3">✍</div>
               <h3 className="font-bold text-white text-lg mb-2">Add Your Name</h3>
               <p className="text-gray-400 text-sm mb-4">Measures who is willing to stand up.</p>
               <a
@@ -283,11 +375,10 @@ export default function OrganizersPage() {
                 rel="noopener noreferrer"
                 className="inline-block bg-green text-[#080d1a] font-bold py-2 px-6 rounded-lg hover:bg-green-dim transition"
               >
-                Sign The Petition
+                ✍ Sign The Petition
               </a>
             </div>
             <div className="bg-green/5 border border-green/20 rounded-lg p-6 text-center">
-              <div className="text-4xl mb-3">📊</div>
               <h3 className="font-bold text-white text-lg mb-2">Complete The Survey</h3>
               <p className="text-gray-400 text-sm mb-4">Measures what your district actually wants.</p>
               <a
@@ -296,7 +387,7 @@ export default function OrganizersPage() {
                 rel="noopener noreferrer"
                 className="inline-block bg-green text-[#080d1a] font-bold py-2 px-6 rounded-lg hover:bg-green-dim transition"
               >
-                Take The Survey
+                📊 Take The Survey
               </a>
             </div>
           </div>
@@ -304,10 +395,10 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* THE MATH — Visible Section */}
+        {/* THE MATH */}
         <section className="section-alt bg-[#0a1628] py-16 md:py-20">
           <div className="inner max-w-3xl mx-auto px-4 text-center">
-            <span className="eyebrow">⭐ The Math</span>
+            <span className="eyebrow">The Math</span>
             <h2>500 People Proves a District<br /><span className="gold">Can Act Together.</span></h2>
             <div className="math-grid">
               <div className="math-card">
@@ -332,20 +423,19 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* YOUR ROLE — Visible Section */}
+        {/* YOUR ROLE */}
         <section className="section py-16 md:py-20 max-w-3xl mx-auto px-4">
-          <span className="eyebrow">⭐ Your Role</span>
+          <span className="eyebrow">Your Role</span>
           <h2>Every District Needs<br /><span className="green">Organizers Like You.</span></h2>
           <div className="role-grid">
             {[
-              {icon:'🏛️', title:'District Captains', desc:"Lead your district's push to 500 and beyond"},
-              {icon:'📱', title:'Digital Organizers', desc:'Coordinate online outreach and social campaigns'},
-              {icon:'✍️', title:'Signature Collectors', desc:'Turn conversations into signatures'},
-              {icon:'🎤', title:'Town Hall Coordinators', desc:'Pack the room and ask the questions'},
-              {icon:'🤝', title:'Community Leads', desc:'Connect with local groups, unions, and faith communities'},
-            ].map(({icon,title,desc}) => (
+              {title:'District Captains', desc:"Lead your district's push to 500 and beyond"},
+              {title:'Digital Organizers', desc:'Coordinate online outreach and social campaigns'},
+              {title:'Signature Collectors', desc:'Turn conversations into signatures'},
+              {title:'Town Hall Coordinators', desc:'Pack the room and ask the questions'},
+              {title:'Community Leads', desc:'Connect with local groups, unions, and faith communities'},
+            ].map(({title,desc}) => (
               <div key={title} className="role-card">
-                <div className="role-icon">{icon}</div>
                 <h3>{title}</h3>
                 <p>{desc}</p>
               </div>
@@ -360,10 +450,10 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* ESCALATION LADDER — Visible Section */}
+        {/* ESCALATION LADDER */}
         <section className="section-alt bg-[#0a1628] py-16 md:py-20">
           <div className="inner max-w-3xl mx-auto px-4">
-            <span className="eyebrow">⭐ The Escalation Ladder</span>
+            <span className="eyebrow">The Escalation Ladder</span>
             <h2>Districts Escalate<br /><span className="gold">In Stages.</span></h2>
             <ol className="escalation-list">
               {[
@@ -390,12 +480,10 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* Accordions */}
+        {/* ACCORDIONS */}
         <div className="accordion-wrapper">
-          {/* Instruction */}
-          <p className="text-sm text-gray-500 mb-4 text-center">
-            Tap any section below to expand.
-          </p>
+          <p className="text-base text-gray-300 font-medium mb-1 text-center">Ready to go deeper?</p>
+          <p className="text-sm text-gray-500 mb-4 text-center">Expand any section below.</p>
 
           <details className="accordion group border border-white/10 rounded-lg transition-all duration-200 hover:shadow-sm hover:border-white/20">
             <summary className="cursor-pointer list-none w-full hover:bg-[#0f1a2e] active:opacity-80 transition-colors duration-200 rounded-lg p-4 flex justify-between items-center gap-4">
@@ -448,7 +536,7 @@ export default function OrganizersPage() {
             <div className="accordion-body">
               <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
                 <div className="opportunity-block">
-                  <span className="opp-label">⭐ The Opportunity</span>
+                  <span className="opp-label">The Opportunity</span>
                   <h2>This Is The Window.</h2>
                   <p>When Congress is home, district offices are open and town halls matter most. But organized constituents matter every day Congress is in session too — the record you build now is what your representative answers to either way.</p>
                   <p style={{color:'var(--text-bright)',fontWeight:700,marginTop:'16px'}}>When Representatives are in Washington, they're insulated.</p>
@@ -470,15 +558,10 @@ export default function OrganizersPage() {
             <div className="accordion-body">
               <section className="section-alt" style={{paddingTop:'40px',paddingBottom:'40px'}}>
                 <div className="inner">
-                  <span className="eyebrow">⭐ The Quick Win Playbook</span>
+                  <span className="eyebrow">The Quick Win Playbook</span>
                   <h2>How to Get to <span className="gold">500</span></h2>
                   <p style={{fontSize:'1.05rem',color:'var(--text-bright)',marginBottom:'20px'}}>500 is the first milestone. It proves your district can act together.</p>
-
-                  {/* Organizer Reach Block */}
-                  <div className="peer-block" style={{
-                    borderLeftColor: 'var(--gold)',
-                    marginBottom: '20px'
-                  }}>
+                  <div className="peer-block" style={{borderLeftColor:'var(--gold)',marginBottom:'20px'}}>
                     <span className="peer-label" style={{color:'var(--gold)'}}>
                       Most Organizers Already Have Enough Reach
                     </span>
@@ -487,13 +570,9 @@ export default function OrganizersPage() {
                       congregation, activist network, campus group, or community organization,
                       your network may already contain enough people to move your district toward 500.
                     </p>
-                    <p>
-                      The challenge is coordination, not awareness.
-                    </p>
+                    <p>The challenge is coordination, not awareness.</p>
                   </div>
-
                   <div className="playbook-section">
-                    {/* QUICK ACTIONS — visible assets */}
                     <div className="grid md:grid-cols-2 gap-4 mb-6">
                       <a
                         href="https://phiers.abacusai.app/petition/fifteen-hundred"
@@ -501,8 +580,7 @@ export default function OrganizersPage() {
                         rel="noopener noreferrer"
                         className="block bg-green/10 border border-green/30 rounded-lg p-4 text-center hover:bg-green/15 transition"
                       >
-                        <div className="text-2xl mb-2">✍</div>
-                        <p className="font-bold text-white">Share The Petition</p>
+                        <p className="font-bold text-white">✍ Share The Petition</p>
                         <p className="text-gray-400 text-sm mt-1">Get your link to distribute</p>
                       </a>
                       <a
@@ -511,12 +589,10 @@ export default function OrganizersPage() {
                         rel="noopener noreferrer"
                         className="block bg-green/10 border border-green/30 rounded-lg p-4 text-center hover:bg-green/15 transition"
                       >
-                        <div className="text-2xl mb-2">📊</div>
-                        <p className="font-bold text-white">Share The Survey</p>
+                        <p className="font-bold text-white">📊 Share The Survey</p>
                         <p className="text-gray-400 text-sm mt-1">Get your link to distribute</p>
                       </a>
                     </div>
-
                     <h3>Here's how organizers get there fast:</h3>
                     <ul>
                       {[
@@ -551,7 +627,7 @@ export default function OrganizersPage() {
             </summary>
             <div className="accordion-body">
               <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
-                <span className="eyebrow">⭐ The Sustained Leverage Playbook</span>
+                <span className="eyebrow">The Sustained Leverage Playbook</span>
                 <h2>How to Get to <span className="gold">1,500</span></h2>
                 <p style={{fontSize:'1.05rem',color:'var(--text-bright)',marginBottom:'20px'}}>
                   1,500 is when your district becomes <span style={{color:'var(--red)',fontWeight:700}}>impossible to ignore.</span>
@@ -594,7 +670,7 @@ export default function OrganizersPage() {
             <div className="accordion-body">
               <section className="section-alt" style={{paddingTop:'40px',paddingBottom:'40px'}}>
                 <div className="inner">
-                  <span className="eyebrow">⭐ What Happens After 500</span>
+                  <span className="eyebrow">What Happens After 500</span>
                   <h2>500 Is <span className="gold">The Signal.</span></h2>
                   <div className="happens-grid">
                     <div className="happens-card">
@@ -624,7 +700,7 @@ export default function OrganizersPage() {
             </summary>
             <div className="accordion-body">
               <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
-                <span className="eyebrow">⭐ What Happens After 1,500</span>
+                <span className="eyebrow">What Happens After 1,500</span>
                 <h2>1,500 Is <span className="gold">Sustained Leverage.</span></h2>
                 <div className="happens-grid">
                   <div className="happens-card" style={{borderColor:'var(--green)'}}>
@@ -653,7 +729,7 @@ export default function OrganizersPage() {
             </summary>
             <div className="accordion-body">
               <section className="section" style={{paddingTop:'40px',paddingBottom:'20px'}}>
-                <span className="eyebrow">⭐ Organizer Messaging Kit</span>
+                <span className="eyebrow">Organizer Messaging Kit</span>
                 <h2>Ready-to-Use<br /><span className="green">Messages.</span></h2>
                 {[
                   {title:'Share Text', body:'"Add your name. Tell Congress what our district wants. Help make our district impossible to ignore."'},
@@ -679,7 +755,7 @@ export default function OrganizersPage() {
 
         </div> {/* end accordion-wrapper */}
 
-        {/* Final CTA */}
+        {/* FINAL CTA */}
         <section className="section py-16 max-w-3xl mx-auto px-4">
           <div className="border-2 border-green-400 rounded-xl p-8 md:p-12 text-center bg-gradient-to-br from-green-400/5 to-transparent">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-green-400">BUILD DISTRICT LEVERAGE</h2>
@@ -689,13 +765,10 @@ export default function OrganizersPage() {
               <p>Help your district build leverage.</p>
               <p>Help your district be heard.</p>
             </div>
-            {/* PRIMARY ACTIONS */}
             <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'24px auto 0'}}>
               <a href="https://phiers.abacusai.app/petition/fifteen-hundred" className="btn-primary" target="_blank" rel="noopener noreferrer">✍ Add Your Name — Be Counted</a>
               <a href="https://phiers.abacusai.app/survey" className="btn-primary" target="_blank" rel="noopener noreferrer">📊 Complete The District Survey</a>
             </div>
-
-            {/* SECONDARY ACTIONS */}
             <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'12px auto 0'}}>
               <a href="mailto:info@phiers.org" className="btn-secondary">🤝 Partner With PHIERS — Email Us</a>
               <Link href="/" className="btn-secondary">← Back to PHIERS Main</Link>
@@ -712,16 +785,26 @@ export default function OrganizersPage() {
 
       <Footer />
 
-      <button
-        onClick={scrollToTop}
-        className={`back-to-top${showBackToTop ? ' visible' : ''}`}
-        aria-label="Back to top"
-      >
-        ↑
-      </button>
+      {/* Floating petition/survey CTA — appears after 400px scroll */}
+      {showFloatingCTA && (
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2">
+          <button
+            onClick={() => window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')}
+            className="flex items-center gap-2 bg-green text-[#080d1a] font-bold text-sm px-4 py-2.5 rounded-full shadow-lg hover:bg-green-dim transition whitespace-nowrap"
+          >
+            ✍ Petition
+          </button>
+          <button
+            onClick={() => window.open('https://phiers.abacusai.app/survey', '_blank')}
+            className="flex items-center gap-2 bg-[#0a1628] border border-green/40 text-green font-bold text-sm px-4 py-2.5 rounded-full shadow-lg hover:border-green transition whitespace-nowrap"
+          >
+            📊 Survey
+          </button>
+        </div>
+      )}
     </div>
   )
 }
 
 // FILE: app/organizers/page.tsx
-// VERSION: 2.1.0
+// VERSION: 3.0.0
