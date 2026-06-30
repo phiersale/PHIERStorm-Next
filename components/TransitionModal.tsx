@@ -58,7 +58,7 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               <img
                 src="/images/Alone_Youre_Easy_To_Ignore-500_fixes_it.jpg"
                 alt="Congress ignores you. 1,500 people in your district changes that."
-                className="w-full h-auto max-h-[42vh] sm:max-h-[50vh] object-cover"
+                className="w-full h-auto object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0d1525] via-[#0d1525]/40 to-transparent"></div>
             </div>
