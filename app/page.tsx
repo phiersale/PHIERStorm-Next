@@ -160,7 +160,7 @@ export default function Page() {
   if (stage === 'transition') {
     return <TransitionModal 
       onShowFramework={() => { window.location.href = '/the-system' }}
-      onSkipVideo={() => setStage('main')}
+      onSkipVideo={() => setStage('credibility')}
       onSignPetition={() => {
         window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')
       }}

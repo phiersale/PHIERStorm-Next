@@ -15,6 +15,7 @@ type Props = {
 
 export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPetition }: Props) {
   const [showWhy500Modal, setShowWhy500Modal] = useState(false)
+  const [showSkipAhead, setShowSkipAhead] = useState(false)
 
   // BODY SCROLL LOCK — best practice for transitional modals
   useEffect(() => {
@@ -23,6 +24,17 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
     return () => {
       document.body.style.overflow = original
     }
+  }, [])
+
+  // Show "skip ahead to The System" pill after some scroll within the modal
+  useEffect(() => {
+    const scrollContainer = document.querySelector('.fixed.inset-0.z-50.bg-black\\/80')
+    if (!scrollContainer) return
+    const handleScroll = () => {
+      setShowSkipAhead(scrollContainer.scrollTop > 300)
+    }
+    scrollContainer.addEventListener('scroll', handleScroll)
+    return () => scrollContainer.removeEventListener('scroll', handleScroll)
   }, [])
 
   // Focus trap for WHY 500 modal
@@ -44,6 +56,36 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
+            {/* PERSISTENT CLOSE BUTTON — true close, always reachable, no scrolling required */}
+            <button
+              onClick={onSkipVideo}
+              className="fixed top-4 right-4 sm:absolute sm:top-4 sm:right-4 z-[60] w-9 h-9 flex items-center justify-center rounded-full bg-black/60 text-white/80 hover:bg-black/80 hover:text-white border border-white/10 transition"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+
+            {/* SKIP AHEAD TO THE SYSTEM — separate from close, appears after scroll */}
+            {showSkipAhead && (
+              <div className="fixed bottom-5 right-5 z-[60]">
+                <div className="relative">
+                  <button
+                    onClick={onShowFramework}
+                    className="bg-[#0f1725]/90 border border-green/20 text-gray-200 text-xs md:text-sm px-3 py-1.5 md:px-4 md:py-2 pr-6 md:pr-8 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300 whitespace-nowrap"
+                  >
+                    Skip Ahead to The System →
+                  </button>
+                  <button
+                    onClick={() => setShowSkipAhead(false)}
+                    className="absolute -top-2 -right-2 text-white font-bold text-sm leading-none transition hover:text-gray-300"
+                    aria-label="Dismiss"
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* LOGO */}
             <div className="flex justify-center pt-4 pb-3">
               <img
