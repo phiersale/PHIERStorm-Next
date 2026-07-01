@@ -12,6 +12,51 @@ import PathosCredibility from '@/components/PathosCredibility'
 import TransitionModal from '@/components/TransitionModal'
 import FifteenHundredModal from '@/components/FifteenHundredModal'
 
+function CongressIsHomeBanner() {
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem('congress-home-banner-dismissed')
+    if (dismissed === 'true') setVisible(false)
+  }, [])
+
+  const dismiss = () => {
+    setVisible(false)
+    sessionStorage.setItem('congress-home-banner-dismissed', 'true')
+  }
+
+  if (!visible) return null
+
+  return (
+    <div
+      className="fixed top-0 left-0 right-0 z-[80] bg-[#0b1220]/95 backdrop-blur-md border-b border-green/20 text-gray-200 animate-fadeIn"
+      role="banner"
+      aria-label="Congress is home announcement"
+    >
+      <div className="max-w-4xl mx-auto px-4 py-2 flex items-center justify-between gap-3 min-h-[44px]">
+        <p className="text-xs sm:text-sm font-medium leading-tight flex-1 min-w-0">
+          <span className="text-green font-bold">Congress is home until July 13th.</span>
+          {' '}Representatives are reachable.{' '}
+          <button
+            type="button"
+            onClick={() => window.open('https://phiers.abacusai.app/survey', '_blank', 'noopener,noreferrer')}
+            className="underline font-bold hover:no-underline whitespace-nowrap bg-transparent border-none cursor-pointer p-0 text-green text-xs sm:text-sm"
+          >
+            Help yours organize →
+          </button>
+        </p>
+        <button
+          onClick={dismiss}
+          className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition text-gray-400 hover:text-white font-bold text-lg leading-none"
+          aria-label="Dismiss banner"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export default function Page() {
   const [stage, setStage] = useState<'image' | 'prehome' | 'credibility' | 'transition' | 'main'>('image')
   const [skipFirstImage, setSkipFirstImage] = useState(false)
@@ -96,6 +141,7 @@ export default function Page() {
   if (stage === 'prehome') {
     return (
       <>
+        <CongressIsHomeBanner />
         <UnifiedPreHomepage
           onGoToHomepage={() => {
             setSkipFirstImage(false)
@@ -116,6 +162,7 @@ export default function Page() {
   if (stage === 'credibility') {
     return (
       <div className="min-h-screen bg-[#050b19] flex flex-col">
+        <CongressIsHomeBanner />
         <PathosCredibility 
           onBackToSlides={() => {
             setSkipFirstImage(false)
@@ -158,17 +205,23 @@ export default function Page() {
   }
 
   if (stage === 'transition') {
-    return <TransitionModal 
-      onShowFramework={() => { window.location.href = '/the-system' }}
-      onSkipVideo={() => setStage('credibility')}
-      onSignPetition={() => {
-        window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')
-      }}
-    />
+    return (
+      <>
+        <CongressIsHomeBanner />
+        <TransitionModal
+          onShowFramework={() => { window.location.href = '/the-system' }}
+          onSkipVideo={() => setStage('credibility')}
+          onSignPetition={() => {
+            window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')
+          }}
+        />
+      </>
+    )
   }
 
   return (
     <>
+      <CongressIsHomeBanner />
       <MainHomePage 
         onBackToEntry={() => setStage('image')} 
         onGoToPetition={handleGoToPetition}

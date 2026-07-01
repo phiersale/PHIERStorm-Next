@@ -255,7 +255,7 @@
         { type: "spacer", height: 12 },
 
         { text: "Go on the record.", large: false, green: false, bold: true },
-        { text: "Sign the petition requesting a public town hall with your Representative.", large: false, green: false, bold: false, className: "text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed" },
+        { text: "Add your name requesting a public town hall with your Representative.", large: false, green: false, bold: false, className: "text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed" },
         { type: "spacer", height: 12 },
 
         { text: "Stay involved.", large: false, green: false, bold: true },

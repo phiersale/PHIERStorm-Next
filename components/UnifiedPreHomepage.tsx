@@ -214,9 +214,9 @@ export default function UnifiedPreHomepage({
         </div>
       )}
 
-      {/* Top bar */}
+      {/* Top bar — pt-10 clears the CongressIsHomeBanner when visible */}
       <div
-        className="flex justify-between items-center pr-6 pl-6 pt-1 pb-0 shrink-0 z-10 transition-opacity duration-300"
+        className="flex justify-between items-center pr-6 pl-6 pt-10 pb-0 shrink-0 z-10 transition-opacity duration-300"
         style={{ opacity: 0.5 }}
       >
         {onBackToReading && (
