@@ -186,7 +186,10 @@ export default function UniversalSlideRenderer({ slide, index, onImageClick, onF
               
               let fontWeight = item.bold ? 'font-bold' : 'font-normal'
               
-              let className = item.className || `${textSize} ${textColor} ${fontWeight} leading-tight`
+              const baseLayout = 'w-full mx-auto text-center text-balance'
+              let className = item.className
+                ? `${baseLayout} ${item.className}`
+                : `${baseLayout} ${textSize} ${textColor} ${fontWeight} leading-tight max-w-xl`
               
               return (
                 <p

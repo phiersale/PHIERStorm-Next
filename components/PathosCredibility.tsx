@@ -174,9 +174,9 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
             <Image
               src="/images/PHIERS_Logo_BW.png"
               alt="PHIERS"
-              width={16}
-              height={16}
-              className="w-3 h-3 sm:w-4 sm:h-4"
+              width={40}
+              height={40}
+              className="w-8 h-8 sm:w-10 sm:h-10"
             />
           </Link>
           <button
@@ -248,17 +248,22 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           </div>
         )}
 
-        <motion.div variants={sectionFade} className="flex justify-center mb-4">
-          <img src="/images/PHIERS_Logo.png" alt="PHIERS" className="w-12 h-12 md:w-14 md:h-14 object-contain opacity-50" />
-        </motion.div>
-
         <motion.div variants={sectionFade} className="text-center px-4 mt-16 md:mt-20">
+
+          <img
+            src="/images/PHIERS_Logo.png"
+            alt="PHIERS"
+            className="w-28 md:w-36 lg:w-44 h-auto mx-auto mb-6 opacity-90"
+          />
+
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight">
             What Makes Us Credible
           </h1>
+
           <p className="text-gray-400 text-base md:text-lg text-center mt-3 leading-relaxed">
             Fifteen years of recognition. One public record. Zero hype.
           </p>
+
         </motion.div>
 
         <div className="mt-10 md:mt-14"></div>
@@ -633,17 +638,15 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           </div>
         </motion.div>
 
-        <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
-          <div className="bg-[#0a1628] border border-green/30 rounded-lg p-6">
-            <div className="flex justify-center mb-4">
-              <img src="/images/PHIERS_Logo.png" alt="PHIERS" className="w-20 h-20 object-contain opacity-70" />
-            </div>
-            <p className="text-white text-base font-semibold mb-2">You've seen the record.</p>
-            <p className="text-green text-lg font-bold mb-5">Now go on record yourself.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form" target="_blank" rel="noopener noreferrer" className="w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 text-center inline-block whitespace-nowrap" style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}>→ Ask a Question</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScXy3ZKxMXm-o7eXIwUtmJEH5lrCVaIc_vEm3ieqskiD0hx5w/viewform?usp=send_form" target="_blank" rel="noopener noreferrer" className="w-full py-2 px-6 rounded-lg text-xs font-medium border border-green/30 text-green hover:bg-green/10 transition text-center inline-block whitespace-nowrap">Sign Up for Updates →</a>
+
+        <motion.div id="cta" variants={sectionFade} className="text-center pt-1 pb-6">
+          <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
+            <p className="text-green text-base font-semibold mb-4">You've seen the evidence. Now see what it builds.</p>
+            <a href="https://phiers.abacusai.app/petition/fifteen-hundred" target="_blank" rel="noopener noreferrer" className="block w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 whitespace-nowrap text-center" style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}>✍ Sign the Petition</a>
+            <button onClick={() => setShowInterrupt(true)} className="w-full py-3 px-6 rounded-lg font-bold text-sm transition whitespace-nowrap border border-green/40 text-green hover:bg-green/10" style={{ backgroundColor: 'transparent' }}>→ Continue to the main homepage</button>
           </div>
         </motion.div>
+      </motion.div>
 
         {/* Self-funded / Donate ask */}
         <motion.div variants={sectionFade} className="max-w-md mx-auto text-center my-8">
@@ -662,17 +665,9 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
           </div>
         </motion.div>
 
-        <motion.div id="cta" variants={sectionFade} className="text-center pt-1 pb-6">
-          <div className="max-w-md mx-auto bg-[#0a1628] border border-green/20 rounded-lg p-6">
-            <p className="text-green text-base font-semibold mb-4">You've seen the evidence. Now see what it builds.</p>
-            <a href="https://phiers.abacusai.app/petition/fifteen-hundred" target="_blank" rel="noopener noreferrer" className="block w-full py-3 px-6 rounded-lg font-bold text-sm transition mb-3 whitespace-nowrap text-center" style={{ backgroundColor: '#3ddc84', color: '#080d1a' }}>✍ Sign the Petition</a>
-            <button onClick={() => setShowInterrupt(true)} className="w-full py-3 px-6 rounded-lg font-bold text-sm transition whitespace-nowrap border border-green/40 text-green hover:bg-green/10" style={{ backgroundColor: 'transparent' }}>→ Continue to the main homepage</button>
-          </div>
-        </motion.div>
-      </motion.div>
 
       {showShortcutToast && (
-        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-4 py-2 rounded-full shadow-xl z-50 animate-fadeIn">
+        <div classN ame="fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-4 py-2 rounded-full shadow-xl z-50 animate-fadeIn">
           ⌨️ Shortcuts: T=Top, C=Continue, ?=Help
         </div>
       )}

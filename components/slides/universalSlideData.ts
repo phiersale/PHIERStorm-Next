@@ -242,9 +242,35 @@
       className: "w-[85%] mx-auto"
     },
 
-    // 15 — FINAL CTA
+    // 15 — WHAT HAPPENS NEXT
     {
       id: "slide-15",
+      title: "",
+      body: [
+        { text: "What happens next.", large: true, green: true, bold: true },
+        { type: "spacer", height: 16 },
+
+        { text: "Tell us what matters.", large: false, green: false, bold: true },
+        { text: "Complete the survey so your district's priorities are documented.", large: false, green: false, bold: false, className: "text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed" },
+        { type: "spacer", height: 12 },
+
+        { text: "Go on the record.", large: false, green: false, bold: true },
+        { text: "Sign the petition requesting a public town hall with your Representative.", large: false, green: false, bold: false, className: "text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed" },
+        { type: "spacer", height: 12 },
+
+        { text: "Stay involved.", large: false, green: false, bold: true },
+        { text: "PHIERS organizes your district.", large: false, green: false, bold: false, className: "text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed" },
+        { text: "Your Representative hears your priorities and responds publicly.", large: false, green: false, bold: false, className: "text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed" },
+
+        { type: "spacer", height: 18 },
+        { text: "Representation doesn't end on Election Day.", large: false, green: true, bold: true, className: "text-green text-lg md:text-xl font-bold max-w-md mx-auto leading-tight" }
+      ],
+      customTextLayout: true
+    },
+
+    // 16 — FINAL CTA
+    {
+      id: "slide-16",
       title: "One petition. Your district. On the record.",
       body: [
         "That's how pressure starts.",
