@@ -702,6 +702,6 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
     </>
   )
 }
-a
+
 // FILE: components/PathosCredibility.tsx (end)
 // VERSION: 19.0
