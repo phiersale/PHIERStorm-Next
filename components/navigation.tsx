@@ -83,9 +83,34 @@ export default function Navigation() {
           }}
         >
           <div className="space-y-2">
+            <Link href="/" className="block p-2 bg-[#3ddc84]/10 border border-[#3ddc84]/40 rounded-lg text-[#3ddc84] font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>
+              🏠 HOME
+              <span className="block text-[10px] font-normal text-[#3ddc84]/70 mt-0.5 normal-case tracking-normal">Start here</span>
+            </Link>
+
             <Link href="/the-system" className="block p-2 bg-[#3ddc84]/10 border border-[#3ddc84]/40 rounded-lg text-[#3ddc84] font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>
-              ⚙ PHIER-POWERED SOLUTIONS
-              <span className="block text-[10px] font-normal text-[#3ddc84]/70 mt-0.5 normal-case tracking-normal">Solutions. Leverage. Accountability.</span>
+              ⚙ THE SYSTEM
+              <span className="block text-[10px] font-normal text-[#3ddc84]/70 mt-0.5 normal-case tracking-normal">How PHIERS works</span>
+            </Link>
+
+            <Link href="/phier-powered" className="block p-2 bg-[#3ddc84]/20 border border-[#3ddc84] rounded-lg text-[#3ddc84] font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>
+              🏛 FOR ORGANIZATIONS
+              <span className="block text-[10px] font-normal text-[#3ddc84]/70 mt-0.5 normal-case tracking-normal">Implementation for institutions</span>
+            </Link>
+
+            <Link href="/organizers" className="block p-2 bg-[#3ddc84]/10 border border-[#3ddc84]/40 rounded-lg text-[#3ddc84] font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>
+              ✊ ORGANIZERS
+              <span className="block text-[10px] font-normal text-[#3ddc84]/70 mt-0.5 normal-case tracking-normal">District organizing tools</span>
+            </Link>
+
+            <Link href="/credibility" className="block p-2 bg-[#3ddc84]/10 border border-[#3ddc84]/40 rounded-lg text-[#3ddc84] font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>
+              ✓ CREDIBILITY
+              <span className="block text-[10px] font-normal text-[#3ddc84]/70 mt-0.5 normal-case tracking-normal">The record</span>
+            </Link>
+
+            <Link href="/resources" className="block p-2 bg-[#3ddc84]/10 border border-[#3ddc84]/40 rounded-lg text-[#3ddc84] font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>
+              📚 RESOURCES
+              <span className="block text-[10px] font-normal text-[#3ddc84]/70 mt-0.5 normal-case tracking-normal">Guides & tools</span>
             </Link>
 
             <Link href="/no-war" className="block p-2 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 font-condensed font-bold text-sm text-center" onClick={closeMenuInstantly}>🕊 END THE WAR / NO DRAFT</Link>
@@ -100,6 +125,7 @@ export default function Navigation() {
             </MenuSection>
 
             <MenuSection title="Who We're For">
+              <Link href="/phier-powered" className="block text-[#3ddc84] text-sm py-0.5 font-medium" onClick={closeMenuInstantly}>🏛 For Organizations</Link>
               <Link href="/organizers" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>✊ For Organizers</Link>
               <Link href="/veterans" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>🎖 Veterans</Link>
               <Link href="/unions" className="block text-gray-400 text-sm py-0.5" onClick={closeMenuInstantly}>💪 Union Strategy</Link>

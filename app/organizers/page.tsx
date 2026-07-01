@@ -1,5 +1,5 @@
 // FILE: app/organizers/page.tsx
-// VERSION: 3.0.0 — Emoji cleanup, structural UX fixes, image repositioned
+// VERSION: 3.2.0 — Emoji cleanup, structural UX fixes, image repositioned, movement-neutral language, signature block, bridge line
 
 'use client'
 
@@ -59,38 +59,6 @@ export default function OrganizersPage() {
 
         <hr className="divider" />
 
-        {/* PROPHETIC VIDEO */}
-        <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4">
-          <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/25 shadow-xl shadow-green/5">
-            <div className="text-center mb-4">
-              <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">Recorded Before His Agenda Could Pay For Itself</span>
-              <h2 className="font-display text-xl md:text-2xl font-bold text-white mt-2">Funding Mamdani's Agenda for a Stronger Future</h2>
-              <p className="text-gray-400 text-sm mt-1">A National Strategy</p>
-            </div>
-            <div className="aspect-video rounded-lg overflow-hidden border border-black shadow-inner">
-              <iframe
-                src="https://www.youtube.com/embed/VdeniYs1QsQ"
-                title="Funding Mamdani's Agenda for a Stronger Future (a National strategy)"
-                className="w-full h-full"
-                allowFullScreen
-              />
-            </div>
-            <p className="text-gray-300 text-sm mt-4 leading-relaxed">
-              Recorded while Mamdani's affordability agenda was still promises — before his administration had the ability to pay for what he plans to do. PHIERS lays out how telehealth at $600/year instead of roughly $8,000/year, combined with non-profit drug purchasing through models like Mark Cuban's Cost Plus Drugs, frees up enough savings to fund the same outcomes — rent relief, public transportation, affordable food — now, without waiting on legislation or tax increases.
-            </p>
-            <p className="text-gray-300 text-sm mt-3 leading-relaxed">
-              The model isn't new. It traces back to work with Sher Safe Pharmacy starting in 2007–2009, and Senator Chris Van Hollen wrote a letter of support for this approach over a decade ago.
-            </p>
-            <p className="text-center mt-3">
-              <Link href="/mamdani" className="text-green-500/70 hover:text-green-400 text-xs underline">
-                See the full documented timeline →
-              </Link>
-            </p>
-          </div>
-        </section>
-
-        <hr className="divider" />
-
         {/* MICRO HERO */}
         <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
@@ -116,7 +84,7 @@ export default function OrganizersPage() {
               { num: '②', label: 'Download the PHIER-Powered Solutions Overview' },
               { num: '③', label: 'Sign the Petition' },
               { num: '④', label: 'Complete the District Survey' },
-              { num: '⑤', label: 'Start Organizing' },
+              { num: '⑤', label: 'Organize Your District' },
             ].map(({ num, label }, i, arr) => (
               <div key={num} className="flex flex-col items-center gap-1 w-full max-w-sm">
                 <div className="flex items-center gap-3 bg-[#0a1628] border border-green/20 rounded-lg px-6 py-3 w-full">
@@ -181,6 +149,12 @@ export default function OrganizersPage() {
             <p className="font-condensed font-bold text-green text-xl">
               Let's organize to make it happen.
             </p>
+
+            <div className="mt-8 pt-6 border-t border-white/10">
+              <p className="text-gray-400 text-sm">In solidarity,</p>
+              <p className="text-white font-semibold mt-1">Will Price</p>
+              <p className="text-gray-500 text-sm">Founder, PHIERS</p>
+            </div>
           </div>
 
           <div className="mt-10 bg-[#0a1628] border border-green/20 rounded-xl p-6 md:p-8 text-center">
@@ -208,9 +182,53 @@ export default function OrganizersPage() {
           </div>
         </section>
 
+
+                {/* CURRENT EXAMPLES — how PHIERS maps to real organizing priorities */}
+        <section className="section py-12 md:py-16 max-w-3xl mx-auto px-4">
+          <span className="eyebrow">Current Examples</span>
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-4">
+            The Framework in Practice.
+          </h2>
+          <p className="text-gray-400 text-base mb-8">
+            PHIERS maps to the priorities organizers are already working on — across movements, districts, and coalitions. Here's one current example of how the framework connects to a live national conversation.
+          </p>
+        </section>
+
+        {/* PROPHETIC VIDEO */}
+        <section className="section py-4 md:py-8 max-w-3xl mx-auto px-4">
+          <div className="bg-[#0a1628] rounded-xl p-4 md:p-6 border border-green/25 shadow-xl shadow-green/5">
+            <div className="text-center mb-4">
+              <span className="text-[10px] font-mono bg-green/10 text-green px-2 py-0.5 rounded border border-green/20 uppercase tracking-widest">Recorded Before His Agenda Could Pay For Itself</span>
+              <h2 className="font-display text-xl md:text-2xl font-bold text-white mt-2">Funding Mamdani's Agenda for a Stronger Future</h2>
+              <p className="text-gray-400 text-sm mt-1">A National Strategy</p>
+            </div>
+            <div className="aspect-video rounded-lg overflow-hidden border border-black shadow-inner">
+              <iframe
+                src="https://www.youtube.com/embed/VdeniYs1QsQ"
+                title="Funding Mamdani's Agenda for a Stronger Future (a National strategy)"
+                className="w-full h-full"
+                allowFullScreen
+              />
+            </div>
+            <p className="text-gray-300 text-sm mt-4 leading-relaxed">
+              Recorded while Mamdani's affordability agenda was still promises — before his administration had the ability to pay for what he plans to do. PHIERS lays out how telehealth at $600/year instead of roughly $8,000/year, combined with non-profit drug purchasing through models like Mark Cuban's Cost Plus Drugs, frees up enough savings to fund the same outcomes — rent relief, public transportation, affordable food — now, without waiting on legislation or tax increases.
+            </p>
+            <p className="text-gray-300 text-sm mt-3 leading-relaxed">
+              The model isn't new. It traces back to work with Sher Safe Pharmacy starting in 2007–2009, and Senator Chris Van Hollen wrote a letter of support for this approach over a decade ago.
+            </p>
+            <p className="text-center mt-3">
+              <Link href="/mamdani" className="text-green-500/70 hover:text-green-400 text-xs underline">
+                See the full documented timeline →
+              </Link>
+            </p>
+          </div>
+        </section>
+
         <hr className="divider" />
 
-        {/* DSA PLATFORM MAPPING */}
+<hr className="divider" />
+
+        {/* PLATFORM MAPPING */}
         <section className="section py-16 md:py-20 max-w-3xl mx-auto px-4">
           <span className="eyebrow">Where PHIERS Fits</span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
@@ -218,14 +236,14 @@ export default function OrganizersPage() {
             <span className="text-green-400">Our Implementation.</span>
           </h2>
           <p className="text-gray-300 text-base mb-8">
-            DSA's "Workers Deserve More" platform names the right priorities. The gap every critic points to is funding and implementation. PHIERS was built specifically to close that gap — district by district, before legislation, without new taxes.
+            Most organizing platforms name the right priorities. The gap every critic points to is funding and implementation. PHIERS was built specifically to close that gap — district by district, before legislation, without new taxes.
           </p>
 
           <div className="space-y-4">
 
             <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
               <h3 className="font-bold text-white text-base mb-1">Medicare for All / Affordable Healthcare</h3>
-              <p className="text-gray-400 text-sm mt-1">DSA's top priority. PHIERS delivers affordable primary care now — $600/year telehealth instead of $8,000/year traditional insurance — without waiting on congressional authorization. The savings fund the rest of the agenda.</p>
+              <p className="text-gray-400 text-sm mt-1">Many organizations have made affordable healthcare a top priority. PHIERS delivers affordable primary care now — $600/year telehealth instead of $8,000/year traditional insurance — without waiting on congressional authorization. The savings fund the rest of the agenda.</p>
               <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">PHIERSale → Congressional Authorization</p>
             </div>
 
@@ -249,13 +267,13 @@ export default function OrganizersPage() {
 
             <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
               <h3 className="font-bold text-white text-base mb-1">Electoral Organizing / Holding Officials Accountable</h3>
-              <p className="text-gray-400 text-sm mt-1">DSA trains candidates and runs chapters. PHIERS gives those chapters the district-level constituent infrastructure that makes elected officials respond — 500 organized constituents creates a tipping point, 1,500 creates consequences. That's the leverage DSA candidates need once they're in office.</p>
+              <p className="text-gray-400 text-sm mt-1">Many organizations train candidates and run local chapters. PHIERS gives those chapters the district-level constituent infrastructure that makes elected officials respond — 500 organized constituents creates a tipping point, 1,500 creates consequences. That's the leverage organized candidates need once they're in office.</p>
               <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">The 1,500 Model → Congressional Authorization</p>
             </div>
 
             <div className="bg-[#0a1628] border border-green/20 rounded-xl p-5">
               <h3 className="font-bold text-white text-base mb-1">Anti-War / End Unauthorized Wars</h3>
-              <p className="text-gray-400 text-sm mt-1">PHIERS has pursued congressional accountability on war powers from the beginning. The 1,500 model applies equally to foreign policy votes — organized constituents in every district don't just pressure on healthcare. They pressure on everything.</p>
+              <p className="text-gray-400 text-sm mt-1">Congressional accountability on war powers matters to organizers across the political spectrum. The 1,500 model applies equally to foreign policy votes — organized constituents in every district don't just pressure on healthcare. They pressure on everything.</p>
               <p className="text-green-400 text-xs mt-2 font-mono uppercase tracking-wider">The 1,500 Model → Congressional Authorization</p>
             </div>
 
@@ -263,11 +281,11 @@ export default function OrganizersPage() {
 
           <div className="mt-10 bg-yellow-400/5 border border-yellow-400/30 rounded-xl p-6 text-center">
             <p className="text-yellow-400 font-condensed font-bold text-lg">The critical difference</p>
-            <p className="text-gray-300 text-sm mt-2 max-w-xl mx-auto">DSA identifies what needs to change. PHIERS shows how to pay for it, organize around it, and deliver results in every voting district — before the 250th anniversary of this country's founding.</p>
+            <p className="text-gray-300 text-sm mt-2 max-w-xl mx-auto">Most organizations identify what needs to change. PHIERS shows how to pay for it, organize around it, and deliver results in every voting district — before the 250th anniversary of this country's founding.</p>
           </div>
         </section>
 
-        {/* HERO IMAGE — visual break between mapping and movement sections */}
+                {/* HERO IMAGE — visual break between mapping and movement sections */}
         <section className="w-full">
           <div className="relative w-full overflow-hidden">
             <img
@@ -765,6 +783,7 @@ export default function OrganizersPage() {
               <p>Help your district build leverage.</p>
               <p>Help your district be heard.</p>
             </div>
+            <p className="font-condensed font-bold text-lg text-white mt-6">The next chapter of this movement begins in your district.</p>
             <div style={{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'420px',margin:'24px auto 0'}}>
               <a href="https://phiers.abacusai.app/petition/fifteen-hundred" className="btn-primary" target="_blank" rel="noopener noreferrer">✍ Add Your Name — Be Counted</a>
               <a href="https://phiers.abacusai.app/survey" className="btn-primary" target="_blank" rel="noopener noreferrer">📊 Complete The District Survey</a>
@@ -807,4 +826,4 @@ export default function OrganizersPage() {
 }
 
 // FILE: app/organizers/page.tsx
-// VERSION: 3.0.0
+// VERSION: 3.2.0

@@ -283,7 +283,90 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
 
         <div className="h-10" />
 
-        {/* ============ NEW: FIFTEEN YEARS OF BUILDING ============ */}
+        <div className="h-6" />
+
+        <motion.div variants={sectionFade} className="text-center max-w-2xl mx-auto mb-6">
+          <p className="text-gray-400 text-sm leading-relaxed font-light">
+            Over the last six years, respected media organizations, communications firms,
+            and public figures tried to help bring PHIERS to a wider audience. Those
+            efforts were repeatedly disrupted by sabotage and other setbacks, delaying
+            this launch far longer than anyone expected. What you're about to see is the
+            work finally breaking through.
+          </p>
+        </motion.div>
+
+        <div className="h-8" />
+
+        <motion.div variants={sectionFade} className="mb-4">
+          <p className="text-green text-xs tracking-widest text-center mb-2 opacity-70">INDEPENDENT VALIDATION</p>
+        </motion.div>
+
+        <motion.div id="videos" variants={sectionFade} className="flex flex-col gap-8 mb-12">
+          
+          <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="mb-4">
+              <p className="text-green text-xl md:text-2xl font-bold mb-1">PATHOS Communications</p>
+              <p className="text-gray-400 text-sm">Global PR Firm · London Stock Exchange Listed</p>
+            </div>
+            <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/KLu7USN_dao?autoplay=1', 'Pathos Communications on PHIERS')}>
+              <img src="/images/pathos-thumbnail.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
+                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+            <p className="text-green text-lg font-semibold italic mb-2">"If you weren't legit, we wouldn't risk our name."</p>
+            <p className="text-gray-500 text-xs">Pathos · February 2026</p>
+          </div>
+
+          <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="mb-4">
+              <p className="text-green text-2xl md:text-2xl font-bold mb-1">Voices of Accountability</p>
+              <p className="text-gray-400 text-base md:text-sm">National Media · Cultural Leadership</p>
+            </div>
+            <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/qxcRP8lx9dc?autoplay=1', 'Trusted Voices on PHIERS')}>
+              <img src="/images/BigC_ THUMBNAIL_w_Karen_Trevor_n_Ralph.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
+                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+            <p className="text-green text-xl md:text-lg font-semibold italic mb-2">"This isn't left or right. This is people trying to survive."</p>
+            <p className="text-gray-500 text-sm md:text-xs">Curry, Nader, Noah, Hunter · May 2026</p>
+          </div>
+
+          <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
+            <div className="mb-4">
+              <p className="text-green text-2xl md:text-2xl font-bold mb-1">DotCom Magazine</p>
+              <p className="text-gray-400 text-base md:text-sm">Entrepreneur Spotlight · National Media</p>
+            </div>
+            <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1', 'DotCom Magazine Interview')}>
+              <img src="/images/dotcom-thumbnail.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
+                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+            <p className="text-green text-xl md:text-lg font-semibold italic mb-2">"A serious, credible framework."</p>
+            <p className="text-gray-500 text-sm md:text-xs">DotCom Magazine · July 2022</p>
+          </div>
+        </motion.div>
+
+        <div className="h-6" />
+
+        <motion.div
+          variants={sectionFade}
+          className="text-center max-w-2xl mx-auto mb-8"
+        >
+          <p className="text-green text-xs tracking-widest opacity-70 mb-2">
+            THE RECORD SPEAKS FOR ITSELF
+          </p>
+
+          <p className="text-gray-400 text-sm leading-relaxed">
+            Recognition didn't start today. The interviews you just watched are
+            the latest chapter in a record that stretches back more than fifteen
+            years.
+          </p>
+        </motion.div>
+
+                {/* ============ NEW: FIFTEEN YEARS OF BUILDING ============ */}
         <motion.div variants={sectionFade} className="text-center mb-8">
           <p className="text-green text-xs tracking-widest opacity-70">FIFTEEN YEARS OF BUILDING</p>
         </motion.div>
@@ -350,77 +433,7 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
 
         </motion.div>
 
-        <motion.div variants={sectionFade} className="text-center max-w-2xl mx-auto mb-6">
-          <p className="text-gray-400 text-sm leading-relaxed">
-            PHIERS wasn't built in response to today's political moment. It's been recognized, independently, at the local and federal level, for more than fifteen years.
-          </p>
-        </motion.div>
         {/* ============ END NEW SECTION ============ */}
-
-        <div className="h-6" />
-
-        <motion.div variants={sectionFade} className="text-center max-w-2xl mx-auto mb-6">
-          <p className="text-gray-400 text-sm leading-relaxed font-light">
-            Over the last six years, four of the world's most powerful thought leadership accelerators
-            and PR firms tried to champion PHIERS. They believed in it enough to stake their reputations
-            on it. Sabotage stopped them every time. What you're about to see is what is finally breaking
-            through.
-          </p>
-        </motion.div>
-
-        <div className="h-8" />
-
-        <motion.div variants={sectionFade} className="mb-4">
-          <p className="text-green text-xs tracking-widest text-center mb-2 opacity-70">INDEPENDENT VALIDATION</p>
-        </motion.div>
-
-        <motion.div id="videos" variants={sectionFade} className="flex flex-col gap-8 mb-12">
-          
-          <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
-            <div className="mb-4">
-              <p className="text-green text-xl md:text-2xl font-bold mb-1">PATHOS Communications</p>
-              <p className="text-gray-400 text-sm">Global PR Firm · London Stock Exchange Listed</p>
-            </div>
-            <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/KLu7USN_dao?autoplay=1', 'Pathos Communications on PHIERS')}>
-              <img src="/images/pathos-thumbnail.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
-                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-              </div>
-            </div>
-            <p className="text-green text-lg font-semibold italic mb-2">"If you weren't legit, we wouldn't risk our name."</p>
-            <p className="text-gray-500 text-xs">Pathos · February 2026</p>
-          </div>
-
-          <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
-            <div className="mb-4">
-              <p className="text-green text-2xl md:text-2xl font-bold mb-1">Voices of Accountability</p>
-              <p className="text-gray-400 text-base md:text-sm">National Media · Cultural Leadership</p>
-            </div>
-            <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/qxcRP8lx9dc?autoplay=1', 'Trusted Voices on PHIERS')}>
-              <img src="/images/BigC_ THUMBNAIL_w_Karen_Trevor_n_Ralph.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
-                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-              </div>
-            </div>
-            <p className="text-green text-xl md:text-lg font-semibold italic mb-2">"This isn't left or right. This is people trying to survive."</p>
-            <p className="text-gray-500 text-sm md:text-xs">Curry, Nader, Noah, Hunter · May 2026</p>
-          </div>
-
-          <div className="w-full mx-auto bg-[#0a1628] rounded-xl p-4 sm:p-6 md:p-8 border border-green/25 shadow-2xl shadow-black/60">
-            <div className="mb-4">
-              <p className="text-green text-2xl md:text-2xl font-bold mb-1">DotCom Magazine</p>
-              <p className="text-gray-400 text-base md:text-sm">Entrepreneur Spotlight · National Media</p>
-            </div>
-            <div className="video-aspect-box relative w-full cursor-pointer group rounded-xl overflow-hidden mb-5 shadow-[0_0_40px_rgba(0,0,0,0.6)]" onClick={() => openVideoModal('https://www.youtube.com/embed/pUdlWukaLLY?autoplay=1', 'DotCom Magazine Interview')}>
-              <img src="/images/dotcom-thumbnail.jpg" className="absolute top-0 left-0 w-full h-full object-cover group-hover:brightness-110 transition" />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all">
-                <svg className="w-12 h-12 text-white drop-shadow-lg group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-              </div>
-            </div>
-            <p className="text-green text-xl md:text-lg font-semibold italic mb-2">"A serious, credible framework."</p>
-            <p className="text-gray-500 text-sm md:text-xs">DotCom Magazine · July 2022</p>
-          </div>
-        </motion.div>
 
         <section id="timeline" className="w-full max-w-4xl mx-auto px-6 mt-12 md:mt-16">
           <div className="text-center mb-4">
@@ -689,6 +702,6 @@ export default function PathosCredibility({ onBackToSlides, onOpenTransitionModa
     </>
   )
 }
-
+a
 // FILE: components/PathosCredibility.tsx (end)
 // VERSION: 19.0

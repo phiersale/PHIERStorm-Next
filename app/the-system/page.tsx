@@ -501,7 +501,7 @@ export default function PhiersSystemPage() {
 
             <div className="h-px bg-white/10 my-8"></div>
 
-            {/* CTA BUTTONS - primary action restored per funnel audit */}
+            {/* CTA BUTTONS - primary action: For Organizations */}
             <div className="mt-4 flex flex-col items-center justify-center gap-4">
               <button
                 onClick={() => window.open('https://phiers.abacusai.app/petition/fifteen-hundred', '_blank')}
@@ -514,6 +514,23 @@ export default function PhiersSystemPage() {
               >
                 ✍ Sign the Petition
               </button>
+              
+              <div className="flex flex-col items-center gap-3 mt-2 w-full max-w-md">
+                <Link
+                  href="/phier-powered"
+                  className="w-full text-center px-6 py-3 rounded-lg font-bold text-base transition bg-[#3ddc84] text-[#080d1a] hover:bg-[#2cb870]"
+                >
+                  For Organizations →
+                </Link>
+                
+                <Link
+                  href="/organizers"
+                  className="text-gray-400 text-sm hover:text-gray-300 transition px-5 py-2"
+                >
+                  Already ready to organize? Go directly to the Organizers Guide →
+                </Link>
+              </div>
+              
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
                 <Link href="/?credibility=true" className="text-gray-500 text-sm hover:text-gray-300 transition px-5 py-2">
                   ← Back to Credibility

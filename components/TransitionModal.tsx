@@ -49,6 +49,28 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
     <>
       {/* MAIN MODAL OVERLAY */}
       <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm overflow-y-auto">
+
+        {/* SKIP AHEAD PILL — outside motion.div, anchored to overlay not card */}
+        {showSkipAhead && (
+          <div className="sticky bottom-5 flex justify-center z-[60] pointer-events-none">
+            <div className="relative pointer-events-auto">
+              <button
+                onClick={onShowFramework}
+                className="bg-[#0f1725]/90 border border-green/20 text-gray-200 text-xs md:text-sm px-3 py-1.5 md:px-4 md:py-2 pr-6 md:pr-8 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300 whitespace-nowrap"
+              >
+                Skip Ahead to The System →
+              </button>
+              <button
+                onClick={() => setShowSkipAhead(false)}
+                className="absolute -top-2 -right-2 text-white font-bold text-sm leading-none transition hover:text-gray-300"
+                aria-label="Dismiss"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="min-h-screen pt-3 pb-14 px-3 sm:pt-6 sm:pb-20 sm:px-4 flex justify-center">
           <motion.div
             className="relative bg-[#0d1525] border border-green/20 rounded-2xl sm:rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden"
@@ -64,27 +86,6 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
             >
               ✕
             </button>
-
-            {/* SKIP AHEAD TO THE SYSTEM — separate from close, appears after scroll */}
-            {showSkipAhead && (
-              <div className="fixed bottom-5 right-5 z-[60]">
-                <div className="relative">
-                  <button
-                    onClick={onShowFramework}
-                    className="bg-[#0f1725]/90 border border-green/20 text-gray-200 text-xs md:text-sm px-3 py-1.5 md:px-4 md:py-2 pr-6 md:pr-8 rounded-full shadow-lg shadow-green/30 backdrop-blur-sm hover:border-green/40 hover:text-white hover:-translate-y-0.5 hover:shadow-green/40 transition-all duration-300 whitespace-nowrap"
-                  >
-                    Skip Ahead to The System →
-                  </button>
-                  <button
-                    onClick={() => setShowSkipAhead(false)}
-                    className="absolute -top-2 -right-2 text-white font-bold text-sm leading-none transition hover:text-gray-300"
-                    aria-label="Dismiss"
-                  >
-                    ✕
-                  </button>
-                </div>
-              </div>
-            )}
 
             {/* LOGO */}
             <div className="flex justify-center pt-4 pb-3">
@@ -254,7 +255,7 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">Imagine Representatives knowing exactly what their district demands.</p>
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">Imagine knowing they can't pretend they didn't hear it.</p>
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">
-                  Imagine healthcare, affordability, accountability, and other priorities backed by organized constituents instead of isolated voices.
+                  Imagine healthcare, affordability, accountability, and every other priority backed by an organized district instead of isolated voices.
                 </p>
                 <p className="text-green font-bold text-sm sm:text-[17px]">That's what PHIERS is building.</p>
                 <p className="text-gray-300 text-sm sm:text-[17px] leading-relaxed">Not a petition. A constituency.</p>
@@ -283,23 +284,25 @@ export default function TransitionModal({ onShowFramework, onSkipVideo, onSignPe
               {/* SECONDARY LINKS — Educational */}
               <div className="flex flex-col items-center gap-3 mt-4">
                 <button
-                  onClick={() => setShowWhy500Modal(true)}
+                  onClick={onShowFramework}
                   className="text-green-400 text-sm sm:text-[17px] underline hover:text-green-300 transition-colors"
+                >
+                  See How PHIERS Works →
+                </button>
+
+                <button
+                  onClick={() => setShowWhy500Modal(true)}
+                  className="text-gray-400 text-sm sm:text-[17px] underline hover:text-gray-300 transition-colors"
                 >
                   Why 500 Works →
                 </button>
+
                 <Link
                   href="/the-system"
                   className="text-gray-400 text-sm sm:text-[17px] underline hover:text-gray-300 transition-colors"
                 >
                   What PHIERS Stands For →
                 </Link>
-                <button
-                  onClick={onShowFramework}
-                  className="text-gray-400 text-sm sm:text-[17px] underline hover:text-gray-300 transition-colors"
-                >
-                  Show Me How PHIERS Works →
-                </button>
               </div>
             </div>
 
